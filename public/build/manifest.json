@@ -1,6 +1,42 @@
 {
+  "public/images/img/fondo2.png": {
+    "file": "assets/fondo2-Z8J9LvuJ.png",
+    "src": "public/images/img/fondo2.png"
+  },
+  "public/images/img/fondolanding.png": {
+    "file": "assets/fondolanding-PFrEbava.png",
+    "src": "public/images/img/fondolanding.png"
+  },
+  "public/images/img/imgmundoweb.jpg": {
+    "file": "assets/imgmundoweb-qSRVmtmw.jpg",
+    "src": "public/images/img/imgmundoweb.jpg"
+  },
+  "public/images/img/texturaonepage.svg": {
+    "file": "assets/texturaonepage-nuD1VLY-.svg",
+    "src": "public/images/img/texturaonepage.svg"
+  },
+  "public/img_donas/banner2.png": {
+    "file": "assets/banner2-6UIWTQ_Q.png",
+    "src": "public/img_donas/banner2.png"
+  },
+  "public/img_donas/banner3.png": {
+    "file": "assets/banner3-z2B0BG_X.png",
+    "src": "public/img_donas/banner3.png"
+  },
+  "public/img_donas/banner4home.png": {
+    "file": "assets/banner4home-4X2rCPOc.png",
+    "src": "public/img_donas/banner4home.png"
+  },
+  "public/img_donas/bannervideo.png": {
+    "file": "assets/bannervideo-WVZ1GOxQ.png",
+    "src": "public/img_donas/bannervideo.png"
+  },
+  "public/img_donas/fondolasdonas.png": {
+    "file": "assets/fondolasdonas-Nz7TWqUo.png",
+    "src": "public/img_donas/fondolasdonas.png"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-gB1TDiNb.css",
+    "file": "assets/app-X0BUQ-r3.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
