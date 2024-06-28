@@ -94,6 +94,7 @@ Route::get('/politicas-de-devolucion', [IndexController::class, 'politicasDevolu
 Route::get('/terminos-y-condiciones', [IndexController::class, 'TerminosyCondiciones'])->name('terms_condition');
 
 
+Route::get('/instagram', [App\Http\Controllers\InstagramController::class, 'index']);
 
 
 

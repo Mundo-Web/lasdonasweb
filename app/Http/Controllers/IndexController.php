@@ -29,6 +29,7 @@ use App\Models\TermsAndCondition;
 use App\Models\TypeAttribute;
 use App\Models\User;
 use App\Models\UserDetails;
+use App\Services\InstagramService;
 use Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -51,6 +52,14 @@ class IndexController extends Controller
   /**
    * Display a listing of the resource.
    */
+
+   protected $instagramService;
+
+   public function __construct(InstagramService $instagramService)
+   {
+       $this->instagramService = $instagramService;
+   }
+
   public function index()
   {
     // $productos = Products::all();
@@ -69,7 +78,10 @@ class IndexController extends Controller
     $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->get();
     $liquidacion = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-    return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
+    $media = $this->instagramService->getUserMedia();
+
+
+    return view('public.index', compact('media','productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
   }
 
   public function coleccion($filtro)

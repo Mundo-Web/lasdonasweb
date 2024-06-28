@@ -100,164 +100,162 @@
     </section>
 
     <section>
+      {{-- Categorias destacadas --}}
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[7%] gap-4 pt-10">
+      @if (count($category->take(4)) == 4)
+        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[7%] gap-4 pt-10">
 
-        <div class="w-full sm:row-span-2">
-          <div class="block_fondo_first h-96  sm:h-full flex flex-col justify-end items-start pb-6 pl-6 ">
-            <h3 class="text-base font-medium text-white">Categoría</h3>
-            <h2 class="text-3xl font-bold text-white">Aniversario</h2>
+
+          <div class="w-full sm:row-span-2">
+            <div class=" h-96  sm:h-full flex flex-col justify-end items-start pb-6 pl-6 "
+              style="background-image: url('{{ $category[0]->url_image . $category[0]->name_image }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
+            </div>
+          </div>
+          <div class="w-full ">
+            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
+              style="background-image: url('{{ $category[1]->url_image . $category[1]->name_image }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[1]->name }}</h2>
+            </div>
+          </div>
+          <div class="w-full ">
+            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 flex flex-col justify-end items-start pb-6 pl-6"
+              style="background-image: url('{{ $category[2]->url_image . $category[2]->name_image }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[2]->name }}</h2>
+            </div>
           </div>
         </div>
-        <div class="w-full ">
-          <div
-            class="block_fondo_second h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6">
-            <h3 class="text-base font-medium text-white">Categoría</h3>
-            <h2 class="text-3xl font-bold text-white">Agradecimiento</h2>
-          </div>
-        </div>
-        <div class="w-full ">
-          <div
-            class="block_fondo_third h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 flex flex-col justify-end items-start pb-6 pl-6">
-            <h3 class="text-base font-medium text-white">Categoría</h3>
-            <h2 class="text-3xl font-bold text-white">Para Ella</h2>
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 px-[5%] lg:px-[7%] pb-10 mt-4">
+        <div class="grid grid-cols-1 px-[5%] lg:px-[7%] pb-10 mt-4">
 
-        <div class="w-full ">
-          <div
-            class="block_fondo_four h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6">
-            <h3 class="text-base font-medium text-white">Categoría</h3>
-            <h2 class="text-3xl font-bold text-white">Nacimiento</h2>
+          <div class="w-full ">
+            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
+              style="background-image: url('{{ $category[3]->url_image . $category[3]->name_image }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[3]->name }}</h2>
+            </div>
+          </div>
+
+        </div>
+      @elseif (count($category->take(4)) == 3)
+        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[7%] gap-4 pt-10">
+
+
+          <div class="w-full sm:row-span-2">
+            <div class=" h-96  sm:h-full flex flex-col justify-end items-start pb-6 pl-6 "
+              style="background-image: url('{{ $category[0]->url_image . $category[0]->name_image }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
+            </div>
+          </div>
+          <div class="w-full ">
+            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
+              style="background-image: url('{{ $category[1]->url_image . $category[1]->name_image }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[1]->name }}</h2>
+            </div>
+          </div>
+          <div class="w-full ">
+            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 flex flex-col justify-end items-start pb-6 pl-6"
+              style="background-image: url('{{ $category[2]->url_image . $category[2]->name_image }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[2]->name }}</h2>
+            </div>
           </div>
         </div>
+      @elseif (count($category->take(4)) == 2)
+        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[7%] gap-4 pt-10">
 
-      </div>
+
+          <div class="w-full sm:row-span-2">
+            <div class=" md:h-96   flex flex-col justify-end items-start pb-6 pl-6 "
+              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
+            </div>
+          </div>
+          <div class="w-full ">
+            <div class=" h-96  md:h-96   flex flex-col justify-end items-start pb-6 pl-6"
+              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[1]->name }}</h2>
+            </div>
+          </div>
+
+
+        </div>
+      @elseif (count($category->take(4)) == 1)
+        <div class="grid grid-cols-1 px-[5%] lg:px-[7%] pb-10 mt-4">
+
+          <div class="w-full ">
+            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
+              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;">
+              <h3 class="text-base font-medium text-white">Categoría</h3>
+              <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
+            </div>
+          </div>
+
+        </div>
+      @endif
+
 
     </section>
 
-    <section>
-      <div class="px-[5%] py-8 space-y-10">
-        <div class="text-left  space-y-2">
-          <h3 class="text-lg font-bold text-rosalasdonas">Nuestros clientes</h3>
-          <h2 class="text-4xl md:text-5xl font-bold text-black">Testimonios en Flor</h2>
-          <p class="text-base font-normal text-black">Clientes felices, historias encantadoras. Descubre por qué
-            florecemos juntos.</p>
-        </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6">
-
-          <div class="space-y-4 w-full m-auto p-6 bg-griscard rounded-xl">
-
-            <div class="flex flex-row justify-end items-end">
-              <div class="w-[80%]">
-                <h2 class="text-xl font-bold text-black">Alejandra Neyra</h2>
-                <p class="text-base font-normal text-black">Comprado el 20 de julio de 2024</p>
-              </div>
-              <div class="w-[20%]">
-                <img class="w-14 rounded-full  object-contain" src="{{ asset('img_donas/usericon.png') }}" />
-              </div>
-            </div>
-
-            <div>
-              <ul class="flex flex-row space-x-1">
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/mediaestrella.svg') }}"> </li>
-              </ul>
-            </div>
-
-            <div>
-              <p class="text-base font-normal text-black">Vestibulum faucibus elit urna. Vestibulum sollicitudin molestie
-                enim,
-                non aliquet massa rutrum in. Quisque rhoncus fringilla dictum. Sed interdum ligula ligula. Maecenas
-                pharetra
-                ligula malesuada risus faucibus rhoncus. Curabitur ut lorem odio. Vestibulum sit amet malesuada nulla.
-                Integer
-                a consequat nulla.</p>
-            </div>
-
+    @if (count($testimonie) > 0)
+      <section>
+        <div class="px-[5%] py-8 space-y-10">
+          <div class="text-left  space-y-2">
+            <h3 class="text-lg font-bold text-rosalasdonas">Nuestros clientes</h3>
+            <h2 class="text-4xl md:text-5xl font-bold text-black">Testimonios en Flor</h2>
+            <p class="text-base font-normal text-black">Clientes felices, historias encantadoras. Descubre por qué
+              florecemos juntos.</p>
           </div>
 
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6">
 
+            @foreach ($testimonie as $item)
+              <div class="space-y-4 w-full m-auto p-6 bg-griscard rounded-xl">
 
-          <div class="space-y-4 w-full m-auto p-6 bg-griscard rounded-xl">
+                <div class="flex flex-row justify-end items-end">
+                  <div class="w-[80%]">
+                    <h2 class="text-xl font-bold text-black">{{ $item->name }}</h2>
+                    <p class="text-base font-normal text-black">Comprado el 20 de julio de 2024</p>
+                  </div>
+                  <div class="w-[20%]">
+                    <img class="w-14 rounded-full  object-contain" src="{{ asset('img_donas/usericon.png') }}" />
+                  </div>
+                </div>
 
-            <div class="flex flex-row justify-end items-end">
-              <div class="w-[80%]">
-                <h2 class="text-xl font-bold text-black">Alejandra Neyra</h2>
-                <p class="text-base font-normal text-black">Comprado el 20 de julio de 2024</p>
+                <div>
+                  <ul class="flex flex-row space-x-1">
+                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
+                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
+                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
+                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
+                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/mediaestrella.svg') }}"> </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p class="text-base font-normal text-black">{{ $item->testimonie }}</p>
+                </div>
+
               </div>
-              <div class="w-[20%]">
-                <img class="w-14 rounded-full  object-contain" src="{{ asset('img_donas/usericon.png') }}" />
-              </div>
-            </div>
-
-            <div>
-              <ul class="flex flex-row space-x-1">
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/mediaestrella.svg') }}"> </li>
-              </ul>
-            </div>
-
-            <div>
-              <p class="text-base font-normal text-black">Vestibulum faucibus elit urna. Vestibulum sollicitudin molestie
-                enim,
-                non aliquet massa rutrum in. Quisque rhoncus fringilla dictum. Sed interdum ligula ligula. Maecenas
-                pharetra
-                ligula malesuada risus faucibus rhoncus. Curabitur ut lorem odio. Vestibulum sit amet malesuada nulla.
-                Integer
-                a consequat nulla.</p>
-            </div>
-
-          </div>
+            @endforeach
 
 
 
-          <div class="space-y-4 w-full m-auto p-6 bg-griscard rounded-xl">
 
-            <div class="flex flex-row justify-end items-end">
-              <div class="w-[80%]">
-                <h2 class="text-xl font-bold text-black">Alejandra Neyra</h2>
-                <p class="text-base font-normal text-black">Comprado el 20 de julio de 2024</p>
-              </div>
-              <div class="w-[20%]">
-                <img class="w-14 rounded-full  object-contain" src="../resource/img_donas/usericon.png" />
-              </div>
-            </div>
-
-            <div>
-              <ul class="flex flex-row space-x-1">
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                <li><img class="rounded-full w-6" src="{{ asset('img_donas/mediaestrella.svg') }}"> </li>
-              </ul>
-            </div>
-
-            <div>
-              <p class="text-base font-normal text-black">Vestibulum faucibus elit urna. Vestibulum sollicitudin molestie
-                enim,
-                non aliquet massa rutrum in. Quisque rhoncus fringilla dictum. Sed interdum ligula ligula. Maecenas
-                pharetra
-                ligula malesuada risus faucibus rhoncus. Curabitur ut lorem odio. Vestibulum sit amet malesuada nulla.
-                Integer
-                a consequat nulla.</p>
-            </div>
 
           </div>
         </div>
-      </div>
 
-    </section>
+      </section>
+    @endif
+
 
 
     <section>
@@ -295,8 +293,38 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 ">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 h-">
 
+        @foreach (array_slice($media, 0, 4) as $item)
+          <div class="relative group h-80">
+            @if ($item['media_type'] === 'IMAGE' || $item['media_type'] === 'CAROUSEL_ALBUM')
+              <img src="{{ $item['media_url'] }}" alt="Image" class="object-cover">
+              <a href="{{ $item['permalink'] }}" target="_blank"
+                class="opacity-0 hover:cursor-pointer group-hover:opacity-60 duration-300 absolute inset-x-0 top-0 flex justify-center items-center h-full bg-rosalasdonas ">
+              </a>
+              <img
+                class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 top-1/2 left-1/2 flex justify-center items-center translate-x-[-50%] translate-y-[-50%]"
+                src="{{ asset('img_donas/instagram.svg') }}">
+            @elseif ($item['media_type'] === 'VIDEO')
+              <div class="h-80 overflow-hidden">
+                <video class="min-h-80 min-w-full ">
+                  <source src="{{ $item['media_url'] }}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <a href="{{ $item['permalink'] }}" target="_blank"
+                  class="opacity-0 hover:cursor-pointer group-hover:opacity-60 duration-300 absolute inset-x-0 top-0 flex justify-center items-center h-full bg-rosalasdonas ">
+                </a>
+
+                <img
+                  class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 top-1/2 left-1/2 flex justify-center items-center translate-x-[-50%] translate-y-[-50%]"
+                  src="{{ asset('img_donas/instagram.svg') }}">
+
+              </div>
+            @endif
+
+          </div>
+        @endforeach
+        {{-- 
         <div class="relative group">
           <img class="w-full" src="{{ asset('img_donas/ig1.png') }}" />
           <div
@@ -335,7 +363,7 @@
           <img
             class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 top-1/2 left-1/2 flex justify-center items-center translate-x-[-50%] translate-y-[-50%]"
             src="{{ asset('img_donas/instagram.svg') }}">
-        </div>
+        </div> --}}
 
       </div>
 

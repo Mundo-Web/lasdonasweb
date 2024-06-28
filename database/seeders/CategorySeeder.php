@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         //
-        $cat = ['Vestidos', 'Blusas', 'Casacas', 'Pantalones', 'Sets', 'Polos y Hoodies', 'Accesorios'];
+        $cat = ['Agradecimiento', 'Para Ella', 'Aniversario', 'Nacimiento'];
         for ($i = 0; $i < 4; $i++) {
             Category::create([
                 'name' => $cat[$i],
