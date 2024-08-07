@@ -19,6 +19,7 @@ use App\Models\Testimony;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Combinacion;
+use App\Models\Complemento;
 use App\Models\DetalleOrden;
 use App\Models\ImagenProducto;
 use App\Models\Liquidacion;
@@ -26,6 +27,7 @@ use App\Models\Ordenes;
 use App\Models\PolyticsCondition;
 use App\Models\Specifications;
 use App\Models\TermsAndCondition;
+use App\Models\Tipo;
 use App\Models\TypeAttribute;
 use App\Models\User;
 use App\Models\UserDetails;
@@ -44,6 +46,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
 
 use function PHPUnit\Framework\isNull;
 
@@ -62,15 +65,15 @@ class IndexController extends Controller
 
   public function index()
   {
-    // $productos = Products::all();
-    $productos = Products::where('status', '=', 1)->with('tags')->get();
+    // $productos = Products::all(); Products::where("tipo_servicio", "=", 'complemento')
+    $productos = Products::where('status', '=', 1)->where('tipo_servicio', 'producto') ->with('tags')->get();
     $categorias = Category::all();
     $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
     // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
     // ->where('visible', '=', 1)->with('tags')->get();
     $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
 
-    $general = General::all();
+    $general = General::find(1);
     $benefit = Strength::where('status', '=', 1)->get();
     $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
     $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -570,8 +573,21 @@ class IndexController extends Controller
 
     $colors = DB::table('imagen_productos')->where('product_id', $id)->groupBy('color_id')->join('attributes_values', 'color_id', 'attributes_values.id')->get();
 
-    $productos = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
+    $productos = Products::where('id', '=', $id)->with(['attributes', 'images'])->with('tags')->first();
+    $subproductos = Products::where('parent_id', '=', $id)->with(['images', 'tipos'])->get();
+    
+    $tipoDefault = Tipo::where('is_default', '=', 1)->first();
 
+    $complementos = Complemento::select('complementos.*')
+    ->join('products', 'products.complemento_id', '=', 'complementos.id')
+    ->where('complementos.status', 1)
+    ->groupBy('complementos.id')
+    ->get();
+    foreach ($complementos as $key => $complemento) {
+   
+      $complementos[$key]['min_price'] = $complemento->min_price;
+    }
+    
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
       ->where(function ($query) {
@@ -589,9 +605,15 @@ class IndexController extends Controller
     );
 
     $IdProductosComplementarios = $productos->toArray();
-    $IdProductosComplementarios = $IdProductosComplementarios[0]['categoria_id'];
+   
+    $ProdComplementarios = [];
+    
+    if(isset($IdProductosComplementarios) && !isNull($IdProductosComplementarios)){
+      $IdProductosComplementarios = json_decode($IdProductosComplementarios['uppsell'], true);
+      $ProdComplementarios = Products::whereIn('id',  $IdProductosComplementarios)->with('images')->get();
+    }
 
-    $ProdComplementarios = Products::where('categoria_id', '=', $IdProductosComplementarios)->get();
+    
     $atributos = Attributes::where('status', '=', true)->get();
     // $atributos = $product->attributes()->get();
 
@@ -599,7 +621,21 @@ class IndexController extends Controller
 
     $url_env = $_ENV['APP_URL'];
 
-    return view('public.product', compact('product', 'productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env', 'colors'));
+    // return view('public.product', compact('complementos' ,'tipoDefault', 'subproductos', 'product', 'productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env', 'colors'));
+    return Inertia::render('Product', [
+      'complementos' => $complementos,
+      'tipoDefault' => $tipoDefault,
+      'subproductos' => $subproductos,
+      'product' => $product,
+      'productos' => $productos,
+      'atributos' => $atributos,
+      'valorAtributo' => $valorAtributo,
+      'ProdComplementarios' => $ProdComplementarios,
+      'productosConGalerias' => $productosConGalerias,
+      'especificaciones' => $especificaciones,
+      'url_env' => $url_env,
+      'colors' => $colors
+    ])->rootView('app');
   }
 
   public function liquidacion()
@@ -829,5 +865,17 @@ class IndexController extends Controller
   public function TerminosyCondiciones(){
     $termsAndCondicitions = TermsAndCondition::first();
      return view('public.terminosycondiciones', compact('termsAndCondicitions'));
+  }
+
+
+  public function buscaComplementos(Request $request){
+    $categorias = Category::where('visible', 1)->with('productos')->get();
+
+    return response()->json(['categorias' => $categorias]);
+  }
+  public function buscaSubComplementosDetalle(Request $request){
+    $productos = Products::where('complemento_id', $request->id)->where('tipo_servicio', '=','complemento')->where('status', 1)->with('images')->get();
+
+    return response()->json(['productos' => $productos]);
   }
 }

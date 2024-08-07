@@ -30,6 +30,63 @@
               </tr>
             </thead>
             <tbody>
+              @foreach ($complementos as $item)
+                <tr>
+                  <td>{{ $item->name }}</td>
+                  <td>{{ $item->description }}</td>
+                  <td>
+                    <form method="POST" action="">
+                      @csrf
+                      <input type="checkbox" id="hs-basic-usage"
+                        class="check_d btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
+                                            rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
+                                            checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
+                                            dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
+                                            before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
+                                            before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
+                        id='{{ 'd_' . $item->id }}' data-field='destacar' data-idService='{{ $item->id }}'
+                        data-titleService='{{ $item->name }}' {{ $item->destacar == 1 ? 'checked' : '' }}>
+                      <label for="{{ 'v_' . $item->id }}"></label>
+                    </form>
+
+
+
+                  </td>
+                  <td>
+                    <form method="POST" action="">
+                      @csrf
+                      <input type="checkbox" id="hs-basic-usage"
+                        class="check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
+                                            rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
+                                            checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
+                                            dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
+                                            before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
+                                            before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
+                        id='{{ 'v_' . $item->id }}' data-field='visible' data-idService='{{ $item->id }}'
+                        data-titleService='{{ $item->name }}' {{ $item->visible == 1 ? 'checked' : '' }}>
+                      <label for="{{ 'v_' . $item->id }}"></label>
+                    </form>
+
+
+
+                  </td>
+                  <td class="flex flex-row justify-end items-center gap-5">
+
+                    <a href="{{ route('categorias.edit', $item->id) }}"
+                      class="bg-yellow-400 px-3 py-2 rounded text-white  "><i
+                        class="fa-regular fa-pen-to-square"></i></a>
+                    {{-- {{  route('servicios.destroy', $item->id) }} --}}
+                    <form action=" " method="POST">
+                      @csrf
+                      <a data-idService='{{ $item->id }}'
+                        class="btn_delete bg-red-600 px-3 py-2 rounded text-white cursor-pointer"><i
+                          class="fa-regular fa-trash-can"></i></a>
+                      <!-- <a href="" class="bg-red-600 p-2 rounded text-white"><i class="fa-regular fa-trash-can"></i></a> -->
+                    </form>
+
+                  </td>
+                </tr>
+              @endforeach
 
 
 

@@ -1,9 +1,10 @@
+{{-- <img src="{{ asset('img_donas/Home_V0507.png ') }}" class="absolute top-0 left-0 w-full z-[99999] opacity-30"></img> --}}
 <header>
   <div class="header_top bg-rosalasdonas w-full h-12 text-white flex flex-row items-center justify-center"> Producto |
     Categoría <span class="ml-1 font-bold"> más vendida </span> <img class="w-6 ml-2"
       src="{{ asset('img_donas/spa.svg') }}">
   </div>
-  <div class="header_middle grid grid-cols-12 h-24 md:border-b">
+  <div class="header_middle grid grid-cols-12 h-28 md:border-b">
     <div class="block_left col-span-3 flex items-center justify-center ">
       <div class="md:hidden">
         <button class="hamburger" onclick="show()">
@@ -43,17 +44,14 @@
 
     </div>
   </div>
-  <div class="header_bottom  md:px-[5%] lg:px-[10%] h-12 py-3 hidden md:block">
+  <div class="header_bottom  md:px-[5%] lg:px-[10%] h-12 py-3 hidden md:block bg-[#336234]">
     <div class="text-colorgris font-medium text-base">
       <nav>
         <ul class="menu flex flex-row justify-between">
-          <li><a href="/catalogo.html">Categoría 1</a></li>
-          <li><a href="/catalogo.html">Categoría 2</a></li>
-          <li><a href="/catalogo.html">Categoría 3</a></li>
-          <li><a href="/catalogo.html">Categoría 4</a></li>
-          <li><a href="/catalogo.html">Categoría 5</a></li>
-          <li><a href="/catalogo.html">Categoría 6</a></li>
-          <li><a href="/catalogo.html">Categoría 7</a></li>
+          @foreach ($submenucategorias->take(7) as $item)
+            <li><a href="/catalogo/{{ $item->id }}">{{ $item->name }}</a></li>
+          @endforeach
+
         </ul>
       </nav>
     </div>

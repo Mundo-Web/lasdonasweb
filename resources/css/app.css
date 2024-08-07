@@ -7,6 +7,9 @@
 @import 'additional-styles/flatpickr.css';
 @import 'tailwindcss/utilities';
 
+@import url("https://db.onlinewebfonts.com/c/b93a670faff71cce8d9932b21bd24c0e?family=Beausite+Slick+Trial+Light");
+
+
 
 @layer components {
     .active-color {
@@ -249,17 +252,17 @@ select {
 2. Remove default button styles.
 */
 
-button,
+/* button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
   -webkit-appearance: button;
-  /* 1 */
+  
   background-color: transparent;
-  /* 2 */
+  
   background-image: none;
-  /* 2 */
-}
+  
+} */
 
 /*
 Use the modern Firefox focus style for all focusable elements.
@@ -1451,7 +1454,7 @@ video {
 
 .bg-rosalasdonas {
   --tw-bg-opacity: 1;
-  background-color: rgb(223 56 118 / var(--tw-bg-opacity));
+  background-color: rgba(255, 133, 85, var(--tw-bg-opacity));
 }
 
 .bg-rosasuave {
@@ -2573,14 +2576,14 @@ video {
 }
 
 @media (prefers-color-scheme: dark) {
-  .dark\:border-gray-700 {
+  /* .dark\:border-gray-700 {
     --tw-border-opacity: 1;
     border-color: rgb(55 65 81 / var(--tw-border-opacity));
-  }
+  } */
 
   .dark\:bg-slate-900 {
     --tw-bg-opacity: 1;
-    background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+    /* background-color: rgb(15 23 42 / var(--tw-bg-opacity)); */
   }
 
   .dark\:bg-opacity-80 {

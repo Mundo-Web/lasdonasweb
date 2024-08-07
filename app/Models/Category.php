@@ -22,6 +22,6 @@ class Category extends Model
 
     public function productos()
     {
-        return $this->hasMany(Products::class);
+        return $this->hasMany(Products::class, 'categoria_id');
     }
 }

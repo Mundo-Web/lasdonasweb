@@ -11,6 +11,8 @@ class General extends Model
 
     protected $fillable = ['address', 'inside', 'district', 'city', 'country', 'cellphone'
     ,'office_phone', 'email', 'facebook', 'instagram','youtube', 'twitter', 'tiktok', 'whatsapp',  'form_email', 'business_hours', 'schedule', 
-    'mensaje_whatsapp', 'aboutus', 'ig_token'];
+    'mensaje_whatsapp', 'aboutus', 'ig_token', 'url_video',
+    'titulo_video',
+    'sub_titulo_video'];
 
 }

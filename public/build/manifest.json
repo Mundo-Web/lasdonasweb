@@ -1,4 +1,16 @@
 {
+  "__commonjsHelpers-4gQjN7DL.js": {
+    "file": "assets/_commonjsHelpers-4gQjN7DL.js"
+  },
+  "_axios-_sX4vCAy.js": {
+    "file": "assets/axios-_sX4vCAy.js"
+  },
+  "_index-TykbAVkI.js": {
+    "file": "assets/index-TykbAVkI.js",
+    "imports": [
+      "__commonjsHelpers-4gQjN7DL.js"
+    ]
+  },
   "public/images/img/fondo2.png": {
     "file": "assets/fondo2-Z8J9LvuJ.png",
     "src": "public/images/img/fondo2.png"
@@ -36,16 +48,141 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-lNQEKBxa.css",
+    "file": "assets/app-JpayeoUM.css",
     "isEntry": true,
     "src": "resources/css/app.css"
+  },
+  "resources/js/Accordion.jsx": {
+    "file": "assets/Accordion-LZUyL3j9.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "_index-TykbAVkI.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/Accordion.jsx"
+  },
+  "resources/js/AccordionContent.jsx": {
+    "file": "assets/AccordionContent-LZUyL3j9.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "_index-TykbAVkI.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/AccordionContent.jsx"
+  },
+  "resources/js/Example.jsx": {
+    "file": "assets/Example-BKdWb2kD.js",
+    "imports": [
+      "_index-TykbAVkI.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/Example.jsx"
+  },
+  "resources/js/Product.jsx": {
+    "file": "assets/Product-dQMcJcGp.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/Utils/ReactAppend.jsx",
+      "_index-TykbAVkI.js",
+      "resources/js/Utils/CreateReactScript.jsx",
+      "_axios-_sX4vCAy.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/Product.jsx"
+  },
+  "resources/js/Utils/CreateReactScript.jsx": {
+    "file": "assets/CreateReactScript-rD10Yn6w.js",
+    "imports": [
+      "_axios-_sX4vCAy.js",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_index-TykbAVkI.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/Utils/CreateReactScript.jsx"
+  },
+  "resources/js/Utils/HtmlContent.jsx": {
+    "file": "assets/HtmlContent-LZUyL3j9.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "_index-TykbAVkI.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/Utils/HtmlContent.jsx"
+  },
+  "resources/js/Utils/Number2Currency.jsx": {
+    "file": "assets/Number2Currency-w40geAFS.js",
+    "isEntry": true,
+    "src": "resources/js/Utils/Number2Currency.jsx"
+  },
+  "resources/js/Utils/PseudoTippy.jsx": {
+    "file": "assets/PseudoTippy-w40geAFS.js",
+    "isEntry": true,
+    "src": "resources/js/Utils/PseudoTippy.jsx"
+  },
+  "resources/js/Utils/ReactAppend.jsx": {
+    "file": "assets/ReactAppend-ZOqmO34H.js",
+    "imports": [
+      "_index-TykbAVkI.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/Utils/ReactAppend.jsx"
+  },
+  "resources/js/Utils/SetQuillValue.jsx": {
+    "file": "assets/SetQuillValue-w40geAFS.js",
+    "isEntry": true,
+    "src": "resources/js/Utils/SetQuillValue.jsx"
+  },
+  "resources/js/Utils/SetSelectValue.jsx": {
+    "file": "assets/SetSelectValue-w40geAFS.js",
+    "isEntry": true,
+    "src": "resources/js/Utils/SetSelectValue.jsx"
   },
   "resources/js/app.js": {
     "css": [
       "assets/app-dGvTjJ5y.css"
     ],
-    "file": "assets/app-Eor_iKiU.js",
+    "file": "assets/app-hU9lT6GY.js",
+    "imports": [
+      "_axios-_sX4vCAy.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/js/components/svg/SvgFlorClasic.jsx": {
+    "file": "assets/SvgFlorClasic-LZUyL3j9.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "_index-TykbAVkI.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/svg/SvgFlorClasic.jsx"
+  },
+  "resources/js/components/svg/SvgFlorDeluxe.jsx": {
+    "file": "assets/SvgFlorDeluxe-LZUyL3j9.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "_index-TykbAVkI.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
+  },
+  "resources/js/components/svg/svgFlorPremium.jsx": {
+    "file": "assets/svgFlorPremium-LZUyL3j9.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "_index-TykbAVkI.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/svg/svgFlorPremium.jsx"
   }
 }

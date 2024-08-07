@@ -41,8 +41,10 @@ use App\Http\Controllers\ValoresAtributosController;
 
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TermsAndConditionController;
+use App\Http\Controllers\TipoController;
 use App\Models\AboutUs;
 use App\Models\Price;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +58,12 @@ use App\Models\Price;
 */
 
 /* Las rutas publicas */
+Route::get('/example', function () {
+    return Inertia::render('Example', [
+        'message' => 'Hello from Laravel!'
+    ]);
+});
+
 Route::get('/', [IndexController::class, 'index'] )->name('index');
 Route::get('/nosotros', [IndexController::class, 'nosotros'] )->name('nosotros');
 Route::get('/servicios', [IndexController::class, 'servicios'] )->name('servicios');
@@ -70,7 +78,7 @@ Route::get('/pago', [IndexController::class, 'pago'] )->name('pago');
 Route::post('/procesar/pago',[IndexController::class, 'procesarPago'])->name('procesar.pago');
 Route::post('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
 /* Catálogo y producto */
-Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('producto');
+Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('Product.jsx');
 Route::get('/catalogo/{filtro}', [IndexController::class, 'catalogo'] )->name('catalogo');
 Route::post('carrito/buscarProducto', [CarritoController::class, 'buscarProducto'] )->name('carrito.buscarProducto');
 Route::get('/coleccion/{filtro}', [IndexController::class, 'coleccion'] )->name('coleccion');
@@ -92,6 +100,8 @@ Route::post('/calculeEnvio', [PriceController::class, 'calculeEnvio'])->name('pr
 
 Route::get('/politicas-de-devolucion', [IndexController::class, 'politicasDevolucion'])->name('politicas_dev');
 Route::get('/terminos-y-condiciones', [IndexController::class, 'TerminosyCondiciones'])->name('terms_condition');
+Route::get('/buscarComplemento', [IndexController::class, 'buscaComplementos'])->name('productos.buscaComplementos');
+Route::post('/buscaSubComplementosDetalle', [IndexController::class, 'buscaSubComplementosDetalle'])->name('productos.buscaSubComplementosDetalle');
 
 
 Route::get('/instagram', [App\Http\Controllers\InstagramController::class, 'index']);
@@ -187,6 +197,9 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/products/updateVisible', [ProductsController::class, 'updateVisible'])->name('products.updateVisible');
         Route::post('/products/borrar', [ProductsController::class, 'borrar'])->name('products.borrar');
         Route::post('/products/borrarimg', [ProductsController::class, 'borrarimg'])->name('activity.borrarimg');
+        Route::post('/products/deleteOption', [ProductsController::class, 'deleteOption'])->name('products.deleteOption');
+        Route::post('/products/deleteEspect', [ProductsController::class, 'deleteEspect'])->name('products.deleteEspect');
+        Route::post('/products/saveSpec', [ProductsController::class, 'saveSpec'])->name('products.saveSpec');
 
         //Preguntas frecuentes
         Route::resource('/faqs', FaqsController::class);
@@ -219,6 +232,11 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         //Complementos 
         Route::resource('complemento', ComplementosController::class);
+
+        //TIPOS 
+        Route::resource('/tipos', TipoController::class);
+        Route::post('/tipos/deletetipos', [TipoController::class, 'deletetipos'])->name('tipos.deletetipos');
+        
         
         
 

@@ -13,16 +13,20 @@ class CategorySeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-        //
-        $cat = ['Agradecimiento', 'Para Ella', 'Aniversario', 'Nacimiento'];
-        for ($i = 0; $i < 4; $i++) {
-            Category::create([
-                'name' => $cat[$i],
-                'description' => 'Aquí va la descripción de la categoria '.$cat[$i],
-                'status' => 1,
-                'visible' => 1,
-            ]);
+        {
+            //
+            $cat = ['Agradecimiento', 'Para Ella', 'Aniversario', 'Nacimiento', 'Globos', 'Postres y pasteles', 'Peluches', 'Vinos y licores', 'Joyería',
+            'Dulces y Botanas', 'Velas', 'Belleza', 'Regalos', 'Chocolates'];
+
+            foreach ($cat as $name) {
+                Category::factory()->create([
+                    'name' => $name,
+                    'description' => 'Aquí va la descripción de la categoria ' . $name,
+                    'status' => 1,
+                    'visible' => 1,
+                ]);
+            }
         }
-    }
+    
+       
 }

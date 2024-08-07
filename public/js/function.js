@@ -78,19 +78,23 @@ document.addEventListener("DOMContentLoaded", function () {
     ".toggleDropdownCollection"
   );
   
-  toggleDropdownCategorias.addEventListener("click", (e) => {
-    if (menuCollection.classList.contains("active")) {
-      menuCollection.classList.remove("active");
-    }
-    menuCategorias.classList.toggle("active");
-  });
+  if(toggleDropdownCategorias !== null){
+    toggleDropdownCategorias.addEventListener("click", (e) => {
+      if (menuCollection.classList.contains("active")) {
+        menuCollection.classList.remove("active");
+      }
+      menuCategorias.classList.toggle("active");
+    });
+  }
   
-  toggleDropdownCollection.addEventListener("click", (e) => {
+  if(toggleDropdownCategorias !== null){ 
+    toggleDropdownCollection.addEventListener("click", (e) => {
     if (menuCategorias.classList.contains("active")) {
       menuCategorias.classList.remove("active");
     }
     menuCollection.classList.toggle("active");
-  });
+  }); }
+  
   
   function preventDefaultAction(event) {
     event.preventDefault();
@@ -99,27 +103,34 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
   const bagInput = document.querySelector(".bag__modal");
-  bagInput.addEventListener("click", () => {
-    menuCategorias.classList.remove("active");
-    menuCollection.classList.remove("active");
-  });
+  if(bagInput !== null){
+    bagInput.addEventListener("click", () => {
+      menuCategorias.classList.remove("active");
+      menuCollection.classList.remove("active");
+    });
+    
+  }
   
 
  // dropdown,js--------------------------------------------------------
 
   var input = document.querySelector(".input-box");
-input.onclick = function () {
-  this.classList.toggle("open");
-  let list = this.nextElementSibling;
-  if (list.style.maxHeight) {
-    list.style.maxHeight = null;
-    list.style.boxShadow = null;
-  } else {
-    list.style.maxHeight = list.scrollHeight + "px";
-    list.style.boxShadow =
-      "0 1px 2px 0 rgba(0, 0, 0, 0.15),0 1px 3px 1px rgba(0, 0, 0, 0.1)";
+  if(input !== null){
+    input.onclick = function () {
+      this.classList.toggle("open");
+      let list = this.nextElementSibling;
+      if (list.style.maxHeight) {
+        list.style.maxHeight = null;
+        list.style.boxShadow = null;
+      } else {
+        list.style.maxHeight = list.scrollHeight + "px";
+        list.style.boxShadow =
+          "0 1px 2px 0 rgba(0, 0, 0, 0.15),0 1px 3px 1px rgba(0, 0, 0, 0.1)";
+      }
+    };
   }
-};
+
+
 
 var rad = document.querySelectorAll(".radio");
 rad.forEach((item) => {

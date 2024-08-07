@@ -225,7 +225,7 @@ class DropzoneControls {
           let container = 0 
           this.on('addedfile', async (file) => {
             console.log('addedfile', file)
-            if(container < 4 ){
+            if(container < 5 ){
               container++
               console.log(container)
               const input = document.createElement('input')
@@ -252,29 +252,9 @@ class DropzoneControls {
            
           });
 
-          // If you only have access to the original image sizes on your server,
-          // and want to resize them in the browser:
-          // let mockFile1 = {name: 'bauernbrot.jpg', size: 12842};
-          // this.displayExistingFile(mockFile1, Helpers.UrlFix('/img/product/small/bauernbrot.jpg'));
-
-          // Setting extra type parameter to show icon instead of thumbnail. It still needs to have a image for some reason.
-          // let mockFile2 = {name: 'michetta.jpg', size: 22354};
-          // this.displayExistingFile(mockFile2, Helpers.UrlFix('/img/product/small/michetta.jpg'));
-
-          // Adding dz-started class to remove drop message
           this.element.classList.add('dz-started');
 
-          // // If the thumbnail is already in the right size on your server:
-          // let mockFile = { name: "Filename", size: 12345 };
-          // let callback = null; // Optional callback when it's done
-          // let crossOrigin = null; // Added to the `img` tag for crossOrigin handling
-          // let resizeThumbnail = false; // Tells Dropzone whether it should resize the image first
-          // this.displayExistingFile(mockFile, "https://i.picsum.photos/id/959/120/120.jpg", callback, crossOrigin, resizeThumbnail);
-
-          // If you use the maxFiles option, make sure you adjust it to the
-          // correct amount:
-          // let fileCountOnServer = 2; // The number of files already uploaded
-          // this.options.maxFiles = myDropzone.options.maxFiles - fileCountOnServer;
+          
         },
       });
     }

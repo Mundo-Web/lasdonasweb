@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::table('generals', function (Blueprint $table) {
             $table->string('ig_token')->nullable();
+            $table->string('url_video')->nullable();
+            $table->string('titulo_video')->nullable();
+            $table->string('sub_titulo_video')->nullable();
             
         });
     }
@@ -25,6 +28,9 @@ return new class extends Migration
         Schema::table('generals', function (Blueprint $table) {
             //
             $table->dropColumn('ig_token');
+            $table->dropColumn('url_video');
+            $table->dropColumn('titulo_video');
+            $table->dropColumn('sub_titulo_video');
         });
     }
 };

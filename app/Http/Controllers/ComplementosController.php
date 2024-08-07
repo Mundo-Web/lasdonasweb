@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Complemento;
 use Illuminate\Http\Request;
 
 class ComplementosController extends Controller
@@ -12,7 +13,8 @@ class ComplementosController extends Controller
     public function index()
     {
         //
-        return view('pages.complementos.index');
+        $complementos = Complemento::all();
+        return view('pages.complementos.index', compact('complementos'));
     }
 
     /**

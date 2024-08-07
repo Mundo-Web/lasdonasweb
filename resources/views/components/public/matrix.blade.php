@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  @viteReactRefresh
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -48,8 +49,8 @@
   @yield('scripts_importados')
   {{-- @vite(['resources/js/functions.js']) --}}
   {{-- <script src="{{ asset('js/functions.js') }}"></script> --}}
-  <script src="{{ asset('js/function.js') }}"></script>
-  <script src="{{ asset('js/carrito.js') }}"></script>
+  {{-- <script src="{{ asset('js/function.js') }}"></script> --}}
+  {{-- <script src="{{ asset('js/carrito.js') }}"></script> --}}
 
 
 </body>

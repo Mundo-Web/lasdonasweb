@@ -397,7 +397,7 @@
         </div>
       @endif
     </div> --}}
-    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('products.store') }}" method="POST" id="formPrincipal" enctype="multipart/form-data">
       @csrf
 
       <div
@@ -410,13 +410,49 @@
           </h2>
         </header>
         <div class="flex flex-col gap-2 p-3 ">
-          <div class="flex gap-2 p-3 ">
+          <div class="flex flex-col md:flex-row gap-2 p-3 ">
 
             <div class="basis-0 md:basis-3/5">
               <div class="rounded shadow-lg p-4 px-4 ">
 
 
-                <div id='general' class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 ">
+                <div id='general' class="grid gap-2 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 ">
+                  <div class="!flex !flex-row !content-between justify-between col-span-5 !flex-wrap"
+                    style="align-content: space-between;">
+                    <div class="col-span-2 flex flex-row gap-1 items-center">
+
+                      <div class="relative mb-2  mt-2">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+
+                        </div>
+                        <input type="checkbox" id="complemento" name="complemento"
+                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                      </div>
+                      <label for="complemento">Complemento ? </label>
+
+
+                    </div>
+                    <div class="" id="complementoContainer" hidden>
+                      <select name="complemento_id" id="complemento_id"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5 w-52 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
+                        <option value="">Seleccionar Complemento </option>
+                        @foreach ($complementos as $item)
+                          <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+
+                      </select>
+
+                    </div>
+                    <div class="" id="puntos_container" hidden>
+                      <input id="puntos_complemento" name="puntos_complemento" placeholder="Puntos Complemento"
+                        class="mt-1 w-[100px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block   p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('puntos_complemento') is-invalid @enderror">
+
+
+                      </input>
+
+                    </div>
+                  </div>
+
 
                   <div class="md:col-span-5 mt-2">
 
@@ -435,7 +471,7 @@
                           </g>
                         </svg>
                       </div>
-                      <input type="text" id="producto" name="producto" value=""
+                      <input type="text" id="producto" name="producto" value="" required
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('producto') is-invalid @enderror"
                         placeholder="Producto">
                       @error('producto')
@@ -476,60 +512,9 @@
                   <div class="md:col-span-5">
                     <label for="description">Descripcion</label>
                     <div class="relative mb-2 mt-2">
-                      <textarea type="text" rows="2" id="description" name="description" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Descripción"></textarea>
-                    </div>
-                  </div>
-
-                  {{-- <div class="md:col-span-5">
-                    <label for="imagen">Impagen Principal</label>
-                    <div class="relative mb-2  mt-2">
-                      <input id="imagen" name="imagen"
-                        class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        aria-describedby="user_avatar_help" id="user_avatar" type="file">
-                    </div>
-                  </div> --}}
-
-                  <div class="">
-
-                    <label for="destacar">Lo más pedido
-                    </label>
-
-                    <div class="relative mb-2  mt-2">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-
-                      </div>
-                      <input type="checkbox" id="destacar" name="destacar"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                      <x-textarea id="description" name="description" value="" />
 
 
-                    </div>
-                  </div>
-
-                  <div class="">
-
-                    <label for="recomendar">Novedad</label>
-
-                    <div class="relative mb-2  mt-2">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-
-                      </div>
-                      <input type="checkbox" id="recomendar" name="recomendar"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    </div>
-                  </div>
-
-                  <div class="">
-
-                    <label for="liquidacion">En liquidación</label>
-
-                    <div class="relative mb-2  mt-2">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-
-                      </div>
-                      <input type="checkbox" id="liquidacion" name="liquidacion"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     </div>
                   </div>
 
@@ -554,7 +539,7 @@
                         </svg>
 
                       </div>
-                      <input type="number" id="precio" name="precio" value=""
+                      <input type="number" id="precio" name="precio" value="" required
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('precio') is-invalid @enderror"
                         placeholder="precio">
                       @error('precio')
@@ -588,7 +573,10 @@
                 </div>
 
                 <div class="md:col-span-5">
-
+                  <label for="items" class="block font-medium text-gray-700">Up Sell<i
+                      class="fa-solid fa-cart-plus ml-4"></i></label>
+                  <select id="uppsell" name="uppsell[]" multiple="multiple"
+                    class="w-full select2 mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror""></select>
                 </div>
                 {{--
                 <div class="md:col-span-5">
@@ -608,7 +596,6 @@
                   </div>
                 </div>
                 --}}
-
                 <div class="md:col-span-5">
                   <label for="costo_x_art">Categoria</label>
                   <div class="relative mb-2  mt-2">
@@ -620,7 +607,7 @@
                           d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                       </svg>
                     </div>
-                    <select name="categoria_id"
+                    <select name="categoria_id" required
                       class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
                       <option value="">Seleccionar Categoria </option>
                       @foreach ($categoria as $item)
@@ -635,7 +622,7 @@
                 </div>
 
 
-                <div class="md:col-span-5">
+                {{--   <div class="md:col-span-5">
                   <label for="costo_x_art">Colección</label>
                   <div class="relative mb-2  mt-2">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -655,7 +642,7 @@
 
                     </select>
                   </div>
-                </div>
+                </div> --}}
 
 
                 <div class="md:col-span-5 mt-2">
@@ -716,33 +703,6 @@
                   Inventario</h4>
                 <div class="md:col-span-5 flex justify-between gap-4">
 
-                  {{--
-                  <div class="w-full">
-                    <label for="stock">
-                      Existencias
-                    </label>
-
-                    <div class="relative mb-2  mt-2">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                          version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512"
-                          x="0" y="0" viewBox="0 0 469.336 469.336" style="enable-background:new 0 0 512 512"
-                          xml:space="preserve" class="">
-                          <g>
-                            <path
-                              d="m456.836 76.168-64-64.054c-16.125-16.139-44.177-16.17-60.365.031L45.763 301.682a10.733 10.733 0 0 0-2.688 4.587L.409 455.73a10.682 10.682 0 0 0 10.261 13.606c.979 0 1.969-.136 2.927-.407l149.333-42.703a10.714 10.714 0 0 0 4.583-2.69l289.323-286.983c8.063-8.069 12.5-18.787 12.5-30.192s-4.437-22.124-12.5-30.193zM285.989 89.737l39.264 39.264-204.996 204.997-14.712-29.434a10.671 10.671 0 0 0-9.542-5.896H78.921L285.989 89.737zm-259.788 353.4L40.095 394.5l34.742 34.742-48.636 13.895zm123.135-35.177-51.035 14.579-51.503-51.503 14.579-51.035h28.031l18.385 36.771a10.671 10.671 0 0 0 4.771 4.771l36.771 18.385v28.032zm21.334-17.543v-17.082c0-4.042-2.281-7.729-5.896-9.542l-29.434-14.712 204.996-204.996 39.264 39.264-208.93 207.068zM441.784 121.72l-47.033 46.613-93.747-93.747 46.582-47.001c8.063-8.063 22.104-8.063 30.167 0l64 64c4.031 4.031 6.25 9.385 6.25 15.083s-2.219 11.052-6.219 15.052z"
-                              fill="#9F9F9F" opacity="1" data-original="#000000" class=""></path>
-                          </g>
-                        </svg>
-                      </div>
-                      <input type="number" id="stock" name="stock" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="# de existencias">
-
-
-                    </div>
-                  </div>
-                  --}}
 
 
                   <div class="w-full">
@@ -773,10 +733,27 @@
 
 
                 </div>
+                <div class="md:col-span-5 gap-4">
+                  <div class="flex  flex-col gap-4 p-2">
+                    <label for="caratula">Caratula</label>
+                    <input class="hidden" type="radio" name="caratula" value="{{ $item->id }}" checked>
+                  </div>
+
+                  <div class="flex flex-col gap-4">
+                    <input id="imagen" name="imagenP-0"
+                      class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                      aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                    <div class="dropzone border-gray-300 dropzoneSecond " id="dropzoneServerFilesGallery"
+                      name="attrid-{{ $item->id }}">
+                    </div>
+
+                  </div>
+
+                </div>
               </div>
 
 
-              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
+              {{--  <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
                 @foreach ($valorAtributo as $item)
                   @if ($item->attribute_id == 2)
                     <div class="grid grid-cols-3">
@@ -796,23 +773,13 @@
 
                     </div>
                     <div hidden id="imagenesOcultas-{{ $item->id }}">
-                      <div class="flex gap-4 p-2">
-                        <label for="caratula">caratula</label>
-                        <input type="radio" name="caratula" value="{{ $item->id }}">
-                      </div>
-
-                      <input id="imagen" name="imagenP-{{ $item->id }}"
-                        class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        aria-describedby="user_avatar_help" id="user_avatar" type="file">
-                      <div class="dropzone border-gray-300 dropzoneSecond " id="dropzoneServerFilesGallery"
-                        name="attrid-{{ $item->id }}">
-                      </div>
+                      
                     </div>
                   @endif
                 @endforeach
-              </div>
+              </div> --}}
 
-              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
+              {{--  <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
                 <div class="md:col-span-5 mt-2 ">
                   <div class=" flex items-end justify-between gap-2 ">
                     <label for="">Combinaciones </label>
@@ -829,7 +796,7 @@
 
                 </div>
 
-              </div>
+              </div> --}}
 
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
                 <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
@@ -851,6 +818,9 @@
                 </div>
               </div>
 
+              <input type="hidden" name="valoresFormulario" id="valoresFormulario" value="">
+
+
 
 
             </div>
@@ -858,7 +828,21 @@
           </div>
 
           <div class="md:col-span-5 text-right mt-6 flex justify-between px-4 pb-4">
+            <div class="inline-flex items-start">
+              <button id="agregarOpciones" type="button"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                Agregar opcion
+              </button>
+            </div>
+
+          </div>
+          <div class="  rounded shadow-xl p-4 px-4 " id="OpcionesContainer">
+
+          </div>
+
+          <div class="md:col-span-5 text-right mt-6 flex justify-between px-4 pb-4">
             <div class="inline-flex items-end">
+
               <a href="{{ URL::previous() }}"
                 class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
             </div>
@@ -879,7 +863,461 @@
 
 
   </div>
+  <script>
+    function instanciaQuills(contenidoId) {
+      const quill = new Quill(`#quill-opcion-${contenidoId}`, {
+        theme: 'snow'
+      });
 
+
+      quill.on('text-change', function(delta, oldDelta, source) {
+        if (source === 'user') {
+
+          // Obtener el contenido HTML actual del editor
+          var html = quill.root.innerHTML;
+
+          // Crear un elemento temporal para manipular el contenido HTML
+          var tempElem = document.createElement('div');
+          tempElem.innerHTML = html;
+
+          // Aplicar clases de Tailwind CSS a los encabezados dentro del contenido HTML
+          ['h1', 'h2', 'h3'].forEach(function(tagName) {
+            var elements = tempElem.getElementsByTagName(tagName);
+            for (var i = 0; i < elements.length; i++) {
+              // Aplicar clases según el tipo de encabezado
+              if (tagName === 'h1') {
+                elements[i].classList.add('text-4xl', 'font-bold', 'mt-4', 'mb-2');
+              } else if (tagName === 'h2') {
+                elements[i].classList.add('text-3xl', 'font-semibold', 'mt-3', 'mb-2');
+              } else if (tagName === 'h3') {
+                elements[i].classList.add('text-2xl', 'font-medium', 'mt-3', 'mb-1');
+              }
+            }
+          });
+
+
+          $(`#quill-Inputopcion-${contenidoId}`).attr('value', tempElem.innerHTML);
+        }
+      });
+
+
+    }
+
+    function initializeDropzone(element, nameValue) {
+
+
+      new Dropzone(element, {
+        url: 'https://httpbin.org/post',
+
+        autoProcessQueue: false,
+        thumbnailWidth: 160,
+        previewTemplate: DropzoneTemplates.previewTemplate,
+        init: function() {
+          this.on('success', function(file, responseText) {
+            console.log(responseText);
+          });
+          let container = 0
+          this.on('addedfile', async (file) => {
+            console.log('addedfile', file)
+            if (container < 5) {
+              container++
+              console.log(container)
+              const input = document.createElement('input')
+              input.name = `${nameValue}[]`
+              input.value = await File.toBase64(file)
+              input.type = 'hidden'
+
+
+              $(element).append($(input))
+              // Showing file preview if it is not image
+              if (file.type && !file.type.match(/image.*/)) {
+                if (!file.documentPrev) {
+                  file.previewTemplate.classList.remove('dz-image-preview');
+                  file.previewTemplate.classList.add('dz-file-preview');
+                  file.previewTemplate.classList.add('dz-complete');
+                  file.documentPrev = true;
+                  this.emit('addedfile', file);
+                  this.removeFile(file);
+
+
+                }
+              }
+            }
+
+          });
+
+
+          this.element.classList.add('dz-started');
+
+
+        },
+      });
+    }
+
+    function initializeAllDropzones() {
+      $('.dropzoneSecond').each(function() {
+
+
+        let $element = $(this);
+        let nameValue = $element.attr('name');
+        console.log(nameValue);
+        initializeDropzone(this, nameValue);
+      });
+    }
+    $('document').ready(function() {
+
+
+      initializeAllDropzones();
+
+
+    })
+  </script>
+
+  <script>
+    let contenidoId = 1
+
+    function devolverContenido(idContenido) {
+      let html = `
+
+      <form class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5" id="div-form-opcion-${idContenido}">  
+        <div class="md:col-span-5">
+          <button type="button" class=" ml-2 bg-red-500 justify-self-center text-white px-4 h-10 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full  eliminarOpcion" style="  position: absolute;  right: 6%;">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+            </svg>
+
+          </button>
+
+        </div>
+        
+        <div class="md:col-span-5">
+
+
+          <h4 id="opcion-form-opcionComplemento-${idContenido}" class="font-semibold  dark:text-slate-100 text-xl tracking-tight  text-white bg-[#ff3579] px-2  py-2 rounded inline-flex items-center justify-center">
+            Opcion </h4>
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="costo_x_art">Opcion</label>
+          <div class="relative mb-2  mt-2">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+            </div>
+            <select name="opcion-form-tipo_prodct-${idContenido}" data-name="tipo_prodct" id="opcion-form-tipo_prodct-${idContenido}" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
+              <option value="">Seleccionar Categoria </option>
+              @foreach ($tipo as $item)
+              @if ($item->is_default)
+              {{-- <option value="{{ $item->id }}" selected> {{ $item->name }}</option> --}}
+              @else
+              <option value="{{ $item->id }}">{{ $item->name }}</option>
+              @endif
+              @endforeach
+
+            </select>
+            @error('tipo_prodct')
+            <div style="color: red;">{{ $message }}</div>
+            @enderror
+          </div>
+        </div>
+        <div class="md:col-span-3 flex justify-between gap-4">
+
+          <div class="w-full">
+            <label for="precio">Precio <span class="text-red-500"> (Obligatorio) </span></label>
+            <div class="relative mb-2  mt-2">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+
+              </div>
+              <input type="number" id="opcion-form-precio-${idContenido}" data-name="precio" name="opcion-form-precio-${idContenido}" value="" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('precio') is-invalid @enderror" placeholder="precio">
+              @error('precio')
+              <div style="color: red;">{{ $message }}</div>
+              @enderror
+            </div>
+
+          </div>
+
+          <div class="w-full">
+            <label for="descuento">Descuento</label>
+            <div class="relative mb-2  mt-2">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+              </div>
+              <input type="number" id="opcion-form-descuento-${idContenido}" data-name="descuento" name="opcion-form-descuento-${idContenido}" value="0" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('descuento') is-invalid @enderror" placeholder="descuento">
+              @error('descuento')
+              <div style="color: red;">{{ $message }}</div>
+              @enderror
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        
+
+        <div class="md:col-span-5 mt-2"
+          <div>
+            <div id="quill-opcion-${idContenido}" name="quill-opcion-${idContenido}"
+            class="h-60 mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Descripción"></div>
+            <input id="quill-Inputopcion-${idContenido}" hidden="true" name="quill-opcion-${idContenido}" data-name="description" />
+
+          </div>
+         
+        </div>
+
+        <div class="md:col-span-2 mt-2">
+          <div class="w-full">
+            <label for="sku">SKU
+
+            </label>
+
+            <div class="relative mb-2  mt-2">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 469.336 469.336" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                  <g>
+                    <path d="m456.836 76.168-64-64.054c-16.125-16.139-44.177-16.17-60.365.031L45.763 301.682a10.733 10.733 0 0 0-2.688 4.587L.409 455.73a10.682 10.682 0 0 0 10.261 13.606c.979 0 1.969-.136 2.927-.407l149.333-42.703a10.714 10.714 0 0 0 4.583-2.69l289.323-286.983c8.063-8.069 12.5-18.787 12.5-30.192s-4.437-22.124-12.5-30.193zM285.989 89.737l39.264 39.264-204.996 204.997-14.712-29.434a10.671 10.671 0 0 0-9.542-5.896H78.921L285.989 89.737zm-259.788 353.4L40.095 394.5l34.742 34.742-48.636 13.895zm123.135-35.177-51.035 14.579-51.503-51.503 14.579-51.035h28.031l18.385 36.771a10.671 10.671 0 0 0 4.771 4.771l36.771 18.385v28.032zm21.334-17.543v-17.082c0-4.042-2.281-7.729-5.896-9.542l-29.434-14.712 204.996-204.996 39.264 39.264-208.93 207.068zM441.784 121.72l-47.033 46.613-93.747-93.747 46.582-47.001c8.063-8.063 22.104-8.063 30.167 0l64 64c4.031 4.031 6.25 9.385 6.25 15.083s-2.219 11.052-6.219 15.052z" fill="#9F9F9F" opacity="1" data-original="#000000" class=""></path>
+                  </g>
+                </svg>
+              </div>
+              <input type="text" id="opcion-form-sku-${idContenido}" data-name="sku" name="opcion-form-sku-${idContenido}" value="" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="# de sku">
+
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="md:col-span-5 mt-2">
+          <div class=" flex items-end justify-between gap-2 ">
+            <label for="especificacion">Especificacion </label>
+            <button type="button" id="AddEspecifiacion-opcion-${idContenido}" class="text-blue-500 hover:underline focus:outline-none font-medium">
+              Agregar Especificacion
+            </button>
+          </div>
+
+          <div class="flex gap-2">
+            <div class="relative mb-2  mt-2">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 469.336 469.336" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                  <g>
+                    <path d="m456.836 76.168-64-64.054c-16.125-16.139-44.177-16.17-60.365.031L45.763 301.682a10.733 10.733 0 0 0-2.688 4.587L.409 455.73a10.682 10.682 0 0 0 10.261 13.606c.979 0 1.969-.136 2.927-.407l149.333-42.703a10.714 10.714 0 0 0 4.583-2.69l289.323-286.983c8.063-8.069 12.5-18.787 12.5-30.192s-4.437-22.124-12.5-30.193zM285.989 89.737l39.264 39.264-204.996 204.997-14.712-29.434a10.671 10.671 0 0 0-9.542-5.896H78.921L285.989 89.737zm-259.788 353.4L40.095 394.5l34.742 34.742-48.636 13.895zm123.135-35.177-51.035 14.579-51.503-51.503 14.579-51.035h28.031l18.385 36.771a10.671 10.671 0 0 0 4.771 4.771l36.771 18.385v28.032zm21.334-17.543v-17.082c0-4.042-2.281-7.729-5.896-9.542l-29.434-14.712 204.996-204.996 39.264 39.264-208.93 207.068zM441.784 121.72l-47.033 46.613-93.747-93.747 46.582-47.001c8.063-8.063 22.104-8.063 30.167 0l64 64c4.031 4.031 6.25 9.385 6.25 15.083s-2.219 11.052-6.219 15.052z" fill="#9F9F9F" opacity="1" data-original="#000000" class=""></path>
+                  </g>
+                </svg>
+              </div>
+              <input type="text" id="specifications-1" name="tittle-1" value="" data-name="tittle-1" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titulo">
+
+            </div>
+            <div class="relative mb-2  mt-2">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 469.336 469.336" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                  <g>
+                    <path d="m456.836 76.168-64-64.054c-16.125-16.139-44.177-16.17-60.365.031L45.763 301.682a10.733 10.733 0 0 0-2.688 4.587L.409 455.73a10.682 10.682 0 0 0 10.261 13.606c.979 0 1.969-.136 2.927-.407l149.333-42.703a10.714 10.714 0 0 0 4.583-2.69l289.323-286.983c8.063-8.069 12.5-18.787 12.5-30.192s-4.437-22.124-12.5-30.193zM285.989 89.737l39.264 39.264-204.996 204.997-14.712-29.434a10.671 10.671 0 0 0-9.542-5.896H78.921L285.989 89.737zm-259.788 353.4L40.095 394.5l34.742 34.742-48.636 13.895zm123.135-35.177-51.035 14.579-51.503-51.503 14.579-51.035h28.031l18.385 36.771a10.671 10.671 0 0 0 4.771 4.771l36.771 18.385v28.032zm21.334-17.543v-17.082c0-4.042-2.281-7.729-5.896-9.542l-29.434-14.712 204.996-204.996 39.264 39.264-208.93 207.068zM441.784 121.72l-47.033 46.613-93.747-93.747 46.582-47.001c8.063-8.063 22.104-8.063 30.167 0l64 64c4.031 4.031 6.25 9.385 6.25 15.083s-2.219 11.052-6.219 15.052z" fill="#9F9F9F" opacity="1" data-original="#000000" class=""></path>
+                  </g>
+                </svg>
+              </div>
+              <input type="text" id="specifications" name="specifications-1" value="" data-name="specifications-1" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Valor">
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="md:col-span-5 gap-4">
+                  <div class="flex  flex-col gap-4 p-2">
+                    <label for="caratula">Caratula</label>
+                    <input class="hidden" type="radio" name="opcion-form-caratula" value="${idContenido}" data-name="caratula" checked>
+                  </div>
+
+                  <div class="flex flex-col gap-4">
+                    <input id="imagen" name="opcion-form-imagenP-${idContenido}" data-name="imagenP-${idContenido}"
+                      class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                      aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                    <div class="dropzone border-gray-300 dropzoneSecond " id="option-drop-${idContenido}"
+                      name="opcion-attrid-${idContenido}" data-name="attrid-${idContenido}" >
+                    </div>
+
+                  </div>
+
+                </div>
+
+      </form>
+        
+        
+      
+      `
+
+
+      return html
+    }
+
+    function initializarDropzone(id) {
+      let selector = `#option-drop-${id}`
+      console.log(selector)
+      new Dropzone(selector, {
+        url: 'https://httpbin.org/post',
+
+        autoProcessQueue: false,
+        thumbnailWidth: 160,
+        previewTemplate: DropzoneTemplates.previewTemplate,
+        init: function() {
+          this.on('success', function(file, responseText) {
+            console.log(responseText);
+          });
+          let container = 0
+          this.on('addedfile', async (file) => {
+            console.log('addedfile', file)
+            if (container < 5) {
+              container++
+              console.log(container)
+              const input = document.createElement('input')
+              input.name = 'filesGallery[]'
+              input.value = await File.toBase64(file)
+              input.type = 'hidden'
+              //agregar atributo  data-name
+              input.id = `opcion-attrid-${id}`
+              input.setAttribute('data-name', `attrid-${id}`)
+
+
+              $(selector).append($(input))
+              // Showing file preview if it is not image
+              if (file.type && !file.type.match(/image.*/)) {
+                if (!file.documentPrev) {
+                  file.previewTemplate.classList.remove('dz-image-preview');
+                  file.previewTemplate.classList.add('dz-file-preview');
+                  file.previewTemplate.classList.add('dz-complete');
+                  file.documentPrev = true;
+                  this.emit('addedfile', file);
+                  this.removeFile(file);
+
+
+                }
+              }
+            }
+
+          });
+
+          this.element.classList.add('dz-started');
+
+
+        },
+      });
+
+
+    }
+
+    $(document).ready(function() {
+      $('#formPrincipal').on('submit', async function(e) {
+        e.preventDefault(); // Prevenir el comportamiento por defecto
+
+        var valoresFormularios = []; // Inicializar como arreglo
+
+        const formularios = [...$('form[id^="div-form-opcion-"]')]
+        for (const formulario of formularios) {
+          let formularioObj = {}; // Objeto para almacenar los valores del formulario actual
+          let valoresFormularioActual = {};
+
+          const fields = [...formulario.querySelectorAll('input, select')];
+
+          for (const field of fields) {
+            // Verificar si el input actual es de tipo file
+            if (field.getAttribute('type') === 'file') {
+              // Obtener el archivo seleccionado (o archivos si es múltiple)
+              var archivos = field.files[0];
+              if (!archivos) {
+                continue
+              }
+
+              // Asumiendo que quieres usar 'data-name' como clave, como en el resto de inputs
+              valoresFormularioActual[field.getAttribute('data-name')] = await File.toBase64(archivos);
+            } else {
+              // Para otros tipos de inputs, manejar como antes
+              if (field.getAttribute('name')?.includes('[]')) {
+                if (!valoresFormularioActual[field.getAttribute('data-name')]) {
+                  valoresFormularioActual[field.getAttribute('data-name')] = [];
+                }
+                valoresFormularioActual[field.getAttribute('data-name')].push(field.value);
+              } else {
+                valoresFormularioActual[field.getAttribute('data-name')] = field.value;
+              }
+            }
+          }
+
+          let spectitle = [...formulario.querySelectorAll('[data-name^="tittle-"]')]; //
+          let specVal = [...formulario.querySelectorAll('[data-name^="specifications-"]')]; //
+
+          let spec = []
+          for (let i = 0; i < spectitle.length; i++) {
+            spec.push({
+              tittle: spectitle[i].value,
+              specifications: specVal[i].value
+            })
+          }
+          valoresFormularioActual.specifiaciones = spec
+
+          valoresFormularios.push(
+            valoresFormularioActual); // Agregar el objeto del formulario actual al arreglo
+
+
+        } // end for (const formulario of formularios) {
+
+
+        console.log(valoresFormularios)
+
+
+        var jsonValoresFormularios = JSON.stringify(valoresFormularios);
+        $('#valoresFormulario').val(jsonValoresFormularios);
+
+        // return
+
+        $(this).unbind('submit').submit(); // Continuar con el envío del formulario
+      });
+    });
+
+
+    $(document).on('click', '.eliminarOpcion', function() {
+      $(this).closest('form').remove();
+
+    })
+
+    $('#agregarOpciones').on('click', function() {
+
+
+      let contenidoOpcion = devolverContenido(contenidoId)
+      $('#OpcionesContainer').append(contenidoOpcion)
+
+      instanciaQuills(contenidoId)
+      initializarDropzone(contenidoId)
+
+      contenidoId++
+
+
+
+    })
+  </script>
+
+  <script>
+    $(document).on('change', '[id^="opcion-form-tipo_prodct"]', function() {
+      console.log('cambio tiopo')
+      let cadena = $(this).attr('id');
+      cadena = cadena.split('-');
+      cadena = cadena[cadena.length - 1];
+
+
+      var selectedOptionText = $(`#${$(this).attr('id')} option:selected`).text();
+      // //opcionComplemento
+      $(`#opcion-form-opcionComplemento-${cadena}`).text(`Opcion ${selectedOptionText}`)
+    })
+  </script>
 
 
 
@@ -989,8 +1427,8 @@
       elemento.setAttribute("name", `${name}-${valorInput}`);
       elemento.setAttribute("placeholder", `${capitalizeFirstLetter(name)}`);
       elemento.setAttribute("id", `${name}-${valorInput}`);
-      elemento.setAttribute("id", `${name}-${valorInput}`);
-      elemento.setAttribute("id", `${name}-${valorInput}`);
+      elemento.setAttribute("data-name", `${name}-${valorInput}`);
+
 
       elemento.classList.add("mt-1", "bg-gray-50", "border", "border-gray-300", "text-gray-900", "text-sm",
         "rounded-lg",
@@ -1012,26 +1450,12 @@
 
       let valorInput = 1
 
-      tinymce.init({
-        selector: 'textarea#description',
-        height: 500,
-        plugins: [
-          'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
-          'searchreplace', 'visualblocks', 'code', 'fullscreen',
-          'insertdatetime', 'table'
-        ],
-        toolbar: 'undo redo | blocks | ' +
-          'bold italic backcolor | alignleft aligncenter ' +
-          'alignright alignjustify | bullist numlist outdent indent | ' +
-          'removeformat | help',
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px;}'
-      });
 
-      $("#AddEspecifiacion").on('click', function(e) {
-        e.preventDefault()
+      function agregarEspecificacion(selector) {
         valorInput++
-        console.log('agregando especificacion')
-        const addButton = document.getElementById("AddEspecifiacion");
+        console.log('agregando especificacion createblade')
+        console.log(selector);
+        const addButton = document.getElementById(selector);
         const divFlex = document.createElement("div");
         const dRelative = document.createElement("div");
         const dRelative2 = document.createElement("div");
@@ -1089,6 +1513,20 @@
 
 
 
+
+      }
+      $(document).on('click', '[id^="AddEspecifiacion-opcion-"]', function(e) {
+        let selector = this.id
+        e.preventDefault()
+        agregarEspecificacion(selector)
+      })
+
+      $("#AddEspecifiacion").on('click', function(e) {
+        let selector = 'AddEspecifiacion'
+        e.preventDefault()
+
+        agregarEspecificacion(selector)
+
       })
 
       $(document).on('click', '.eliminarConvinacion', function(e) {
@@ -1105,7 +1543,7 @@
       $("#AddCombinacion").on('click', function(e) {
         e.preventDefault()
         valorInput++
-        console.log('agregando especificacion')
+        console.log('agregando especificacion Create blade')
         const addButton = document.getElementById("AddCombinacion");
         const divFlex = document.createElement("div");
         const dRelative = document.createElement("div");
@@ -1236,69 +1674,7 @@
 
   <script>
     $(document).ready(function() {
-      function initializeDropzone(element, nameValue) {
 
-
-        new Dropzone(element, {
-          url: 'https://httpbin.org/post',
-
-          autoProcessQueue: false,
-          thumbnailWidth: 160,
-          previewTemplate: DropzoneTemplates.previewTemplate,
-          init: function() {
-            this.on('success', function(file, responseText) {
-              console.log(responseText);
-            });
-            let container = 0
-            this.on('addedfile', async (file) => {
-              console.log('addedfile', file)
-              if (container < 5) {
-                container++
-                console.log(container)
-                const input = document.createElement('input')
-                input.name = `${nameValue}[]`
-                input.value = await File.toBase64(file)
-                input.type = 'hidden'
-
-
-                $(element).append($(input))
-                // Showing file preview if it is not image
-                if (file.type && !file.type.match(/image.*/)) {
-                  if (!file.documentPrev) {
-                    file.previewTemplate.classList.remove('dz-image-preview');
-                    file.previewTemplate.classList.add('dz-file-preview');
-                    file.previewTemplate.classList.add('dz-complete');
-                    file.documentPrev = true;
-                    this.emit('addedfile', file);
-                    this.removeFile(file);
-
-
-                  }
-                }
-              }
-
-            });
-
-
-            this.element.classList.add('dz-started');
-
-
-          },
-        });
-      }
-
-      function initializeAllDropzones() {
-        $('.dropzoneSecond').each(function() {
-
-
-          let $element = $(this);
-          let nameValue = $element.attr('name');
-          console.log(nameValue);
-          initializeDropzone(this, nameValue);
-        });
-      }
-
-      initializeAllDropzones();
 
     })
   </script>
@@ -1315,8 +1691,53 @@
       console.log('realizando guardado')
     })
   </script>
+  <script>
+    $(document).ready(function() {
+      $('#uppsell').select2({
+        placeholder: 'Select items',
+        ajax: {
+          url: '/api/items', // URL de tu endpoint de búsqueda
+          dataType: 'json',
+          delay: 250,
+          processResults: function(data) {
+            return {
+              results: $.map(data, function(item) {
+                return {
+                  id: item.id,
+                  text: item.producto
+                }
+              })
+            };
+          },
+          cache: true
+        }
+      });
+    });
+  </script>
+  <script>
+    $('#complemento').on('change', function() {
+      console.log('cambio')
+      if ($(this).is(':checked')) {
+        $('#complementoContainer').removeAttr('hidden');
+        $('#agregarOpciones').attr('hidden', true);
+        $('#puntos_complemento').removeAttr('hidden');
+        $('#puntos_container').removeAttr('hidden');
+        $('#puntos_complemento').attr('required', true);
+        $('#complemento_id').attr('required', true);
+      } else {
+        $('#complementoContainer').attr('hidden', true);
+        $('#puntos_complemento').attr('hidden', true);
+        $('#agregarOpciones').removeAttr('hidden');
+        $('#puntos_complemento').removeAttr('required');
+
+
+
+      }
+    })
+  </script>
 
   @include('_layout.scripts')
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
 
 </x-app-layout>
