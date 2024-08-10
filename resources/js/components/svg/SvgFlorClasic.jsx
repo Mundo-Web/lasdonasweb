@@ -1,7 +1,7 @@
 import React from 'react';
 
-const SvgFlorPremium = ({ className }) => {
-  <svg width="64" height="90" viewBox="0 0 64 90" fill="none" xmlns="http://www.w3.org/2000/svg"
+const SvgFlorClasic = ({ className }) => {
+  return (<svg width="64" height="90" viewBox="0 0 64 90" fill="#73B473" xmlns="http://www.w3.org/2000/svg"
     className={className}>
     <g clip-path="url(#clip0_86_3287)">
       <path
@@ -307,7 +307,9 @@ const SvgFlorPremium = ({ className }) => {
       </clipPath>
     </defs>
   </svg>
+  )
+
 }
 
-export default SvgFlorPremium;
+export default SvgFlorClasic;
 

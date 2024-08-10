@@ -99,7 +99,10 @@ class ProductsController extends Controller
 
 
     //imprimir valores request 
+    if(isset($data['uppsell'])){
     $data['uppsell'] = json_encode($data['uppsell']);
+
+    }
 
     if (is_null($request->input('descuento'))) {
       $request->merge(['descuento' => 0]);

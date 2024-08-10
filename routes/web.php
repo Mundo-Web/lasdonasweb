@@ -26,6 +26,7 @@ use App\Http\Controllers\ComplementosController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\GalerieController;
+use App\Http\Controllers\HorariosController;
 use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
@@ -121,6 +122,11 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::resource('/politicas-de-devolucion', PolyticsConditionController::class);
 
         Route::resource('/terminos-y-condiciones', TermsAndConditionController::class);
+
+        Route::get('/horarios',  [HorariosController::class, 'index'])->name('Horarios.jsx');
+
+
+
 
 
 

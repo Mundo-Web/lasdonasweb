@@ -1,8 +1,9 @@
 import React from 'react';
 
 const SvgFlorDeluxe = ({ className }) => {
-  <svg width="64" height="90" viewBox="0 0 64 90" fill="none" xmlns="http://www.w3.org/2000/svg"
-    class="{{ $class }}">
+
+  return (<svg width="64" height="90" viewBox="0 0 64 90" fill="#73B473" xmlns="http://www.w3.org/2000/svg"
+    className={className}>
     <g clip-path="url(#clip0_86_3644)">
       <path
         d="M36.0387 89.2939C35.9166 89.2939 35.8207 89.198 35.8207 89.076V89.015C35.8512 86.1077 35.4154 60.2339 11.3331 46.4166C11.2285 46.3556 11.1936 46.2248 11.2546 46.1202C11.3157 46.0156 11.4464 45.9807 11.551 46.0417C35.8512 59.9855 36.2871 86.0902 36.261 89.0237V89.0804C36.261 89.2024 36.1651 89.2983 36.043 89.2983L36.0387 89.2939Z"
@@ -567,7 +568,8 @@ const SvgFlorDeluxe = ({ className }) => {
         <rect width="64" height="89.294" fill="white" />
       </clipPath>
     </defs>
-  </svg>
+  </svg>)
+
 
 }
 

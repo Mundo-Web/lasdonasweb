@@ -3,6 +3,44 @@
 @section('css_importados')
 
 @stop
+<style>
+  .swiper-container {
+    position: relative;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .swiper-button-next {
+    right: 10px;
+  }
+
+  .swiper-button-prev {
+    left: 10px;
+  }
+
+  .swiper-button-next img,
+  .swiper-button-prev img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-pagination-estadisticas {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+</style>
 
 
 @section('content')
@@ -10,25 +48,28 @@
   <main class="flex flex-col gap-12">
     <section>
       <div
-        class="banner_section2 lg:banner_sec h-128 lg:h-[674px] text-white text-center flex flex-col justify-center items-center space-y-4 p-5 lg:px-[20%]">
-        <h1 class="text-4xl md:text-6xl font-bold">Éxitos Florales: Las Creaciones que Conquistan Corazones en Cada Pétalo
-        </h1>
-        <p class="text-lg font-normal">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
-        <button type="button" class="bg-rosalasdonas px-6 py-3 rounded-lg ">Comprar ahora</button>
+        class="banner_section2 lg:banner_sec h-128 lg:h-[674px] text-white text-center flex flex-col justify-center items-center pt-14 p-2 lg:px-[20%]">
+        <h4 class="text-[18px] font-bold  text-[#336234]">EXITOS FLORALESss:
+        </h4>
+        <h2 class="text-4xl md:text-[50px] font-bold  text-[#112212]">Las Creaciones que Conquistan Corazones en Cada
+          Pétalo
+        </h2>
+        <p class="text-lg font-normal text-[#336234]">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+        <button type="button" class="bg-[#336234] px-6 py-3 rounded-full  font-bold">Comprar ahora</button>
       </div>
     </section>
 
     <section>
-      <div class="px-[8%]  space-y-10 ">
+      <div class="px-[8%]  space-y-10  ">
         <div class="text-center  pt-[3.25rem] space-y-1 mt-[-10rem] bg-[#FFFFFF] z-5">
           <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
           <h2 class="text-4xl md:text-4xl font-bold text-black">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6">
-          <div class="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-4">
-            <div class="swiper productos-relacionados ">
-              <div class="swiper-wrapper h-full">
+          <div class="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-4 relative">
+            <div class="swiper productos-relacionados  ">
+              <div class="swiper-wrapper h-full relative">
                 @foreach ($productos as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
                     <div class="flex flex-col gap-7   col-span-1">
@@ -53,11 +94,11 @@
                         </div>
 
 
-                        <div class="px-4 mt-5">
+                        <div class="px-4 mt-5 ">
                           <h2 class="text-xl font-bold text-black">{{ $item->producto }}</h2>
-                          <p class="text-base font-normal text-black">{{ Str::substr($item->extract, 0, 59) }}...
+                          <p class="text-base font-normal text-black h-[48px]">{{ Str::substr($item->extract, 0, 59) }}...
                           </p>
-                          <div class="flex font-medium mt-2">
+                          <div class="flex  mt-2 font-bold ">
                             <p>S/ <span>75.00</span></p>
                             <p class="px-2">-</p>
                             <p>S/ <span>120.00</span></p>
@@ -66,9 +107,9 @@
                         </div>
 
                       </a>
-                      <div class="w-full">
+                      <div class="w-full px-2">
                         <button type="button"
-                          class="w-full  py-2 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">Agregar
+                          class="w-full  py-2  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">Agregar
                           a mi bolsa
                           <img class="ml-2" src="{{ asset('img_donas/addcart.svg') }}" /></button>
 
@@ -79,11 +120,26 @@
                   </div>
                 @endforeach
               </div>
-              <div class="swiper-pagination"></div>
+
+
+            </div>
+            <div class=" absolute  flex flex-row gap-3 " style="  right: 0%;  bottom: -19%;">
+              <div
+                class="customprev h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                <img src="{{ asset('images\prev.png') }}" alt="Prev">
+              </div>
+
+              <div
+                class="customnext h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                <img src="{{ asset('images\next.png') }}" alt="Next">
+              </div>
+
 
             </div>
 
+
           </div>
+
 
 
 
@@ -139,27 +195,27 @@
 
         </div>
       @elseif (count($category->take(4)) == 3)
-        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-4 pt-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-x-4 pt-10">
           <div class="w-full sm:row-span-2">
             <div class="h-full">
               <img src="{{ asset($category[0]->url_image . $category[0]->name_image) }}" alt=""
-                class="h-96 sm:h-full flex flex-col justify-end items-start object-cover">
+                class="h-96 sm:h-[790px] flex flex-col justify-end items-start object-cover">
               <h3 class="text-base font-medium text-[#FE4A11]">Categoría</h3>
               <h2 class="text-3xl font-bold ">{{ $category[0]->name }}</h2>
             </div>
           </div>
           <div class="w-full">
-            <div class="h-full">
+            <div class="h-full w-full">
               <img src="{{ asset($category[1]->url_image . $category[1]->name_image) }}" alt=""
-                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 flex flex-col justify-end items-start object-cover">
-              <h3 class="text-base font-medium text-[#FE4A11]">Categoría</h3>
-              <h2 class="text-3xl font-bold ">{{ $category[1]->name }}</h2>
+                class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full  flex flex-col justify-end items-start object-cover">
+              <h3 class="text-base font-medium text-[#FE4A11] pt-2 pl-2">Categoría</h3>
+              <h2 class="text-[32px] font-bold ">{{ $category[1]->name }}</h2>
             </div>
           </div>
           <div class="w-full">
             <div class="h-full">
               <img src="{{ asset($category[2]->url_image . $category[2]->name_image) }}" alt=""
-                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 flex flex-col justify-end items-start object-cover">
+                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover">
               <h3 class="text-base font-medium text-[#FE4A11]">Categoría</h3>
               <h2 class="text-3xl font-bold ">{{ $category[2]->name }}</h2>
             </div>
@@ -203,53 +259,128 @@
 
     </section>
 
+    <section class="bg-[#E8EDDE]">
+      <div class="px-[6%]  space-y-10 mb-36 ">
+        <div class="text-center  pt-[3.25rem] space-y-1  ">
+          <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">NOVEDADES</h3>
+          <h2 class="text-4xl md:text-4xl font-bold text-black">TODAS NUESTRAS NOVEDADES</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6">
+          <div class="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-4 relative">
+            <div class="swiper productos-relacionados  ">
+              <div class="swiper-wrapper h-full relative">
+                @foreach ($destacados as $item)
+                  <div class="swiper-slide w-full h-full col-span-1">
+                    <div class="flex flex-col gap-7   col-span-1">
+                      <a href="{{ route('Product.jsx', $item->id) }}">
+                        <div class="px-2">
+                          @if ($item->images->count() == 0)
+                            <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
+                              class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
+                          @else
+                            @foreach ($item->images as $image)
+                              @if ($image->caratula == 1)
+                                @if ($image->name_imagen)
+                                  <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
+                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
+                                @else
+                                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
+                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
+                                @endif
+                              @endif
+                            @endforeach
+                          @endif
+                        </div>
+
+
+                        <div class="px-4 mt-[14px] bg-white ">
+                          <h2 class="text-xl font-bold text-black">{{ $item->producto }}</h2>
+                          <p class="text-base font-normal text-black h-[48px]">
+                            {{ Str::substr($item->extract, 0, 59) }}...
+                          </p>
+                          <div class="flex  mt-2 font-bold ">
+                            <p>S/ <span>75.00</span></p>
+                            <p class="px-2">-</p>
+                            <p>S/ <span>120.00</span></p>
+                          </div>
+
+                        </div>
+
+                      </a>
+                      <div class="w-full px-2">
+                        <button type="button"
+                          class="w-full  py-2  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">Agregar
+                          a mi bolsa
+                          <img class="ml-2" src="{{ asset('img_donas/addcart.svg') }}" /></button>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                @endforeach
+              </div>
+
+
+            </div>
+            <div class=" absolute  flex flex-row gap-3 " style="  right: 0%;  bottom: -19%;">
+              <div
+                class="customprev h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                <img src="{{ asset('images\prev.png') }}" alt="Prev">
+              </div>
+
+              <div
+                class="customnext h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                <img src="{{ asset('images\next.png') }}" alt="Next">
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </section>
+
 
     @if (count($testimonie) > 0)
       <section>
-        <div class="px-[5%] py-8 space-y-10">
+        <div class="px-[8%] py-8 space-y-10">
           <div class="text-left  space-y-2">
             <h3 class="text-lg font-bold text-rosalasdonas">Nuestros clientes</h3>
             <h2 class="text-4xl md:text-5xl font-bold text-black">Testimonios en Flor</h2>
-            <p class="text-base font-normal text-black">Clientes felices, historias encantadoras. Descubre por qué
-              florecemos juntos.</p>
           </div>
+          <div class="grid grid-cols-1    ">
+            <div class="swiper-container swipper-testimonies overflow-hidden">
+              <div class="swiper-wrapper">
+                @foreach ($testimonie as $item)
+                  <div class="swiper-slide flex flex-row items-center">
+                    <div class="flex flex-row">
+                      <div class="w-1/2">
+                        <img class="w-full object-contain" src="{{ asset('img_donas/splash_testimonios.png') }}" />
+                      </div>
+                      <div class="w-1/2 px-4">
+                        <p class="text-[40px] text-black font-bold leading-snug">{{ $item->testimonie }}</p>
+                      </div>
+                    </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6">
-
-            @foreach ($testimonie as $item)
-              <div class="space-y-4 w-full m-auto p-6 bg-griscard rounded-xl">
-
-                <div class="flex flex-row justify-end items-end">
-                  <div class="w-[80%]">
-                    <h2 class="text-xl font-bold text-black">{{ $item->name }}</h2>
-                    <p class="text-base font-normal text-black">Comprado el 20 de julio de 2024</p>
                   </div>
-                  <div class="w-[20%]">
-                    <img class="w-14 rounded-full  object-contain" src="{{ asset('img_donas/usericon.png') }}" />
-                  </div>
-                </div>
-
-                <div>
-                  <ul class="flex flex-row space-x-1">
-                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/estrellacompleta.svg') }}"> </li>
-                    <li><img class="rounded-full w-6" src="{{ asset('img_donas/mediaestrella.svg') }}"> </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <p class="text-base font-normal text-black">{{ $item->testimonie }}</p>
-                </div>
-
+                @endforeach
               </div>
-            @endforeach
-
-
-
-
-
+              <!-- Añadir paginación y navegación -->
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
           </div>
         </div>
 
@@ -262,20 +393,20 @@
       <div class="grid grid-cols-1  py-10 mt-4">
 
         <div class="w-full ">
-          <div class="block_video h-200   flex flex-col justify-end items-start pb-[3%] pl-[5%] " id="blockVideo">
+          <div class=" h-200   flex flex-col justify-end items-start pb-[3%]  relative " id="">
             <div class=" flex justify-center items-center m-auto">
-              <a href="{{ $general->url_video }}" target="_blank">
-                <img class="rounded-full w-20" src="{{ asset('img_donas/buttonplay.svg') }}">
-
-
-              </a>
+              @php
+                $videoUrl = $general->url_video;
+                parse_str(parse_url($videoUrl, PHP_URL_QUERY), $queryParams);
+                $videoId = $queryParams['v'] ?? null;
+              @endphp
+              <iframe src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player"
+                frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen class="w-[100vw] aspect-video      md:h-[282px] lg:h-[600px]  2xl:h-[750px]"></iframe>
             </div>
 
-            <div class="w-[60%] md:w-[40%] lg:w-[30%] space-y-4  md:absolute ">
-              <h2 class="text-5xl font-bold text-white">{{ $general->titulo_video }}</h2>
-              <p class="text-lg font-normal text-white">{{ $general->sub_titulo_video }}
-              </p>
-            </div>
+
           </div>
         </div>
 
@@ -383,6 +514,29 @@
   </main>
 
 @section('scripts_importados')
+
+  <script>
+    var swiper = new Swiper('.swipper-testimonies', {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          centeredSlides: true,
+          loop: true,
+        },
+      }
+    });
+  </script>
   <script></script>
   <script>
     var appUrl = '{{ env('APP_URL') }}';
@@ -445,6 +599,11 @@
         disableOnInteraction: true,
         pauseOnMouseEnter: true
       }, */
+      navigation: {
+        nextEl: ".customnext",
+        prevEl: ".customprev",
+
+      },
 
       breakpoints: {
         0: {

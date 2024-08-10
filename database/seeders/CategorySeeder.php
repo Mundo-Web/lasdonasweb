@@ -24,6 +24,7 @@ class CategorySeeder extends Seeder
                     'description' => 'Aquí va la descripción de la categoria ' . $name,
                     'status' => 1,
                     'visible' => 1,
+                    'is_active_campaing' => 0
                 ]);
             }
         }

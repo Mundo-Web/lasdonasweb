@@ -17,6 +17,20 @@
     }
 }
 
+
+
+.react-datepicker__month-container{
+  width: 100% !important; 
+}
+.not-selectable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.react-datepicker__header {
+  background-color: white !important; 
+   border-bottom: 0px !important;
+}
 /*
 ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
 */
@@ -1356,7 +1370,7 @@ video {
 
 .border-rosalasdonas {
   --tw-border-opacity: 1;
-  border-color: rgb(223 56 118 / var(--tw-border-opacity));
+  border-color: rgb(255, 87, 51 / var(--tw-border-opacity));
 }
 
 .bg-\[\#204088\] {
@@ -1454,7 +1468,7 @@ video {
 
 .bg-rosalasdonas {
   --tw-bg-opacity: 1;
-  background-color: rgba(255, 133, 85, var(--tw-bg-opacity));
+  background-color: rgba(255, 87, 51, var(--tw-bg-opacity));
 }
 
 .bg-rosasuave {
@@ -1847,7 +1861,7 @@ video {
 
 .text-rosalasdonas {
   --tw-text-opacity: 1;
-  color: rgb(223 56 118 / var(--tw-text-opacity));
+  color: rgb(255, 87, 51/ var(--tw-text-opacity));
 }
 
 .text-verdelasdonas {

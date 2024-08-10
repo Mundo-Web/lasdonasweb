@@ -21,9 +21,11 @@ use App\Models\Collection;
 use App\Models\Combinacion;
 use App\Models\Complemento;
 use App\Models\DetalleOrden;
+use App\Models\Horarios;
 use App\Models\ImagenProducto;
 use App\Models\Liquidacion;
 use App\Models\Ordenes;
+use App\Models\PoliticaSustitucion;
 use App\Models\PolyticsCondition;
 use App\Models\Specifications;
 use App\Models\TermsAndCondition;
@@ -605,14 +607,16 @@ class IndexController extends Controller
     );
 
     $IdProductosComplementarios = $productos->toArray();
-   
+  //  dump(json_decode($IdProductosComplementarios['uppsell'], true));
     $ProdComplementarios = [];
-    
-    if(isset($IdProductosComplementarios) && !isNull($IdProductosComplementarios)){
+
+    if (!is_null($IdProductosComplementarios) && isset($IdProductosComplementarios['uppsell'])) {
       $IdProductosComplementarios = json_decode($IdProductosComplementarios['uppsell'], true);
+      dump($IdProductosComplementarios);
       $ProdComplementarios = Products::whereIn('id',  $IdProductosComplementarios)->with('images')->get();
     }
 
+    $horarios = Horarios::all();
     
     $atributos = Attributes::where('status', '=', true)->get();
     // $atributos = $product->attributes()->get();
@@ -620,6 +624,11 @@ class IndexController extends Controller
     $valorAtributo = AttributesValues::where('status', '=', true)->get();
 
     $url_env = $_ENV['APP_URL'];
+    $categorias = Category::where('is_active_campaing', 1 )->get();
+    $general = General::first();
+
+    $politicasSustitucion = PoliticaSustitucion::first();
+    $politicaEnvio = PolyticsCondition::first();
 
     // return view('public.product', compact('complementos' ,'tipoDefault', 'subproductos', 'product', 'productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env', 'colors'));
     return Inertia::render('Product', [
@@ -634,7 +643,12 @@ class IndexController extends Controller
       'productosConGalerias' => $productosConGalerias,
       'especificaciones' => $especificaciones,
       'url_env' => $url_env,
-      'colors' => $colors
+      'colors' => $colors,
+      'horarios' => $horarios,
+      'categorias' => $categorias,
+      'general' => $general,
+      'politicasSustitucion' => $politicasSustitucion,
+      'politicaEnvio' => $politicaEnvio
     ])->rootView('app');
   }
 

@@ -3,7 +3,6 @@ import { Cookies, FetchParams } from 'sode-extend-react'
 
 const CreateReactScript = (render) => {
 
-  console.log('legando aca')
   createInertiaApp({
     resolve: name => `/${name}.jsx`,
     setup: ({ el, props }) => {

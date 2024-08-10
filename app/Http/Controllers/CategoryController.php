@@ -75,6 +75,8 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->description = $request->description;
         $category->slug = $slug;
+        $category->start_date_campaing = $request->start_date_campaing;
+        $category->end_date_campaing = $request->end_date_campaing;
         $category->status = 1;
         $category->visible = 1;
         $category->save();

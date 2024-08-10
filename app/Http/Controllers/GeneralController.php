@@ -69,10 +69,16 @@ class GeneralController extends Controller
     public function update(Request $request, $id)
     {
 
+        $data = $request->all();
+       if($request->acept_incoming_orders_today !== null){
+        $data['acept_incoming_orders_today'] = 1;
+       }else{
+        $data['acept_incoming_orders_today'] = 0;
+       }
             $general = General::findOrfail($id); 
 
             // Actualizar los campos del registro con los datos del formulario
-            $general->update($request->all());
+            $general->update($data);
 
             // Guardar 
             $general->save();  
