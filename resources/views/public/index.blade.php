@@ -513,6 +513,7 @@
     </section>
   </main>
 
+
 @section('scripts_importados')
 
   <script>
@@ -537,15 +538,13 @@
       }
     });
   </script>
-  <script></script>
+  
   <script>
     var appUrl = '{{ env('APP_URL') }}';
-
-    // Agrega más variables de entorno aquí según sea necesario
   </script>
 
-
   <script src="{{ asset('js/carrito.js') }}"></script>
+
   <script>
     $(document).ready(function() {
       let videourl = '{{ $general->url_video }}'
@@ -580,6 +579,7 @@
       return null;
     }
   </script>
+
   <script>
     var headerServices = new Swiper(".productos-relacionados", {
       slidesPerView: 2,
