@@ -24,9 +24,11 @@ use App\Models\DetalleOrden;
 use App\Models\Horarios;
 use App\Models\ImagenProducto;
 use App\Models\Liquidacion;
+use App\Models\MensajesPredefinidos;
 use App\Models\Ordenes;
 use App\Models\PoliticaSustitucion;
 use App\Models\PolyticsCondition;
+use App\Models\Price;
 use App\Models\Specifications;
 use App\Models\TermsAndCondition;
 use App\Models\Tipo;
@@ -58,17 +60,17 @@ class IndexController extends Controller
    * Display a listing of the resource.
    */
 
-   protected $instagramService;
+  protected $instagramService;
 
-   public function __construct(InstagramService $instagramService)
-   {
-       $this->instagramService = $instagramService;
-   }
+  public function __construct(InstagramService $instagramService)
+  {
+    $this->instagramService = $instagramService;
+  }
 
   public function index()
   {
     // $productos = Products::all(); Products::where("tipo_servicio", "=", 'complemento')
-    $productos = Products::where('status', '=', 1)->where('tipo_servicio', 'producto') ->with('tags')->get();
+    $productos = Products::where('status', '=', 1)->where('tipo_servicio', 'producto')->with('tags')->get();
     $categorias = Category::all();
     $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
     // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
@@ -86,7 +88,7 @@ class IndexController extends Controller
     $media = $this->instagramService->getUserMedia();
 
 
-    return view('public.index', compact('media','productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
+    return view('public.index', compact('media', 'productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
   }
 
   public function coleccion($filtro)
@@ -132,7 +134,7 @@ class IndexController extends Controller
     );
   }
 
-  public function catalogo($filtro, Request $request)
+  public function catalogo($filtro = null, Request $request)
   {
     $categorias = null;
     $productos = null;
@@ -145,7 +147,12 @@ class IndexController extends Controller
     try {
       $general = General::all();
       $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-      $categorias = Category::all();
+      $categorias = Category::select('categories.*')
+        ->join('products', 'products.categoria_id', '=', 'categories.id')
+        ->where('categories.status', '=', 1)
+        ->where('categories.visible', '=', 1)
+        ->groupBy('categories.id')
+        ->get();
       $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
       $atributos = Attributes::where('status', '=', 1)->where('visible', '=', 1)->get();
       $colecciones = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -171,44 +178,26 @@ class IndexController extends Controller
           $page = !empty($get_array['page']) ? $get_array['page'] : 0;
         }
       }
+      $beneficios = Strength::where('status', '=', 1)->get();
 
-      // if ($rangefrom !== null && $rangeto !== null) {
+      // return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page'));
+      return Inertia::render('Catalogo', [
+        'general' => $general,
+        'faqs' => $faqs,
+        'categorias' => $categorias,
+        'testimonie' => $testimonie,
+        'selected_category' => $filtro,
+        'productos' => $productos,
+        'categoria' => $categoria,
+        'atributos' => $atributos,
+        'colecciones' => $colecciones,
+        'page ' => $page,
+        'url_env' => $_ENV['APP_URL'],
 
-      //   if ($filtro == 0) {
-      //     $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
-      //     $categoria = Category::all();
-      //   } else {
-      //     $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
-      //     $categoria = Category::findOrFail($filtro);
-      //   }
-
-      //   $cleanedData = $productos->filter(function ($value) use ($rangefrom, $rangeto) {
-
-      //     if ($value['descuento'] == 0) {
-
-      //       if ($value['precio'] <= $rangeto && $value['precio'] >= $rangefrom) {
-      //         return $value;
-      //       }
-      //     } else {
-
-      //       if ($value['descuento'] <= $rangeto && $value['descuento'] >= $rangefrom) {
-      //         return $value;
-      //       }
-      //     }
-      //   });
-
-      //   $currentPage = LengthAwarePaginator::resolveCurrentPage();
-      //   $productos = new LengthAwarePaginator(
-      //     $cleanedData->forPage($currentPage, 12), // Obtener los productos por página
-      //     $cleanedData->count(), // Contar todos los elementos
-      //     12, // Número de elementos por página
-      //     $currentPage, // Página actual
-      //     ['path' => request()->url()] // URL base para la paginación
-      //   );
-      // }
-
-      return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page'));
+        'beneficios' => $beneficios,
+      ])->rootView('app');
     } catch (\Throwable $th) {
+      dump($th);
     }
   }
 
@@ -265,33 +254,114 @@ class IndexController extends Controller
     //
     $url_env = $_ENV['APP_URL'];
     $departamentos = DB::table('departments')->get();
-    return view('public.checkout_carrito', compact('url_env', 'departamentos'));
+
+    $complementos = Complemento::select('complementos.*')
+      ->join('products', 'products.complemento_id', '=', 'complementos.id')
+      ->where('complementos.status', 1)
+      ->groupBy('complementos.id')
+      ->get();
+    foreach ($complementos as $key => $complemento) {
+
+      $complementos[$key]['min_price'] = $complemento->min_price;
+    }
+
+    // return view('public.checkout_carrito', compact('url_env', 'departamentos'));
+    return Inertia::render('Carrito', [
+      'url_env' => $url_env,
+      'departamentos' => $departamentos,
+      'complementos' => $complementos
+
+    ])->rootView('app');
   }
 
   public function pago(Request $request)
   {
     //
-    $formToken = $request->input('token');
-    $codigoCompra = $request->input('codigoCompra');
-
+    //
     $detalleUsuario = [];
     $user = auth()->user();
-    $N_orden = Ordenes::where('codigo_orden', '=', $codigoCompra)->get()->toArray();
-    /* if (!isNull($user)) {
+
+    if (!is_null($user)) {
       $detalleUsuario = UserDetails::where('email', $user->email)->get();
-    } */
-    $detalleUsuario = UserDetails::where('id', $N_orden[0]['usuario_id'])->get();
+    }
 
-    $distritos = DB::select('select * from districts where active = ? order by 3', [1]);
-    $provincias = DB::select('select * from provinces where active = ? order by 3', [1]);
-    $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
+    // $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
+    /* $departments = Price::select([
+      'departments.id AS id',
+      'departments.description AS description',
+    ])
+      ->join('districts', 'districts.id', 'prices.distrito_id')
+      ->join('provinces', 'provinces.id', 'districts.province_id')
+      ->join('departments', 'departments.id', 'provinces.department_id')
+      ->where('departments.active', 1)
+      ->where('status', 1)
+      ->groupBy('id', 'description')
+      ->get(); */
 
-    //consultar n orden
-    // traer los datos necesarios para armar el token
-    // $formToken =  $this->generateFormTokenIzipay();
+    /* $provinces = Price::select([
+      'provinces.id AS id',
+      'provinces.description AS description',
+      'provinces.department_id AS department_id'
+    ])
+      ->join('districts', 'districts.id', 'prices.distrito_id')
+      ->join('provinces', 'provinces.id', 'districts.province_id')
+      ->where('provinces.active', 1)
+      ->groupBy('id', 'description', 'department_id')
+      ->get(); */
+
+   /*  $districts = Price::select([
+      'districts.id AS id',
+      'districts.description AS description',
+      'districts.province_id AS province_id',
+      'prices.id AS price_id',
+      'prices.price AS price'
+    ])
+      ->join('districts', 'districts.id', 'prices.distrito_id')
+      ->where('districts.active', 1)
+      ->groupBy('id', 'description', 'province_id', 'price', 'price_id')
+      ->get(); */
+
+    // $distritos  = DB::select('select * from districts where active = ? order by 3', [1]);
+    // $provincias = DB::select('select * from provinces where active = ? order by 3', [1]);
+
+    $categorias = Category::all();
+
+    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
+      ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
+
+
+    $url_env = env('APP_URL');
+    $culqi_public_key = env('CULQI_PUBLIC_KEY');
+
+    $addresses = [];
+    $hasDefaultAddress = false;
+      /* if (Auth::check()) {
+        $addresses = Address::with([
+          'price',
+          'price.district',
+          'price.district.province',
+          'price.district.province.department'
+        ])
+          ->where('email', $user->email)
+          ->get();
+        $hasDefaultAddress = Address::where('email', $user->email)
+          ->where('isDefault', true)
+          ->exists();
+      } */
+    $MensajesPredefinidos = MensajesPredefinidos::where('status', '=', 1)->where('visible', '=', 1)->get();
 
     $url_env = $_ENV['APP_URL'];
-    return view('public.checkout_pago', compact('url_env', 'distritos', 'provincias', 'departamento', 'detalleUsuario', 'formToken', 'codigoCompra'));
+    return Inertia::render('Pago', [
+      'url_env' => $url_env,
+      
+      'detalleUsuario' => $detalleUsuario,
+      'categorias' => $categorias,
+      'destacados'  => $destacados,
+      'culqi_public_key' => $culqi_public_key,
+      'addresses' => $addresses,
+      'hasDefaultAddress' => $hasDefaultAddress,
+      'MensajesPredefinidos' => $MensajesPredefinidos,
+    ])->rootView('app');
   }
 
   private function generateFormTokenIzipay($amount, $orderId, $email)
@@ -340,17 +410,17 @@ class IndexController extends Controller
       ];
       // $request->validate($reglasPrimeraCompra, $mensajes);
 
-      $orden =Ordenes::where('codigo_orden', '=', $codigoCompra);
+      $orden = Ordenes::where('codigo_orden', '=', $codigoCompra);
 
       $orden->update(['tipo_tarjeta' => $tipoTarjeta]);
-      
+
       $ordenid = $orden->get();
-      AddressUser::where('id',$ordenid[0]['address_id'])->update([
+      AddressUser::where('id', $ordenid[0]['address_id'])->update([
         'dir_av_calle' => $result['dir_av_calle'],
         'dir_numero' => $result['dir_numero'],
         'dir_bloq_lote' => $result['dir_bloq_lote']
       ]);
-      
+
 
       UserDetails::where('email', '=', $request->email)->update($result);
 
@@ -461,7 +531,7 @@ class IndexController extends Controller
       ->toArray();
 
     $ordenes = Ordenes::where('usuario_id', $detalleUsuario[0]['id'])
-       ->with('DetalleOrden')
+      ->with('DetalleOrden')
       ->with('statusOrdenes')
       ->get();
 
@@ -577,19 +647,19 @@ class IndexController extends Controller
 
     $productos = Products::where('id', '=', $id)->with(['attributes', 'images'])->with('tags')->first();
     $subproductos = Products::where('parent_id', '=', $id)->with(['images', 'tipos'])->get();
-    
+
     $tipoDefault = Tipo::where('is_default', '=', 1)->first();
 
     $complementos = Complemento::select('complementos.*')
-    ->join('products', 'products.complemento_id', '=', 'complementos.id')
-    ->where('complementos.status', 1)
-    ->groupBy('complementos.id')
-    ->get();
+      ->join('products', 'products.complemento_id', '=', 'complementos.id')
+      ->where('complementos.status', 1)
+      ->groupBy('complementos.id')
+      ->get();
     foreach ($complementos as $key => $complemento) {
-   
+
       $complementos[$key]['min_price'] = $complemento->min_price;
     }
-    
+
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
       ->where(function ($query) {
@@ -607,24 +677,24 @@ class IndexController extends Controller
     );
 
     $IdProductosComplementarios = $productos->toArray();
-  //  dump(json_decode($IdProductosComplementarios['uppsell'], true));
+    //  dump(json_decode($IdProductosComplementarios['uppsell'], true));
     $ProdComplementarios = [];
 
     if (!is_null($IdProductosComplementarios) && isset($IdProductosComplementarios['uppsell'])) {
       $IdProductosComplementarios = json_decode($IdProductosComplementarios['uppsell'], true);
-      dump($IdProductosComplementarios);
+
       $ProdComplementarios = Products::whereIn('id',  $IdProductosComplementarios)->with('images')->get();
     }
 
     $horarios = Horarios::all();
-    
+
     $atributos = Attributes::where('status', '=', true)->get();
     // $atributos = $product->attributes()->get();
 
     $valorAtributo = AttributesValues::where('status', '=', true)->get();
 
     $url_env = $_ENV['APP_URL'];
-    $categorias = Category::where('is_active_campaing', 1 )->get();
+    $categorias = Category::where('is_active_campaing', 1)->get();
     $general = General::first();
 
     $politicasSustitucion = PoliticaSustitucion::first();
@@ -805,8 +875,8 @@ class IndexController extends Controller
   public function procesarCarrito(Request $request)
   {
     $primeraVez = false;
-    
-    
+
+
 
 
     try {
@@ -829,13 +899,13 @@ class IndexController extends Controller
       }
 
       $addres = AddressUser::create([
-        'departamento_id'=>(int)$request->departamento,
-        'provincia_id'=>(int)$request->provincia,
-        'distrito_id'=>(int)$request->distrito,
-        'user_id'=>$usuario[0]['id']
+        'departamento_id' => (int)$request->departamento,
+        'provincia_id' => (int)$request->provincia,
+        'distrito_id' => (int)$request->distrito,
+        'user_id' => $usuario[0]['id']
       ]);
       $this->GuardarOrdenAndDetalleOrden($codigoOrden, $montoT, $precioEnvio, $usuario, $request->carrito, $addres);
-      
+
 
       $formToken = $this->generateFormTokenIzipay($montoT, $codigoOrden, $email);
 
@@ -848,13 +918,13 @@ class IndexController extends Controller
   }
   private function GuardarOrdenAndDetalleOrden($codigoOrden, $montoT, $precioEnvio, $usuario, $carrito, $addres)
   {
-   
+
     $data['codigo_orden'] = $codigoOrden;
     $data['monto'] = $montoT;
     $data['precio_envio'] = $precioEnvio;
     $data['status_id'] = '1';
     $data['usuario_id'] = $usuario[0]['id'];
-    $data['address_id']= $addres['id'];
+    $data['address_id'] = $addres['id'];
 
     $orden = Ordenes::create($data);
 
@@ -871,24 +941,28 @@ class IndexController extends Controller
     }
   }
 
-  public function politicasDevolucion(){
+  public function politicasDevolucion()
+  {
     $politicDev = PolyticsCondition::first();
-     return view('public.politicasdeenvio', compact('politicDev'));
+    return view('public.politicasdeenvio', compact('politicDev'));
   }
 
-  public function TerminosyCondiciones(){
+  public function TerminosyCondiciones()
+  {
     $termsAndCondicitions = TermsAndCondition::first();
-     return view('public.terminosycondiciones', compact('termsAndCondicitions'));
+    return view('public.terminosycondiciones', compact('termsAndCondicitions'));
   }
 
 
-  public function buscaComplementos(Request $request){
+  public function buscaComplementos(Request $request)
+  {
     $categorias = Category::where('visible', 1)->with('productos')->get();
 
     return response()->json(['categorias' => $categorias]);
   }
-  public function buscaSubComplementosDetalle(Request $request){
-    $productos = Products::where('complemento_id', $request->id)->where('tipo_servicio', '=','complemento')->where('status', 1)->with('images')->get();
+  public function buscaSubComplementosDetalle(Request $request)
+  {
+    $productos = Products::where('complemento_id', $request->id)->where('tipo_servicio', '=', 'complemento')->where('status', 1)->with('images')->get();
 
     return response()->json(['productos' => $productos]);
   }

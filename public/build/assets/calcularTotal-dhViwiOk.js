@@ -1,0 +1,1 @@
+const e=()=>(Local.get("carrito")??[]).map(o=>{var t;let r=0;return r+=o.cantidad*Number(o.precio),((t=o==null?void 0:o.complementos)==null?void 0:t.length)>0&&o.complementos.forEach(l=>{r+=Number(l.preciofiltro)}),r}).reduce((o,r)=>o+r,0);export{e as c};

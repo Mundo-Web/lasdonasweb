@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const AccordionContent = ({ id, url_env }) => {
+const AccordionContent = ({ id, url_env, setDetallePedido }) => {
   const [complementos, setComplementos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,11 +23,27 @@ const AccordionContent = ({ id, url_env }) => {
   if (loading) {
     return <div>Loading...</div>;
   }
+  const handleCheckboxChange = (id) => {
+
+    setDetallePedido((prev) => {
+      const index = prev.complementos.findIndex((complemento) => complemento === id);
+      if (index === -1) {
+        return {
+          ...prev,
+          complementos: [...prev.complementos, id],
+        };
+      }
+      return {
+        ...prev,
+        complementos: prev.complementos.filter((complemento) => complemento !== id),
+      };
+    });
+  }
 
   return (
     <div className="grid w-full gap-4 grid-cols-1 md:grid-cols-4 mt-6">
       {complementos.map((complemento) => (
-        console.log(complemento),
+
         <div key={complemento.id} className="m-auto">
           <label
             htmlFor={`react-option-${complemento.id}`}
@@ -40,6 +56,7 @@ const AccordionContent = ({ id, url_env }) => {
                 name="complementos[]"
                 className="peer absolute top-3 left-3 w-5 h-5 accent-rosalasdonas border-[#FF8555] rounded-md peer-checked:accent-[#73B473]"
                 required
+                onChange={() => handleCheckboxChange(complemento.id)}
               />
               {complemento.images.length > 0 ? (
                 complemento.images.map((image) =>

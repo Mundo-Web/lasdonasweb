@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ListHorarios = ({ horarios, selectedHorario, setSelectedHorario, clase = 'absolute w-full flex flex-col gap-2 top-[80px] bg-white shadow-2xl' }) => {
+const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase = 'absolute w-full flex flex-col gap-2 top-[80px] bg-white shadow-2xl', setDetallePedido }) => {
 
 
   const formatTime = (time) => {
@@ -13,6 +13,21 @@ const ListHorarios = ({ horarios, selectedHorario, setSelectedHorario, clase = '
 
   const handleRadioChange = (index) => {
     setSelectedHorario(index);
+    setDetallePedido((prevState) => {
+
+      let fecha
+      if (id == "calendario") {
+        fecha = prevState.fecha
+      } else {
+        fecha = id
+      }
+      return {
+        ...prevState,
+        horario: index,
+        fecha: fecha
+
+      }
+    })
 
   };
 
@@ -20,23 +35,23 @@ const ListHorarios = ({ horarios, selectedHorario, setSelectedHorario, clase = '
     <div className={clase} >
       {horarios.map((item, index) => (
 
-        <li key={index} className="list-none w-full">
+        <li key={item.id} className="list-none w-full">
           <input
             type="radio"
-            id={`horario-option-${index}`}
+            id={`horario-option-${item.id}`}
             name="horario"
-            value={index}
+            value={item.id}
             className="hidden peer  "
-            checked={selectedHorario === index}
-            onChange={() => handleRadioChange(index)}
+            checked={selectedHorario === item.id}
+            onChange={() => handleRadioChange(item.id)}
             required
           />
           <label
-            htmlFor={`horario-option-${index}`}
-            className=" radio-option-label bg-white inline-flex items-center justify-between w-full p-1 text-[#73B473] text-xs border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[#df3876] peer-checked:bg-[#73B473] hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-white hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+            htmlFor={`horario-option-${item.id}`}
+            className=" radio-option-label bg-white inline-flex items-center justify-between w-full p-1 text-white text-xs border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[#df3876] peer-checked:bg-[#73B473]  hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-white hover:bg-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
           >
             <div className="flex flex-col justify-center items-center text-center">
-              <p className="text-base font-semibold text-center pl-5 text-[#73B473]">{formatTime(item.start_time)}-{formatTime(item.end_time)}</p>
+              <p className="text-base font-semibold text-center pl-5  ">{formatTime(item.start_time)}-{formatTime(item.end_time)}</p>
             </div>
           </label>
         </li>

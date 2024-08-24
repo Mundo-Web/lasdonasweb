@@ -74,13 +74,13 @@ Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto')
 
 
 /* Proceso de pago */
-Route::get('/carrito', [IndexController::class, 'carrito'] )->name('carrito');
-Route::get('/pago', [IndexController::class, 'pago'] )->name('pago');
+Route::get('/carrito', [IndexController::class, 'carrito'] )->name('Carrito.jsx');
+Route::get('/pago', [IndexController::class, 'pago'] )->name('Pago.jsx');
 Route::post('/procesar/pago',[IndexController::class, 'procesarPago'])->name('procesar.pago');
 Route::post('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
 /* Catálogo y producto */
 Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('Product.jsx');
-Route::get('/catalogo/{filtro}', [IndexController::class, 'catalogo'] )->name('catalogo');
+Route::get('/catalogo/{filtro?}', [IndexController::class, 'catalogo'] )->name('Catalogo.jsx');
 Route::post('carrito/buscarProducto', [CarritoController::class, 'buscarProducto'] )->name('carrito.buscarProducto');
 Route::get('/coleccion/{filtro}', [IndexController::class, 'coleccion'] )->name('coleccion');
 Route::get('/liquidacion', [IndexController::class, 'liquidacion'] )->name('liquidacion');

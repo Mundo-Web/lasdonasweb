@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Classes\dxResponse;
 use App\Models\Attributes;
 use App\Models\AttributesValues;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Combinacion;
 use App\Models\Complemento;
+use App\Models\dxDataGrid;
 use App\Models\Galerie;
+use App\Models\Horarios;
 use App\Models\ImagenProducto;
+use App\Models\Price;
 use App\Models\Products;
 use App\Models\Specifications;
 use App\Models\Tag;
@@ -743,6 +747,122 @@ class ProductsController extends Controller
     } catch (\Throwable $th) {
       //throw $th;
       return response()->json(['message' => 'no se ha podido guardar la especificacion '], 400);
+    }
+  }
+  public function paginate(Request $request)
+  {
+    $response =  new dxResponse();
+
+    try {
+      $instance = Products::select([
+        DB::raw('DISTINCT products.*')
+      ])
+        ->with(['categoria', 'images'])
+
+        ->join('categories', 'categories.id', 'products.categoria_id')
+        
+        
+        ->where('products.status', 1)
+        ->where('categories.visible', 1)
+        ->where('tipo_servicio', 'producto');
+
+      if ($request->group != null) {
+        [$grouping] = $request->group;
+        $selector = \str_replace('.', '__', $grouping['selector']);
+        $instance = Products::select([
+          "{$selector} AS key"
+        ])
+          ->groupBy($selector);
+      }
+
+      if ($request->filter) {
+        $instance->where(function ($query) use ($request) {
+          dxDataGrid::filter($query, $request->filter ?? [], false);
+        });
+      }
+
+      if ($request->sort != null) {
+        foreach ($request->sort as $sorting) {
+          // $selector = \str_replace('.', '__', $sorting['selector']);
+          $selector = $sorting['selector'];
+          $instance->orderBy(
+            $selector,
+            $sorting['desc'] ? 'DESC' : 'ASC'
+          );
+        }
+      } else {
+        $instance->orderBy('products.id', 'DESC');
+      }
+
+      $totalCount = 0;
+      if ($request->requireTotalCount) {
+        $instanceClone = clone $instance;
+
+        // Obtén los IDs utilizando pluck
+        $ids = $instanceClone->pluck('products.id');
+        // $totalCount = $instance->count('*');
+        $totalCount = $ids->count();
+      }
+
+      $jpas = [];
+      if (!$request->ignoreData) {
+        $jpas = $request->isLoadingAll
+          ? $instance->get()
+          : $instance
+          ->skip($request->skip ?? 0)
+          ->take($request->take ?? 10)
+          ->get();
+      }
+
+      // $results = [];
+
+      // foreach ($jpas as $jpa) {
+      //   $result = JSON::unflatten($jpa->toArray(), '__');
+      //   $results[] = $result;
+      // }
+
+      $response->status = 200;
+      $response->message = 'Operación correcta';
+      $response->data = $jpas;
+      $response->totalCount = $totalCount;
+
+      return response()->json(['message' => 'Operación correcta', 'data' => $jpas, 'totalCount' => $totalCount], 200);
+    } catch (\Throwable $th) {
+      $response->status = 400;
+      $response->message = $th->getMessage() . " " . $th->getFile() . ' Ln.' . $th->getLine();
+      return response()->json(['message' => $th->getMessage() . " " . $th->getFile() . ' Ln.' . $th->getLine()], 400);
+    }
+  }
+
+  public function AddOrder(Request $request ){
+    try {
+      //code...
+      $data = $request->all();
+      $productos = Products::with(['images', 'tipos'])->find($data['opcion']);
+      $horario = Horarios::select('id','start_time', 'end_time')->find($data['horario']);
+      $complemento = []; 
+      $fecha = $data['fecha'];
+      foreach ($data['complementos'] as $key => $value) {
+        $complemento[] = Products::find($value)->toArray();
+      } 
+      
+      if($fecha == 'hoy')
+      {
+        $fecha = date('Y-m-d');
+      }else if ($fecha == 'manana') {
+        $fecha = date('Y-m-d', strtotime('+1 day'));
+      }
+      return response()->json(['message' => 'orden actualizado con exito ' , 
+      'producto' => $productos,
+      'horario' => $horario,
+      'complementos' => $complemento,
+      'fecha' => $fecha,
+      'imagen' => $data['imagen']
+      ]);
+    
+    } catch (\Throwable $th) {
+      //throw $th;
+      return response()->json(['message' => 'No se ha podido agregar el producto '], 400);
     }
   }
 }

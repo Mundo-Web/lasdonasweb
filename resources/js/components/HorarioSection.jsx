@@ -2,7 +2,7 @@ import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import ListHorarios from './ListHorarios';
 
-const HorarioSection = ({ title, date, horarios, loadListHorarios, setLoadListHorarios, selectedHorario, setSelectedHorario }) => {
+const HorarioSection = ({ id, title, date, horarios, loadListHorarios, setLoadListHorarios, selectedHorario, setSelectedHorario, setDetallePedido }) => {
 
   return (
     <div className=" flex flex-col justify-center items-center text-rosalasdonas text-center cursor-pointer text-[#73B473]">
@@ -17,8 +17,13 @@ const HorarioSection = ({ title, date, horarios, loadListHorarios, setLoadListHo
         classNames="fade"
         unmountOnExit
       >
-        <ListHorarios horarios={horarios} selectedHorario={selectedHorario}
-          setSelectedHorario={setSelectedHorario} />
+        <ListHorarios
+          horarios={horarios}
+          selectedHorario={selectedHorario}
+          setSelectedHorario={setSelectedHorario}
+          setDetallePedido={setDetallePedido}
+          id={id}
+        />
       </CSSTransition>
     </div>
   );
