@@ -7,14 +7,20 @@ import ListHorarios from './ListHorarios';
 
 registerLocale('es', es);
 setDefaultLocale('es');
-const CalendarComponent = ({ horarios, selectedHorario, setSelectedHorario, selectedDatecalendar, setSelectedDatecalendar, categorias, categoryP }) => {
+const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSelectedHorario, selectedDatecalendar, setSelectedDatecalendar, categorias, categoryP }) => {
   // const [selectedDate, setSelectedDate] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
 
   const handleDateChange = (date) => {
 
+    setDetallePedido((prevState) => {
+      return {
+        ...prevState,
+        fecha: date.toISOString().split('T')[0],
 
+      }
+    })
     setSelectedDate(date);
     setSelectedDatecalendar(date);
     setSelectedTimeSlot('');
@@ -131,17 +137,13 @@ const CalendarComponent = ({ horarios, selectedHorario, setSelectedHorario, sele
           <div className="time-slots pt-10">
             <h4 className='font-bold'>Selecciona un horario de entrega</h4>
             <div className="time-slots-options relative mt-4">
-              <ListHorarios clase='flex flex-row block  gap-2 text-sm text-center justify-center ' horarios={horarios} selectedHorario={selectedHorario}
-                setSelectedHorario={setSelectedHorario} />
-              {/* {horarios.map((slot, index) => (
-              <button
-                key={index}
-                className={`time-slot ${selectedTimeSlot === slot ? 'selected' : ''}`}
-                onClick={() => handleTimeSlotChange(slot)}
-              >
-                {`${slot.start_time} - ${slot.end_time}`}
-              </button>
-            ))} */}
+              <ListHorarios clase='flex flex-row block  gap-2 text-sm text-center justify-center '
+                horarios={horarios}
+                selectedHorario={selectedHorario}
+                setSelectedHorario={setSelectedHorario}
+                id="calendario"
+                setDetallePedido={setDetallePedido} />
+
             </div>
           </div>
         )}

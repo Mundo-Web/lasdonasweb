@@ -4,14 +4,20 @@ import CreateReactScript from './Utils/CreateReactScript'
 import SvgFlorPremium from './components/svg/svgFlorPremium'
 import SvgFlorDeluxe from './components/svg/SvgFlorDeluxe'
 import SvgFlorClasic from './components/svg/SvgFlorClasic'
+import axios from 'axios'
 
-import Accordion from './Accordion';
+import { Local } from 'sode-extend-react/sources/storage'
+
 import HorarioSection from './components/HorarioSection';
 import ModalSimple from './components/ModalSimple';
 
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { format, toZonedTime } from 'date-fns-tz';
+
+import Accordion from './Accordion2';
+
+import Swal from 'sweetalert2';
 
 
 
@@ -31,6 +37,17 @@ const Product = ({ complementos, general,
   url_env,
   colors, horarios, categorias, politicasSustitucion, politicaEnvio }) => {
 
+  const [detallePedido, setDetallePedido] = useState({
+    fecha: '',
+    horario: '',
+    opcion: '',
+    complementos: [],
+    imagen: '',
+  });
+
+  useEffect(() => {
+    console.log(detallePedido)
+  }, [detallePedido])
 
   const [selectedHorario, setSelectedHorario] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -62,6 +79,106 @@ const Product = ({ complementos, general,
     return (horaActual >= horaInicio && horaActual <= horaFin) || (horaActual < horaInicio);
   });
 
+  const agregarPedido = async () => {
+    const opciones = {
+      fecha: 'Fecha de entrega',
+      horario: 'Horario de entrega',
+      opcion: 'Tipo de Producto (Clasica, Premium, Deluxe)'
+    };
+
+    const faltantes = Object.keys(opciones).filter(opcion => detallePedido[opcion] === '');
+
+    if (faltantes.length > 0) {
+      const textFaltantes = faltantes.map(opcion => opciones[opcion]).join(', ');
+
+      Swal.fire({
+        icon: 'warning',
+        title: 'Faltan opciones',
+        text: `Por favor, complete ${textFaltantes} antes de continuar.`,
+      });
+      return;
+    }
+    console.log(detallePedido)
+
+    try {
+      const res = await axios.post('/api/products/AddOrder', detallePedido);
+
+      if (res.status === 200) {
+        const { producto,
+          horario,
+          complementos,
+          fecha, imagen } = res.data;
+        console.log(res)
+        let detalleProducto = {
+          id: producto.id,
+          producto: producto.producto,
+          precio: producto.descuento > 0 ? producto.descuento : producto.precio,
+          imagen: producto.images.filter(item => item.caratula === 1)[0]?.name_imagen ?? '/images/img/noimagen.jpg',
+          cantidad: 1,
+          fecha: fecha,
+          horario: horario,
+          complementos: complementos,
+          tipo: producto?.tipos?.name ?? 'Clasica',
+          extract: producto.extract,
+        }
+
+
+        let carrito = Local.get('carrito') ?? [];
+
+        // Verificar si el artículo ya existe en el carrito
+        let existeArticulo = carrito.some(item => item.id === detalleProducto.id);
+
+        if (existeArticulo) {
+          // Actualizar la cantidad del artículo existente
+          carrito = carrito.map(item => {
+            if (item.id === detalleProducto.id && !item.isCombo) {
+              return {
+                ...item,
+                cantidad: item.cantidad + Number(detalleProducto.cantidad),
+              };
+            }
+            return item;
+          });
+        } else {
+          // Agregar el nuevo artículo al carrito
+          carrito = [...carrito, detalleProducto];
+        }
+
+        // Guardar el carrito actualizado en el almacenamiento local
+        Local.set('carrito', carrito);
+
+        limpiarHTML();
+        PintarCarrito()
+        Swal.fire({
+          icon: 'success',
+          title: 'Exito',
+          text: `Producto agregado correctamente al CArro de compras`,
+        });
+      }
+
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al agregar el pedido. Por favor, inténtelo de nuevo.',
+      });
+    }
+
+
+
+  }
+
+  const handleSelecttionOption = (item) => {
+    console.log(item)
+    setCurrentProduct(item);
+    setDetallePedido((prevState) => {
+      return {
+        ...prevState,
+        opcion: item.id
+      }
+    })
+  }
   const openModalCalendario = () => {
     setModalCalendario(true);
   }
@@ -238,6 +355,7 @@ const Product = ({ complementos, general,
                   (<div
                     className="flex flex-col justify-center items-center  text-center w-1/3 border-[#73B473] border-2 p-3 rounded-xl relative">
                     <HorarioSection
+                      id="hoy"
                       title="Hoy"
                       date=""
                       horarios={horariosHoy}
@@ -245,6 +363,7 @@ const Product = ({ complementos, general,
                       setLoadListHorarios={setLoadListHorariosHoy}
                       selectedHorario={selectedHorario}
                       setSelectedHorario={setSelectedHorario}
+                      setDetallePedido={setDetallePedido}
                     />
                     {horariosHoy.length === 0 ? (
                       <p key="no-disponible" className="text-sm font-normal">No disponible</p>
@@ -277,6 +396,7 @@ const Product = ({ complementos, general,
                     setLoadListHorarios={setLoadListHorariosManana}
                     selectedHorario={selectedHorario}
                     setSelectedHorario={setSelectedHorario}
+                    setDetallePedido={setDetallePedido}
 
                   />
 
@@ -308,8 +428,8 @@ const Product = ({ complementos, general,
                     />
                     <label
                       htmlFor="react-option"
-                      className="radio-option-label inline-flex items-center justify-between w-full p-5  border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[##73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
-                      onClick={() => setCurrentProduct(productos)}
+                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5  border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[##73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      onClick={() => handleSelecttionOption(productos)}
                     >
                       <div className="flex flex-col justify-center items-center">
 
@@ -323,12 +443,13 @@ const Product = ({ complementos, general,
                         )}
                       </div>
                       <div className="flex flex-col justify-center items-center">
+                        {console.log(tipoDefault.name)}
                         <p className="text-base font-semibold">{tipoDefault.name}</p>
                         <p className="text-base font-normal">
-                          S/ <span>{currentProduct.precio}</span>
+                          S/ <span>{Number(product.precio).toFixed(0)}</span>
                         </p>
                         <p className="text-base font-bold">
-                          S/ <span>{currentProduct.descuento}</span>
+                          S/ <span>{Number(product.descuento).toFixed(0)}</span>
                         </p>
                       </div>
                     </label>
@@ -344,7 +465,7 @@ const Product = ({ complementos, general,
                         className="hidden peer radio-option"
                       />
                       <label
-                        onClick={() => setCurrentProduct(item)}
+                        onClick={() => handleSelecttionOption(item)}
                         htmlFor={`${item.tipos.name}-option`}
                         className="radio-option-label inline-flex items-center justify-between w-full p-5  border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[##73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
                       >
@@ -359,12 +480,22 @@ const Product = ({ complementos, general,
                         </div>
                         <div className="flex flex-col justify-center items-center">
                           <p className="text-base font-semibold">{item.tipos.name}</p>
-                          <p className="text-base font-normal">
-                            S/ <span>{item.precio}</span>
-                          </p>
-                          <p className="text-base font-bold">
-                            S/ <span>{item.descuento}</span>
-                          </p>
+                          {console.log(Number(item.descuento) > 0)}
+                          {Number(item.descuento) > 0 ? (<>
+                            <p className="text-base font-normal">
+                              S/ <span>{Number(item.precio).toFixed(0)}</span>
+                            </p>
+                            <p className="text-base font-bold">
+                              S/ <span>{Number(item.descuento).toFixed(0)}</span>
+                            </p>
+                          </>) : (
+                            <>
+                              <p className="text-base font-normal">
+                                S/ <span>{Number(item.precio).toFixed(0)}</span>
+                              </p>
+
+                            </>
+                          )}
                         </div>
                       </label>
                     </li>
@@ -372,6 +503,11 @@ const Product = ({ complementos, general,
                 </ul>
               </div>
 
+              {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
+                onClick={agregarPedido}
+              >
+                Confirmar dia y hora
+              </div>)}
               <p className="text-2xl  font-bold text-black pb-2">Paso 3: Personalizar</p>
               <p className="text-lg  font-normal text-black pb-4 ">Personaliza con una foto:</p>
 
@@ -420,7 +556,7 @@ const Product = ({ complementos, general,
                         image.caratula === 1 && (
                           <img
                             key={imgIndex}
-                            className="size-full w-48 h-56 rounded-xl hover:scale-105 transition-transform duration-500 ease-in-out"
+                            className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out"
                             src={image.name_imagen ? url_env + '/' + image.name_imagen : 'images/img/noimagen.jpg'}
                             alt="Complemento"
                             onError={(e) => {
@@ -431,7 +567,7 @@ const Product = ({ complementos, general,
                         )
                       ))
                     ) : (
-                      <img className="size-full w-48 h-56 rounded-xl hover:scale-105 transition-transform duration-500 ease-in-out" src={url_env + "/images/img/noimagen.jpg"} alt="No image available" />
+                      <img className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out" src={url_env + "/images/img/noimagen.jpg"} alt="No image available" />
                     )}
                   </div>
                 </label>
@@ -558,6 +694,7 @@ const Product = ({ complementos, general,
                     setSelectedDatecalendar={setSelectedDate}
                     categorias={categorias}
                     categoryP={productos.categoria_id}
+                    setDetallePedido={setDetallePedido}
                   />
 
                 </div>
@@ -586,13 +723,15 @@ const Product = ({ complementos, general,
                   </div>
                   <div>
                     <p className="">En el horario:</p>
-                    <p className=" text-[24px]">{formatTime(horarios[selectedHorario]?.start_time)} - {formatTime(horarios[selectedHorario]?.end_time)} </p>
+                    <p className=" text-[24px]">{formatTime(horarios.filter((item) => item.id == selectedHorario)[0]?.start_time)} - {formatTime(horarios.filter((item) => item.id == selectedHorario)[0]?.end_time)}  </p>
 
 
                   </div>
 
 
-                  {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer">
+                  {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
+                    onClick={agregarPedido}
+                  >
                     Confirmar dia y hora
                   </div>)}
 
@@ -644,7 +783,8 @@ const Product = ({ complementos, general,
                         onClick={closeModalComplementos} />
                     </div>
                     <div className="mt-5 gap-4 " id="containerComplementos" data-accordion="collapse">
-                      <Accordion datos={currentComplemento} url_env={url_env} />
+                      <Accordion datos={currentComplemento} url_env={url_env}
+                        setDetallePedido={setDetallePedido} />
                     </div>
                   </div>
                 </div>

@@ -9,7 +9,7 @@ import 'datatables.net-dt/css/dataTables.dataTables.css';
 
 const Horarios = ({ url_env, horarios }) => {
 
-  console.log(horarios)
+
   const formatTime = (time) => {
     const [hour, minute, second] = time.split(':');
     let hours = parseInt(hour);

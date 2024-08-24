@@ -19,10 +19,10 @@ const Accordion = ({ datos, url_env }) => {
 
 
   return (
-    <div>
+    <div >
       {datos.map((complemento, index) => (
-        <div key={complemento.id}>
-          <h2 id={`accordion-collapse-heading-${complemento.id}`} className="">
+        <div key={complemento.id} className='mt-4'>
+          <h2 id={`accordion-collapse-heading-${complemento.id}`} className='gap-4 flex flex-col'>
             <button
               className={`flex items-center justify-between w-full p-5 font-medium rounded-t-xl  dark:focus:ring-gray-800 dark:border-gray-700 dark:text-black hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 ${activeIndex === index ? 'bg-[#FF8555] text-white' : 'text-black'}`}
               data-accordion-target={`#accordion-collapse-body-${complemento.id}`}
