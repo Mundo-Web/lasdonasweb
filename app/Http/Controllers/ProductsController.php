@@ -10,10 +10,8 @@ use App\Models\Collection;
 use App\Models\Combinacion;
 use App\Models\Complemento;
 use App\Models\dxDataGrid;
-use App\Models\Galerie;
 use App\Models\Horarios;
 use App\Models\ImagenProducto;
-use App\Models\Price;
 use App\Models\Products;
 use App\Models\Specifications;
 use App\Models\Tag;
@@ -24,11 +22,8 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use SoDe\Extend\File as ExtendFile;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
 class ProductsController extends Controller
 {
@@ -60,7 +55,7 @@ class ProductsController extends Controller
   public function search(Request $request)
   {
     $search = $request->input('q');
-    $products = Products::where('tipo_servicio', 'producto')->where('producto', 'like', '%' . $search. '%')->get();
+    $products = Products::where('tipo_servicio', 'producto')->where('producto', 'like', '%' . $search . '%')->get();
     return response()->json($products);
   }
 
@@ -84,8 +79,8 @@ class ProductsController extends Controller
   {
 
 
-    
-   
+
+
     $valoresFormulario = $request->input('valoresFormulario');
 
     // Si 'valoresFormulario' es una cadena JSON, decodificarla a un array PHP
@@ -103,9 +98,8 @@ class ProductsController extends Controller
 
 
     //imprimir valores request 
-    if(isset($data['uppsell'])){
-    $data['uppsell'] = json_encode($data['uppsell']);
-
+    if (isset($data['uppsell'])) {
+      $data['uppsell'] = json_encode($data['uppsell']);
     }
 
     if (is_null($request->input('descuento'))) {
@@ -137,16 +131,16 @@ class ProductsController extends Controller
 
 
       $data['imagen'] = $this->handleImageUpload($request);
-     
+
 
       list($cleanedData, $atributos, $especificaciones) = $this->processAndCleanProductData($data);
       // $cleanedData = $this->processAndCleanProductData($data, $request);
 
-      
 
-        $producto = Products::create($cleanedData);
 
-      
+      $producto = Products::create($cleanedData);
+
+
 
 
       if ($producto['descuento'] == 0 || is_null($producto['descuento'])) {
@@ -188,7 +182,7 @@ class ProductsController extends Controller
       //throw $th;
       // dump($th);
 
-       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
+      return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
     }
   }
   private function convertirArray($arrayEntrada)
@@ -243,16 +237,17 @@ class ProductsController extends Controller
           'categoria_id' => $productoParent->categoria_id,
           'tipo_prodct' => $arrayConvertido['tipo_prodct'],
           'parent_id' => $productoParent->id,
-          'tipo_servicio' => 'complemento'];
+          'tipo_servicio' => 'complemento'
+        ];
 
-          if($actualizacion){
-            $producto = Products::find($value['id']);
-            $producto->update($data);
-          }else{
-            $producto = Products::create($data);
-          }
+        if ($actualizacion) {
+          $producto = Products::find($value['id']);
+          $producto->update($data);
+        } else {
+          $producto = Products::create($data);
+        }
 
-        
+
 
 
         list($cleanedData, $atributos) = $this->processAndCleanProductData($arrayConvertido);
@@ -333,7 +328,7 @@ class ProductsController extends Controller
   private function associateAttributesToProduct(array $atributos, $producto, $actualizacion = false)
   {
     if (!empty($atributos)) {
-      if($actualizacion){
+      if ($actualizacion) {
         DB::table('attribute_product_values')->where('product_id', $producto->id)->delete();
       }
       foreach ($atributos as $atributo => $valores) {
@@ -471,31 +466,28 @@ class ProductsController extends Controller
 
     if ($actualizacion) {
       $this->actualizarEspecificacion($especificaciones, $id);
-    }else{
+    } else {
       foreach ($especificaciones as $value) {
         $value['product_id'] = $id;
         Specifications::create($value);
       }
     }
-
-    
   }
 
-  private function actualizarEspecificacion($especificaciones , $product_id)
+  private function actualizarEspecificacion($especificaciones, $product_id)
   {
     foreach ($especificaciones as $key => $value) {
-      if(isset( $value['tittle'])){
+      if (isset($value['tittle'])) {
         $espect = Specifications::find($key);
         $espect->tittle = $value['tittle'];
         $espect->specifications = $value['specifications'];
-  
+
         if ($value['specifications'] == null) {
           $espect->delete();
         } else {
           $espect->save();
         }
       }
-      
     }
   }
 
@@ -544,17 +536,17 @@ class ProductsController extends Controller
     $allTags = Tag::all();
     $categoria = Category::all();
     $collection = Collection::all();
-    
+
     $subproductosEspeccifications = [];
 
     // Itera sobre los subproductos para extraer los IDs
     foreach ($subproductos as $subproducto) {
-        // Añade el ID del subproducto al array
-        $subproductosEspeccifications[$subproducto->id] = Specifications::where("product_id", "=", $subproducto->id)->get();
+      // Añade el ID del subproducto al array
+      $subproductosEspeccifications[$subproducto->id] = Specifications::where("product_id", "=", $subproducto->id)->get();
     }
 
 
-    return view('pages.products.edit', compact('product','subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
+    return view('pages.products.edit', compact('product', 'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
   }
 
   /**
@@ -597,7 +589,7 @@ class ProductsController extends Controller
 
 
       $product = Products::find($id);
-      $product->update($cleanedData); 
+      $product->update($cleanedData);
 
       if ($product['descuento'] == 0 || is_null($product['descuento'])) {
         $precioFiltro = $product['precio'];
@@ -615,8 +607,8 @@ class ProductsController extends Controller
       foreach ($request->files as $key => $file) {
         if (strpos($key, 'input-file-') === 0) {
           $file = $request->file($key);
-          $number = substr($key, strpos($key, 'input-file-') + strlen('input-file-'));// Esto imprimirá "541" si $key es "input-file-541"
-  
+          $number = substr($key, strpos($key, 'input-file-') + strlen('input-file-')); // Esto imprimirá "541" si $key es "input-file-541"
+
           $this->actImg($file, $number);
         }
       }
@@ -625,20 +617,20 @@ class ProductsController extends Controller
     } catch (\Throwable $th) {
       //throw $th;
     }
-    
 
-    return ;
-    
+
+    return;
+
     // return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
   }
 
   private function actImg($file, $id)
   {
-   
+
     try {
       $imagenGaleria = ImagenProducto::find($id);
       $rutaCompleta  = $imagenGaleria->name_imagen;
-  
+
       $routeImg = 'storage/images/productos/';
       $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
       if (file_exists($rutaCompleta)) {
@@ -651,7 +643,7 @@ class ProductsController extends Controller
       $this->saveImg($file, $routeImg, $nombreImagen);
     } catch (\Throwable $th) {
       //throw $th;
-      
+
     }
   }
 
@@ -713,7 +705,7 @@ class ProductsController extends Controller
     try {
       //code...
 
-      Specifications::where('product_id',$request->id)->delete();
+      Specifications::where('product_id', $request->id)->delete();
 
       $producto = Products::find((int) $request->id);
       $producto->delete();
@@ -736,14 +728,14 @@ class ProductsController extends Controller
       //throw $th;
       return response()->json(['message' => 'no se ha podido eliminar la especificacion '], 400);
     }
-
   }
 
-  public function saveSpec(Request $request ){
+  public function saveSpec(Request $request)
+  {
     try {
       //code...
       $espect = Specifications::create($request->all());
-      return response()->json(['message' => 'especificacion guardada con exito ' ,  'especificacion' => $espect] );
+      return response()->json(['message' => 'especificacion guardada con exito ',  'especificacion' => $espect]);
     } catch (\Throwable $th) {
       //throw $th;
       return response()->json(['message' => 'no se ha podido guardar la especificacion '], 400);
@@ -760,8 +752,8 @@ class ProductsController extends Controller
         ->with(['categoria', 'images'])
 
         ->join('categories', 'categories.id', 'products.categoria_id')
-        
-        
+
+
         ->where('products.status', 1)
         ->where('categories.visible', 1)
         ->where('tipo_servicio', 'producto');
@@ -834,13 +826,14 @@ class ProductsController extends Controller
     }
   }
 
-  public function AddOrder(Request $request ){
+  public function AddOrder(Request $request)
+  {
     try {
       //code...
       $data = $request->all();
       $productos = Products::with(['images', 'tipos'])->find($data['opcion']);
-      $horario = Horarios::select('id','start_time', 'end_time')->find($data['horario']);
-      $complemento = []; 
+      $horario = Horarios::select('id', 'start_time', 'end_time')->find($data['horario']);
+      $complemento = [];
       $fecha = $data['fecha'];
       foreach ($data['complementos'] as $key => $value) {
         $complemento[] = Products::with(['images', 'tipos'])->find($value)->toArray();
@@ -849,17 +842,17 @@ class ProductsController extends Controller
       if($fecha == 'hoy')
       {
         $fecha = date('Y-m-d');
-      }else if ($fecha == 'manana') {
+      } else if ($fecha == 'manana') {
         $fecha = date('Y-m-d', strtotime('+1 day'));
       }
-      return response()->json(['message' => 'orden actualizado con exito ' , 
-      'producto' => $productos,
-      'horario' => $horario,
-      'complementos' => $complemento,
-      'fecha' => $fecha,
-      'imagen' => $data['imagen']
+      return response()->json([
+        'message' => 'orden actualizado con exito ',
+        'producto' => $productos,
+        'horario' => $horario,
+        'complementos' => $complemento,
+        'fecha' => $fecha,
+        'imagen' => $data['imagen']
       ]);
-    
     } catch (\Throwable $th) {
       //throw $th;
       return response()->json(['message' => 'No se ha podido agregar el producto '], 400);
