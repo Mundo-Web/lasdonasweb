@@ -47,7 +47,7 @@
 
   <main class="flex flex-col gap-12">
 
-    <section class="z-5">
+    <section class="z-5" id="portada">
        <div class="swiper slider-portada">
           <div class="swiper-wrapper">
             @foreach ($slider as $slide)
@@ -67,7 +67,7 @@
        </div>
     </section>
 
-    <section id="ref_header_stick" class="z-10">
+    <section class="z-10">
       <div class="px-[5%] lg:px-[8%]  space-y-10">
         <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] gap-3 px-5">
           <h3 class="text-lg font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>

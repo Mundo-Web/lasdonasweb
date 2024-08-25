@@ -426,21 +426,28 @@
 </script>
 <script>
 window.addEventListener('scroll', function() {
-  const refHeaderStick = document.getElementById('ref_header_stick');
   const headerMid = document.getElementById('header-mid');
   const headerBottom = document.querySelector('.header_bottom');
+  const portada = document.getElementById('portada'); // Elemento con id "portada"
   
-  const rect = refHeaderStick.getBoundingClientRect();
-  const isVisible = (rect.top <= 0);
+  const scrollPosition = window.scrollY;
+  const documentHeight = document.documentElement.scrollHeight;
+  const viewportHeight = window.innerHeight;
 
-  if (isVisible) {
+  // Calcula el porcentaje de scroll
+  const scrollPercentage = (scrollPosition / (documentHeight - viewportHeight)) * 100;
+
+  // Verifica si el porcentaje de scroll es mayor o igual al 1%
+  if (scrollPercentage >= 1) {
     headerMid.classList.add('fixed-header', 'h-[80px]', 'animate-fade-up');
     headerMid.classList.remove('h-[100px]');
-    headerBottom.classList.add('fixed-header', 'animate-fade-up');
+    headerBottom.classList.add('fixed-header', 'animate-fade-up', 'shadow-lg', 'shadow-[#313332]');
+    portada.classList.add('mt-[150px]'); // Agrega clase mt-[150px] al div "portada"
   } else {
     headerMid.classList.remove('fixed-header', 'h-[80px]', 'animate-fade-up');
     headerMid.classList.add('h-[100px]');
     headerBottom.classList.remove('fixed-header', 'animate-fade-up');
+    portada.classList.remove('mt-[150px]'); // Remueve clase mt-[150px] cuando el scroll regresa al tope
   }
 });
 </script>
