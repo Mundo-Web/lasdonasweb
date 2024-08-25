@@ -53,7 +53,7 @@
         <h2 class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
           Encuentra el Regalo Perfecto para Cada Ocasión
         </h2>
-        <p class="!text-xl text-[#336234] font-b_classic_regular">Descubre nuestra amplia selección de productos para todas tus necesidades: desde arreglos florales y peluches hasta vinos,
+        <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">Descubre nuestra amplia selección de productos para todas tus necesidades: desde arreglos florales y peluches hasta vinos,
          joyería y mucho más. ¡Aquí hay algo especial para cada celebración!</p>
         <button type="button" class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">Comprar ahora</button>
       </div>
