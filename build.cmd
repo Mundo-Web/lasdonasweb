@@ -1,1 +1,1 @@
-npm run build && git add . && git commit -m %1 && git pull && git push origin main
+npm run build && push %1
