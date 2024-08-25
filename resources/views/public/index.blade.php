@@ -50,10 +50,11 @@
       <div class="bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
          style="background-image: url('{{ asset('img_donas/bannerflores.png') }}');">
         <h4 class="text-xl text-[#336234] tracking-wider">EXITOS FLORALES:</h4>
-        <h2 class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide">
-          LAS CREACIONES QUE CONQUISTAN CORAZONES EN CADA PÉTALO
+        <h2 class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
+          Encuentra el Regalo Perfecto para Cada Ocasión
         </h2>
-        <p class="!text-xl text-[#336234] font-b_classic_regular">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+        <p class="!text-xl text-[#336234] font-b_classic_regular">Descubre nuestra amplia selección de productos para todas tus necesidades: desde arreglos florales y peluches hasta vinos,
+         joyería y mucho más. ¡Aquí hay algo especial para cada celebración!</p>
         <button type="button" class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">Comprar ahora</button>
       </div>
     </section>
