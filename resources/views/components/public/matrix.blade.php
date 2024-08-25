@@ -28,7 +28,9 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Index</title>
+  <title>{{ config('app.name') }}</title>
+  <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=L+D&color=fff&background=ff8555&rounded=true" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
 <body class="body">

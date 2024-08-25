@@ -288,7 +288,7 @@ const Product = ({ complementos, general,
                         {imageSrc !== null ? <img
                           id="Imagen Complementaria"
                           ref={imagePreviewRef}
-                          src={imageSrc ? imageSrc : `${url_env}/images/img/noimagen.jpg`}
+                          src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
                           alt="Image preview"
                           className={`h-full w-full object-cover p-4 rounded-lg cursor-pointer`}
                           onClick={handleImageClick}
@@ -296,15 +296,15 @@ const Product = ({ complementos, general,
                       </div>
 
                       <img
-                        className=" object-cover h-[800px]"
-                        src={image.name_imagen ? url_env + '/' + image.name_imagen : 'images/img/noimagen.jpg'}
+                        className="h-[800px] object-cover"
+                        src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                         alt="Product"
                       />
                     </div>
                   )
                 ))
               ) : (
-                <img className="size-full object-cover" src="images/img/noimagen.jpg" alt="No image available" />
+                <img className="size-full object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
               )}
 
 
@@ -344,7 +344,7 @@ const Product = ({ complementos, general,
 
                               <img
                                 className="size-full object-cover h-full w-full"
-                                src={image.name_imagen ? `${url_env}/${image.name_imagen}` : 'images/img/noimagen.jpg'}
+                                src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                                 alt="Product"
                               />
 
@@ -576,17 +576,17 @@ const Product = ({ complementos, general,
                           <img
                             key={imgIndex}
                             className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out"
-                            src={image.name_imagen ? url_env + '/' + image.name_imagen : 'images/img/noimagen.jpg'}
+                            src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                             alt="Complemento"
                             onError={(e) => {
                               // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
-                              e.target.src = url_env + '/images/img/noimagen.jpg';
+                              e.target.src = '/images/img/noimagen.jpg';
                             }}
                           />
                         )
                       ))
                     ) : (
-                      <img className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out" src={url_env + "/images/img/noimagen.jpg"} alt="No image available" />
+                      <img className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out" src="/images/img/noimagen.jpg" alt="No image available" />
                     )}
                   </div>
                 </label>
@@ -607,7 +607,7 @@ const Product = ({ complementos, general,
 
                 <div className="grid grid-cols-1 gap-3 xl:gap-5">
                   <div className="flex flex-col justify-center items-center">
-                    <img src={url_env + "/img_donas/regalo.svg"} />
+                    <img src="/img_donas/regalo.svg" />
                   </div>
 
                   <button type="button" className="flex flex-col justify-center items-center  text-[#FF8555]"
@@ -655,33 +655,62 @@ const Product = ({ complementos, general,
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
                 {ProdComplementarios.map((item, index) => (
-                  <div key={index} className="space-y-2 max-w-96 m-auto">
-                    {item.images.map((image, imgIndex) => (
-                      image.caratula === 1 && (
-                        <a key={imgIndex} href={`/producto/${item.id}`}><img
-                          key={imgIndex}
-                          className="w-[280px] h-[280px] object-cover"
-                          src={image.name_imagen ? `${url_env}/${image.name_imagen}` : 'images/img/noimagen.jpg'}
-                          alt="Producto"
-                          onError={(e) => {
-                            // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
-                            e.target.src = `${url_env}/images/img/noimagen.jpg`;
-                          }}
-                        /> </a>
-
-                      )
-                    ))}
-
-                    <h2 className="text-xl font-bold text-black pt-6">{item.producto}</h2>
-                    <p className="text-base font-normal text-[#112212]" style={{ height: '48px' }}>
-                      {item.extract?.length > 100 ? `${item.extract.substring(0, 50)}...` : item.extract}
-                    </p>
-                    <div className="flex font-medium">
-                      <p>S/ <span>{item.descuento}</span></p>
-                      <p className="px-2">-</p>
-                      <p>S/ <span>{item.precio}</span></p>
+                  <div className="flex flex-col gap-7 col-span-1">
+                    <a
+                      className="rounded-xl bg-white shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                      href={`/producto/${item.id}`}
+                    >
+                      <div className="bg-[#FFF4ED] rounded-t-xl overflow-hidden">
+                        {item.images.length === 0 ? (
+                          <img
+                            src="/images/img/noimagen.jpg"
+                            alt={item.producto}
+                            className="w-full h-[265px] object-cover hover:scale-110 transition-transform duration-300"
+                          />
+                        ) : (
+                          item.images.map((image, index) => {
+                            return (
+                              image.caratula === 1 && (
+                                <img
+                                  key={index}
+                                  src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
+                                  alt={item.producto}
+                                  className="w-full h-[265px] object-cover hover:scale-110 transition-transform duration-300"
+                                  onError={(e) => {
+                                    e.target.src = '/images/img/noimagen.jpg';
+                                  }}
+                                />
+                              )
+                            );
+                          })
+                        )}
+                      </div>
+                      <div className="p-4">
+                        <h2 className="block text-xl text-[#112212] mb-1 font-bold truncate">{item.producto}</h2>
+                        <p className="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1">
+                          {item.extract?.length > 100 ? `${item.extract.substring(0, 50)}...` : item.extract}
+                        </p>
+                        <div className="flex items-center space-x-2">
+                          {item.descuento > 0 ? (
+                            <>
+                              <p className="text-[#112212] font-bold">S/ <span>{item.descuento}</span></p>
+                              <p className="text-[rgba(17,34,18,0.8)] line-through text-sm">S/ <span>{item.precio}</span></p>
+                            </>
+                          ) : (
+                            <p className="text-[#112212] font-bold">S/ <span>{item.precio}</span></p>
+                          )}
+                        </div>
+                      </div>
+                    </a>
+                    <div className="w-full mt-4">
+                      <button
+                        type="button"
+                        className="w-full py-2 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px] hover:bg-[#2d5228] transition-colors duration-300"
+                      >
+                        <span>Agregar a mi bolsa</span>
+                        <i className="ms-2 fa fa-cart-plus mt-1"></i>
+                      </button>
                     </div>
-
                   </div>
                 ))}
 
@@ -725,7 +754,7 @@ const Product = ({ complementos, general,
 
 
 
-                  <img src={url_env + '/images/img/x-square-contained.png'} alt="" className="h-6 cursor-pointer"
+                  <img src='/images/img/x-square-contained.png' alt="" className="h-6 cursor-pointer"
                   />
                 </div>
 
@@ -769,7 +798,7 @@ const Product = ({ complementos, general,
         url_env={url_env}
         tittle={'Políticas de envío'}
       >
-        <div dangerouslySetInnerHTML={{ __html: politicaEnvio.content ?? '' }} />
+        <div dangerouslySetInnerHTML={{ __html: politicaEnvio?.content ?? '' }} />
 
       </ModalSimple >
 
@@ -778,7 +807,7 @@ const Product = ({ complementos, general,
         url_env={url_env}
         tittle={'Políticas de sustitución'}
       >
-        <div dangerouslySetInnerHTML={{ __html: politicasSustitucion.content ?? '' }} />
+        <div dangerouslySetInnerHTML={{ __html: politicasSustitucion?.content ?? '' }} />
 
       </ModalSimple >
 
@@ -798,7 +827,7 @@ const Product = ({ complementos, general,
                       <h2 className="text-lg font-bold leading-6 text-gray-900 mb-2" id="modal-title">Complementa tu pedido</h2>
 
 
-                      <img src={url_env + '/images/img/xcoral.png'} alt="" className="h-5 cursor-pointer"
+                      <img src='/images/img/xcoral.png' alt="" className="h-5 cursor-pointer"
                         onClick={closeModalComplementos} />
                     </div>
                     <div className="mt-5 gap-4 " id="containerComplementos" data-accordion="collapse">

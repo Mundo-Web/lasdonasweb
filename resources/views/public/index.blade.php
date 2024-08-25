@@ -46,24 +46,32 @@
 @section('content')
 
   <main class="flex flex-col gap-12">
-    <section>
-      <div
-        class="banner_section2 lg:banner_sec h-128 lg:h-[674px] text-white text-center flex flex-col justify-center items-center pt-14 p-2 lg:px-[20%]">
-        <h4 class="text-[18px] font-bold  text-[#336234]">EXITOS FLORALESss:
-        </h4>
-        <h2 class="text-4xl md:text-[50px] font-bold  text-[#112212]">Las Creaciones que Conquistan Corazones en Cada
-          Pétalo
-        </h2>
-        <p class="text-lg font-normal text-[#336234]">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
-        <button type="button" class="bg-[#336234] px-6 py-3 rounded-full  font-bold">Comprar ahora</button>
+    <section class="bg-[#F9F9F9]">
+      <div class="relative overflow-hidden banner_section2">
+        <div class="relative z-10 text-center flex flex-col justify-center items-center py-16 md:py-32 px-4 lg:px-[15%]"
+          style="background: radial-gradient(circle, rgba(255,255,255,.5) 0%, transparent 50%);">
+          <h4 class="text-[18px] font-semibold text-[#336234] uppercase tracking-wider mb-4">Celebraciones Especiales</h4>
+          <h2 class="text-3xl md:text-5xl font-bold text-[#112212] mb-4">Encuentra el Regalo Perfecto para Cada Ocasión
+          </h2>
+          <p class="text-lg font-medium text-[rgba(17,34,18,0.80)] mb-6">
+            Descubre nuestra amplia selección de productos para todas tus necesidades: desde arreglos florales y peluches
+            hasta vinos, joyería y mucho más. ¡Aquí hay algo especial para cada celebración!
+          </p>
+          <button type="button"
+            class="bg-[#336234] hover:bg-[#336234dd] text-white px-6 py-3 rounded-full font-bold transition duration-300">
+            Explora Ahora
+          </button>
+        </div>
       </div>
     </section>
 
+
+
     <section>
-      <div class="px-[8%]  space-y-10  ">
-        <div class="text-center  pt-[3.25rem] space-y-1 mt-[-10rem] bg-[#FFFFFF] z-5">
-          <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
-          <h2 class="text-4xl md:text-4xl font-bold text-black">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
+      <div class="px-[8%]">
+        <div class="relative text-center  bg-[#FFFFFF] z-20 -mt-24 mb-10 py-8 px-8 rounded-2xl">
+          <h3 class="text-md md:text-xl font-bold text-[#FE4A11] mb-2">LO MEJOR DE NOSOTROS</h3>
+          <h2 class="text-2xl md:text-4xl font-bold text-black">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6">
@@ -72,51 +80,7 @@
               <div class="swiper-wrapper h-full relative">
                 @foreach ($productos as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
-                    <div class="flex flex-col gap-7   col-span-1">
-                      <a href="{{ route('Product.jsx', $item->id) }}">
-                        <div class="px-2">
-                          @if ($item->images->count() == 0)
-                            <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                              class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                          @else
-                            @foreach ($item->images as $image)
-                              @if ($image->caratula == 1)
-                                @if ($image->name_imagen)
-                                  <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @else
-                                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @endif
-                              @endif
-                            @endforeach
-                          @endif
-                        </div>
-
-
-                        <div class="px-4 mt-5 ">
-                          <h2 class="text-xl font-bold text-black">{{ $item->producto }}</h2>
-                          <p class="text-base font-normal text-black h-[48px]">{{ Str::substr($item->extract, 0, 59) }}...
-                          </p>
-                          <div class="flex  mt-2 font-bold ">
-                            <p>S/ <span>75.00</span></p>
-                            <p class="px-2">-</p>
-                            <p>S/ <span>120.00</span></p>
-                          </div>
-
-                        </div>
-
-                      </a>
-                      <div class="w-full px-2">
-                        <button type="button"
-                          class="w-full  py-2  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">Agregar
-                          a mi bolsa
-                          <img class="ml-2" src="{{ asset('img_donas/addcart.svg') }}" /></button>
-
-                      </div>
-
-                    </div>
-
+                    <x-product.card :item="$item" />
                   </div>
                 @endforeach
               </div>
@@ -163,21 +127,24 @@
 
           <div class="w-full sm:row-span-2">
             <div class=" h-96  sm:h-full flex flex-col justify-end items-start pb-6 pl-6 "
-              style="background-image: url('{{ $category[0]->url_image . $category[0]->name_image }}'); background-size: cover; background-position: center;">
+              style="background-image: url('{{ $category[0]->url_image . $category[0]->name_image }}'); background-size: cover; background-position: center;"
+              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
               <h3 class="text-base font-medium text-white">Categoría</h3>
               <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
             </div>
           </div>
           <div class="w-full ">
             <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[1]->url_image . $category[1]->name_image }}'); background-size: cover; background-position: center;">
+              style="background-image: url('{{ $category[1]->url_image . $category[1]->name_image }}'); background-size: cover; background-position: center;"
+              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
               <h3 class="text-base font-medium text-white">Categoría</h3>
               <h2 class="text-3xl font-bold text-white">{{ $category[1]->name }}</h2>
             </div>
           </div>
           <div class="w-full ">
             <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[2]->url_image . $category[2]->name_image }}'); background-size: cover; background-position: center;">
+              style="background-image: url('{{ $category[2]->url_image . $category[2]->name_image }}'); background-size: cover; background-position: center;"
+              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
               <h3 class="text-base font-medium text-white">Categoría</h3>
               <h2 class="text-3xl font-bold text-white">{{ $category[2]->name }}</h2>
             </div>
@@ -187,7 +154,8 @@
 
           <div class="w-full ">
             <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[3]->url_image . $category[3]->name_image }}'); background-size: cover; background-position: center;">
+              style="background-image: url('{{ $category[3]->url_image . $category[3]->name_image }}'); background-size: cover; background-position: center;"
+              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
               <h3 class="text-base font-medium text-white">Categoría</h3>
               <h2 class="text-3xl font-bold text-white">{{ $category[3]->name }}</h2>
             </div>
@@ -199,7 +167,8 @@
           <div class="w-full sm:row-span-2">
             <div class="h-full">
               <img src="{{ asset($category[0]->url_image . $category[0]->name_image) }}" alt=""
-                class="h-96 sm:h-[790px] flex flex-col justify-end items-start object-cover">
+                class="h-96 sm:h-[790px] flex flex-col justify-end items-start object-cover"
+                onerror="this.src='/images/img/noimagen.jpg';">
               <h3 class="text-base font-medium text-[#FE4A11]">Categoría</h3>
               <h2 class="text-3xl font-bold ">{{ $category[0]->name }}</h2>
             </div>
@@ -207,7 +176,8 @@
           <div class="w-full">
             <div class="h-full w-full">
               <img src="{{ asset($category[1]->url_image . $category[1]->name_image) }}" alt=""
-                class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full  flex flex-col justify-end items-start object-cover">
+                class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full  flex flex-col justify-end items-start object-cover"
+                onerror="this.src='/images/img/noimagen.jpg';">
               <h3 class="text-base font-medium text-[#FE4A11] pt-2 pl-2">Categoría</h3>
               <h2 class="text-[32px] font-bold ">{{ $category[1]->name }}</h2>
             </div>
@@ -215,7 +185,8 @@
           <div class="w-full">
             <div class="h-full">
               <img src="{{ asset($category[2]->url_image . $category[2]->name_image) }}" alt=""
-                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover">
+                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                onerror="this.src='/images/img/noimagen.jpg';">
               <h3 class="text-base font-medium text-[#FE4A11]">Categoría</h3>
               <h2 class="text-3xl font-bold ">{{ $category[2]->name }}</h2>
             </div>
@@ -227,14 +198,16 @@
 
           <div class="w-full sm:row-span-2">
             <div class=" md:h-96   flex flex-col justify-end items-start pb-6 pl-6 "
-              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;">
+              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;"
+              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
               <h3 class="text-base font-medium text-white">Categoría</h3>
               <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
             </div>
           </div>
           <div class="w-full ">
             <div class=" h-96  md:h-96   flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;">
+              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;"
+              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
               <h3 class="text-base font-medium text-white">Categoría</h3>
               <h2 class="text-3xl font-bold text-white">{{ $category[1]->name }}</h2>
             </div>
@@ -247,7 +220,8 @@
 
           <div class="w-full ">
             <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;">
+              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;"
+              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
               <h3 class="text-base font-medium text-white">Categoría</h3>
               <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
             </div>
@@ -270,54 +244,9 @@
           <div class="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-4 relative">
             <div class="swiper productos-relacionados  ">
               <div class="swiper-wrapper h-full relative">
-                @foreach ($destacados as $item)
+                @foreach ($recomendados as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
-                    <div class="flex flex-col gap-7   col-span-1">
-                      <a href="{{ route('Product.jsx', $item->id) }}">
-                        <div class="px-2">
-                          @if ($item->images->count() == 0)
-                            <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                              class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                          @else
-                            @foreach ($item->images as $image)
-                              @if ($image->caratula == 1)
-                                @if ($image->name_imagen)
-                                  <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @else
-                                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @endif
-                              @endif
-                            @endforeach
-                          @endif
-                        </div>
-
-
-                        <div class="px-4 mt-[14px] bg-white ">
-                          <h2 class="text-xl font-bold text-black">{{ $item->producto }}</h2>
-                          <p class="text-base font-normal text-black h-[48px]">
-                            {{ Str::substr($item->extract, 0, 59) }}...
-                          </p>
-                          <div class="flex  mt-2 font-bold ">
-                            <p>S/ <span>75.00</span></p>
-                            <p class="px-2">-</p>
-                            <p>S/ <span>120.00</span></p>
-                          </div>
-
-                        </div>
-
-                      </a>
-                      <div class="w-full px-2">
-                        <button type="button"
-                          class="w-full  py-2  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">Agregar
-                          a mi bolsa
-                          <img class="ml-2" src="{{ asset('img_donas/addcart.svg') }}" /></button>
-
-                      </div>
-
-                    </div>
-
+                    <x-product.card :item="$item" />
                   </div>
                 @endforeach
               </div>
@@ -538,7 +467,7 @@
       }
     });
   </script>
-  
+
   <script>
     var appUrl = '{{ env('APP_URL') }}';
   </script>
