@@ -151,7 +151,7 @@
                 <th>Stock</th>
                 {{-- <th>Peso</th> --}}
                 <th>Imagen</th>
-                <th>Lo más pedido</th>
+                <th>Lo más Vendidos</th>
                 <th>Novedad</th>
 
                 <th>Visible</th>
