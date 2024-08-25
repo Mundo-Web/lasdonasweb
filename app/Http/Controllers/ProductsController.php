@@ -244,10 +244,11 @@ class ProductsController extends Controller
           'tipo_servicio' => 'complemento'
         ];
 
-        if ($actualizacion) {
+        if ($actualizacion && isset($value['id'])) {
           $producto = Products::find($value['id']);
           $producto->update($data);
         } else {
+          $actualizacion = false ; 
           $producto = Products::create($data);
         }
 
@@ -566,6 +567,7 @@ class ProductsController extends Controller
       $valoresFormulario = json_decode($valoresFormulario, true);
     }
 
+    dump($valoresFormulario);
     $especificaciones = [];
     $precioFiltro = 0;
     $data = $request->except('valoresFormulario');
@@ -620,6 +622,7 @@ class ProductsController extends Controller
       $this->procesarOpciones($product, $valoresFormulario, $tagsSeleccionados, $request, $actualizacion);
     } catch (\Throwable $th) {
       //throw $th;
+      dump($th);
     }
 
 

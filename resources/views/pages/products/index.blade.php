@@ -35,7 +35,7 @@
                 <th>Imagen</th>
                 <th>Lo más pedido</th>
                 <th>Novedad</th>
-                <th>Liquidacion</th>
+                {{--  <th>Liquidacion</th> --}}
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>
@@ -91,7 +91,7 @@
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
                   </td>
-                  <td>
+                  {{-- <td>
                     <form method="POST" action="">
                       @csrf
                       <input type="checkbox" id="hs-basic-usage"
@@ -105,7 +105,7 @@
                         data-titleService='{{ $item->producto }}' {{ $item->liquidacion == 1 ? 'checked' : '' }}>
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
-                  </td>
+                  </td> --}}
                   <td>
                     <form method="POST" action="">
                       @csrf
