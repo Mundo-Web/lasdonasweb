@@ -298,7 +298,7 @@ const Product = ({ complementos, general,
 
   return (
     <>
-      <main className="flex flex-col gap-12 mt-12">
+      <main className="flex flex-col gap-12 mt-12 font-b_slick_bold">
         <section>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 px-[5%] lg:px-[7%] gap-5 lg:gap-10 pt-10">
@@ -394,7 +394,7 @@ const Product = ({ complementos, general,
 
             <div>
 
-              <h2 className="text-4xl md:text-5xl font-bold text-black pb-8">{currentProduct.producto}</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase">{currentProduct.producto}</h2>
               <p className="text-2xl  font-bold text-black pb-6">Paso 1: Selecciona un horario</p>
               <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
 
@@ -549,10 +549,11 @@ const Product = ({ complementos, general,
                 </ul>
               </div>
 
-              {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
+              {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                 onClick={agregarPedido}
               >
                 Agregar al carrito
+                <i className='fa fa-cart-plus ms-1'></i>
               </div>)}
               <p className="text-2xl  font-bold text-black pb-2">Paso 3: Personalizar</p>
               <p className="text-lg  font-normal text-black pb-4 ">Personaliza con una foto:</p>
@@ -765,6 +766,7 @@ const Product = ({ complementos, general,
                     onClick={agregarPedido}
                   >
                     Agregar al carrito
+                    <i className='fa fa-cart-plus ms-1'></i>
                   </div>)}
 
 
