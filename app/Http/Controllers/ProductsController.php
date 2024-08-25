@@ -81,6 +81,7 @@ class ProductsController extends Controller
 
 
 
+
     $valoresFormulario = $request->input('valoresFormulario');
 
     // Si 'valoresFormulario' es una cadena JSON, decodificarla a un array PHP
@@ -96,6 +97,8 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $onlyOneCaratula = false;
 
+    dump($data); 
+    // return ;
 
     //imprimir valores request 
     if (isset($data['uppsell'])) {
@@ -626,9 +629,9 @@ class ProductsController extends Controller
     }
 
 
-    return;
+    // return;
 
-    // return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
+    return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
   }
 
   private function actImg($file, $id)

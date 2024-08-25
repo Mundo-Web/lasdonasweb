@@ -644,10 +644,11 @@ class IndexController extends Controller
 
     $tipoDefault = Tipo::where('is_default', '=', 1)->first();
 
-    $complementos = Complemento::select('complementos.*')
-      ->join('products', 'products.complemento_id', '=', 'complementos.id')
-      ->where('complementos.status', 1)
-      ->groupBy('complementos.id')
+    $complementos = Products::select('products.*')
+      ->join('categories', 'categories.id', 'products.categoria_id')
+      ->where('products.status', 1)->where('products.tipo_servicio', 'complemento')->where('products.parent_id', 1)
+      
+      ->groupBy('products.id')
       ->get();
     foreach ($complementos as $key => $complemento) {
 
