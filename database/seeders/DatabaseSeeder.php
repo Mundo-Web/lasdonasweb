@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
             AtributosSeeder::class,
             TiposSeeder::class,
             ComplementosSeeder::class,
+            HorariosTableSeeder::class
             //ServiceSeeder::class,
         ]);
     }
