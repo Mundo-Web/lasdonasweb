@@ -442,12 +442,12 @@ window.addEventListener('scroll', function() {
     headerMid.classList.add('fixed-header', 'h-[80px]', 'animate-fade-up');
     headerMid.classList.remove('h-[100px]');
     headerBottom.classList.add('fixed-header', 'animate-fade-up', 'shadow-lg', 'shadow-[#313332]');
-    portada.classList.add('mt-[150px]'); // Agrega clase mt-[150px] al div "portada"
+    //portada.classList.add('mt-[150px]'); 
   } else {
     headerMid.classList.remove('fixed-header', 'h-[80px]', 'animate-fade-up');
     headerMid.classList.add('h-[100px]');
     headerBottom.classList.remove('fixed-header', 'animate-fade-up');
-    portada.classList.remove('mt-[150px]'); // Remueve clase mt-[150px] cuando el scroll regresa al tope
+    //portada.classList.remove('mt-[150px]'); 
   }
 });
 </script>
