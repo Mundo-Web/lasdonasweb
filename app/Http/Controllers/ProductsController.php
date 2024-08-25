@@ -180,7 +180,7 @@ class ProductsController extends Controller
         ->withInput(); */
     } catch (\Throwable $th) {
       //throw $th;
-      dump($th);
+      // dump($th);
 
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
     }
