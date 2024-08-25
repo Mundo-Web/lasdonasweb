@@ -37,7 +37,7 @@
     <button type="button"
       class="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px] hover:bg-[#2d5228] transition-colors duration-300">
       <span>Agregar a mi bolsa</span>
-      <i class="ms-2 fa fa-cart-plus mt-1"></i>
+      <i class="ms-2 fa fa-cart-plus"></i>
     </button>
   </div>
 </div>
