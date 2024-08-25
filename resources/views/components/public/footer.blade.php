@@ -1,4 +1,4 @@
-<footer class="bg-[ff8555] p-[10%] sm:p-[7%] md:p-[5%] lg:p-[5%] font-b_slick_regular !tracking-wider">
+<footer class="bg-[#ff8555] p-[10%] sm:p-[7%] md:p-[5%] lg:p-[5%] font-b_slick_regular !tracking-wider">
   <div class="footer_main pb-10 border-b">
     <div class="grid grid-cols-1 sm:grid-cols-12 md:grid-cols-12 gap-7">
       <div
