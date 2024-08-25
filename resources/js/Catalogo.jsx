@@ -314,22 +314,21 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
   return (
     <>
       <section className='mb-24'>
-        <div className='mt-14 px-[8%]'>
+        <div className='mt-14 px-[5%] lg:px-[8%] font-b_slick_bold'>
+          <div className='flex flex-col gap-3'>
+            <div className='text-[#FE4A11] text-base tracking-normal uppercase'> {`Inicio / ${categoria.name} `}</div>
+            <div className='text-3xl lg:text-5xl font-bold text-[#112212] uppercase tracking-wider'>{categoria.name}</div>
+            <div className='text-[#112212] opacity-80 font-b_slick_regular text-lg'>{categoria.description}</div>
+          </div>
+          <div className='grid grid-cols-1 md:grid-cols-4 mt-4 lg:mt-12 gap-4 lg:gap-10'>
 
-          <div className='text-[#FE4A11]'> {`Inicio / ${categoria.name} `}</div>
-          <div className='text-[44px] font-bold text-[#112212] -mt-3'>{categoria.name}</div>
-          <div className='text-[#112212] opacity-80'>{categoria.description} </div>
-
-          <div className='grid grid-cols-1 md:grid-cols-4 mt-12 gap-10'>
-
-
-            <select className='rounded-md p-2 px-4 font-bold flex items-baseline text-[18px]' name="" id="">
+            {/* <select className='rounded-md p-2 px-4 font-bold flex items-baseline text-[18px]' name="" id="">
               <option value="">Tipo Flor</option>
+            </select> */}
 
-            </select>
-            <div className="dropdown w-full order-2 md:order-4">
+            <div className="dropdown w-full">
               <div
-                className="input-box focus:outline-none font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-2 bg-[#F5F5F5]"
+                className="input-box focus:outline-none font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-6 bg-[#F5F5F5]"
                 onClick={toggleCattVisibility}
               >
                 {CatSelected ? CatSelected : 'Categoria'}
@@ -359,9 +358,9 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
               )}
             </div>
 
-            <div className="dropdown w-full order-2 md:order-4">
+            <div className="dropdown w-full">
               <div
-                className="input-box focus:outline-none  font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-2 bg-[#F5F5F5]"
+                className="input-box focus:outline-none  font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-6 bg-[#F5F5F5]"
                 onClick={toggleListVisibility}
               >
                 {selectedOption ? selectedOption : 'Ordenar por'}
@@ -399,19 +398,19 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
             </div>
 
           </div>
-          <div className='flex flex-row gap-4 mt-7'>
+          <div className='flex flex-wrap gap-4 mt-7'>
 
             {badges.categories.map((badge, index) => (
-              <div className='cursor-pointer text-[#112212] border-2 font-bold text-[12px] rounded-xl shadow-lg flex flex-row items-center justify-center px-2' onClick={() => removeCategory(`${badge.id}`)}>
+              <div className='cursor-pointer text-[#112212] text-sm rounded-xl shadow-lg flex flex-row items-center justify-center px-4 py-2' onClick={() => removeCategory(`${badge.id}`)}>
                 Categoria - {badge.name}
                 <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
               </div>))}
 
             {badges.priceOrder && (
-              badges.priceOrder === 'price_high' ? (<div className=' cursor-pointer text-[#112212] border-2 font-bold text-[12px] rounded-xl shadow-lg flex flex-row items-center justify-center px-2' onClick={clearPriceOrder}>
+              badges.priceOrder === 'price_high' ? (<div className='cursor-pointer text-[#112212] text-sm rounded-xl shadow-lg flex flex-row items-center justify-center px-4 py-2' onClick={clearPriceOrder}>
                 Orden - Ascendente
                 <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
-              </div>) : (<div className='cursor-pointer text-[#112212] border-2 font-bold text-[12px] rounded-xl shadow-lg flex flex-row items-center justify-center px-2' onClick={clearPriceOrder}>
+              </div>) : (<div className='cursor-pointer text-[#112212] text-sm rounded-xl shadow-lg flex flex-row items-center justify-center px-4 py-2' onClick={clearPriceOrder}>
                 Orden - Descendente
                 <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
               </div>)
@@ -443,13 +442,41 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
               return (<Card item={beneficio} url={url_env}></Card>)
             })}
 
-
-
-
           </div>
-
         </div>
 
+        <div className='mt-14 px-[5%] lg:px-[8%] font-b_slick_bold'>
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 justify-between">
+              <article class="flex flex-col p-4 rounded-3xl bg-[#E8EDDE] min-w-[240px]">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6f3029906cb8e86d0120daed67bb94b8b03a322ad888069eda0bc9d87d909982?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da" alt="Delivery truck icon" class="object-contain w-12 aspect-square" />
+                <div class="flex flex-col mt-4 w-full">
+                  <h2 class="text-2xl tracking-wide text-zinc-800 ">Envíos a todo Lima y Callao</h2>
+                  <p class="mt-2 text-base tracking-wide leading-5 text-neutral-600 font-b_slick_regular">Llegamos a todo Lima y Callao con los más bajos costos por delivery.</p>
+                </div>
+              </article>
+              <article class="flex flex-col p-4 rounded-3xl bg-[#E8EDDE] min-w-[240px]">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8615517348df310c50aa6a66b821a89abe56250cb57b206f550a7cba34afd6b4?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da" alt="Clock icon" class="object-contain w-12 aspect-square" />
+                <div class="flex flex-col mt-4 w-full">
+                  <h2 class="text-2xl tracking-wide text-zinc-800 ">Envía hoy mismo</h2>
+                  <p class="mt-2 text-base tracking-wide leading-5 text-neutral-600 font-b_slick_regular">Realiza la compra hasta las 3:30pm y entregaremos tu detalle el mismo día.</p>
+                </div>
+              </article>
+              <article class="flex flex-col p-4 rounded-3xl bg-[#E8EDDE] min-w-[240px]">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7186ebff759020c6e8059a79debf7dd8a20d47c80e51df4713cd3821db89e36?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da" alt="Lock icon" class="object-contain w-12 aspect-square" />
+                <div class="flex flex-col mt-4 w-full">
+                  <h2 class="text-2xl tracking-wide text-zinc-800 ">Compra segura</h2>
+                  <p class="mt-2 text-base tracking-wide leading-5 text-neutral-600 font-b_slick_regular">Compra rápido, fácil y seguro con tarjeta o transferencias bancarias.</p>
+                </div>
+              </article>
+              <article class="flex flex-col p-4 rounded-3xl bg-[#E8EDDE] min-w-[240px]">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fd6fa80c5f43aa2d391e6c63473d72b1875567c77ab470f8b6b4f1033fdbc9bb?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da" alt="Camera icon" class="object-contain w-12 aspect-square" />
+                <div class="flex flex-col mt-4 w-full">
+                  <h2 class="text-2xl font-medium tracking-wider leading-none text-zinc-800">Incluye una foto</h2>
+                  <p class="mt-2 text-base tracking-wide leading-5 text-neutral-600 font-b_slick_regular">Agregamos una foto en tu mensaje para que tu detalle sea único y especial.</p>
+                </div>
+              </article>
+            </section>
+        </div>    
       </section>
 
     </>
