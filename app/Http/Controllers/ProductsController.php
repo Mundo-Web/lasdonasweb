@@ -184,7 +184,7 @@ class ProductsController extends Controller
         ->withInput(); */
     } catch (\Throwable $th) {
       //throw $th;
-      // dump($th);
+      dump($th);
 
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
     }
@@ -841,10 +841,9 @@ class ProductsController extends Controller
       $fecha = $data['fecha'];
       foreach ($data['complementos'] as $key => $value) {
         $complemento[] = Products::with(['images', 'tipos'])->find($value)->toArray();
-      } 
-      
-      if($fecha == 'hoy')
-      {
+      }
+
+      if ($fecha == 'hoy') {
         $fecha = date('Y-m-d');
       } else if ($fecha == 'manana') {
         $fecha = date('Y-m-d', strtotime('+1 day'));
