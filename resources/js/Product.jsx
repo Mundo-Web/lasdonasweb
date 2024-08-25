@@ -251,7 +251,9 @@ const Product = ({ complementos, general,
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
-      setImageSrc(e.target.result);
+      const base64String = e.target.result;
+      setImageSrc(base64String);
+      localStorage.setItem('imageDedicatoria', base64String);
       imagePreviewRef.current.style.display = 'block';
     };
     reader.readAsDataURL(file);
