@@ -425,7 +425,7 @@
                       </div>
                       <label for="complemento">Es un complemento?</label>
                     </div>
-                    <div id="complementoContainer" hidden class="w-full md:w-auto">
+                    {{--  <div id="complementoContainer" hidden class="w-full md:w-auto">
                       <select name="complemento_id" id="complemento_id"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 w-full md:w-auto">
                         <option value="">Seleccionar Complemento</option>
@@ -433,7 +433,7 @@
                           <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                       </select>
-                    </div>
+                    </div> --}}
                     <div id="puntos_container" hidden class="w-full md:w-auto">
                       <input id="puntos_complemento" name="puntos_complemento" placeholder="Puntos Complemento"
                         class="mt-1 w-full md:w-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">

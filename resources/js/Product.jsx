@@ -24,6 +24,7 @@ import Swal from 'sweetalert2';
 import './fade.css';
 import CalendarComponent from './components/CalendarComponent';
 import ProductCard from './components/ProductCard'
+import { prepareToSend } from './Utils/SendToCart'
 
 const Product = ({ complementos, general,
   tipoDefault,
@@ -45,6 +46,8 @@ const Product = ({ complementos, general,
     complementos: [],
     imagen: '',
   });
+
+  console.log(subproductos)
 
   useEffect(() => {
     console.log(detallePedido)
@@ -80,7 +83,13 @@ const Product = ({ complementos, general,
     return (horaActual >= horaInicio && horaActual <= horaFin) || (horaActual < horaInicio);
   });
 
-  const agregarPedido = async () => {
+  const agregarPedido = async (e) => {
+
+    const button = e.target
+    const cartButton = document.getElementById('open-cart')
+
+    prepareToSend(button, cartButton);
+
     const opciones = {
       fecha: 'Fecha de entrega',
       horario: 'Horario de entrega',
@@ -164,13 +173,28 @@ const Product = ({ complementos, general,
         // Guardar el carrito actualizado en el almacenamiento local
         Local.set('carrito', carrito);
 
-        limpiarHTML();
-        PintarCarrito()
-        Swal.fire({
-          icon: 'success',
-          title: 'Exito',
-          text: `Producto agregado correctamente al CArro de compras`,
-        });
+
+
+        const item = $('#gift-icon')
+        item.addClass('send-to-cart')
+        setTimeout(() => {
+          item.removeClass('send-to-cart')
+          item.removeAttr('style')
+
+          limpiarHTML();
+          PintarCarrito()
+
+          $(cartButton).addClass('shake');
+          setTimeout(function () {
+            $(cartButton).removeClass('shake');
+          }, 1000)
+        }, 1000);
+
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Exito',
+        //   text: `Producto agregado correctamente al CArro de compras`,
+        // });
       }
 
     } catch (error) {
@@ -274,7 +298,7 @@ const Product = ({ complementos, general,
 
   return (
     <>
-      <main className="flex flex-col gap-12 mt-12">
+      <main className="flex flex-col gap-12 mt-12 font-b_slick_bold">
         <section>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 px-[5%] lg:px-[7%] gap-5 lg:gap-10 pt-10">
@@ -370,7 +394,7 @@ const Product = ({ complementos, general,
 
             <div>
 
-              <h2 className="text-4xl md:text-5xl font-bold text-black pb-8">{currentProduct.producto}</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase">{currentProduct.producto}</h2>
               <p className="text-2xl  font-bold text-black pb-6">Paso 1: Selecciona un horario</p>
               <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
 
@@ -525,10 +549,11 @@ const Product = ({ complementos, general,
                 </ul>
               </div>
 
-              {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
+              {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                 onClick={agregarPedido}
               >
-                Confirmar dia y hora
+                Agregar al carrito
+                <i className='fa fa-cart-plus ms-1'></i>
               </div>)}
               <p className="text-2xl  font-bold text-black pb-2">Paso 3: Personalizar</p>
               <p className="text-lg  font-normal text-black pb-4 ">Personaliza con una foto:</p>
@@ -642,6 +667,19 @@ const Product = ({ complementos, general,
 
 
               </div>
+
+              {console.log(currentProduct)}
+              <div className='flex flex-col'>
+                {especificaciones.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`w-[488px] h-12 flex flex-row content-between items-center ${index % 2 === 0 ? 'bg-[#DBDED6]' : 'bg-[#e8eddee5]'}`}
+                  >
+                    <span className='flex flex-row content-between justify-between px-4'><div className='font-bold'>{item.tittle} </div> </span> <div>{item.specifications}</div>
+                  </div>
+                ))}
+              </div>
+
             </div>
           </div>
 
@@ -727,7 +765,8 @@ const Product = ({ complementos, general,
                   {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                     onClick={agregarPedido}
                   >
-                    Confirmar dia y hora
+                    Agregar al carrito
+                    <i className='fa fa-cart-plus ms-1'></i>
                   </div>)}
 
 

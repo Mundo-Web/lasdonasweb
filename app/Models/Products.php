@@ -167,6 +167,11 @@ class Products extends Model
         return $return;
     }
 
+    public function especificaciones ()
+    {
+        return $this->hasMany(Specifications::class, 'product_id');
+    }
+
 
     // public function attributeValues()
     // {

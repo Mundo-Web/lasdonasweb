@@ -630,16 +630,16 @@ class IndexController extends Controller
 
   public function producto(string $id)
   {
-    // $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
-    $product = Products::findOrFail($id);
+    $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
+    // $product = Products::findOrFail($id);
     // $colors = Products::findOrFail($id)
     //           ->with('images')
     //           ->get();
 
     $colors = DB::table('imagen_productos')->where('product_id', $id)->groupBy('color_id')->join('attributes_values', 'color_id', 'attributes_values.id')->get();
 
-    $productos = Products::where('id', '=', $id)->with(['attributes', 'images'])->with('tags')->first();
-    $subproductos = Products::where('parent_id', '=', $id)->with(['images', 'tipos'])->get();
+    $productos = Products::where('id', '=', $id)->with(['attributes', 'images', 'especificaciones'])->with('tags')->first();
+    $subproductos = Products::where('parent_id', '=', $id)->with(['images', 'tipos', 'especificaciones'])->get();
 
     $tipoDefault = Tipo::where('is_default', '=', 1)->first();
 
