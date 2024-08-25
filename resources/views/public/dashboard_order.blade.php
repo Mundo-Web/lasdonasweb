@@ -27,7 +27,7 @@
             <div class="basis-5/12 flex flex-col gap-5">
               <div class="flex flex-col gap-5">
                 <div class="rounded-full w-24 h-24 bg-[#E9EDEF] flex justify-center items-center relative">
-                  <img class="w-full h-full rounded-full" src="{{ Auth::user()->profile_photo_url }}" width="32"
+                  <img class="w-full h-full rounded-full" src="/storage/{{ Auth::user()->profile_photo_path }}" width="32"
                     height="32" alt="{{ Auth::user()->name }}" />
                   <label for="upload_image"
                     class="bg-bgBlack rounded-full w-7 h-7 flex justify-center items-center absolute bottom-0 right-0 cursor-pointer">
