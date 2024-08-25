@@ -50,8 +50,8 @@
 
       <div class="w-auto min-w-[110px] flex items-center justify-center">
         <a href="{{route('index')}}">
-          <img id="logo-lasdonas" class="w-[250px]  "
-            src="{{ asset($isIndex ? 'img_donas/Logo.png' : 'img_donas/Logo.png') }}" alt="lasdonas" />
+          {{-- <img id="logo-lasdonas" class="w-[250px]  " src="{{ asset($isIndex ? 'img_donas/Logo.png' : 'img_donas/Logo.png') }}" alt="lasdonas" /> --}}
+          <img id="logo-lasdonas" class="w-[250px]  " src="/img_donas/Logo_donas.svg" alt="lasdonas" />
         </a>
       </div>
 
