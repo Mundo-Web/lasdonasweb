@@ -20,7 +20,7 @@
     </div>
     <div class="p-4">
       <h2 class="block text-xl text-[#112212] mb-1 font-bold truncate">{{ $item->producto }}</h2>
-      <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1 font-b_classic_regular tracking-wide">
+      <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[48px] mb-1 font-b_classic_regular tracking-wide">
         {{ $item->extract }}
       </p>
       <div class="flex items-center  space-x-2">

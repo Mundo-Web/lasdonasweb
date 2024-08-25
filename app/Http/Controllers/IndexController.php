@@ -155,6 +155,7 @@ class IndexController extends Controller
         $productos = Products::obtenerProductos();
 
         $categoria = Category::all();
+        $filtro = null;
       } else {
         //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
         $productos = Products::obtenerProductos($filtro);
