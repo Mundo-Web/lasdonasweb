@@ -1,7 +1,7 @@
 import React from "react"
 
 const ProductCard = (item) => {
-  return <div className="flex flex-col gap-7 col-span-1">
+  return <div className="flex flex-col gap-7 col-span-1 font-b_slick_bold">
     <a
       className="rounded-xl bg-white shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
       href={`/producto/${item.id}`}
@@ -33,8 +33,8 @@ const ProductCard = (item) => {
       </div>
       <div className="p-4">
         <h2 className="block text-xl text-[#112212] mb-1 font-bold truncate">{item.producto}</h2>
-        <p className="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1">
-          {item.extract?.length > 100 ? `${item.extract.substring(0, 50)}...` : item.extract}
+        <p className="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[48px] mb-1 font-b_classic_regular tracking-wide">
+          {item.extract}
         </p>
         <div className="flex items-center space-x-2">
           {item.descuento > 0 ? (
@@ -49,13 +49,13 @@ const ProductCard = (item) => {
       </div>
     </a>
     <div className="w-full mt-4">
-      <button
+      <a href={`/producto/${item.id}`}
         type="button"
-        className="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px] hover:bg-[#2d5228] transition-colors duration-300"
+        className="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-base hover:bg-[#2d5228] transition-colors duration-300"
       >
-        <span>Agregar a mi bolsa</span>
-        <i className="ms-2 fa fa-cart-plus"></i>
-      </button>
+        <span>Ver producto</span>
+        <i className="ml-2 fa-solid fa-arrow-right"></i>
+      </a>
     </div>
   </div>
 }

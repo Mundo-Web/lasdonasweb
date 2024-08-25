@@ -20,7 +20,7 @@
     </div>
     <div class="p-4">
       <h2 class="block text-xl text-[#112212] mb-1 font-bold truncate">{{ $item->producto }}</h2>
-      <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1 font-b_classic_regular tracking-wider">
+      <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[48px] mb-1 font-b_classic_regular tracking-wide">
         {{ $item->extract }}
       </p>
       <div class="flex items-center  space-x-2">
@@ -34,10 +34,10 @@
     </div>
   </a>
   <div class="w-full mt-4">
-    <button type="button"
-      class="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px] hover:bg-[#2d5228] transition-colors duration-300">
-      <span>Agregar a mi bolsa</span>
-      <i class="ms-2 fa fa-cart-plus"></i>
-    </button>
+    <a href="{{ route('Product.jsx', $item->id) }}" type="button"
+      class="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-base hover:bg-[#2d5228] transition-colors duration-300">
+      <span>Ver producto</span>
+      <i class="ml-2 fa-solid fa-arrow-right"></i>
+    </a>
   </div>
 </div>

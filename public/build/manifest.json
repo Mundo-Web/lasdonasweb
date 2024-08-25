@@ -13,8 +13,8 @@
       "resources/js/Utils/CreateReactScript.jsx"
     ]
   },
-  "_ProductCard-ZfGNKPZ1.js": {
-    "file": "assets/ProductCard-ZfGNKPZ1.js",
+  "_ProductCard-JJYOvpJl.js": {
+    "file": "assets/ProductCard-JJYOvpJl.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx"
@@ -107,7 +107,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Xc-WoHMa.css",
+    "file": "assets/app-eotzvzaS.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -187,7 +187,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Catalogo-q-eAS2CR.js",
+    "file": "assets/Catalogo-DqiWFV_3.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -196,7 +196,7 @@
       "_truncateText-C3yxPslF.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-ZfGNKPZ1.js",
+      "_ProductCard-JJYOvpJl.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx"
@@ -258,7 +258,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Product-LaiPv7TC.js",
+    "file": "assets/Product-VyS-FoU7.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -271,7 +271,7 @@
       "_Accordion2-crfYQLPj.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_es-Hz-LnzMB.js",
-      "_ProductCard-ZfGNKPZ1.js",
+      "_ProductCard-JJYOvpJl.js",
       "_index-XJuWVQ-l.js",
       "_floating-ui.dom-KYqStz1f.js"
     ],
