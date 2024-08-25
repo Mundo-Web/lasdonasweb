@@ -1,14 +1,14 @@
 {
-  "_Accordion2-r-Y60uFW.js": {
-    "file": "assets/Accordion2-r-Y60uFW.js",
+  "_Accordion2-crfYQLPj.js": {
+    "file": "assets/Accordion2-crfYQLPj.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "_axios-_sX4vCAy.js"
     ]
   },
-  "_CreateReactScript-KXQ71xJI.js": {
-    "file": "assets/CreateReactScript-KXQ71xJI.js",
+  "_CreateReactScript-gWdz5wop.js": {
+    "file": "assets/CreateReactScript-gWdz5wop.js",
     "imports": [
       "resources/js/Utils/CreateReactScript.jsx"
     ]
@@ -26,14 +26,14 @@
     "file": "assets/es-D87rtk4j.css",
     "src": "_es-!~{00X}~.js"
   },
-  "_es-YXMcUW5t.js": {
+  "_es-Hz-LnzMB.js": {
     "css": [
       "assets/es-D87rtk4j.css"
     ],
-    "file": "assets/es-YXMcUW5t.js",
+    "file": "assets/es-Hz-LnzMB.js",
     "imports": [
-      "_index-TT1qJ6UJ.js",
-      "_index-7vsPyIck.js",
+      "resources/js/components/useOutsideClick.jsx",
+      "_index-38suPYpT.js",
       "_floating-ui.dom-KYqStz1f.js"
     ]
   },
@@ -44,17 +44,11 @@
   "_floating-ui.dom-KYqStz1f.js": {
     "file": "assets/floating-ui.dom-KYqStz1f.js"
   },
-  "_index-7vsPyIck.js": {
-    "file": "assets/index-7vsPyIck.js",
+  "_index-38suPYpT.js": {
+    "file": "assets/index-38suPYpT.js",
     "imports": [
       "__commonjsHelpers-4gQjN7DL.js",
-      "_index-TT1qJ6UJ.js"
-    ]
-  },
-  "_index-TT1qJ6UJ.js": {
-    "file": "assets/index-TT1qJ6UJ.js",
-    "imports": [
-      "__commonjsHelpers-4gQjN7DL.js"
+      "resources/js/components/useOutsideClick.jsx"
     ]
   },
   "_index-XJuWVQ-l.js": {
@@ -106,55 +100,55 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-s-NbPA_3.css",
+    "file": "assets/app-oLuhJRwv.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/Accordion.jsx": {
-    "file": "assets/Accordion-PpbFvjWS.js",
+    "file": "assets/Accordion-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/Accordion.jsx"
   },
   "resources/js/Accordion2.jsx": {
-    "file": "assets/Accordion2-PpbFvjWS.js",
+    "file": "assets/Accordion2-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/Accordion2.jsx"
   },
   "resources/js/AccordionContent.jsx": {
-    "file": "assets/AccordionContent-PpbFvjWS.js",
+    "file": "assets/AccordionContent-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/AccordionContent.jsx"
   },
   "resources/js/AccordionContentSimple.jsx": {
-    "file": "assets/AccordionContentSimple-PpbFvjWS.js",
+    "file": "assets/AccordionContentSimple-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/AccordionContentSimple.jsx"
   },
   "resources/js/AccordionSimple.jsx": {
-    "file": "assets/AccordionSimple-PpbFvjWS.js",
+    "file": "assets/AccordionSimple-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
@@ -164,18 +158,18 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Carrito-kdBZSz62.js",
+    "file": "assets/Carrito-3UOwv3Qr.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_index-TT1qJ6UJ.js",
-      "_CreateReactScript-KXQ71xJI.js",
+      "resources/js/components/useOutsideClick.jsx",
+      "_CreateReactScript-gWdz5wop.js",
       "_truncateText-C3yxPslF.js",
       "_index-XJuWVQ-l.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_Accordion2-r-Y60uFW.js",
+      "_Accordion2-crfYQLPj.js",
       "_calcularTotal-dhViwiOk.js",
-      "_index-7vsPyIck.js",
+      "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_axios-_sX4vCAy.js"
     ],
@@ -186,16 +180,16 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Catalogo-ECUm9TEI.js",
+    "file": "assets/Catalogo-nNvl6wqZ.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_index-TT1qJ6UJ.js",
-      "_CreateReactScript-KXQ71xJI.js",
+      "resources/js/components/useOutsideClick.jsx",
+      "_CreateReactScript-gWdz5wop.js",
       "_truncateText-C3yxPslF.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_index-7vsPyIck.js",
+      "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx"
     ],
@@ -203,9 +197,9 @@
     "src": "resources/js/Catalogo.jsx"
   },
   "resources/js/Example.jsx": {
-    "file": "assets/Example-MplZTE2r.js",
+    "file": "assets/Example-zgwdEd5i.js",
     "imports": [
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
@@ -215,14 +209,14 @@
     "css": [
       "assets/Horarios-i7P6CmCQ.css"
     ],
-    "file": "assets/Horarios-qF78jghM.js",
+    "file": "assets/Horarios-JOpP3W8j.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_index-TT1qJ6UJ.js",
-      "_CreateReactScript-KXQ71xJI.js",
+      "resources/js/components/useOutsideClick.jsx",
+      "_CreateReactScript-gWdz5wop.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_index-7vsPyIck.js",
+      "_index-38suPYpT.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js"
@@ -234,17 +228,17 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Pago-8LamjlU1.js",
+    "file": "assets/Pago-7Js7CJy_.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_index-TT1qJ6UJ.js",
-      "_CreateReactScript-KXQ71xJI.js",
+      "resources/js/components/useOutsideClick.jsx",
+      "_CreateReactScript-gWdz5wop.js",
       "_index-XJuWVQ-l.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_calcularTotal-dhViwiOk.js",
       "_setPrototypeOf-vsx73Wsd.js",
-      "_index-7vsPyIck.js",
+      "_index-38suPYpT.js",
       "_floating-ui.dom-KYqStz1f.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_axios-_sX4vCAy.js"
@@ -256,19 +250,19 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Product-8-ELkZNA.js",
+    "file": "assets/Product-MULogstr.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_index-TT1qJ6UJ.js",
-      "_CreateReactScript-KXQ71xJI.js",
+      "resources/js/components/useOutsideClick.jsx",
+      "_CreateReactScript-gWdz5wop.js",
       "_axios-_sX4vCAy.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_setPrototypeOf-vsx73Wsd.js",
-      "_index-7vsPyIck.js",
-      "_Accordion2-r-Y60uFW.js",
+      "_index-38suPYpT.js",
+      "_Accordion2-crfYQLPj.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_es-YXMcUW5t.js",
+      "_es-Hz-LnzMB.js",
       "_index-XJuWVQ-l.js",
       "_floating-ui.dom-KYqStz1f.js"
     ],
@@ -276,21 +270,21 @@
     "src": "resources/js/Product.jsx"
   },
   "resources/js/Utils/CreateReactScript.jsx": {
-    "file": "assets/CreateReactScript-OtmPHjwu.js",
+    "file": "assets/CreateReactScript-6LgzDr2G.js",
     "imports": [
       "_axios-_sX4vCAy.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_index-XJuWVQ-l.js",
-      "_index-TT1qJ6UJ.js"
+      "resources/js/components/useOutsideClick.jsx"
     ],
     "isEntry": true,
     "src": "resources/js/Utils/CreateReactScript.jsx"
   },
   "resources/js/Utils/HtmlContent.jsx": {
-    "file": "assets/HtmlContent-PpbFvjWS.js",
+    "file": "assets/HtmlContent-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
@@ -307,11 +301,11 @@
     "src": "resources/js/Utils/PseudoTippy.jsx"
   },
   "resources/js/Utils/ReactAppend.jsx": {
-    "file": "assets/ReactAppend-TnsKwt4L.js",
+    "file": "assets/ReactAppend-mx8-aehl.js",
     "imports": [
-      "_index-7vsPyIck.js",
+      "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_index-TT1qJ6UJ.js"
+      "resources/js/components/useOutsideClick.jsx"
     ],
     "isEntry": true,
     "src": "resources/js/Utils/ReactAppend.jsx"
@@ -339,10 +333,10 @@
     "src": "resources/js/app.js"
   },
   "resources/js/components/AddressForm.jsx": {
-    "file": "assets/AddressForm-of-JNfsc.js",
+    "file": "assets/AddressForm-77xE-fQW.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "_index-XJuWVQ-l.js",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
@@ -350,306 +344,314 @@
     "src": "resources/js/components/AddressForm.jsx"
   },
   "resources/js/components/Button.jsx": {
-    "file": "assets/Button-PpbFvjWS.js",
+    "file": "assets/Button-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Button.jsx"
   },
   "resources/js/components/CalendarComponent.jsx": {
-    "file": "assets/CalendarComponent-7Ea-EUAY.js",
+    "file": "assets/CalendarComponent-BfbHhUqs.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
-      "_es-YXMcUW5t.js",
+      "resources/js/components/useOutsideClick.jsx",
+      "_es-Hz-LnzMB.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_index-7vsPyIck.js",
+      "_index-38suPYpT.js",
       "_floating-ui.dom-KYqStz1f.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/CalendarComponent.jsx"
   },
   "resources/js/components/Card.jsx": {
-    "file": "assets/Card-PpbFvjWS.js",
+    "file": "assets/Card-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Card.jsx"
   },
   "resources/js/components/CardBrand.jsx": {
-    "file": "assets/CardBrand-PpbFvjWS.js",
+    "file": "assets/CardBrand-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/CardBrand.jsx"
   },
   "resources/js/components/Checkbox.jsx": {
-    "file": "assets/Checkbox-PpbFvjWS.js",
+    "file": "assets/Checkbox-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Checkbox.jsx"
   },
   "resources/js/components/DateTimeDisplay.jsx": {
-    "file": "assets/DateTimeDisplay-PpbFvjWS.js",
+    "file": "assets/DateTimeDisplay-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/DateTimeDisplay.jsx"
   },
   "resources/js/components/Divider.jsx": {
-    "file": "assets/Divider-PpbFvjWS.js",
+    "file": "assets/Divider-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Divider.jsx"
   },
   "resources/js/components/GoogleMapsComponent.jsx": {
-    "file": "assets/GoogleMapsComponent-PpbFvjWS.js",
+    "file": "assets/GoogleMapsComponent-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/GoogleMapsComponent.jsx"
   },
   "resources/js/components/HorarioSection.jsx": {
-    "file": "assets/HorarioSection-PpbFvjWS.js",
+    "file": "assets/HorarioSection-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/HorarioSection.jsx"
   },
   "resources/js/components/InputField.jsx": {
-    "file": "assets/InputField-PpbFvjWS.js",
+    "file": "assets/InputField-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/InputField.jsx"
   },
   "resources/js/components/ListHorarios.jsx": {
-    "file": "assets/ListHorarios-PpbFvjWS.js",
+    "file": "assets/ListHorarios-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/ListHorarios.jsx"
   },
   "resources/js/components/MessageField.jsx": {
-    "file": "assets/MessageField-PpbFvjWS.js",
+    "file": "assets/MessageField-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/MessageField.jsx"
   },
   "resources/js/components/ModalGoogle.jsx": {
-    "file": "assets/ModalGoogle-PpbFvjWS.js",
+    "file": "assets/ModalGoogle-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/ModalGoogle.jsx"
   },
   "resources/js/components/ModalSimple.jsx": {
-    "file": "assets/ModalSimple-PpbFvjWS.js",
+    "file": "assets/ModalSimple-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/ModalSimple.jsx"
   },
   "resources/js/components/MonthsOption.jsx": {
-    "file": "assets/MonthsOption-PpbFvjWS.js",
+    "file": "assets/MonthsOption-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/MonthsOption.jsx"
   },
   "resources/js/components/OrderItem.jsx": {
-    "file": "assets/OrderItem-PpbFvjWS.js",
+    "file": "assets/OrderItem-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/OrderItem.jsx"
   },
   "resources/js/components/OrderSummary.jsx": {
-    "file": "assets/OrderSummary-PpbFvjWS.js",
+    "file": "assets/OrderSummary-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/OrderSummary.jsx"
   },
   "resources/js/components/PaymentForm.jsx": {
-    "file": "assets/PaymentForm-PpbFvjWS.js",
+    "file": "assets/PaymentForm-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/PaymentForm.jsx"
   },
   "resources/js/components/PaymentOption.jsx": {
-    "file": "assets/PaymentOption-PpbFvjWS.js",
+    "file": "assets/PaymentOption-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/PaymentOption.jsx"
   },
   "resources/js/components/ProgressBar.jsx": {
-    "file": "assets/ProgressBar-PpbFvjWS.js",
+    "file": "assets/ProgressBar-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/ProgressBar.jsx"
   },
   "resources/js/components/ProgressStep.jsx": {
-    "file": "assets/ProgressStep-PpbFvjWS.js",
+    "file": "assets/ProgressStep-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/ProgressStep.jsx"
   },
   "resources/js/components/ReceiptTypeSelector.jsx": {
-    "file": "assets/ReceiptTypeSelector-PpbFvjWS.js",
+    "file": "assets/ReceiptTypeSelector-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/ReceiptTypeSelector.jsx"
   },
   "resources/js/components/SelectField.jsx": {
-    "file": "assets/SelectField-PpbFvjWS.js",
+    "file": "assets/SelectField-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/SelectField.jsx"
   },
   "resources/js/components/SelectSearch.jsx": {
-    "file": "assets/SelectSearch-PpbFvjWS.js",
+    "file": "assets/SelectSearch-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/SelectSearch.jsx"
   },
   "resources/js/components/SelectSecond.jsx": {
-    "file": "assets/SelectSecond-PpbFvjWS.js",
+    "file": "assets/SelectSecond-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/SelectSecond.jsx"
   },
   "resources/js/components/SignatureField.jsx": {
-    "file": "assets/SignatureField-PpbFvjWS.js",
+    "file": "assets/SignatureField-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/SignatureField.jsx"
   },
   "resources/js/components/TotalRow.jsx": {
-    "file": "assets/TotalRow-PpbFvjWS.js",
+    "file": "assets/TotalRow-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/TotalRow.jsx"
   },
   "resources/js/components/svg/SvgFlorClasic.jsx": {
-    "file": "assets/SvgFlorClasic-PpbFvjWS.js",
+    "file": "assets/SvgFlorClasic-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/svg/SvgFlorClasic.jsx"
   },
   "resources/js/components/svg/SvgFlorDeluxe.jsx": {
-    "file": "assets/SvgFlorDeluxe-PpbFvjWS.js",
+    "file": "assets/SvgFlorDeluxe-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {
-    "file": "assets/svgFlorPremium-PpbFvjWS.js",
+    "file": "assets/svgFlorPremium-tmMjkXlv.js",
     "imports": [
       "resources/js/Example.jsx",
-      "_index-TT1qJ6UJ.js",
+      "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/svg/svgFlorPremium.jsx"
+  },
+  "resources/js/components/useOutsideClick.jsx": {
+    "file": "assets/useOutsideClick-TT1qJ6UJ.js",
+    "imports": [
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/useOutsideClick.jsx"
   }
 }
