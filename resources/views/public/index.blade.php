@@ -68,10 +68,10 @@
 
 
     <section>
-      <div class="px-[8%] space-y-10 ">
-        <div class="text-center  pt-[3.25rem] space-y-1 bg-[#FFFFFF] z-5 -p">
-          <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
-          <h2 class="text-4xl md:text-4xl font-bold text-black">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
+      <div class="px-[8%]">
+        <div class="relative text-center  bg-[#FFFFFF] z-20 -mt-24 mb-10 py-8 px-8 rounded-2xl">
+          <h3 class="text-md md:text-xl font-bold text-[#FE4A11] mb-2">LO MEJOR DE NOSOTROS</h3>
+          <h2 class="text-2xl md:text-4xl font-bold text-black">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6">
