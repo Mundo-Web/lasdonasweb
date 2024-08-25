@@ -107,7 +107,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-QbSacALL.css",
+    "file": "assets/app-t-Wp_VYj.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -217,7 +217,7 @@
     "css": [
       "assets/Horarios-i7P6CmCQ.css"
     ],
-    "file": "assets/Horarios-JOpP3W8j.js",
+    "file": "assets/Horarios-oGQmRpiC.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
