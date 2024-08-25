@@ -24,6 +24,7 @@ import Swal from 'sweetalert2';
 import './fade.css';
 import CalendarComponent from './components/CalendarComponent';
 import ProductCard from './components/ProductCard'
+import { prepareToSend } from './Utils/SendToCart'
 
 const Product = ({ complementos, general,
   tipoDefault,
@@ -83,19 +84,9 @@ const Product = ({ complementos, general,
   const agregarPedido = async (e) => {
 
     const button = e.target
-    const rect = button.getBoundingClientRect();
+    const cartButton = document.getElementById('open-cart')
 
-    // Posición relativa al body
-    const posicionX = rect.left + window.scrollX;
-    const posicionY = rect.top + window.scrollY;
-
-    $('#gift-icon').css({
-      top: posicionY,
-      left: posicionX,
-      display: 'block'
-    });
-
-    console.log(`Posición X: ${posicionX}, Posición Y: ${posicionY}`);
+    prepareToSend(button, cartButton);
 
     const opciones = {
       fecha: 'Fecha de entrega',
@@ -180,13 +171,28 @@ const Product = ({ complementos, general,
         // Guardar el carrito actualizado en el almacenamiento local
         Local.set('carrito', carrito);
 
-        limpiarHTML();
-        PintarCarrito()
-        Swal.fire({
-          icon: 'success',
-          title: 'Exito',
-          text: `Producto agregado correctamente al CArro de compras`,
-        });
+
+
+        const item = $('#gift-icon')
+        item.addClass('send-to-cart')
+        setTimeout(() => {
+          item.removeClass('send-to-cart')
+          item.removeAttr('style')
+
+          limpiarHTML();
+          PintarCarrito()
+
+          $(cartButton).addClass('shake');
+          setTimeout(function () {
+            $(cartButton).removeClass('shake');
+          }, 1000)
+        }, 1000);
+
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Exito',
+        //   text: `Producto agregado correctamente al CArro de compras`,
+        // });
       }
 
     } catch (error) {
