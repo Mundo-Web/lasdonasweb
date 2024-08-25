@@ -30,6 +30,9 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
   });
 
   const formatTime = (time) => {
+
+    if (!time) return 'Not set';
+
     const [hour, minute] = time.split(':');
     const hourInt = parseInt(hour, 10);
     const ampm = hourInt >= 12 ? 'PM' : 'AM';
@@ -75,12 +78,12 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
                           <span> sku : 001</span>
                           {<div className='mt-2'>
 
-                            {console.log(carrito)}
+                            {/* {console.log(carrito)}
                             <div className="flex flex-col rounded-lg bg-[#E8EDDE] text-[#336234] text-[14px] font-semibold py-2 mt-4 content-center justify-center items-center">
                               <span>{item.fecha}</span>
-                              <span>{formatTime(item.horario.start_time)} - {formatTime(item.horario.end_time)}</span>
+                              <span>{formatTime(item?.horario?.start_time)} - {formatTime(item?.horario?.end_time)}</span>
 
-                            </div>
+                            </div> */}
                           </div>}
                         </div>
                         <div className="flex flex-col  w-full  font-bold text-[#112212] items-end content-end">

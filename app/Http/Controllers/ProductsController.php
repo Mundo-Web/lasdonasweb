@@ -836,10 +836,11 @@ class ProductsController extends Controller
       $complemento = [];
       $fecha = $data['fecha'];
       foreach ($data['complementos'] as $key => $value) {
-        $complemento[] = Products::find($value)->toArray();
-      }
-
-      if ($fecha == 'hoy') {
+        $complemento[] = Products::with(['images', 'tipos'])->find($value)->toArray();
+      } 
+      
+      if($fecha == 'hoy')
+      {
         $fecha = date('Y-m-d');
       } else if ($fecha == 'manana') {
         $fecha = date('Y-m-d', strtotime('+1 day'));
