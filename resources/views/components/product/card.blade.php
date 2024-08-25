@@ -25,10 +25,10 @@
       </p>
       <div class="flex items-center font-bold space-x-2">
         @if ($item->descuento > 0)
-        <p class="text-[#336234]">S/ <span>{{ $item->descuento }}</span></p>
-          <p class="text-[#FF0000] line-through text-sm">S/ <span>{{ $item->precio }}</span></p>
+          <p class="text-[#112212]">S/ <span>{{ $item->descuento }}</span></p>
+          <p class="text-[rgba(17,34,18,0.8)] line-through text-sm">S/ <span>{{ $item->precio }}</span></p>
         @else
-          <p>S/ <span>{{ $item->precio }}</span></p>
+          <p class="text-[#112212]">S/ <span>{{ $item->precio }}</span></p>
         @endif
       </div>
     </div>
