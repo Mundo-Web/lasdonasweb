@@ -127,7 +127,7 @@ class IndexController extends Controller
     );
   }
 
-  public function catalogo($filtro = null, Request $request)
+  public function catalogo(Request $request, ?string $filtro = null)
   {
     $categorias = null;
     $productos = null;
