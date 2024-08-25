@@ -30,7 +30,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{ config('app.name') }}</title>
   @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/' . Route::currentRouteName()])
-  <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=L+D&color=fff&background=ff8555&rounded=true"
+  <link rel="shortcut icon" href="/img_donas/icon.svg"
     type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   @inertiaHead
