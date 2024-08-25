@@ -149,7 +149,7 @@
           <div class="w-full sm:row-span-2">
             <div class="h-full">
               <img src="{{ asset($category[0]->url_image . $category[0]->name_image) }}" alt=""
-                class="h-96 sm:h-[760px] flex flex-col justify-end items-start object-cover"
+                class="h-96 sm:h-[760px] flex flex-col justify-end items-start object-cover w-full"
                 onerror="this.src='/images/img/noimagen.jpg';">
               <h3 class="text-base font-medium text-[#FE4A11] mt-4">Categoría</h3>
               <h2 class="text-3xl font-bold ">{{ $category[0]->name }}</h2>
