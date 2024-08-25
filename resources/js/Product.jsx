@@ -284,7 +284,7 @@ const Product = ({ complementos, general,
                   )
                 ))
               ) : (
-                <img className="size-full object-cover" src="images/img/noimagen.jpg" alt="No image available" />
+                <img className="size-full object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
               )}
 
 
