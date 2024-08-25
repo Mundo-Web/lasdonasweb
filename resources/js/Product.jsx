@@ -268,7 +268,7 @@ const Product = ({ complementos, general,
                         <img
                           id="Imagen Complementaria"
                           ref={imagePreviewRef}
-                          src={imageSrc ? imageSrc : `${url_env}/images/img/noimagen.jpg`}
+                          src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
                           alt="Image preview"
                           className="h-full w-full object-cover p-4"
                           style={{}}
@@ -277,7 +277,7 @@ const Product = ({ complementos, general,
 
                       <img
                         className="size-full object-cover"
-                        src={image.name_imagen ? url_env + '/' + image.name_imagen : 'images/img/noimagen.jpg'}
+                        src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                         alt="Product"
                       />
                     </div>
@@ -324,7 +324,7 @@ const Product = ({ complementos, general,
 
                               <img
                                 className="size-full object-cover h-full w-full"
-                                src={image.name_imagen ? `${url_env}/${image.name_imagen}` : 'images/img/noimagen.jpg'}
+                                src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                                 alt="Product"
                               />
 
@@ -557,17 +557,17 @@ const Product = ({ complementos, general,
                           <img
                             key={imgIndex}
                             className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out"
-                            src={image.name_imagen ? url_env + '/' + image.name_imagen : 'images/img/noimagen.jpg'}
+                            src={image.name_imagen ?`/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                             alt="Complemento"
                             onError={(e) => {
                               // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
-                              e.target.src = url_env + '/images/img/noimagen.jpg';
+                              e.target.src = '/images/img/noimagen.jpg';
                             }}
                           />
                         )
                       ))
                     ) : (
-                      <img className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out" src={url_env + "/images/img/noimagen.jpg"} alt="No image available" />
+                      <img className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out" src="/images/img/noimagen.jpg" alt="No image available" />
                     )}
                   </div>
                 </label>
@@ -588,7 +588,7 @@ const Product = ({ complementos, general,
 
                 <div className="grid grid-cols-1 gap-3 xl:gap-5">
                   <div className="flex flex-col justify-center items-center">
-                    <img src={url_env + "/img_donas/regalo.svg"} />
+                    <img src="/img_donas/regalo.svg" />
                   </div>
 
                   <button type="button" className="flex flex-col justify-center items-center  text-[#FF8555]"
@@ -642,11 +642,11 @@ const Product = ({ complementos, general,
                         <a key={imgIndex} href={`/producto/${item.id}`}><img
                           key={imgIndex}
                           className="w-[280px] h-[280px] object-cover"
-                          src={image.name_imagen ? `${url_env}/${image.name_imagen}` : 'images/img/noimagen.jpg'}
+                          src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                           alt="Producto"
                           onError={(e) => {
                             // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
-                            e.target.src = `${url_env}/images/img/noimagen.jpg`;
+                            e.target.src = `/images/img/noimagen.jpg`;
                           }}
                         /> </a>
 
@@ -706,7 +706,7 @@ const Product = ({ complementos, general,
 
 
 
-                  <img src={url_env + '/images/img/x-square-contained.png'} alt="" className="h-6 cursor-pointer"
+                  <img src='/images/img/x-square-contained.png' alt="" className="h-6 cursor-pointer"
                   />
                 </div>
 
@@ -750,7 +750,7 @@ const Product = ({ complementos, general,
         url_env={url_env}
         tittle={'Políticas de envío'}
       >
-        <div dangerouslySetInnerHTML={{ __html: politicaEnvio.content ?? '' }} />
+        <div dangerouslySetInnerHTML={{ __html: politicaEnvio?.content ?? '' }} />
 
       </ModalSimple >
 
@@ -759,7 +759,7 @@ const Product = ({ complementos, general,
         url_env={url_env}
         tittle={'Políticas de sustitución'}
       >
-        <div dangerouslySetInnerHTML={{ __html: politicasSustitucion.content ?? '' }} />
+        <div dangerouslySetInnerHTML={{ __html: politicasSustitucion?.content ?? '' }} />
 
       </ModalSimple >
 
@@ -779,7 +779,7 @@ const Product = ({ complementos, general,
                       <h2 className="text-lg font-bold leading-6 text-gray-900 mb-2" id="modal-title">Complementa tu pedido</h2>
 
 
-                      <img src={url_env + '/images/img/xcoral.png'} alt="" className="h-5 cursor-pointer"
+                      <img src='/images/img/xcoral.png' alt="" className="h-5 cursor-pointer"
                         onClick={closeModalComplementos} />
                     </div>
                     <div className="mt-5 gap-4 " id="containerComplementos" data-accordion="collapse">
