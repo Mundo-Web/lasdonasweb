@@ -46,22 +46,29 @@
 @section('content')
 
   <main class="flex flex-col gap-12">
-    <section>
-      <div
-        class="banner_section2 lg:banner_sec h-128 lg:h-[674px] text-white text-center flex flex-col justify-center items-center pt-14 p-2 lg:px-[20%]">
-        <h4 class="text-[18px] font-bold  text-[#336234]">EXITOS FLORALESss:
-        </h4>
-        <h2 class="text-4xl md:text-[50px] font-bold  text-[#112212]">Las Creaciones que Conquistan Corazones en Cada
-          Pétalo
-        </h2>
-        <p class="text-lg font-normal text-[#336234]">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
-        <button type="button" class="bg-[#336234] px-6 py-3 rounded-full  font-bold">Comprar ahora</button>
-      </div>
-    </section>
+    <section class="bg-[#F9F9F9]">
+  <div class="relative overflow-hidden banner_section2">
+    <div class="relative z-10 text-center flex flex-col justify-center items-center py-16 md:py-32 px-4 lg:px-[15%]"
+      style="background: radial-gradient(circle, rgba(255,255,255,.5) 0%, transparent 50%);">
+      <h4 class="text-[18px] font-semibold text-[#336234] uppercase tracking-wider mb-4">Celebraciones Especiales</h4>
+      <h2 class="text-3xl md:text-5xl font-bold text-[#112212] mb-4">Encuentra el Regalo Perfecto para Cada Ocasión</h2>
+      <p class="text-lg font-medium text-[rgba(17,34,18,0.80)] mb-6">
+        Descubre nuestra amplia selección de productos para todas tus necesidades: desde arreglos florales y peluches
+        hasta vinos, joyería y mucho más. ¡Aquí hay algo especial para cada celebración!
+      </p>
+      <button type="button"
+        class="bg-[#336234] hover:bg-[#336234dd] text-white px-6 py-3 rounded-full font-bold transition duration-300">
+        Explora Ahora
+      </button>
+    </div>
+  </div>
+</section>
+
+
 
     <section>
       <div class="px-[8%]  space-y-10  ">
-        <div class="text-center  pt-[3.25rem] space-y-1 mt-[-10rem] bg-[#FFFFFF] z-5">
+        <div class="text-center  pt-[3.25rem] space-y-1 bg-[#FFFFFF] z-5">
           <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
           <h2 class="text-4xl md:text-4xl font-bold text-black">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
         </div>
@@ -72,51 +79,7 @@
               <div class="swiper-wrapper h-full relative">
                 @foreach ($productos as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
-                    <div class="flex flex-col gap-7   col-span-1">
-                      <a href="{{ route('Product.jsx', $item->id) }}">
-                        <div class="px-2">
-                          @if ($item->images->count() == 0)
-                            <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                              class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                          @else
-                            @foreach ($item->images as $image)
-                              @if ($image->caratula == 1)
-                                @if ($image->name_imagen)
-                                  <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @else
-                                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @endif
-                              @endif
-                            @endforeach
-                          @endif
-                        </div>
-
-
-                        <div class="px-4 mt-5 ">
-                          <h2 class="text-xl font-bold text-black">{{ $item->producto }}</h2>
-                          <p class="text-base font-normal text-black h-[48px]">{{ Str::substr($item->extract, 0, 59) }}...
-                          </p>
-                          <div class="flex  mt-2 font-bold ">
-                            <p>S/ <span>75.00</span></p>
-                            <p class="px-2">-</p>
-                            <p>S/ <span>120.00</span></p>
-                          </div>
-
-                        </div>
-
-                      </a>
-                      <div class="w-full px-2">
-                        <button type="button"
-                          class="w-full  py-2  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">Agregar
-                          a mi bolsa
-                          <img class="ml-2" src="{{ asset('img_donas/addcart.svg') }}" /></button>
-
-                      </div>
-
-                    </div>
-
+                    <x-product.card :item="$item"/>
                   </div>
                 @endforeach
               </div>
@@ -282,52 +245,7 @@
               <div class="swiper-wrapper h-full relative">
                 @foreach ($recomendados as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
-                    <div class="flex flex-col gap-7   col-span-1">
-                      <a class="rounded-md bg-white" href="{{ route('Product.jsx', $item->id) }}">
-                        <div class=" bg-[#FFF4ED] rounded-t-md overflow-hidden">
-                          @if ($item->images->count() == 0)
-                            <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                              class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                          @else
-                            @foreach ($item->images as $image)
-                              @if ($image->caratula == 1)
-                                @if ($image->name_imagen)
-                                  <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @else
-                                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @endif
-                              @endif
-                            @endforeach
-                          @endif
-                        </div>
-
-
-                        <div class="p-4 font-[Beausite_Slick_Trial]">
-                          <h2 class="block text-xl text-[#112212] mb-1 font-bold">{{ $item->producto }}</h2>
-                          <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1">
-                            {{ $item->extract }}
-                          </p>
-                          <div class="flex font-bold ">
-                            <p>S/ <span>75.00</span></p>
-                            <p class="px-2">-</p>
-                            <p>S/ <span>120.00</span></p>
-                          </div>
-
-                        </div>
-
-                      </a>
-                      <div class="w-full px-2">
-                        <button type="button"
-                          class="w-full  py-2  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">
-                          <span>Agregar a mi bolsa</span>
-                          <i class="ms-2 fa fa-cart-plus mt-1"></i>
-                          {{-- <img class="ml-2" src="{{ asset('img_donas/addcart.svg') }}" /></button> --}}
-                      </div>
-
-                    </div>
-
+                    <x-product.card :item="$item"/>
                   </div>
                 @endforeach
               </div>
