@@ -316,7 +316,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
       <section className='mb-24'>
         <div className='mt-14 px-[8%]'>
 
-          <div className='text-[#FE4A11]'> {`Inicio / ${categoria.name} `}</div>
+          <div className='text-[#FE4A11]'> {`Inicio / ${categoria.name ?? 'Todas las categorias'} `}</div>
           <div className='text-[44px] font-bold text-[#112212] -mt-3'>{categoria.name}</div>
           <div className='text-[#112212] opacity-80'>{categoria.description} </div>
 
