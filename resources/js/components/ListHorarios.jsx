@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase = 'absolute w-full flex flex-col gap-2 top-[80px] bg-white shadow-2xl', setDetallePedido }) => {
 
+  const checked = useRef(null);
 
   const formatTime = (time) => {
     const [hour, minute] = time.split(':');
@@ -11,28 +12,29 @@ const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase
     return `${formattedHour}:${minute} ${ampm}`;
   };
 
+
+
   const handleRadioChange = (index) => {
+
     setSelectedHorario(index);
     setDetallePedido((prevState) => {
-
-      let fecha
-      if (id == "calendario") {
-        fecha = prevState.fecha
+      let fecha;
+      if (id === "calendario") {
+        fecha = prevState.fecha;
       } else {
-        fecha = id
+        fecha = id;
       }
       return {
         ...prevState,
         horario: index,
         fecha: fecha
-
-      }
-    })
-
+      };
+    });
   };
 
+
   return (
-    <div className={clase} >
+    <div className={clase}>
       {horarios.map((item, index) => (
 
         <li key={item.id} className="list-none w-full">
@@ -41,17 +43,24 @@ const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase
             id={`horario-option-${item.id}`}
             name="horario"
             value={item.id}
-            className="hidden peer  "
+            className="hidden peer"
             checked={selectedHorario === item.id}
             onChange={() => handleRadioChange(item.id)}
             required
           />
           <label
             htmlFor={`horario-option-${item.id}`}
-            className=" radio-option-label bg-white inline-flex items-center justify-between w-full p-1 text-white text-xs border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[#df3876] peer-checked:bg-[#73B473]  hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-white hover:bg-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+            className={`justify-center radio-option-label  inline-flex items-center w-full p-1 text-white text-xs border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 
+            
+            ${selectedHorario === item.id ? 'bg-[#73B473] text-white' : 'text-[#73B473] bg-white'}
+             hover:text-gray-600 hover:bg-gray-400 dark:text-gray-400 dark:bg-gray-800
+              dark:hover:bg-gray-700`}
           >
             <div className="flex flex-col justify-center items-center text-center">
-              <p className="text-base font-semibold text-center pl-5  ">{formatTime(item.start_time)}-{formatTime(item.end_time)}</p>
+              <p className="flex content-center justify-center text-base text-[#E8EDDE] font-semibold text-center">
+                {/* {selectedHorario === item.id ? 'bg-[#73B473] text-white' : 'text-[#73B473]'} */}
+                {formatTime(item.start_time)}-{formatTime(item.end_time)}
+              </p>
             </div>
           </label>
         </li>
