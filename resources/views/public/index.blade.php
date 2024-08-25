@@ -47,7 +47,7 @@
 
   <main class="flex flex-col gap-12">
 
-    <section class="z-5" id="portada">
+    <section class="-z-10" id="portada">
        <div class="swiper slider-portada">
           <div class="swiper-wrapper">
             @foreach ($slider as $slide)
@@ -67,7 +67,7 @@
        </div>
     </section>
 
-    <section class="z-10">
+    <section class="-z-10">
       <div class="px-[5%] lg:px-[8%]  space-y-10">
         <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] gap-3 px-5">
           <h3 class="text-lg font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
@@ -102,7 +102,7 @@
       </div>
     </section>
 
-    <section class="mt-12 font-b_slick_bold py-12 lg:py-20">
+    <section class="mt-12 font-b_slick_bold py-12 lg:py-20 -z-10">
       {{-- Categorias destacadas --}}
       <div class="flex flex-col px-[5%] lg:px-[8%] gap-4">
         <p class="text-base text-[#FE4A11]">CATEGORIAS</p>
@@ -221,7 +221,7 @@
 
     </section>
 
-    <section class="bg-[#E8EDDE] font-b_slick_bold pt-16 pb-20 lg:pt-20 lg:pb-28 ">
+    <section class="bg-[#E8EDDE] font-b_slick_bold pt-16 pb-20 lg:pt-20 lg:pb-28 -z-10">
       <div class="w-full px-[5%] lg:px-[8%] flex flex-col gap-10">
         <div class="flex flex-col gap-3 text-center">
           <h3 class="text-xl font-bold text-[#FE4A11] ">NOVEDADES</h3>
@@ -256,7 +256,7 @@
     </section>
 
     @if (count($testimonie) > 0)
-      <section class="pt-10 pb-12  lg:py-20 flex flex-col w-full gap-12 relative px-[5%] lg:px-[8%]">
+      <section class="pt-10 pb-12  lg:py-20 flex flex-col w-full gap-12 relative px-[5%] lg:px-[8%] -z-10">
         <div class="w-full">
           <div class="flex flex-col gap-3 text-left font-b_slick_bold">
             <h3 class="text-xl text-[#FE4A11] ">NUESTROS CLIENTES</h3>
@@ -312,7 +312,7 @@
       </section>
     @endif
 
-    <section>
+    <section class="-z-10">
       <div class="grid grid-cols-1 ">
           @php
             $videoUrl = $general->url_video;
@@ -331,7 +331,7 @@
 
 
 
-    <section>
+    <section class="-z-10">
       @if (strlen($general->instagram) > 1)
         <div class="px-[5%] lg:px-[8%] pt-8 pb-12 flex flex-col">
           <div class="text-center flex flex-col gap-6 items-center max-w-4xl mx-auto">
@@ -351,7 +351,7 @@
       @endif
 
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 h-">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 -z-10">
 
         @foreach (array_slice($media, 0, 6) as $item)
           <div class="relative group h-80">

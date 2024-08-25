@@ -177,6 +177,10 @@ export default {
             zIndex: {
                 60: '60',
             },
+            boxShadow: {
+                'custom-light': '0px 4px 10px rgba(49, 51, 50, 0.9)',
+              
+            },
         },
     },
 

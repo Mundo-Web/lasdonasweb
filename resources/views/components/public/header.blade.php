@@ -8,12 +8,13 @@
 @endphp
 
 <style>
+
 .fixed-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1;
 }
 
 #header-mid.fixed-header {
@@ -22,6 +23,11 @@
 
 .header_bottom.fixed-header {
   top: 80px; /* Ajusta este valor para estar justo debajo del nuevo header-mid */
+}
+
+
+#cart-modal {
+    z-index: 10000; /* Asegúrate de que este sea mayor que el z-index del header */
 }
 </style>
 
@@ -135,12 +141,12 @@
         @endif
 
 
-        <div class="flex justify-center items-center min-w-[38px]">
+        <div class="flex justify-center items-center min-w-[38px]" >
           <div id="open-cart" class="relative inline-block cursor-pointer pr-3">
             <span id="itemsCount"
               class="bg-[#EB5D2C] text-xs font-medium text-white text-center px-[7px] py-[2px]  rounded-full absolute bottom-0 right-0 ml-3">0</span>
             <img src="{{ asset('img_donas/Group10.png') }}"
-              class="bg-white rounded-lg p-1 max-w-full h-auto cursor-pointer" />
+              class="bg-white rounded-lg p-1 max-w-full h-auto cursor-pointer" style="z-index:3" />
           </div>
         </div>
 
@@ -173,8 +179,8 @@
 
 
 
-<div id="cart-modal"
-  class="bag !absolute top-0 right-0 md:w-[450px] cartContainer border shadow-2xl  !rounded-md !p-0 !z-30"
+<div id="cart-modal" 
+  class="bag !absolute top-0 right-0 md:w-[450px] cartContainer border shadow-2xl  !rounded-md !p-0"
   style="display: none">
   <div class="p-4 flex flex-col h-[90vh] justify-between gap-2">
     <div class="flex flex-col">
@@ -217,12 +223,15 @@
     mostrarTotalItems()
     PintarCarrito()
   })
+
   $('#open-cart').on('click', () => {
     $('#cart-modal').modal({
       showClose: false,
       fadeDuration: 100
     })
+    $('#cart-modal').css('z-index', 10000);
   })
+
   $('#close-cart').on('click', () => {
     $('.jquery-modal.blocker.current').trigger('click')
   })
@@ -441,7 +450,7 @@ window.addEventListener('scroll', function() {
   if (scrollPercentage >= 1) {
     headerMid.classList.add('fixed-header', 'h-[80px]', 'animate-fade-up');
     headerMid.classList.remove('h-[100px]');
-    headerBottom.classList.add('fixed-header', 'animate-fade-up', 'shadow-lg', 'shadow-[#313332]');
+    headerBottom.classList.add('fixed-header', 'animate-fade-up', 'shadow-lg', 'shadow-black/40');
     //portada.classList.add('mt-[150px]'); 
   } else {
     headerMid.classList.remove('fixed-header', 'h-[80px]', 'animate-fade-up');
