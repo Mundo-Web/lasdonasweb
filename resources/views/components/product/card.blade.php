@@ -23,12 +23,12 @@
       <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1">
         {{ $item->extract }}
       </p>
-      <div class="flex items-center font-bold space-x-2">
+      <div class="flex items-center  space-x-2">
         @if ($item->descuento > 0)
-          <p class="text-[#112212]">S/ <span>{{ $item->descuento }}</span></p>
+          <p class="text-[#112212] font-bold">S/ <span>{{ $item->descuento }}</span></p>
           <p class="text-[rgba(17,34,18,0.8)] line-through text-sm">S/ <span>{{ $item->precio }}</span></p>
         @else
-          <p class="text-[#112212]">S/ <span>{{ $item->precio }}</span></p>
+          <p class="text-[#112212] font-bold">S/ <span>{{ $item->precio }}</span></p>
         @endif
       </div>
     </div>
