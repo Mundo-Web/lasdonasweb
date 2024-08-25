@@ -33,8 +33,8 @@
                 <th>Stock</th>
                 {{-- <th>Peso</th> --}}
                 <th>Imagen</th>
-                <th>Lo más pedido</th>
-                <th>Novedad</th>
+
+                <th>Novedades</th>
                 {{--  <th>Liquidacion</th> --}}
                 <th>Visible</th>
                 <th>Acciones</th>
@@ -61,7 +61,7 @@
 
 
                   </td>
-                  <td>
+                  {{--  <td>
                     <form method="POST" action="">
                       @csrf
                       <input type="checkbox" id="hs-basic-usage"
@@ -75,7 +75,7 @@
                         data-titleService='{{ $item->producto }}' {{ $item->destacar == 1 ? 'checked' : '' }}>
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
-                  </td>
+                  </td> --}}
                   <td>
                     <form method="POST" action="">
                       @csrf
