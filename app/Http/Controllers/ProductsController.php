@@ -118,7 +118,7 @@ class ProductsController extends Controller
     $data['parent_id'] = null;
 
     if (isset($request->complemento)) {
-      $data["tipo_servicio"] = 'complemento';
+      $data["tipo_servicio"] = 'complemento'; // cambiar 
     } else {
       $data["tipo_servicio"] = 'producto';
     }
