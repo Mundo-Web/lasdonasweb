@@ -13,18 +13,25 @@
       "resources/js/Utils/CreateReactScript.jsx"
     ]
   },
+  "_ProductCard-P8La_XY9.js": {
+    "file": "assets/ProductCard-P8La_XY9.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx"
+    ]
+  },
   "__commonjsHelpers-4gQjN7DL.js": {
     "file": "assets/_commonjsHelpers-4gQjN7DL.js"
   },
   "_axios-_sX4vCAy.js": {
     "file": "assets/axios-_sX4vCAy.js"
   },
-  "_calcularTotal-dhViwiOk.js": {
-    "file": "assets/calcularTotal-dhViwiOk.js"
+  "_calcularTotal-sXLDybB7.js": {
+    "file": "assets/calcularTotal-sXLDybB7.js"
   },
-  "_es-!~{00X}~.js": {
+  "_es-!~{00Z}~.js": {
     "file": "assets/es-D87rtk4j.css",
-    "src": "_es-!~{00X}~.js"
+    "src": "_es-!~{00Z}~.js"
   },
   "_es-Hz-LnzMB.js": {
     "css": [
@@ -37,9 +44,9 @@
       "_floating-ui.dom-KYqStz1f.js"
     ]
   },
-  "_fade-!~{00V}~.js": {
+  "_fade-!~{00X}~.js": {
     "file": "assets/fade-WxPIMcx6.css",
-    "src": "_fade-!~{00V}~.js"
+    "src": "_fade-!~{00X}~.js"
   },
   "_floating-ui.dom-KYqStz1f.js": {
     "file": "assets/floating-ui.dom-KYqStz1f.js"
@@ -100,7 +107,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-UO_TEYq3.css",
+    "file": "assets/app-QbSacALL.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -158,7 +165,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Carrito-3UOwv3Qr.js",
+    "file": "assets/Carrito-pASrm9zY.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -168,7 +175,7 @@
       "_index-XJuWVQ-l.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_Accordion2-crfYQLPj.js",
-      "_calcularTotal-dhViwiOk.js",
+      "_calcularTotal-sXLDybB7.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_axios-_sX4vCAy.js"
@@ -180,7 +187,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Catalogo-nNvl6wqZ.js",
+    "file": "assets/Catalogo-gYUtQTwT.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -189,6 +196,7 @@
       "_truncateText-C3yxPslF.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
+      "_ProductCard-P8La_XY9.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx"
@@ -209,7 +217,7 @@
     "css": [
       "assets/Horarios-i7P6CmCQ.css"
     ],
-    "file": "assets/Horarios-oGQmRpiC.js",
+    "file": "assets/Horarios-JOpP3W8j.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -228,7 +236,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Pago-7Js7CJy_.js",
+    "file": "assets/Pago-C8PiBd-x.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -236,7 +244,7 @@
       "_CreateReactScript-gWdz5wop.js",
       "_index-XJuWVQ-l.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_calcularTotal-dhViwiOk.js",
+      "_calcularTotal-sXLDybB7.js",
       "_setPrototypeOf-vsx73Wsd.js",
       "_index-38suPYpT.js",
       "_floating-ui.dom-KYqStz1f.js",
@@ -250,7 +258,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Product-nj0eYIW4.js",
+    "file": "assets/Product-b42KRy8H.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -263,6 +271,7 @@
       "_Accordion2-crfYQLPj.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_es-Hz-LnzMB.js",
+      "_ProductCard-P8La_XY9.js",
       "_index-XJuWVQ-l.js",
       "_floating-ui.dom-KYqStz1f.js"
     ],
@@ -535,6 +544,16 @@
     ],
     "isEntry": true,
     "src": "resources/js/components/PaymentOption.jsx"
+  },
+  "resources/js/components/ProductCard.jsx": {
+    "file": "assets/ProductCard-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/ProductCard.jsx"
   },
   "resources/js/components/ProgressBar.jsx": {
     "file": "assets/ProgressBar-tmMjkXlv.js",

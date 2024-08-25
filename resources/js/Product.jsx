@@ -23,6 +23,7 @@ import Swal from 'sweetalert2';
 
 import './fade.css';
 import CalendarComponent from './components/CalendarComponent';
+import ProductCard from './components/ProductCard'
 
 const Product = ({ complementos, general,
   tipoDefault,
@@ -108,7 +109,7 @@ const Product = ({ complementos, general,
           horario,
           complementos,
           fecha, imagen } = res.data;
-        console.log(res)
+        console.log(producto)
         let detalleProducto = {
           id: producto.id,
           producto: producto.producto,
@@ -117,10 +118,25 @@ const Product = ({ complementos, general,
           cantidad: 1,
           fecha: fecha,
           horario: horario,
-          complementos: complementos,
+          // complementos: complementos,
           tipo: producto?.tipos?.name ?? 'Clasica',
           extract: producto.extract,
         }
+        console.log(complementos)
+        let detalleComplemento = complementos.map(item => {
+          return {
+            id: item.id,
+            producto: item.producto,
+            precio: producto.descuento > 0 ? producto.descuento : producto.precio,
+            imagen: item.images.filter(item => item.caratula === 1)[0]?.name_imagen ?? '/images/img/noimagen.jpg',
+            cantidad: 1,
+            tipo: 'Complemento',
+            fecha: fecha,
+            horario: horario,
+            extract: item.extract,
+          }
+        })
+
 
 
         let carrito = Local.get('carrito') ?? [];
@@ -141,9 +157,10 @@ const Product = ({ complementos, general,
           });
         } else {
           // Agregar el nuevo artículo al carrito
-          carrito = [...carrito, detalleProducto];
+          carrito = [...carrito, detalleProducto, ...detalleComplemento];
         }
 
+        console.log(carrito)
         // Guardar el carrito actualizado en el almacenamiento local
         Local.set('carrito', carrito);
 
@@ -249,6 +266,9 @@ const Product = ({ complementos, general,
   const closeModalComplementos = () => {
     setIsModalOpen(false);
   };
+  const handleImageClick = () => {
+    setImageSrc(null);
+  };
 
   return (
     <>
@@ -263,20 +283,21 @@ const Product = ({ complementos, general,
                 currentProduct.images.map((image, index) => (
                   image.caratula === 1 && (
                     <div key={index} className="col-span-2 sm:col-span-3 relative">
-                      <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg shadow-2xl object-fit z-10 "
+                      <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
                       >
-                        <img
+                        {console.log(imageSrc)}
+                        {imageSrc !== null ? <img
                           id="Imagen Complementaria"
                           ref={imagePreviewRef}
                           src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
                           alt="Image preview"
-                          className="h-full w-full object-cover p-4"
-                          style={{}}
-                        />
+                          className={`h-full w-full object-cover p-4 rounded-lg cursor-pointer`}
+                          onClick={handleImageClick}
+                        /> : ''}
                       </div>
 
                       <img
-                        className="size-full object-cover"
+                        className="h-[800px] object-cover"
                         src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                         alt="Product"
                       />
@@ -284,7 +305,7 @@ const Product = ({ complementos, general,
                   )
                 ))
               ) : (
-                <img className="size-full object-cover" src="images/img/noimagen.jpg" alt="No image available" />
+                <img className="size-full object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
               )}
 
 
@@ -428,7 +449,7 @@ const Product = ({ complementos, general,
                     />
                     <label
                       htmlFor="react-option"
-                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5  border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[##73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border-2 border-gray-400 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-4 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
                       onClick={() => handleSelecttionOption(productos)}
                     >
                       <div className="flex flex-col justify-center items-center">
@@ -467,7 +488,7 @@ const Product = ({ complementos, general,
                       <label
                         onClick={() => handleSelecttionOption(item)}
                         htmlFor={`${item.tipos.name}-option`}
-                        className="radio-option-label inline-flex items-center justify-between w-full p-5  border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[##73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                        className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border-2 border-gray-400 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100 peer-checked:border-4"
                       >
                         <div className="flex flex-col justify-center items-center">
                           {item.tipos.name === 'Premium' ? (
@@ -480,7 +501,6 @@ const Product = ({ complementos, general,
                         </div>
                         <div className="flex flex-col justify-center items-center">
                           <p className="text-base font-semibold">{item.tipos.name}</p>
-                          {console.log(Number(item.descuento) > 0)}
                           {Number(item.descuento) > 0 ? (<>
                             <p className="text-base font-normal">
                               S/ <span>{Number(item.precio).toFixed(0)}</span>
@@ -557,7 +577,7 @@ const Product = ({ complementos, general,
                           <img
                             key={imgIndex}
                             className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out"
-                            src={image.name_imagen ?`/${image.name_imagen}` : '/images/img/noimagen.jpg'}
+                            src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                             alt="Complemento"
                             onError={(e) => {
                               // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
@@ -636,34 +656,7 @@ const Product = ({ complementos, general,
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
                 {ProdComplementarios.map((item, index) => (
-                  <div key={index} className="space-y-2 max-w-96 m-auto">
-                    {item.images.map((image, imgIndex) => (
-                      image.caratula === 1 && (
-                        <a key={imgIndex} href={`/producto/${item.id}`}><img
-                          key={imgIndex}
-                          className="w-[280px] h-[280px] object-cover"
-                          src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
-                          alt="Producto"
-                          onError={(e) => {
-                            // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
-                            e.target.src = `/images/img/noimagen.jpg`;
-                          }}
-                        /> </a>
-
-                      )
-                    ))}
-
-                    <h2 className="text-xl font-bold text-black pt-6">{item.producto}</h2>
-                    <p className="text-base font-normal text-[#112212]" style={{ height: '48px' }}>
-                      {item.extract?.length > 100 ? `${item.extract.substring(0, 50)}...` : item.extract}
-                    </p>
-                    <div className="flex font-medium">
-                      <p>S/ <span>{item.descuento}</span></p>
-                      <p className="px-2">-</p>
-                      <p>S/ <span>{item.precio}</span></p>
-                    </div>
-
-                  </div>
+                  <ProductCard key={`product-${index}`} {...item} />
                 ))}
 
 

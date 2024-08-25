@@ -58,6 +58,8 @@
       </div>
     </section>
 
+
+
     <section>
       <div class="px-[5%] lg:px-[8%]  space-y-10  ">
         <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] z-5 gap-3 px-5">
@@ -266,52 +268,7 @@
               <div class="swiper-wrapper h-full relative">
                 @foreach ($recomendados as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
-                    <div class="flex flex-col gap-7   col-span-1">
-                      <a class="rounded-md bg-white" href="{{ route('Product.jsx', $item->id) }}">
-                        <div class=" bg-[#FFF4ED] rounded-t-md overflow-hidden">
-                          @if ($item->images->count() == 0)
-                            <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                              class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                          @else
-                            @foreach ($item->images as $image)
-                              @if ($image->caratula == 1)
-                                @if ($image->name_imagen)
-                                  <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @else
-                                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @endif
-                              @endif
-                            @endforeach
-                          @endif
-                        </div>
-
-
-                        <div class="p-4 font-[Beausite_Slick_Trial]">
-                          <h2 class="block text-xl text-[#112212] mb-1 font-bold">{{ $item->producto }}</h2>
-                          <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1">
-                            {{ $item->extract }}
-                          </p>
-                          <div class="flex font-bold ">
-                            <p>S/ <span>75.00</span></p>
-                            <p class="px-2">-</p>
-                            <p>S/ <span>120.00</span></p>
-                          </div>
-
-                        </div>
-
-                      </a>
-                      <div class="w-full px-2">
-                        <button type="button"
-                          class="w-full  py-2  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">
-                          <span>Agregar a mi bolsa</span>
-                          <i class="ms-2 fa fa-cart-plus mt-1"></i>
-                          {{-- <img class="ml-2" src="{{ asset('img_donas/addcart.svg') }}" /></button> --}}
-                      </div>
-
-                    </div>
-
+                    <x-product.card :item="$item" />
                   </div>
                 @endforeach
               </div>

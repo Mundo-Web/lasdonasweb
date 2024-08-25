@@ -231,8 +231,7 @@
           </td>
           <td class="p-2 text-end">
             <p class="font-semibold text-[14px] text-[#151515] w-max">
-              S/${Number(element.precio)} ${element.complementos.length > 0 ? '+' : ''} 
-               ${element.complementos.length > 0 ? element.complementos.map((item)=>  Number(item.preciofiltro)).reduce((total, elemento) => total + elemento, 0) : ''}
+              S/${Number(element.precio)} 
               
             </p>
             <button type="button" onClick="(deleteItem(${element.id} ))" class="w-6 h-6 flex justify-center items-center mx-auto">
@@ -258,11 +257,11 @@
     let total = articulos.map(item => {
       let total = 0
       total += item.cantidad * Number(item.precio)
-      if (item.complementos.length > 0) {
-        item.complementos.forEach(complemento => {
-          total += Number(complemento.preciofiltro)
-        })
-      }
+      /*  if (item.complementos.length > 0) {
+         item.complementos.forEach(complemento => {
+           total += Number(complemento.preciofiltro)
+         })
+       } */
       return total
 
 
