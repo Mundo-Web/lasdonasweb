@@ -19,8 +19,8 @@
   "_axios-_sX4vCAy.js": {
     "file": "assets/axios-_sX4vCAy.js"
   },
-  "_calcularTotal-dhViwiOk.js": {
-    "file": "assets/calcularTotal-dhViwiOk.js"
+  "_calcularTotal-sXLDybB7.js": {
+    "file": "assets/calcularTotal-sXLDybB7.js"
   },
   "_es-!~{00X}~.js": {
     "file": "assets/es-D87rtk4j.css",
@@ -100,7 +100,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-oLuhJRwv.css",
+    "file": "assets/app-ZpgDGNHK.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -158,7 +158,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Carrito-3UOwv3Qr.js",
+    "file": "assets/Carrito-pASrm9zY.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -168,7 +168,7 @@
       "_index-XJuWVQ-l.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_Accordion2-crfYQLPj.js",
-      "_calcularTotal-dhViwiOk.js",
+      "_calcularTotal-sXLDybB7.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_axios-_sX4vCAy.js"
@@ -228,7 +228,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Pago-7Js7CJy_.js",
+    "file": "assets/Pago-C8PiBd-x.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -236,7 +236,7 @@
       "_CreateReactScript-gWdz5wop.js",
       "_index-XJuWVQ-l.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_calcularTotal-dhViwiOk.js",
+      "_calcularTotal-sXLDybB7.js",
       "_setPrototypeOf-vsx73Wsd.js",
       "_index-38suPYpT.js",
       "_floating-ui.dom-KYqStz1f.js",
@@ -250,7 +250,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Product-MULogstr.js",
+    "file": "assets/Product-OSS5LFeQ.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",

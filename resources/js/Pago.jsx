@@ -88,6 +88,7 @@ const Pago = ({ MensajesPredefinidos }) => {
     direccionFiscal: '',
     correoElectronico: '',
   });
+  console.log(carrito)
   const onSelectAddress = (direccion) => {
     console.log(direccion);
     setDatosFinales((prevDatos) => ({
@@ -104,7 +105,7 @@ const Pago = ({ MensajesPredefinidos }) => {
 
     // Verificar si la fecha es válida
     if (isNaN(date)) {
-      throw new Error('Invalid date');
+      return 'Not Set'
     }
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = new Intl.DateTimeFormat('es-ES', options).format(date);
@@ -161,14 +162,13 @@ const Pago = ({ MensajesPredefinidos }) => {
           <div className="flex flex-row gap-20 pt-10 w-full">
 
             <div className='flex flex-col w-full'>
-              {carrito.map((item, index) => (
-                console.log(item.fecha),
-                <DateTimeDisplay
 
-                  date={formattedDate(item.fecha)}
-                  time="12:00 pm - 4:00 pm"
-                  iconSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/008ab4d0d8aefa2f2fc7a83e847e76459be3aff9fcca7c4d2dec680f5127ecd2?placeholderIfAbsent=true&apiKey=b6f214df1e0f4f5eae4157d4f12e0ba3"
-                />))}
+              <DateTimeDisplay
+
+                date={formattedDate(carrito[0].fecha)}
+                time="12:00 pm - 4:00 pm"
+                iconSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/008ab4d0d8aefa2f2fc7a83e847e76459be3aff9fcca7c4d2dec680f5127ecd2?placeholderIfAbsent=true&apiKey=b6f214df1e0f4f5eae4157d4f12e0ba3"
+              />
 
               <section className="flex flex-col mt-6 w-full max-md:max-w-full">
                 <h2 className="text-base font-bold tracking-wider text-neutral-900 max-md:max-w-full">

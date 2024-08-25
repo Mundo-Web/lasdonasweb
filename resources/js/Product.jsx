@@ -108,7 +108,7 @@ const Product = ({ complementos, general,
           horario,
           complementos,
           fecha, imagen } = res.data;
-        console.log(res)
+        console.log(producto)
         let detalleProducto = {
           id: producto.id,
           producto: producto.producto,
@@ -117,10 +117,25 @@ const Product = ({ complementos, general,
           cantidad: 1,
           fecha: fecha,
           horario: horario,
-          complementos: complementos,
+          // complementos: complementos,
           tipo: producto?.tipos?.name ?? 'Clasica',
           extract: producto.extract,
         }
+        console.log(complementos)
+        let detalleComplemento = complementos.map(item => {
+          return {
+            id: item.id,
+            producto: item.producto,
+            precio: producto.descuento > 0 ? producto.descuento : producto.precio,
+            imagen: item.images.filter(item => item.caratula === 1)[0]?.name_imagen ?? '/images/img/noimagen.jpg',
+            cantidad: 1,
+            tipo: 'Complemento',
+            fecha: fecha,
+            horario: horario,
+            extract: item.extract,
+          }
+        })
+
 
 
         let carrito = Local.get('carrito') ?? [];
@@ -141,9 +156,10 @@ const Product = ({ complementos, general,
           });
         } else {
           // Agregar el nuevo artículo al carrito
-          carrito = [...carrito, detalleProducto];
+          carrito = [...carrito, detalleProducto, ...detalleComplemento];
         }
 
+        console.log(carrito)
         // Guardar el carrito actualizado en el almacenamiento local
         Local.set('carrito', carrito);
 
@@ -249,6 +265,9 @@ const Product = ({ complementos, general,
   const closeModalComplementos = () => {
     setIsModalOpen(false);
   };
+  const handleImageClick = () => {
+    setImageSrc(null);
+  };
 
   return (
     <>
@@ -263,20 +282,21 @@ const Product = ({ complementos, general,
                 currentProduct.images.map((image, index) => (
                   image.caratula === 1 && (
                     <div key={index} className="col-span-2 sm:col-span-3 relative">
-                      <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg shadow-2xl object-fit z-10 "
+                      <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
                       >
-                        <img
+                        {console.log(imageSrc)}
+                        {imageSrc !== null ? <img
                           id="Imagen Complementaria"
                           ref={imagePreviewRef}
                           src={imageSrc ? imageSrc : `${url_env}/images/img/noimagen.jpg`}
                           alt="Image preview"
-                          className="h-full w-full object-cover p-4"
-                          style={{}}
-                        />
+                          className={`h-full w-full object-cover p-4 rounded-lg cursor-pointer`}
+                          onClick={handleImageClick}
+                        /> : ''}
                       </div>
 
                       <img
-                        className="size-full object-cover"
+                        className=" object-cover h-[800px]"
                         src={image.name_imagen ? url_env + '/' + image.name_imagen : 'images/img/noimagen.jpg'}
                         alt="Product"
                       />
@@ -428,7 +448,7 @@ const Product = ({ complementos, general,
                     />
                     <label
                       htmlFor="react-option"
-                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5  border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[##73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border-2 border-gray-400 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-4 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
                       onClick={() => handleSelecttionOption(productos)}
                     >
                       <div className="flex flex-col justify-center items-center">
@@ -467,7 +487,7 @@ const Product = ({ complementos, general,
                       <label
                         onClick={() => handleSelecttionOption(item)}
                         htmlFor={`${item.tipos.name}-option`}
-                        className="radio-option-label inline-flex items-center justify-between w-full p-5  border-2 border-[#73B473] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-4 peer-checked:border-[##73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                        className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border-2 border-gray-400 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100 peer-checked:border-4"
                       >
                         <div className="flex flex-col justify-center items-center">
                           {item.tipos.name === 'Premium' ? (
@@ -480,7 +500,6 @@ const Product = ({ complementos, general,
                         </div>
                         <div className="flex flex-col justify-center items-center">
                           <p className="text-base font-semibold">{item.tipos.name}</p>
-                          {console.log(Number(item.descuento) > 0)}
                           {Number(item.descuento) > 0 ? (<>
                             <p className="text-base font-normal">
                               S/ <span>{Number(item.precio).toFixed(0)}</span>

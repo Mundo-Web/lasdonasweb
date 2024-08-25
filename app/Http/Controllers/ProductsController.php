@@ -843,7 +843,7 @@ class ProductsController extends Controller
       $complemento = []; 
       $fecha = $data['fecha'];
       foreach ($data['complementos'] as $key => $value) {
-        $complemento[] = Products::find($value)->toArray();
+        $complemento[] = Products::with(['images', 'tipos'])->find($value)->toArray();
       } 
       
       if($fecha == 'hoy')
