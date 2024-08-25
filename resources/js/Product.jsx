@@ -550,7 +550,7 @@ const Product = ({ complementos, general,
               {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                 onClick={agregarPedido}
               >
-                Confirmar dia y hora
+                Agregar al carrito
               </div>)}
               <p className="text-2xl  font-bold text-black pb-2">Paso 3: Personalizar</p>
               <p className="text-lg  font-normal text-black pb-4 ">Personaliza con una foto:</p>
@@ -749,7 +749,7 @@ const Product = ({ complementos, general,
                   {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                     onClick={agregarPedido}
                   >
-                    Confirmar dia y hora
+                    Agregar al carrito
                   </div>)}
 
 
