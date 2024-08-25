@@ -416,109 +416,68 @@
               <div class="rounded shadow-lg p-4 px-4 ">
 
 
-                <div id='general' class="grid gap-2 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 ">
-                  <div class="!flex !flex-row !content-between justify-between col-span-5 !flex-wrap"
-                    style="align-content: space-between;">
-                    <div class="col-span-2 flex flex-row gap-1 items-center">
-
-                      <div class="relative mb-2  mt-2">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-
-                        </div>
+                <div id='general' class="grid gap-2 gap-y-2 text-sm grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                  <div class="col-span-1 md:col-span-2 lg:col-span-3 flex flex-row justify-between flex-wrap">
+                    <div class="flex flex-row gap-1 items-center">
+                      <div class="relative mb-2 mt-2">
                         <input type="checkbox" id="complemento" name="complemento"
-                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                       </div>
-                      <label for="complemento">Complemento ? </label>
-
-
+                      <label for="complemento">Es un complemento?</label>
                     </div>
-                    <div class="" id="complementoContainer" hidden>
+                    <div id="complementoContainer" hidden class="w-full md:w-auto">
                       <select name="complemento_id" id="complemento_id"
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5 w-52 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
-                        <option value="">Seleccionar Complemento </option>
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 w-full md:w-auto">
+                        <option value="">Seleccionar Complemento</option>
                         @foreach ($complementos as $item)
                           <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
-
                       </select>
-
                     </div>
-                    <div class="" id="puntos_container" hidden>
+                    <div id="puntos_container" hidden class="w-full md:w-auto">
                       <input id="puntos_complemento" name="puntos_complemento" placeholder="Puntos Complemento"
-                        class="mt-1 w-[100px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block   p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('puntos_complemento') is-invalid @enderror">
-
-
-                      </input>
-
+                        class="mt-1 w-full md:w-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">
                     </div>
                   </div>
 
-
-                  <div class="md:col-span-5 mt-2">
-
+                  <div class="col-span-1 md:col-span-2 lg:col-span-3 mt-2">
                     <label for="producto">Producto<span class="text-red-500"> (Obligatorio) </span></label>
-
-                    <div class="relative mb-2  mt-2">
+                    <div class="relative mb-2 mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                          version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0"
-                          y="0" viewBox="0 0 469.336 469.336" style="enable-background:new 0 0 512 512"
-                          xml:space="preserve" class="">
-                          <g>
-                            <path
-                              d="m456.836 76.168-64-64.054c-16.125-16.139-44.177-16.17-60.365.031L45.763 301.682a10.733 10.733 0 0 0-2.688 4.587L.409 455.73a10.682 10.682 0 0 0 10.261 13.606c.979 0 1.969-.136 2.927-.407l149.333-42.703a10.714 10.714 0 0 0 4.583-2.69l289.323-286.983c8.063-8.069 12.5-18.787 12.5-30.192s-4.437-22.124-12.5-30.193zM285.989 89.737l39.264 39.264-204.996 204.997-14.712-29.434a10.671 10.671 0 0 0-9.542-5.896H78.921L285.989 89.737zm-259.788 353.4L40.095 394.5l34.742 34.742-48.636 13.895zm123.135-35.177-51.035 14.579-51.503-51.503 14.579-51.035h28.031l18.385 36.771a10.671 10.671 0 0 0 4.771 4.771l36.771 18.385v28.032zm21.334-17.543v-17.082c0-4.042-2.281-7.729-5.896-9.542l-29.434-14.712 204.996-204.996 39.264 39.264-208.93 207.068zM441.784 121.72l-47.033 46.613-93.747-93.747 46.582-47.001c8.063-8.063 22.104-8.063 30.167 0l64 64c4.031 4.031 6.25 9.385 6.25 15.083s-2.219 11.052-6.219 15.052z"
-                              fill="#9F9F9F" opacity="1" data-original="#000000" class=""></path>
-                          </g>
-                        </svg>
+                        <i class="fa fa-pencil"></i>
                       </div>
                       <input type="text" id="producto" name="producto" value="" required
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('producto') is-invalid @enderror"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 @error('producto') is-invalid @enderror"
                         placeholder="Producto">
                       @error('producto')
-                        <div style="color: red;">{{ $message }}</div>
+                        <div class="text-red-500">{{ $message }}</div>
                       @enderror
-
-
                     </div>
                   </div>
 
-                  <div class="md:col-span-5 mt-2">
-
+                  <div class="col-span-1 md:col-span-2 lg:col-span-3 mt-2">
                     <label for="extract">Extracto</label>
-
-                    <div class="relative mb-2  mt-2">
+                    <div class="relative mb-2 mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                          version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0"
-                          y="0" viewBox="0 0 469.336 469.336" style="enable-background:new 0 0 512 512"
-                          xml:space="preserve" class="">
-                          <g>
-                            <path
-                              d="m456.836 76.168-64-64.054c-16.125-16.139-44.177-16.17-60.365.031L45.763 301.682a10.733 10.733 0 0 0-2.688 4.587L.409 455.73a10.682 10.682 0 0 0 10.261 13.606c.979 0 1.969-.136 2.927-.407l149.333-42.703a10.714 10.714 0 0 0 4.583-2.69l289.323-286.983c8.063-8.069 12.5-18.787 12.5-30.192s-4.437-22.124-12.5-30.193zM285.989 89.737l39.264 39.264-204.996 204.997-14.712-29.434a10.671 10.671 0 0 0-9.542-5.896H78.921L285.989 89.737zm-259.788 353.4L40.095 394.5l34.742 34.742-48.636 13.895zm123.135-35.177-51.035 14.579-51.503-51.503 14.579-51.035h28.031l18.385 36.771a10.671 10.671 0 0 0 4.771 4.771l36.771 18.385v28.032zm21.334-17.543v-17.082c0-4.042-2.281-7.729-5.896-9.542l-29.434-14.712 204.996-204.996 39.264 39.264-208.93 207.068zM441.784 121.72l-47.033 46.613-93.747-93.747 46.582-47.001c8.063-8.063 22.104-8.063 30.167 0l64 64c4.031 4.031 6.25 9.385 6.25 15.083s-2.219 11.052-6.219 15.052z"
-                              fill="#9F9F9F" opacity="1" data-original="#000000" class=""></path>
-                          </g>
-                        </svg>
+                        <i class="fa fa-pencil"></i>
                       </div>
                       <input type="text" id="extract" name="extract" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('extract') is-invalid @enderror"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 @error('extract') is-invalid @enderror"
                         placeholder="Extracto">
                       @error('extract')
-                        <div style="color: red;">{{ $message }}</div>
+                        <div class="text-red-500">{{ $message }}</div>
                       @enderror
-
                     </div>
                   </div>
 
-                  <div class="md:col-span-5">
+                  <div class="col-span-1 md:col-span-2 lg:col-span-3">
                     <label for="description">Descripcion</label>
                     <div class="relative mb-2 mt-2">
-                      <x-textarea id="description" name="description" value="" />
-
-
+                      <x-textarea id="description" name="description" value="" class="w-full" />
                     </div>
                   </div>
-
                 </div>
+
               </div>
             </div>
 
@@ -531,12 +490,7 @@
                     <label for="precio">Precio <span class="text-red-500"> (Obligatorio) </span></label>
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                          fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
-                          stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
+                        <i class="fa fa-pencil"></i>
 
                       </div>
                       <input type="number" id="precio" name="precio" value="" required
@@ -553,12 +507,7 @@
                     <label for="descuento">Descuento</label>
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                          fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
-                          stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
+                        <i class="fa fa-pencil"></i>
                       </div>
                       <input type="number" id="descuento" name="descuento" value="0"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('descuento') is-invalid @enderror"
@@ -578,34 +527,11 @@
                   <select id="uppsell" name="uppsell[]" multiple="multiple"
                     class="w-full select2 mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror""></select>
                 </div>
-                {{--
-                <div class="md:col-span-5">
-                  <label for="costo_x_art">Costo por articulo</label>
-                  <div class="relative mb-2  mt-2">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                      </svg>
-                    </div>
-                    <input type="number" id="costo_x_art" name="costo_x_art" value=""
-                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Costo por articulo">
-                  </div>
-                </div>
-                --}}
                 <div class="md:col-span-5">
                   <label for="costo_x_art">Categoria</label>
                   <div class="relative mb-2  mt-2">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                      </svg>
+                      <i class="fa fa-pencil"></i>
                     </div>
                     <select name="categoria_id" required
                       class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
@@ -620,30 +546,6 @@
                     @enderror
                   </div>
                 </div>
-
-
-                {{--   <div class="md:col-span-5">
-                  <label for="costo_x_art">Colección</label>
-                  <div class="relative mb-2  mt-2">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                      </svg>
-                    </div>
-                    <select name="collection_id"
-                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <option value="">Seleccionar Colección</option>
-                      @foreach ($collection as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                      @endforeach
-
-                    </select>
-                  </div>
-                </div> --}}
-
 
                 <div class="md:col-span-5 mt-2">
                   <div class=" flex items-end justify-between gap-2 ">
@@ -1716,24 +1618,21 @@
   </script>
   <script>
     $('#complemento').on('change', function() {
-      console.log('cambio')
       if ($(this).is(':checked')) {
-        $('#complementoContainer').removeAttr('hidden');
-        $('#agregarOpciones').attr('hidden', true);
-        $('#puntos_complemento').removeAttr('hidden');
-        $('#puntos_container').removeAttr('hidden');
-        $('#puntos_complemento').attr('required', true);
-        $('#complemento_id').attr('required', true);
+        $('#complementoContainer').show(); // Mostrar el contenedor de complemento
+        $('#agregarOpciones').hide(); // Ocultar agregar opciones
+        $('#puntos_complemento').show(); // Mostrar puntos complemento
+        $('#puntos_container').show(); // Mostrar contenedor de puntos
+        $('#puntos_complemento').prop('required', true); // Hacer el campo requerido
+        $('#complemento_id').prop('required', true); // Hacer complemento_id requerido
       } else {
-        $('#complementoContainer').attr('hidden', true);
-        $('#puntos_complemento').attr('hidden', true);
-        $('#agregarOpciones').removeAttr('hidden');
-        $('#puntos_complemento').removeAttr('required');
-
-
-
+        $('#complementoContainer').hide(); // Ocultar el contenedor de complemento
+        $('#puntos_complemento').hide(); // Ocultar puntos complemento
+        $('#agregarOpciones').show(); // Mostrar agregar opciones
+        $('#puntos_complemento').prop('required', false); // Quitar el required del campo
+        $('#complemento_id').prop('required', false); // Quitar el required de complemento_id
       }
-    })
+    });
   </script>
 
   @include('_layout.scripts')
