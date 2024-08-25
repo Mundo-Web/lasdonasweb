@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import './fade.css';
 import { set } from 'sode-extend-react/sources/cookies';
+import ProductCard from './components/ProductCard';
 
 
 const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficios }) => {
@@ -419,42 +420,11 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
           </div>
           <div className='grid grid-cols-4 gap-5 mt-16'>
-            {items.map((item, index) => (
-
-              <div className='  h-[400px] mt-2' >
-                {item.images.map((image, imgIndex) => (
-                  image.caratula === 1 && (
-                    <a key={imgIndex} href={`/producto/${item.id}`}><img
-                      key={imgIndex}
-                      className=" h-[280px] object-cover"
-                      src={image.name_imagen ? `${url_env}/${image.name_imagen}` : 'images/img/noimagen.jpg'}
-                      alt="Producto"
-                      onError={(e) => {
-                        // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
-                        e.target.src = `${url_env}/images/img/noimagen.jpg`;
-                      }}
-                    /> </a>
-
-                  )
-                ))}
-                <div className='flex flex-col mt-2 gap-3'>
-                  <div className='flex flex-col gap-2 '>
-                    <h2 className='text-[16px] font-bold text-[#112212]'> {item.producto}</h2>
-                    <p className='text-[#112212] opacity-80 text-[14px] h-10'>{truncateText(item.extract, 80)}</p>
-                  </div>
-
-                  <span className='text-[16px] font-bold text-[#112212]'>
-                    {item.descuento > 0 ? (
-                      <>
-                        {item.descuento} - <span className='text-[14px] font-bold text-[#112212] line-through opacity-55'>{item.precio}</span>
-                      </>
-                    ) : (
-                      item.precio
-                    )}
-                  </span>
-
-                </div>
-              </div>))}
+            {
+            items.map((item, index) => (
+            <ProductCard key={`product-${index}`} {...item}/>
+            ))
+              }
 
 
 
