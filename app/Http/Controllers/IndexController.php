@@ -28,31 +28,23 @@ use App\Models\MensajesPredefinidos;
 use App\Models\Ordenes;
 use App\Models\PoliticaSustitucion;
 use App\Models\PolyticsCondition;
-use App\Models\Price;
 use App\Models\Specifications;
 use App\Models\TermsAndCondition;
 use App\Models\Tipo;
-use App\Models\TypeAttribute;
 use App\Models\User;
 use App\Models\UserDetails;
 use App\Services\InstagramService;
-use Attribute;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
-
-use function PHPUnit\Framework\isNull;
 
 class IndexController extends Controller
 {
@@ -73,9 +65,10 @@ class IndexController extends Controller
     $productos = Products::where('status', '=', 1)->where('tipo_servicio', 'producto')->with('tags')->get();
     $categorias = Category::all();
     $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
+    $recomendados = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
     // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
     // ->where('visible', '=', 1)->with('tags')->get();
-    $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
+    // $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
 
     $general = General::find(1);
     $benefit = Strength::where('status', '=', 1)->get();
@@ -88,7 +81,7 @@ class IndexController extends Controller
     $media = $this->instagramService->getUserMedia();
 
 
-    return view('public.index', compact('media', 'productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
+    return view('public.index', compact('media', 'productos', 'destacados', 'recomendados', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
   }
 
   public function coleccion($filtro)
