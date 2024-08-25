@@ -74,45 +74,7 @@
               <div class="swiper-wrapper h-full relative">
                 @foreach ($productos as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
-                    <div class="flex flex-col gap-7   col-span-1">
-                      <a href="{{ route('Product.jsx', $item->id) }}">
-                        <div class="px-2">
-                          @if ($item->images->count() == 0)
-                            <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                              class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                          @else
-                            @foreach ($item->images as $image)
-                              @if ($image->caratula == 1)
-                                @if ($image->name_imagen)
-                                  <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @else
-                                  <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                                    class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
-                                @endif
-                              @endif
-                            @endforeach
-                          @endif
-                        </div>
-
-                        <div class="px-4 mt-5 ">
-                          <h2 class="text-xl font-bold text-black">{{ $item->producto }}</h2>
-                          <p class="text-base font-normal text-black h-[48px]">{{ Str::substr($item->extract, 0, 59) }}...
-                          </p>
-                          <div class="flex  mt-2 font-bold ">
-                            <p>S/ <span>75.00</span></p>
-                            <p class="px-2">-</p>
-                            <p>S/ <span>120.00</span></p>
-                          </div>
-                        </div>
-                      </a>
-                      <div class="w-full px-2">
-                        <button type="button"
-                          class="w-full  py-3  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">Agregar
-                          a mi bolsa
-                          <img class="ml-2" src="{{ asset('img_donas/addcart.svg') }}" /></button>
-                      </div>
-                    </div>
+                    <x-product.card :item="$item" />
                   </div>
                 @endforeach
               </div>
@@ -524,7 +486,7 @@
   <script>
     var headerServices = new Swiper(".productos-relacionados", {
       slidesPerView: 4,
-      spaceBetween: 10,
+      spaceBetween: 30,
       loop: true,
       centeredSlides: false,
       initialSlide: 0, 
