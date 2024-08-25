@@ -418,65 +418,30 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
 
           </div>
-          <div className='grid grid-cols-4 gap-5 mt-16'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-16'>
             {
             items.map((item, index) => (
             <ProductCard key={`product-${index}`} {...item}/>
             ))
               }
-
-
-
-
-
           </div>
+
           <div className="flex flex-row w-full items-center justify-center mt-12">
             {loading && (<button type='button' onClick={() => setCurrentPage(currentPage + 1)} className="rounded-full border-2 bg-white shadow-xl border-[#336234] text-[#336234] p-2 px-3 font-bold">
               {namebtn}
             </button>)}
-
           </div>
-          <div className='grid grid-cols-4 gap-7 mt-16'>
 
-            {beneficios.map((beneficio, index) => {
-              return (<Card item={beneficio} url={url_env}></Card>)
-            })}
-
+          <div className='mt-14 font-b_slick_bold w-full'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 justify-between'>
+              {beneficios.map((beneficio, index) => {
+                return (<Card item={beneficio} url={url_env}></Card>)
+              })}
+            </div>
           </div>
+
         </div>
 
-        <div className='mt-14 px-[5%] lg:px-[8%] font-b_slick_bold'>
-            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 justify-between">
-              <article class="flex flex-col p-4 rounded-3xl bg-[#E8EDDE] min-w-[240px]">
-                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6f3029906cb8e86d0120daed67bb94b8b03a322ad888069eda0bc9d87d909982?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da" alt="Delivery truck icon" class="object-contain w-12 aspect-square" />
-                <div class="flex flex-col mt-4 w-full">
-                  <h2 class="text-2xl tracking-wide text-zinc-800 ">Envíos a todo Lima y Callao</h2>
-                  <p class="mt-2 text-base tracking-wide leading-5 text-neutral-600 font-b_slick_regular">Llegamos a todo Lima y Callao con los más bajos costos por delivery.</p>
-                </div>
-              </article>
-              <article class="flex flex-col p-4 rounded-3xl bg-[#E8EDDE] min-w-[240px]">
-                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8615517348df310c50aa6a66b821a89abe56250cb57b206f550a7cba34afd6b4?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da" alt="Clock icon" class="object-contain w-12 aspect-square" />
-                <div class="flex flex-col mt-4 w-full">
-                  <h2 class="text-2xl tracking-wide text-zinc-800 ">Envía hoy mismo</h2>
-                  <p class="mt-2 text-base tracking-wide leading-5 text-neutral-600 font-b_slick_regular">Realiza la compra hasta las 3:30pm y entregaremos tu detalle el mismo día.</p>
-                </div>
-              </article>
-              <article class="flex flex-col p-4 rounded-3xl bg-[#E8EDDE] min-w-[240px]">
-                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7186ebff759020c6e8059a79debf7dd8a20d47c80e51df4713cd3821db89e36?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da" alt="Lock icon" class="object-contain w-12 aspect-square" />
-                <div class="flex flex-col mt-4 w-full">
-                  <h2 class="text-2xl tracking-wide text-zinc-800 ">Compra segura</h2>
-                  <p class="mt-2 text-base tracking-wide leading-5 text-neutral-600 font-b_slick_regular">Compra rápido, fácil y seguro con tarjeta o transferencias bancarias.</p>
-                </div>
-              </article>
-              <article class="flex flex-col p-4 rounded-3xl bg-[#E8EDDE] min-w-[240px]">
-                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fd6fa80c5f43aa2d391e6c63473d72b1875567c77ab470f8b6b4f1033fdbc9bb?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da" alt="Camera icon" class="object-contain w-12 aspect-square" />
-                <div class="flex flex-col mt-4 w-full">
-                  <h2 class="text-2xl font-medium tracking-wider leading-none text-zinc-800">Incluye una foto</h2>
-                  <p class="mt-2 text-base tracking-wide leading-5 text-neutral-600 font-b_slick_regular">Agregamos una foto en tu mensaje para que tu detalle sea único y especial.</p>
-                </div>
-              </article>
-            </section>
-        </div>    
       </section>
 
     </>
