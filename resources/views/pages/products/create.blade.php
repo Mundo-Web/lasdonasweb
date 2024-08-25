@@ -528,6 +528,12 @@
                     class="w-full select2 mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror""></select>
                 </div>
                 <div class="md:col-span-5">
+                  <label for="items" class="block font-medium text-gray-700">Complementos<i
+                      class="fa-solid fa-cart-plus ml-4"></i></label>
+                  <select id="complementos" name="complementos[]" multiple="multiple"
+                    class="w-full select2 mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror""></select>
+                </div>
+                <div class="md:col-span-5">
                   <label for="costo_x_art">Categoria</label>
                   <div class="relative mb-2  mt-2">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -1599,6 +1605,25 @@
         placeholder: 'Select items',
         ajax: {
           url: '/api/items', // URL de tu endpoint de búsqueda
+          dataType: 'json',
+          delay: 250,
+          processResults: function(data) {
+            return {
+              results: $.map(data, function(item) {
+                return {
+                  id: item.id,
+                  text: item.producto
+                }
+              })
+            };
+          },
+          cache: true
+        }
+      });
+      $('#complementos').select2({
+        placeholder: 'Selecciona los complementos',
+        ajax: {
+          url: '/api/items',
           dataType: 'json',
           delay: 250,
           processResults: function(data) {

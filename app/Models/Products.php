@@ -34,7 +34,8 @@ class Products extends Model
         'tipo_servicio',
         'complemento_id',
         'puntos_complemento', 
-        'uppsell'
+        'uppsell',
+        'complementos'
     ];
 
     public function tipos()

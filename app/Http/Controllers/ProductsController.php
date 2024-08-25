@@ -102,6 +102,10 @@ class ProductsController extends Controller
       $data['uppsell'] = json_encode($data['uppsell']);
     }
 
+    if (isset($data['complementos'])) {
+      $data['complementos'] = json_encode($data['complementos']);
+    }
+
     if (is_null($request->input('descuento'))) {
       $request->merge(['descuento' => 0]);
       $data['descuento'];
@@ -837,10 +841,9 @@ class ProductsController extends Controller
       $fecha = $data['fecha'];
       foreach ($data['complementos'] as $key => $value) {
         $complemento[] = Products::with(['images', 'tipos'])->find($value)->toArray();
-      } 
-      
-      if($fecha == 'hoy')
-      {
+      }
+
+      if ($fecha == 'hoy') {
         $fecha = date('Y-m-d');
       } else if ($fecha == 'manana') {
         $fecha = date('Y-m-d', strtotime('+1 day'));
