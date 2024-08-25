@@ -46,6 +46,8 @@ const Product = ({ complementos, general,
     imagen: '',
   });
 
+  console.log(subproductos)
+
   useEffect(() => {
     console.log(detallePedido)
   }, [detallePedido])
@@ -658,6 +660,19 @@ const Product = ({ complementos, general,
 
 
               </div>
+
+              {console.log(currentProduct)}
+              <div className='flex flex-col'>
+                {especificaciones.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`w-[488px] h-12 flex flex-row content-between items-center ${index % 2 === 0 ? 'bg-[#DBDED6]' : 'bg-[#e8eddee5]'}`}
+                  >
+                    <span className='flex flex-row content-between justify-between px-4'><div className='font-bold'>{item.tittle} </div> </span> <div>{item.specifications}</div>
+                  </div>
+                ))}
+              </div>
+
             </div>
           </div>
 
