@@ -9,6 +9,7 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+  <link rel="stylesheet" id="send-to-cart-style" href=""/>
   {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}" /> --}}
 
   @stack('head')
@@ -27,9 +28,10 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{config('app.name')}}</title>
+  <title>{{ config('app.name') }}</title>
   @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/' . Route::currentRouteName()])
-  <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=L+D&color=fff&background=ff8555&rounded=true" type="image/x-icon">
+  <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=L+D&color=fff&background=ff8555&rounded=true"
+    type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   @inertiaHead
 </head>
@@ -39,7 +41,7 @@
   @include('components.public.header')
 
 
-  <i id="gift-icon" class="absolute fa fa-gift border-1 bg-red-500 " style="display: none"></i>
+  <span id="gift-icon" class="fas"></span>
 
   {{-- Aqui va el contenido de cada pagina --}}
   @inertia

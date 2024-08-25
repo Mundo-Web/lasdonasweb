@@ -24,6 +24,7 @@ import Swal from 'sweetalert2';
 import './fade.css';
 import CalendarComponent from './components/CalendarComponent';
 import ProductCard from './components/ProductCard'
+import { prepareToSend } from './Utils/SendToCart'
 
 const Product = ({ complementos, general,
   tipoDefault,
@@ -85,19 +86,9 @@ const Product = ({ complementos, general,
   const agregarPedido = async (e) => {
 
     const button = e.target
-    const rect = button.getBoundingClientRect();
+    const cartButton = document.getElementById('open-cart')
 
-    // Posición relativa al body
-    const posicionX = rect.left + window.scrollX;
-    const posicionY = rect.top + window.scrollY;
-
-    $('#gift-icon').css({
-      top: posicionY,
-      left: posicionX,
-      display: 'block'
-    });
-
-    console.log(`Posición X: ${posicionX}, Posición Y: ${posicionY}`);
+    prepareToSend(button, cartButton);
 
     const opciones = {
       fecha: 'Fecha de entrega',
@@ -182,13 +173,28 @@ const Product = ({ complementos, general,
         // Guardar el carrito actualizado en el almacenamiento local
         Local.set('carrito', carrito);
 
-        limpiarHTML();
-        PintarCarrito()
-        Swal.fire({
-          icon: 'success',
-          title: 'Exito',
-          text: `Producto agregado correctamente al CArro de compras`,
-        });
+
+
+        const item = $('#gift-icon')
+        item.addClass('send-to-cart')
+        setTimeout(() => {
+          item.removeClass('send-to-cart')
+          item.removeAttr('style')
+
+          limpiarHTML();
+          PintarCarrito()
+
+          $(cartButton).addClass('shake');
+          setTimeout(function () {
+            $(cartButton).removeClass('shake');
+          }, 1000)
+        }, 1000);
+
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Exito',
+        //   text: `Producto agregado correctamente al CArro de compras`,
+        // });
       }
 
     } catch (error) {
@@ -546,7 +552,7 @@ const Product = ({ complementos, general,
               {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                 onClick={agregarPedido}
               >
-                Confirmar dia y hora
+                Agregar al carrito
               </div>)}
               <p className="text-2xl  font-bold text-black pb-2">Paso 3: Personalizar</p>
               <p className="text-lg  font-normal text-black pb-4 ">Personaliza con una foto:</p>
@@ -758,7 +764,7 @@ const Product = ({ complementos, general,
                   {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                     onClick={agregarPedido}
                   >
-                    Confirmar dia y hora
+                    Agregar al carrito
                   </div>)}
 
 
