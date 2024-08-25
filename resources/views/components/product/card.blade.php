@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-7 col-span-1">
+<div class="flex flex-col gap-7 col-span-1 font-b_slick_bold tracking-wider">
   <a class="rounded-xl bg-white shadow-lg overflow-hidden" href="{{ route('Product.jsx', $item->id) }}">
     <div class="bg-[#FFF4ED] rounded-t-xl overflow-hidden">
       @if ($item->images->count() == 0)
@@ -20,7 +20,7 @@
     </div>
     <div class="p-4">
       <h2 class="block text-xl text-[#112212] mb-1 font-bold truncate">{{ $item->producto }}</h2>
-      <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1">
+      <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1 font-b_classic_regular tracking-wider">
         {{ $item->extract }}
       </p>
       <div class="flex items-center  space-x-2">
