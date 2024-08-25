@@ -28,7 +28,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Index</title>
+  <title>{{ config('app.name') }}</title>
 </head>
 
 <body class="body">
