@@ -102,6 +102,10 @@ class ProductsController extends Controller
       $data['uppsell'] = json_encode($data['uppsell']);
     }
 
+    if (isset($data['complementos'])) {
+      $data['complementos'] = json_encode($data['complementos']);
+    }
+
     if (is_null($request->input('descuento'))) {
       $request->merge(['descuento' => 0]);
       $data['descuento'];
