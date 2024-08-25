@@ -724,13 +724,13 @@ button {
   background-position: center;
 }
 
-.banner_section2 {
+/* .banner_section2 {
   background-image: url("../img_donas/Fondo-30_1.png");
   object-fit: cover;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
+} */
 
 .js-example-tags-container ul {
   list-style: none;
@@ -1320,3 +1320,17 @@ input:checked + .ordenar {
   -o-border-radius: 1rem;
 }
 
+  @font-face {
+    font-family: "b_classic_bold";
+    src: url("/fonts/beausiteclassictrial-bold.woff") format("woff");
+  }
+  
+  @font-face {
+    font-family: "b_classic_regular";
+    src: url("/fonts/beausiteclassictrial-regular.woff") format("woff");
+  }
+  
+  @font-face {
+    font-family: "b_slick_bold";
+    src: url("/fonts/beausiteslicktrial-bold.woff") format("woff");
+  }

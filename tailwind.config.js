@@ -40,14 +40,10 @@ export default {
                 blue: '2px solid rgba(0, 112, 244, 0.5)',
             },
             fontFamily: {
-                mediumDisplay: ["font_MediumDisplay"] /* font-mediumDisplay */,
-                mediumItalicDisplay: ["font_MediumItalicDisplay"],
-                boldDisplay: ["font_BoldDisplay"] /* font-boldDisplay */,
-                boldItalicDisplay: ["font_BoldItalicDisplay"],
-                regularDisplay: ["font_RegularDisplay"] /* font-regularDisplay */,
-                regularItalicDisplay: ["font_RegularItalicDisplay"],
-                lightDisplay: ["font_LightDisplay"],
-                lightItalicDisplay: ["font_LightItalicDisplay"],
+                b_classic_bold: ["b_classic_bold"],
+                b_classic_regular: ["b_classic_regular"],
+                b_slick_bold: ["b_slick_bold"],
+              
             },
             fontSize: {
                 xs: ['0.75rem', { lineHeight: '1.5' }],

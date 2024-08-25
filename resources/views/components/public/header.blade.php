@@ -7,10 +7,10 @@
   $isIndex = $pagina == 'index';
 @endphp
 
-<header class="font-Inter_Regular">
+<header class="font-b_classic_regular">
   
     <div class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
-      Producto | Categoría <span class="ml-1 font-bold"> más vendida </span> <img class="w-6 ml-2"src="{{ asset('img_donas/spa.svg') }}">
+      Producto | Categoría <span class="ml-1 font-b_classic_bold"> más vendida </span> <img class="w-6 ml-2"src="{{ asset('img_donas/spa.svg') }}">
     </div>
  
 
@@ -59,7 +59,7 @@
         <div class="flex justify-end md:w-auto md:justify-center items-center gap-2">
 
           <div
-            class="relative w-full lg:w-80 lg:py-0 border-b lg:border-0 border-[#082252] mr-3 hidden lg:flex">
+            class="relative w-full lg:w-80 lg:py-0 border-b lg:border-0 border-[#082252] mr-3 hidden lg:flex font-b_classic_bold">
             <input id="buscarproducto" type="text" placeholder="Buscar..."
               class="w-full pl-12 pr-10 py-3 border lg:border-[#F8F8F8] bg-[#F8F8F8] rounded-3xl focus:outline-none focus:ring-0 text-gray-400 placeholder:text-gray-400 focus:border-transparent">
             <span class="absolute inset-y-0 left-0 flex items-start lg:items-center bg-[#336234] rounded-full my-[7px] px-2 ml-2">
@@ -129,13 +129,13 @@
     </div>
 
     <div class="header_bottom  md:px-[5%] lg:px-[10%] h-12 py-3 bg-[#336234]">
-      <div class="text-colorgris font-medium text-base">
+      <div class="text-base font-b_classic_bold">
         <nav>
           <div class="swiper menu">
               <div class="swiper-wrapper relative">
                 @foreach ($submenucategorias as $item)
                     <div class="swiper-slide">
-                        <ul class="menu flex flex-row justify-center items-center text-center text-white">
+                        <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
                             <li><a href="/catalogo/{{ $item->id }}">{{ $item->name }}</a></li>
                         </ul>
                     </div>

@@ -47,28 +47,29 @@
 
   <main class="flex flex-col gap-12">
     <section class="bg-[#F9F9F9]">
-  <div class="relative overflow-hidden banner_section2">
-    <div class="relative z-10 text-center flex flex-col justify-center items-center py-16 md:py-32 px-4 lg:px-[15%]"
-      style="background: radial-gradient(circle, rgba(255,255,255,.5) 0%, transparent 50%);">
-      <h4 class="text-[18px] font-semibold text-[#336234] uppercase tracking-wider mb-4">Celebraciones Especiales</h4>
-      <h2 class="text-3xl md:text-5xl font-bold text-[#112212] mb-4">Encuentra el Regalo Perfecto para Cada Ocasión</h2>
-      <p class="text-lg font-medium text-[rgba(17,34,18,0.80)] mb-6">
-        Descubre nuestra amplia selección de productos para todas tus necesidades: desde arreglos florales y peluches
-        hasta vinos, joyería y mucho más. ¡Aquí hay algo especial para cada celebración!
-      </p>
-      <button type="button"
-        class="bg-[#336234] hover:bg-[#336234dd] text-white px-6 py-3 rounded-full font-bold transition duration-300">
-        Explora Ahora
-      </button>
-    </div>
-  </div>
-</section>
+      <div class="relative overflow-hidden banner_section2">
+        <div class="relative z-10 text-center flex flex-col justify-center items-center py-16 md:py-32 px-4 lg:px-[15%]"
+          style="background: radial-gradient(circle, rgba(255,255,255,.5) 0%, transparent 50%);">
+          <h4 class="text-[18px] font-semibold text-[#336234] uppercase tracking-wider mb-4">Celebraciones Especiales</h4>
+          <h2 class="text-3xl md:text-5xl font-bold text-[#112212] mb-4">Encuentra el Regalo Perfecto para Cada Ocasión
+          </h2>
+          <p class="text-lg font-medium text-[rgba(17,34,18,0.80)] mb-6">
+            Descubre nuestra amplia selección de productos para todas tus necesidades: desde arreglos florales y peluches
+            hasta vinos, joyería y mucho más. ¡Aquí hay algo especial para cada celebración!
+          </p>
+          <button type="button"
+            class="bg-[#336234] hover:bg-[#336234dd] text-white px-6 py-3 rounded-full font-bold transition duration-300">
+            Explora Ahora
+          </button>
+        </div>
+      </div>
+    </section>
 
 
 
     <section>
-      <div class="px-[8%]  space-y-10  ">
-        <div class="text-center  pt-[3.25rem] space-y-1 bg-[#FFFFFF] z-5">
+      <div class="px-[8%] space-y-10 ">
+        <div class="text-center  pt-[3.25rem] space-y-1 bg-[#FFFFFF] z-5 -p">
           <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
           <h2 class="text-4xl md:text-4xl font-bold text-black">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
         </div>
@@ -79,7 +80,7 @@
               <div class="swiper-wrapper h-full relative">
                 @foreach ($productos as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
-                    <x-product.card :item="$item"/>
+                    <x-product.card :item="$item" />
                   </div>
                 @endforeach
               </div>
@@ -245,7 +246,7 @@
               <div class="swiper-wrapper h-full relative">
                 @foreach ($recomendados as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
-                    <x-product.card :item="$item"/>
+                    <x-product.card :item="$item" />
                   </div>
                 @endforeach
               </div>
