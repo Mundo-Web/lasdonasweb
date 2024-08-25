@@ -46,6 +46,7 @@
 @section('content')
 
   <main class="flex flex-col gap-12">
+
     <section>
       <div class="bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
          style="background-image: url('{{ asset('img_donas/bannerflores.png') }}');">
@@ -58,8 +59,6 @@
         <button type="button" class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">Comprar ahora</button>
       </div>
     </section>
-
-
 
     <section>
       <div class="px-[5%] lg:px-[8%]  space-y-10  ">
@@ -80,7 +79,7 @@
               </div>
             </div>
 
-            <div class="absolute flex flex-row gap-3 " style="  right: 0%;  bottom: -19%;">
+            <div class="flex flex-row justify-end gap-3 ">
               <div
                 class="customprev h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
                 <img src="{{ asset('images\prev.png') }}" alt="Prev">
@@ -104,45 +103,43 @@
       </div>
 
       @if (count($category->take(4)) == 4)
-        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-4 pt-10 ">
-
-
-          <div class="w-full sm:row-span-2">
-            <div class=" h-96  sm:h-full flex flex-col justify-end items-start pb-6 pl-6 "
-              style="background-image: url('{{ $category[0]->url_image . $category[0]->name_image }}'); background-size: cover; background-position: center;"
-              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
-              <h3 class="text-base font-medium text-white">Categoría</h3>
-              <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
+       <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
+         <div class="w-full">
+            <div class="h-full">
+              <img src="{{ asset($category[0]->url_image . $category[0]->name_image) }}" alt=""
+                class="h-96 sm:h-[760px] flex flex-col justify-end items-start object-cover w-full"
+                onerror="this.src='/images/img/noimagen.jpg';">
+              <h3 class="text-base font-medium text-[#FE4A11] mt-4">Categoría</h3>
+              <h2 class="text-3xl font-bold ">{{ $category[0]->name }}</h2>
             </div>
           </div>
-          <div class="w-full ">
-            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[1]->url_image . $category[1]->name_image }}'); background-size: cover; background-position: center;"
-              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
-              <h3 class="text-base font-medium text-white">Categoría</h3>
-              <h2 class="text-3xl font-bold text-white">{{ $category[1]->name }}</h2>
+          <div class="w-full">
+            <div class="h-full">
+              <img src="{{ asset($category[1]->url_image . $category[1]->name_image) }}" alt=""
+                class="h-96 sm:h-[760px] flex flex-col justify-end items-start object-cover w-full"
+                onerror="this.src='/images/img/noimagen.jpg';">
+              <h3 class="text-base font-medium text-[#FE4A11] mt-4">Categoría</h3>
+              <h2 class="text-3xl font-bold ">{{ $category[1]->name }}</h2>
             </div>
           </div>
-          <div class="w-full ">
-            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[2]->url_image . $category[2]->name_image }}'); background-size: cover; background-position: center;"
-              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
-              <h3 class="text-base font-medium text-white">Categoría</h3>
-              <h2 class="text-3xl font-bold text-white">{{ $category[2]->name }}</h2>
+          <div class="w-full">
+            <div class="h-full w-full">
+              <img src="{{ asset($category[2]->url_image . $category[2]->name_image) }}" alt=""
+                class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full  flex flex-col justify-end items-start object-cover"
+                onerror="this.src='/images/img/noimagen.jpg';">
+              <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+              <h2 class="text-[32px] font-bold ">{{ $category[2]->name }}</h2>
             </div>
           </div>
-        </div>
-        <div class="grid grid-cols-1 px-[5%] lg:px-[8%] pb-10 mt-4">
-
-          <div class="w-full ">
-            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[3]->url_image . $category[3]->name_image }}'); background-size: cover; background-position: center;"
-              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
-              <h3 class="text-base font-medium text-white">Categoría</h3>
-              <h2 class="text-3xl font-bold text-white">{{ $category[3]->name }}</h2>
+          <div class="w-full">
+            <div class="h-full">
+              <img src="{{ asset($category[3]->url_image . $category[3]->name_image) }}" alt=""
+                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                onerror="this.src='/images/img/noimagen.jpg';">
+              <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+              <h2 class="text-3xl font-bold ">{{ $category[3]->name }}</h2>
             </div>
           </div>
-
         </div>
       @elseif (count($category->take(4)) == 3)
         <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
@@ -215,19 +212,18 @@
         </div>
       @endif
 
-
     </section>
 
-    <section class="bg-[#E8EDDE] font-b_slick_bold py-12 lg:py-20">
-      <div class="px-[6%]">
-        <div class="text-center">
-          <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">NOVEDADES</h3>
+    <section class="bg-[#E8EDDE] font-b_slick_bold pt-16 pb-20 lg:pt-20 lg:pb-28 ">
+      <div class="w-full px-[5%] lg:px-[8%] flex flex-col gap-10">
+        <div class="flex flex-col gap-3 text-center">
+          <h3 class="text-xl font-bold text-[#FE4A11] ">NOVEDADES</h3>
           <h2 class="text-4xl md:text-4xl font-bold text-black">TODAS NUESTRAS NOVEDADES</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6">
           <div class="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-4 relative">
-            <div class="swiper productos-relacionados  ">
+            <div class="swiper productos-novedades">
               <div class="swiper-wrapper h-full relative">
                 @foreach ($recomendados as $item)
                   <div class="swiper-slide w-full h-full col-span-1">
@@ -235,17 +231,15 @@
                   </div>
                 @endforeach
               </div>
-
-
             </div>
-            <div class=" absolute  flex flex-row gap-3 " style="  right: 0%;  bottom: -19%;">
+            <div class="flex flex-row justify-end gap-3">
               <div
-                class=" h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                class="prevnovedades h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
                 <img src="{{ asset('images\prev.png') }}" alt="Prev">
               </div>
 
               <div
-                class=" h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                class="nextnovedades h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
                 <img src="{{ asset('images\next.png') }}" alt="Next">
               </div>
             </div>
@@ -254,82 +248,93 @@
       </div>
     </section>
 
-
     @if (count($testimonie) > 0)
-      <section>
-        <div class="px-[8%] py-8 space-y-10">
-          <div class="text-left  space-y-2">
-            <h3 class="text-lg font-bold text-rosalasdonas">Nuestros clientes</h3>
-            <h2 class="text-4xl md:text-5xl font-bold text-black">Testimonios en Flor</h2>
-          </div>
-          <div class="grid grid-cols-1    ">
-            <div class="swiper-container swipper-testimonies overflow-hidden">
-              <div class="swiper-wrapper">
-                @foreach ($testimonie as $item)
-                  <div class="swiper-slide flex flex-row items-center">
-                    <div class="flex flex-row">
-                      <div class="w-1/2">
-                        <img class="w-full object-contain" src="{{ asset('img_donas/splash_testimonios.png') }}" />
-                      </div>
-                      <div class="w-1/2 px-4">
-                        <p class="text-[40px] text-black font-bold leading-snug">{{ $item->testimonie }}</p>
-                      </div>
-                    </div>
-
-                  </div>
-                @endforeach
-              </div>
-              <!-- Añadir paginación y navegación -->
-              <div class="swiper-pagination"></div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-            </div>
+      <section class="pt-10 pb-12  lg:py-20 flex flex-col w-full gap-12 relative px-[5%] lg:px-[8%]">
+        <div class="w-full">
+          <div class="flex flex-col gap-3 text-left font-b_slick_bold">
+            <h3 class="text-xl text-[#FE4A11] ">NUESTROS CLIENTES</h3>
+            <h2 class="text-4xl md:text-4xl text-black">TESTIMONIO EN FLOR</h2>
           </div>
         </div>
 
+        <div class="swiper testimonios flex flex-row w-full px-[5%]">
+          <div class="swiper-wrapper">
+           @foreach ($testimonie as $item)  
+            <div class="swiper-slide">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
+                
+                <div class="flex flex-col lg:col-span-5 justify-center items-center">
+                  <div class="w-full h-[500px] 2xl:h-[700px] overflow-hidden relative bg-cover bg-center flex justify-center items-center"
+                      {{-- style="background-image: url('{{ asset('img_donas/testimonios.png') }}');" --}}
+                      >
+                        <img src="{{ asset('img_donas/testimonios.png') }}" class="rounded-none bg-cover w-full h-full object-cover md:object-contain" />
+                  </div>
+                </div>
+
+                <div class="flex flex-col lg:col-span-7 gap-10 justify-center items-start w-full font-b_slick_bold">
+                  <h2 class="text-3xl lg:text-4xl 2xl:text-5xl leading-none  text-black  text-left line-clamp-6">
+                   {{ $item->testimonie }}
+                  </h2>
+                  <div class="flex flex-col justify-start items-center">
+                    <div class="flex flex-row items-center gap-3">
+                      <img class="rounded-full w-20 h-20 object-cover" src="{{ asset('img_donas/carlossiles.png') }}" />
+                      <div>
+                        <h3 class="text-lg font-outfitSemiBold">Carlos Siles</h3>
+                        <p class="text-base font-outfitLight">Representante Exclusivo Doulton</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+           @endforeach
+          </div>
+        </div>
+
+        <div class="flex flex-row justify-start gap-3 ">
+              <div
+                class="prevtestimonio h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                <img src="{{ asset('images\prev.png') }}" alt="Prev">
+              </div>
+              <div
+                class="nexttestimonio h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                <img src="{{ asset('images\next.png') }}" alt="Next">
+              </div>
+        </div>
       </section>
     @endif
 
+    <section>
+      <div class="grid grid-cols-1 ">
+          @php
+            $videoUrl = $general->url_video;
+            parse_str(parse_url($videoUrl, PHP_URL_QUERY), $queryParams);
+            $videoId = $queryParams['v'] ?? null;
+          @endphp
 
-
-    {{-- <section>
-      <div class="grid grid-cols-1  py-10 mt-4">
-
-        <div class="w-full ">
-          <div class=" h-200   flex flex-col justify-end items-start pb-[3%]  relative " id="">
-            <div class=" flex justify-center items-center m-auto">
-              @php
-                $videoUrl = $general->url_video;
-                parse_str(parse_url($videoUrl, PHP_URL_QUERY), $queryParams);
-                $videoId = $queryParams['v'] ?? null;
-              @endphp
-              <iframe src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player"
-                frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen class="w-[100vw] aspect-video      md:h-[282px] lg:h-[600px]  2xl:h-[750px]"></iframe>
+        <div class="contenedorvideo w-full h-[500px] lg:h-[600px] border border-gray-200 rounded-none overflow-hidden relative bg-cover bg-center" style="background-image: url('{{ asset('img_donas/Video.png') }}');">
+            <div class="absolute inset-0 flex items-center justify-center disparo bg-opacity-50 cursor-pointer" onclick="showVideo(this)">
+              <button class="text-white text-2xl"><img class="w-20 hover:scale-125 transition-transform duration-300" src="{{ asset('img_donas/botonplay.png') }}" /></button>
             </div>
-
-
-          </div>
+            <iframe id="videoIframe" class="videoIframe w-full h-full hidden" src="https://www.youtube.com/embed/{{ $videoId }}" referrerpolicy="strict-origin-when-cross-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-
       </div>
-    </section> --}}
+    </section>
 
 
 
     <section>
-
       @if (strlen($general->instagram) > 1)
-        <div class="px-[2%] md:px-[25%] pt-8 pb-12">
-          <div class="text-center  space-y-5 flex flex-col items-center ">
-            <h3 class="text-lg font-bold text-rosalasdonas -mb-4">Redes sociales</h3>
-            <h2 class="text-5xl font-bold text-black">Únete a nuestra comunidad floral</h2>
-            <p class="text-base font-normal text-black">Descubre la frescura de cada pétalo siguiéndonos.
+        <div class="px-[5%] lg:px-[8%] pt-8 pb-12 flex flex-col">
+          <div class="text-center flex flex-col gap-6 items-center max-w-4xl mx-auto">
+            <h3 class="font-b_slick_bold text-xl text-[#FE4A11] tracking-wider">REDES SOCIALES</h3>
+            <h2 class="text-4xl md:text-4xl font-b_slick_bold text-[#112212] uppercase tracking-wider">Únete a nuestra comunidad floral</h2>
+            <p class="text-xl font-b_classic_regular text-[#112212CC]">Descubre la frescura de cada pétalo siguiéndonos.
               Síguenos para estar al tanto de nuestras últimas creaciones y ofertas exclusivas.
               Te esperamos para compartir juntos la belleza floral.</p>
             <a href="{{ $general->instagram }}" target="_blank"
-              class="w-52  py-3 rounded-lg shadow-md font-medium flex items-center justify-center bg-rosalasdonas text-white   ">
+              class="px-6 py-3 rounded-3xl shadow-md font-b_slick_bold flex items-center justify-center bg-[#336234] text-white cursor-pointer mt-4">
               Regálanos
               un like
               <img class="ml-2" src="{{ asset('img_donas/favorite.svg') }}" />
@@ -370,47 +375,7 @@
 
           </div>
         @endforeach
-        {{-- 
-        <div class="relative group">
-          <img class="w-full" src="{{ asset('img_donas/ig1.png') }}" />
-          <div
-            class="opacity-0 group-hover:opacity-60 duration-300 absolute inset-x-0 top-0 flex justify-center items-center h-full bg-rosalasdonas ">
-          </div>
-          <img
-            class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 top-1/2 left-1/2 flex justify-center items-center translate-x-[-50%] translate-y-[-50%]"
-            src="{{ asset('img_donas/instagram.svg') }}">
-        </div>
-
-        <div class="relative group">
-          <img class="w-full" src="{{ asset('img_donas/ig2.png') }}" />
-          <div
-            class="opacity-0 group-hover:opacity-60 duration-300 absolute inset-x-0 top-0 flex justify-center items-center h-full bg-rosalasdonas ">
-          </div>
-          <img
-            class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 top-1/2 left-1/2 flex justify-center items-center translate-x-[-50%] translate-y-[-50%]"
-            src="{{ asset('img_donas/instagram.svg') }}">
-        </div>
-
-        <div class="relative group">
-          <img class="w-full" src="{{ asset('img_donas/ig3.png') }}" />
-          <div
-            class="opacity-0 group-hover:opacity-60 duration-300 absolute inset-x-0 top-0 flex justify-center items-center h-full bg-rosalasdonas ">
-          </div>
-          <img
-            class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 top-1/2 left-1/2 flex justify-center items-center translate-x-[-50%] translate-y-[-50%]"
-            src="{{ asset('img_donas/instagram.svg') }}">
-        </div>
-
-        <div class="relative group">
-          <img class="w-full" src="{{ asset('img_donas/ig4.png') }}" />
-          <div
-            class="opacity-0 group-hover:opacity-60 duration-300 absolute inset-x-0 top-0 flex justify-center items-center h-full bg-rosalasdonas ">
-          </div>
-          <img
-            class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 top-1/2 left-1/2 flex justify-center items-center translate-x-[-50%] translate-y-[-50%]"
-            src="{{ asset('img_donas/instagram.svg') }}">
-        </div> --}}
-
+        
       </div>
 
     </section>
@@ -482,7 +447,7 @@
       return null;
     }
   </script>
-  <script></script>
+  
   <script>
     var headerServices = new Swiper(".productos-relacionados", {
       slidesPerView: 4,
@@ -525,6 +490,86 @@
         },
       },
     });
+
+
+    var headerServices = new Swiper(".productos-novedades", {
+      slidesPerView: 4,
+      spaceBetween: 30, 
+      loop: true,
+      centeredSlides: false,
+      initialSlide: 0, 
+      allowTouchMove: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: true,
+        pauseOnMouseEnter: true
+      }, 
+      navigation: {
+        nextEl: ".nextnovedades",
+        prevEl: ".prevnovedades",
+
+      },
+
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          centeredSlides: false,
+          loop: true,
+        },
+        640: {
+          slidesPerView: 2,
+          centeredSlides: false,
+
+        },
+        1024: {
+          slidesPerView: 3,
+          centeredSlides: false,
+
+        },
+        1280: {
+          slidesPerView: 4,
+          centeredSlides: false,
+
+        },
+      },
+    });
+
+     var swiper = new Swiper(".testimonios", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      grabCursor: true,
+      centeredSlides: false,
+      initialSlide: 0,
+      navigation: {
+        nextEl: ".nexttestimonio",
+        prevEl: ".prevtestimonio",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+        },
+        768: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+        },
+      },
+      
+    });
+  </script>
+  <script>
+    function showVideo(element) {
+      const slide = element.closest('.contenedorvideo');
+      const videoIframe = slide.querySelector('.videoIframe');
+      videoIframe.classList.remove('hidden');
+      videoIframe.src += "?autoplay=1";
+      element.style.display = 'none';
+    }
   </script>
 @stop
 
