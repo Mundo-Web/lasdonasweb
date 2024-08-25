@@ -284,7 +284,7 @@
                   <div class="swiper-slide w-full h-full col-span-1">
                     <div class="flex flex-col gap-7   col-span-1">
                       <a class="rounded-md bg-white" href="{{ route('Product.jsx', $item->id) }}">
-                        <div class="px-2 bg-[#FFF4ED] rounded-t-md">
+                        <div class=" bg-[#FFF4ED] rounded-t-md overflow-hidden">
                           @if ($item->images->count() == 0)
                             <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
                               class="w-full h-[265px] object-cover hover:scale-110 transition-all duration-300" />
@@ -306,10 +306,10 @@
 
                         <div class="p-4 font-[Beausite_Slick_Trial]">
                           <h2 class="block text-xl text-[#112212] mb-1 font-bold">{{ $item->producto }}</h2>
-                          <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52]">
+                          <p class="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1">
                             {{ $item->extract }}
                           </p>
-                          <div class="flex  mt-2 font-bold ">
+                          <div class="flex font-bold ">
                             <p>S/ <span>75.00</span></p>
                             <p class="px-2">-</p>
                             <p>S/ <span>120.00</span></p>
