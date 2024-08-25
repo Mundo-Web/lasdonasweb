@@ -50,7 +50,7 @@
       <div class="bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
          style="background-image: url('{{ asset('img_donas/bannerflores.png') }}');">
         <h4 class="text-xl text-[#336234] tracking-wider">EXITOS FLORALES:</h4>
-        <h2 class="text-4xl md:text-[50px] font-bold  text-[#112212] !leading-snug tracking-wide">
+        <h2 class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide">
           LAS CREACIONES QUE CONQUISTAN CORAZONES EN CADA PÉTALO
         </h2>
         <p class="!text-xl text-[#336234] font-b_classic_regular">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
@@ -59,10 +59,10 @@
     </section>
 
     <section>
-      <div class="px-[8%]  space-y-10  ">
-        <div class="text-center  pt-[3.25rem] space-y-1 mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] z-5">
-          <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
-          <h2 class="text-4xl md:text-4xl font-bold text-black">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
+      <div class="px-[5%] lg:px-[8%]  space-y-10  ">
+        <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] z-5 gap-3 px-5">
+          <h3 class="text-lg font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
+          <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212]">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6">
@@ -92,7 +92,6 @@
                           @endif
                         </div>
 
-
                         <div class="px-4 mt-5 ">
                           <h2 class="text-xl font-bold text-black">{{ $item->producto }}</h2>
                           <p class="text-base font-normal text-black h-[48px]">{{ Str::substr($item->extract, 0, 59) }}...
@@ -102,27 +101,21 @@
                             <p class="px-2">-</p>
                             <p>S/ <span>120.00</span></p>
                           </div>
-
                         </div>
-
                       </a>
                       <div class="w-full px-2">
                         <button type="button"
-                          class="w-full  py-2  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">Agregar
+                          class="w-full  py-3  rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-[13px]">Agregar
                           a mi bolsa
                           <img class="ml-2" src="{{ asset('img_donas/addcart.svg') }}" /></button>
-
                       </div>
-
                     </div>
-
                   </div>
                 @endforeach
               </div>
-
-
             </div>
-            <div class=" absolute  flex flex-row gap-3 " style="  right: 0%;  bottom: -19%;">
+
+            <div class="absolute flex flex-row gap-3 " style="  right: 0%;  bottom: -19%;">
               <div
                 class="customprev h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
                 <img src="{{ asset('images\prev.png') }}" alt="Prev">
@@ -132,28 +125,17 @@
                 class="customnext h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
                 <img src="{{ asset('images\next.png') }}" alt="Next">
               </div>
-
-
             </div>
-
-
           </div>
-
-
-
-
-
-
-
         </div>
       </div>
     </section>
 
-    <section class="mt-12">
+    <section class="mt-12 font-b_slick_bold py-12 lg:py-20">
       {{-- Categorias destacadas --}}
-      <div class="flex flex-col   px-[5%] lg:px-[8%] mt-[75px]">
-        <p class="text-[18px] font-bold text-[#FE4A11]">CATEGORIAS</p>
-        <p class="text-[32px] font-bold">LO MEJOR DE NUESTRA TIENDA PARA TI</p>
+      <div class="flex flex-col px-[5%] lg:px-[8%] gap-4">
+        <p class="text-base text-[#FE4A11]">CATEGORIAS</p>
+        <p class="text-3xl sm:text-4xl">LO MEJOR DE NUESTRA TIENDA PARA TI</p>
       </div>
 
       @if (count($category->take(4)) == 4)
@@ -198,13 +180,13 @@
 
         </div>
       @elseif (count($category->take(4)) == 3)
-        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-x-4 pt-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
           <div class="w-full sm:row-span-2">
             <div class="h-full">
               <img src="{{ asset($category[0]->url_image . $category[0]->name_image) }}" alt=""
-                class="h-96 sm:h-[790px] flex flex-col justify-end items-start object-cover"
+                class="h-96 sm:h-[760px] flex flex-col justify-end items-start object-cover"
                 onerror="this.src='/images/img/noimagen.jpg';">
-              <h3 class="text-base font-medium text-[#FE4A11]">Categoría</h3>
+              <h3 class="text-base font-medium text-[#FE4A11] mt-4">Categoría</h3>
               <h2 class="text-3xl font-bold ">{{ $category[0]->name }}</h2>
             </div>
           </div>
@@ -213,7 +195,7 @@
               <img src="{{ asset($category[1]->url_image . $category[1]->name_image) }}" alt=""
                 class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full  flex flex-col justify-end items-start object-cover"
                 onerror="this.src='/images/img/noimagen.jpg';">
-              <h3 class="text-base font-medium text-[#FE4A11] pt-2 pl-2">Categoría</h3>
+              <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
               <h2 class="text-[32px] font-bold ">{{ $category[1]->name }}</h2>
             </div>
           </div>
@@ -222,29 +204,31 @@
               <img src="{{ asset($category[2]->url_image . $category[2]->name_image) }}" alt=""
                 class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
                 onerror="this.src='/images/img/noimagen.jpg';">
-              <h3 class="text-base font-medium text-[#FE4A11]">Categoría</h3>
+              <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
               <h2 class="text-3xl font-bold ">{{ $category[2]->name }}</h2>
             </div>
           </div>
         </div>
       @elseif (count($category->take(4)) == 2)
-        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-4 pt-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
 
 
           <div class="w-full sm:row-span-2">
-            <div class=" md:h-96   flex flex-col justify-end items-start pb-6 pl-6 "
-              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;"
-              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
-              <h3 class="text-base font-medium text-white">Categoría</h3>
-              <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
+             <div class="h-full">
+              <img src="{{ asset($category[0]->url_image . $category[0]->name_image) }}" alt=""
+                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                onerror="this.src='/images/img/noimagen.jpg';">
+              <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+              <h2 class="text-3xl font-bold ">{{ $category[0]->name }}</h2>
             </div>
           </div>
           <div class="w-full ">
-            <div class=" h-96  md:h-96   flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;"
-              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
-              <h3 class="text-base font-medium text-white">Categoría</h3>
-              <h2 class="text-3xl font-bold text-white">{{ $category[1]->name }}</h2>
+             <div class="h-full">
+              <img src="{{ asset($category[1]->url_image . $category[1]->name_image) }}" alt=""
+                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                onerror="this.src='/images/img/noimagen.jpg';">
+              <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+              <h2 class="text-3xl font-bold ">{{ $category[1]->name }}</h2>
             </div>
           </div>
 
@@ -254,11 +238,12 @@
         <div class="grid grid-cols-1 px-[5%] lg:px-[8%] pb-10 mt-4">
 
           <div class="w-full ">
-            <div class=" h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96  flex flex-col justify-end items-start pb-6 pl-6"
-              style="background-image: url('{{ $category[0]->img }}'); background-size: cover; background-position: center;"
-              onerror="this.style.backgroundImage='url(/images/img/noimagen.jpg)'">
-              <h3 class="text-base font-medium text-white">Categoría</h3>
-              <h2 class="text-3xl font-bold text-white">{{ $category[0]->name }}</h2>
+             <div class="h-full">
+              <img src="{{ asset($category[0]->url_image . $category[0]->name_image) }}" alt=""
+                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 w-full flex flex-col justify-end items-start object-cover"
+                onerror="this.src='/images/img/noimagen.jpg';">
+              <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+              <h2 class="text-3xl font-bold ">{{ $category[0]->name }}</h2>
             </div>
           </div>
 
@@ -268,9 +253,9 @@
 
     </section>
 
-    <section class="bg-[#E8EDDE]">
-      <div class="px-[6%]  space-y-10 mb-36 ">
-        <div class="text-center  pt-[3.25rem] space-y-1  ">
+    <section class="bg-[#E8EDDE] font-b_slick_bold py-12 lg:py-20">
+      <div class="px-[6%]">
+        <div class="text-center">
           <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">NOVEDADES</h3>
           <h2 class="text-4xl md:text-4xl font-bold text-black">TODAS NUESTRAS NOVEDADES</h2>
         </div>
@@ -335,27 +320,16 @@
             </div>
             <div class=" absolute  flex flex-row gap-3 " style="  right: 0%;  bottom: -19%;">
               <div
-                class="customprev h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                class=" h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
                 <img src="{{ asset('images\prev.png') }}" alt="Prev">
               </div>
 
               <div
-                class="customnext h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+                class=" h-10 w-10 rounded-full bg-[#FF8555] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
                 <img src="{{ asset('images\next.png') }}" alt="Next">
               </div>
-
-
             </div>
-
-
           </div>
-
-
-
-
-
-
-
         </div>
       </div>
     </section>
@@ -398,7 +372,7 @@
 
 
 
-    <section>
+    {{-- <section>
       <div class="grid grid-cols-1  py-10 mt-4">
 
         <div class="w-full ">
@@ -420,7 +394,7 @@
         </div>
 
       </div>
-    </section>
+    </section> --}}
 
 
 
@@ -591,23 +565,17 @@
 
   <script>
     var headerServices = new Swiper(".productos-relacionados", {
-      slidesPerView: 2,
+      slidesPerView: 4,
       spaceBetween: 10,
       loop: true,
       centeredSlides: false,
-      initialSlide: 0, // Empieza en el cuarto slide (índice 3) */
-      /* pagination: {
-        el: ".swiper-pagination-estadisticas",
-        clickable: true,
-      }, */
-      //allowSlideNext: false,  //Bloquea el deslizamiento hacia el siguiente slide
-      //allowSlidePrev: false,  //Bloquea el deslizamiento hacia el slide anterior
-      allowTouchMove: true, // Bloquea el movimiento táctil
-      /* autoplay: {
-        delay: 5500,
+      initialSlide: 0, 
+      allowTouchMove: true,
+      autoplay: {
+        delay: 3000,
         disableOnInteraction: true,
         pauseOnMouseEnter: true
-      }, */
+      }, 
       navigation: {
         nextEl: ".customnext",
         prevEl: ".customprev",
