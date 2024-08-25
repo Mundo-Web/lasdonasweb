@@ -47,21 +47,20 @@
 
   <main class="flex flex-col gap-12">
     <section>
-      <div
-        class="banner_section2 lg:banner_sec h-128 lg:h-[674px] text-white text-center flex flex-col justify-center items-center pt-14 p-2 lg:px-[20%]">
-        <h4 class="text-[18px] font-bold  text-[#336234]">EXITOS FLORALESss:
-        </h4>
-        <h2 class="text-4xl md:text-[50px] font-bold  text-[#112212]">Las Creaciones que Conquistan Corazones en Cada
-          Pétalo
+      <div class="bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
+         style="background-image: url('{{ asset('img_donas/bannerflores.png') }}');">
+        <h4 class="text-xl text-[#336234] tracking-wider">EXITOS FLORALES:</h4>
+        <h2 class="text-4xl md:text-[50px] font-bold  text-[#112212] !leading-snug tracking-wide">
+          LAS CREACIONES QUE CONQUISTAN CORAZONES EN CADA PÉTALO
         </h2>
-        <p class="text-lg font-normal text-[#336234]">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
-        <button type="button" class="bg-[#336234] px-6 py-3 rounded-full  font-bold">Comprar ahora</button>
+        <p class="!text-xl text-[#336234] font-b_classic_regular">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+        <button type="button" class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">Comprar ahora</button>
       </div>
     </section>
 
     <section>
       <div class="px-[8%]  space-y-10  ">
-        <div class="text-center  pt-[3.25rem] space-y-1 mt-[-10rem] bg-[#FFFFFF] z-5">
+        <div class="text-center  pt-[3.25rem] space-y-1 mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] z-5">
           <h3 class="text-[19.5px] font-bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
           <h2 class="text-4xl md:text-4xl font-bold text-black">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
         </div>

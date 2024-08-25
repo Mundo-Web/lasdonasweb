@@ -826,42 +826,4 @@ display: none;
 
 
 
-@font-face {
-font-family: "font_MediumDisplay";
-src: url("/fonts/HelveticaNowDisplay-Medium.woff") format("woff");
-}
 
-@font-face {
-font-family: "font_MediumItalicDisplay";
-src: url("/fonts/HelveticaNowDisplay-MedIta.woff") format("woff");
-}
-
-@font-face {
-font-family: "font_BoldDisplay";
-src: url("/fonts/HelveticaNowDisplay-Bold.woff") format("woff");
-}
-
-@font-face {
-font-family: "font_BoldItalicDisplay";
-src: url("/fonts/HelveticaNowDisplay-BoldIta.woff") format("woff");
-}
-
-@font-face {
-font-family: "font_RegularDisplay";
-src: url("/fonts/HelveticaNowDisplay-Regular.woff") format("woff");
-}
-
-@font-face {
-font-family: "font_RegularItalicDisplay";
-src: url("/fonts/HelveticaNowDisplay-RegIta.woff") format("woff");
-}
-
-@font-face {
-font-family: "font_LightDisplay";
-src: url("/fonts/HelveticaNowDisplay-Light.woff") format("woff");
-}
-
-@font-face {
-font-family: "font_LightItalicDisplay";
-src: url("/fonts/HelveticaNowDisplay-LightIta.woff") format("woff");
-}
