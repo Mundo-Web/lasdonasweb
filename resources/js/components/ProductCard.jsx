@@ -34,7 +34,7 @@ const ProductCard = (item) => {
       <div className="p-4">
         <h2 className="block text-xl text-[#112212] mb-1 font-bold truncate">{item.producto}</h2>
         <p className="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[52] mb-1">
-          {item.extract?.length > 100 ? `${item.extract.substring(0, 50)}...` : item.extract}
+          {item.extract}
         </p>
         <div className="flex items-center space-x-2">
           {item.descuento > 0 ? (
