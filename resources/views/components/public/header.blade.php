@@ -7,25 +7,43 @@
   $isIndex = $pagina == 'index';
 @endphp
 
+<style>
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+#header-mid.fixed-header {
+  transition: height 0.6s ease; /* Agrega una transición suave */
+}
+
+.header_bottom.fixed-header {
+  top: 80px; /* Ajusta este valor para estar justo debajo del nuevo header-mid */
+}
+</style>
+
 <header class="font-b_classic_regular">
 
-  <div
+  <div id="header_top"
     class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
     Producto | Categoría <span class="ml-1 font-b_classic_bold"> más vendida </span> <img
       class="w-6 ml-2"src="{{ asset('img_donas/spa.svg') }}">
   </div>
 
-
-  <div>
-    <div id="header-menu" class="flex justify-between gap-5 w-full px-[5%] xl:px-[8%] py-6  text-[17px] relative">
+  
+  <div id="header-mid"  class="h-[100px] flex flex-row items-center bg-white">
+    <div class="flex flex-row items-center justify-between gap-5 w-full px-[5%] xl:px-[8%]   text-[17px] relative bg-white ">
 
       {{-- <div id="menu-burguer" class="lg:hidden z-10 w-max">
           <img class="h-10 w-10 cursor-pointer" src="{{ asset('images/img/menu_hamburguer.png') }}"
             alt="menu hamburguesa" onclick="show()" />
-        </div> --}}
+      </div> --}}
 
-      <div class="w-auto min-w-[110px]">
-        <a href="#">
+      <div class="w-auto min-w-[110px] flex items-center justify-center">
+        <a href="{{route('index')}}">
           <img id="logo-lasdonas" class="w-[250px]  "
             src="{{ asset($isIndex ? 'img_donas/Logo.png' : 'img_donas/Logo.png') }}" alt="lasdonas" />
         </a>
@@ -405,4 +423,24 @@
       },
     },
   });
+</script>
+<script>
+window.addEventListener('scroll', function() {
+  const refHeaderStick = document.getElementById('ref_header_stick');
+  const headerMid = document.getElementById('header-mid');
+  const headerBottom = document.querySelector('.header_bottom');
+  
+  const rect = refHeaderStick.getBoundingClientRect();
+  const isVisible = (rect.top <= 0);
+
+  if (isVisible) {
+    headerMid.classList.add('fixed-header', 'h-[80px]', 'animate-fade-up');
+    headerMid.classList.remove('h-[100px]');
+    headerBottom.classList.add('fixed-header', 'animate-fade-up');
+  } else {
+    headerMid.classList.remove('fixed-header', 'h-[80px]', 'animate-fade-up');
+    headerMid.classList.add('h-[100px]');
+    headerBottom.classList.remove('fixed-header', 'animate-fade-up');
+  }
+});
 </script>

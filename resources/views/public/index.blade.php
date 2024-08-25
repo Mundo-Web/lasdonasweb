@@ -47,22 +47,29 @@
 
   <main class="flex flex-col gap-12">
 
-    <section>
-      <div class="bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
-         style="background-image: url('{{ asset('img_donas/bannerflores.png') }}');">
-        <h4 class="text-xl text-[#336234] tracking-wider">EXITOS FLORALES:</h4>
-        <h2 class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
-          Encuentra el Regalo Perfecto para Cada Ocasión
-        </h2>
-        <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">Descubre nuestra amplia selección de productos para todas tus necesidades: desde arreglos florales y peluches hasta vinos,
-         joyería y mucho más. ¡Aquí hay algo especial para cada celebración!</p>
-        <button type="button" class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">Comprar ahora</button>
-      </div>
+    <section class="z-5">
+       <div class="swiper slider-portada">
+          <div class="swiper-wrapper">
+            @foreach ($slider as $slide)
+                <div class="swiper-slide">
+                  <div class="bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
+                    style="background-image: url('{{ asset('img_donas/bannerflores.png') }}');">
+                    <h4 class="text-xl text-[#336234] tracking-wider">{{$slide->subtitle}}</h4>
+                    <h2 class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
+                       {{$slide->title2}}
+                    </h2>
+                    <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">{{$slide->description}}</p>
+                    <a href="{{$slide->link1}}" type="button" class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">{{$slide->botontext1}}</a>
+                  </div>
+                </div>
+            @endforeach
+          </div>
+       </div>
     </section>
 
-    <section>
-      <div class="px-[5%] lg:px-[8%]  space-y-10  ">
-        <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] z-5 gap-3 px-5">
+    <section id="ref_header_stick" class="z-10">
+      <div class="px-[5%] lg:px-[8%]  space-y-10">
+        <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] gap-3 px-5">
           <h3 class="text-lg font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
           <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212]">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
         </div>
@@ -545,6 +552,30 @@
         nextEl: ".nexttestimonio",
         prevEl: ".prevtestimonio",
       },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+        },
+        768: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+        },
+      },
+      
+    });
+
+    var swiper = new Swiper(".slider-portada", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      grabCursor: true,
+      centeredSlides: false,
+      initialSlide: 0,
       breakpoints: {
         0: {
           slidesPerView: 1,
