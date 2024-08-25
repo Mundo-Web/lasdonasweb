@@ -39,6 +39,8 @@
   @include('components.public.header')
 
 
+  <i id="gift-icon" class="absolute fa fa-gift border-1 bg-red-500 " style="display: none"></i>
+
   {{-- Aqui va el contenido de cada pagina --}}
   @inertia
 

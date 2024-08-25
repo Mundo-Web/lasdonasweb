@@ -80,7 +80,23 @@ const Product = ({ complementos, general,
     return (horaActual >= horaInicio && horaActual <= horaFin) || (horaActual < horaInicio);
   });
 
-  const agregarPedido = async () => {
+  const agregarPedido = async (e) => {
+
+    const button = e.target
+    const rect = button.getBoundingClientRect();
+
+    // Posición relativa al body
+    const posicionX = rect.left + window.scrollX;
+    const posicionY = rect.top + window.scrollY;
+
+    $('#gift-icon').css({
+      top: posicionY,
+      left: posicionX,
+      display: 'block'
+    });
+
+    console.log(`Posición X: ${posicionX}, Posición Y: ${posicionY}`);
+
     const opciones = {
       fecha: 'Fecha de entrega',
       horario: 'Horario de entrega',
