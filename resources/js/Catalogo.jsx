@@ -316,7 +316,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
       <section className='mb-24'>
         <div className='mt-14 px-[5%] lg:px-[8%] font-b_slick_bold'>
           <div className='flex flex-col gap-3'>
-            <div className='text-[#FE4A11] text-base tracking-normal uppercase'> {`Inicio / ${categoria.name} `}</div>
+            <div className='text-[#FE4A11] text-base tracking-normal uppercase'> {`Inicio / ${categoria.name ?? 'Todas las categorias'} `}</div>
             <div className='text-3xl lg:text-5xl font-bold text-[#112212] uppercase tracking-wider'>{categoria.name}</div>
             <div className='text-[#112212] opacity-80 font-b_slick_regular text-lg'>{categoria.description}</div>
           </div>

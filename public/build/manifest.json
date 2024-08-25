@@ -107,7 +107,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-OgZia8yk.css",
+    "file": "assets/app-641WpoGc.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -187,7 +187,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Catalogo-Wz5jyr0o.js",
+    "file": "assets/Catalogo-ofhJN642.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -258,7 +258,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Product-Sm-xscsA.js",
+    "file": "assets/Product-33LE6WrN.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
