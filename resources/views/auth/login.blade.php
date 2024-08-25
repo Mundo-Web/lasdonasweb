@@ -1,5 +1,5 @@
 <x-authentication-layout>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <div class="flex h-screen">
     <!-- Primer div -->
     <div class="basis-1/2 hidden md:block font-poppins">
@@ -46,8 +46,11 @@
                 autocomplete="current-password"
                 class="w-full py-5 pl-4 pr-12 focus:outline-none placeholder-gray-400 font-regularDisplay text-text16 xl:text-text20 border-b-[1.5px] border-x-0 border-t-0  border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px]" />
               <!-- Imagen -->
-              <img onclick="mostrarContrasena()" src="./images/svg/pass_eyes.svg" alt="password"
-                class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer" />
+              {{-- <img onclick="mostrarContrasena()" src="./images/svg/pass_eyes.svg" alt="password"
+                class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer" /> --}}
+              <i id="showhide-icon"
+                class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer fas fa-eye text-[#6C7275]"
+                onclick="mostrarContrasena()"></i>
             </div>
 
             <div class="flex gap-3 px-4 justify-between">
@@ -57,12 +60,12 @@
                 </label>
               </div>
 
-              @if (Route::has('password.request'))
+              {{-- @if (Route::has('password.request'))
                 <div>
                   <a href="{{ route('password.request') }}"
                     class="font-boldDisplay text-text16 xl:text-text20 text-textBlack">¿Olvidaste tu contraseña?</a>
                 </div>
-              @endif
+              @endif --}}
 
 
             </div>
@@ -76,4 +79,18 @@
       </div>
     </div>
   </div>
+  <script>
+    const mostrarContrasena = () => {
+      const icon = $('#showhide-icon')
+      const input = $('#password')
+      const current = input.attr('type')
+      if (current == 'text') {
+        input.attr('type', 'password')
+        icon.removeClass('fa-eye-slash').addClass('fa-eye')
+      } else {
+        input.attr('type', 'text')
+        icon.removeClass('fa-eye').addClass('fa-eye-slash')
+      }
+    }
+  </script>
 </x-authentication-layout>

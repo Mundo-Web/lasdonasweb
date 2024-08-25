@@ -7,25 +7,49 @@
   $isIndex = $pagina == 'index';
 @endphp
 
+<style>
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#header-mid.fixed-header {
+  transition: height 0.6s ease; /* Agrega una transición suave */
+}
+
+.header_bottom.fixed-header {
+  top: 80px; /* Ajusta este valor para estar justo debajo del nuevo header-mid */
+}
+
+
+#cart-modal {
+    z-index: 10000; /* Asegúrate de que este sea mayor que el z-index del header */
+}
+</style>
+
 <header class="font-b_classic_regular">
 
-  <div
+  <div id="header_top"
     class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
     Producto | Categoría <span class="ml-1 font-b_classic_bold"> más vendida </span> <img
       class="w-6 ml-2"src="{{ asset('img_donas/spa.svg') }}">
   </div>
 
-
-  <div>
-    <div id="header-menu" class="flex justify-between gap-5 w-full px-[5%] xl:px-[8%] py-6  text-[17px] relative">
+  
+  <div id="header-mid"  class="h-[100px] flex flex-row items-center bg-white">
+    <div class="flex flex-row items-center justify-between gap-5 w-full px-[5%] xl:px-[8%]   text-[17px] relative bg-white ">
 
       {{-- <div id="menu-burguer" class="lg:hidden z-10 w-max">
           <img class="h-10 w-10 cursor-pointer" src="{{ asset('images/img/menu_hamburguer.png') }}"
             alt="menu hamburguesa" onclick="show()" />
-        </div> --}}
+      </div> --}}
 
-      <div class="w-auto min-w-[110px]">
-        <a href="#">
+      <div class="w-auto min-w-[110px] flex items-center justify-center">
+        <a href="{{route('index')}}">
           <img id="logo-lasdonas" class="w-[250px]  "
             src="{{ asset($isIndex ? 'img_donas/Logo.png' : 'img_donas/Logo.png') }}" alt="lasdonas" />
         </a>
@@ -117,12 +141,12 @@
         @endif
 
 
-        <div class="flex justify-center items-center min-w-[38px]">
+        <div class="flex justify-center items-center min-w-[38px]" >
           <div id="open-cart" class="relative inline-block cursor-pointer pr-3">
             <span id="itemsCount"
               class="bg-[#EB5D2C] text-xs font-medium text-white text-center px-[7px] py-[2px]  rounded-full absolute bottom-0 right-0 ml-3">0</span>
             <img src="{{ asset('img_donas/Group10.png') }}"
-              class="bg-white rounded-lg p-1 max-w-full h-auto cursor-pointer" />
+              class="bg-white rounded-lg p-1 max-w-full h-auto cursor-pointer" style="z-index:3" />
           </div>
         </div>
 
@@ -155,8 +179,8 @@
 
 
 
-<div id="cart-modal"
-  class="bag !absolute top-0 right-0 md:w-[450px] cartContainer border shadow-2xl  !rounded-md !p-0 !z-30"
+<div id="cart-modal" 
+  class="bag !absolute top-0 right-0 md:w-[450px] cartContainer border shadow-2xl  !rounded-md !p-0"
   style="display: none">
   <div class="p-4 flex flex-col h-[90vh] justify-between gap-2">
     <div class="flex flex-col">
@@ -199,12 +223,15 @@
     mostrarTotalItems()
     PintarCarrito()
   })
+
   $('#open-cart').on('click', () => {
     $('#cart-modal').modal({
       showClose: false,
       fadeDuration: 100
     })
+    $('#cart-modal').css('z-index', 10000);
   })
+
   $('#close-cart').on('click', () => {
     $('.jquery-modal.blocker.current').trigger('click')
   })
@@ -405,4 +432,31 @@
       },
     },
   });
+</script>
+<script>
+window.addEventListener('scroll', function() {
+  const headerMid = document.getElementById('header-mid');
+  const headerBottom = document.querySelector('.header_bottom');
+  const portada = document.getElementById('portada'); // Elemento con id "portada"
+  
+  const scrollPosition = window.scrollY;
+  const documentHeight = document.documentElement.scrollHeight;
+  const viewportHeight = window.innerHeight;
+
+  // Calcula el porcentaje de scroll
+  const scrollPercentage = (scrollPosition / (documentHeight - viewportHeight)) * 100;
+
+  // Verifica si el porcentaje de scroll es mayor o igual al 1%
+  if (scrollPercentage >= 1) {
+    headerMid.classList.add('fixed-header', 'h-[80px]', 'animate-fade-up');
+    headerMid.classList.remove('h-[100px]');
+    headerBottom.classList.add('fixed-header', 'animate-fade-up', 'shadow-lg', 'shadow-black/40');
+    //portada.classList.add('mt-[150px]'); 
+  } else {
+    headerMid.classList.remove('fixed-header', 'h-[80px]', 'animate-fade-up');
+    headerMid.classList.add('h-[100px]');
+    headerBottom.classList.remove('fixed-header', 'animate-fade-up');
+    //portada.classList.remove('mt-[150px]'); 
+  }
+});
 </script>

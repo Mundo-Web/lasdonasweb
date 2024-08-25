@@ -1398,3 +1398,8 @@ input:checked+.ordenar {
   font-family: "b_slick_bold";
   src: url("/fonts/beausiteslicktrial-bold.woff") format("woff");
 }
+
+@font-face {
+  font-family: "b_slick_regular";
+  src: url("/fonts/beausiteslicktrial-regular.woff") format("woff");
+}

@@ -15,6 +15,27 @@ export default {
     darkMode: 'class',
     theme: {
         extend: {
+            keyframes: {
+                jump: {
+                  '0%, 100%': { transform: 'translateY(0)' },
+                  '50%': { transform: 'translateY(-10px)' },
+                },
+
+                fadeUp: {
+                    '0%': {
+                      opacity: '0',
+                      transform: 'translateY(20px)',
+                    },
+                    '100%': {
+                      opacity: '1',
+                      transform: 'translateY(0)',
+                    },
+                },
+            },
+            animation: {
+                jump: 'jump 1s ease-in-out infinite',
+                'fade-up': 'fadeUp 0.6s ease-out forwards',
+            },
             stroke: (theme) => ({
                 custom: theme("colors.black"),
                 strokeWithe: "#ffffff",
@@ -43,6 +64,7 @@ export default {
                 b_classic_bold: ["b_classic_bold"],
                 b_classic_regular: ["b_classic_regular"],
                 b_slick_bold: ["b_slick_bold"],
+                b_slick_regular: ["b_slick_regular"],
               
             },
             fontSize: {
@@ -134,7 +156,8 @@ export default {
                 lg: "1024px",
                 "2lg": "1100px",
                 xl: "1280px",
-                "2xl": "1536px",
+                "2xl": "1350px",
+                "3xl": "1530px"
             },
             borderWidth: {
                 3: '3px',
@@ -154,10 +177,15 @@ export default {
             zIndex: {
                 60: '60',
             },
+            boxShadow: {
+                'custom-light': '0px 4px 10px rgba(49, 51, 50, 0.9)',
+              
+            },
         },
     },
 
     plugins: [
+        // require('tailwindcss-animated'),
         forms,
         typography,
         // add custom variant for expanding sidebar
