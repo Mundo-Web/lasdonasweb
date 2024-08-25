@@ -1620,6 +1620,25 @@
           cache: true
         }
       });
+      $('#complementos').select2({
+        placeholder: 'Selecciona los complementos',
+        ajax: {
+          url: '/api/items',
+          dataType: 'json',
+          delay: 250,
+          processResults: function(data) {
+            return {
+              results: $.map(data, function(item) {
+                return {
+                  id: item.id,
+                  text: item.producto
+                }
+              })
+            };
+          },
+          cache: true
+        }
+      });
     });
   </script>
   <script>
