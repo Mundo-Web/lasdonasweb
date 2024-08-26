@@ -1,42 +1,26 @@
 import { createRoot } from 'react-dom/client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CreateReactScript from './Utils/CreateReactScript'
-import SelectSearch from './components/SelectSearch';
-import Card from './components/Card';
-import axios from 'axios';
-import AccordionSimple from './AccordionSimple';
 
 import './fade.css';
-import { set } from 'sode-extend-react/sources/cookies';
 import { Local } from 'sode-extend-react/sources/storage'
-import truncateText from './Utils/truncateText'
-import Accordion from './Accordion2';
 import OrderSummary from './components/OrderSummary';
 import ProgressBar from './components/ProgressBar';
 
 import DateTimeDisplay from "./components/DateTimeDisplay";
 import InputField from "./components/InputField";
-import SelectField from "./components/SelectField";
-import MessageField from "./components/MessageField";
 import SignatureField from "./components/SignatureField";
 import ReceiptTypeSelector from "./components/ReceiptTypeSelector";
 import Button from "./components/Button";
 
 import PaymentForm from './components/PaymentForm';
 import ModalGoogle from './components/ModalGoogle';
-import GoogleMapsComponent from './components/GoogleMapsComponent';
 import AddressForm from './components/AddressForm';
 import Checkbox from './components/Checkbox';
 import SelectSecond from './components/SelectSecond';
 
-
-
-
-
-
 const Pago = ({ MensajesPredefinidos }) => {
 
-  console.log(MensajesPredefinidos)
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [showDedicatoria, setShowDedicatoria] = useState(false)
   const [showFirma, setShowshowFirma] = useState(false)
