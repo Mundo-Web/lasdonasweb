@@ -1,4 +1,4 @@
-<a href="#" x-data="{ showAmbiente: false }" @mouseenter="showAmbiente = true" @mouseleave="showAmbiente = false"
+<a href="{{ route('Catalogo.jsx', $item->id) }}" x-data="{ showAmbiente: false }" @mouseenter="showAmbiente = true" @mouseleave="showAmbiente = false"
   class="flex flex-col relative" data-aos="zoom-in-left">
   <div class="bg-colorBackgroundProducts rounded-sm product_container basis-4/5 flex flex-col justify-center relative">
     <div>
