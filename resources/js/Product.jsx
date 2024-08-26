@@ -400,7 +400,7 @@ const Product = ({ complementos, general,
 
                 {general.acept_incoming_orders_today == true ?
                   (<div
-                    className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-[#E8EDDE]  border-[#E8EDDE]'} justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
+                    className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
                     <HorarioSection
                       id="hoy"
                       title="Hoy"
@@ -427,13 +427,13 @@ const Product = ({ complementos, general,
                   </div>) : (
                     <div
                       className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
-                      <p key="no-disponible" className="text-sm font-normal text-[#E8EDDE]">No disponible</p>
+                      <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
                     </div>)
 
                 }
 
                 <div className={`relative flex flex-col justify-center items-center  text-center w-1/3 
-                ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-[#E8EDDE]  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
+                ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
                   htmlFor="manana"
                 >
                   {console.log(selectedHorario)}
@@ -456,7 +456,7 @@ const Product = ({ complementos, general,
                 <div
 
                   onClick={openModalCalendario}
-                  className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-[#E8EDDE]  border-[#E8EDDE]'} `}>
+                  className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
                   <p className="text-lg font-bold m-auto ">Más fechas</p>
                 </div>
 
