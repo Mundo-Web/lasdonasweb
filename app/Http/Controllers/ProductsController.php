@@ -97,7 +97,7 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $onlyOneCaratula = false;
 
-    dump($data); 
+  
     // return ;
 
     //imprimir valores request 
@@ -570,7 +570,7 @@ class ProductsController extends Controller
       $valoresFormulario = json_decode($valoresFormulario, true);
     }
 
-    dump($valoresFormulario);
+    
     $especificaciones = [];
     $precioFiltro = 0;
     $data = $request->except('valoresFormulario');
@@ -625,7 +625,7 @@ class ProductsController extends Controller
       $this->procesarOpciones($product, $valoresFormulario, $tagsSeleccionados, $request, $actualizacion);
     } catch (\Throwable $th) {
       //throw $th;
-      dump($th);
+      
     }
 
 

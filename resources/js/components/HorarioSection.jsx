@@ -13,10 +13,10 @@ const HorarioSection = ({ id, title, date, horarios, loadListHorarios, setLoadLi
   });
 
   return (
-    <div ref={containerRef} className="flex flex-col justify-center items-center text-rosalasdonas text-center cursor-pointer text-[#73B473]">
+    <div ref={containerRef} className="flex flex-col justify-center items-center  text-center cursor-pointer ">
       <div onClick={() => setLoadListHorarios(!loadListHorarios)}>
-        <p className="text-lg font-bold text-[#73B473]">{title}</p>
-        <p className="text-sm font-normal text-[#73B473]">{date}</p>
+        <p className="text-lg font-bold ">{title}</p>
+        <p className="text-sm font-normal" >{date}</p>
       </div>
 
       <CSSTransition

@@ -39,19 +39,7 @@ const Product = ({ complementos, general,
   url_env,
   colors, horarios, categorias, politicasSustitucion, politicaEnvio }) => {
 
-  const [detallePedido, setDetallePedido] = useState({
-    fecha: '',
-    horario: '',
-    opcion: '',
-    complementos: [],
-    imagen: '',
-  });
 
-
-
-  useEffect(() => {
-    console.log(detallePedido)
-  }, [detallePedido])
 
   const [selectedHorario, setSelectedHorario] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -79,9 +67,25 @@ const Product = ({ complementos, general,
     const horaFin = item.end_time.trim();
 
 
+    console.log(item)
 
     return (horaActual >= horaInicio && horaActual <= horaFin) || (horaActual < horaInicio);
   });
+
+
+  const [detallePedido, setDetallePedido] = useState({
+    fecha: '',
+    horario: '',
+    opcion: currentProduct.id,
+    complementos: [],
+    imagen: '',
+  });
+
+
+
+  useEffect(() => {
+    console.log(detallePedido)
+  }, [detallePedido])
 
   const agregarPedido = async (e) => {
 
@@ -108,7 +112,6 @@ const Product = ({ complementos, general,
       });
       return;
     }
-    console.log(detallePedido)
 
     try {
       const res = await axios.post('/api/products/AddOrder', detallePedido);
@@ -118,7 +121,6 @@ const Product = ({ complementos, general,
           horario,
           complementos,
           fecha, imagen } = res.data;
-        console.log(producto)
         let detalleProducto = {
           id: producto.id,
           producto: producto.producto,
@@ -131,7 +133,6 @@ const Product = ({ complementos, general,
           tipo: producto?.tipos?.name ?? 'Clasica',
           extract: producto.extract,
         }
-        console.log(complementos)
         let detalleComplemento = complementos.map(item => {
           return {
             id: item.id,
@@ -169,7 +170,6 @@ const Product = ({ complementos, general,
           carrito = [...carrito, detalleProducto, ...detalleComplemento];
         }
 
-        console.log(carrito)
         // Guardar el carrito actualizado en el almacenamiento local
         Local.set('carrito', carrito);
 
@@ -211,8 +211,8 @@ const Product = ({ complementos, general,
   }
 
   const handleSelecttionOption = (item) => {
-    console.log(item)
     setCurrentProduct(item);
+    console.log(item.tipos.name ?? 'clasic')
     setDetallePedido((prevState) => {
       return {
         ...prevState,
@@ -265,6 +265,8 @@ const Product = ({ complementos, general,
       return tomorrow.toLocaleDateString('es-ES', options);
     };
 
+
+
     setTomorrowDate(getTomorrowDate());
   }, []);
 
@@ -303,31 +305,31 @@ const Product = ({ complementos, general,
       <main className="flex flex-col gap-12 mt-12 font-b_slick_bold">
         <section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 px-[5%] lg:px-[7%] gap-5 lg:gap-10 pt-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 px-[5%] lg:px-[5%] gap-5 lg:gap-10 pt-10">
 
             <div className="grid grid-cols-2 sm:grid-cols-3  gap-8 h-max" id="containerImagenesP">
 
               {caratula ? (
 
-                    <div className="col-span-2 sm:col-span-3 relative h-max">
-                      <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
-                      >
-                        {imageSrc !== null ? <img
-                          id="Imagen Complementaria"
-                          ref={imagePreviewRef}
-                          src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
-                          alt="Image preview"
-                          className={`w-full aspect-square object-cover p-4 rounded-lg cursor-pointer`}
-                          onClick={handleImageClick}
-                        /> : ''}
-                      </div>
+                <div className="col-span-2 sm:col-span-3 relative h-max ">
+                  <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
+                  >
+                    {imageSrc !== null ? <img
+                      id="Imagen Complementaria"
+                      ref={imagePreviewRef}
+                      src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
+                      alt="Image preview"
+                      className={`w-full aspect-square object-cover p-4 rounded-lg cursor-pointer`}
+                      onClick={handleImageClick}
+                    /> : ''}
+                  </div>
 
-                      <img
-                        className="w-full aspect-square object-cover"
-                        src={caratula.name_imagen ? `/${caratula.name_imagen}` : '/images/img/noimagen.jpg'}
-                        alt="Product"
-                      />
-                    </div>
+                  <img
+                    className="w-full aspect-square object-cover"
+                    src={caratula.name_imagen ? `/${caratula.name_imagen}` : '/images/img/noimagen.jpg'}
+                    alt="Product"
+                  />
+                </div>
               ) : (
                 <img className="w-full aspect-square object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
               )}
@@ -337,7 +339,7 @@ const Product = ({ complementos, general,
                 <Swiper
                   className="img-complementarias h-full"
                   slidesPerView={3}
-                  spaceBetween={5}
+                  spaceBetween={25}
                   loop={false}
                   centeredSlides={false}
                   initialSlide={0}
@@ -362,20 +364,20 @@ const Product = ({ complementos, general,
                   {currentProduct.images.map((image, index) => {
                     {
                       // if (image.caratula !== 1) {
-                        return (<SwiperSlide key={index} >
-                          <div className="flex gap-2 items-center justify-start h-full">
-                            <div className="flex justify-center items-center h-full">
+                      return (<SwiperSlide key={index} >
+                        <div className="flex  items-center justify-start h-full">
+                          <div className="flex  justify-center items-center h-full">
 
 
-                              <img
-                                className="object-cover aspect-square w-full"
-                                src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
-                                alt="Product"
-                              />
+                            <img
+                              className="object-cover aspect-square w-full"
+                              src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
+                              alt="Product"
+                            />
 
-                            </div>
                           </div>
-                        </SwiperSlide>);
+                        </div>
+                      </SwiperSlide>);
 
                       // }
 
@@ -390,7 +392,7 @@ const Product = ({ complementos, general,
             </div>
 
 
-            <div>
+            <div className=''>
 
               <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase">{currentProduct.producto}</h2>
               <p className="text-2xl  font-bold text-black pb-6">Paso 1: Selecciona un horario</p>
@@ -398,7 +400,7 @@ const Product = ({ complementos, general,
 
                 {general.acept_incoming_orders_today == true ?
                   (<div
-                    className="flex flex-col justify-center items-center  text-center w-1/3 border-[#73B473] border-2 p-3 rounded-xl relative">
+                    className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
                     <HorarioSection
                       id="hoy"
                       title="Hoy"
@@ -410,6 +412,7 @@ const Product = ({ complementos, general,
                       setSelectedHorario={setSelectedHorario}
                       setDetallePedido={setDetallePedido}
                     />
+                    {console.log(horariosHoy)}
                     {horariosHoy.length === 0 ? (
                       <p key="no-disponible" className="text-sm font-normal">No disponible</p>
                     ) : (
@@ -423,15 +426,17 @@ const Product = ({ complementos, general,
 
                   </div>) : (
                     <div
-                      className="flex flex-col justify-center items-center  text-center w-1/3 border-[#73B473] border-2 p-3 rounded-xl relative">
-                      <p key="no-disponible" className="text-sm font-normal text-[#73B473]">No disponible</p>
+                      className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
+                      <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
                     </div>)
 
                 }
 
-                <div className="relative flex flex-col justify-center items-center  text-center w-1/3 border-[#73B473] text-[#73B473] border-2 p-3 rounded-xl "
+                <div className={`relative flex flex-col justify-center items-center  text-center w-1/3 
+                ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
                   htmlFor="manana"
                 >
+                  {console.log(selectedHorario)}
                   <HorarioSection
                     id="manana"
                     title="Mañana"
@@ -447,11 +452,12 @@ const Product = ({ complementos, general,
 
                 </div>
 
-
+                {console.log(detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '')}
                 <div
+
                   onClick={openModalCalendario}
-                  className="text-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-1/3 border-[#73B473] border-2 p-3 rounded-xl ">
-                  <p className="text-lg font-bold m-auto text-[#73B473]">Más fechas</p>
+                  className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
+                  <p className="text-lg font-bold m-auto ">Más fechas</p>
                 </div>
 
               </div>
@@ -470,10 +476,11 @@ const Product = ({ complementos, general,
                       value={tipoDefault.name}
                       className="hidden peer radio-option"
                       required
+                      defaultChecked={tipoDefault.name === 'Clasico'}
                     />
                     <label
                       htmlFor="react-option"
-                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border-2 border-gray-400 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-4 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
+                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-2 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
                       onClick={() => handleSelecttionOption(productos)}
                     >
                       <div className="flex flex-col justify-center items-center">
@@ -487,11 +494,12 @@ const Product = ({ complementos, general,
                           <SvgFlorClasic className="svg-icon" />
                         )}
                       </div>
-                      <div className="flex flex-col justify-center items-center">
-                        {console.log(tipoDefault.name)}
+                      {console.log(currentProduct?.tipos?.name)}
+                      <div className={`flex flex-col justify-center items-center ${currentProduct?.tipos?.name == undefined ? 'text-[#73B473]' : 'text-[#E8EDDE]'}`}>
+
                         <p className="text-base font-semibold">{tipoDefault.name}</p>
                         <p className="text-base font-normal">
-                          {console.log(product)}
+
                           S/ <span>{Number(product.precio).toFixed(0)}</span>
                         </p>
                         <p className="text-base font-bold">
@@ -500,51 +508,69 @@ const Product = ({ complementos, general,
                       </div>
                     </label>
                   </li>
-                  {subproductos.map((item, index) => (
+                  {subproductos.map((item, index) => {
 
-                    <li key={index}>
-                      <input
-                        type="radio"
-                        id={`${item.tipos.name}-option`}
-                        name="framework"
-                        value={item.tipos.name}
-                        className="hidden peer radio-option"
-                      />
-                      <label
-                        onClick={() => handleSelecttionOption(item)}
-                        htmlFor={`${item.tipos.name}-option`}
-                        className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border-2 border-gray-400 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100 peer-checked:border-4"
-                      >
-                        <div className="flex flex-col justify-center items-center">
-                          {item.tipos.name === 'Premium' ? (
-                            <SvgFlorPremium className="svg-icon" />
-                          ) : item.tipos.name === 'Deluxe' ? (
-                            <SvgFlorDeluxe className="svg-icon" />
-                          ) : (
-                            <SvgFlorClasic className="svg-icon" />
-                          )}
-                        </div>
-                        <div className="flex flex-col justify-center items-center">
-                          <p className="text-base font-semibold">{item.tipos.name}</p>
-                          {Number(item.descuento) > 0 ? (<>
-                            <p className="text-base font-normal">
-                              S/ <span>{Number(item.precio).toFixed(0)}</span>
-                            </p>
-                            <p className="text-base font-bold">
-                              S/ <span>{Number(item.descuento).toFixed(0)}</span>
-                            </p>
-                          </>) : (
-                            <>
-                              <p className="text-base font-normal">
-                                S/ <span>{Number(item.precio).toFixed(0)}</span>
-                              </p>
 
-                            </>
-                          )}
-                        </div>
-                      </label>
-                    </li>
-                  ))}
+                    let selected = currentProduct.tipos?.name === item.tipos.name;
+
+                    if (currentProduct.tipos?.name == undefined) {
+                      selected = false;
+                    } else if (currentProduct.tipos?.name == item.tipos.name) {
+                      selected = true;
+                    }
+
+                    return (
+                      <li key={index}>
+                        <input
+                          type="radio"
+                          id={`${item.tipos.name}-option`}
+                          name="framework"
+                          value={item.tipos.name}
+                          className="hidden peer radio-option"
+                        />
+                        <label
+                          onClick={() => handleSelecttionOption(item)}
+                          htmlFor={`${item.tipos.name}-option`}
+                          className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100 peer-checked:border-2"
+                        >
+                          <div className="flex flex-col justify-center items-center">
+                            {item.tipos.name === 'Premium' ? (
+                              <SvgFlorPremium className="svg-icon" />
+                            ) : item.tipos.name === 'Deluxe' ? (
+                              <SvgFlorDeluxe className="svg-icon" />
+                            ) : (
+                              <SvgFlorClasic className="svg-icon" />
+                            )}
+                          </div>
+
+                          <div
+                            className={`flex flex-col justify-center items-center ${selected && (item.tipos.name === 'Premium' || item.tipos.name === 'Deluxe')
+                              ? 'text-[#73B473]'
+                              : 'text-[#E8EDDE]'
+                              }`}
+                          >
+                            <p className="text-base font-semibold">{item.tipos.name}</p>
+                            {Number(item.descuento) > 0 ? (
+                              <>
+                                <p className="text-base font-normal">
+                                  S/ <span>{Number(item.precio).toFixed(0)}</span>
+                                </p>
+                                <p className="text-base font-bold">
+                                  S/ <span>{Number(item.descuento).toFixed(0)}</span>
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className="text-base font-normal">
+                                  S/ <span>{Number(item.precio).toFixed(0)}</span>
+                                </p>
+                              </>
+                            )}
+                          </div>
+                        </label>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 
@@ -667,7 +693,7 @@ const Product = ({ complementos, general,
 
               </div>
 
-              {console.log(currentProduct)}
+
               <div className='flex flex-col'>
                 {especificaciones.map((item, index) => (
                   <div

@@ -22,7 +22,15 @@
   
 } */
 
+.svg-icon {
+  fill: #E8EDDE;
+  transition: fill 0.3s ease;
+}
 
+.radio-option:checked + .radio-option-label .svg-icon,
+.svg-icon:hover {
+  fill: #73B473;
+}
 .react-datepicker__month-container{
   width: 100% !important; 
 }
