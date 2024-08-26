@@ -308,7 +308,7 @@ const Product = ({ complementos, general,
 
               {caratula ? (
 
-                <div className="col-span-2 sm:col-span-3 relative h-max border">
+                <div className="col-span-2 sm:col-span-3 relative h-max ">
                   <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
                   >
                     {imageSrc !== null ? <img
@@ -389,7 +389,7 @@ const Product = ({ complementos, general,
             </div>
 
 
-            <div className='border'>
+            <div className=''>
 
               <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase">{currentProduct.producto}</h2>
               <p className="text-2xl  font-bold text-black pb-6">Paso 1: Selecciona un horario</p>
