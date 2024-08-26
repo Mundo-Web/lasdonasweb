@@ -323,7 +323,7 @@ const Product = ({ complementos, general,
                       </div>
 
                       <img
-                        className="h-[800px] object-cover"
+                        className="w-full aspect-square object-cover"
                         src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                         alt="Product"
                       />
@@ -331,7 +331,7 @@ const Product = ({ complementos, general,
                   )
                 ))
               ) : (
-                <img className="size-full object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
+                <img className="w-full aspect-square object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
               )}
 
 
@@ -370,7 +370,7 @@ const Product = ({ complementos, general,
 
 
                               <img
-                                className="size-full object-cover h-full w-full"
+                                className="object-cover aspect-square w-full"
                                 src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                                 alt="Product"
                               />

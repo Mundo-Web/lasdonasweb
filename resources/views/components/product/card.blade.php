@@ -3,16 +3,16 @@
     <div class="bg-[#FFF4ED] rounded-t-xl overflow-hidden">
       @if ($item->images->count() == 0)
         <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-          class="w-full h-[265px] object-cover hover:scale-110 transition-transform duration-300" />
+          class="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300" />
       @else
         @foreach ($item->images as $image)
           @if ($image->caratula == 1)
             @if ($image->name_imagen)
               <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
-                class="w-full h-[265px] object-cover hover:scale-110 transition-transform duration-300" />
+                class="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300" />
             @else
               <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
-                class="w-full h-[265px] object-cover hover:scale-110 transition-transform duration-300" />
+                class="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300" />
             @endif
           @endif
         @endforeach
