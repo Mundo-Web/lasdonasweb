@@ -185,7 +185,7 @@
         </div>
     </div>
 
-    <div class="header_bottom h-12 bg-[#336234] px-[5%] lg:px-[8%]">
+    <div class="header_bottom hidden 2md:block h-12 bg-[#336234] px-[5%] lg:px-[8%]">
         <div class="text-base font-b_classic_bold ">
 
             <nav id="menu-items"
@@ -209,16 +209,16 @@
                         class="font-b_slick_bold text-white  origin-top-right absolute top-full left-0 w-[100vw] mt-0 bg-[#73B473] p-8 shadow-lg overflow-hidden grid gap-8 grid-cols-12"
                         @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false">
 
-                        <div class="col-span-6">
+                        <div class="col-span-3">
                             <h2 class="px-3 py-1 text-xl tracking-wider">Categorias</h2>
                             <hr class="mx-3 my-3">
-                            <ul class="col-span-3 grid grid-cols-2 font-b_slick_regular tracking-normal">
+                            <ul class="col-span-3 font-b_slick_regular tracking-normal">
                                 @foreach ($submenucategorias as $category)
                                     @if ($category->subcategories->isNotEmpty())
                                         <li>
                                             <a @click="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}"
                                                 href="javascript:void(0)"
-                                                class="flex justify-between items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                                                class="flex justify-between items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                                                 <span class="underline-this">
                                                     {{ $category->name }}
                                                 </span>
@@ -229,16 +229,16 @@
                                                 class="ml-3 mt-1 space-y-1 border-l border-white">
                                                 <li>
                                                     <a href="/catalogo/{{ $category->slug }}"
-                                                        class="flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                                                        class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                                                         <span class="underline-this">
                                                             Ver todo {{ $category->name }}
                                                         </span>
                                                     </a>
                                                 </li>
-                                                @foreach ($category->subcategories() as $subcategory)
+                                                @foreach ($category->subcategories as $subcategory)
                                                     <li>
                                                         <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
-                                                            class="flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                                                            class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                                                             <span
                                                                 class="underline-this">{{ $subcategory->name }}</span>
                                                         </a>
@@ -249,7 +249,7 @@
                                     @else
                                         <li>
                                             <a href="{{ route('Catalogo.jsx', $category->id) }}"
-                                                class="flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                                                class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                                                 <span class="underline-this">
                                                     {{ $category->name }}
                                                 </span>
@@ -260,7 +260,7 @@
                             </ul>
                         </div>
 
-                        <div class="col-span-6">
+                        <div class="col-span-9">
                             <div class="swiper categories-header">
                                 <div class="swiper-wrapper mt-2 mb-4">
                                     @foreach ($submenucategorias as $category)
@@ -590,7 +590,7 @@
 
 <script>
   new Swiper('.categories-header', {
-    slidesPerView: 2,
+    slidesPerView: 4,
     spaceBetween: 10,
     loop: true,
     grab: false,
@@ -605,10 +605,13 @@
     },
     breakpoints: {
       0: {
-        slidesPerView: 1
+        slidesPerView: 2
       },
       1200: {
-        slidesPerView: 2
+        slidesPerView: 3
+      },
+      1350: {
+        slidesPerView: 4
       },
     },
   });
