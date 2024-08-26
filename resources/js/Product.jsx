@@ -67,9 +67,12 @@ const Product = ({ complementos, general,
     const horaFin = item.end_time.trim();
 
 
+    console.log(item)
 
     return (horaActual >= horaInicio && horaActual <= horaFin) || (horaActual < horaInicio);
   });
+
+
   const [detallePedido, setDetallePedido] = useState({
     fecha: '',
     horario: '',
@@ -81,7 +84,7 @@ const Product = ({ complementos, general,
 
 
   useEffect(() => {
-
+    console.log(detallePedido)
   }, [detallePedido])
 
   const agregarPedido = async (e) => {
@@ -397,7 +400,7 @@ const Product = ({ complementos, general,
 
                 {general.acept_incoming_orders_today == true ?
                   (<div
-                    className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
+                    className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-[#E8EDDE]  border-[#E8EDDE]'} justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
                     <HorarioSection
                       id="hoy"
                       title="Hoy"
@@ -409,6 +412,7 @@ const Product = ({ complementos, general,
                       setSelectedHorario={setSelectedHorario}
                       setDetallePedido={setDetallePedido}
                     />
+                    {console.log(horariosHoy)}
                     {horariosHoy.length === 0 ? (
                       <p key="no-disponible" className="text-sm font-normal">No disponible</p>
                     ) : (
@@ -428,9 +432,11 @@ const Product = ({ complementos, general,
 
                 }
 
-                <div className="relative flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] text-[#E8EDDE] border-2 p-3 rounded-xl "
+                <div className={`relative flex flex-col justify-center items-center  text-center w-1/3 
+                ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-[#E8EDDE]  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
                   htmlFor="manana"
                 >
+                  {console.log(selectedHorario)}
                   <HorarioSection
                     id="manana"
                     title="Mañana"
@@ -446,11 +452,12 @@ const Product = ({ complementos, general,
 
                 </div>
 
-
+                {console.log(detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '')}
                 <div
+
                   onClick={openModalCalendario}
-                  className=" flex cursor-pointer flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl ">
-                  <p className="text-lg font-bold m-auto text-[#E8EDDE]">Más fechas</p>
+                  className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-[#E8EDDE]  border-[#E8EDDE]'} `}>
+                  <p className="text-lg font-bold m-auto ">Más fechas</p>
                 </div>
 
               </div>
