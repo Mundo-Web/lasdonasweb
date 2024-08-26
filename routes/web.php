@@ -201,7 +201,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         //Productos
         Route::resource('/products', ProductsController::class);
-        Route::post('/products', [ProductsController::class, 'save'])->name('products.save');
+        // Route::post('/products', [ProductsController::class, 'save'])->name('products.save');
         Route::post('/products/updateVisible', [ProductsController::class, 'updateVisible'])->name('products.updateVisible');
         Route::post('/products/borrar', [ProductsController::class, 'borrar'])->name('products.borrar');
         Route::post('/products/borrarimg', [ProductsController::class, 'borrarimg'])->name('activity.borrarimg');

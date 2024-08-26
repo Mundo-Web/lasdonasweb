@@ -45,14 +45,14 @@ class ProductsController extends Controller
     $product  = new Products();
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
-    $allTags = Tag::where("status", "=", true)->get();
+    $tags = Tag::where("status", "=", true)->get();
     $categoria = Category::all();
     $collection = Collection::all();
     $tipo = Tipo::where("status", "=", true)->get();
     $complementos  = Complemento::where('status', 1)->get();
     $especificacion = [];
     $subproductos = [];
-    return view('pages.products.create', compact('product', 'atributos', 'valorAtributo', 'categoria', 'allTags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
+    return view('pages.products.create', compact('product', 'atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
   }
 
   /**
