@@ -54,7 +54,7 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
   const renderDays = () => {
     const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
     return (
-      <div className="days flex flex-row justify-between px-10 pt-5 font-bold border-t-2 border-black text-base font-b_slick_bold">
+      <div className="days grid grid-cols-7 px-0 pt-5 text-center font-bold border-t-2 border-black text-base font-b_slick_bold">
         {daysOfWeek.map(day => (
           <div key={day} className="day-name text-base font-b_slick_regular">{day}</div>
         ))}
@@ -104,7 +104,7 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
       dates.push(
         <div
           key={i}
-          className={`date flex cursor-pointer hover:border-2 hover:bg-slate-200 py-4 rounded-xl h-9 w-9 items-center justify-center content-center ${isSelected ? 'selected bg-[#336234] text-white' : ''} ${isToday ? 'bg-gray-200' : ''} ${isPastDate || isCampaignDate ? 'not-selectable' : ''}`}
+          className={`date flex cursor-pointer hover:border-2 text-center mx-auto hover:bg-slate-200 py-4 rounded-xl h-9 w-9 items-center justify-center content-center ${isSelected ? 'selected bg-[#336234] text-white' : ''} ${isToday ? 'bg-gray-200' : ''} ${isPastDate || isCampaignDate ? 'not-selectable' : ''}`}
           onClick={() => !isPastDate && !isCampaignDate && handleDateChange(date)}
         >
           {i}
@@ -112,7 +112,7 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
       );
     }
 
-    return <div className="dates mt-4 grid grid-cols-7 text-center gap-y-5 px-5 font-b_slick_bold text-base">{dates}</div>;
+    return <div className="dates mt-4 grid grid-cols-7 text-center gap-y-5 px-0 font-b_slick_bold text-base">{dates}</div>;
   };
   return (
     <>
