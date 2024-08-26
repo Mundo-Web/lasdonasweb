@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import es from 'date-fns/locale/es';
-import ListHorarios from './ListHorarios';
+import ListHorariosPopup from './ListHorariosPopup';
 
 registerLocale('es', es);
 setDefaultLocale('es');
@@ -137,7 +137,7 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
           <div className="time-slots pt-5">
             <h4 className='font-b_slick_bold text-lg'>Selecciona un horario de entrega</h4>
             <div className="time-slots-options relative mt-4">
-              <ListHorarios clase='flex flex-row gap-2 text-sm text-center justify-center font-b_slick_bold text-sm'
+              <ListHorariosPopup clase='flex flex-row gap-2 text-sm text-center justify-center font-b_slick_bold text-sm'
                 horarios={horarios}
                 selectedHorario={selectedHorario}
                 setSelectedHorario={setSelectedHorario}
