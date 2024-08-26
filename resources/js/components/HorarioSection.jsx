@@ -30,6 +30,7 @@ const HorarioSection = ({ id, title, date, horarios, loadListHorarios, setLoadLi
           selectedHorario={selectedHorario}
           setSelectedHorario={setSelectedHorario}
           setDetallePedido={setDetallePedido}
+          setLoadListHorarios={setLoadListHorarios}
           id={id}
         />
       </CSSTransition>
