@@ -521,13 +521,13 @@
 
                 </div>
 
-                <div class="md:col-span-5">
-                  <label for="items" class="block font-medium text-gray-700">Up Sell<i
+                <div class="md:col-span-5" id="upsellListado">
+                  <label for="items" class="block font-medium text-gray-700">Recomendados<i
                       class="fa-solid fa-cart-plus ml-4"></i></label>
                   <select id="uppsell" name="uppsell[]" multiple="multiple"
                     class="w-full select2 mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror""></select>
                 </div>
-                <div class="md:col-span-5">
+                <div class="md:col-span-5" id="complementosListado">
                   <label for="items" class="block font-medium text-gray-700">Complementos<i
                       class="fa-solid fa-cart-plus ml-4"></i></label>
                   <select id="complementos" name="complementos[]" multiple="multiple"
@@ -1644,6 +1644,8 @@
   <script>
     $('#complemento').on('change', function() {
       if ($(this).is(':checked')) {
+        $('#upsellListado').hide()
+        $('#complementosListado').hide()
         $('#complementoContainer').show(); // Mostrar el contenedor de complemento
         $('#agregarOpciones').hide(); // Ocultar agregar opciones
         $('#puntos_complemento').show(); // Mostrar puntos complemento
@@ -1651,6 +1653,8 @@
         $('#puntos_complemento').prop('required', true); // Hacer el campo requerido
         $('#complemento_id').prop('required', true); // Hacer complemento_id requerido
       } else {
+        $('#upsellListado').show()
+        $('#complementosListado').show()
         $('#complementoContainer').hide(); // Ocultar el contenedor de complemento
         $('#puntos_complemento').hide(); // Ocultar puntos complemento
         $('#agregarOpciones').show(); // Mostrar agregar opciones

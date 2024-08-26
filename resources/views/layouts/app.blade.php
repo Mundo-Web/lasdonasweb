@@ -7,7 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>{{ config('app.name', 'Laravel') }}</title>
-  <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=L+D&color=fff&background=ff8555&rounded=true" type="image/x-icon">
+  <link rel="shortcut icon" href="/img_donas/icon.svg" type="image/x-icon">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

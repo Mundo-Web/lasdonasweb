@@ -4,7 +4,7 @@
     <section class="py-4 border-b border-slate-100 dark:border-slate-700">
       <a href="{{ route('products.create') }}"
         class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm">
-        Agregar producto
+        Agregar Producto o Complemtento
       </a>
     </section>
 
@@ -33,7 +33,7 @@
                 <th>Stock</th>
                 {{-- <th>Peso</th> --}}
                 <th>Imagen</th>
-                <th>Lo más pedido</th>
+                <th>Lo más Vendidos</th>
                 <th>Novedad</th>
                 {{--  <th>Liquidacion</th> --}}
                 <th>Visible</th>
@@ -151,9 +151,9 @@
                 <th>Stock</th>
                 {{-- <th>Peso</th> --}}
                 <th>Imagen</th>
-                <th>Lo más pedido</th>
+                <th>Lo más Vendidos</th>
                 <th>Novedad</th>
-                <th>Liquidacion</th>
+
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>

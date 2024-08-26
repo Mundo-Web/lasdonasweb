@@ -62,7 +62,7 @@ class IndexController extends Controller
   public function index()
   {
     // $productos = Products::all(); Products::where("tipo_servicio", "=", 'complemento')
-    $productos = Products::where('status', '=', 1)->where('tipo_servicio', 'producto')->with('tags')->get();
+    $productos = Products::where('status', '=', 1)->where('destacar', 1)->where('tipo_servicio', 'producto')->with('tags')->get();
     $categorias = Category::all();
     $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
     $recomendados = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
@@ -644,10 +644,11 @@ class IndexController extends Controller
 
     $tipoDefault = Tipo::where('is_default', '=', 1)->first();
 
-    $complementos = Complemento::select('complementos.*')
-      ->join('products', 'products.complemento_id', '=', 'complementos.id')
-      ->where('complementos.status', 1)
-      ->groupBy('complementos.id')
+    $complementos = Products::select('products.*')
+      ->join('categories', 'categories.id', 'products.categoria_id')
+      ->where('products.status', 1)->where('products.tipo_servicio', 'complemento')->where('products.parent_id', 1)
+      
+      ->groupBy('products.id')
       ->get();
     foreach ($complementos as $key => $complemento) {
 
