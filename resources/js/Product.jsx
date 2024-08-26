@@ -39,19 +39,7 @@ const Product = ({ complementos, general,
   url_env,
   colors, horarios, categorias, politicasSustitucion, politicaEnvio }) => {
 
-  const [detallePedido, setDetallePedido] = useState({
-    fecha: '',
-    horario: '',
-    opcion: '',
-    complementos: [],
-    imagen: '',
-  });
 
-
-
-  useEffect(() => {
-    console.log(detallePedido)
-  }, [detallePedido])
 
   const [selectedHorario, setSelectedHorario] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -82,6 +70,19 @@ const Product = ({ complementos, general,
 
     return (horaActual >= horaInicio && horaActual <= horaFin) || (horaActual < horaInicio);
   });
+  const [detallePedido, setDetallePedido] = useState({
+    fecha: '',
+    horario: '',
+    opcion: currentProduct.id,
+    complementos: [],
+    imagen: '',
+  });
+
+
+
+  useEffect(() => {
+    console.log(detallePedido)
+  }, [detallePedido])
 
   const agregarPedido = async (e) => {
 
@@ -108,7 +109,6 @@ const Product = ({ complementos, general,
       });
       return;
     }
-    console.log(detallePedido)
 
     try {
       const res = await axios.post('/api/products/AddOrder', detallePedido);
@@ -118,7 +118,6 @@ const Product = ({ complementos, general,
           horario,
           complementos,
           fecha, imagen } = res.data;
-        console.log(producto)
         let detalleProducto = {
           id: producto.id,
           producto: producto.producto,
@@ -131,7 +130,6 @@ const Product = ({ complementos, general,
           tipo: producto?.tipos?.name ?? 'Clasica',
           extract: producto.extract,
         }
-        console.log(complementos)
         let detalleComplemento = complementos.map(item => {
           return {
             id: item.id,
@@ -169,7 +167,6 @@ const Product = ({ complementos, general,
           carrito = [...carrito, detalleProducto, ...detalleComplemento];
         }
 
-        console.log(carrito)
         // Guardar el carrito actualizado en el almacenamiento local
         Local.set('carrito', carrito);
 
@@ -211,7 +208,6 @@ const Product = ({ complementos, general,
   }
 
   const handleSelecttionOption = (item) => {
-    console.log(item)
     setCurrentProduct(item);
     setDetallePedido((prevState) => {
       return {
@@ -265,6 +261,8 @@ const Product = ({ complementos, general,
       return tomorrow.toLocaleDateString('es-ES', options);
     };
 
+
+
     setTomorrowDate(getTomorrowDate());
   }, []);
 
@@ -309,25 +307,25 @@ const Product = ({ complementos, general,
 
               {caratula ? (
 
-                    <div className="col-span-2 sm:col-span-3 relative h-max">
-                      <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
-                      >
-                        {imageSrc !== null ? <img
-                          id="Imagen Complementaria"
-                          ref={imagePreviewRef}
-                          src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
-                          alt="Image preview"
-                          className={`w-full aspect-square object-cover p-4 rounded-lg cursor-pointer`}
-                          onClick={handleImageClick}
-                        /> : ''}
-                      </div>
+                <div className="col-span-2 sm:col-span-3 relative h-max">
+                  <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
+                  >
+                    {imageSrc !== null ? <img
+                      id="Imagen Complementaria"
+                      ref={imagePreviewRef}
+                      src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
+                      alt="Image preview"
+                      className={`w-full aspect-square object-cover p-4 rounded-lg cursor-pointer`}
+                      onClick={handleImageClick}
+                    /> : ''}
+                  </div>
 
-                      <img
-                        className="w-full aspect-square object-cover"
-                        src={caratula.name_imagen ? `/${caratula.name_imagen}` : '/images/img/noimagen.jpg'}
-                        alt="Product"
-                      />
-                    </div>
+                  <img
+                    className="w-full aspect-square object-cover"
+                    src={caratula.name_imagen ? `/${caratula.name_imagen}` : '/images/img/noimagen.jpg'}
+                    alt="Product"
+                  />
+                </div>
               ) : (
                 <img className="w-full aspect-square object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
               )}
@@ -362,20 +360,20 @@ const Product = ({ complementos, general,
                   {currentProduct.images.map((image, index) => {
                     {
                       // if (image.caratula !== 1) {
-                        return (<SwiperSlide key={index} >
-                          <div className="flex gap-2 items-center justify-start h-full">
-                            <div className="flex justify-center items-center h-full">
+                      return (<SwiperSlide key={index} >
+                        <div className="flex gap-2 items-center justify-start h-full">
+                          <div className="flex justify-center items-center h-full">
 
 
-                              <img
-                                className="object-cover aspect-square w-full"
-                                src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
-                                alt="Product"
-                              />
+                            <img
+                              className="object-cover aspect-square w-full"
+                              src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
+                              alt="Product"
+                            />
 
-                            </div>
                           </div>
-                        </SwiperSlide>);
+                        </div>
+                      </SwiperSlide>);
 
                       // }
 
@@ -470,6 +468,7 @@ const Product = ({ complementos, general,
                       value={tipoDefault.name}
                       className="hidden peer radio-option"
                       required
+                      defaultChecked={tipoDefault.name === 'Clasico'}
                     />
                     <label
                       htmlFor="react-option"
@@ -488,10 +487,10 @@ const Product = ({ complementos, general,
                         )}
                       </div>
                       <div className="flex flex-col justify-center items-center">
-                        {console.log(tipoDefault.name)}
+
                         <p className="text-base font-semibold">{tipoDefault.name}</p>
                         <p className="text-base font-normal">
-                          {console.log(product)}
+
                           S/ <span>{Number(product.precio).toFixed(0)}</span>
                         </p>
                         <p className="text-base font-bold">
@@ -667,7 +666,7 @@ const Product = ({ complementos, general,
 
               </div>
 
-              {console.log(currentProduct)}
+
               <div className='flex flex-col'>
                 {especificaciones.map((item, index) => (
                   <div
