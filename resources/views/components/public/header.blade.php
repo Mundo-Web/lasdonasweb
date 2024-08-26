@@ -8,38 +8,59 @@
 @endphp
 
 <style>
+body {
+    overflow-x: hidden;
+}
+  #header_top {
+    transition: height 0.6s ease, opacity 0.6s ease;
+  }
 
-#header_top {
-  transition: height 0.6s ease, opacity 0.6s ease;
+  .fixed-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  #header-mid.fixed-header {
+    transition: height 0.6s ease; 
+  }
+
+  .header_bottom.fixed-header {
+    top: 80px; 
+  }
+
+  #cart-modal {
+      z-index: 10000; 
+  }
+  
+
+  .submenu {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
-.fixed-header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
+.subcategories {
+    margin-right: 2rem;
 }
 
-#header-mid.fixed-header {
-  transition: height 0.6s ease; /* Agrega una transición suave */
-}
-
-.header_bottom.fixed-header {
-  top: 80px; /* Ajusta este valor para estar justo debajo del nuevo header-mid */
-}
-
-
-#cart-modal {
-    z-index: 10000; /* Asegúrate de que este sea mayor que el z-index del header */
+.category-image img {
+    max-width: 100px;
+    height: auto;
+    object-fit: cover;
 }
 </style>
 
 
   <div id="header_top"
     class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
-    Producto | Categoría <span class="ml-1 font-b_classic_bold"> más vendida </span> <img
-      class="w-6 ml-2"src="{{ asset('img_donas/spa.svg') }}">
+    Producto | Categoría <span class="ml-1 font-b_classic_bold mt-1"> más vendida </span> <img
+      class="w-6 ml-2" src="{{ asset('img_donas/spa.svg') }}">
   </div>
 
 <header class="font-b_classic_regular sticky top-0" style="z-index:1">
@@ -159,27 +180,212 @@
         </div>
       </div>
 
-      <div class="header_bottom  md:px-[5%] lg:px-[10%] h-12 py-3 bg-[#336234]">
+      <div class="header_bottom h-12 bg-[#336234] px-[5%]">
         <div class="text-base font-b_classic_bold">
           <nav>
-            <div class="swiper menu">
-              <div class="swiper-wrapper relative">
-                @foreach ($submenucategorias as $item)
-                  <div class="swiper-slide">
+            <div class="swiper menu !overflow-visible">
+              <div class="swiper-wrapper relative ">
+                
+                  <div x-data="{ openCatalogo: false }" class="swiper-slide py-3" id="slide-1" @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false" >
                     <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
-                      <li><a href="/catalogo/{{ $item->id }}">{{ $item->name }}</a></li>
+                      <li><a href="#">Para ellas</a></li>
                     </ul>
+                    <div x-show="openCatalogo" @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false"
+                     :class="{
+                          'left-0': $el.getBoundingClientRect().left < 300,
+                          'right-0': $el.getBoundingClientRect().right > (window.innerWidth - 300),
+                          'transform -translate-x-1/2': $el.getBoundingClientRect().left >= 300 && $el.getBoundingClientRect().right <= (window.innerWidth - 300)
+                      }"
+                     class="z-10 fixed top-full  transform -translate-x-1/2 bg-black w-[600px] h-96 mt-0 border p-8 shadow-lg overflow-hidden" >
+                      <div class="flex flex-row">
+                          <ul class="subcategories text-left">
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 1</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 2</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 3</a></li>
+                            </ul>
+                          <div class="category-image ml-4">
+                              <img src="{{ asset('img_donas/spa.svg') }}" class="w-40 h-40 object-cover">
+                          </div>
+                      </div>
+                    </div>         
                   </div>
-                @endforeach
+
+                  <div x-data="{ openCatalogo: false }" class="swiper-slide py-3" id="slide-1" @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false" >
+                    <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
+                      <li><a href="#">Para Categoría Categoría</a></li>
+                    </ul>
+                    <div x-show="openCatalogo" @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false"
+                    :class="{
+                          'left-0': $el.getBoundingClientRect().left < 300,
+                          'right-0': $el.getBoundingClientRect().right > (window.innerWidth - 300),
+                          'transform -translate-x-1/2': $el.getBoundingClientRect().left >= 300 && $el.getBoundingClientRect().right <= (window.innerWidth - 300)
+                      }"
+                     class="z-10 fixed top-full left-1/2 transform -translate-x-1/2 bg-black w-[600px] h-96 mt-0 border p-8 shadow-lg overflow-hidden" >
+                      <div class="flex flex-row">
+                          <ul class="subcategories text-left">
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 1</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 2</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 3</a></li>
+                            </ul>
+                          <div class="category-image ml-4">
+                              <img src="{{ asset('img_donas/spa.svg') }}" class="w-40 h-40 object-cover">
+                          </div>
+                      </div>
+                    </div>         
+                  </div>
+
+                  <div x-data="{ openCatalogo: false }" class="swiper-slide py-3" id="slide-1" @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false" >
+                    <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
+                      <li><a href="#">Categoría ellas</a></li>
+                    </ul>
+                    <div x-show="openCatalogo" @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false"
+                    :class="{
+                          'left-0': $el.getBoundingClientRect().left < 300,
+                          'right-0': $el.getBoundingClientRect().right > (window.innerWidth - 300),
+                          'transform -translate-x-1/2': $el.getBoundingClientRect().left >= 300 && $el.getBoundingClientRect().right <= (window.innerWidth - 300)
+                      }"
+                     class="z-10 fixed top-full left-1/2 transform -translate-x-1/2 bg-black w-[600px] h-96 mt-0 border p-8 shadow-lg overflow-hidden" >
+                      <div class="flex flex-row">
+                          <ul class="subcategories text-left">
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 1</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 2</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 3</a></li>
+                            </ul>
+                          <div class="category-image ml-4">
+                              <img src="{{ asset('img_donas/spa.svg') }}" class="w-40 h-40 object-cover">
+                          </div>
+                      </div>
+                    </div>         
+                  </div>
+
+
+                  <div x-data="{ openCatalogo: false }" class="swiper-slide py-3" id="slide-1" @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false" >
+                    <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
+                      <li><a href="#">Categoría Enamorados</a></li>
+                    </ul>
+                    <div x-show="openCatalogo" @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false"
+                    :class="{
+                          'left-0': $el.getBoundingClientRect().left < 300,
+                          'right-0': $el.getBoundingClientRect().right > (window.innerWidth - 300),
+                          'transform -translate-x-1/2': $el.getBoundingClientRect().left >= 300 && $el.getBoundingClientRect().right <= (window.innerWidth - 300)
+                      }"
+                     class="z-10 fixed top-full left-1/2 transform -translate-x-1/2 bg-black w-[600px] h-96 mt-0 border p-8 shadow-lg overflow-hidden" >
+                      <div class="flex flex-row">
+                          <ul class="subcategories text-left">
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 1</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 2</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 3</a></li>
+                            </ul>
+                          <div class="category-image ml-4">
+                              <img src="{{ asset('img_donas/spa.svg') }}" class="w-40 h-40 object-cover">
+                          </div>
+                      </div>
+                    </div>         
+                  </div>
+
+
+                  <div x-data="{ openCatalogo: false }" class="swiper-slide py-3" id="slide-1" @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false" >
+                    <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
+                      <li><a href="#">Para ellas</a></li>
+                    </ul>
+                    <div x-show="openCatalogo" @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false"
+                    :class="{
+                          'left-0': $el.getBoundingClientRect().left < 300,
+                          'right-0': $el.getBoundingClientRect().right > (window.innerWidth - 300),
+                          'transform -translate-x-1/2': $el.getBoundingClientRect().left >= 300 && $el.getBoundingClientRect().right <= (window.innerWidth - 300)
+                      }"
+                     class="z-10 fixed top-full left-1/2 transform -translate-x-1/2 bg-black w-[600px] h-96 mt-0 border p-8 shadow-lg overflow-hidden" >
+                      <div class="flex flex-row">
+                          <ul class="subcategories text-left">
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 1</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 2</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 3</a></li>
+                            </ul>
+                          <div class="category-image ml-4">
+                              <img src="{{ asset('img_donas/spa.svg') }}" class="w-40 h-40 object-cover">
+                          </div>
+                      </div>
+                    </div>         
+                  </div>
+
+
+                  <div x-data="{ openCatalogo: false }" class="swiper-slide py-3" id="slide-1" @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false" >
+                    <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
+                      <li><a href="#">Para ellas</a></li>
+                    </ul>
+                    <div x-show="openCatalogo" @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false"
+                    :class="{
+                          'left-0': $el.getBoundingClientRect().left < 300,
+                          'right-0': $el.getBoundingClientRect().right > (window.innerWidth - 300),
+                          'transform -translate-x-1/2': $el.getBoundingClientRect().left >= 300 && $el.getBoundingClientRect().right <= (window.innerWidth - 300)
+                      }"
+                     class="z-10 fixed top-full left-1/2 transform -translate-x-1/2 bg-black w-[600px] h-96 mt-0 border p-8 shadow-lg overflow-hidden" >
+                      <div class="flex flex-row">
+                          <ul class="subcategories text-left">
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 1</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 2</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 3</a></li>
+                            </ul>
+                          <div class="category-image ml-4">
+                              <img src="{{ asset('img_donas/spa.svg') }}" class="w-40 h-40 object-cover">
+                          </div>
+                      </div>
+                    </div>         
+                  </div>
+
+
+                  <div x-data="{ openCatalogo: false }" class="swiper-slide py-3" id="slide-1" @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false" >
+                    <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
+                      <li><a href="#">Para ellas</a></li>
+                    </ul>
+                    <div x-show="openCatalogo" @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false"
+                    :class="{
+                          'left-0': $el.getBoundingClientRect().left < 300,
+                          'right-0': $el.getBoundingClientRect().right > (window.innerWidth - 300),
+                          'transform -translate-x-1/2': $el.getBoundingClientRect().left >= 300 && $el.getBoundingClientRect().right <= (window.innerWidth - 300)
+                      }"
+                     class="z-10 fixed top-full left-1/2 transform -translate-x-1/2 bg-black w-[600px] h-96 mt-0 border p-8 shadow-lg overflow-hidden" >
+                      <div class="flex flex-row">
+                          <ul class="subcategories text-left">
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 1</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 2</a></li>
+                              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 3</a></li>
+                            </ul>
+                          <div class="category-image ml-4">
+                              <img src="{{ asset('img_donas/spa.svg') }}" class="w-40 h-40 object-cover">
+                          </div>
+                      </div>
+                    </div>         
+                  </div>
+                 
+                
               </div>
             </div>
           </nav>
         </div>
       </div>
- 
+
+            
+      
 </header>
 
-
+ {{-- <div class="swiper-slide menu-item relative group py-3 " id="slide-{{$item->id}}">
+    <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
+      <li><a href="/catalogo/{{ $item->id }}">{{ $item->name }}</a></li>
+    </ul>
+    <div id="popup" class="absolute top-0 bg-white text-black p-4 shadow-lg z-50 h-56 w-96">
+      <div class="flex flex-row">
+          <ul class="subcategories text-left">
+              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 1</a></li>
+              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 2</a></li>
+              <li class="mb-1"><a href="#" class="hover:text-blue-500">Categoría 3</a></li>
+            </ul>
+          <div class="category-image ml-4">
+              <img src="{{ asset('img_donas/spa.svg') }}" class="w-40 h-40 object-cover">
+          </div>
+      </div>
+    </div>         
+ </div> --}}
 
 
 <div id="cart-modal" 
@@ -465,3 +671,4 @@ window.addEventListener('scroll', function() {
   }
 });
 </script>
+
