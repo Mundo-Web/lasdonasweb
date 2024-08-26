@@ -196,7 +196,7 @@
                     <span class="underline-this">Inicio</span>
                 </a>
 
-                <a href="/nosotros" class="font-medium hover:opacity-75 other-class py-3 px-6">
+                <a href="/" class="font-medium hover:opacity-75 other-class py-3 px-6">
                     <span class="underline-this">Nosotros</span>
                 </a>
 
@@ -288,11 +288,11 @@
                     </div>
                 </div>
 
-                <a href="/contacto" class="font-medium hover:opacity-75  other-class py-3 px-6">
+                <a href="/" class="font-medium hover:opacity-75  other-class py-3 px-6">
                     <span class="underline-this">Tipos de flor</span>
                 </a>
 
-                <a href="/contacto" class="font-medium hover:opacity-75  other-class py-3 px-6">
+                <a href="/" class="font-medium hover:opacity-75  other-class py-3 px-6">
                     <span class="underline-this">Oferta</span>
                 </a>
             </nav>
