@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 import React, { useEffect, useRef, useState } from 'react'
 import CreateReactScript from './Utils/CreateReactScript'
 import SelectSearch from './components/SelectSearch';
+import SelectCatalogo from './components/SelectCatalogo';
 import Card from './components/Card';
 import axios from 'axios';
 
@@ -396,6 +397,10 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                 </div>
               )}
             </div>
+              {console.log(categorias)}
+            <SelectCatalogo options={categorias}  title={'Categorías'}/>
+
+            <SelectCatalogo title={'Ordenar por'}/>
 
           </div>
           <div className='flex flex-wrap gap-4 mt-7'>
