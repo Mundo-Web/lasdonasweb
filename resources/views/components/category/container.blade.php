@@ -2,7 +2,7 @@
   class="flex flex-col relative" data-aos="zoom-in-left">
   <div class="bg-colorBackgroundProducts rounded-sm product_container basis-4/5 flex flex-col justify-center relative">
     <div>
-      <div class="relative flex justify-center items-center h-[500px] bg-cover object-cover">
+      <div class="relative flex justify-center items-center h-[300px] bg-cover object-cover">
         @if ($item->url_image)
           <img x-transition:enter="transition ease-out duration-300 transform"
             x-transition:enter-start="opacity-100 scale-100" x-transition:enter-end="opacity-100 scale-105"

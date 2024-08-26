@@ -214,7 +214,7 @@
                             <hr class="mx-3 my-3">
                             <ul class="col-span-3 grid grid-cols-2 font-b_slick_regular tracking-normal">
                                 @foreach ($submenucategorias as $category)
-                                    @if ($category->subcategories())
+                                    @if ($category->subcategories->isNotEmpty())
                                         <li>
                                             <a @click="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}"
                                                 href="javascript:void(0)"
@@ -248,7 +248,7 @@
                                         </li>
                                     @else
                                         <li>
-                                            <a href="{{ route('catalogo', $category->slug) }}"
+                                            <a href="{{ route('Catalogo.jsx', $category->id) }}"
                                                 class="flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                                                 <span class="underline-this">
                                                     {{ $category->name }}
