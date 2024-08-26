@@ -296,6 +296,8 @@ const Product = ({ complementos, general,
     setImageSrc(null);
   };
 
+  const caratula = currentProduct.images.find((image) => image.caratula == 1)
+
   return (
     <>
       <main className="flex flex-col gap-12 mt-12 font-b_slick_bold">
@@ -305,10 +307,9 @@ const Product = ({ complementos, general,
 
             <div className="grid grid-cols-2 sm:grid-cols-3  gap-8 h-max" id="containerImagenesP">
 
-              {currentProduct.images?.length > 0 ? (
-                currentProduct.images.map((image, index) => (
-                  image.caratula === 1 && (
-                    <div key={index} className="col-span-2 sm:col-span-3 relative h-max">
+              {caratula ? (
+
+                    <div className="col-span-2 sm:col-span-3 relative h-max">
                       <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
                       >
                         {imageSrc !== null ? <img
@@ -316,19 +317,17 @@ const Product = ({ complementos, general,
                           ref={imagePreviewRef}
                           src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
                           alt="Image preview"
-                          className={`h-full w-full object-cover p-4 rounded-lg cursor-pointer`}
+                          className={`w-full aspect-square object-cover p-4 rounded-lg cursor-pointer`}
                           onClick={handleImageClick}
                         /> : ''}
                       </div>
 
                       <img
                         className="w-full aspect-square object-cover"
-                        src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
+                        src={caratula.name_imagen ? `/${caratula.name_imagen}` : '/images/img/noimagen.jpg'}
                         alt="Product"
                       />
                     </div>
-                  )
-                ))
               ) : (
                 <img className="w-full aspect-square object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
               )}
