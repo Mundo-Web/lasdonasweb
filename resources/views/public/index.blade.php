@@ -47,7 +47,7 @@
 
   <main class="flex flex-col gap-12">
 
-    <section class="z-0" id="portada">
+    <section class="z-0">
        <div class="swiper slider-portada">
           <div class="swiper-wrapper">
             @foreach ($slider as $slide)
