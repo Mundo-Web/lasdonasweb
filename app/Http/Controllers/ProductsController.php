@@ -52,7 +52,7 @@ class ProductsController extends Controller
     $complementos  = Complemento::where('status', 1)->get();
     $especificacion = [];
     $subproductos = [];
-    return view('pages.products.save', compact('product', 'atributos', 'valorAtributo', 'categoria', 'allTags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
+    return view('pages.products.create', compact('product', 'atributos', 'valorAtributo', 'categoria', 'allTags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
   }
 
   /**
@@ -84,7 +84,7 @@ class ProductsController extends Controller
     }
 
 
-    return view('pages.products.save', compact('product', 'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
+    return view('pages.products.edit', compact('product', 'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
   }
 
   public function save(Request $request)
