@@ -30,9 +30,7 @@
     "file": "assets/calcularTotal-sXLDybB7.js"
   },
   "_es-!~{00_}~.js": {
-  "_es-!~{00_}~.js": {
     "file": "assets/es-D87rtk4j.css",
-    "src": "_es-!~{00_}~.js"
     "src": "_es-!~{00_}~.js"
   },
   "_es-Hz-LnzMB.js": {
@@ -47,9 +45,7 @@
     ]
   },
   "_fade-!~{00Y}~.js": {
-  "_fade-!~{00Y}~.js": {
     "file": "assets/fade-WxPIMcx6.css",
-    "src": "_fade-!~{00Y}~.js"
     "src": "_fade-!~{00Y}~.js"
   },
   "_floating-ui.dom-KYqStz1f.js": {
@@ -66,15 +62,6 @@
     "file": "assets/index-XJuWVQ-l.js",
     "imports": [
       "__commonjsHelpers-4gQjN7DL.js"
-    ]
-  },
-  "_react-select.esm-8n6hKeD1.js": {
-    "file": "assets/react-select.esm-8n6hKeD1.js",
-    "imports": [
-      "_setPrototypeOf-vsx73Wsd.js",
-      "resources/js/components/useOutsideClick.jsx",
-      "_index-38suPYpT.js",
-      "_floating-ui.dom-KYqStz1f.js"
     ]
   },
   "_react-select.esm-8n6hKeD1.js": {
@@ -129,7 +116,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-lUzV-nE_.css",
+    "file": "assets/app-KyuGrEA4.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -209,13 +196,12 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Catalogo-t_AwWpWr.js",
+    "file": "assets/Catalogo-Q9Eibhcp.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_CreateReactScript-gWdz5wop.js",
-      "_react-select.esm-8n6hKeD1.js",
       "_react-select.esm-8n6hKeD1.js",
       "_truncateText-C3yxPslF.js",
       "_axios-_sX4vCAy.js",
@@ -223,9 +209,6 @@
       "_ProductCard-SKXuSLVk.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "resources/js/Utils/CreateReactScript.jsx",
-      "_setPrototypeOf-vsx73Wsd.js",
-      "_floating-ui.dom-KYqStz1f.js"
       "resources/js/Utils/CreateReactScript.jsx",
       "_setPrototypeOf-vsx73Wsd.js",
       "_floating-ui.dom-KYqStz1f.js"
@@ -246,7 +229,7 @@
     "css": [
       "assets/Horarios-i7P6CmCQ.css"
     ],
-    "file": "assets/Horarios-JOpP3W8j.js",
+    "file": "assets/Horarios-oGQmRpiC.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -266,7 +249,6 @@
       "assets/fade-WxPIMcx6.css"
     ],
     "file": "assets/Pago-Iq1Hve2W.js",
-    "file": "assets/Pago-Iq1Hve2W.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -276,12 +258,8 @@
       "resources/js/Utils/CreateReactScript.jsx",
       "_calcularTotal-sXLDybB7.js",
       "_react-select.esm-8n6hKeD1.js",
-      "_react-select.esm-8n6hKeD1.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_axios-_sX4vCAy.js",
-      "_setPrototypeOf-vsx73Wsd.js",
-      "_floating-ui.dom-KYqStz1f.js"
       "_axios-_sX4vCAy.js",
       "_setPrototypeOf-vsx73Wsd.js",
       "_floating-ui.dom-KYqStz1f.js"
@@ -619,16 +597,6 @@
     ],
     "isEntry": true,
     "src": "resources/js/components/ReceiptTypeSelector.jsx"
-  },
-  "resources/js/components/SelectCatalogo.jsx": {
-    "file": "assets/SelectCatalogo-tmMjkXlv.js",
-    "imports": [
-      "resources/js/Example.jsx",
-      "resources/js/components/useOutsideClick.jsx",
-      "__commonjsHelpers-4gQjN7DL.js"
-    ],
-    "isEntry": true,
-    "src": "resources/js/components/SelectCatalogo.jsx"
   },
   "resources/js/components/SelectCatalogo.jsx": {
     "file": "assets/SelectCatalogo-tmMjkXlv.js",
