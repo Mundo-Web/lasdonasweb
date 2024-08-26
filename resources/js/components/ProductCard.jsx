@@ -11,7 +11,7 @@ const ProductCard = (item) => {
           <img
             src="/images/img/noimagen.jpg"
             alt={item.producto}
-            className="w-full h-[265px] object-cover hover:scale-110 transition-transform duration-300"
+            className="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300"
           />
         ) : (
           item.images.map((image, index) => {
@@ -21,7 +21,7 @@ const ProductCard = (item) => {
                   key={index}
                   src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                   alt={item.producto}
-                  className="w-full h-[265px] object-cover hover:scale-110 transition-transform duration-300"
+                  className="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300"
                   onError={(e) => {
                     e.target.src = '/images/img/noimagen.jpg';
                   }}

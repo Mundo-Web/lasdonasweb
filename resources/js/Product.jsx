@@ -296,6 +296,8 @@ const Product = ({ complementos, general,
     setImageSrc(null);
   };
 
+  const caratula = currentProduct.images.find((image) => image.caratula == 1)
+
   return (
     <>
       <main className="flex flex-col gap-12 mt-12 font-b_slick_bold">
@@ -303,39 +305,35 @@ const Product = ({ complementos, general,
 
           <div className="grid grid-cols-1 lg:grid-cols-2 px-[5%] lg:px-[7%] gap-5 lg:gap-10 pt-10">
 
-            <div className="grid grid-cols-2 sm:grid-cols-3  gap-8 " id="containerImagenesP">
+            <div className="grid grid-cols-2 sm:grid-cols-3  gap-8 h-max" id="containerImagenesP">
 
-              {currentProduct.images?.length > 0 ? (
-                currentProduct.images.map((image, index) => (
-                  image.caratula === 1 && (
-                    <div key={index} className="col-span-2 sm:col-span-3 relative">
+              {caratula ? (
+
+                    <div className="col-span-2 sm:col-span-3 relative h-max">
                       <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
                       >
-                        {console.log(imageSrc)}
                         {imageSrc !== null ? <img
                           id="Imagen Complementaria"
                           ref={imagePreviewRef}
                           src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
                           alt="Image preview"
-                          className={`h-full w-full object-cover p-4 rounded-lg cursor-pointer`}
+                          className={`w-full aspect-square object-cover p-4 rounded-lg cursor-pointer`}
                           onClick={handleImageClick}
                         /> : ''}
                       </div>
 
                       <img
-                        className="h-[800px] object-cover"
-                        src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
+                        className="w-full aspect-square object-cover"
+                        src={caratula.name_imagen ? `/${caratula.name_imagen}` : '/images/img/noimagen.jpg'}
                         alt="Product"
                       />
                     </div>
-                  )
-                ))
               ) : (
-                <img className="size-full object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
+                <img className="w-full aspect-square object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
               )}
 
 
-              <div className="col-span-3 h-full" data-aos="fade-up" data-aos-offset="150">
+              <div className="col-span-3 h-max" data-aos="fade-up" data-aos-offset="150">
                 <Swiper
                   className="img-complementarias h-full"
                   slidesPerView={3}
@@ -363,14 +361,14 @@ const Product = ({ complementos, general,
                 >
                   {currentProduct.images.map((image, index) => {
                     {
-                      if (image.caratula !== 1) {
+                      // if (image.caratula !== 1) {
                         return (<SwiperSlide key={index} >
                           <div className="flex gap-2 items-center justify-start h-full">
                             <div className="flex justify-center items-center h-full">
 
 
                               <img
-                                className="size-full object-cover h-full w-full"
+                                className="object-cover aspect-square w-full"
                                 src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                                 alt="Product"
                               />
@@ -379,7 +377,7 @@ const Product = ({ complementos, general,
                           </div>
                         </SwiperSlide>);
 
-                      }
+                      // }
 
                     }
 
