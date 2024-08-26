@@ -116,7 +116,7 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
   };
   return (
     <>
-      <div className="calendar-component  flex flex-col pt-2 lg:pt-10 w-full" >
+      <div className="calendar-component  flex flex-col pt-2  w-full" >
 
         {renderHeader()}
         {renderDays()}
