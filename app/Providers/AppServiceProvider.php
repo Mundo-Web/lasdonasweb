@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('components.public.header', function ($view) {
             // Obtener los datos del footer
-            $submenucategorias = Category::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
+            $submenucategorias = Category::with(['subcategories'])->where('status', true)->get(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             $submenucolecciones = Collection::all();
             $appUrl = env('APP_URL');
             // Pasar los datos a la vista
