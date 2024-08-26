@@ -173,7 +173,7 @@
     </div>
   </div>
 
-
+  
 </header>
 
 
@@ -437,7 +437,8 @@
 window.addEventListener('scroll', function() {
   const headerMid = document.getElementById('header-mid');
   const headerBottom = document.querySelector('.header_bottom');
-  const portada = document.getElementById('portada'); // Elemento con id "portada"
+  const portada = document.getElementById('portada'); 
+  const main = document.querySelector('.main');
   
   const scrollPosition = window.scrollY;
   const documentHeight = document.documentElement.scrollHeight;
@@ -448,15 +449,16 @@ window.addEventListener('scroll', function() {
 
   // Verifica si el porcentaje de scroll es mayor o igual al 1%
   if (scrollPercentage >= 1) {
-    headerMid.classList.add('fixed-header', 'h-[80px]', 'animate-fade-up');
+    headerMid.classList.add('fixed-header', 'h-[80px]');
     headerMid.classList.remove('h-[100px]');
-    headerBottom.classList.add('fixed-header', 'animate-fade-up', 'shadow-lg', 'shadow-black/40');
-    //portada.classList.add('mt-[150px]'); 
+    headerBottom.classList.add('fixed-header', 'shadow-lg', 'shadow-black/40');
+    portada.classList.add('mt-[150px]'); 
+    main.classList.add('mt-[128px]'); 
   } else {
-    headerMid.classList.remove('fixed-header', 'h-[80px]', 'animate-fade-up');
+    headerMid.classList.remove('fixed-header', 'h-[80px]');
     headerMid.classList.add('h-[100px]');
-    headerBottom.classList.remove('fixed-header', 'animate-fade-up');
-    //portada.classList.remove('mt-[150px]'); 
+    headerBottom.classList.remove('fixed-header');
+    portada.classList.remove('mt-[150px]'); 
   }
 });
 </script>
