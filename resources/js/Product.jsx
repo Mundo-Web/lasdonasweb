@@ -47,7 +47,7 @@ const Product = ({ complementos, general,
     imagen: '',
   });
 
-  console.log(subproductos)
+
 
   useEffect(() => {
     console.log(detallePedido)
@@ -493,6 +493,7 @@ const Product = ({ complementos, general,
                         {console.log(tipoDefault.name)}
                         <p className="text-base font-semibold">{tipoDefault.name}</p>
                         <p className="text-base font-normal">
+                          {console.log(product)}
                           S/ <span>{Number(product.precio).toFixed(0)}</span>
                         </p>
                         <p className="text-base font-bold">

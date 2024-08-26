@@ -631,7 +631,7 @@ class IndexController extends Controller
 
   public function producto(string $id)
   {
-    $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
+    $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->first();
     // $product = Products::findOrFail($id);
     // $colors = Products::findOrFail($id)
     //           ->with('images')

@@ -406,7 +406,7 @@
 
           <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">
 
-            Agregar nuevo producto
+            Agregar nuevo <span id='title'>Producto</span>
           </h2>
         </header>
         <div class="flex flex-col gap-2 p-3 ">
@@ -441,7 +441,8 @@
                   </div>
 
                   <div class="col-span-1 md:col-span-2 lg:col-span-3 mt-2">
-                    <label for="producto">Producto<span class="text-red-500"> (Obligatorio) </span></label>
+                    <label for="producto"> <span id='title'>Producto</span> <span class="text-red-500">
+                        (Obligatorio) </span></label>
                     <div class="relative mb-2 mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <i class="fa fa-pencil"></i>
@@ -756,7 +757,7 @@
             </div>
             <div class="inline-flex items-end">
               <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                Guardar producto
+                Guardar <span id='title'>Producto</span>
               </button>
             </div>
           </div>
@@ -1644,6 +1645,8 @@
   <script>
     $('#complemento').on('change', function() {
       if ($(this).is(':checked')) {
+        $('[id="title"]').text('Complemento')
+        $('#producto').attr('placeholder', 'Complemento')
         $('#upsellListado').hide()
         $('#complementosListado').hide()
         $('#complementoContainer').show(); // Mostrar el contenedor de complemento
@@ -1653,6 +1656,9 @@
         $('#puntos_complemento').prop('required', true); // Hacer el campo requerido
         $('#complemento_id').prop('required', true); // Hacer complemento_id requerido
       } else {
+        $('[id="title"]').text('Producto')
+        $('#producto').attr('placeholder', 'Producto')
+
         $('#upsellListado').show()
         $('#complementosListado').show()
         $('#complementoContainer').hide(); // Ocultar el contenedor de complemento
