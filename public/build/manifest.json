@@ -116,7 +116,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-hxvU_oYF.css",
+    "file": "assets/app-GObxDhKS.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -196,7 +196,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Catalogo-Q9Eibhcp.js",
+    "file": "assets/Catalogo-5Svic84O.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -248,15 +248,15 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Pago-Iq1Hve2W.js",
+    "file": "assets/Pago-WZu0cbc1.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_CreateReactScript-gWdz5wop.js",
-      "_index-XJuWVQ-l.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_calcularTotal-sXLDybB7.js",
+      "_index-XJuWVQ-l.js",
       "_react-select.esm-8n6hKeD1.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
@@ -271,7 +271,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Product-JPRqwH8t.js",
+    "file": "assets/Product-GXLTzBOU.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
