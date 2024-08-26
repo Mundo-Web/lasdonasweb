@@ -43,10 +43,11 @@
 
   <span id="gift-icon" class="fas"></span>
 
+  <div class="main">
   {{-- Aqui va el contenido de cada pagina --}}
   @inertia
 
-
+  </div>
 
 
 
