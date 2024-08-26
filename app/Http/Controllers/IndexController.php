@@ -64,8 +64,8 @@ class IndexController extends Controller
     // $productos = Products::all(); Products::where("tipo_servicio", "=", 'complemento')
     $productos = Products::where('status', '=', 1)->where('destacar', 1)->where('tipo_servicio', 'producto')->with('tags')->get();
     $categorias = Category::all();
-    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
-    $recomendados = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
+    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with('images')->get();
+    $recomendados = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with('images')->get();
     // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
     // ->where('visible', '=', 1)->with('tags')->get();
     // $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
@@ -631,7 +631,7 @@ class IndexController extends Controller
 
   public function producto(string $id)
   {
-    $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
+    $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->first();
     // $product = Products::findOrFail($id);
     // $colors = Products::findOrFail($id)
     //           ->with('images')

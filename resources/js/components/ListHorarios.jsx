@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase = 'absolute w-full flex flex-col gap-2 top-[80px] bg-white shadow-2xl', setDetallePedido }) => {
+const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase = 'absolute w-full flex flex-col gap-2 top-[80px] bg-white shadow-2xl', setDetallePedido, setLoadListHorarios = () => { } }) => {
 
   const checked = useRef(null);
 
@@ -17,6 +17,7 @@ const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase
   const handleRadioChange = (index) => {
 
     setSelectedHorario(index);
+    setLoadListHorarios(false);
     setDetallePedido((prevState) => {
       let fecha;
       if (id === "calendario") {
