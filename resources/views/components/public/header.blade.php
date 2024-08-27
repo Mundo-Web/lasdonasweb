@@ -129,14 +129,16 @@
                       </span>
                     </a>
                   </li>
-                  @foreach ($submenucategorias->subcategories as $subcategory)
-                    <li>
-                      <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
-                        class="text-[#272727] text-base flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300">
-                        <span class="underline-this">{{ $subcategory->name }}</span>
-                      </a>
-                    </li>
-                  @endforeach
+                  @if ($submenucategorias->subcategories && is_array($submenucategorias->subcategories))
+                    @foreach ($submenucategorias->subcategories as $subcategory)
+                      <li>
+                        <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
+                          class="text-[#272727] text-base flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300">
+                          <span class="underline-this">{{ $subcategory->name }}</span>
+                        </a>
+                      </li>
+                    @endforeach
+                  @endif
                 </ul>
               </li>
             @else
@@ -167,7 +169,7 @@
           </span>
         </a>
       </li>
-      
+
       <li>
         <a href="{{ route('comentario') }}"
           class="text-[#272727]  text-lg py-2 px-3 block hover:opacity-75 transition-opacity duration-300 {{ $pagina == 'comentario' ? 'text-[#FF5E14]' : '' }}">
@@ -200,8 +202,8 @@
       class="flex flex-row items-center justify-between gap-3 w-full px-[2%] xl:px-[8%]   text-[17px] relative bg-white ">
 
       <div id="menu-burguer" class="lg:hidden z-10 w-max">
-              <img class="h-10 w-10 cursor-pointer" src="{{ asset('img_donas/burguer.svg') }}"
-                alt="menu hamburguesa" onclick="show()" />
+        <img class="h-10 w-10 cursor-pointer" src="{{ asset('img_donas/burguer.svg') }}" alt="menu hamburguesa"
+          onclick="show()" />
       </div>
 
       <div class="w-auto min-w-[110px] flex items-center justify-center">
@@ -245,8 +247,8 @@
             class="w-full pl-12 pr-10 py-3 border lg:border-[#F8F8F8] bg-[#F8F8F8] rounded-3xl focus:outline-none focus:ring-0 text-gray-400 placeholder:text-gray-400 focus:border-transparent">
           <span
             class="absolute inset-y-0 left-0 flex items-start lg:items-center bg-[#336234] rounded-full my-[7px] px-2 ml-2">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#336234" xmlns="http://www.w3.org/2000/svg"
-              class="">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="#336234"
+              xmlns="http://www.w3.org/2000/svg" class="">
               <path
                 d="M14.6851 13.6011C14.3544 13.2811 13.8268 13.2898 13.5068 13.6206C13.1868 13.9514 13.1955 14.4789 13.5263 14.7989L14.6851 13.6011ZM16.4206 17.5989C16.7514 17.9189 17.2789 17.9102 17.5989 17.5794C17.9189 17.2486 17.9102 16.7211 17.5794 16.4011L16.4206 17.5989ZM15.2333 9.53333C15.2333 12.6814 12.6814 15.2333 9.53333 15.2333V16.9C13.6018 16.9 16.9 13.6018 16.9 9.53333H15.2333ZM9.53333 15.2333C6.38531 15.2333 3.83333 12.6814 3.83333 9.53333H2.16667C2.16667 13.6018 5.46484 16.9 9.53333 16.9V15.2333ZM3.83333 9.53333C3.83333 6.38531 6.38531 3.83333 9.53333 3.83333V2.16667C5.46484 2.16667 2.16667 5.46484 2.16667 9.53333H3.83333ZM9.53333 3.83333C12.6814 3.83333 15.2333 6.38531 15.2333 9.53333H16.9C16.9 5.46484 13.6018 2.16667 9.53333 2.16667V3.83333ZM13.5263 14.7989L16.4206 17.5989L17.5794 16.4011L14.6851 13.6011L13.5263 14.7989Z"
                 fill="#ffffff" class="fill-fillAzulPetroleo lg:fill-fillPink" />
@@ -278,8 +280,9 @@
               @click.outside="open = false" @keydown.escape.window="open = false" x-show="open">
               <ul>
                 <li class="hover:bg-gray-100">
-                  <a class="font-medium text-sm text-black flex items-center py-1 px-3" href="{{ route('micuenta') }}"
-                    @click="open = false" @focus="open = true" @focusout="open = false">Mi Cuenta</a>
+                  <a class="font-medium text-sm text-black flex items-center py-1 px-3"
+                    href="{{ route('micuenta') }}" @click="open = false" @focus="open = true"
+                    @focusout="open = false">Mi Cuenta</a>
                 </li>
 
                 <li class="hover:bg-gray-100">
@@ -326,11 +329,8 @@
           <span class="underline-this">Nosotros</span>
         </a>
 
-        <div x-data="{ openCatalogo: false }" 
-          x-init="$el.style.display = 'flex'"
-          style="display: none;"
-          @mouseenter="openCatalogo = true" 
-          @mouseleave="openCatalogo = false">
+        <div x-data="{ openCatalogo: false }" x-init="$el.style.display = 'flex'" style="display: none;"
+          @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false">
           <ul class="menu flex flex-row justify-center items-center text-center py-3 px-6">
             <li><a href="#">Catálogo</a></li>
           </ul>
@@ -733,8 +733,8 @@
   });
 
   function show() {
-  document.querySelector(".hamburger").classList.toggle("open");
-  document.querySelector(".navigation").classList.toggle("active");
+    document.querySelector(".hamburger").classList.toggle("open");
+    document.querySelector(".navigation").classList.toggle("active");
   }
 </script>
 
@@ -766,4 +766,3 @@
     },
   });
 </script>
-
