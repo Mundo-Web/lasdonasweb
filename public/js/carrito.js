@@ -52,7 +52,7 @@ let articulosCarrito = [];
 
     }
 
-    function addOnCarBtn(id, operacion, colorId, talla) {
+   /*  function addOnCarBtn(id, operacion, colorId, talla) {
 
       console.log(id,colorId)
 
@@ -71,7 +71,7 @@ let articulosCarrito = [];
       PintarCarrito()
 
 
-    }
+    } */
 
     function deleteItem(id, colorId, talla) {
 

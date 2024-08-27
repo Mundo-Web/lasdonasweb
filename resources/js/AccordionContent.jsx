@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import agregarComplementoPedido from './Utils/agregarComplemento';
+
+
 
 const AccordionContent = ({ id, url_env, setDetallePedido }) => {
   const [complementos, setComplementos] = useState([]);
@@ -25,19 +28,31 @@ const AccordionContent = ({ id, url_env, setDetallePedido }) => {
   }
   const handleCheckboxChange = (id) => {
 
-    setDetallePedido((prev) => {
-      const index = prev.complementos.findIndex((complemento) => complemento === id);
-      if (index === -1) {
+    console.log(id);
+
+
+    let carrito = Local.get('carrito') ?? [];
+    if (carrito.length > 0) {
+
+      console.log('entra porque tiene algo ')
+
+      agregarComplementoPedido(id)
+
+    } else {
+      setDetallePedido((prev) => {
+        const index = prev.complementos.findIndex((complemento) => complemento === id);
+        if (index === -1) {
+          return {
+            ...prev,
+            complementos: [...prev.complementos, id],
+          };
+        }
         return {
           ...prev,
-          complementos: [...prev.complementos, id],
+          complementos: prev.complementos.filter((complemento) => complemento !== id),
         };
-      }
-      return {
-        ...prev,
-        complementos: prev.complementos.filter((complemento) => complemento !== id),
-      };
-    });
+      });
+    }
   }
 
   return (

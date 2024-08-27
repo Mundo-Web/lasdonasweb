@@ -922,6 +922,16 @@ class ProductsController extends Controller
     }
   }
 
+  public function addComplemento(Request $request){ 
+    try {
+      //code...
+      $complementos = Products::where('id', $request->id)->with(['images', 'tipos'])->get();
+      return response()->json(['message' => 'Operación correcta', 'data' => $complementos], 200);
+    } catch (\Throwable $th) {
+      //throw $th;
+    }
+  }
+
   public function AddOrder(Request $request)
   {
     try {

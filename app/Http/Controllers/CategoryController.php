@@ -172,7 +172,7 @@ class CategoryController extends Controller
         $cantidad = $this->contarCategoriasDestacadas();
 
         if ($field == 'destacar') {
-            if ($cantidad >= 3 && $request->status == 1) {
+            if ($cantidad >= 10000 && $request->status == 1) {
                 return response()->json(['message' => 'Solo puedes destacar 3 categorias'], 409);
             }
         }
