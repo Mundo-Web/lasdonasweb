@@ -108,7 +108,7 @@
             </a>
           </li>
           @foreach ($submenucategorias as $category)
-            @if ($category->subcategories->isNotEmpty())
+            @if (isset($category->subcategories) && $category->subcategories->isNotEmpty())
               <li>
                 <a @click="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}"
                   href="javascript:void(0)"
@@ -129,16 +129,14 @@
                       </span>
                     </a>
                   </li>
-                  @if ($submenucategorias->subcategories && is_array($submenucategorias->subcategories))
-                    @foreach ($submenucategorias->subcategories as $subcategory)
-                      <li>
-                        <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
-                          class="text-[#272727] text-base flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300">
-                          <span class="underline-this">{{ $subcategory->name }}</span>
-                        </a>
-                      </li>
-                    @endforeach
-                  @endif
+                  @foreach ($category->subcategories as $subcategory)
+                    <li>
+                      <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
+                        class="text-[#272727] text-base flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300">
+                        <span class="underline-this">{{ $subcategory->name }}</span>
+                      </a>
+                    </li>
+                  @endforeach
                 </ul>
               </li>
             @else
@@ -152,6 +150,7 @@
               </li>
             @endif
           @endforeach
+
         </ul>
       </li>
 
