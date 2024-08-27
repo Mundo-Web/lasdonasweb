@@ -1,6 +1,16 @@
 <div class="flex flex-col gap-7 col-span-1 font-b_slick_bold tracking-wider">
   <a class="rounded-xl bg-white shadow-lg overflow-hidden" href="{{ route('Product.jsx', $item->id) }}">
-    <div class="bg-[#FFF4ED] rounded-t-xl overflow-hidden">
+    <div class="bg-[#FFF4ED] rounded-t-xl overflow-hidden relative">
+      @if ($item->descuento > 0)
+        @php
+
+          $descuento = round((1 - $item->descuento / $item->precio) * 100, 0);
+        @endphp
+        <div style="border-radius: 0px 5px 5px 5px"
+          class="flex content-center justify-center absolute left-[4%] top-[4%] w-20 bg-[#ee141f] text-white text-end px-1 pt-1 text-sm shadow-lg items-center">
+          <div> {{ $descuento }}% OFF</div>
+        </div>
+      @endif
       @if ($item->images->count() == 0)
         <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
           class="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300" />
@@ -11,6 +21,7 @@
               <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}"
                 class="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300" />
             @break
+
           @else
             <img src="{{ asset('images/img/noimagen.jpg') }}" alt="{{ $item->producto }}"
               class="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300" />
