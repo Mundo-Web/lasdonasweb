@@ -33,6 +33,7 @@ use App\Models\Specifications;
 use App\Models\Tag;
 use App\Models\TermsAndCondition;
 use App\Models\Tipo;
+use App\Models\TipoFlor;
 use App\Models\User;
 use App\Models\UserDetails;
 use App\Services\InstagramService;
@@ -175,6 +176,7 @@ class IndexController extends Controller
         }
       }
       $beneficios = Strength::where('status', '=', 1)->get();
+      $tipoFlores = TipoFlor::where('status', '=', 1)->get();
 
       // return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page'));
       return Inertia::render('Catalogo', [
@@ -187,6 +189,7 @@ class IndexController extends Controller
         'categoria' => $categoria,
         'atributos' => $atributos,
         'colecciones' => $colecciones,
+        'tipoFloresList' => $tipoFlores,
         'page ' => $page,
         'url_env' => $_ENV['APP_URL'],
 

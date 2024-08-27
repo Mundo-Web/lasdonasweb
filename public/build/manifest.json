@@ -72,15 +72,6 @@
       "__commonjsHelpers-4gQjN7DL.js"
     ]
   },
-  "_react-select.esm-FGKTizt7.js": {
-    "file": "assets/react-select.esm-FGKTizt7.js",
-    "imports": [
-      "_setPrototypeOf-7MT-VylK.js",
-      "resources/js/components/useOutsideClick.jsx",
-      "_index-38suPYpT.js",
-      "_floating-ui.dom-KYqStz1f.js"
-    ]
-  },
   "_setPrototypeOf-7MT-VylK.js": {
     "file": "assets/setPrototypeOf-7MT-VylK.js"
   },
@@ -214,22 +205,19 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Catalogo-kDig2dHT.js",
+    "file": "assets/Catalogo-fb3doCgE.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_CreateReactScript-BXBBo-c3.js",
-      "_react-select.esm-FGKTizt7.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
       "_ProductCard-SKXuSLVk.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_storage-zp2nPsZU.js",
-      "_setPrototypeOf-7MT-VylK.js",
-      "_floating-ui.dom-KYqStz1f.js"
+      "_storage-zp2nPsZU.js"
     ],
     "isEntry": true,
     "src": "resources/js/Catalogo.jsx"
@@ -267,7 +255,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Pago-46aWF8aF.js",
+    "file": "assets/Pago-WOM35L8K.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -277,13 +265,12 @@
       "_calcularTotal-sXLDybB7.js",
       "_Button-mPI2Y0vv.js",
       "_index-XJuWVQ-l.js",
-      "_react-select.esm-FGKTizt7.js",
+      "_setPrototypeOf-7MT-VylK.js",
       "_index-38suPYpT.js",
+      "_floating-ui.dom-KYqStz1f.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_axios-_sX4vCAy.js",
-      "_setPrototypeOf-7MT-VylK.js",
-      "_floating-ui.dom-KYqStz1f.js"
+      "_axios-_sX4vCAy.js"
     ],
     "isEntry": true,
     "src": "resources/js/Pago.jsx"
