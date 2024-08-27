@@ -479,10 +479,10 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
               {console.log(tipoFloresList)}
               {ShowtipoFlores && (
 
-                <div className="list z-[100] animate-fade-down animate-duration-[2000ms]" style={{ maxHeight: '150px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 1px' }}>
+                <div className="list z-[100] animate-fade-down animate-duration-[2000ms] overflow-y-auto" style={{ maxHeight: '150px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 1px' }}>
                   {tipoFloresList.map((item, index) => (
 
-                    <div className="w-full">
+                    <div className="w-full" key={index}>
                       <input
 
                         type="radio" name="drop1" id={item.id} className="radio" value="price_high" onChange={handleTipoFloresChange} />
