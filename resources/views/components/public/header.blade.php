@@ -8,59 +8,62 @@
 @endphp
 
 <style>
+  #header_top {
+    transition: height 0.6s ease, opacity 0.6s ease;
+  }
 
-#header_top {
-  transition: height 0.6s ease, opacity 0.6s ease;
-}
+  .fixed-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
 
-.fixed-header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
+  #header-mid.fixed-header {
+    transition: height 0.6s ease;
+    /* Agrega una transición suave */
+  }
 
-#header-mid.fixed-header {
-  transition: height 0.6s ease; /* Agrega una transición suave */
-}
-
-.header_bottom.fixed-header {
-  top: 80px; /* Ajusta este valor para estar justo debajo del nuevo header-mid */
-}
+  .header_bottom.fixed-header {
+    top: 80px;
+    /* Ajusta este valor para estar justo debajo del nuevo header-mid */
+  }
 
 
-#cart-modal {
-    z-index: 10000; /* Asegúrate de que este sea mayor que el z-index del header */
-}
+  #cart-modal {
+    z-index: 10000;
+    /* Asegúrate de que este sea mayor que el z-index del header */
+  }
 </style>
 
 
-  <div id="header_top"
-    class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
-    Producto | Categoría <span class="ml-1 font-b_classic_bold"> más vendida </span> <img
-      class="w-6 ml-2"src="{{ asset('img_donas/spa.svg') }}">
-  </div>
+<div id="header_top"
+  class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
+  Producto | Categoría <span class="ml-1 font-b_classic_bold"> más vendida </span> <img
+    class="w-6 ml-2"src="{{ asset('img_donas/spa.svg') }}">
+</div>
 
 <header class="font-b_classic_regular sticky top-0" style="z-index:1">
-  
-      <div id="header-mid"  class="h-[100px] flex flex-row items-center bg-white">
-        <div class="flex flex-row items-center justify-between gap-5 w-full px-[5%] xl:px-[8%]   text-[17px] relative bg-white ">
 
-          {{-- <div id="menu-burguer" class="lg:hidden z-10 w-max">
+  <div id="header-mid" class="h-[100px] flex flex-row items-center bg-white">
+    <div
+      class="flex flex-row items-center justify-between gap-5 w-full px-[5%] xl:px-[8%]   text-[17px] relative bg-white ">
+
+      {{-- <div id="menu-burguer" class="lg:hidden z-10 w-max">
               <img class="h-10 w-10 cursor-pointer" src="{{ asset('images/img/menu_hamburguer.png') }}"
                 alt="menu hamburguesa" onclick="show()" />
           </div> --}}
 
-          <div class="w-auto min-w-[110px] flex items-center justify-center">
-            <a href="{{route('index')}}">
-              {{-- <img id="logo-lasdonas" class="w-[250px]  " src="{{ asset($isIndex ? 'img_donas/Logo.png' : 'img_donas/Logo.png') }}" alt="lasdonas" /> --}}
-              <img id="logo-lasdonas" class="w-[250px]  " src="/img_donas/Logo_donas.svg" alt="lasdonas" />
-            </a>
-          </div>
+      <div class="w-auto min-w-[110px] flex items-center justify-center">
+        <a href="{{ route('index') }}">
+          {{-- <img id="logo-lasdonas" class="w-[250px]  " src="{{ asset($isIndex ? 'img_donas/Logo.png' : 'img_donas/Logo.png') }}" alt="lasdonas" /> --}}
+          <img id="logo-lasdonas" class="w-[250px]  " src="/img_donas/Logo_donas.svg" alt="lasdonas" />
+        </a>
+      </div>
 
-          <div class="hidden lg:flex items-center justify-center ">
-            {{-- <div>
+      <div class="hidden lg:flex items-center justify-center ">
+        {{-- <div>
                 <nav id="menu-items"
                   class=" text-[#333] text-base font-Inter_Medium flex gap-5 xl:gap-6 items-center justify-center "
                   x-data="{ openCatalogo: false, openSubMenu: null }">
@@ -83,112 +86,118 @@
                   </a>
                 </nav>
               </div> --}}
+      </div>
+
+      <div class="flex justify-end md:w-auto md:justify-center items-center gap-2">
+
+        <div
+          class="relative w-full lg:w-80 lg:py-0 border-b lg:border-0 border-[#082252] mr-3 hidden lg:flex font-b_classic_bold">
+          <input id="buscarproducto" type="text" placeholder="Buscar..."
+            class="w-full pl-12 pr-10 py-3 border lg:border-[#F8F8F8] bg-[#F8F8F8] rounded-3xl focus:outline-none focus:ring-0 text-gray-400 placeholder:text-gray-400 focus:border-transparent">
+          <span
+            class="absolute inset-y-0 left-0 flex items-start lg:items-center bg-[#336234] rounded-full my-[7px] px-2 ml-2">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="#336234" xmlns="http://www.w3.org/2000/svg"
+              class="">
+              <path
+                d="M14.6851 13.6011C14.3544 13.2811 13.8268 13.2898 13.5068 13.6206C13.1868 13.9514 13.1955 14.4789 13.5263 14.7989L14.6851 13.6011ZM16.4206 17.5989C16.7514 17.9189 17.2789 17.9102 17.5989 17.5794C17.9189 17.2486 17.9102 16.7211 17.5794 16.4011L16.4206 17.5989ZM15.2333 9.53333C15.2333 12.6814 12.6814 15.2333 9.53333 15.2333V16.9C13.6018 16.9 16.9 13.6018 16.9 9.53333H15.2333ZM9.53333 15.2333C6.38531 15.2333 3.83333 12.6814 3.83333 9.53333H2.16667C2.16667 13.6018 5.46484 16.9 9.53333 16.9V15.2333ZM3.83333 9.53333C3.83333 6.38531 6.38531 3.83333 9.53333 3.83333V2.16667C5.46484 2.16667 2.16667 5.46484 2.16667 9.53333H3.83333ZM9.53333 3.83333C12.6814 3.83333 15.2333 6.38531 15.2333 9.53333H16.9C16.9 5.46484 13.6018 2.16667 9.53333 2.16667V3.83333ZM13.5263 14.7989L16.4206 17.5989L17.5794 16.4011L14.6851 13.6011L13.5263 14.7989Z"
+                fill="#ffffff" class="fill-fillAzulPetroleo lg:fill-fillPink" />
+            </svg>
+          </span>
+          <div class="bg-white z-60 shadow-2xl top-12 w-full absolute overflow-y-auto max-h-[200px]" id="resultados">
           </div>
+        </div>
 
-          <div class="flex justify-end md:w-auto md:justify-center items-center gap-2">
 
-            <div
-              class="relative w-full lg:w-80 lg:py-0 border-b lg:border-0 border-[#082252] mr-3 hidden lg:flex font-b_classic_bold">
-              <input id="buscarproducto" type="text" placeholder="Buscar..."
-                class="w-full pl-12 pr-10 py-3 border lg:border-[#F8F8F8] bg-[#F8F8F8] rounded-3xl focus:outline-none focus:ring-0 text-gray-400 placeholder:text-gray-400 focus:border-transparent">
-              <span
-                class="absolute inset-y-0 left-0 flex items-start lg:items-center bg-[#336234] rounded-full my-[7px] px-2 ml-2">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="#336234" xmlns="http://www.w3.org/2000/svg"
-                  class="">
-                  <path
-                    d="M14.6851 13.6011C14.3544 13.2811 13.8268 13.2898 13.5068 13.6206C13.1868 13.9514 13.1955 14.4789 13.5263 14.7989L14.6851 13.6011ZM16.4206 17.5989C16.7514 17.9189 17.2789 17.9102 17.5989 17.5794C17.9189 17.2486 17.9102 16.7211 17.5794 16.4011L16.4206 17.5989ZM15.2333 9.53333C15.2333 12.6814 12.6814 15.2333 9.53333 15.2333V16.9C13.6018 16.9 16.9 13.6018 16.9 9.53333H15.2333ZM9.53333 15.2333C6.38531 15.2333 3.83333 12.6814 3.83333 9.53333H2.16667C2.16667 13.6018 5.46484 16.9 9.53333 16.9V15.2333ZM3.83333 9.53333C3.83333 6.38531 6.38531 3.83333 9.53333 3.83333V2.16667C5.46484 2.16667 2.16667 5.46484 2.16667 9.53333H3.83333ZM9.53333 3.83333C12.6814 3.83333 15.2333 6.38531 15.2333 9.53333H16.9C16.9 5.46484 13.6018 2.16667 9.53333 2.16667V3.83333ZM13.5263 14.7989L16.4206 17.5989L17.5794 16.4011L14.6851 13.6011L13.5263 14.7989Z"
-                    fill="#ffffff" class="fill-fillAzulPetroleo lg:fill-fillPink" />
+        @if (Auth::user() == null)
+          <a class="flex" href="{{ route('login') }}"><img class="bg-white rounded-lg"
+              src="{{ asset('img_donas/Group11.png') }}" alt="user" /></a>
+        @else
+          <div class="relative  hidden md:inline-flex" x-data="{ open: false }">
+            <button class="px-3 py-5 inline-flex justify-center items-center group" aria-haspopup="true"
+              @click.prevent="open = !open" :aria-expanded="open">
+              <div class="flex items-center truncate">
+                <span id="username"
+                  class="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:opacity-75 dark:group-hover:text-slate-200 text-[#272727] ">
+                  {{ explode(' ', Auth::user()->name)[0] }}</span>
+                <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
+                  <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                 </svg>
-              </span>
-              <div class="bg-white z-60 shadow-2xl top-12 w-full absolute overflow-y-auto max-h-[200px]" id="resultados">
               </div>
+            </button>
+            <div
+              class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1"
+              @click.outside="open = false" @keydown.escape.window="open = false" x-show="open">
+              <ul>
+                <li class="hover:bg-gray-100">
+                  <a class="font-medium text-sm text-black flex items-center py-1 px-3" href="{{ route('micuenta') }}"
+                    @click="open = false" @focus="open = true" @focusout="open = false">Mi Cuenta</a>
+                </li>
+
+                <li class="hover:bg-gray-100">
+                  <form method="POST" action="{{ route('logout') }}" x-data>
+                    @csrf
+                    <button type="submit" class="font-medium text-sm text-black flex items-center py-1 px-3"
+                      @click.prevent="$root.submit(); open = false">
+                      {{ __('Cerrar sesión') }}
+                    </button>
+                  </form>
+                </li>
+              </ul>
             </div>
-
-
-            @if (Auth::user() == null)
-              <a class="flex" href="{{ route('login') }}"><img class="bg-white rounded-lg"
-                  src="{{ asset('img_donas/Group11.png') }}" alt="user" /></a>
-            @else
-              <div class="relative  hidden md:inline-flex" x-data="{ open: false }">
-                <button class="px-3 py-5 inline-flex justify-center items-center group" aria-haspopup="true"
-                  @click.prevent="open = !open" :aria-expanded="open">
-                  <div class="flex items-center truncate">
-                    <span id="username"
-                      class="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:opacity-75 dark:group-hover:text-slate-200 text-[#272727] ">
-                      {{ explode(' ', Auth::user()->name)[0] }}</span>
-                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
-                      <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                    </svg>
-                  </div>
-                </button>
-                <div
-                  class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1"
-                  @click.outside="open = false" @keydown.escape.window="open = false" x-show="open">
-                  <ul>
-                    <li class="hover:bg-gray-100">
-                      <a class="font-medium text-sm text-black flex items-center py-1 px-3" href="{{ route('micuenta') }}"
-                        @click="open = false" @focus="open = true" @focusout="open = false">Mi Cuenta</a>
-                    </li>
-
-                    <li class="hover:bg-gray-100">
-                      <form method="POST" action="{{ route('logout') }}" x-data>
-                        @csrf
-                        <button type="submit" class="font-medium text-sm text-black flex items-center py-1 px-3"
-                          @click.prevent="$root.submit(); open = false">
-                          {{ __('Cerrar sesión') }}
-                        </button>
-                      </form>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            @endif
-
-
-            <div class="flex justify-center items-center min-w-[38px]" >
-              <div id="open-cart" class="relative inline-block cursor-pointer pr-3">
-                <span id="itemsCount"
-                  class="bg-[#EB5D2C] text-xs font-medium text-white text-center px-[7px] py-[2px]  rounded-full absolute bottom-0 right-0 ml-3">0</span>
-                <img src="{{ asset('img_donas/Group10.png') }}"
-                  class="bg-white rounded-lg p-1 max-w-full h-auto cursor-pointer" style="z-index:3" />
-              </div>
-            </div>
-
           </div>
+        @endif
 
+
+        <div class="flex justify-center items-center min-w-[38px]">
+          <div id="open-cart" class="relative inline-block cursor-pointer pr-3">
+            <span id="itemsCount"
+              class="bg-[#EB5D2C] text-xs font-medium text-white text-center px-[7px] py-[2px]  rounded-full absolute bottom-0 right-0 ml-3">0</span>
+            <img src="{{ asset('img_donas/Group10.png') }}"
+              class="bg-white rounded-lg p-1 max-w-full h-auto cursor-pointer" style="z-index:3" />
+          </div>
         </div>
+
       </div>
 
-      <div class="header_bottom  md:px-[5%] lg:px-[10%] h-12 py-3 bg-[#336234]">
-        <div class="text-base font-b_classic_bold">
-          <nav>
-            <div class="swiper menu">
-              <div class="swiper-wrapper relative">
-                @foreach ($submenucategorias as $item)
-                  <div class="swiper-slide">
-                    <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
-                      <li><a href="/catalogo/{{ $item->id }}">{{ $item->name }}</a></li>
-                    </ul>
-                  </div>
-                @endforeach
+    </div>
+  </div>
+
+  <div class="header_bottom  md:px-[5%] lg:px-[10%] h-12 py-3 bg-[#336234]">
+    <div class="text-base font-b_classic_bold">
+      <nav>
+        <div class="swiper menu">
+          <div class="swiper-wrapper relative">
+            @foreach ($submenucategorias as $item)
+              <div class="swiper-slide">
+                <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
+                  <li><a href="/catalogo/{{ $item->id }}">{{ $item->name }}</a></li>
+                </ul>
               </div>
-            </div>
-          </nav>
+            @endforeach
+          </div>
         </div>
-      </div>
- 
+      </nav>
+    </div>
+  </div>
+
 </header>
 
 
 
 
-<div id="cart-modal" 
-  class="bag !absolute top-0 right-0 md:w-[450px] cartContainer border shadow-2xl  !rounded-md !p-0"
+<div id="cart-modal" class="bag !absolute top-0 right-0 md:w-[450px] cartContainer border shadow-2xl  !rounded-md !p-0"
   style="display: none">
   <div class="p-4 flex flex-col h-[90vh] justify-between gap-2">
     <div class="flex flex-col">
       <div class="flex justify-between ">
         <h2 class="font-semibold font-Inter_Medium text-[28px] text-[#151515] pb-5">Carrito</h2>
+        {{--  <div class="relative">
+          <i class="fa-solid fa-circle-xmark absolute top-[1%] right-[2%] cursor-pointer" id="eliminarImgDedicatoria"
+            style="color: #ff1a1a;"></i>
+          <img id="cart-image" src="" alt="Cart Image" class=" h-[100px] object-fit" />
+        </div> --}}
+
+
         <div id="close-cart" class="cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-6 h-6">
@@ -217,8 +226,25 @@
   </div>
 </div>
 
+{{-- <script>
+  $('#eliminarImgDedicatoria') on('click', () => {
+    localStorage.removeItem('imageDedicatoria');
+    $('#cart-image').attr('src', '');
+  });
+</script> --}}
 <script src="{{ asset('js/storage.extend.js') }}"></script>
+{{-- <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Recupera la imagen del localStorage
+    const base64Image = localStorage.getItem('imageDedicatoria');
 
+    // Verifica si la imagen existe en el localStorage
+    if (base64Image) {
+      // Establece el src de la imagen
+      document.getElementById('cart-image').src = base64Image;
+    }
+  });
+</script> --}}
 <script>
   const appUrl = "{{ env('APP_URL') }}"
   var articulosCarrito = Local.get('carrito') || [];
@@ -248,36 +274,39 @@
     $('#itemsCount').text(contarArticulos)
   }
 
-  function addOnCarBtn(id, isCombo) {
+  function addOnCarBtn(id) {
+    let articulosCarrito = Local.get('carrito') || [];
     let prodRepetido = articulosCarrito.map(item => {
-      if (item.id === id && item.isCombo == isCombo) {
+      if (item.id === id) {
 
         item.cantidad += 1;
       }
       return item;
     });
 
-    Local.set('carrito', articulosCarrito);
+    Local.set('carrito', prodRepetido);
     limpiarHTML();
     PintarCarrito();
   }
 
-  function deleteOnCarBtn(id, isCombo) {
+  function deleteOnCarBtn(id) {
+    let articulosCarrito = Local.get('carrito') || [];
     let prodRepetido = articulosCarrito.map(item => {
-      if (item.id === id && item.isCombo == isCombo && item.cantidad > 0) {
+      if (item.id === id && item.cantidad > 0) {
 
         item.cantidad -= 1;
       }
       return item;
     });
 
-    Local.set('carrito', articulosCarrito);
+    Local.set('carrito', prodRepetido);
     limpiarHTML();
     PintarCarrito();
   }
 
-  function deleteItem(id, isCombo) {
+  function deleteItem(id) {
 
+    let articulosCarrito = Local.get('carrito') || [];
     let idCount = {};
     let duplicates = [];
     articulosCarrito.forEach(item => {
@@ -437,31 +466,31 @@
   });
 </script>
 <script>
-window.addEventListener('scroll', function() {
-  const headerMid = document.getElementById('header-mid');
-  const headerBottom = document.querySelector('.header_bottom');
-  const portada = document.getElementById('portada'); 
-  const main = document.querySelector('.main');
-  
-  const scrollPosition = window.scrollY;
-  const documentHeight = document.documentElement.scrollHeight;
-  const viewportHeight = window.innerHeight;
+  window.addEventListener('scroll', function() {
+    const headerMid = document.getElementById('header-mid');
+    const headerBottom = document.querySelector('.header_bottom');
+    const portada = document.getElementById('portada');
+    const main = document.querySelector('.main');
 
- 
-  const scrollPercentage = (scrollPosition / (documentHeight - viewportHeight)) * 100;
+    const scrollPosition = window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+    const viewportHeight = window.innerHeight;
 
-  
-  if (scrollPercentage >= 1) {
-    headerMid.classList.add('fixed-header', 'h-[80px]');
-    headerMid.classList.remove('h-[100px]');
-    headerBottom.classList.add('fixed-header', 'shadow-lg', 'shadow-black/40');
-    portada.classList.add('mt-[150px]'); 
-    //main.classList.add('mt-[128px]'); 
-  } else {
-    headerMid.classList.remove('fixed-header', 'h-[80px]');
-    headerMid.classList.add('h-[100px]');
-    headerBottom.classList.remove('fixed-header');
-    //portada.classList.remove('mt-[150px]'); 
-  }
-});
+
+    const scrollPercentage = (scrollPosition / (documentHeight - viewportHeight)) * 100;
+
+
+    if (scrollPercentage >= 1) {
+      headerMid.classList.add('fixed-header', 'h-[80px]');
+      headerMid.classList.remove('h-[100px]');
+      headerBottom.classList.add('fixed-header', 'shadow-lg', 'shadow-black/40');
+      portada.classList.add('mt-[150px]');
+      //main.classList.add('mt-[128px]'); 
+    } else {
+      headerMid.classList.remove('fixed-header', 'h-[80px]');
+      headerMid.classList.add('h-[100px]');
+      headerBottom.classList.remove('fixed-header');
+      //portada.classList.remove('mt-[150px]'); 
+    }
+  });
 </script>

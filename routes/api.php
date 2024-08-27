@@ -23,3 +23,4 @@ Route::get('/items', [ProductsController::class, 'search']);
 Route::post('/products/paginate', [ProductsController::class, 'paginate'])->name('products.paginate');
 
 Route::post('/products/AddOrder', [ProductsController::class, 'AddOrder'])->name('products.AddOrder');
+Route::post('/products/addComplemento', [ProductsController::class, 'addComplemento'])->name('products.addComplemento');

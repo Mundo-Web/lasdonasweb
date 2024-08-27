@@ -29,6 +29,7 @@ use App\Models\Ordenes;
 use App\Models\PoliticaSustitucion;
 use App\Models\PolyticsCondition;
 use App\Models\Specifications;
+use App\Models\Tag;
 use App\Models\TermsAndCondition;
 use App\Models\Tipo;
 use App\Models\User;
@@ -248,8 +249,13 @@ class IndexController extends Controller
     //
     $url_env = $_ENV['APP_URL'];
     $departamentos = DB::table('departments')->get();
+    $complementos  = Tag::where('status', '=', 1)
+    ->join('tags_xproducts', 'tags_xproducts.tag_id', 'tags.id')
+    ->where('visible', '=', 1)
+    ->groupBy('tags.id')
+    ->get();
 
-    $complementos = Complemento::select('complementos.*')
+    /* $complementos = Complemento::select('complementos.*')
       ->join('products', 'products.complemento_id', '=', 'complementos.id')
       ->where('complementos.status', 1)
       ->groupBy('complementos.id')
@@ -257,7 +263,7 @@ class IndexController extends Controller
     foreach ($complementos as $key => $complemento) {
 
       $complementos[$key]['min_price'] = $complemento->min_price;
-    }
+    } */
 
     // return view('public.checkout_carrito', compact('url_env', 'departamentos'));
     return Inertia::render('Carrito', [
@@ -646,7 +652,9 @@ class IndexController extends Controller
 
     $complementos = Products::select('products.*')
       ->join('categories', 'categories.id', 'products.categoria_id')
-      ->where('products.status', 1)->where('products.tipo_servicio', 'complemento')->where('products.parent_id', 1)
+      ->with('images')
+      ->where('products.status', 1)->where('products.tipo_servicio', 'complemento')
+      ->where('products.parent_id', null)->where('categoria_id', $product->categoria_id)
       
       ->groupBy('products.id')
       ->get();
@@ -654,6 +662,8 @@ class IndexController extends Controller
 
       $complementos[$key]['min_price'] = $complemento->min_price;
     }
+
+    $complementosAcordion = Tag::where('status', '=', 1)->where('visible', '=', 1)->get();
 
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
@@ -713,7 +723,8 @@ class IndexController extends Controller
       'categorias' => $categorias,
       'general' => $general,
       'politicasSustitucion' => $politicasSustitucion,
-      'politicaEnvio' => $politicaEnvio
+      'politicaEnvio' => $politicaEnvio,
+      'complementosAcordion' => $complementosAcordion
     ])->rootView('app');
   }
 
@@ -957,7 +968,20 @@ class IndexController extends Controller
   }
   public function buscaSubComplementosDetalle(Request $request)
   {
-    $productos = Products::where('complemento_id', $request->id)->where('tipo_servicio', '=', 'complemento')->where('status', 1)->with('images')->get();
+
+    $tags = DB::select('select producto_id from tags_xproducts where tag_id = ?', [$request->id]);
+
+    // Paso 2: Extraer los producto_id de los resultados
+    $productoIds = array_map(function($tag) {
+        return $tag->producto_id;
+    }, $tags);
+
+    // Paso 3: Buscar los productos que coincidan con esos producto_id
+    if (!empty($productoIds)) {
+        $productos = Products::with('images')->where('tipo_servicio' , 'complemento')->whereIn('id', $productoIds)->get();
+    } else {
+        $productos = [];
+    }
 
     return response()->json(['productos' => $productos]);
   }

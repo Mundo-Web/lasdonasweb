@@ -1,4 +1,5 @@
 import React, { Children } from 'react'
+import Button from './Button'
 
 const ModalSimple = ({ id, showModal, setshowModal, url_env, children, tittle }) => {
 
