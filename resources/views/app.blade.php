@@ -132,7 +132,9 @@
             Local.delete('carrito')
             Local.delete('payment-data')
 
-            location.href = `/agradecimiento?code=${data.data.reference_code}`
+            setTimeout(() => {
+              location.href = `/agradecimiento?code=${data.data.reference_code}`
+            }, 1500);
           } else if (Culqi.order) {
             const order = Culqi.order;
           } else {
