@@ -54,7 +54,7 @@ class ProductsController extends Controller
     $especificacion = [];
     $subproductos = [];
     $tipoFlor = TipoFlor::where('status', 1)->get();
-    return view('pages.products.create', compact('product', 'tipoFlor','atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
+    return view('pages.products.create', compact('product', 'tipoFlor', 'atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
   }
 
   /**
@@ -87,7 +87,7 @@ class ProductsController extends Controller
     }
 
 
-    return view('pages.products.edit', compact('product','tipoFlor' ,'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
+    return view('pages.products.edit', compact('product', 'tipoFlor', 'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
   }
 
   public function save(Request $request)
@@ -131,8 +131,7 @@ class ProductsController extends Controller
       if (!$product) {
         $product = new Products($cleanedData);
         $product->save();
-      }
-      else $product->update($cleanedData);
+      } else $product->update($cleanedData);
       dump($product);
 
       if ($product['descuento'] == 0 || is_null($product['descuento'])) {
@@ -162,8 +161,6 @@ class ProductsController extends Controller
       //throw $th;
 
       dd($th->getMessage() . ' Ln' . $th->getLine());
-
-
     }
 
 
@@ -217,8 +214,7 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $onlyOneCaratula = false;
 
-  
-    // return ;
+
 
     //imprimir valores request 
     if (isset($data['uppsell'])) {
@@ -371,7 +367,7 @@ class ProductsController extends Controller
           $producto = Products::find($value['id']);
           $producto->update($data);
         } else {
-          $actualizacion = false ; 
+          $actualizacion = false;
           $producto = Products::create($data);
         }
 
@@ -496,10 +492,14 @@ class ProductsController extends Controller
       } elseif (strstr($key, '-')) {
         if (strpos($key, 'tittle-') === 0 || strpos($key, 'title-') === 0) {
           $num = substr($key, strrpos($key, '-') + 1);
-          $especificaciones[$num]['tittle'] = $value;
+          if (!empty($value)) { // Verifica si el valor no está vacío
+            $especificaciones[$num]['tittle'] = $value;
+          }
         } elseif (strpos($key, 'specifications-') === 0) {
           $num = substr($key, strrpos($key, '-') + 1);
-          $especificaciones[$num]['specifications'] = $value;
+          if (!empty($value)) { // Verifica si el valor no está vacío
+            $especificaciones[$num]['specifications'] = $value;
+          }
         }
       }
     }
@@ -659,7 +659,7 @@ class ProductsController extends Controller
       $valoresFormulario = json_decode($valoresFormulario, true);
     }
 
-    
+
     $especificaciones = [];
     $precioFiltro = 0;
     $data = $request->except('valoresFormulario');
@@ -714,7 +714,7 @@ class ProductsController extends Controller
       $this->procesarOpciones($product, $valoresFormulario, $tagsSeleccionados, $request, $actualizacion);
     } catch (\Throwable $th) {
       //throw $th;
-      
+
     }
 
 
@@ -925,7 +925,8 @@ class ProductsController extends Controller
     }
   }
 
-  public function addComplemento(Request $request){ 
+  public function addComplemento(Request $request)
+  {
     try {
       //code...
       $complementos = Products::where('id', $request->id)->with(['images', 'tipos'])->get();
