@@ -109,112 +109,128 @@
         <p class="text-base text-[#FE4A11]">CATEGORIAS</p>
         <p class="text-3xl sm:text-4xl">LO MEJOR DE NUESTRA TIENDA PARA TI</p>
       </div>
-
-
-    @php
-        $chunks = $categoriasindex->chunk(4); 
-        $remainder = $categoriasindex->count() % 4; 
-    @endphp
-
-        @foreach ($chunks as $chunk)
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-[5%] lg:px-[8%] gap-8 pt-10">
-            @foreach ($chunk as $index => $category)
-                @if ($index == 0)
-                    <div class="w-full lg:row-span-2 lg:col-span-2">
-                        <div class="h-full">
-                            <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                class="h-52 sm:h-52 md:h-64 lg:h-[660px] xl:h-[760px] flex flex-col justify-end items-start object-cover w-full"
-                                onerror="this.src='/images/img/noimagen.jpg';">
-                            <h3 class="text-base font-medium text-[#FE4A11] mt-4">Categoría</h3>
-                            <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
-                        </div>
-                    </div>
-                @elseif ($index == 1)
-                    <div class="w-full lg:col-span-2">
-                        <div class="h-full w-full">
-                            <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
-                                onerror="this.src='/images/img/noimagen.jpg';">
-                            <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                            <h2 class="text-[32px] font-bold ">{{ $category->name }}</h2>
-                        </div>
-                    </div>
-                @elseif ($index == 2 || $index == 3)
-                    <div class="w-full">
-                        <div class="h-full">
-                            <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
-                                onerror="this.src='/images/img/noimagen.jpg';">
-                            <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                            <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
-                        </div>
-                    </div>
-                @endif
-            @endforeach
-        </div>
-    @endforeach
-
-
-        @if ($remainder > 0)
-            @php
-                $remainderCategories = $categoriasindex->slice(-$remainder); // Obtener las categorías restantes
-            @endphp
-
-            @if ($remainder == 1)
-                @php $category = $remainderCategories->first(); @endphp
-                <div class="grid grid-cols-1 px-[5%] lg:px-[8%] pb-10 mt-4">
-                    <div class="w-full">
-                        <div class="h-full">
-                            <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 w-full flex flex-col justify-end items-start object-cover"
-                                onerror="this.src='/images/img/noimagen.jpg';">
-                            <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                            <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
-                        </div>
-                    </div>
-                </div>
-            @elseif ($remainder == 2)
-                <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
-                    @foreach ($remainderCategories as $category)
-                    <div class="w-full sm:row-span-2">
-                        <div class="h-full">
-                            <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
-                                onerror="this.src='/images/img/noimagen.jpg';">
-                            <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                            <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            @elseif ($remainder == 3)
-                <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
-                    @php $firstCategory = $remainderCategories->first(); @endphp
-                    <div class="w-full sm:row-span-2">
-                        <div class="h-full">
-                            <img src="{{ asset($firstCategory->url_image . $firstCategory->name_image) }}" alt=""
-                                class="h-96 sm:h-[760px] flex flex-col justify-end items-start object-cover w-full"
-                                onerror="this.src='/images/img/noimagen.jpg';">
-                            <h3 class="text-base font-medium text-[#FE4A11] mt-4">Categoría</h3>
-                            <h2 class="text-3xl font-bold ">{{ $firstCategory->name }}</h2>
-                        </div>
-                    </div>
-                    @foreach ($remainderCategories->slice(1) as $category)
-                    <div class="w-full">
-                        <div class="h-full w-full">
-                            <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full  flex flex-col justify-end items-start object-cover"
-                                onerror="this.src='/images/img/noimagen.jpg';">
-                            <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                            <h2 class="text-[32px] font-bold ">{{ $category->name }}</h2>
-                        </div>
-                    </div>
+      @php
+          $categories = $categoriasindex;
+          $chunks = $categories->chunk(4);
+          $processedCategories = collect();
+      @endphp
+      
+      @foreach ($chunks as $chunk)
+            @if ($chunk->count() == 4)
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-[5%] lg:px-[8%] gap-8 pt-10">
+                    @foreach ($chunk as $category)
+                      @if ($loop->first)
+                          <div class="w-full lg:row-span-2 lg:col-span-2">
+                            <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                              <div class="h-full">
+                                  <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                                      class="h-52 sm:h-52 md:h-64 lg:h-[660px] xl:h-[760px] flex flex-col justify-end items-start object-cover w-full"
+                                      onerror="this.src='/images/img/noimagen.jpg';">
+                                  <h3 class="text-base font-medium text-[#FE4A11] mt-4">Categoría</h3>
+                                  <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
+                              </div>
+                            </a>
+                          </div>
+                      @elseif ($loop->iteration == 2)
+                          <div class="w-full lg:col-span-2">
+                            <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                              <div class="h-full w-full">
+                                  <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                                      class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                                      onerror="this.src='/images/img/noimagen.jpg';">
+                                  <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+                                  <h2 class="text-[32px] font-bold ">{{ $category->name }}</h2>
+                              </div>
+                            </a>
+                          </div>
+                      @else
+                          <div class="w-full">
+                            <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                              <div class="h-full">
+                                  <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                                      class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                                      onerror="this.src='/images/img/noimagen.jpg';">
+                                  <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+                                  <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
+                              </div>
+                            </a>
+                          </div>
+                      @endif
                     @endforeach
                 </div>
             @endif
-        @endif
+          
+            @php
+                  $processedCategories = $processedCategories->merge($chunk); // Guardamos las categorías procesadas.
+            @endphp
+      @endforeach
+    
+      {{-- Manejo de categorías restantes si no son múltiplos de 4 --}}
+      @php
+          $remainder = $categories->count() % 4;
+          $remainderCategories = $categories->diff($processedCategories);
+      @endphp
+      
+      @php
+          $remainderCategories = $categories->slice(-$remainder);
+      @endphp
 
+
+      @if ($remainder > 0)
+          @if ($remainder == 1)
+              
+                  @foreach ($remainderCategories as $category)
+                  <div class="grid grid-cols-1 px-[5%] lg:px-[8%] pb-10 mt-10">
+                          <div class="w-full">
+                            <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                              <div class="h-full">
+                                  <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                                      class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 w-full flex flex-col justify-end items-start object-cover"
+                                      onerror="this.src='/images/img/noimagen.jpg';">
+                                  <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+                                  <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
+                              </div>
+                            </a>
+                          </div>
+                      </div>
+                  @endforeach
+              
+          @elseif ($remainder == 2)
+              <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
+                  @foreach ($remainderCategories as $category)
+                  <div class="w-full">
+                    <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                      <div class="h-full">
+                          <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                              class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                              onerror="this.src='/images/img/noimagen.jpg';">
+                          <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+                          <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
+                      </div>
+                    </a>  
+                  </div>
+                  @endforeach
+              </div>
+          @elseif ($remainder == 3)
+              <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
+                  @foreach ($remainderCategories as $category)
+                  <div class="w-full {{ $loop->first ? 'sm:row-span-2' : '' }}">
+                    <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                      <div class="h-full">
+                          <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                              class="{{ $loop->first ? 'h-96 sm:h-[760px]' : 'h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80' }} w-full flex flex-col justify-end items-start object-cover"
+                              onerror="this.src='/images/img/noimagen.jpg';">
+                          <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
+                          <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
+                      </div>
+                    </a>  
+                  </div>
+                  @endforeach
+              </div>
+          @endif
+      @endif
     </section>
+
 
     <section class="bg-[#E8EDDE] font-b_slick_bold pt-16 pb-20 lg:pt-20 lg:pb-28 z-0">
       <div class="w-full px-[5%] lg:px-[8%] flex flex-col gap-10">
