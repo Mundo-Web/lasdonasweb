@@ -75,13 +75,13 @@ class IndexController extends Controller
     $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
     $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
     $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
-    $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->get();
+    $categoriasindex = Category::where('status', '=', 1)->where('destacar', '=', 1)->get();
     $liquidacion = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
 
     $media = $this->instagramService->getUserMedia();
 
 
-    return view('public.index', compact('media', 'productos', 'destacados', 'recomendados', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
+    return view('public.index', compact('media', 'productos', 'destacados', 'recomendados', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'categoriasindex', 'liquidacion'));
   }
 
   public function coleccion($filtro)
