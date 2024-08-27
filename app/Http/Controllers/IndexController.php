@@ -458,12 +458,15 @@ class IndexController extends Controller
 
   public function agradecimiento(Request $request)
   {
-    //
-    $codigoCompra = $request->input('codigoCompra');
+    $codigo_orden = $request->input('code');
 
-    $ordenes = Ordenes::where('codigo_orden', '=', $codigoCompra)->update(['status_id' => 2]);
+    if (!$codigo_orden) return redirect('/');
+    $ordenJpa = Ordenes::where('codigo_orden', $codigo_orden)->first();
 
-    return view('public.checkout_agradecimiento', compact('codigoCompra'));
+    return Inertia::render('Agradecimiento', [
+      'orden_code' => $codigo_orden,
+      'orden' => $ordenJpa
+    ])->rootView('app');
   }
 
   public function cambiofoto(Request $request)

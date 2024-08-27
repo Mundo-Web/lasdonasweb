@@ -37,9 +37,9 @@
   "_calcularTotal-sXLDybB7.js": {
     "file": "assets/calcularTotal-sXLDybB7.js"
   },
-  "_es-!~{011}~.js": {
+  "_es-!~{012}~.js": {
     "file": "assets/es-D87rtk4j.css",
-    "src": "_es-!~{011}~.js"
+    "src": "_es-!~{012}~.js"
   },
   "_es-Hz-LnzMB.js": {
     "css": [
@@ -52,9 +52,9 @@
       "_floating-ui.dom-KYqStz1f.js"
     ]
   },
-  "_fade-!~{00$}~.js": {
+  "_fade-!~{010}~.js": {
     "file": "assets/fade-WxPIMcx6.css",
-    "src": "_fade-!~{00$}~.js"
+    "src": "_fade-!~{010}~.js"
   },
   "_floating-ui.dom-KYqStz1f.js": {
     "file": "assets/floating-ui.dom-KYqStz1f.js"
@@ -118,7 +118,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-zHQELllC.css",
+    "file": "assets/app-gWbn4qhZ.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -178,6 +178,26 @@
     "isEntry": true,
     "src": "resources/js/AccordionSimple.jsx"
   },
+  "resources/js/Agradecimiento.jsx": {
+    "assets": [
+      "assets/SvgPuntos--FnXd_aC.svg"
+    ],
+    "file": "assets/Agradecimiento-rt2gqM4u.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "_CreateReactScript-BXBBo-c3.js",
+      "resources/js/Utils/ReactAppend.jsx",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "resources/js/Utils/CreateReactScript.jsx",
+      "_axios-_sX4vCAy.js",
+      "_index-XJuWVQ-l.js",
+      "_storage-zp2nPsZU.js",
+      "_index-38suPYpT.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/Agradecimiento.jsx"
+  },
   "resources/js/Carrito.jsx": {
     "css": [
       "assets/fade-WxPIMcx6.css"
@@ -235,7 +255,7 @@
     "css": [
       "assets/Horarios-i7P6CmCQ.css"
     ],
-    "file": "assets/Horarios-jEU75Akr.js",
+    "file": "assets/Horarios-S8xDppeJ.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -713,6 +733,10 @@
     ],
     "isEntry": true,
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
+  },
+  "resources/js/components/svg/SvgPuntos.svg": {
+    "file": "assets/SvgPuntos--FnXd_aC.svg",
+    "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {
     "file": "assets/svgFlorPremium-tmMjkXlv.js",
