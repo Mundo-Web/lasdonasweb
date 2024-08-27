@@ -19,7 +19,7 @@ import AddressForm from './components/AddressForm';
 import Checkbox from './components/Checkbox';
 import SelectSecond from './components/SelectSecond';
 
-const Pago = ({ MensajesPredefinidos }) => {
+const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) => {
 
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [showDedicatoria, setShowDedicatoria] = useState(false)
@@ -27,13 +27,17 @@ const Pago = ({ MensajesPredefinidos }) => {
 
   const [selectedOption, setSelectedOption] = useState(null);
   const handleOptionChange = (selected) => {
-
-    let selectedOption2 = MensajesPredefinidos.find(option => option.id === selected.value);
-    console.log(selectedOption2)
-    setSelectedOption({ value: selectedOption2.id, label: selectedOption2.mensaje });
+    let selectedOption2 = greetings.find(option => option.id === selected.value);
+    setSelectedOption(selectedOption2);
     setDatosFinales((prevDatos) => ({
       ...prevDatos,
-      dedicatoria: selectedOption2.mensaje,
+      dedicatoria: selectedOption2.description,
+      dedication: {
+        ...prevDatos.dedication,
+        id: selectedOption2.id,
+        title: selectedOption2.name,
+        message: selectedOption2.description
+      }
     }))
     // Aquí puedes manejar cualquier lógica adicional que necesites
     console.log('Opción seleccionada:', selected);
@@ -58,10 +62,13 @@ const Pago = ({ MensajesPredefinidos }) => {
 
   const [carrito, setCarrito] = useState(Local.get('carrito') || []);
   const [datosFinales, setDatosFinales] = useState({
+    address: {},
+    dedication: {},
+    billing: {},
+    consumer: {},
     fecha: '',
     horario: '',
-    telefono: '927383973',
-    direccionEnvio: '',
+    telefono: '',
     zipcode: '',
     dedicatoria: '',
     mensaje: '',
@@ -72,12 +79,14 @@ const Pago = ({ MensajesPredefinidos }) => {
     direccionFiscal: '',
     correoElectronico: '',
   });
-  console.log(carrito)
+
+  if (carrito.length == 0) return location.href = '/';
+
   const onSelectAddress = (direccion) => {
     console.log(direccion);
     setDatosFinales((prevDatos) => ({
       ...prevDatos,
-      direccionEnvio: direccion,
+      address: direccion,
     }));
     handlemodalMaps();
   };
@@ -105,16 +114,13 @@ const Pago = ({ MensajesPredefinidos }) => {
       ...prevDatos,
       [name]: value,
     }));
-    console.log(datosFinales);
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleMensaje = () => {
-    console.log('handleMensaje')
     setShowDedicatoria(!showDedicatoria)
   }
   const handleFirma = () => {
-    console.log('handleFirma')
     setShowshowFirma(!showFirma)
   }
 
@@ -122,20 +128,47 @@ const Pago = ({ MensajesPredefinidos }) => {
     setIsModalOpen(!isModalOpen)
   }
 
+  useEffect(() => {
+    Culqi.publicKey = culqi_public_key;
+    Culqi.options({
+      style: {
+        logo: `${location.origin}/img_donas/icon.svg`,
+        bannerColor: '#272727'
+      }
+    })
+  }, [null])
 
+  const startCulqi = () => {
+
+    Local.set('payment-data', {
+      address: datosFinales.address,
+      dedication: datosFinales.dedication,
+      billing: datosFinales.billing,
+      consumer: datosFinales.consumer,
+    })
+
+    const totalPrice = carrito.reduce((total, item) => total + Number(item.precio) * Number(item.cantidad), 0);
+    Culqi.settings({
+      title: app_name,
+      currency: 'PEN',
+      amount: totalPrice * 100,
+    });
+
+    Culqi.open();
+  }
 
   return (
     <>
       <section className='mb-24'>
-        <div className='mt-12 px-[5%]'>
+        <div className='mt-12 px-[5%] md:px-[10%]'>
           <span className='text-[#447279] text-[12px] uppercase'>
             Home / Aniversario / Suspendisse potenti /Validación de pedido
           </span>
-          <div className='mt-16'>
-            <h1 className='text-[#112212] font-bold text-[40px]'>CARRITO DE COMPRAS</h1>
+          <div className='mt-8'>
+            <h1 className='text-[#112212] font-bold text-2xl md:text-4xl'>CARRITO DE COMPRAS</h1>
           </div>
 
-          <div className='flex flex-col w-full'>
+          <div className='flex flex-col w-full my-8'>
 
             <OrderSummary carrito={carrito} />
           </div>
@@ -143,7 +176,7 @@ const Pago = ({ MensajesPredefinidos }) => {
             <ProgressBar />
 
           </div>
-          <div className="flex flex-row gap-20 pt-10 w-full">
+          <div className="flex flex-col lg:flex-row gap-20 pt-10 w-full">
 
             <div className='flex flex-col w-full'>
 
@@ -156,40 +189,48 @@ const Pago = ({ MensajesPredefinidos }) => {
 
               <section className="flex flex-col mt-6 w-full max-md:max-w-full">
                 <h2 className="text-base font-bold tracking-wider text-neutral-900 max-md:max-w-full">
-                  Confirma tu teléfono
+                  1. Confirma tu teléfono
                 </h2>
                 <InputField
-                  name='telefono'
-                  value={datosFinales.telefono}
-                  handleDatosFinales={handleDatosFinales}
+                  name='phone'
+                  defaultValue={datosFinales.telefono}
+                  handleDatosFinales={(e) => {
+                    setDatosFinales(old => ({
+                      ...old,
+                      consumer: {
+                        ...old.consumer,
+                        phone: e.target.value
+                      }
+                    }))
+                  }}
                 />
 
               </section>
               <section className="flex flex-col mt-6 w-full font-bold text-neutral-900 max-md:max-w-full">
                 <h2 className="text-base tracking-wider max-md:max-w-full">
-                  Dirección de envío
+                  2. Dirección de envío
                 </h2>
-                <div type='button' className='text-white bg-green-800 w-full p-2 rounded-lg text-center cursor-pointer ' label="Seleccionar dirección" onClick={handlemodalMaps} >Seleccionar direccion de envio </div>
+                <div type='button' className='text-white bg-green-800 w-full mt-1 p-2 rounded-lg text-center cursor-pointer ' label="Seleccionar dirección" onClick={handlemodalMaps} >Seleccionar direccion de envio </div>
 
                 <ModalGoogle handlemodalMaps={handlemodalMaps} isModalOpen={isModalOpen} tittle={'Dirección de envío'} >
                   <AddressForm onSelectAddress={onSelectAddress} scriptLoaded={scriptLoaded} handlemodalMaps={handlemodalMaps} />
 
                 </ModalGoogle>
 
+                <p className='my-2 text-base font-light'>Direccion: {datosFinales.address?.fulladdress ?? 'Sin direccion'}</p>
 
 
               </section>
               <section className="flex flex-col mt-6 w-full max-md:max-w-full">
                 <h2 className="text-base font-bold tracking-wider text-neutral-900 max-md:max-w-full">
-                  Dedicatoria
+                  3. Dedicatoria
                 </h2>
                 <div className='px-1.5 mt-4'>
                   <Checkbox title={"Sin Mensaje"} callback={handleMensaje} />
-
                 </div>
 
                 {!showDedicatoria && (<>
-                  <SelectSecond title={'Seleccionar Mensaje'} options={MensajesPredefinidos} handleOptionChange={handleOptionChange} />
+                  <SelectSecond title={'Seleccionar Mensaje'} options={greetings} handleOptionChange={handleOptionChange} />
 
 
                   <div className="flex flex-col mt-6 w-full max-md:max-w-full">
@@ -197,18 +238,27 @@ const Pago = ({ MensajesPredefinidos }) => {
                       <p className="flex-1 shrink basis-0 text-neutral-900 text-opacity-80">
                         Escribe tu mensaje
                       </p>
-                      <button className="flex-1 shrink text-right text-orange-400 basis-0" onClick={() => {
+                      {/* <button className="flex-1 shrink text-right text-orange-400 basis-0" onClick={() => {
                         setDatosFinales((prev) => ({
                           ...prev,
                           dedicatoria: ''
                         }));
                       }}>
                         Limpiar
-                      </button>
+                      </button> */}
                     </div>
                     <textarea
                       className="flex-1 shrink gap-2 self-stretch px-6 py-4 mt-2 w-full text-sm tracking-wide leading-5 rounded-3xl border border-solid border-stone-300 text-neutral-900 max-md:px-5 max-md:max-w-full"
-                      value={datosFinales.dedicatoria}
+                      defaultValue={datosFinales.dedicatoria}
+                      onChange={(e) => {
+                        setDatosFinales(old => ({
+                          ...old,
+                          dedication: {
+                            ...old.dedication,
+                            message: e.target.value
+                          }
+                        }))
+                      }}
                     />
                   </div></>)}
 
@@ -218,9 +268,34 @@ const Pago = ({ MensajesPredefinidos }) => {
 
                   </div>
                 </div>
-                {!showFirma && (<SignatureField />)}
+                {!showFirma && (<div className="flex flex-col mt-6 w-full max-md:max-w-full">
+                  <label htmlFor="signature" className="text-xs tracking-wide text-neutral-900">
+                    Firma
+                  </label>
+                  <input
+                    id="signature"
+                    type="text"
+                    placeholder="Persona que firma el mensaje de la tarjeta"
+                    className="flex-1 shrink gap-2 self-stretch px-6 py-4 mt-2 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 text-stone-300 max-md:px-5 max-md:max-w-full"
+                    onChange={(e) => {
+                      setDatosFinales(old => ({
+                        ...old,
+                        dedication: {
+                          ...old.dedication,
+                          signedBy: e.target.value
+                        }
+                      }))
+                    }}
+                  />
+                </div>)}
 
               </section>
+
+
+            </div>
+
+            <div className='flex flex-col w-full '>
+
               <section className="flex flex-col mt-6 w-full max-md:max-w-full">
                 <h2 className="text-base font-bold tracking-wider text-neutral-900 max-md:max-w-full">
                   Tipo de comprobante
@@ -229,27 +304,60 @@ const Pago = ({ MensajesPredefinidos }) => {
                   <h3 className="w-full text-base font-bold tracking-wider text-neutral-900 max-md:max-w-full">
                     ¿Qué tipo de comprobante desea?
                   </h3>
-                  <ReceiptTypeSelector />
+                  <ReceiptTypeSelector onChange={value => {
+                    setDatosFinales(old => ({
+                      ...old,
+                      billing: {
+                        ...old.billing,
+                        type: value
+                      }
+                    }))
+                  }} />
                   <div className="flex flex-col mt-8 w-full max-md:max-w-full">
-                    <InputField label="Número de RUC" value="20445083071" />
-                    <InputField label="Razón Social" placeholder="Razón Social" />
-                    <InputField
-                      label="Dirección Fiscal"
-                      defaultValue="Av. Larco 2056 - Miraflores"
-                    />
-                    <InputField label="Correo electrónico" type="email" />
+                    <InputField label="Número de RUC" placeholder="Ingrese un RUC" handleDatosFinales={(e) => {
+                      setDatosFinales(old => ({
+                        ...old,
+                        billing: {
+                          ...old.billing,
+                          ruc: e.target.value
+                        }
+                      }))
+                    }} />
+                    <InputField label="Razón Social" placeholder="Ingrese una Razón Social" handleDatosFinales={(e) => {
+                      setDatosFinales(old => ({
+                        ...old,
+                        billing: {
+                          ...old.billing,
+                          name: e.target.value
+                        }
+                      }))
+                    }} />
+                    <InputField label="Dirección Fiscal" placeholder="Ingrese una dirección" handleDatosFinales={(e) => {
+                      setDatosFinales(old => ({
+                        ...old,
+                        billing: {
+                          ...old.billing,
+                          address: e.target.value
+                        }
+                      }))
+                    }} />
+                    <InputField label="Correo electrónico" type="email" placeholder="Ingrese un correo" handleDatosFinales={(e) => {
+                      setDatosFinales(old => ({
+                        ...old,
+                        billing: {
+                          ...old.billing,
+                          email: e.target.value
+                        }
+                      }))
+                    }} />
                   </div>
-                  <div className="flex flex-col mt-8 w-full text-sm font-bold tracking-wide whitespace-nowrap max-md:max-w-full">
-                    <Button variant="primary">Continuar</Button>
-                    <Button variant="secondary">Regresar</Button>
+                  <div className="flex flex-row items-center gap-4 justify-center mt-8 w-full text-sm font-bold tracking-wide whitespace-nowrap max-md:max-w-full">
+                    <Button variant="primary" callback={() => startCulqi()}>Continuar</Button>
+                    <Button href='/carrito' variant="secondary">Regresar</Button>
                   </div>
                 </div>
               </section>
-
-            </div>
-
-            <div className='flex flex-col w-full '>
-              <PaymentForm />
+              {/* <PaymentForm /> */}
 
             </div>
           </div>

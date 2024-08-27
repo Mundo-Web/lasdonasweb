@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const GoogleMapsComponent = ({ managezipCode }) => {
+const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
   const mapRef = useRef(null);
   const markerRef = useRef(null);
 
@@ -39,7 +39,6 @@ const GoogleMapsComponent = ({ managezipCode }) => {
     };
 
     autocomplete.addListener('place_changed', () => {
-      console.log('place_changed event triggered');
       const place = autocomplete.getPlace();
       if (place.geometry) {
         mapRef.current.setCenter(place.geometry.location);
@@ -60,7 +59,6 @@ const GoogleMapsComponent = ({ managezipCode }) => {
     });
 
     mapRef.current.addListener('click', (event) => {
-      console.log('map click event triggered');
       const location = event.latLng;
       placeMarker(location);
 
@@ -77,12 +75,9 @@ const GoogleMapsComponent = ({ managezipCode }) => {
             }
           }
           managezipCode(place, postalCode);
-          console.log('Geocoder results:', place, postalCode);
         }
       });
     });
-
-    console.log('Event listeners added');
   }, [managezipCode]);
 
   return (

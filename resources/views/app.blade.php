@@ -9,7 +9,7 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
-  <link rel="stylesheet" id="send-to-cart-style" href=""/>
+  <link rel="stylesheet" id="send-to-cart-style" href="" />
   {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}" /> --}}
 
   @stack('head')
@@ -30,8 +30,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{ config('app.name') }}</title>
   @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/' . Route::currentRouteName()])
-  <link rel="shortcut icon" href="/img_donas/icon.svg"
-    type="image/x-icon">
+  <link rel="shortcut icon" href="/img_donas/icon.svg" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   @inertiaHead
 </head>
@@ -44,8 +43,8 @@
   <span id="gift-icon" class="fas"></span>
 
   <div class="main">
-  {{-- Aqui va el contenido de cada pagina --}}
-  @inertia
+    {{-- Aqui va el contenido de cada pagina --}}
+    @inertia
 
   </div>
 
@@ -53,6 +52,102 @@
 
   @include('components.public.footer')
 
+  @if (Route::currentRouteName() == 'Pago.jsx')
+    <link rel="stylesheet" href="{{ asset('css/checkout.css') }}" />
+
+    <script src="https://checkout.culqi.com/js/v4"></script>
+
+    <script>
+      const culqi = async () => {
+        try {
+          const carrito = Local.get('carrito') ?? []
+          if (Culqi.token) {
+            const body = {
+              _token: $('[name="_token"]').val(),
+              cart: carrito.map((x) => ({
+                id: x.id,
+                quantity: x.cantidad,
+                isCombo: x.isCombo || false
+              })),
+              contact: {
+                name: $('#nombre').val(),
+                lastname: $('#apellidos').val(),
+                email: $('#email').val(),
+                phone: $('#celular').val(),
+                doc_number: $('#DNI').val() || $('#RUC').val(),
+                doc_type: $('#tipo-comprobante').val() ?? 'nota_venta',
+                razon_fact: $('#razonFact').val(),
+                direccion_fact: $('#direccionFact').val(),
+
+
+              },
+              address: null,
+              saveAddress: !Boolean($('#addresses').val()),
+              culqi: Culqi.token,
+              tipo_comprobante: $('#tipo-comprobante').val()
+            }
+            if ($('[name="envio"]:checked').val() == 'express') {
+              body.address = {
+                id: $('#distrito_id option:selected').attr('price-id'),
+                city: $('#distrito_id option:selected').text(),
+                street: $('#nombre_calle').val(),
+                number: $('#numero_calle').val(),
+                description: $('#direccion').val()
+              }
+            }
+            const res = await fetch("{{ route('payment.culqi') }}", {
+              method: 'POST',
+              headers: {
+                'Content-type': 'application/json'
+              },
+              body: JSON.stringify(body)
+            })
+            const data = await res.json()
+            if (!res.ok) throw new Error(data?.message ?? 'Ocurrio un error inesperado al generar el cargo')
+
+            $(document.body).append(`<div id="card-animation">
+              <div class="container">
+                <div class="left-side">
+                  <div class="card">
+                    <div class="card-line"></div>
+                    <div class="buttons"></div>
+                  </div>
+                  <div class="post">
+                    <div class="post-line"></div>
+                    <div class="screen">
+                      <div class="dollar">💲</div>
+                    </div>
+                    <div class="numbers"></div>
+                    <div class="numbers-line2"></div>
+                  </div>
+                </div>
+                <div class="right-side">
+                  <div class="new truncate">{{ env('APP_NAME') }}</div>
+                </div>
+              </div>
+            </div>`);
+
+            $('#card-animation .right-side').attr('simulate-hover', 'something')
+            $('#card-animation .container').attr('simulate-hover', 'something')
+            Local.delete('carrito')
+            Local.delete('payment-data')
+
+            location.href = `/agradecimiento?code=${data.data.reference_code}`
+          } else if (Culqi.order) {
+            const order = Culqi.order;
+          } else {
+            throw new Error(Culqi.error.message);
+          }
+        } catch (error) {
+          Swal.fire({
+            title: `Error!!`,
+            text: error.message,
+            icon: "error",
+          });
+        }
+      }
+    </script>
+  @endif
 
 
   @yield('scripts_importados')
