@@ -24,7 +24,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
   const [loading, setLoading] = useState(true)
   const [isListVisible, setIsListVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
-  const [CatSelected, setCatSelected] = useState('');
+  const [CatSelected, setCatSelected] = useState(categoria ? categoria.name : '');
   const [florSelected, setflorSelected] = useState('');
   const [iscategoriaVisible, setIsCategoriaVisible] = useState(false);
   const [badges, setBadges] = useState({
@@ -32,6 +32,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     priceOrder: '',
     tipoFlor: []
   });
+  const [currentcat, setCurrentCat] = useState(categoria ? categoria : {})
 
   const [ShowtipoFlores, setShowTipoFlores] = useState(false)
 
@@ -88,6 +89,9 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     const inputId = event.target.id;
     const spanContent = labelCat.current[inputId].querySelector('span').textContent;
 
+
+    setCurrentCat(categorias.find(cat => cat.id == inputId))
+
     updateUrlWithInputId(inputId);
 
     function isEmptyObject(obj) {
@@ -108,24 +112,17 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
       return {
         ...prevData,
-        categories: [...prevData.categories, { id: inputId, name: spanContent }]
+        categories: [{ id: inputId, name: spanContent }]
       }
     });
 
     setFilter((prevFilter) => {
 
-      if (isEmptyObject(prevFilter)) {
-        return {
-          ...prevFilter,
-          category_id: [inputId],
-        };
-      } else {
-        return {
-          ...prevFilter,
-          category_id: [...filter.category_id, inputId],
-        };
-      }
 
+      return {
+        ...prevFilter,
+        category_id: [inputId],
+      };
 
     })
   }
@@ -219,6 +216,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
   const removeCategory = (categoryId) => {
 
     updateUrlWithInputId(null);
+    setCurrentCat({})
     setBadges((prevData) => ({
       ...prevData,
       categories: prevData.categories.filter(cat => cat.id !== categoryId)
@@ -426,10 +424,12 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     <>
       <section className='mb-24'>
         <div className='mt-14 px-[5%] lg:px-[8%] font-b_slick_bold'>
+
+
           <div className='flex flex-col gap-3'>
-            <div className='text-[#FE4A11] text-base tracking-normal uppercase'> {`Inicio / ${categoria.name ?? 'Todas las categorias'} `}</div>
-            <div className='text-3xl lg:text-5xl font-bold text-[#112212] uppercase tracking-wider'>{categoria.name}</div>
-            <div className='text-[#112212] opacity-80 font-b_slick_regular text-lg'>{categoria.description}</div>
+            <div className='text-[#FE4A11] text-base tracking-normal uppercase'> {`Inicio / ${currentcat.name ?? 'Todas las categorias'} `}</div>
+            <div className='text-3xl lg:text-5xl font-bold text-[#112212] uppercase tracking-wider'>{currentcat.name}</div>
+            <div className='text-[#112212] opacity-80 font-b_slick_regular text-lg'>{currentcat.description}</div>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-4 mt-4 lg:mt-12 gap-4 lg:gap-10'>
 
