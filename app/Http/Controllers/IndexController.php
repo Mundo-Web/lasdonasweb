@@ -21,6 +21,7 @@ use App\Models\Collection;
 use App\Models\Combinacion;
 use App\Models\Complemento;
 use App\Models\DetalleOrden;
+use App\Models\Greeting;
 use App\Models\Horarios;
 use App\Models\ImagenProducto;
 use App\Models\Liquidacion;
@@ -343,11 +344,12 @@ class IndexController extends Controller
           ->exists();
       } */
     $MensajesPredefinidos = MensajesPredefinidos::where('status', '=', 1)->where('visible', '=', 1)->get();
+    $greetings = Greeting::where('status', true)->where('visible', true)->get();
 
     $url_env = $_ENV['APP_URL'];
     return Inertia::render('Pago', [
       'url_env' => $url_env,
-      
+      'app_name' => env('APP_NAME'),
       'detalleUsuario' => $detalleUsuario,
       'categorias' => $categorias,
       'destacados'  => $destacados,
@@ -355,6 +357,7 @@ class IndexController extends Controller
       'addresses' => $addresses,
       'hasDefaultAddress' => $hasDefaultAddress,
       'MensajesPredefinidos' => $MensajesPredefinidos,
+      'greetings' => $greetings
     ])->rootView('app');
   }
 

@@ -7,75 +7,81 @@ import GoogleMapsComponent from "./GoogleMapsComponent";
 import { set } from "sode-extend-react/sources/cookies";
 
 
-function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps }) {
-
-
-  const addressResults = [
-    "In faucibus quis tortor sed dapibus",
-    "Mauris bibendum velit nec",
-    "Duis eu ultrices magna. Donec consequat",
-    "Mauris bibendum velit nec",
-    "In faucibus quis tortor sed dapibus"
-  ];
+function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {} }) {
 
   const [formState, setFormState] = useState({
-    nombredest: 'Carlos Colina',
-    telefono: '927383973',
-    calle: 'aramburu',
-    numero: '33',
-    manzana: 'c',
-    departamento: 'Junin ',
-    provincia: 'Chanchamayo',
-    ditrito: 'Pichanaki',
-    tipoDomicilio: 'Edificio',
-    referencias: 'ALguna Referencia',
-    zipCode: '1023'
+    fullname: '',
+    phone: '',
+    fulladdress: '',
+    street: '',
+    number: '',
+    mz: '',
+    department: '',
+    province: '',
+    district: '',
+    residenceType: '',
+    reference: '',
+    postal_code: '',
+    coordinates: {
+      latitude: 0,
+      longitude: 0
+    }
   })
 
   const managezipCode = (place, postalCode) => {
-    console.log(place, postalCode)
-    // formState.zipCode = postalCode
-    // formState.calle = place.formatted_address
-
-    // administrative_area_level_2
-    //administrative_area_level_1
-
+    setFormState(old => {
+      return {
+        ...old,
+        coordinates: {
+          latitude: place.geometry.location.lat(),
+          longitude: place.geometry.location.lng()
+        }
+      }
+    })
     place.address_components.forEach((component) => {
-      console.log(component)
       if (component.types.includes('administrative_area_level_2')) {
         setFormState((old) => {
           return {
             ...old,
-            provincia: component.long_name
+            province: component.long_name
           }
         })
       }
-
       if (component.types.includes('administrative_area_level_1')) {
         setFormState((old) => {
           return {
             ...old,
-            departamento: component.long_name
+            department: component.long_name
           }
         })
       }
-
       if (component.types.includes('locality')) {
         setFormState((old) => {
           return {
             ...old,
-            ditrito: component.long_name
+            district: component.long_name
           }
         })
-
         setFormState((old) => {
-          console.log(old)
           return {
             ...old,
-            zipCode: postalCode,
-            calle: place.formatted_address
+            postal_code: postalCode,
+            fulladdress: place.formatted_address
           }
         })
+      }
+
+      if (component.types.includes('street_number')) {
+        setFormState(old => ({
+          ...old,
+          number: component.long_name
+        }))
+      }
+      if (component.types.includes('route')) {
+        setFormState(old => ({
+          ...old,
+          street: component.long_name
+        }))
       }
     })
   }
@@ -89,169 +95,163 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps }) {
   }
 
   const continueToPayment = () => {
-    console.log('continueToPayment')
-
     onSelectAddress(formState)
   };
 
 
   return (
     <main className="flex flex-col justify-center self-stretch p-1 text-sm font-bold tracking-wide bg-white rounded-none max-w-[880px] max-md:px-5">
-      <form className="flex flex-col w-full max-md:max-w-full">
-        <section className="flex flex-wrap gap-4 items-start w-full max-md:max-w-full">
-          <div className="grid grid-cols-3 gap-2">
-            <div className="col-span-2">
-              <InputField
-                label="Nombre del distanatario"
-                placeholder="Nombre del destinatario"
-                className="flex-1 shrink basis-0 min-w-[240px]"
-                value={formState.nombredest}
-                name={"nombredest"}
-                handleDatosFinales={handlechange}
-              />
-            </div>
-            <div className="col-span-1">
-              <InputField
-                label="Teléfono del distanatario"
-                placeholder="+51"
-                className="w-[188px]"
-                value={formState.telefono}
-                name={"telefono"}
-                handleDatosFinales={handlechange}
-
-              />
-            </div>
+      <form className="flex flex-col w-full">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          <div className="md:col-span-2">
+            <InputField
+              eRef={addressRef.fullname}
+              label="Nombre del destinatario"
+              placeholder="Nombre del destinatario"
+              className="w-full min-w-[240px]"
+              value={formState.fullname}
+              name="fullname"
+              handleDatosFinales={handlechange}
+            />
           </div>
-
-
+          <div className="md:col-span-1">
+            <InputField
+              eRef={addressRef.phone}
+              label="Teléfono del destinatario"
+              placeholder="+51"
+              className="w-full"
+              value={formState.phone}
+              name="phone"
+              handleDatosFinales={handlechange}
+            />
+          </div>
         </section>
 
-        {scriptLoaded && <GoogleMapsComponent managezipCode={managezipCode} />}
+        {scriptLoaded && <GoogleMapsComponent managezipCode={managezipCode} addressRef={addressRef} />}
 
-
-        <section className="flex flex-wrap gap-1 items-start mt-4 w-full whitespace-nowrap text-neutral-900 max-md:max-w-full">
-          <div className="grid grid-cols-3 gap-2">
-            <div className="col-span-2">
-              <InputField
-                label="Calle"
-                placeholder="Faucibus"
-                className="flex-1 shrink basis-0 min-w-[240px]"
-                value={formState.calle}
-                handleDatosFinales={handlechange}
-                name={"calle"}
-
-              />
-            </div>
-            <div className="col-span-1">
-              <InputField
-                label="Número"
-                className="w-[143px]"
-                value={formState.numero}
-                handleDatosFinales={handlechange}
-                name={"numero"}
-              />
-            </div>
-
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full text-neutral-900">
+          <div className="md:col-span-2">
+            <InputField
+              eRef={addressRef.street}
+              label="Calle"
+              placeholder="Faucibus"
+              className="w-full min-w-[240px]"
+              value={formState.street}
+              name="street"
+              handleDatosFinales={handlechange}
+            />
           </div>
-
-
+          <div className="md:col-span-1">
+            <InputField
+              eRef={addressRef.number}
+              label="Número"
+              className="w-full"
+              value={formState.number}
+              name="number"
+              handleDatosFinales={handlechange}
+            />
+          </div>
         </section>
 
-        <section className="flex flex-wrap gap-1 items-start mt-4 w-full text-neutral-900 max-md:max-w-full">
-          <div className="grid grid-cols-3 gap-2">
-            <div className="col-span-2">
-              <InputField
-                label="Manzana"
-                placeholder="Faucibus"
-                className="whitespace-nowrap min-w-[240px] w-[633px]"
-                value={formState.manzana}
-                handleDatosFinales={handlechange}
-                name={"manzana"}
-              />
-            </div>
-            <div className="col-span-1">
-              <InputField
-                label="Código postal"
-                placeholder="C.P. 987-2346"
-                className="flex-1 shrink basis-0"
-                value={formState.zipCode}
-                handleDatosFinales={handlechange}
-                name={"zipCode"}
-              />
-            </div>
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full text-neutral-900">
+          <div className="md:col-span-2">
+            <InputField
+              eRef={addressRef.mz}
+              label="Manzana"
+              placeholder="Faucibus"
+              className="w-full"
+              value={formState.mz}
+              name="mz"
+              handleDatosFinales={handlechange}
+            />
           </div>
-
-
+          <div className="md:col-span-1">
+            <InputField
+              eRef={addressRef.postalCode}
+              label="Código postal"
+              placeholder="C.P. 987-2346"
+              className="w-full"
+              value={formState.postal_code}
+              name="postal_code"
+              handleDatosFinales={handlechange}
+            />
+          </div>
         </section>
 
-        <section className="flex flex-wrap gap-1 items-start mt-4 w-full max-md:max-w-full">
-          <div className="grid grid-cols-3 gap-2">
-            <div className="col-span-1">
-              <InputField
-                label="Departamento"
-                placeholder="Departamento..."
-                className="flex-1 shrink whitespace-nowrap basis-0 min-w-[240px]"
-                value={formState.departamento}
-                handleDatosFinales={handlechange}
-                name={"departamento"}
-              />
-            </div>
-            <div className="col-span-1">
-              <div className="flex flex-col flex-1 shrink basis-0 min-w-[240px]">
-                <InputField
-                  label="Provincia"
-                  placeholder="Benito..."
-                  className="flex-1 shrink basis-0 min-w-[240px]"
-                  value={formState.provincia}
-                  handleDatosFinales={handlechange}
-                  name={"provincia"}
-                />
-
-              </div>
-            </div>
-            <div className="col-span-1">
-              <InputField
-                label="Distrito"
-                placeholder="Seleccionar"
-                className="flex-1 shrink basis-0 min-w-[240px]"
-                value={formState.ditrito}
-                handleDatosFinales={handlechange}
-                name={"ditrito"}
-              />
-            </div>
-            <div className="col-span-2">
-              <InputField
-                label="Tipo de domiciolio"
-                placeholder="Ingresa Tipo de Domicilio"
-                className="flex-1 shrink basis-0 min-w-[240px]"
-                value={formState.tipoDomicilio}
-                handleDatosFinales={handlechange}
-                name={"tipoDomicilio"}
-              />
-            </div>
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full text-neutral-900">
+          <div className="md:col-span-1">
+            <InputField
+              eRef={addressRef.department}
+              label="Departamento"
+              placeholder="Departamento..."
+              className="w-full"
+              value={formState.department}
+              name="department"
+              handleDatosFinales={handlechange}
+            />
           </div>
+          <div className="md:col-span-1">
+            <InputField
+              eRef={addressRef.province}
+              label="Provincia"
+              placeholder="Benito..."
+              className="w-full"
+              value={formState.province}
+              name="province"
+              handleDatosFinales={handlechange}
+            />
+          </div>
+          <div className="md:col-span-1">
+            <InputField
+              eRef={addressRef.district}
+              label="Distrito"
+              placeholder="Seleccionar"
+              className="w-full"
+              value={formState.district}
+              name="district"
+              handleDatosFinales={handlechange}
+            />
+          </div>
+        </section>
 
-
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full">
+          <div className="md:col-span-2">
+            <InputField
+              eRef={addressRef.residenceType}
+              label="Tipo de domicilio"
+              placeholder="Ingresa Tipo de Domicilio"
+              className="w-full"
+              value={formState.residenceType}
+              name="residenceType"
+              handleDatosFinales={handlechange}
+            />
+          </div>
         </section>
 
         <InputField
+          eRef={addressRef.reference}
           label="Referencias"
-          className="flex-1 shrink w-full basis-0 min-w-[240px] mt-4"
-          value={formState.referencias}
+          className="w-full mt-4"
+          value={formState.reference}
+          name="reference"
           handleDatosFinales={handlechange}
-          name={"referencias"}
         />
 
-        <p className="mt-8 text-green-800 max-md:max-w-full">
+        <p className="mt-8 text-green-800">
           Si la información es incorrecta, no podemos garantizar la entrega.
         </p>
 
-        <div className="flex flex-row gap-10 justify-between mt-8 w-full whitespace-nowrap max-md:max-w-full">
-          <Button variant="secondary" color="green" width={'w-30'} callback={handlemodalMaps}>Cerrar</Button>
-          <Button variant="secondary" color="green" width={'w-30'} callback={continueToPayment} >Siguiente</Button>
+        <div className="flex flex-col md:flex-row gap-4 justify-between mt-8 w-full">
+          <Button variant="secondary" color="green" className="w-full md:w-auto" callback={handlemodalMaps}>
+            Cerrar
+          </Button>
+          <Button variant="secondary" color="green" className="w-full md:w-auto" callback={continueToPayment}>
+            Siguiente
+          </Button>
         </div>
       </form>
     </main>
+
   );
 }
 

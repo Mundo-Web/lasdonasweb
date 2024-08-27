@@ -306,6 +306,10 @@
         </h3>
         <ul class="mt-3">
 
+          <x-menu.item id="greetings" href="{{ route('greetings.index') }}" icon="fas fa-hand-sparkles">
+          Mensajes predefinidos
+        </x-menu.item>
+
           <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['attributes'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['attributes'])) {{ 'hover:text-slate-200' }} @endif"
