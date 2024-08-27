@@ -11,10 +11,10 @@ class Category extends Model
     protected $fillable=['name','slug', 'description', 'url_image', 'name_image','destacar', 'visible', 'state', 'start_date_campaing', 
     'end_date_campaing', 'is_active_campaing'];
 
-    // public function subcategories()
-    // {
-    //     return $this->hasMany(Subcategory::class, 'category_id');
-    // }
+    public function subcategories()
+    {
+        return $this->hasMany(Subcategory::class, 'category_id')->where('status', true);
+    }
 
     // public function blogs()
     // {

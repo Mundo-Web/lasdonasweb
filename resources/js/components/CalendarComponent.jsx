@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import es from 'date-fns/locale/es';
-import ListHorarios from './ListHorarios';
+import ListHorariosPopup from './ListHorariosPopup';
 
 registerLocale('es', es);
 setDefaultLocale('es');
@@ -38,9 +38,9 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
 
     return (
       <div className="header flex flex-row justify-between mb-5 px-10">
-        <button className='font-bold text-xl' onClick={() => handleMonthChange(-1)}>&lt;</button>
-        <div className='font-bold'>{monthNames[selectedDate.getMonth()]} de {selectedDate.getFullYear()}</div>
-        <button className='font-bold text-xl' onClick={() => handleMonthChange(1)}>&gt;</button>
+        <button className='font-bold text-xl' onClick={() => handleMonthChange(-1)}><i class="fa-solid fa-chevron-left"></i></button>
+        <div className='text-lg font-b_slick_bold'>{monthNames[selectedDate.getMonth()]} de {selectedDate.getFullYear()}</div>
+        <button className='font-bold text-xl' onClick={() => handleMonthChange(1)}><i class="fa-solid fa-chevron-right"></i></button>
       </div>
     );
   };
@@ -54,9 +54,9 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
   const renderDays = () => {
     const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
     return (
-      <div className="days flex flex-row justify-between px-10 pt-5 font-bold border-t-2 border-black ">
+      <div className="days grid grid-cols-7 px-0 pt-5 text-center font-bold border-t-2 border-black text-base font-b_slick_bold">
         {daysOfWeek.map(day => (
-          <div key={day} className="day-name">{day}</div>
+          <div key={day} className="day-name text-base font-b_slick_regular">{day}</div>
         ))}
       </div>
     );
@@ -104,7 +104,7 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
       dates.push(
         <div
           key={i}
-          className={`date flex cursor-pointer hover:border-2 hover:bg-slate-200 py-4 rounded-xl h-9 w-9 items-center justify-center content-center ${isSelected ? 'selected bg-[#336234] text-white' : ''} ${isToday ? 'bg-gray-200' : ''} ${isPastDate || isCampaignDate ? 'not-selectable' : ''}`}
+          className={`date flex cursor-pointer hover:border-2 text-center mx-auto hover:bg-slate-200 py-4 rounded-xl h-9 w-9 items-center justify-center content-center ${isSelected ? 'selected bg-[#336234] text-white' : ''} ${isToday ? 'bg-gray-200' : ''} ${isPastDate || isCampaignDate ? 'not-selectable' : ''}`}
           onClick={() => !isPastDate && !isCampaignDate && handleDateChange(date)}
         >
           {i}
@@ -112,11 +112,11 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
       );
     }
 
-    return <div className="dates mt-4 grid grid-cols-7 text-center gap-y-5 px-5 font-semibold text-[14px]">{dates}</div>;
+    return <div className="dates mt-4 grid grid-cols-7 text-center gap-y-5 px-0 font-b_slick_bold text-base">{dates}</div>;
   };
   return (
     <>
-      <div className="calendar-component  flex flex-col pt-10 w-[452px]" >
+      <div className="calendar-component  flex flex-col pt-2  w-full" >
 
         {renderHeader()}
         {renderDays()}
@@ -124,7 +124,7 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
 
         {selectedDate && selectedTimeSlot && (
           <div className="confirmation">
-            <h4 className='font-bold'>Selecciona un horario de entrega</h4>
+            <h4 className='font-b_slick_bold text-lg'>Selecciona un horario de entrega</h4>
             <p>
               {selectedDate.toLocaleDateString()} at {selectedTimeSlot}
             </p>
@@ -134,10 +134,10 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
 
       <div className='w-full border-t-2 mt-8'>
         {selectedDate && (
-          <div className="time-slots pt-10">
-            <h4 className='font-bold'>Selecciona un horario de entrega</h4>
+          <div className="time-slots pt-5">
+            <h4 className='font-b_slick_bold text-lg'>Selecciona un horario de entrega</h4>
             <div className="time-slots-options relative mt-4">
-              <ListHorarios clase='flex flex-row block  gap-2 text-sm text-center justify-center '
+              <ListHorariosPopup clase='flex flex-row gap-2 text-sm text-center justify-center font-b_slick_bold text-sm'
                 horarios={horarios}
                 selectedHorario={selectedHorario}
                 setSelectedHorario={setSelectedHorario}

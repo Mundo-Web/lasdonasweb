@@ -904,18 +904,15 @@ const Product = ({ complementos, general,
           </section>}
 
       </main >
+      
       <div id="modalCalendario" className={modalCalendario ? 'block modal-calendario' : 'hidden'}>
         <div className=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-
-
         <div className=" fixed inset-0 z-30 w-screen overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
-              className="relative flex flex-row transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
-              <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-2/3">
+              className="relative flex flex-col lg:flex-row transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-2xl md:max-w-4xl">
+              <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full lg:w-2/3">
                 <div className="sm:flex items-center justify-center w-full flex-col">
-
-
                   <CalendarComponent horarios={horarios} selectedHorario={selectedHorario}
                     setSelectedHorario={setSelectedHorario} selectedDatecalendar={selectedDate}
                     setSelectedDatecalendar={setSelectedDate}
@@ -923,51 +920,34 @@ const Product = ({ complementos, general,
                     categoryP={productos.categoria_id}
                     setDetallePedido={setDetallePedido}
                   />
-
                 </div>
-
-
               </div>
-              <div className="bg-[#73B473] px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-1/3">
-                <div className="flex flex-row justify-end" onClick={CloseModalCalendario} >
-
-
-
+              <div className="bg-[#73B473] px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full lg:w-1/3">
+                
+                <div className="lg:flex lg:flex-row lg:justify-end absolute right-0 mr-3" onClick={CloseModalCalendario} >
                   <img src='/images/img/x-square-contained.png' alt="" className="h-6 cursor-pointer"
                   />
                 </div>
 
-                <div className="flex flex-col text-white">
-                  <div className="flex flex-col  gap-2 pt-4">
-                    <p>Su pedido se entregara el dia :
-
-                    </p>
+                <div className="flex flex-col text-white font-b_slick_regular">
+                  <div className="flex flex-col font-base gap-2 pt-4 ">
+                    <p>Su pedido se entregara el día :</p>
                     <p className='text-[24px] font-bold py-3'>
                       {formattedDate(selectedDate)}
                     </p>
-
-
                   </div>
                   <div>
                     <p className="">En el horario:</p>
                     <p className=" text-[24px]">{formatTime(horarios.filter((item) => item.id == selectedHorario)[0]?.start_time)} - {formatTime(horarios.filter((item) => item.id == selectedHorario)[0]?.end_time)}  </p>
-
-
                   </div>
-
-
-                  {selectedHorario !== null && (<div className="flex flex-col justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
+                  {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                     onClick={agregarPedido}
                   >
                     Agregar al carrito
-                    <i className='fa fa-cart-plus ms-1'></i>
+                    <i className='fa fa-cart-plus ml-2 mb-1'></i>
                   </div>)}
-
-
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>

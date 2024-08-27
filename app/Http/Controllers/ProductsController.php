@@ -42,6 +42,7 @@ class ProductsController extends Controller
    */
   public function create()
   {
+    $product  = new Products();
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
     $tags = Tag::where("status", "=", true)->get();
@@ -49,7 +50,123 @@ class ProductsController extends Controller
     $collection = Collection::all();
     $tipo = Tipo::where("status", "=", true)->get();
     $complementos  = Complemento::where('status', 1)->get();
-    return view('pages.products.create', compact('atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'tipo', 'complementos'));
+    $especificacion = [];
+    $subproductos = [];
+    return view('pages.products.create', compact('product', 'atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
+  }
+
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(string $id)
+  {
+
+    $product =  Products::with('tags')->find($id);
+    $subproductos = Products::where('parent_id', '=', $id)->with('images')->get();
+    $tipo = Tipo::where("status", "=", true)->get();
+
+
+    $atributos = Attributes::where("status", "=", true)->get();
+    $valorAtributo = AttributesValues::where("status", "=", true)->get();
+
+
+    $especificacion = Specifications::where("product_id", "=", $id)->get();
+    $allTags = Tag::all();
+    $categoria = Category::all();
+    $collection = Collection::all();
+
+    $subproductosEspeccifications = [];
+
+    // Itera sobre los subproductos para extraer los IDs
+    foreach ($subproductos as $subproducto) {
+      // Añade el ID del subproducto al array
+      $subproductosEspeccifications[$subproducto->id] = Specifications::where("product_id", "=", $subproducto->id)->get();
+    }
+
+
+    return view('pages.products.edit', compact('product', 'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
+  }
+
+  public function save(Request $request)
+  {
+
+    $actualizacion = true;
+    $valoresFormulario = $request->input('valoresFormulario');
+    // Si 'valoresFormulario' es una cadena JSON, decodificarla a un array PHP
+    if (is_string($valoresFormulario)) {
+      $valoresFormulario = json_decode($valoresFormulario, true);
+    }
+
+
+    $especificaciones = [];
+    $precioFiltro = 0;
+    $data = $request->except('valoresFormulario');
+    $atributos = null;
+    $tagsSeleccionados = $request->input('tags_id');
+    $onlyOneCaratula = false;
+
+
+    if (is_null($request->input('descuento'))) {
+      $request->merge(['descuento' => 0]);
+      $data['descuento'];
+    }
+
+    try {
+      //code...
+      $request->validate([
+        'producto' => 'required',
+        'categoria_id' => 'required',
+        'precio' => 'min:0|required|numeric',
+        'descuento' => 'lt:' . $request->input('precio'),
+      ]);
+
+      $data['imagen'] = $this->handleImageUpload($request);
+      list($cleanedData, $atributos, $especificaciones) = $this->processAndCleanProductData($data);
+
+
+      $product = Products::find($request->id);
+      if (!$product) {
+        $product = new Products($cleanedData);
+        $product->save();
+      }
+      else $product->update($cleanedData);
+      dump($product);
+
+      if ($product['descuento'] == 0 || is_null($product['descuento'])) {
+        $precioFiltro = $product['precio'];
+      } else {
+        $precioFiltro = $product['descuento'];
+      }
+      $product->update(['preciofiltro' => $precioFiltro]);
+
+      $this->GuardarEspecificaciones($product->id, $especificaciones, $actualizacion);
+
+      $this->associateAttributesToProduct($atributos, $product, $actualizacion);
+      $product->tags()->sync($tagsSeleccionados);
+
+      $this->processAndSaveProductImages($data, $request, $product);
+      foreach ($request->files as $key => $file) {
+        if (strpos($key, 'input-file-') === 0) {
+          $file = $request->file($key);
+          $number = substr($key, strpos($key, 'input-file-') + strlen('input-file-')); // Esto imprimirá "541" si $key es "input-file-541"
+
+          $this->actImg($file, $number);
+        }
+      }
+
+      $this->procesarOpciones($product, $valoresFormulario, $tagsSeleccionados, $request, $actualizacion);
+    } catch (\Throwable $th) {
+      //throw $th;
+
+      dd($th->getMessage() . ' Ln' . $th->getLine());
+
+
+    }
+
+
+    // return;
+
+    return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
   }
 
   public function search(Request $request)
@@ -487,6 +604,7 @@ class ProductsController extends Controller
     foreach ($especificaciones as $key => $value) {
       if (isset($value['tittle'])) {
         $espect = Specifications::find($key);
+        if (!$espect) $espect = new Specifications();
         $espect->tittle = $value['tittle'];
         $espect->specifications = $value['specifications'];
 
@@ -523,38 +641,6 @@ class ProductsController extends Controller
   public function show(Products $products)
   {
     //
-  }
-
-  /**
-   * Show the form for editing the specified resource.
-   */
-  public function edit(string $id)
-  {
-
-    $product =  Products::with('tags')->find($id);
-    $subproductos = Products::where('parent_id', '=', $id)->with('images')->get();
-    $tipo = Tipo::where("status", "=", true)->get();
-
-
-    $atributos = Attributes::where("status", "=", true)->get();
-    $valorAtributo = AttributesValues::where("status", "=", true)->get();
-
-
-    $especificacion = Specifications::where("product_id", "=", $id)->get();
-    $allTags = Tag::all();
-    $categoria = Category::all();
-    $collection = Collection::all();
-
-    $subproductosEspeccifications = [];
-
-    // Itera sobre los subproductos para extraer los IDs
-    foreach ($subproductos as $subproducto) {
-      // Añade el ID del subproducto al array
-      $subproductosEspeccifications[$subproducto->id] = Specifications::where("product_id", "=", $subproducto->id)->get();
-    }
-
-
-    return view('pages.products.edit', compact('product', 'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
   }
 
   /**

@@ -26,6 +26,7 @@ use App\Http\Controllers\ComplementosController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\GalerieController;
+use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\HorariosController;
 use App\Http\Controllers\LogosClientController;
 
@@ -77,7 +78,7 @@ Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto')
 Route::get('/carrito', [IndexController::class, 'carrito'] )->name('Carrito.jsx');
 Route::get('/pago', [IndexController::class, 'pago'] )->name('Pago.jsx');
 Route::post('/procesar/pago',[IndexController::class, 'procesarPago'])->name('procesar.pago');
-Route::post('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
+Route::get('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
 /* Catálogo y producto */
 Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('Product.jsx');
 Route::get('/catalogo', [IndexController::class, 'catalogo'])->name('Catalogo.jsx');
@@ -195,12 +196,18 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::resource('/tags', TagController::class);
         Route::post('/tags/deleteTags', [TagController::class, 'deleteTags'])->name('tags.deleteTags');
 
+        //Etiquetas
+        Route::resource('/greetings', GreetingController::class);
+        Route::post('/greetings', [GreetingController::class, 'save'])->name('greetings.save');
+        Route::delete('/greetings/{id}', [GreetingController::class, 'delete'])->name('greetings.delete');
+
         //Precios
         Route::resource('/prices', PriceController::class);
        
 
         //Productos
         Route::resource('/products', ProductsController::class);
+        // Route::post('/products', [ProductsController::class, 'save'])->name('products.save');
         Route::post('/products/updateVisible', [ProductsController::class, 'updateVisible'])->name('products.updateVisible');
         Route::post('/products/borrar', [ProductsController::class, 'borrar'])->name('products.borrar');
         Route::post('/products/borrarimg', [ProductsController::class, 'borrarimg'])->name('activity.borrarimg');

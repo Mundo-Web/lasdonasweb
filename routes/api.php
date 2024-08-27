@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,5 @@ Route::post('/products/paginate', [ProductsController::class, 'paginate'])->name
 
 Route::post('/products/AddOrder', [ProductsController::class, 'AddOrder'])->name('products.AddOrder');
 Route::post('/products/addComplemento', [ProductsController::class, 'addComplemento'])->name('products.addComplemento');
+
+Route::post('/payment/culqi', [PaymentController::class, 'culqi'])->name('payment.culqi');

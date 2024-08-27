@@ -8,6 +8,10 @@
 @endphp
 
 <style>
+  body {
+    overflow-x: hidden;
+  }
+
   #header_top {
     transition: height 0.6s ease, opacity 0.6s ease;
   }
@@ -22,26 +26,43 @@
 
   #header-mid.fixed-header {
     transition: height 0.6s ease;
-    /* Agrega una transición suave */
   }
 
   .header_bottom.fixed-header {
     top: 80px;
-    /* Ajusta este valor para estar justo debajo del nuevo header-mid */
   }
-
 
   #cart-modal {
     z-index: 10000;
-    /* Asegúrate de que este sea mayor que el z-index del header */
+  }
+
+
+  .submenu {
+    display: none;
+    /* Oculto por defecto */
+    position: absolute;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .subcategories {
+    margin-right: 2rem;
+  }
+
+  .category-image img {
+    max-width: 100px;
+    height: auto;
+    object-fit: cover;
   }
 </style>
 
 
 <div id="header_top"
   class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
-  Producto | Categoría <span class="ml-1 font-b_classic_bold"> más vendida </span> <img
-    class="w-6 ml-2"src="{{ asset('img_donas/spa.svg') }}">
+  Producto | Categoría <span class="ml-1 font-b_classic_bold mt-1"> más vendida </span> <img class="w-6 ml-2"
+    src="{{ asset('img_donas/spa.svg') }}">
 </div>
 
 <header class="font-b_classic_regular sticky top-0" style="z-index:1">
@@ -162,20 +183,115 @@
     </div>
   </div>
 
-  <div class="header_bottom  md:px-[5%] lg:px-[10%] h-12 py-3 bg-[#336234]">
-    <div class="text-base font-b_classic_bold">
-      <nav>
-        <div class="swiper menu">
-          <div class="swiper-wrapper relative">
-            @foreach ($submenucategorias as $item)
-              <div class="swiper-slide">
-                <ul class="menu flex flex-row justify-center items-center text-center text-white tracking-wider">
-                  <li><a href="/catalogo/{{ $item->id }}">{{ $item->name }}</a></li>
-                </ul>
+  <div class="header_bottom hidden 2md:block h-12 bg-[#336234] px-[5%] lg:px-[8%]">
+    <div class="text-base font-b_classic_bold ">
+
+      <nav id="menu-items"
+        class="text-white tracking-wider text-base flex flex-row gap-5 xl:gap-6 items-center justify-between max-w-4xl mx-auto"
+        x-data="{ openCatalogo: false, openSubMenu: null }">
+
+        <a href="/" class="font-medium hover:opacity-75 other-class py-3 px-6">
+          <span class="underline-this">Inicio</span>
+        </a>
+
+        <a href="/" class="font-medium hover:opacity-75 other-class py-3 px-6">
+          <span class="underline-this">Nosotros</span>
+        </a>
+
+        <div x-data="{ openCatalogo: false }" @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false">
+          <ul class="menu flex flex-row justify-center items-center text-center py-3 px-6">
+            <li><a href="#">Catálogo</a></li>
+          </ul>
+
+          <div x-show="openCatalogo"
+            class="font-b_slick_bold text-white  origin-top-right absolute top-full left-0 w-[100vw] mt-0 bg-[#73B473] p-8 shadow-lg overflow-hidden grid gap-8 grid-cols-12"
+            @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false">
+
+            <div class="col-span-3">
+              <h2 class="px-3 py-1 text-xl tracking-wider">Categorias</h2>
+              <hr class="mx-3 my-3">
+              <ul class="col-span-3 font-b_slick_regular tracking-normal">
+                @foreach ($submenucategorias as $category)
+                  @if ($category->subcategories->isNotEmpty())
+                    <li>
+                      <a @click="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}"
+                        href="javascript:void(0)"
+                        class="flex justify-between items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                        <span class="underline-this">
+                          {{ $category->name }}
+                        </span>
+                        <span :class="{ 'rotate-180': openSubMenu === {{ $category->id }} }"
+                          class="ms-1 inline-block transform transition-transform duration-300">↓</span>
+                      </a>
+                      <ul x-show="openSubMenu === {{ $category->id }}" x-transition
+                        class="ml-3 mt-1 space-y-1 border-l border-white">
+                        <li>
+                          <a href="/catalogo/{{ $category->slug }}"
+                            class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                            <span class="underline-this">
+                              Ver todo {{ $category->name }}
+                            </span>
+                          </a>
+                        </li>
+                        @foreach ($category->subcategories as $subcategory)
+                          <li>
+                            <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
+                              class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                              <span class="underline-this">{{ $subcategory->name }}</span>
+                            </a>
+                          </li>
+                        @endforeach
+                      </ul>
+                    </li>
+                  @else
+                    <li>
+                      <a href="{{ route('Catalogo.jsx', $category->id) }}"
+                        class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                        <span class="underline-this">
+                          {{ $category->name }}
+                        </span>
+                      </a>
+                    </li>
+                  @endif
+                @endforeach
+              </ul>
+            </div>
+
+            <div class="col-span-9">
+              <div class="swiper categories-header">
+                <div class="swiper-wrapper mt-2 mb-4">
+                  @foreach ($submenucategorias as $category)
+                    @if ($category->destacar)
+                      <div class="swiper-slide rounded-2xl">
+                        <x-category.container :item="$category" />
+                      </div>
+                    @endif
+                  @endforeach
+                </div>
+                <div class="swiper-scrollbar-categories-header h-2"></div>
+                <div class="mt-4 text-end">
+                  <button type="button"
+                    class="swiper-button-prev-categories-header text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-4 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
+                    ←
+                  </button>
+                  <button type="button"
+                    class="swiper-button-next-categories-header text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-4 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
+                    →
+                  </button>
+                </div>
               </div>
-            @endforeach
+            </div>
+
           </div>
         </div>
+
+        <a href="/" class="font-medium hover:opacity-75  other-class py-3 px-6">
+          <span class="underline-this">Tipos de flor</span>
+        </a>
+
+        <a href="/" class="font-medium hover:opacity-75  other-class py-3 px-6">
+          <span class="underline-this">Oferta</span>
+        </a>
       </nav>
     </div>
   </div>
@@ -183,21 +299,13 @@
 </header>
 
 
-
-
-<div id="cart-modal" class="bag !absolute top-0 right-0 md:w-[450px] cartContainer border shadow-2xl  !rounded-md !p-0"
+<div id="cart-modal"
+  class="bag !absolute top-0 right-0 md:w-[450px] cartContainer border shadow-2xl  !rounded-md !p-0"
   style="display: none">
   <div class="p-4 flex flex-col h-[90vh] justify-between gap-2">
     <div class="flex flex-col">
       <div class="flex justify-between ">
         <h2 class="font-semibold font-Inter_Medium text-[28px] text-[#151515] pb-5">Carrito</h2>
-        {{--  <div class="relative">
-          <i class="fa-solid fa-circle-xmark absolute top-[1%] right-[2%] cursor-pointer" id="eliminarImgDedicatoria"
-            style="color: #ff1a1a;"></i>
-          <img id="cart-image" src="" alt="Cart Image" class=" h-[100px] object-fit" />
-        </div> --}}
-
-
         <div id="close-cart" class="cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-6 h-6">
@@ -274,39 +382,36 @@
     $('#itemsCount').text(contarArticulos)
   }
 
-  function addOnCarBtn(id) {
-    let articulosCarrito = Local.get('carrito') || [];
+  function addOnCarBtn(id, isCombo) {
     let prodRepetido = articulosCarrito.map(item => {
-      if (item.id === id) {
+      if (item.id === id && item.isCombo == isCombo) {
 
         item.cantidad += 1;
       }
       return item;
     });
 
-    Local.set('carrito', prodRepetido);
+    Local.set('carrito', articulosCarrito);
     limpiarHTML();
     PintarCarrito();
   }
 
-  function deleteOnCarBtn(id) {
-    let articulosCarrito = Local.get('carrito') || [];
+  function deleteOnCarBtn(id, isCombo) {
     let prodRepetido = articulosCarrito.map(item => {
-      if (item.id === id && item.cantidad > 0) {
+      if (item.id === id && item.isCombo == isCombo && item.cantidad > 0) {
 
         item.cantidad -= 1;
       }
       return item;
     });
 
-    Local.set('carrito', prodRepetido);
+    Local.set('carrito', articulosCarrito);
     limpiarHTML();
     PintarCarrito();
   }
 
-  function deleteItem(id) {
+  function deleteItem(id, isCombo) {
 
-    let articulosCarrito = Local.get('carrito') || [];
     let idCount = {};
     let duplicates = [];
     articulosCarrito.forEach(item => {
@@ -465,6 +570,7 @@
     },
   });
 </script>
+
 <script>
   window.addEventListener('scroll', function() {
     const headerMid = document.getElementById('header-mid');
@@ -492,5 +598,34 @@
       headerBottom.classList.remove('fixed-header');
       //portada.classList.remove('mt-[150px]'); 
     }
+  });
+</script>
+
+<script>
+  new Swiper('.categories-header', {
+    slidesPerView: 4,
+    spaceBetween: 10,
+    loop: true,
+    grab: false,
+    centeredSlides: false,
+    initialSlide: 0,
+    navigation: {
+      nextEl: '.swiper-button-next-categories-header',
+      prevEl: '.swiper-button-prev-categories-header',
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar-categories-header',
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 2
+      },
+      1200: {
+        slidesPerView: 3
+      },
+      1350: {
+        slidesPerView: 4
+      },
+    },
   });
 </script>
