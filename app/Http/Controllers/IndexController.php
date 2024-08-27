@@ -196,7 +196,7 @@ class IndexController extends Controller
         'beneficios' => $beneficios,
       ])->rootView('app');
     } catch (\Throwable $th) {
-      dump($th);
+      // dump($th);
     }
   }
 

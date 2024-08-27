@@ -132,7 +132,7 @@ class ProductsController extends Controller
         $product = new Products($cleanedData);
         $product->save();
       } else $product->update($cleanedData);
-      dump($product);
+      // dump($product);
 
       if ($product['descuento'] == 0 || is_null($product['descuento'])) {
         $precioFiltro = $product['precio'];

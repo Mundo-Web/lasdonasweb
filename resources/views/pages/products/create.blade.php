@@ -559,7 +559,7 @@
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <i class="fa fa-pencil"></i>
                     </div>
-                    <select name="tipo-flor_id" required
+                    <select name="tipo_flor_id" required
                       class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('tipo-flor_id') is-invalid @enderror">
                       <option value="">Seleccionar Tipo de Flor </option>
                       @foreach ($tipoFlor as $item)
@@ -645,7 +645,7 @@
                       class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                       aria-describedby="user_avatar_help" id="user_avatar" type="file">
 
-                      <label for="" class="my-2">Imagenes</label>
+                    <label for="" class="my-2">Imagenes</label>
                     <div class="dropzone border-gray-300 dropzoneSecond " id="dropzoneServerFilesGallery"
                       name="attrid-{{ $item->id }}">
                     </div>

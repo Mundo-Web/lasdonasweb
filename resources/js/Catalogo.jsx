@@ -215,6 +215,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
   const removeCategory = (categoryId) => {
 
+    setCatSelected('Ocasiones');
     updateUrlWithInputId(null);
     setCurrentCat({})
     setBadges((prevData) => ({
@@ -234,7 +235,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
   // Función para eliminar el orden de precio
   const clearPriceOrder = () => {
 
-
+    setSelectedOption('Ordenar por')
     setBadges((prevData) => ({
       ...prevData,
       priceOrder: ''
@@ -244,6 +245,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
   };
   const cleartipoflor = () => {
+    setflorSelected('Tipo de Flor');
     setBadges((prevData) => ({
       ...prevData,
       tipoFlor: []
