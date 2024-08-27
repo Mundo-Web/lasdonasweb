@@ -672,7 +672,7 @@ const Product = ({ complementos, general,
 
 
                 {selectedImage && (
-                  <div className="flex justify-center z-10 absolute top-[1%] right-[1%]">
+                  <div className="flex justify-center  absolute top-[1%] right-[1%]">
                     <button
                       onClick={handleClearImage}
                       className="px-4 py-2 bg-red-500 text-white rounded-lg"
@@ -904,7 +904,7 @@ const Product = ({ complementos, general,
           </section>}
 
       </main >
-      
+
       <div id="modalCalendario" className={modalCalendario ? 'block modal-calendario' : 'hidden'}>
         <div className=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div className=" fixed inset-0 z-30 w-screen overflow-y-auto">
@@ -923,7 +923,7 @@ const Product = ({ complementos, general,
                 </div>
               </div>
               <div className="bg-[#73B473] px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full lg:w-1/3">
-                
+
                 <div className="lg:flex lg:flex-row lg:justify-end absolute right-0 mr-3" onClick={CloseModalCalendario} >
                   <img src='/images/img/x-square-contained.png' alt="" className="h-6 cursor-pointer"
                   />
