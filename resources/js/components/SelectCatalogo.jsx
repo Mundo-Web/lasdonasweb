@@ -63,19 +63,20 @@ const customStyles = {
 };
 
 
-const SelectSecond = ({ title, handleOptionChange, options=[] }) => {
-  console.log(options)
+const SelectCatalogo = ({ title, handleOptionChange, options=[] }) => {
+  
   return (
     <Select className='font-poppins_regular font-bold text-lg w-full z-0'
       styles={customStyles}
       options={options.map((option) => ({ value: option.id, label: option.name }))}
       placeholder={title}
+      isMulti
       filterOption={() => true}
       isSearchable={false}
-      onChange={handleOptionChange}
+      // onChange={(selectedOption) => handleOptionChange(selectedOption.value)}
     />
   );
 
 };
 
-export default SelectSecond;
+export default SelectCatalogo;

@@ -65,13 +65,16 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     }
     return text.substring(0, maxLength) + '...';
   };
-
+  
   const handlecatChange = (event) => {
     setIsCategoriaVisible(!iscategoriaVisible);
 
     const inputId = event.target.id;
     const spanContent = labelCat.current[inputId].querySelector('span').textContent;
 
+    function isEmptyObject(obj) {
+      return Object.keys(obj).length === 0 && obj.constructor === Object;
+    }
 
     // Obtener el contenido del span dentro del label
 
@@ -88,7 +91,15 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
         categories: [...prevData.categories, { id: inputId, name: spanContent }]
       }
     });
+
     setFilter((prevFilter) => {
+
+      if (isEmptyObject(prevFilter)) {
+        return {
+          ...prevFilter,
+          category_id: [inputId],
+        };
+      }
 
       return {
         ...prevFilter,
@@ -337,6 +348,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
               {iscategoriaVisible && (
                 <div className="list z-[100] animate-fade-down animate-duration-[2000ms] overflow-y-auto" style={{ maxHeight: '150px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 1px' }}>
+                 
                   {categorias.map((item, index) => (
 
                     <div className="w-full">
@@ -352,9 +364,6 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                       </label>
                     </div>
                   ))}
-
-
-
                 </div>
               )}
             </div>
@@ -397,14 +406,14 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                 </div>
               )}
             </div>
-              {console.log(categorias)}
-            <SelectCatalogo options={categorias}  title={'Categorías'}/>
+            
+            <SelectCatalogo options={categorias}  title={'Ocasión'}  handleOptionChange={handlecatChange} />
 
-            <SelectCatalogo title={'Ordenar por'}/>
+            {/* <SelectCatalogo title={'Ordenar por'}/> */}
 
           </div>
-          <div className='flex flex-wrap gap-4 mt-7'>
 
+          <div className='flex flex-wrap gap-4 mt-7'>
             {badges.categories.map((badge, index) => (
               <div className='cursor-pointer text-[#112212] text-sm rounded-xl shadow-lg flex flex-row items-center justify-center px-4 py-2' onClick={() => removeCategory(`${badge.id}`)}>
                 Categoria - {badge.name}
@@ -420,9 +429,8 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                 <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
               </div>)
             )}
-
-
           </div>
+
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-16'>
             {
             items.map((item, index) => (
