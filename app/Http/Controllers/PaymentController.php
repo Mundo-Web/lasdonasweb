@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Offer;
+use App\Models\Ordenes;
 use App\Models\Price;
 use App\Models\Products;
 use App\Models\Sale;
@@ -25,17 +26,17 @@ class PaymentController extends Controller
     $response = new Response();
     $culqi = new Culqi(['api_key' => env('CULQI_PRIVATE_KEY')]);
 
-    $sale = new Sale();
+    $sale = new Ordenes();
 
 
-    // INICIO: Borrar
-    $response->status = 200;
-    $response->message = 'Operacion correcta';
-    $response->data = [
-      'reference_code' => random_int(1000, 9999)
-    ];
-    return response($response->toArray(), $response->status);
-    // FIN: borrar
+    // // INICIO: Borrar
+    // $response->status = 200;
+    // $response->message = 'Operacion correcta';
+    // $response->data = [
+    //   'reference_code' => random_int(1000, 9999)
+    // ];
+    // return response($response->toArray(), $response->status);
+    // // FIN: borrar
 
     try {
 

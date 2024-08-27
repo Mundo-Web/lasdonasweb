@@ -434,10 +434,6 @@
                         @endforeach
                       </select>
                     </div> --}}
-                    <div id="puntos_container" hidden class="w-full md:w-auto">
-                      <input id="puntos_complemento" name="puntos_complemento" placeholder="Puntos Complemento"
-                        class="mt-1 w-full md:w-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">
-                    </div>
                   </div>
 
                   <div class="col-span-1 md:col-span-2 lg:col-span-3 mt-2">
@@ -491,7 +487,7 @@
                     <label for="precio">Precio <span class="text-red-500"> (Obligatorio) </span></label>
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="fa fa-pencil"></i>
+                        <i class="fas fa-dollar-sign"></i>
 
                       </div>
                       <input type="number" id="precio" name="precio" value="" required
@@ -508,7 +504,7 @@
                     <label for="descuento">Descuento</label>
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="fa fa-pencil"></i>
+                        <i class="fas fa-dollar-sign"></i>
                       </div>
                       <input type="number" id="descuento" name="descuento" value="0"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('descuento') is-invalid @enderror"
@@ -519,8 +515,26 @@
                     </div>
 
                   </div>
-
                 </div>
+
+                {{-- <div id="puntos_container" hidden class="w-full md:w-auto">
+                  <label for="" class="w-full">Valor en puntos</label>
+                  <input id="puntos_complemento" name="puntos_complemento" placeholder="Puntos Complemento"
+                    class="mt-1 w-full md:w-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">
+                </div> --}}
+
+                <div id="puntos_container" hidden class="md:col-span-5 w-full">
+                    <label for="puntos_complemento">Valor en puntos</label>
+                    <div class="relative mb-2  mt-2">
+                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="mdi mdi-dots-hexagon"></i>
+                      </div>
+                      <input type="number" id="puntos_complemento" name="puntos_complemento" value="0"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Valor en puntos">
+                    </div>
+
+                  </div>
 
                 <div class="md:col-span-5" id="upsellListado">
                   <label for="items" class="block font-medium text-gray-700 mb-2">Recomendados<i
@@ -645,7 +659,7 @@
                       class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                       aria-describedby="user_avatar_help" id="user_avatar" type="file">
 
-                      <label for="" class="my-2">Imagenes</label>
+                    <label for="" class="my-2">Imagenes</label>
                     <div class="dropzone border-gray-300 dropzoneSecond " id="dropzoneServerFilesGallery"
                       name="attrid-{{ $item->id }}">
                     </div>
@@ -1606,7 +1620,7 @@
         $('#complementosListado').hide()
         $('#complementoContainer').show(); // Mostrar el contenedor de complemento
         $('#agregarOpciones').hide(); // Ocultar agregar opciones
-        $('#puntos_complemento').show(); // Mostrar puntos complemento
+        $('#puntos_container').show(); // Mostrar puntos complemento
         $('#puntos_container').show(); // Mostrar contenedor de puntos
         $('#puntos_complemento').prop('required', true); // Hacer el campo requerido
         $('#complemento_id').prop('required', true); // Hacer complemento_id requerido
@@ -1617,7 +1631,7 @@
         $('#upsellListado').show()
         $('#complementosListado').show()
         $('#complementoContainer').hide(); // Ocultar el contenedor de complemento
-        $('#puntos_complemento').hide(); // Ocultar puntos complemento
+        $('#puntos_container').hide(); // Ocultar puntos complemento
         $('#agregarOpciones').show(); // Mostrar agregar opciones
         $('#puntos_complemento').prop('required', false); // Quitar el required del campo
         $('#complemento_id').prop('required', false); // Quitar el required de complemento_id
