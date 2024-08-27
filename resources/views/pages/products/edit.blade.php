@@ -524,6 +524,41 @@
 
                 </div>
 
+                @if ($product->tipo_servicio == 'complemento')
+                  <div id="puntos_container" class="md:col-span-5 w-full">
+                    <label for="puntos_complemento">Valor en puntos</label>
+                    <div class="relative mb-2  mt-2">
+                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="mdi mdi-dots-hexagon"></i>
+                      </div>
+                      <input type="number" id="puntos_complemento" name="puntos_complemento"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Valor en puntos" value="{{ $product->puntos_complemento }}">
+                    </div>
+                  </div>
+                @else
+                  <div class="md:col-span-5" id="upsellListado">
+                    <label for="items" class="block font-medium text-gray-700 mb-2">Recomendados<i
+                        class="fa-solid fa-cart-plus ml-4"></i></label>
+                    <select id="uppsell" name="uppsell[]" multiple="multiple"
+                      class="w-full select2 mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
+                      @foreach ($product->recommended as $item)
+                        <option value="{{ $item->id }}" selected>{{ $item->producto }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="md:col-span-5" id="complementosListado">
+                    <label for="items" class="block font-medium text-gray-700 mb-2">Complementos<i
+                        class="fa-solid fa-cart-plus ml-4"></i></label>
+                    <select id="complementos" name="complementos[]" multiple="multiple"
+                      class="w-full select2 mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
+                      @foreach ($product->addons as $item)
+                        <option value="{{ $item->id }}" selected>{{ $item->producto }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                @endif
+
 
 
                 <div class="md:col-span-5">
@@ -1024,7 +1059,7 @@
 
           <div class="md:col-span-5 text-right mt-6 flex justify-between px-4 pb-4">
             <div class="inline-flex items-end">
-              <a href="{{ URL::previous() }}"
+              <a href="{{ route('products.index') }}"
                 class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
             </div>
             <div class="inline-flex items-end">
@@ -1042,6 +1077,49 @@
   </div>
   <script>
     $('#tags_id').select2();
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $('#uppsell').select2({
+        placeholder: 'Select items',
+        ajax: {
+          url: '/api/items/producto', // URL de tu endpoint de búsqueda
+          dataType: 'json',
+          delay: 250,
+          processResults: function(data) {
+            return {
+              results: $.map(data, function(item) {
+                return {
+                  id: item.id,
+                  text: item.producto
+                }
+              })
+            };
+          },
+          cache: true
+        }
+      });
+      $('#complementos').select2({
+        placeholder: 'Selecciona los complementos',
+        ajax: {
+          url: '/api/items/complemento',
+          dataType: 'json',
+          delay: 250,
+          processResults: function(data) {
+            return {
+              results: $.map(data, function(item) {
+                return {
+                  id: item.id,
+                  text: item.producto
+                }
+              })
+            };
+          },
+          cache: true
+        }
+      });
+    });
   </script>
   <script>
     let contenidoId = $("[id^='div-form-opcion']").length + 1
