@@ -80,6 +80,33 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     const newUrl = inputId ? `/catalogo/${inputId}` : '/catalogo';
     window.history.pushState(null, '', newUrl);
   }
+  const dropdownRef1 = useRef(null);
+  const dropdownRef2 = useRef(null);
+  const dropdownRef3 = useRef(null);
+
+  const handleClickOutside = (event) => {
+
+    iscategoriaVisible
+    ShowtipoFlores
+    isListVisible
+
+    if (dropdownRef1.current && !dropdownRef1.current.contains(event.target)) {
+      setIsCategoriaVisible(false);
+    }
+    if (dropdownRef2.current && !dropdownRef2.current.contains(event.target)) {
+      setShowTipoFlores(false);
+    }
+    if (dropdownRef3.current && !dropdownRef3.current.contains(event.target)) {
+      setIsListVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handlecatChange = (event) => {
     setIsCategoriaVisible(!iscategoriaVisible);
@@ -439,22 +466,18 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
               <option value="">Tipo Flor</option>
             </select> */}
 
-            <div className="dropdown w-full">
+            <div className="dropdown w-full" ref={dropdownRef1}>
               <div
                 className="input-box focus:outline-none font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-6 bg-[#F5F5F5]"
                 onClick={toggleCattVisibility}
               >
                 {CatSelected ? CatSelected : 'Ocasiones'}
               </div>
-
               {iscategoriaVisible && (
                 <div className="list z-[100] animate-fade-down animate-duration-[2000ms] overflow-y-auto" style={{ maxHeight: '150px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 1px' }}>
-
                   {categorias.map((item, index) => (
-
-                    <div className="w-full">
+                    <div className="w-full" key={index}>
                       <input
-
                         type="radio" name="drop1" id={item.id} className="radio" value="price_high" onChange={handlecatChange} />
                       <label
                         ref={(el) => (labelCat.current[item.id] = el)}
@@ -468,23 +491,19 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                 </div>
               )}
             </div>
-            <div className="dropdown w-full">
+
+            <div className="dropdown w-full" ref={dropdownRef2}>
               <div
-                className="input-box focus:outline-none  font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-6 bg-[#F5F5F5]"
+                className="input-box focus:outline-none font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-6 bg-[#F5F5F5]"
                 onClick={toggleCattVisibilityTipoFlores}
               >
                 {florSelected ? florSelected : 'Tipo de Flor'}
               </div>
-
-              {console.log(tipoFloresList)}
               {ShowtipoFlores && (
-
-                <div className="list z-[100] animate-fade-down animate-duration-[2000ms]" style={{ maxHeight: '150px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 1px' }}>
+                <div className="list z-[100] animate-fade-down animate-duration-[2000ms] overflow-y-auto" style={{ maxHeight: '150px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 1px' }}>
                   {tipoFloresList.map((item, index) => (
-
-                    <div className="w-full">
+                    <div className="w-full" key={index}>
                       <input
-
                         type="radio" name="drop1" id={item.id} className="radio" value="price_high" onChange={handleTipoFloresChange} />
                       <label
                         ref={(el) => (labelTipoFlores.current[item.id] = el)}
@@ -495,25 +514,21 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                       </label>
                     </div>
                   ))}
-
-
                 </div>
               )}
             </div>
 
-            <div className="dropdown w-full">
+            <div className="dropdown w-full" ref={dropdownRef3}>
               <div
-                className="input-box focus:outline-none  font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-6 bg-[#F5F5F5]"
+                className="input-box focus:outline-none font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-6 bg-[#F5F5F5]"
                 onClick={toggleListVisibility}
               >
                 {selectedOption ? selectedOption : 'Ordenar por'}
               </div>
-
               {isListVisible && (
                 <div className="list z-[100] animate-fade-down animate-duration-[2000ms]" style={{ maxHeight: '150px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 1px' }}>
-                  <div className="w-full" >
+                  <div className="w-full">
                     <input
-
                       type="radio" name="drop1" id="id11" className="radio" value="price_high" onChange={handleOptionChange} />
                     <label
                       ref={(el) => (labelRefs.current['id11'] = el)}
@@ -523,8 +538,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                       <span className="name inline-block w-full">Precio más alto</span>
                     </label>
                   </div>
-
-                  <div className="w-full" >
+                  <div className="w-full">
                     <input type="radio" name="drop1" id="id12" className="radio" value="price_low" onChange={handleOptionChange} />
                     <label
                       ref={(el) => (labelRefs.current['id12'] = el)}
@@ -534,8 +548,6 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                       <span className="name inline-block w-full">Precio más bajo</span>
                     </label>
                   </div>
-
-
                 </div>
               )}
             </div>

@@ -176,7 +176,8 @@ class IndexController extends Controller
         }
       }
       $beneficios = Strength::where('status', '=', 1)->get();
-      $tipoFlores = TipoFlor::where('status', '=', 1)->get();
+      $tipoFlores = TipoFlor::select('tipo_flors.*')->join('products','products.tipo_flor_id', '=','tipo_flors.id')->where('tipo_flors.status', '=', 1) ->groupBy('tipo_flors.id')->get();
+      
 
       // return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page'));
       return Inertia::render('Catalogo', [
