@@ -331,7 +331,7 @@
         <div x-data="{ openCatalogo: false }" x-init="$el.style.display = 'flex'" style="display: none;"
           @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false">
           <ul class="menu flex flex-row justify-center items-center text-center py-3 px-6">
-            <li><a href="#">Catálogo</a></li>
+            <li><a href="/catalogo">Catálogo</a></li>
           </ul>
 
           <div x-show="openCatalogo"

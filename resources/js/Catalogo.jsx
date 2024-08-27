@@ -4,6 +4,7 @@ import CreateReactScript from './Utils/CreateReactScript'
 import SelectSearch from './components/SelectSearch';
 import SelectCatalogo from './components/SelectCatalogo';
 import Card from './components/Card';
+
 import axios from 'axios';
 
 import './fade.css';
@@ -11,7 +12,7 @@ import { set } from 'sode-extend-react/sources/cookies';
 import ProductCard from './components/ProductCard';
 
 
-const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficios }) => {
+const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficios, tipoFloresList }) => {
   const take = 12
   let abortController = new AbortController();
   const [items, setItems] = useState([])
@@ -23,19 +24,29 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
   const [loading, setLoading] = useState(true)
   const [isListVisible, setIsListVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
-  const [CatSelected, setCatSelected] = useState('');
+  const [CatSelected, setCatSelected] = useState(categoria ? categoria.name : '');
+  const [florSelected, setflorSelected] = useState('');
   const [iscategoriaVisible, setIsCategoriaVisible] = useState(false);
   const [badges, setBadges] = useState({
     categories: selected_category ? [{ id: `${categoria.id}`, name: categoria.name }] : [],
-    priceOrder: ''
+    priceOrder: '',
+    tipoFlor: []
   });
+  const [currentcat, setCurrentCat] = useState(categoria ? categoria : {})
+
+  const [ShowtipoFlores, setShowTipoFlores] = useState(false)
+
 
   const labelRefs = useRef({});
   const labelCat = useRef({});
+  const labelTipoFlores = useRef({});
 
   const toggleCattVisibility = () => {
     setIsCategoriaVisible(!iscategoriaVisible);
 
+  }
+  const toggleCattVisibilityTipoFlores = () => {
+    setShowTipoFlores(!ShowtipoFlores)
   }
 
 
@@ -65,18 +76,31 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     }
     return text.substring(0, maxLength) + '...';
   };
-  
+  function updateUrlWithInputId(inputId) {
+    const newUrl = inputId ? `/catalogo/${inputId}` : '/catalogo';
+    window.history.pushState(null, '', newUrl);
+  }
+
   const handlecatChange = (event) => {
     setIsCategoriaVisible(!iscategoriaVisible);
 
+
+
     const inputId = event.target.id;
     const spanContent = labelCat.current[inputId].querySelector('span').textContent;
+
+
+    setCurrentCat(categorias.find(cat => cat.id == inputId))
+
+    updateUrlWithInputId(inputId);
 
     function isEmptyObject(obj) {
       return Object.keys(obj).length === 0 && obj.constructor === Object;
     }
 
     // Obtener el contenido del span dentro del label
+
+
 
     setCatSelected(spanContent);
     //si ya existe el filtro que no lo agregue 
@@ -88,22 +112,60 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
       return {
         ...prevData,
-        categories: [...prevData.categories, { id: inputId, name: spanContent }]
+        categories: [{ id: inputId, name: spanContent }]
       }
     });
 
     setFilter((prevFilter) => {
 
-      if (isEmptyObject(prevFilter)) {
-        return {
-          ...prevFilter,
-          category_id: [inputId],
-        };
-      }
 
       return {
         ...prevFilter,
-        category_id: [...filter.category_id, inputId],
+        category_id: [inputId],
+      };
+
+    })
+  }
+
+  const handleTipoFloresChange = (event) => {
+    setShowTipoFlores(!ShowtipoFlores);
+
+
+
+    const inputId = event.target.id;
+    const spanContent = labelTipoFlores.current[inputId].querySelector('span').textContent;
+
+
+
+    setflorSelected(spanContent);
+    //si ya existe el filtro que no lo agregue 
+
+
+    console.log(badges.tipoFlor)
+
+
+    if (badges.tipoFlor.find(flor => flor.id == inputId)) {
+      console.log('erntro en el return');
+
+      return
+    }
+    setBadges((prevData) => {
+
+      return {
+        ...prevData,
+        tipoFlor: [{ id: inputId, name: spanContent }]
+      }
+    });
+    console.log(badges)
+
+
+
+    setFilter((prevFilter) => {
+
+
+      return {
+        ...prevFilter,
+        tipoFlor: [inputId],
       };
     })
   }
@@ -119,10 +181,18 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
   }, [currentPage])
 
   const handleOptionChange = (event) => {
+
+
     setIsListVisible(!isListVisible);
 
-    const inputId = event.target.id;
-    const spanContent = labelRefs.current[inputId].querySelector('span').textContent;
+
+
+    let inputId = event.target.id;
+    let spanContent = labelRefs.current[inputId].querySelector('span').textContent;
+
+
+
+
 
 
 
@@ -145,6 +215,8 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
   const removeCategory = (categoryId) => {
 
+    updateUrlWithInputId(null);
+    setCurrentCat({})
     setBadges((prevData) => ({
       ...prevData,
       categories: prevData.categories.filter(cat => cat.id !== categoryId)
@@ -171,6 +243,19 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     setPriceOrder('');
 
   };
+  const cleartipoflor = () => {
+    setBadges((prevData) => ({
+      ...prevData,
+      tipoFlor: []
+    }));
+
+    setFilter((prevFilter) => {
+      return {
+        ...filter,
+        tipoFlor: []
+      };
+    })
+  }
 
   const getItems = async () => {
 
@@ -272,6 +357,18 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
       filterBody.push(sizeFilter);
     }
+    if (filter['tipoFlor'] && filter['tipoFlor'].length > 0) {
+      const sizeFilter = [];
+      filter['tipoFlor'].forEach((x, i) => {
+        if (i === 0) {
+          sizeFilter.push(['tipo_flor_id', '=', x]);
+        } else {
+          sizeFilter.push('or', ['tipo_flor_id', '=', x]);
+        }
+      });
+
+      filterBody.push(sizeFilter);
+    }
 
 
     if (filter['category_id'] && filter['category_id'].length > 0) {
@@ -327,10 +424,12 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     <>
       <section className='mb-24'>
         <div className='mt-14 px-[5%] lg:px-[8%] font-b_slick_bold'>
+
+
           <div className='flex flex-col gap-3'>
-            <div className='text-[#FE4A11] text-base tracking-normal uppercase'> {`Inicio / ${categoria.name ?? 'Todas las categorias'} `}</div>
-            <div className='text-3xl lg:text-5xl font-bold text-[#112212] uppercase tracking-wider'>{categoria.name}</div>
-            <div className='text-[#112212] opacity-80 font-b_slick_regular text-lg'>{categoria.description}</div>
+            <div className='text-[#FE4A11] text-base tracking-normal uppercase'> {`Inicio / ${currentcat.name ?? 'Todas las categorias'} `}</div>
+            <div className='text-3xl lg:text-5xl font-bold text-[#112212] uppercase tracking-wider'>{currentcat.name}</div>
+            <div className='text-[#112212] opacity-80 font-b_slick_regular text-lg'>{currentcat.description}</div>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-4 mt-4 lg:mt-12 gap-4 lg:gap-10'>
 
@@ -343,12 +442,12 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                 className="input-box focus:outline-none font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-6 bg-[#F5F5F5]"
                 onClick={toggleCattVisibility}
               >
-                {CatSelected ? CatSelected : 'Categoria'}
+                {CatSelected ? CatSelected : 'Ocasiones'}
               </div>
 
               {iscategoriaVisible && (
                 <div className="list z-[100] animate-fade-down animate-duration-[2000ms] overflow-y-auto" style={{ maxHeight: '150px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 1px' }}>
-                 
+
                   {categorias.map((item, index) => (
 
                     <div className="w-full">
@@ -364,6 +463,38 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                       </label>
                     </div>
                   ))}
+                </div>
+              )}
+            </div>
+            <div className="dropdown w-full">
+              <div
+                className="input-box focus:outline-none  font-bold text-text16 md:text-text20 mr-20 shadow-md px-4 py-6 bg-[#F5F5F5]"
+                onClick={toggleCattVisibilityTipoFlores}
+              >
+                {florSelected ? florSelected : 'Tipo de Flor'}
+              </div>
+
+              {console.log(tipoFloresList)}
+              {ShowtipoFlores && (
+
+                <div className="list z-[100] animate-fade-down animate-duration-[2000ms]" style={{ maxHeight: '150px', boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 1px' }}>
+                  {tipoFloresList.map((item, index) => (
+
+                    <div className="w-full">
+                      <input
+
+                        type="radio" name="drop1" id={item.id} className="radio" value="price_high" onChange={handleTipoFloresChange} />
+                      <label
+                        ref={(el) => (labelTipoFlores.current[item.id] = el)}
+                        htmlFor={item.id}
+                        className="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white ordenar"
+                      >
+                        <span className="name inline-block w-full">{item.name}</span>
+                      </label>
+                    </div>
+                  ))}
+
+
                 </div>
               )}
             </div>
@@ -406,8 +537,10 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                 </div>
               )}
             </div>
-            
-            <SelectCatalogo options={categorias}  title={'Ocasión'}  handleOptionChange={handlecatChange} />
+
+
+
+            {/* <SelectCatalogo options={categorias} title={'Ocasión'} handleOptionChange={handlecatChange} /> */}
 
             {/* <SelectCatalogo title={'Ordenar por'}/> */}
 
@@ -429,14 +562,19 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
                 <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
               </div>)
             )}
+            {badges.tipoFlor.map((badge, index) => (
+              <div className='cursor-pointer text-[#112212] text-sm rounded-xl shadow-lg flex flex-row items-center justify-center px-4 py-2' onClick={cleartipoflor}>
+                Tipo de Flor - {badge.name}
+                <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
+              </div>))}
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-16'>
             {
-            items.map((item, index) => (
-            <ProductCard key={`product-${index}`} {...item}/>
-            ))
-              }
+              items.map((item, index) => (
+                <ProductCard key={`product-${index}`} {...item} />
+              ))
+            }
           </div>
 
           <div className="flex flex-row w-full items-center justify-center mt-12">

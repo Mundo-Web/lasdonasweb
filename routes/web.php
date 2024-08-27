@@ -34,6 +34,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\PolyticsConditionController;
+use App\Http\Controllers\PrecioEnvioController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SliderController;
@@ -207,7 +208,15 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         //Precios
         Route::resource('/prices', PriceController::class);
+        
+        
+        Route::resource('/precio-envio', PrecioEnvioController::class);
+        Route::post('/precio-envio/updateVisible', [PrecioEnvioController::class, 'updateVisible'])->name('precio-envio.updateVisible');
+        Route::post('/precio-envio/borrar', [PrecioEnvioController::class, 'borrar'])->name('precio-envio.borrar');
+        Route::post('/precio-envio/save', [PrecioEnvioController::class, 'save'])->name('precio-envio.save');
+        
        
+        
 
         //Productos
         Route::resource('/products', ProductsController::class);

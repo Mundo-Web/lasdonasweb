@@ -11,9 +11,9 @@ const customStyles = {
     paddingBottom: '8px',
     marginBottom: '6px',
     borderColor: state.isFocused ? '#EFEFEF' : '#EFEFEF', // Color de borde
-    boxShadow: state.isFocused 
-    ? '0 8px 16px rgba(0, 0, 0, 0.2)'  // Sombra difuminada al enfocar
-    : '0 4px 8px rgba(0, 0, 0, 0.1)',  // Sombra difuminada leve sin enfocar
+    boxShadow: state.isFocused
+      ? '0 8px 16px rgba(0, 0, 0, 0.2)'  // Sombra difuminada al enfocar
+      : '0 4px 8px rgba(0, 0, 0, 0.1)',  // Sombra difuminada leve sin enfocar
     '&:hover': {
       borderColor: '#EFEFEF',
     },
@@ -37,8 +37,8 @@ const customStyles = {
     marginTop: '0px',
     paddingTop: '0px',
     borderRadius: '12px',
-    maxHeight: '150px', 
-    overflowY: 'auto',  
+    maxHeight: '150px',
+    overflowY: 'auto',
   }),
   dropdownIndicator: (provided) => ({
     ...provided,
@@ -63,8 +63,8 @@ const customStyles = {
 };
 
 
-const SelectCatalogo = ({ title, handleOptionChange, options=[] }) => {
-  
+const SelectCatalogo = ({ title, handleOptionChange, options = [] }) => {
+
   return (
     <Select className='font-poppins_regular font-bold text-lg w-full z-0'
       styles={customStyles}
@@ -73,7 +73,7 @@ const SelectCatalogo = ({ title, handleOptionChange, options=[] }) => {
       isMulti
       filterOption={() => true}
       isSearchable={false}
-      // onChange={(selectedOption) => handleOptionChange(selectedOption.value)}
+      onChange={handleOptionChange}
     />
   );
 
