@@ -16,6 +16,7 @@ use App\Models\Products;
 use App\Models\Specifications;
 use App\Models\Tag;
 use App\Models\Tipo;
+use App\Models\TipoFlor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Intervention\Image\ImageManager;
@@ -52,7 +53,8 @@ class ProductsController extends Controller
     $complementos  = Complemento::where('status', 1)->get();
     $especificacion = [];
     $subproductos = [];
-    return view('pages.products.create', compact('product', 'atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
+    $tipoFlor = TipoFlor::where('status', 1)->get();
+    return view('pages.products.create', compact('product', 'tipoFlor','atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
   }
 
   /**
@@ -76,6 +78,7 @@ class ProductsController extends Controller
     $collection = Collection::all();
 
     $subproductosEspeccifications = [];
+    $tipoFlor = TipoFlor::where('status', 1)->get();
 
     // Itera sobre los subproductos para extraer los IDs
     foreach ($subproductos as $subproducto) {
@@ -84,7 +87,7 @@ class ProductsController extends Controller
     }
 
 
-    return view('pages.products.edit', compact('product', 'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
+    return view('pages.products.edit', compact('product','tipoFlor' ,'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
   }
 
   public function save(Request $request)
