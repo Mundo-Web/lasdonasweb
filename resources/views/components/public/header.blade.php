@@ -58,6 +58,134 @@
   }
 </style>
 
+<div class="navigation shadow-xl font-b_slick_bold" style="z-index: 9999; background-color: #fff !important">
+  <button aria-label="hamburguer" type="button" class="hamburger" id="position" onclick="show()">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 2L2 18M18 18L2 2" stroke="#272727" stroke-width="2.66667" stroke-linecap="round" />
+    </svg>
+  </button>
+  <nav class="w-full h-full overflow-y-auto p-8" x-data="{ openCatalogo: true, openSubMenu: null }">
+    <ul class="space-y-1">
+      <li>
+        <a href="/"
+          class="text-[#272727]  text-lg py-2 px-3 block hover:opacity-75 transition-opacity duration-300 {{ $pagina == 'index' ? 'text-[#FF5E14]' : '' }}">
+          <span class="underline-this">
+            <svg
+              class="inline-block w-3 h-3 mb-0.5 me-2 text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+            </svg>
+            Home
+          </span>
+        </a>
+      </li>
+
+      <li>
+        <a @click="openCatalogo = !openCatalogo" href="javascript:void(0)"
+          class="text-[#272727] flex justify-between items-center  text-sm py-2 px-3 hover:opacity-75 transition-opacity duration-300 {{ $pagina == 'catalogo' ? 'text-[#FF5E14]' : '' }}">
+          <span class="underline-this text-lg">
+            <svg
+              class="inline-block  w-3 h-3 mb-0.5 me-2 text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+              <path
+                d="M15.977.783A1 1 0 0 0 15 0H3a1 1 0 0 0-.977.783L.2 9h4.239a2.99 2.99 0 0 1 2.742 1.8 1.977 1.977 0 0 0 3.638 0A2.99 2.99 0 0 1 13.561 9H17.8L15.977.783ZM6 2h6a1 1 0 1 1 0 2H6a1 1 0 0 1 0-2Zm7 5H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Z" />
+              <path
+                d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z" />
+            </svg>
+            Catalogo
+          </span>
+          <span :class="{ 'rotate-180': openCatalogo }"
+            class="ms-1 inline-block transform transition-transform duration-300">↓</span>
+        </a>
+        <ul x-show="openCatalogo" x-transition class="ml-3 mt-1 space-y-1 border-l border-gray-300">
+          <li>
+            <a href="#"
+              class="text-[#272727] flex items-center text-base py-2 px-3 hover:opacity-75 transition-opacity duration-300">
+              <span class="underline-this">
+                Todas las categorías
+              </span>
+            </a>
+          </li>
+          @foreach ($submenucategorias as $category)
+            @if ($category->subcategories->isNotEmpty())
+              <li>
+                <a @click="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}"
+                  href="javascript:void(0)"
+                  class="text-[#272727] flex text-base justify-between items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300">
+                  <span class="underline-this">
+                    {{ $category->name }}
+                  </span>
+                  <span :class="{ 'rotate-180': openSubMenu === {{ $category->id }} }"
+                    class="ms-1 inline-block transform transition-transform duration-300">↓</span>
+                </a>
+                <ul x-show="openSubMenu === {{ $category->id }}" x-transition
+                  class="ml-3 mt-1 space-y-1 border-l border-gray-300">
+                  <li>
+                    <a href="/catalogo/{{ $category->slug }}"
+                      class="text-[#272727] flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300">
+                      <span class="underline-this  text-base ">
+                        Ver todo {{ $category->name }}
+                      </span>
+                    </a>
+                  </li>
+                  @foreach ($submenucategorias->subcategories as $subcategory)
+                    <li>
+                      <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
+                        class="text-[#272727] text-base flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300">
+                        <span class="underline-this">{{ $subcategory->name }}</span>
+                      </a>
+                    </li>
+                  @endforeach
+                </ul>
+              </li>
+            @else
+              <li>
+                <a href="#"
+                  class="text-[#272727] flex items-center text-base py-2 px-3 hover:opacity-75 transition-opacity duration-300">
+                  <span class="underline-this">
+                    {{ $category->name }}
+                  </span>
+                </a>
+              </li>
+            @endif
+          @endforeach
+        </ul>
+      </li>
+
+      <li>
+        <a href="{{ route('contacto') }}"
+          class="text-[#272727]  text-lg py-2 px-3 block hover:opacity-75 transition-opacity duration-300 {{ $pagina == 'contacto' ? 'text-[#FF5E14]' : '' }}">
+          <span class="underline-this">
+            <svg
+              class="inline-block w-3 h-3 mb-0.5 me-2 text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
+              <path
+                d="M12 0H2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM7.5 17.5h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2ZM12 13H2V4h10v9Z" />
+            </svg>
+            Contacto
+          </span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="{{ route('comentario') }}"
+          class="text-[#272727]  text-lg py-2 px-3 block hover:opacity-75 transition-opacity duration-300 {{ $pagina == 'comentario' ? 'text-[#FF5E14]' : '' }}">
+          <span class="underline-this">
+            <svg
+              class="inline-block w-3 h-3 mb-0.5 me-2 text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M19 4h-1a1 1 0 1 0 0 2v11a1 1 0 0 1-2 0V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V5a1 1 0 0 0-1-1ZM3 4a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4Zm9 13H4a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-3H4a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-3H4a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-3h-2a1 1 0 0 1 0-2h2a1 1 0 1 1 0 2Zm0-3h-2a1 1 0 0 1 0-2h2a1 1 0 1 1 0 2Z" />
+              <path d="M6 5H5v1h1V5Z" />
+            </svg>
+            Comentar
+          </span></a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
 
 <div id="header_top"
   class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
@@ -69,12 +197,12 @@
 
   <div id="header-mid" class="h-[100px] flex flex-row items-center bg-white">
     <div
-      class="flex flex-row items-center justify-between gap-5 w-full px-[5%] xl:px-[8%]   text-[17px] relative bg-white ">
+      class="flex flex-row items-center justify-between gap-3 w-full px-[2%] xl:px-[8%]   text-[17px] relative bg-white ">
 
-      {{-- <div id="menu-burguer" class="lg:hidden z-10 w-max">
-              <img class="h-10 w-10 cursor-pointer" src="{{ asset('images/img/menu_hamburguer.png') }}"
+      <div id="menu-burguer" class="lg:hidden z-10 w-max">
+              <img class="h-10 w-10 cursor-pointer" src="{{ asset('img_donas/burguer.svg') }}"
                 alt="menu hamburguesa" onclick="show()" />
-          </div> --}}
+      </div>
 
       <div class="w-auto min-w-[110px] flex items-center justify-center">
         <a href="{{ route('index') }}">
@@ -109,7 +237,7 @@
               </div> --}}
       </div>
 
-      <div class="flex justify-end md:w-auto md:justify-center items-center gap-2">
+      <div class="flex justify-end md:w-auto md:justify-center items-center gap-0 lg:gap-2">
 
         <div
           class="relative w-full lg:w-80 lg:py-0 border-b lg:border-0 border-[#082252] mr-3 hidden lg:flex font-b_classic_bold">
@@ -183,7 +311,7 @@
     </div>
   </div>
 
-  <div class="header_bottom hidden 2md:block h-12 bg-[#336234] px-[5%] lg:px-[8%]">
+  <div class="header_bottom hidden 2md:flex h-12 bg-[#336234] px-[5%] lg:px-[8%] 2md:justify-center">
     <div class="text-base font-b_classic_bold ">
 
       <nav id="menu-items"
@@ -198,7 +326,11 @@
           <span class="underline-this">Nosotros</span>
         </a>
 
-        <div x-data="{ openCatalogo: false }" @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false">
+        <div x-data="{ openCatalogo: false }" 
+          x-init="$el.style.display = 'flex'"
+          style="display: none;"
+          @mouseenter="openCatalogo = true" 
+          @mouseleave="openCatalogo = false">
           <ul class="menu flex flex-row justify-center items-center text-center py-3 px-6">
             <li><a href="#">Catálogo</a></li>
           </ul>
@@ -599,6 +731,11 @@
       //portada.classList.remove('mt-[150px]'); 
     }
   });
+
+  function show() {
+  document.querySelector(".hamburger").classList.toggle("open");
+  document.querySelector(".navigation").classList.toggle("active");
+  }
 </script>
 
 <script>
@@ -629,3 +766,4 @@
     },
   });
 </script>
+
