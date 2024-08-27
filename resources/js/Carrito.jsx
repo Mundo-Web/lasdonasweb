@@ -147,9 +147,9 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
                     console.log(item),
                     <div className="flex flex-col md:flex-row py-5  px-4 rounded-xl border-[#E8ECEF] gap-6 text-[#112212] border
                      hover:border-[#336234] group ">
-                      <img src={`${url_env}/images/img/xcoral.png`} type="icon" onClick={() => deleteItemR(item.id)} className='flex w-5 h-5 cursor-pointer' alt="" />
+                      <img src={`/images/img/xcoral.png`} type="icon" onClick={() => deleteItemR(item.id)} className='flex w-5 h-5 cursor-pointer' alt="" />
 
-                      <img className='h-[170px] w-[176px] transform transition-transform duration-300 ease-in-out group-hover:scale-110' src={`${url_env}/${item.imagen} `} alt="" />
+                      <img className='h-[170px] w-[176px] transform transition-transform duration-300 ease-in-out group-hover:scale-110' src={`/${item.imagen} `} alt="" />
                       <div className='flex flex-row gap-4 w-full px-2'>
                         <div className="flex flex-col self-stretch w-52">
                           <div className="flex flex-col w-full">
@@ -293,7 +293,7 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
                       <h2 className="text-lg font-bold leading-6 text-gray-900 mb-2" id="modal-title">Complementa tu pedido</h2>
 
 
-                      <img src={url_env + '/images/img/xcoral.png'} alt="" className="h-5 cursor-pointer"
+                      <img src={'/images/img/xcoral.png'} alt="" className="h-5 cursor-pointer"
                         onClick={handlemodalComplementos} />
                     </div>
                     <div className="mt-5 gap-4 " id="containerComplementos" data-accordion="collapse">
