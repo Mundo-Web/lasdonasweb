@@ -63,7 +63,9 @@ class ProductsController extends Controller
   public function edit(string $id)
   {
 
-    $product =  Products::with('tags')->find($id);
+    $product =  Products::with(['tags'])->find($id);
+    $product->recommended = $product->recommended()->get();
+    $product->addons = $product->addons()->get();
     $subproductos = Products::where('parent_id', '=', $id)->with('images')->get();
     $tipo = Tipo::where("status", "=", true)->get();
 
@@ -169,10 +171,14 @@ class ProductsController extends Controller
     return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
   }
 
-  public function search(Request $request)
+  public function search(Request $request, string $type)
   {
     $search = $request->input('q');
-    $products = Products::where('tipo_servicio', 'producto')->where('producto', 'like', '%' . $search . '%')->get();
+    $products = Products::select()
+    ->where('tipo_servicio', $type)
+    ->where('producto', 'like', '%' . $search . '%')
+    ->where('status', true)
+    ->get();
     return response()->json($products);
   }
 

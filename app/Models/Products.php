@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use SoDe\Extend\JSON;
 
 class Products extends Model
 {
@@ -172,7 +173,17 @@ class Products extends Model
     {
         return $this->hasMany(Specifications::class, 'product_id');
     }
+    public function recommended()
+    {
+        $ids = $this->upsell ? json_decode($this->upsell, true) : [];
+        return Products::whereIn('id', $ids)->where('status', true);
+    }
 
+    public function addons()
+    {
+        $ids = $this->complementos ? json_decode($this->complementos, true) : [];
+        return Products::whereIn('id', $ids)->where('status', true);
+    }
 
     // public function attributeValues()
     // {

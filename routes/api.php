@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/items', [ProductsController::class, 'search']);
+Route::get('/items/{type}', [ProductsController::class, 'search']);
 Route::post('/products/paginate', [ProductsController::class, 'paginate'])->name('products.paginate');
 
 Route::post('/products/AddOrder', [ProductsController::class, 'AddOrder'])->name('products.AddOrder');

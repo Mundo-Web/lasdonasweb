@@ -524,17 +524,17 @@
                 </div> --}}
 
                 <div id="puntos_container" hidden class="md:col-span-5 w-full">
-                    <label for="puntos_complemento">Valor en puntos</label>
-                    <div class="relative mb-2  mt-2">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="mdi mdi-dots-hexagon"></i>
-                      </div>
-                      <input type="number" id="puntos_complemento" name="puntos_complemento" value="0"
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Valor en puntos">
+                  <label for="puntos_complemento">Valor en puntos</label>
+                  <div class="relative mb-2  mt-2">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <i class="mdi mdi-dots-hexagon"></i>
                     </div>
-
+                    <input type="number" id="puntos_complemento" name="puntos_complemento" value="0"
+                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Valor en puntos">
                   </div>
+
+                </div>
 
                 <div class="md:col-span-5" id="upsellListado">
                   <label for="items" class="block font-medium text-gray-700 mb-2">Recomendados<i
@@ -760,7 +760,7 @@
           <div class="md:col-span-5 text-right mt-6 flex justify-between px-4 pb-4">
             <div class="inline-flex items-end">
 
-              <a href="{{ URL::previous() }}"
+              <a href="{{ route('products.index') }}"
                 class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
             </div>
             <div class="inline-flex items-end">
@@ -1574,7 +1574,7 @@
       $('#uppsell').select2({
         placeholder: 'Select items',
         ajax: {
-          url: '/api/items', // URL de tu endpoint de búsqueda
+          url: '/api/items/producto', // URL de tu endpoint de búsqueda
           dataType: 'json',
           delay: 250,
           processResults: function(data) {
@@ -1593,7 +1593,7 @@
       $('#complementos').select2({
         placeholder: 'Selecciona los complementos',
         ajax: {
-          url: '/api/items',
+          url: '/api/items/complemento',
           dataType: 'json',
           delay: 250,
           processResults: function(data) {
