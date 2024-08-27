@@ -26,6 +26,12 @@ import CalendarComponent from './components/CalendarComponent';
 import ProductCard from './components/ProductCard'
 import { prepareToSend } from './Utils/SendToCart'
 
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // Importa los estilos de Tippy
+
+import agregarComplementoPedido from './Utils/agregarComplemento'
+import Button from './components/Button'
+
 const Product = ({ complementos, general,
   tipoDefault,
   subproductos,
@@ -37,7 +43,9 @@ const Product = ({ complementos, general,
   productosConGalerias,
   especificaciones,
   url_env,
-  colors, horarios, categorias, politicasSustitucion, politicaEnvio }) => {
+  colors, horarios, categorias, politicasSustitucion, politicaEnvio, complementosAcordion }) => {
+
+
 
 
 
@@ -46,7 +54,7 @@ const Product = ({ complementos, general,
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(productos);
-  const [currentComplemento, setCurrentComplemento] = useState(complementos);
+  const [currentComplemento, setCurrentComplemento] = useState(complementosAcordion);
   const [tomorrowDate, setTomorrowDate] = useState('');
 
   const [modalPoliticasEnvio, setModalPoliticasEnvio] = useState(false);
@@ -67,7 +75,7 @@ const Product = ({ complementos, general,
     const horaFin = item.end_time.trim();
 
 
-    console.log(item)
+
 
     return (horaActual >= horaInicio && horaActual <= horaFin) || (horaActual < horaInicio);
   });
@@ -80,6 +88,43 @@ const Product = ({ complementos, general,
     complementos: [],
     imagen: '',
   });
+
+
+  const handleCheckboxChange = (id) => {
+
+
+    let carrito = Local.get('carrito') ?? [];
+    if (carrito.length > 0) {
+
+      console.log('entra porque tiene algo ')
+
+      agregarComplementoPedido(id)
+
+    } else {
+      setDetallePedido((prev) => {
+        const index = prev.complementos.findIndex((complemento) => complemento === id);
+        if (index === -1) {
+          return {
+            ...prev,
+            complementos: [...prev.complementos, id],
+          };
+        }
+        return {
+          ...prev,
+          complementos: prev.complementos.filter((complemento) => complemento !== id),
+        };
+      });
+    }
+
+
+
+  }
+
+  const handleClearImage = () => {
+    setSelectedImage(null);
+    fileInputRef.current.value = null;
+  };
+
 
 
 
@@ -127,6 +172,7 @@ const Product = ({ complementos, general,
           precio: producto.descuento > 0 ? producto.descuento : producto.precio,
           imagen: producto.images.filter(item => item.caratula === 1)[0]?.name_imagen ?? '/images/img/noimagen.jpg',
           cantidad: 1,
+          sku: producto.sku,
           fecha: fecha,
           horario: horario,
           // complementos: complementos,
@@ -137,9 +183,10 @@ const Product = ({ complementos, general,
           return {
             id: item.id,
             producto: item.producto,
-            precio: producto.descuento > 0 ? producto.descuento : producto.precio,
+            precio: item.descuento > 0 ? item.descuento : item.precio,
             imagen: item.images.filter(item => item.caratula === 1)[0]?.name_imagen ?? '/images/img/noimagen.jpg',
             cantidad: 1,
+            sku: item.sku,
             tipo: 'Complemento',
             fecha: fecha,
             horario: horario,
@@ -211,12 +258,22 @@ const Product = ({ complementos, general,
   }
 
   const handleSelecttionOption = (item) => {
+
+    const checkboxes = document.querySelectorAll('[id^="react-option"]');
+
+    // Recorre los elementos y desmárcalos
+    checkboxes.forEach(checkbox => {
+      checkbox.checked = false;
+    });
+    console.log(detallePedido)
     setCurrentProduct(item);
-    console.log(item.tipos.name ?? 'clasic')
+
+
     setDetallePedido((prevState) => {
       return {
         ...prevState,
-        opcion: item.id
+        opcion: item.id,
+        complementos: []
       }
     })
   }
@@ -269,7 +326,7 @@ const Product = ({ complementos, general,
 
     setTomorrowDate(getTomorrowDate());
   }, []);
-
+  const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
   const imagePreviewRef = useRef(null);
 
@@ -277,12 +334,16 @@ const Product = ({ complementos, general,
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
+      console.log('entro here')
       const base64String = e.target.result;
       setImageSrc(base64String);
+      setSelectedImage(base64String);
       localStorage.setItem('imageDedicatoria', base64String);
       imagePreviewRef.current.style.display = 'block';
     };
     reader.readAsDataURL(file);
+
+    console.log(selectedImage)
   };
 
   const openModalComplementos = (item) => {
@@ -300,6 +361,13 @@ const Product = ({ complementos, general,
 
   const caratula = currentProduct.images.find((image) => image.caratula == 1)
 
+  const [caratula2, setCaratula2] = useState(caratula);
+  const fileInputRef2 = useRef(null);
+  const handleImageClick2 = (image) => {
+    setCaratula2(image);
+  };
+
+
   return (
     <>
       <main className="flex flex-col gap-12 mt-12 font-b_slick_bold">
@@ -309,31 +377,30 @@ const Product = ({ complementos, general,
 
             <div className="grid grid-cols-2 sm:grid-cols-3  gap-8 h-max" id="containerImagenesP">
 
-              {caratula ? (
-
-                <div className="col-span-2 sm:col-span-3 relative h-max ">
-                  <div className="h-28 w-36 absolute bottom-[0%] right-[0%] rounded-lg   z-10 "
-                  >
-                    {imageSrc !== null ? <img
-                      id="Imagen Complementaria"
-                      ref={imagePreviewRef}
-                      src={imageSrc ? imageSrc : `/images/img/noimagen.jpg`}
-                      alt="Image preview"
-                      className={`w-full aspect-square object-cover p-4 rounded-lg cursor-pointer`}
-                      onClick={handleImageClick}
-                    /> : ''}
-                  </div>
-
-                  <img
-                    className="w-full aspect-square object-cover"
-                    src={caratula.name_imagen ? `/${caratula.name_imagen}` : '/images/img/noimagen.jpg'}
-                    alt="Product"
-                  />
+              {caratula2 ? (
+                <div className="col-span-2 sm:col-span-3 relative h-max">
+                  {caratula2.name_imagen ? (
+                    <img
+                      ref={fileInputRef2}
+                      className="w-full aspect-square object-cover"
+                      src={`/${caratula2.name_imagen}`}
+                      alt="Product"
+                    />
+                  ) : (
+                    <img
+                      className="w-full aspect-square object-cover"
+                      src="/images/img/noimagen.jpg"
+                      alt="No image available"
+                    />
+                  )}
                 </div>
               ) : (
-                <img className="w-full aspect-square object-cover" src="/images/img/noimagen.jpg" alt="No image available" />
+                <img
+                  className="w-full aspect-square object-cover"
+                  src="/images/img/noimagen.jpg"
+                  alt="No image available"
+                />
               )}
-
 
               <div className="col-span-3 h-max" data-aos="fade-up" data-aos-offset="150">
                 <Swiper
@@ -361,32 +428,21 @@ const Product = ({ complementos, general,
                     },
                   }}
                 >
-                  {currentProduct.images.map((image, index) => {
-                    {
-                      // if (image.caratula !== 1) {
-                      return (<SwiperSlide key={index} >
-                        <div className="flex  items-center justify-start h-full">
-                          <div className="flex  justify-center items-center h-full">
-
-
-                            <img
-                              className="object-cover aspect-square w-full"
-                              src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
-                              alt="Product"
-                            />
-
-                          </div>
+                  {currentProduct.images.map((image, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="flex items-center justify-start h-full">
+                        <div className="flex justify-center items-center h-full">
+                          <img
+                            className="object-cover aspect-square w-full cursor-pointer"
+                            src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
+                            alt="Product"
+                            onClick={() => handleImageClick2(image)}
+                          />
                         </div>
-                      </SwiperSlide>);
-
-                      // }
-
-                    }
-
-                  })}
+                      </div>
+                    </SwiperSlide>
+                  ))}
                 </Swiper>
-
-
               </div>
 
             </div>
@@ -483,6 +539,7 @@ const Product = ({ complementos, general,
                       className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-2 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
                       onClick={() => handleSelecttionOption(productos)}
                     >
+                      {console.log(productos)}
                       <div className="flex flex-col justify-center items-center">
 
                         {tipoDefault.name === 'Premium' ? (
@@ -574,105 +631,216 @@ const Product = ({ complementos, general,
                 </ul>
               </div>
 
+
+              {/*  <p className="text-2xl  font-bold text-black pb-2">Paso 3: Personalizar</p>
+              <p className="text-lg  font-normal text-black pb-4 ">Personaliza con una foto:</p>
+
+              */}
+              <div className='relative'>
+                <p className="text-2xl font-bold text-black pb-2">Paso 3: Personalizar</p>
+                <p className="text-lg font-normal text-black pb-4">Personaliza con una foto:</p>
+
+                <div className="flex items-center justify-center w-full pb-8">
+                  <div className="flex flex-col items-start justify-start w-full">
+                    {selectedImage ? (
+                      <img src={selectedImage} alt="Selected" className=" h-52 object-fit rounded-lg" />
+                    ) : (
+                      <label
+                        htmlFor="dropzone-file"
+                        className="relative flex flex-col items-center justify-center w-full h-full py-3 border-2 border-[#73B473] border-dashed rounded-lg cursor-pointer bg-white"
+                      >
+                        <div className="flex flex-col pt-5 pb-6">
+                          <div className="flex items-center justify-center">
+                            <img src="/img_donas/image-up.svg" alt="Upload" />
+                            <p className="mb-2 text-base text-center text-[#73B473]">
+                              <span>Agregar fotografía</span> <br /> o <br />
+                              Arrastre aquí su fotografía
+                            </p>
+                          </div>
+                        </div>
+                        <input
+                          id="dropzone-file"
+                          type="file"
+                          className="hidden"
+                          ref={fileInputRef}
+                          onChange={handleFileChange}
+                        />
+                      </label>
+                    )}
+                  </div>
+                </div>
+
+
+                {selectedImage && (
+                  <div className="flex justify-center z-10 absolute top-[1%] right-[1%]">
+                    <button
+                      onClick={handleClearImage}
+                      className="px-4 py-2 bg-red-500 text-white rounded-lg"
+                    >
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                )}
+              </div>
+
               {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                 onClick={agregarPedido}
               >
                 Agregar al carrito
                 <i className='fa fa-cart-plus ms-1'></i>
               </div>)}
-              <p className="text-2xl  font-bold text-black pb-2">Paso 3: Personalizar</p>
-              <p className="text-lg  font-normal text-black pb-4 ">Personaliza con una foto:</p>
-
-
-              <div className="flex items-center justify-center w-full pb-8">
-                <label htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full py-3 border-2 border-[#73B473] border-dashed rounded-lg cursor-pointer bg-white">
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <img src="/img_donas/image-up.svg" alt="Upload" />
-                    <p className="mb-2 text-base  text-center text-[#73B473]">
-                      <span>Agregar fotografía</span> <br /> o <br />
-                      Arrastre aquí su fotografía
-                    </p>
-                  </div>
-                  <input
-                    id="dropzone-file"
-                    type="file"
-                    className="hidden"
-                    ref={fileInputRef}
-                    onChange={handleFileChange}
-                  />
-                </label>
-              </div>
-
             </div>
 
           </div>
 
         </section>
-        <section className="px-[5%] pt-2  ">
-          <p className="text-2xl  font-bold text-black pb-2">Complementar al pedido (opcional)</p>
-          <ul className="grid w-full gap-6 grid-cols-1 md:grid-cols-6">
+        <section className="px-[5%] pt-2">
+          <p className="text-2xl font-bold text-black pb-2">Complementar al pedido (opcional)</p>
+          <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-5">
+              <Swiper
+                className="img-complementarias h-full"
+                slidesPerView={3}
+                spaceBetween={25}
+                loop={false}
+                centeredSlides={false}
+                initialSlide={0}
+                allowTouchMove={true}
+                autoplay={{
+                  delay: 5500,
+                  disableOnInteraction: true,
+                  pauseOnMouseEnter: true,
+                }}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1,
+                    centeredSlides: false,
+                    loop: true,
+                  },
+                  1024: {
+                    slidesPerView: 5,
+                    centeredSlides: false,
+                  },
+                }}
+                style={{ zIndex: 0 }}
+              >
 
-            {complementos.slice(0, 5).map((item, index) => (
-
-              < li key={index} className="m-auto" >
-                <label
-                  onClick={() => openModalComplementos([item])}
-                  htmlFor={`react-option-${item.id}`}
-                  className="inline-flex items-center justify-between w-full bg-white rounded-lg cursor-pointer hover:border-[#df3876] hover:border-2"
-                >
-                  <div className="block relative">
-
-                    {item.images?.length > 0 ? (
-                      item.images.map((image, imgIndex) => (
-                        image.caratula === 1 && (
-                          <img
-                            key={imgIndex}
-                            className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out"
-                            src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
-                            alt="Complemento"
-                            onError={(e) => {
-                              // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
-                              e.target.src = '/images/img/noimagen.jpg';
-                            }}
+                {console.log(complementos)}
+                {complementos.map((complemento, index) => (
+                  <SwiperSlide key={index}>
+                    <div key={complemento.id} className="m-auto">
+                      <label
+                        htmlFor={`react-option-${complemento.id}`}
+                        className="inline-flex items-center justify-between w-full bg-white rounded-lg cursor-pointer"
+                      >
+                        <div className="block relative z-0">
+                          <input
+                            type="checkbox"
+                            id={`react-option-${complemento.id}`}
+                            name="complementos[]"
+                            className="peer absolute top-3 left-3 w-5 h-5 border-orange-400  accent-rosalasdonasborder-orange-400 checked:border-orange-400  outline-orange-400 checked:bg-orange-400 hover:checked:bg-orange-400 hover:border-orange-400 hover:bg-orange-400
+                               focus:border-orange-400 rounded-md shadow-md focus:checked:bg-orange-400 focus:checked:border-orange-400  focus:bg-orange-400"
+                            required
+                            onChange={() => handleCheckboxChange(complemento.id)}
                           />
-                        )
-                      ))
-                    ) : (
-                      <img className="size-full w-48 h-56 rounded-xl  transition-transform duration-500 ease-in-out" src="/images/img/noimagen.jpg" alt="No image available" />
-                    )}
-                  </div>
-                </label>
-                <h2 className="text-base font-normal text-[#112212] text-center">{item.name}</h2>
-                <div className="flex font-bold justify-center min-h-6 text-[#112212]" style={{ minHeight: "24px" }}>
-                  {item.min_price && (
-                    <p className='text-[#112212]'>
-                      Desde S/ <span className='text-[#112212]'>{Number(item.min_price).toFixed(0)}</span>
-                    </p>
-                  )}
+                          {complemento.images.length > 0 ? (
+                            complemento.images.map((image) =>
+                              image.caratula === 1 ? (
+                                <img
+                                  key={image.id}
+                                  className="size-full w-48 h-56 rounded-lg object-cover"
+                                  src={image.name_imagen ? `${url_env}/${image.name_imagen}` : 'path/to/default.jpg'}
+                                  alt={complemento.producto}
+                                />
+                              ) : null
+                            )
+                          ) : (
+                            <img
+                              className="size-full w-48 h-56 rounded-lg object-cover"
+                              src={`${url_env}/images/img/noimagen.jpg`}
+                              alt="No imagen"
+                            />
+                          )}
+                        </div>
+                      </label>
+                      <Tippy content={complemento.producto}>
+                        <h2 className="text-base font-normal text-black text-center line-clamp-1">{complemento.producto}</h2>
+                      </Tippy>
+                      <div className="flex font-medium justify-center gap-4">
+                        {complemento.descuento > 0 ? (
+                          <>
+                            <p>S/ <span>{complemento.descuento}</span></p>
 
-                </div>
-              </li>
-            ))}
-            <li>
-              <div
-                className="flex flex-col justify-center items-center  text-center w-48 m-auto h-56 border-[#FF8555] border-2 p-3 rounded-xl ">
+                            <p className='line-through text-gray-400'>S/ <span >{complemento.precio}</span></p>
 
+                          </>
+                        ) : (
+                          <>
+
+                            <p>S/ </p>
+                            <span>{complemento.precio}</span>
+                          </>
+                        )}
+
+                      </div>
+                    </div>
+                    {/* <div className="m-auto">
+                      <label
+                        onClick={() => openModalComplementos([item])}
+                        htmlFor={`react-option-${item.id}`}
+                        className="inline-flex items-center justify-between w-full bg-white rounded-lg cursor-pointer hover:border-[#df3876] hover:border-2"
+                      >
+                        <div className="block relative p-2">
+                          {item.images?.length > 0 ? (
+                            item.images.map((image, imgIndex) => (
+                              image.caratula === 1 && (
+                                <img
+                                  key={imgIndex}
+                                  className="size-full w-48 h-56 rounded-xl transition-transform duration-500 ease-in-out"
+                                  src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
+                                  alt="Complemento"
+                                  onError={(e) => {
+                                    // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
+                                    e.target.src = '/images/img/noimagen.jpg';
+                                  }}
+                                />
+                              )
+                            ))
+                          ) : (
+                            <img className="size-full w-48 h-56 rounded-xl transition-transform duration-500 ease-in-out" src="/images/img/noimagen.jpg" alt="No image available" />
+                          )}
+                        </div>
+                      </label>
+                      <h2 className="text-base font-normal text-[#112212] text-center">{item.producto}</h2>
+                      <div className="flex font-bold justify-center min-h-6 text-[#112212]" style={{ minHeight: "24px" }}>
+                        {item.min_price && (
+                          <p className='text-[#112212]'>
+                            Desde S/ <span className='text-[#112212]'>{Number(item.min_price).toFixed(0)}</span>
+                          </p>
+                        )}
+                      </div>
+                    </div> */}
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+            <div className="col-span-1">
+              <div className="flex flex-col justify-center items-center text-center w-46 m-auto h-56 border-[#FF8555] border-2 p-3 rounded-xl">
                 <div className="grid grid-cols-1 gap-3 xl:gap-5">
                   <div className="flex flex-col justify-center items-center">
-                    <img src="/img_donas/regalo.svg" />
+                    <img src="/img_donas/regalo.svg" alt="Regalo" />
                   </div>
-
-                  <button type="button" className="flex flex-col justify-center items-center  text-[#FF8555]"
-                    onClick={() => openModalComplementos(complementos)}>
+                  <button
+                    type="button"
+                    className="flex flex-col justify-center items-center text-[#FF8555]"
+                    onClick={() => openModalComplementos(complementosAcordion)}
+                  >
                     Ver más
                   </button>
-
                 </div>
               </div>
-            </li>
-
-          </ul>
+            </div>
+          </div>
         </section>
 
         <section>
@@ -694,8 +862,9 @@ const Product = ({ complementos, general,
               </div>
 
 
+
               <div className='flex flex-col'>
-                {especificaciones.map((item, index) => (
+                {currentProduct.especificaciones.map((item, index) => (
                   <div
                     key={index}
                     className={`w-[488px] h-12 flex flex-row content-between items-center ${index % 2 === 0 ? 'bg-[#DBDED6]' : 'bg-[#e8eddee5]'}`}
@@ -821,6 +990,7 @@ const Product = ({ complementos, general,
                       <img src='/images/img/xcoral.png' alt="" className="h-5 cursor-pointer"
                         onClick={closeModalComplementos} />
                     </div>
+                    <hr />
                     <div className="mt-5 gap-4 " id="containerComplementos" data-accordion="collapse">
                       <Accordion datos={currentComplemento} url_env={url_env}
                         setDetallePedido={setDetallePedido} />
@@ -830,17 +1000,25 @@ const Product = ({ complementos, general,
               </div>
               {currentComplemento.length === 1 && (<div className='flex w-full justify-center items-center'>
                 <button type="button" className="flex flex-col justify-center  text-white rounded-lg items-center bg-rosalasdonas p-2"
-                  onClick={() => openModalComplementos(complementos)}>
+                  onClick={() => openModalComplementos(complementosAcordion)}>
                   Ver más
                 </button>
               </div>)}
 
+              <hr />
 
               <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse content-between justify-between  sm:px-6 ">
 
 
-                <button onClick={closeModalComplementos} type="button"
-                  className="inline-flex w-full justify-center rounded-md  bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Cerrar</button>
+                <Button
+                  callback={closeModalComplementos}
+                  width={'w-[135px]'}
+                  variant={'primary'}
+                >
+                  Cerrar
+                </Button>
+                {/* <button onClick={closeModalComplementos} type="button"
+                  className="inline-flex w-full justify-center rounded-md  bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Cerrar</button> */}
               </div>
             </div>
           </div>

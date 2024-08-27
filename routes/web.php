@@ -44,6 +44,7 @@ use App\Http\Controllers\ValoresAtributosController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TermsAndConditionController;
 use App\Http\Controllers\TipoController;
+use App\Http\Controllers\TipoFlorController;
 use App\Models\AboutUs;
 use App\Models\Price;
 use Inertia\Inertia;
@@ -129,7 +130,10 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
 
 
-
+        Route::resource('/tipo-flor', TipoFlorController::class);
+        Route::post('/tipo-flor/updateVisible', [TipoFlorController::class, 'updateVisible'] )->name('tipo-flor.updateVisible');
+        Route::post('/tipo-flor/borrar', [TipoFlorController::class, 'borrar'])->name('tipo-flor.borrar');
+        Route::post('/tipo-flor/bsaveorrar', [TipoFlorController::class, 'save'])->name('tipo-flor.save');
 
 
         //messages

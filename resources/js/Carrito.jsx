@@ -12,6 +12,8 @@ import { Local } from 'sode-extend-react/sources/storage'
 import truncateText from './Utils/truncateText'
 import Accordion from './Accordion2';
 import calculartotal from './Utils/calcularTotal'
+import Button from './components/Button';
+import QuantitySelector from './components/QuantitySelector';
 
 
 const Carrito = ({ url_env, departamentos, complementos }) => {
@@ -28,6 +30,82 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
     complementos: [],
     imagen: '',
   });
+  const deleteItemR = (id) => {
+
+    console.log('entreo aca');
+
+    let articulosCarrito = Local.get('carrito') || [];
+    let idCount = {};
+    let duplicates = [];
+    articulosCarrito.forEach(item => {
+      if (idCount[item.id]) {
+        idCount[item.id]++;
+      } else {
+        idCount[item.id] = 1;
+      }
+    });
+
+
+
+    for (let id in idCount) {
+      if (idCount[id] > 1) {
+        duplicates.push(id);
+      }
+    }
+
+    if (duplicates.length > 0) {
+
+      let index = articulosCarrito.findIndex(item => item.id === id);
+      if (index > -1) {
+        articulosCarrito.splice(index, 1);
+      }
+    } else {
+      articulosCarrito = articulosCarrito.filter(objeto => objeto.id !== id);
+
+    }
+
+    // return
+
+    setCarrito(articulosCarrito)
+
+
+    Local.set('carrito', articulosCarrito)
+    limpiarHTML()
+    PintarCarrito()
+  }
+
+
+  const addOnCarBtnR = (id) => {
+    let articulosCarrito = Local.get('carrito') || [];
+    let prodRepetido = articulosCarrito.map(item => {
+      if (item.id === id) {
+
+        item.cantidad += 1;
+      }
+      return item;
+    });
+
+    Local.set('carrito', prodRepetido);
+    setCarrito(prodRepetido)
+    limpiarHTML();
+    PintarCarrito();
+  }
+
+  const deleteOnCarBtnR = (id) => {
+    let articulosCarrito = Local.get('carrito') || [];
+    let prodRepetido = articulosCarrito.map(item => {
+      if (item.id === id && item.cantidad > 0) {
+
+        item.cantidad -= 1;
+      }
+      return item;
+    });
+
+    Local.set('carrito', prodRepetido);
+    limpiarHTML();
+    PintarCarrito();
+    setCarrito(prodRepetido)
+  }
 
   const formatTime = (time) => {
 
@@ -51,7 +129,7 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
 
   return (
     <>
-      <section className='mb-24'>
+      <section className='mb-24 font-b_slick_bold'>
         <div className='mt-12 px-[8%]'>
           <span>
             Home / Aniversario / Suspendisse potenti /Validación de pedido
@@ -64,49 +142,49 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
               <div className="w-full">
 
 
-                <div className='flex flex-col gap-10'>
+                <div className='flex flex-col gap-5'>
                   {carrito.map((item) => (
                     console.log(item),
-                    <div className="flex flex-col md:flex-row pb-5  border-[#E8ECEF] gap-6 text-[#112212]">
-                      <img src={`${url_env}/images/img/xcoral.png`} type="icon" className='flex w-5 h-5' alt="" />
+                    <div className="flex flex-col md:flex-row py-5  px-4 rounded-xl border-[#E8ECEF] gap-6 text-[#112212] border
+                     hover:border-[#336234] group ">
+                      <img src={`${url_env}/images/img/xcoral.png`} type="icon" onClick={() => deleteItemR(item.id)} className='flex w-5 h-5 cursor-pointer' alt="" />
 
-                      <img className='h-[170px] w-[257px]' src={`${url_env}/${item.imagen} `} alt="" />
+                      <img className='h-[170px] w-[176px] transform transition-transform duration-300 ease-in-out group-hover:scale-110' src={`${url_env}/${item.imagen} `} alt="" />
                       <div className='flex flex-row gap-4 w-full px-2'>
-                        <div className="flex flex-col font-bold text-[#112212] w-full">
-                          <h2> {item.producto} - <span className='opacity-80 italic'>{item.tipo}</span></h2>
-                          <span className='font-normal opacity-80 h-[55px] w-[190px]'> {truncateText(item.extract, 40)}</span>
-                          <span> sku : 001</span>
-                          {<div className='mt-2'>
-
-                            {/* {console.log(carrito)}
-                            <div className="flex flex-col rounded-lg bg-[#E8EDDE] text-[#336234] text-[14px] font-semibold py-2 mt-4 content-center justify-center items-center">
-                              <span>{item.fecha}</span>
-                              <span>{formatTime(item?.horario?.start_time)} - {formatTime(item?.horario?.end_time)}</span>
-
-                            </div> */}
-                          </div>}
+                        <div className="flex flex-col self-stretch w-52">
+                          <div className="flex flex-col w-full">
+                            <h2 className="text-base font-bold tracking-wider text-neutral-900">{item.producto}</h2>
+                            <p className="mt-2 text-sm tracking-wide leading-5 text-neutral-900 text-opacity-80 line-clamp-2">{item.extract}</p>
+                          </div>
+                          <p className="mt-5 text-xs font-bold tracking-wide text-neutral-900">SKU: {item.sku}</p>
+                          <QuantitySelector quantity={item.cantidad} Qadd={() => addOnCarBtnR(item.id)} Qdelete={() => deleteOnCarBtnR(item.id)} />
                         </div>
-                        <div className="flex flex-col  w-full  font-bold text-[#112212] items-end content-end">
-                          <span className='opacity-80'>
-                            Precio
-                          </span>
-                          <span>
-                            {item.precio}
-                          </span>
-                          <span>Complementos</span>
-                        </div>
-                        <div className="flex flex-col w-full  font-bold text-[#112212] items-end content-end">
-                          <span className='opacity-80'>
-                            Total
-                          </span>
-                          <span>
-                            {Number(item.precio) * Number(item.cantidad).toFixed(2)}
-                          </span>
-                          <span>
+                        <div className="grid grid-cols-2 w-full">
+                          <div className="col-span1">
+                            <div className="flex flex-col    font-bold text-[#112212] items-end content-end">
+                              <span className='opacity-80'>
+                                Precio
+                              </span>
+                              <span>
+                                {item.precio}
+                              </span>
 
-                            {item?.complementos !== undefined && (item.complementos.map((item) => Number(item.preciofiltro)).reduce((total, elemento) => total + elemento, 0))}
-                          </span>
+                            </div>
+                          </div>
+                          <div className="col-span1">
+                            <div className="flex flex-col  font-bold text-[#112212] items-end content-end">
+                              <span className='opacity-80'>
+                                Total
+                              </span>
+                              <span>
+                                {Number(item.precio) * Number(item.cantidad).toFixed(2)}
+                              </span>
+
+                            </div>
+                          </div>
                         </div>
+
+
                       </div>
 
 
@@ -144,7 +222,7 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
                   className="w-full border-[#336234] rounded-3xl py-3 px-5 focus:outline-none focus:ring-2 focus:ring-[#336234]"
                 />
                 <button
-                  className="absolute rounded-3xl border right-0 p-2 px-4 text-white bg-[#336234] w-[113px] top-1/2 transform -translate-y-1/2"
+                  className="absolute rounded-3xl border right-[3%] p-2 px-4 text-white bg-[#336234] w-[113px] top-1/2 transform -translate-y-1/2"
                 >
                   Aplicar
                 </button>
@@ -153,7 +231,7 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
 
 
               <div className='mt-7 '>
-                <h2 className="font-bold text-[16px] text-[#151515]">
+                <h2 className="font-bold text-[16px] text-[#a78f8f]">
                   Resumen del pedido </h2>
                 <div className='flex flex-row gap-4 mt-4'>
                   <div className='w-8/12 text-[#112212] flex flex-col'>
@@ -206,7 +284,7 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
         <div className=" fixed inset-0 z-30 w-screen overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
-              className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
+              className="relative font-b_slick_bold transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start w-full">
 
@@ -236,8 +314,16 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
               <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse content-between justify-between  sm:px-6 ">
 
 
-                <button onClick={handlemodalComplementos} type="button"
-                  className="inline-flex w-full justify-center rounded-md  bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Cerrar</button>
+                <Button
+                  callback={handlemodalComplementos}
+                  width={'w-[135px]'}
+                  variant={'primary'}
+                >
+                  Cerrar
+                </Button>
+                {/* <button onClick={handlemodalComplementos} type="button"
+                  className="inline-flex w-full justify-center rounded-md  bg-red-600 px-3 py-2 text-sm font-semibold 
+                  text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Cerrar</button> */}
               </div>
             </div>
           </div>

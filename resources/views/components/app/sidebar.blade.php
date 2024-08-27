@@ -183,20 +183,21 @@
 
           <!-- Colecciones -->
           <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['colecciones'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['colecciones'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('colecciones.index') }}">
+            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['tipo-flor'])) {{ 'bg-slate-900' }} @endif">
+            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['tipo-flor'])) {{ 'hover:text-slate-200' }} @endif"
+              href="{{ route('tipo-flor.index') }}">
               <div class="flex items-center">
                 <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                   <path
-                    class="fill-current @if (in_array(Request::segment(2), ['colecciones'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
+                    class="fill-current @if (in_array(Request::segment(2), ['tipo-flor'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
                     d="M1 3h22v20H1z" />
                   <path
-                    class="fill-current @if (in_array(Request::segment(2), ['colecciones'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
+                    class="fill-current @if (in_array(Request::segment(2), ['tipo-flor'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
                     d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
                 </svg>
                 <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Colecciones</span>
+                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Tipo
+                  de Flor</span>
               </div>
             </a>
           </li>
@@ -307,8 +308,8 @@
         <ul class="mt-3">
 
           <x-menu.item id="greetings" href="{{ route('greetings.index') }}" icon="fas fa-hand-sparkles">
-          Mensajes predefinidos
-        </x-menu.item>
+            Mensajes predefinidos
+          </x-menu.item>
 
           <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['attributes'])) {{ 'bg-slate-900' }} @endif">
