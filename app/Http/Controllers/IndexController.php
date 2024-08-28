@@ -661,11 +661,12 @@ class IndexController extends Controller
     $tipoDefault = Tipo::where('is_default', '=', 1)->first();
 
     $complementos = Products::select('products.*')
-      ->join('categories', 'categories.id', 'products.categoria_id')
+      // ->join('categories', 'categories.id', 'products.categoria_id')
       ->with('images')
-      ->where('products.status', 1)->where('products.tipo_servicio', 'complemento')
-      ->where('products.parent_id', null)->where('categoria_id', $product->categoria_id)
-      
+      ->where('products.status', 1)
+      ->where('products.tipo_servicio', 'complemento')
+      ->where('products.parent_id', null)
+      // ->where('categoria_id', $product->categoria_id)
       ->groupBy('products.id')
       ->get();
     foreach ($complementos as $key => $complemento) {
