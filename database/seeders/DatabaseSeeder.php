@@ -35,12 +35,15 @@ class DatabaseSeeder extends Seeder
             MessageSeeder::class,
             GeneralSeeder::class,
             CategorySeeder::class,
+            SubcategorySeeder::class,
             StatusOrdensSeeder::class,
             AtributosSeeder::class,
             TiposSeeder::class,
             ComplementosSeeder::class,
-            HorariosTableSeeder::class
+            HorariosTableSeeder::class,
             //ServiceSeeder::class,
+            TiposFlorSeeder::class,
+            TagSeeder::class,
         ]);
     }
 }

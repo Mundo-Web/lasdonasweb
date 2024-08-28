@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AccordionContent from './AccordionContent';
 
-const Accordion2 = ({ datos, url_env, setDetallePedido }) => {
+const Accordion2 = ({ datos, setDetallePedido }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [loadedIndexes, setLoadedIndexes] = useState([]);
 
@@ -56,7 +56,7 @@ const Accordion2 = ({ datos, url_env, setDetallePedido }) => {
             aria-labelledby={`accordion-collapse-heading-${complemento.id}`}
           >
             <div className="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-              {loadedIndexes.includes(index) && <AccordionContent id={complemento.id} url_env={url_env} setDetallePedido={setDetallePedido} />}
+              {loadedIndexes.includes(index) && <AccordionContent id={complemento.id} setDetallePedido={setDetallePedido} />}
             </div>
           </div>
         </div>

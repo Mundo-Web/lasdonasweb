@@ -28,5 +28,13 @@ class UsersSeeder extends Seeder
             'email' => 'customer@mundoweb.pe',
             'password' => Hash::make('12345678'),
         ])->assignRole('Customer');
+
+        User::create([
+            'name' => 'Carlos Manuel',
+            'lastname' => 'Gamboa Palomino',
+            'email' => 'gamboapalominocarlosmanuel@gmail.com',
+            'password' => Hash::make('abcd1234'),
+            'points' => 1812
+        ])->assignRole('Customer');
     }
 }

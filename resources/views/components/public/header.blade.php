@@ -196,7 +196,7 @@
 
 <header class="font-b_classic_regular sticky top-0" style="z-index:1">
 
-  <div id="header-mid" class="h-[100px] flex flex-row items-center bg-white">
+  <div id="header-mid" class="h-[80px] flex flex-row items-center bg-white">
     <div
       class="flex flex-row items-center justify-between gap-3 w-full px-[2%] xl:px-[8%]   text-[17px] relative bg-white ">
 
@@ -208,12 +208,12 @@
       <div class="w-auto min-w-[110px] flex items-center justify-center">
         <a href="{{ route('index') }}">
           {{-- <img id="logo-lasdonas" class="w-[250px]  " src="{{ asset($isIndex ? 'img_donas/Logo.png' : 'img_donas/Logo.png') }}" alt="lasdonas" /> --}}
-          <img id="logo-lasdonas" class="w-[250px]  " src="/img_donas/Logo_donas.svg" alt="lasdonas" />
+          <img id="logo-lasdonas" class="h-[40px] md:h-[50px]  " src="/img_donas/Logo_donas.svg" alt="lasdonas" />
         </a>
       </div>
 
-      <div class="hidden lg:flex items-center justify-center ">
-        {{-- <div>
+      {{-- <div class="hidden lg:flex items-center justify-center "> --}}
+      {{-- <div>
                 <nav id="menu-items"
                   class=" text-[#333] text-base font-Inter_Medium flex gap-5 xl:gap-6 items-center justify-center "
                   x-data="{ openCatalogo: false, openSubMenu: null }">
@@ -236,7 +236,7 @@
                   </a>
                 </nav>
               </div> --}}
-      </div>
+      {{-- </div> --}}
 
       <div class="flex justify-end md:w-auto md:justify-center items-center gap-0 lg:gap-2">
 
@@ -269,19 +269,26 @@
                 <span id="username"
                   class="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:opacity-75 dark:group-hover:text-slate-200 text-[#272727] ">
                   {{ explode(' ', Auth::user()->name)[0] }}</span>
-                <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
+                <i class="mdi mdi-chevron-down"></i>
+                  {{-- <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
                   <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                </svg>
+                </svg> --}}
               </div>
             </button>
             <div
-              class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1"
+              class="origin-top-right z-30 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1"
               @click.outside="open = false" @keydown.escape.window="open = false" x-show="open">
               <ul>
                 <li class="hover:bg-gray-100">
-                  <a class="font-medium text-sm text-black flex items-center py-1 px-3"
-                    href="{{ route('micuenta') }}" @click="open = false" @focus="open = true"
-                    @focusout="open = false">Mi Cuenta</a>
+                  @if (Auth::user()->hasRole('Admin'))
+                    <a class="font-medium text-sm text-black flex items-center py-1 px-3"
+                      href="{{ route('orders') }}" @click="open = false" @focus="open = true"
+                      @focusout="open = false">Dashboard</a>
+                  @else
+                    <a class="font-medium text-sm text-black flex items-center py-1 px-3"
+                      href="{{ route('micuenta') }}" @click="open = false" @focus="open = true"
+                      @focusout="open = false">Mi Cuenta</a>
+                  @endif
                 </li>
 
                 <li class="hover:bg-gray-100">
@@ -294,6 +301,14 @@
                   </form>
                 </li>
               </ul>
+            </div>
+          </div>
+          <div class="flex justify-center items-center min-w-[38px]">
+            <div class="relative inline-block cursor-pointer">
+              <button class="bg-[#336234] text-white font-bold px-2 pr-3 pt-[2px] rounded-full">
+                <i class="mdi mdi-dots-hexagon"></i>
+                {{ Auth::user()->points }}
+              </button>
             </div>
           </div>
         @endif

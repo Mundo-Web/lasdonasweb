@@ -11,18 +11,22 @@ import { Local } from 'sode-extend-react/sources/storage'
       
 
       let detalleComplemento = complementos.map(item => {
-        return {
+        const object = {
           id: item.id,
           producto: item.producto,
           precio: item.descuento > 0 ? item.descuento : item.precio,
           imagen: item.images.filter(item => item.caratula === 1)[0]?.name_imagen ?? '/images/img/noimagen.jpg',
           cantidad: 1,
-          sku: item.sku, 
+          sku: item.sku,
           tipo: 'Complemento',
           fecha: '',
           horario: '',
-          extract: item.extract,
+          extract: item.extract
         }
+        if (item.tipo_servicio == 'complemento' && item.puntos_complemento > 0) {
+          object.points = item.puntos_complemento
+        }
+        return object
       })
 
 

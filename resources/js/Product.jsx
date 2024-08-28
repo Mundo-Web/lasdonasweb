@@ -180,7 +180,7 @@ const Product = ({ complementos, general,
           extract: producto.extract,
         }
         let detalleComplemento = complementos.map(item => {
-          return {
+          const object = {
             id: item.id,
             producto: item.producto,
             precio: item.descuento > 0 ? item.descuento : item.precio,
@@ -191,7 +191,12 @@ const Product = ({ complementos, general,
             fecha: fecha,
             horario: horario,
             extract: item.extract,
+
           }
+          if (item.tipo_servicio == 'complemento' && item.puntos_complemento > 0) {
+            object.points = item.puntos_complemento
+          }
+          return object
         })
 
 
@@ -732,14 +737,12 @@ const Product = ({ complementos, general,
                 }}
                 style={{ zIndex: 0 }}
               >
-
-                {console.log(complementos)}
                 {complementos.map((complemento, index) => (
                   <SwiperSlide key={index}>
-                    <div key={complemento.id} className="m-auto">
+                    <div key={complemento.id} className="m-auto w-min">
                       <label
                         htmlFor={`react-option-${complemento.id}`}
-                        className="inline-flex items-center justify-between w-full bg-white rounded-lg cursor-pointer"
+                        className="inline-flex items-center justify-between w-max bg-white rounded-lg cursor-pointer shadow-md border"
                       >
                         <div className="block relative z-0">
                           <input
@@ -756,23 +759,31 @@ const Product = ({ complementos, general,
                               image.caratula === 1 ? (
                                 <img
                                   key={image.id}
-                                  className="size-full w-48 h-56 rounded-lg object-cover"
-                                  src={image.name_imagen ? `${url_env}/${image.name_imagen}` : 'path/to/default.jpg'}
+                                  className="w-48 aspect-square rounded-lg object-cover"
+                                  src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                                   alt={complemento.producto}
                                 />
                               ) : null
                             )
                           ) : (
                             <img
-                              className="size-full w-48 h-56 rounded-lg object-cover"
-                              src={`${url_env}/images/img/noimagen.jpg`}
+                              className="w-48 aspect-square rounded-lg object-cover"
+                              src='/images/img/noimagen.jpg'
                               alt="No imagen"
                             />
                           )}
+                          {
+                            complemento.puntos_complemento && <Tippy content={`Tambien puedes cambiarlo por ${complemento.puntos_complemento} puntos`}>
+                              <span className='absolute bg-orange-400 right-2 bottom-2 text-sm px-2 pt-[2px] rounded-md text-white'>
+                                <i className='mdi mdi-dots-hexagon me-1'></i>
+                                <span>{complemento.puntos_complemento}</span>
+                              </span>
+                            </Tippy>
+                          }
                         </div>
                       </label>
                       <Tippy content={complemento.producto}>
-                        <h2 className="text-base font-normal text-black text-center line-clamp-1">{complemento.producto}</h2>
+                        <h2 className="text-base font-normal text-black text-center truncate w-full">{complemento.producto}</h2>
                       </Tippy>
                       <div className="flex font-medium justify-center gap-4">
                         0
@@ -862,7 +873,7 @@ const Product = ({ complementos, general,
                 {currentProduct.especificaciones.map((item, index) => (
                   <div
                     key={index}
-                    className={`w-[488px] h-12 flex flex-row content-between items-center ${index % 2 === 0 ? 'bg-[#DBDED6]' : 'bg-[#e8eddee5]'}`}
+                    className={`w-[488px] max-w-full h-12 flex flex-row content-between items-center ${index % 2 === 0 ? 'bg-[#DBDED6]' : 'bg-[#e8eddee5]'}`}
                   >
                     <span className='flex flex-row content-between justify-between px-4'><div className='font-bold'>{item.tittle} </div> </span> <div>{item.specifications}</div>
                   </div>

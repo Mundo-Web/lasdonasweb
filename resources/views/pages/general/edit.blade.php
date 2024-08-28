@@ -24,6 +24,37 @@
               <div>
                 <div>
 
+                  <div class=" rounded shadow-lg p-4 px-4 mb-4">
+                    <div class="md:col-span-2">
+                      <label for="point_equivalence">Cuantos soles debe comprar el cliente para obtener un punto?</label>
+                      <div class="relative mb-2">
+
+                        <div class="flex flex-wrap gap-3 items-center">
+                          <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                              <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <input type="text" id="point_equivalence" name="point_equivalence"
+                              value="{{ $general->point_equivalence }}"
+                              class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              placeholder="Soles">
+                          </div>
+                          <i class="fas fa-exchange-alt"></i>
+                          <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                              <i class="mdi mdi-dots-hexagon"></i>
+                            </div>
+                            <input type="text"
+                              value="1"
+                              disabled
+                              readonly
+                              class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              placeholder="Puntos">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div class=" rounded shadow-lg p-4 px-4 ">
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1">
 
@@ -146,7 +177,8 @@
                                   </path>
                                 </svg>
                               </div>
-                              <input type="text" id="cellphone" name="cellphone" value="{{ $general->cellphone }}"
+                              <input type="text" id="cellphone" name="cellphone"
+                                value="{{ $general->cellphone }}"
                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="+51 123456789">
                             </div>
