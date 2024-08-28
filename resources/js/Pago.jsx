@@ -171,7 +171,7 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
 
           <div className='flex flex-col w-full my-8'>
 
-            <OrderSummary carrito={carrito} costoEnvio={costoEnvio} />
+            <OrderSummary carrito={carrito} costoEnvio={costoEnvio} setIsModalOpen={setIsModalOpen} />
           </div>
           <div className='text-center flex w-full content-center justify-center'>
             <ProgressBar />

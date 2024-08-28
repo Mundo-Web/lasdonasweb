@@ -7,7 +7,7 @@ import calculartotal from '../Utils/calcularTotal';
 
 
 
-const OrderSummary = ({ carrito, costoEnvio }) => {
+const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen }) => {
   const subtotal = calculartotal()
   const [total, setTotal] = useState(subtotal);
   useEffect(() => {
@@ -26,7 +26,7 @@ const OrderSummary = ({ carrito, costoEnvio }) => {
       <Divider />
       <TotalRow label="Sub Total" value={subtotal} />
       <Divider />
-      <TotalRow label="Costo de envio" value={costoEnvio} />
+      <TotalRow label="Costo de envio" value={costoEnvio} setIsModalOpen={setIsModalOpen} />
 
       <Divider />
       <TotalRow label="Total" value={total} isBold={true} />
