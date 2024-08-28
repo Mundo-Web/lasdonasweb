@@ -6,10 +6,10 @@ function TotalRow({ label, value, isBold = false }) {
     ? "text-base font-bold tracking-wider text-right"
     : "text-sm tracking-wide text-right";
 
-  const [loadingText, setLoadingText] = useState('Evaluando');
+  const [loadingText, setLoadingText] = useState('Seleccione direccion');
 
   useEffect(() => {
-    const loadingStates = ['Evaluando', 'Evaluando.', 'Evaluando..', 'Evaluando...'];
+    const loadingStates = ['Seleccione direccion', 'Seleccione direccion.', 'Seleccione direccion..', 'Seleccione direccion...'];
     let index = 0;
 
     const interval = setInterval(() => {
@@ -25,7 +25,7 @@ function TotalRow({ label, value, isBold = false }) {
       <div className={`self-stretch my-auto ${textClasses} text-neutral-900 text-opacity-80 w-[133px]`}>
         {label}
       </div>
-      <div className={`self-stretch px-2 ${textClasses} text-neutral-900 w-[133px] text-start`}>
+      <div className={`self-stretch px-2 ${textClasses} text-neutral-900 w-[140px] text-start`}>
         {value == 0 ? loadingText : (<>S / {Number(value).toFixed(2)}</>)}
 
       </div>
