@@ -1,22 +1,13 @@
 {
-  "_Accordion2-2zkk2As3.js": {
-    "file": "assets/Accordion2-2zkk2As3.js",
-    "imports": [
-      "resources/js/Example.jsx",
-      "resources/js/components/useOutsideClick.jsx",
-      "_axios-_sX4vCAy.js",
-      "_storage-zp2nPsZU.js"
-    ]
-  },
-  "_Button-mPI2Y0vv.js": {
-    "file": "assets/Button-mPI2Y0vv.js",
+  "_Button-pfbHwtIn.js": {
+    "file": "assets/Button-pfbHwtIn.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx"
     ]
   },
-  "_CreateReactScript-BXBBo-c3.js": {
-    "file": "assets/CreateReactScript-BXBBo-c3.js",
+  "_CreateReactScript-nMB6kyAI.js": {
+    "file": "assets/CreateReactScript-nMB6kyAI.js",
     "imports": [
       "resources/js/Utils/CreateReactScript.jsx"
     ]
@@ -72,13 +63,23 @@
       "__commonjsHelpers-4gQjN7DL.js"
     ]
   },
-  "_setPrototypeOf-7MT-VylK.js": {
-    "file": "assets/setPrototypeOf-7MT-VylK.js"
+  "_setPrototypeOf-vsx73Wsd.js": {
+    "file": "assets/setPrototypeOf-vsx73Wsd.js"
   },
   "_storage-zp2nPsZU.js": {
     "file": "assets/storage-zp2nPsZU.js",
     "imports": [
       "_index-XJuWVQ-l.js"
+    ]
+  },
+  "_tippy-react.esm-d5CNopLp.js": {
+    "file": "assets/tippy-react.esm-d5CNopLp.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "_axios-_sX4vCAy.js",
+      "_storage-zp2nPsZU.js",
+      "_index-38suPYpT.js"
     ]
   },
   "public/images/img/fondo2.png": {
@@ -118,7 +119,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-PreFQucf.css",
+    "file": "assets/app-Aj05uHqW.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -182,11 +183,15 @@
     "assets": [
       "assets/SvgPuntos-hzKALqiY.svg"
     ],
+<<<<<<< HEAD
     "file": "assets/Agradecimiento-wCIaLmw1.js",
+=======
+    "file": "assets/Agradecimiento-lVGlriQ9.js",
+>>>>>>> 15d7b704e47248680971095bfa9ae0cae7071784
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-BXBBo-c3.js",
+      "_CreateReactScript-nMB6kyAI.js",
       "resources/js/Utils/ReactAppend.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -202,16 +207,20 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
+<<<<<<< HEAD
     "file": "assets/Carrito-TGRaP1Mh.js",
+=======
+    "file": "assets/Carrito-TSUfcWqu.js",
+>>>>>>> 15d7b704e47248680971095bfa9ae0cae7071784
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-BXBBo-c3.js",
+      "_CreateReactScript-nMB6kyAI.js",
       "_storage-zp2nPsZU.js",
-      "_Accordion2-2zkk2As3.js",
+      "_tippy-react.esm-d5CNopLp.js",
       "_calcularTotal-sXLDybB7.js",
-      "_Button-mPI2Y0vv.js",
+      "_Button-pfbHwtIn.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -225,12 +234,12 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Catalogo-dMkSFU9B.js",
+    "file": "assets/Catalogo-h_Yyvs6l.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-BXBBo-c3.js",
+      "_CreateReactScript-nMB6kyAI.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
       "_ProductCard-DeN9ohYo.js",
@@ -255,12 +264,16 @@
     "css": [
       "assets/Horarios-i7P6CmCQ.css"
     ],
+<<<<<<< HEAD
     "file": "assets/Horarios-jEU75Akr.js",
+=======
+    "file": "assets/Horarios-DIHAQeO7.js",
+>>>>>>> 15d7b704e47248680971095bfa9ae0cae7071784
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-BXBBo-c3.js",
+      "_CreateReactScript-nMB6kyAI.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_index-38suPYpT.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -275,19 +288,27 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
+<<<<<<< HEAD
     "file": "assets/Pago-t-P5nJAT.js",
+=======
+    "file": "assets/Pago-7St7LoXf.js",
+>>>>>>> 15d7b704e47248680971095bfa9ae0cae7071784
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-BXBBo-c3.js",
+      "_CreateReactScript-nMB6kyAI.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-sXLDybB7.js",
-      "_Button-mPI2Y0vv.js",
+      "_Button-pfbHwtIn.js",
       "_index-XJuWVQ-l.js",
+<<<<<<< HEAD
       "_axios-_sX4vCAy.js",
       "resources/js/components/AddressForm.jsx",
       "_setPrototypeOf-7MT-VylK.js",
+=======
+      "_setPrototypeOf-vsx73Wsd.js",
+>>>>>>> 15d7b704e47248680971095bfa9ae0cae7071784
       "_index-38suPYpT.js",
       "_floating-ui.dom-KYqStz1f.js",
       "__commonjsHelpers-4gQjN7DL.js",
@@ -298,27 +319,38 @@
   },
   "resources/js/Product.jsx": {
     "css": [
-      "assets/Product-C64i7G0l.css",
       "assets/fade-WxPIMcx6.css"
     ],
+<<<<<<< HEAD
     "file": "assets/Product-6gNGwaaQ.js",
+=======
+    "file": "assets/Product-tuPSwPtU.js",
+>>>>>>> 15d7b704e47248680971095bfa9ae0cae7071784
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-BXBBo-c3.js",
+      "_CreateReactScript-nMB6kyAI.js",
       "_axios-_sX4vCAy.js",
       "_storage-zp2nPsZU.js",
       "resources/js/components/ListHorariosPopup.jsx",
-      "_setPrototypeOf-7MT-VylK.js",
+      "_setPrototypeOf-vsx73Wsd.js",
       "_index-38suPYpT.js",
+<<<<<<< HEAD
       "_Accordion2-2zkk2As3.js",
       "resources/js/components/AddressForm.jsx",
       "_es-Hz-LnzMB.js",
       "_ProductCard-DeN9ohYo.js",
       "_Button-mPI2Y0vv.js",
       "__commonjsHelpers-4gQjN7DL.js",
+=======
+      "_tippy-react.esm-d5CNopLp.js",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_es-Hz-LnzMB.js",
+      "_ProductCard-DeN9ohYo.js",
+>>>>>>> 15d7b704e47248680971095bfa9ae0cae7071784
       "resources/js/Utils/CreateReactScript.jsx",
+      "_Button-pfbHwtIn.js",
       "_index-XJuWVQ-l.js",
       "_floating-ui.dom-KYqStz1f.js"
     ],
@@ -326,7 +358,10 @@
     "src": "resources/js/Product.jsx"
   },
   "resources/js/Utils/CreateReactScript.jsx": {
-    "file": "assets/CreateReactScript-MzJplI4M.js",
+    "css": [
+      "assets/CreateReactScript-C64i7G0l.css"
+    ],
+    "file": "assets/CreateReactScript-YWU079rL.js",
     "imports": [
       "_axios-_sX4vCAy.js",
       "__commonjsHelpers-4gQjN7DL.js",

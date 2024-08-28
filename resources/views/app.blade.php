@@ -62,6 +62,7 @@
       const culqi = async () => {
         try {
           const carrito = Local.get('carrito') ?? []
+          const paymentData = Local.get('payment-data') ?? {}
           if (Culqi.token) {
             const body = {
               _token: $('[name="_token"]').val(),
@@ -70,31 +71,8 @@
                 quantity: x.cantidad,
                 isCombo: x.isCombo || false
               })),
-              contact: {
-                name: $('#nombre').val(),
-                lastname: $('#apellidos').val(),
-                email: $('#email').val(),
-                phone: $('#celular').val(),
-                doc_number: $('#DNI').val() || $('#RUC').val(),
-                doc_type: $('#tipo-comprobante').val() ?? 'nota_venta',
-                razon_fact: $('#razonFact').val(),
-                direccion_fact: $('#direccionFact').val(),
-
-
-              },
-              address: null,
-              saveAddress: !Boolean($('#addresses').val()),
-              culqi: Culqi.token,
-              tipo_comprobante: $('#tipo-comprobante').val()
-            }
-            if ($('[name="envio"]:checked').val() == 'express') {
-              body.address = {
-                id: $('#distrito_id option:selected').attr('price-id'),
-                city: $('#distrito_id option:selected').text(),
-                street: $('#nombre_calle').val(),
-                number: $('#numero_calle').val(),
-                description: $('#direccion').val()
-              }
+              ...paymentData
+              culqi: Culqi.token
             }
             const res = await fetch("{{ route('payment.culqi') }}", {
               method: 'POST',

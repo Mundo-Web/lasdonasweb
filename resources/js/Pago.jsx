@@ -139,8 +139,8 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
     })
   }, [null])
 
-  const startCulqi = () => {
-
+  const startCulqi = (e) => {
+    e.preventDefault()
     Local.set('payment-data', {
       address: datosFinales.address,
       dedication: datosFinales.dedication,
@@ -160,7 +160,7 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
 
   return (
     <>
-      <section className='mb-24'>
+      <form className='mb-24' onSubmit={startCulqi}>
         <div className='mt-12 px-[5%] md:px-[10%]'>
           <span className='text-[#447279] text-[12px] uppercase'>
             Home / Aniversario / Suspendisse potenti /Validación de pedido
@@ -189,12 +189,11 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
               />
 
               <section className="flex flex-col mt-6 w-full max-md:max-w-full">
-                <h2 className="text-base font-bold tracking-wider text-neutral-900 max-md:max-w-full">
-                  1. Confirma tu teléfono
-                </h2>
                 <InputField
+                  label={'1. Confirma tu telefono'}
                   name='phone'
                   defaultValue={datosFinales.telefono}
+                  required
                   handleDatosFinales={(e) => {
                     setDatosFinales(old => ({
                       ...old,
@@ -355,7 +354,7 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
                     }} />
                   </div>
                   <div className="flex flex-row items-center gap-4 justify-center mt-8 w-full text-sm font-bold tracking-wide whitespace-nowrap max-md:max-w-full">
-                    <Button variant="primary" callback={() => startCulqi()}>Continuar</Button>
+                    <Button variant="primary" type='submit'>Continuar</Button>
                     <Button href='/carrito' variant="secondary">Regresar</Button>
                   </div>
                 </div>
@@ -366,7 +365,7 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
           </div>
 
         </div>
-      </section>
+      </form>
     </>
 
   )

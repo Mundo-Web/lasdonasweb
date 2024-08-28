@@ -32,18 +32,21 @@ import 'tippy.js/dist/tippy.css'; // Importa los estilos de Tippy
 import agregarComplementoPedido from './Utils/agregarComplemento'
 import Button from './components/Button'
 
-const Product = ({ complementos, general,
+const Product = ({
+  complementos,
+  general,
   tipoDefault,
   subproductos,
   product,
   productos,
-  atributos,
-  valorAtributo,
   ProdComplementarios,
-  productosConGalerias,
-  especificaciones,
   url_env,
-  colors, horarios, categorias, politicasSustitucion, politicaEnvio, complementosAcordion }) => {
+  horarios,
+  categorias,
+  politicasSustitucion,
+  politicaEnvio,
+  complementosAcordion
+}) => {
 
 
 
@@ -961,7 +964,6 @@ const Product = ({ complementos, general,
 
       <ModalSimple id="modalPoliticsEnvio" showModal={modalPoliticasEnvio}
         setshowModal={setModalPoliticasEnvio}
-        url_env={url_env}
         tittle={'Políticas de envío'}
       >
         <div dangerouslySetInnerHTML={{ __html: politicaEnvio?.content ?? '' }} />
@@ -970,7 +972,6 @@ const Product = ({ complementos, general,
 
       <ModalSimple id="politicaSustitucion" showModal={modalPoliticasSustitucion}
         setshowModal={setModalPoliticasSustitucion}
-        url_env={url_env}
         tittle={'Políticas de sustitución'}
       >
         <div dangerouslySetInnerHTML={{ __html: politicasSustitucion?.content ?? '' }} />
@@ -998,7 +999,7 @@ const Product = ({ complementos, general,
                     </div>
                     <hr />
                     <div className="mt-5 gap-4 " id="containerComplementos" data-accordion="collapse">
-                      <Accordion datos={currentComplemento} url_env={url_env}
+                      <Accordion datos={currentComplemento}
                         setDetallePedido={setDetallePedido} />
                     </div>
                   </div>
