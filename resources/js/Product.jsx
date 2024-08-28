@@ -492,7 +492,7 @@ const Product = ({ complementos, general,
                 ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
                   htmlFor="manana"
                 >
-                  {console.log(selectedHorario)}
+
                   <HorarioSection
                     id="manana"
                     title="Mañana"
@@ -551,17 +551,25 @@ const Product = ({ complementos, general,
                           <SvgFlorClasic className="svg-icon" />
                         )}
                       </div>
-                      {console.log(currentProduct?.tipos?.name)}
+
                       <div className={`flex flex-col justify-center items-center ${currentProduct?.tipos?.name == undefined ? 'text-[#73B473]' : 'text-[#E8EDDE]'}`}>
 
                         <p className="text-base font-semibold">{tipoDefault.name}</p>
-                        <p className="text-base font-normal">
 
+                        {Number(product.descuento) > 0 ? (
+                          <>
+                            <p className="text-base font-bold">
+                              S/ <span>{Number(product.descuento).toFixed(0)}</span>
+                            </p>
+                            <p className="text-base font-normal line-through text-[14px] ">
+
+                              S/ <span>{Number(product.precio).toFixed(0)}</span>
+                            </p>
+                          </>
+                        ) : (<><p className="text-base font-bold">
                           S/ <span>{Number(product.precio).toFixed(0)}</span>
-                        </p>
-                        <p className="text-base font-bold">
-                          S/ <span>{Number(product.descuento).toFixed(0)}</span>
-                        </p>
+                        </p></>)}
+
                       </div>
                     </label>
                   </li>
@@ -609,11 +617,11 @@ const Product = ({ complementos, general,
                             <p className="text-base font-semibold">{item.tipos.name}</p>
                             {Number(item.descuento) > 0 ? (
                               <>
-                                <p className="text-base font-normal">
-                                  S/ <span>{Number(item.precio).toFixed(0)}</span>
-                                </p>
-                                <p className="text-base font-bold">
+                                <p className="text-base font-bold ">
                                   S/ <span>{Number(item.descuento).toFixed(0)}</span>
+                                </p>
+                                <p className="text-base font-normal line-through">
+                                  S/ <span>{Number(item.precio).toFixed(0)}</span>
                                 </p>
                               </>
                             ) : (
@@ -767,20 +775,7 @@ const Product = ({ complementos, general,
                         <h2 className="text-base font-normal text-black text-center line-clamp-1">{complemento.producto}</h2>
                       </Tippy>
                       <div className="flex font-medium justify-center gap-4">
-                        {complemento.descuento > 0 ? (
-                          <>
-                            <p>S/ <span>{complemento.descuento}</span></p>
-
-                            <p className='line-through text-gray-400'>S/ <span >{complemento.precio}</span></p>
-
-                          </>
-                        ) : (
-                          <>
-
-                            <p>S/ </p>
-                            <span>{complemento.precio}</span>
-                          </>
-                        )}
+                        0
 
                       </div>
                     </div>

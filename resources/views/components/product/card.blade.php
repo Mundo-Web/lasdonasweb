@@ -1,3 +1,41 @@
+<style>
+  /* From Uiverse.io by ferlagher */
+  #btnespecial {
+    position: relative;
+    font-size: 1.2em;
+    padding: 0.7em 1.4em;
+    background-color: #336234;
+    text-decoration: none;
+    border: none;
+    border-radius: 0.5em;
+    color: #DEDEDE;
+    box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3);
+  }
+
+  #btnespecial::before {
+    position: absolute;
+    content: '';
+    height: 0;
+    width: 0;
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, rgba(33, 33, 33, 1) 0%, rgba(33, 33, 33, 1) 50%, rgba(97, 51, 97, 1) 50%, rgba(97, 51, 97, 1) 60%);
+    border-radius: 0 0 0.5em 0;
+    box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+  }
+
+  #btnespecial:hover::before {
+    width: 1.6em;
+    height: 1.6em;
+  }
+
+  #btnespecial:active {
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+    transform: translate(0.1em, 0.1em);
+  }
+</style>
+
 <div class="flex flex-col gap-7 col-span-1 font-b_slick_bold tracking-wider">
   <a class="rounded-xl bg-white shadow-lg overflow-hidden" href="{{ route('Product.jsx', $item->id) }}">
     <div class="bg-[#FFF4ED] rounded-t-xl overflow-hidden relative">
@@ -47,7 +85,7 @@
   </div>
 </a>
 <div class="w-full mt-4">
-  <a href="{{ route('Product.jsx', $item->id) }}" type="button"
+  <a id='btnespecial' href="{{ route('Product.jsx', $item->id) }}" type="button"
     class="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-base hover:bg-[#2d5228] transition-colors duration-300">
     <span>Ver producto</span>
     <i class="ml-2 fa-solid fa-arrow-right"></i>

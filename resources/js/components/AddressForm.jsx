@@ -1,13 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import InputField from "./InputField";
 
 
 import Button from "./Button";
 import GoogleMapsComponent from "./GoogleMapsComponent";
 import { set } from "sode-extend-react/sources/cookies";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 
-function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {} }) {
+function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio }) {
 
   const [formState, setFormState] = useState({
     fullname: '',
@@ -28,7 +30,58 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
     }
   })
 
-  const managezipCode = (place, postalCode) => {
+  const consultarLocalicad = async (zip_code, cancelToken) => {
+    try {
+      const response = await axios.post('/api/consultar-localidad', { zip_code }, { cancelToken });
+
+      let { data, status } = response
+      if (status === 200) {
+        setCostoEnvio(data.price)
+        Swal.fire({
+          icon: 'success',
+          title: 'Ubicación encontrada',
+          text: 'Hemos encontrado tu ubicación, por favor verifica que los datos sean correctos',
+          showConfirmButton: true,
+          showCancelButton: false,
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#10B981'
+        })
+      }
+      console.log(response);
+    } catch (error) {
+      console.log('Error:', error);
+      if (axios.isCancel(error)) {
+        console.log('Request canceled', error.message);
+      } else {
+        if (error.response.status == 404) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ha ocurrido un error al consultar la ubicación, por favor intenta nuevamente',
+            showConfirmButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#EF4444'
+          })
+
+        } else {
+          console.error('Error:', error);
+
+        }
+      }
+    }
+  };
+  const cancelTokenSource = useRef(null);
+
+  const managezipCode = async (place, postalCode) => {
+    console.log('cambio el zipcode')
+
+    if (cancelTokenSource.current) {
+      cancelTokenSource.current.cancel('Operation canceled due to new request.');
+    }
+    cancelTokenSource.current = axios.CancelToken.source();
+    await consultarLocalicad(postalCode, cancelTokenSource.current.token);
+
     setFormState(old => {
       return {
         ...old,
@@ -85,6 +138,13 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
       }
     })
   }
+  useEffect(() => {
+    return () => {
+      if (cancelTokenSource.current) {
+        cancelTokenSource.current.cancel('Component unmounted.');
+      }
+    };
+  }, []);
 
   const handlechange = (e) => {
     const { name, value } = e.target;
@@ -105,6 +165,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
           <div className="md:col-span-2">
             <InputField
+
               eRef={addressRef.fullname}
               label="Nombre del destinatario"
               placeholder="Nombre del destinatario"

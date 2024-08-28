@@ -30,6 +30,25 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
     complementos: [],
     imagen: '',
   });
+
+  const modalRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      handlemodalComplementos();
+    }
+  };
+
+
+  useEffect(() => {
+    if (activeModal) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [activeModal]);
   const deleteItemR = (id) => {
 
     console.log('entreo aca');
@@ -284,6 +303,7 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
         <div className=" fixed inset-0 z-30 w-screen overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
+              ref={modalRef}
               className="relative font-b_slick_bold transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start w-full">

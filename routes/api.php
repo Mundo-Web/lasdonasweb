@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PrecioEnvioController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,5 @@ Route::post('/products/AddOrder', [ProductsController::class, 'AddOrder'])->name
 Route::post('/products/addComplemento', [ProductsController::class, 'addComplemento'])->name('products.addComplemento');
 
 Route::post('/payment/culqi', [PaymentController::class, 'culqi'])->name('payment.culqi');
+Route::post('/consultar-localidad', [PrecioEnvioController::class, 'searchzip'])->name('payment.searchzip');
+

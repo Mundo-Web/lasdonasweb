@@ -113,4 +113,16 @@ class PrecioEnvioController extends Controller
       ]);
       return response()->json(['message' => 'registro actualizado']);
     }
+
+    public function searchzip(Request $request)
+    {
+        try {
+            $zip_code = $request->zip_code;
+            $precioEnvio = PrecioEnvio::where('zip_code', $zip_code)->firstOrFail();
+            return response()->json($precioEnvio);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'No se encontró el código postal'], 404);
+        }
+       
+    }
 }

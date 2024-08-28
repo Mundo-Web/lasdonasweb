@@ -353,7 +353,7 @@ class IndexController extends Controller
           ->where('isDefault', true)
           ->exists();
       } */
-    $MensajesPredefinidos = MensajesPredefinidos::where('status', '=', 1)->where('visible', '=', 1)->get();
+    // $MensajesPredefinidos = MensajesPredefinidos::where('status', '=', 1)->where('visible', '=', 1)->get();
     $greetings = Greeting::where('status', true)->where('visible', true)->get();
 
     $url_env = $_ENV['APP_URL'];
@@ -366,7 +366,7 @@ class IndexController extends Controller
       'culqi_public_key' => $culqi_public_key,
       'addresses' => $addresses,
       'hasDefaultAddress' => $hasDefaultAddress,
-      'MensajesPredefinidos' => $MensajesPredefinidos,
+      // 'MensajesPredefinidos' => $MensajesPredefinidos,
       'greetings' => $greetings
     ])->rootView('app');
   }

@@ -1,6 +1,6 @@
 import React from "react";
 
-function InputField({ eRef, label, type = "text", value, defaultValue, placeholder, handleDatosFinales, name, className }) {
+function InputField({ isRequired = false, eRef, label, type = "text", value, defaultValue, placeholder, handleDatosFinales, name, className }) {
   return (
     <div className="flex flex-col mt-1 w-full max-md:max-w-full">
       {label && (
@@ -9,6 +9,7 @@ function InputField({ eRef, label, type = "text", value, defaultValue, placehold
         </label>
       )}
       <input
+        required={isRequired}
         ref={eRef}
         value={value}
         onChange={handleDatosFinales}

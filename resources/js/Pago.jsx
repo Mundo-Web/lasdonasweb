@@ -24,6 +24,7 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [showDedicatoria, setShowDedicatoria] = useState(false)
   const [showFirma, setShowshowFirma] = useState(false)
+  const [costoEnvio, setCostoEnvio] = useState(0)
 
   const [selectedOption, setSelectedOption] = useState(null);
   const handleOptionChange = (selected) => {
@@ -170,7 +171,7 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
 
           <div className='flex flex-col w-full my-8'>
 
-            <OrderSummary carrito={carrito} />
+            <OrderSummary carrito={carrito} costoEnvio={costoEnvio} />
           </div>
           <div className='text-center flex w-full content-center justify-center'>
             <ProgressBar />
@@ -213,11 +214,13 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
                 <div type='button' className='text-white bg-green-800 w-full mt-1 p-2 rounded-lg text-center cursor-pointer ' label="Seleccionar dirección" onClick={handlemodalMaps} >Seleccionar direccion de envio </div>
 
                 <ModalGoogle handlemodalMaps={handlemodalMaps} isModalOpen={isModalOpen} tittle={'Dirección de envío'} >
-                  <AddressForm onSelectAddress={onSelectAddress} scriptLoaded={scriptLoaded} handlemodalMaps={handlemodalMaps} />
+                  <AddressForm onSelectAddress={onSelectAddress} scriptLoaded={scriptLoaded} handlemodalMaps={handlemodalMaps} setCostoEnvio={setCostoEnvio} />
 
                 </ModalGoogle>
 
+                {console.log(datosFinales)}
                 <p className='my-2 text-base font-light'>Direccion: {datosFinales.address?.fulladdress ?? 'Sin direccion'}</p>
+                <p className='my-2 text-base font-light'>Costo de envio: {costoEnvio > 0 ? <>S/ {costoEnvio} </> : 'Evaluando'}</p>
 
 
               </section>
