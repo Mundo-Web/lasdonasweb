@@ -1,11 +1,7 @@
 import React from "react";
 
-<<<<<<< HEAD
-function InputField({ isRequired = false, eRef, label, type = "text", value, defaultValue, placeholder, handleDatosFinales, name, className }) {
-=======
 function InputField({ eRef, label, type = "text", value, defaultValue, placeholder, handleDatosFinales, name, className, required = false }) {
   console.log(required)
->>>>>>> 15d7b704e47248680971095bfa9ae0cae7071784
   return (
     <div className="flex flex-col mt-1 w-full max-md:max-w-full">
       {label && (
@@ -14,7 +10,7 @@ function InputField({ eRef, label, type = "text", value, defaultValue, placehold
         </label>
       )}
       <input
-        required={isRequired}
+        // required={isRequired}
         ref={eRef}
         value={value}
         onChange={handleDatosFinales}
