@@ -29,6 +29,19 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
       longitude: 0
     }
   })
+  const validateForm = () => {
+    const requiredFields = [
+      'fullname', 'phone', 'fulladdress', 'street', 'number', 'mz',
+      'department', 'province', 'district', 'residenceType', 'reference', 'postal_code'
+    ];
+
+    for (let field of requiredFields) {
+      if (!formState[field]) {
+        return false;
+      }
+    }
+    return true;
+  };
 
   const consultarLocalicad = async (zip_code, cancelToken) => {
     try {
@@ -57,7 +70,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Ha ocurrido un error al consultar la ubicación, por favor intenta nuevamente',
+            text: 'La direccion que ha elegido no tiene covertura en nuestra zona de reparto',
             showConfirmButton: true,
             showCancelButton: false,
             confirmButtonText: 'Aceptar',
@@ -155,7 +168,19 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
   }
 
   const continueToPayment = () => {
-    onSelectAddress(formState)
+    if (validateForm()) {
+      onSelectAddress(formState);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, completa todos los campos requeridos antes de continuar.',
+        showConfirmButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#EF4444'
+      });
+    }
   };
 
 
@@ -165,6 +190,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
           <div className="md:col-span-2">
             <InputField
+              required={true}
 
               eRef={addressRef.fullname}
               label="Nombre del destinatario"
@@ -177,6 +203,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           </div>
           <div className="md:col-span-1">
             <InputField
+              required={true}
               eRef={addressRef.phone}
               label="Teléfono del destinatario"
               placeholder="+51"
@@ -193,6 +220,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full text-neutral-900">
           <div className="md:col-span-2">
             <InputField
+              required={true}
               eRef={addressRef.street}
               label="Calle"
               placeholder="Faucibus"
@@ -204,6 +232,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           </div>
           <div className="md:col-span-1">
             <InputField
+              required={true}
               eRef={addressRef.number}
               label="Número"
               className="w-full"
@@ -217,6 +246,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full text-neutral-900">
           <div className="md:col-span-2">
             <InputField
+              required={true}
               eRef={addressRef.mz}
               label="Manzana"
               placeholder="Faucibus"
@@ -228,6 +258,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           </div>
           <div className="md:col-span-1">
             <InputField
+              required={true}
               eRef={addressRef.postalCode}
               label="Código postal"
               placeholder="C.P. 987-2346"
@@ -242,6 +273,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full text-neutral-900">
           <div className="md:col-span-1">
             <InputField
+              required={true}
               eRef={addressRef.department}
               label="Departamento"
               placeholder="Departamento..."
@@ -253,6 +285,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           </div>
           <div className="md:col-span-1">
             <InputField
+              required={true}
               eRef={addressRef.province}
               label="Provincia"
               placeholder="Benito..."
@@ -264,6 +297,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           </div>
           <div className="md:col-span-1">
             <InputField
+              required={true}
               eRef={addressRef.district}
               label="Distrito"
               placeholder="Seleccionar"
@@ -278,6 +312,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full">
           <div className="md:col-span-2">
             <InputField
+              required={true}
               eRef={addressRef.residenceType}
               label="Tipo de domicilio"
               placeholder="Ingresa Tipo de Domicilio"
@@ -290,6 +325,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
         </section>
 
         <InputField
+          required={true}
           eRef={addressRef.reference}
           label="Referencias"
           className="w-full mt-4"
@@ -298,6 +334,9 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           handleDatosFinales={handlechange}
         />
 
+        <p className="mt-8 text-sm font-light">
+          Todos los campos con un <span className="text-red-500 font-bold text-[20px]">*</span> son obligatorios.
+        </p>
         <p className="mt-8 text-green-800">
           Si la información es incorrecta, no podemos garantizar la entrega.
         </p>
