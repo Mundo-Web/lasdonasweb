@@ -71,7 +71,7 @@
                 quantity: x.cantidad,
                 isCombo: x.isCombo || false
               })),
-              ...paymentData
+              ...paymentData,
               culqi: Culqi.token
             }
             const res = await fetch("{{ route('payment.culqi') }}", {

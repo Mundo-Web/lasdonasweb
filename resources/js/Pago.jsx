@@ -18,6 +18,7 @@ import ModalGoogle from './components/ModalGoogle';
 import AddressForm from './components/AddressForm';
 import Checkbox from './components/Checkbox';
 import SelectSecond from './components/SelectSecond';
+import Swal from 'sweetalert2';
 
 const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) => {
 
@@ -141,6 +142,17 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
 
   const startCulqi = (e) => {
     e.preventDefault()
+
+    if (!datosFinales.address.postal_code) return Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Por favor, seleccione una direccion para continuar',
+      showConfirmButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#EF4444'
+    })
+   
     Local.set('payment-data', {
       address: datosFinales.address,
       dedication: datosFinales.dedication,
@@ -316,7 +328,11 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
                     }))
                   }} />
                   <div className="flex flex-col mt-8 w-full max-md:max-w-full">
-                    <InputField label="Número de RUC" placeholder="Ingrese un RUC" handleDatosFinales={(e) => {
+                    <InputField
+                    label="Número de RUC"
+                    placeholder="Ingrese un RUC"
+                    required
+                    handleDatosFinales={(e) => {
                       setDatosFinales(old => ({
                         ...old,
                         billing: {
@@ -325,7 +341,11 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
                         }
                       }))
                     }} />
-                    <InputField label="Razón Social" placeholder="Ingrese una Razón Social" handleDatosFinales={(e) => {
+                    <InputField
+                    label="Razón Social"
+                    placeholder="Ingrese una Razón Social"
+                    required
+                    handleDatosFinales={(e) => {
                       setDatosFinales(old => ({
                         ...old,
                         billing: {
@@ -334,7 +354,11 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
                         }
                       }))
                     }} />
-                    <InputField label="Dirección Fiscal" placeholder="Ingrese una dirección" handleDatosFinales={(e) => {
+                    <InputField
+                    label="Dirección Fiscal"
+                    placeholder="Ingrese una dirección"
+                    required
+                    handleDatosFinales={(e) => {
                       setDatosFinales(old => ({
                         ...old,
                         billing: {
@@ -343,7 +367,12 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
                         }
                       }))
                     }} />
-                    <InputField label="Correo electrónico" type="email" placeholder="Ingrese un correo" handleDatosFinales={(e) => {
+                    <InputField
+                    label="Correo electrónico"
+                    type="email"
+                    placeholder="Ingrese un correo"
+                    required
+                    handleDatosFinales={(e) => {
                       setDatosFinales(old => ({
                         ...old,
                         billing: {
