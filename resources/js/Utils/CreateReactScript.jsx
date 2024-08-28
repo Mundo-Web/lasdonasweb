@@ -1,5 +1,6 @@
 import { createInertiaApp } from '@inertiajs/react'
 import { Cookies, FetchParams } from 'sode-extend-react'
+import 'tippy.js/dist/tippy.css';
 
 const CreateReactScript = (render) => {
 

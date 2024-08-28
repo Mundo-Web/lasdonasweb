@@ -1,7 +1,7 @@
 import React, { Children } from 'react'
 import Button from './Button'
 
-const ModalSimple = ({ id, showModal, setshowModal, url_env, children, tittle }) => {
+const ModalSimple = ({ id, showModal, setshowModal, children, tittle }) => {
 
   const closeModal = () => {
     setshowModal(false)
@@ -23,7 +23,7 @@ const ModalSimple = ({ id, showModal, setshowModal, url_env, children, tittle })
                     <h2 className="text-lg font-bold leading-6 text-gray-900 mb-2" id="modal-title">{tittle}</h2>
 
 
-                    <img src={url_env + '/images/img/xcoral.png'} alt="" className="h-5 cursor-pointer"
+                    <img src={'/images/img/xcoral.png'} alt="" className="h-5 cursor-pointer"
                       onClick={closeModal} />
                   </div>
                   {children}

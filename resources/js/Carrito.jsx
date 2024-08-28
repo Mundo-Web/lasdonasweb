@@ -9,6 +9,7 @@ import Accordion from './Accordion2';
 import calculartotal from './Utils/calcularTotal'
 import Button from './components/Button';
 import QuantitySelector from './components/QuantitySelector';
+import Tippy from '@tippyjs/react';
 
 
 const Carrito = ({ complementos, points = 0 }) => {
@@ -155,18 +156,28 @@ const Carrito = ({ complementos, points = 0 }) => {
                         </div>
                         <div className="grid grid-cols-2 w-full">
                           <div className="col-span1">
-                            <div className="flex flex-col    font-bold text-[#112212] items-end content-end">
+                            <div className="flex flex-col font-bold text-[#112212] items-center justify-center content-end">
                               <span className='opacity-80'>
                                 Precio
                               </span>
-                              <span>
+                              <span className='text-center'>
                                 S/. {item.precio}
                                 {
-                                  item.puntos_complemento > 0 && <>
-                                  <br />
-                                  o
-                                  <br />
-                                  {item.puntos_complemento} puntos
+                                  item.points > 0 && <>
+                                    <br />
+                                    o
+                                    <br />
+                                    <Tippy content={`${item.points} puntos`}>
+                                      <span className=' bg-orange-400 text-sm px-2 pb-1 pt-[8px] rounded-md text-white'>
+                                        <i className='mdi mdi-dots-hexagon me-1'></i>
+                                        <span>{item.points}</span>
+                                      </span>
+                                    </Tippy>
+                                    <br />
+                                    <div class="flex items-center mt-1">
+                                      <input id={`use-points-${item.id}`} type="checkbox" value="" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                      <label for={`use-points-${item.id}`} class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 text-nowrap">Usar puntos</label>
+                                    </div>
                                   </>
                                 }
                               </span>

@@ -176,8 +176,8 @@ class IndexController extends Controller
         }
       }
       $beneficios = Strength::where('status', '=', 1)->get();
-      $tipoFlores = TipoFlor::select('tipo_flors.*')->join('products','products.tipo_flor_id', '=','tipo_flors.id')->where('tipo_flors.status', '=', 1) ->groupBy('tipo_flors.id')->get();
-      
+      $tipoFlores = TipoFlor::select('tipo_flors.*')->join('products', 'products.tipo_flor_id', '=', 'tipo_flors.id')->where('tipo_flors.status', '=', 1)->groupBy('tipo_flors.id')->get();
+
 
       // return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page'));
       return Inertia::render('Catalogo', [
@@ -252,10 +252,10 @@ class IndexController extends Controller
   public function carrito()
   {
     $complementos  = Tag::where('status', '=', 1)
-    ->join('tags_xproducts', 'tags_xproducts.tag_id', 'tags.id')
-    ->where('visible', '=', 1)
-    ->groupBy('tags.id')
-    ->get();
+      ->join('tags_xproducts', 'tags_xproducts.tag_id', 'tags.id')
+      ->where('visible', '=', 1)
+      ->groupBy('tags.id')
+      ->get();
 
     /* $complementos = Complemento::select('complementos.*')
       ->join('products', 'products.complemento_id', '=', 'complementos.id')
@@ -270,7 +270,7 @@ class IndexController extends Controller
     // return view('public.checkout_carrito', compact('url_env', 'departamentos'));
     return Inertia::render('Carrito', [
       'complementos' => $complementos,
-      'points' => Auth::user()->points
+      'points' => Auth::check() ? Auth::user()->points : 0
     ])->rootView('app');
   }
 
@@ -309,7 +309,7 @@ class IndexController extends Controller
       ->groupBy('id', 'description', 'department_id')
       ->get(); */
 
-   /*  $districts = Price::select([
+    /*  $districts = Price::select([
       'districts.id AS id',
       'districts.description AS description',
       'districts.province_id AS province_id',
@@ -335,7 +335,7 @@ class IndexController extends Controller
 
     $addresses = [];
     $hasDefaultAddress = false;
-      /* if (Auth::check()) {
+    /* if (Auth::check()) {
         $addresses = Address::with([
           'price',
           'price.district',
@@ -730,7 +730,8 @@ class IndexController extends Controller
       'general' => $general,
       'politicasSustitucion' => $politicasSustitucion,
       'politicaEnvio' => $politicaEnvio,
-      'complementosAcordion' => $complementosAcordion
+      'complementosAcordion' => $complementosAcordion,
+      'points' => Auth::check() ? Auth::user()->points : 0
     ])->rootView('app');
   }
 
@@ -978,15 +979,15 @@ class IndexController extends Controller
     $tags = DB::select('select producto_id from tags_xproducts where tag_id = ?', [$request->id]);
 
     // Paso 2: Extraer los producto_id de los resultados
-    $productoIds = array_map(function($tag) {
-        return $tag->producto_id;
+    $productoIds = array_map(function ($tag) {
+      return $tag->producto_id;
     }, $tags);
 
     // Paso 3: Buscar los productos que coincidan con esos producto_id
     if (!empty($productoIds)) {
-        $productos = Products::with('images')->where('tipo_servicio' , 'complemento')->whereIn('id', $productoIds)->get();
+      $productos = Products::with('images')->where('tipo_servicio', 'complemento')->whereIn('id', $productoIds)->get();
     } else {
-        $productos = [];
+      $productos = [];
     }
 
     return response()->json(['productos' => $productos]);

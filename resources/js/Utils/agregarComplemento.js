@@ -1,14 +1,14 @@
 import axios from "axios";
 import { Local } from 'sode-extend-react/sources/storage'
 
- const agregarComplementoPedido = async (id) => {
+const agregarComplementoPedido = async (id) => {
   try {
     const res = await axios.post('/api/products/addComplemento', { id });
 
     if (res.status === 200) {
       const { data: complementos } = res.data;
 
-      
+
 
       let detalleComplemento = complementos.map(item => {
         const object = {
@@ -25,6 +25,7 @@ import { Local } from 'sode-extend-react/sources/storage'
         }
         if (item.tipo_servicio == 'complemento' && item.puntos_complemento > 0) {
           object.points = item.puntos_complemento
+          object.usePoints = false
         }
         return object
       })
@@ -33,11 +34,11 @@ import { Local } from 'sode-extend-react/sources/storage'
 
       let carrito = Local.get('carrito') ?? [];
 
-      
+
       // Verificar si el artículo ya existe en el carrito
       let existeArticulo = carrito.some(item => item.id === detalleComplemento[0].id);
 
-      
+
 
       if (existeArticulo) {
         // Actualizar la cantidad del artículo existente
