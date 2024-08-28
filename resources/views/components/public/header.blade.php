@@ -529,6 +529,7 @@
   }
 
   function addOnCarBtn(id) {
+    let articulosCarrito = Local.get('carrito') || [];
     let prodRepetido = articulosCarrito.map(item => {
       if (item.id === id) {
 
@@ -537,12 +538,13 @@
       return item;
     });
 
-    Local.set('carrito', articulosCarrito);
+    Local.set('carrito', prodRepetido);
     limpiarHTML();
     PintarCarrito();
   }
 
-  function deleteOnCarBtn(id, isCombo) {
+  function deleteOnCarBtn(id) {
+    let articulosCarrito = Local.get('carrito') || [];
     let prodRepetido = articulosCarrito.map(item => {
       if (item.id === id && item.cantidad > 0) {
 
@@ -551,13 +553,14 @@
       return item;
     });
 
-    Local.set('carrito', articulosCarrito);
+    Local.set('carrito', prodRepetido);
     limpiarHTML();
     PintarCarrito();
   }
 
-  function deleteItem(id, isCombo) {
+  function deleteItem(id) {
 
+    let articulosCarrito = Local.get('carrito') || [];
     let idCount = {};
     let duplicates = [];
     articulosCarrito.forEach(item => {
@@ -589,6 +592,7 @@
 
     // return
 
+    // setCarrito(articulosCarrito)
 
 
     Local.set('carrito', articulosCarrito)

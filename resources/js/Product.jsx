@@ -32,6 +32,8 @@ import 'tippy.js/dist/tippy.css'; // Importa los estilos de Tippy
 import agregarComplementoPedido from './Utils/agregarComplemento'
 import Button from './components/Button'
 
+import { deleteOnCarBtnR } from './Utils/carritoR'
+
 const Product = ({
   complementos,
   general,
@@ -93,15 +95,26 @@ const Product = ({
   });
 
 
-  const handleCheckboxChange = (id) => {
+  const handleCheckboxChange = (e, id) => {
+
+
 
 
     let carrito = Local.get('carrito') ?? [];
     if (carrito.length > 0) {
 
-      console.log('entra porque tiene algo ')
+      if (e.target.checked) {
 
-      agregarComplementoPedido(id)
+        console.log('Checkeando')
+
+        agregarComplementoPedido(id)
+      } else {
+        console.log('Descheckeando lo debe de quitar');
+
+        deleteOnCarBtnR(id)
+
+      }
+
 
     } else {
       setDetallePedido((prev) => {
@@ -755,7 +768,7 @@ const Product = ({
                             className="peer absolute top-3 left-3 w-5 h-5 border-orange-400  accent-rosalasdonasborder-orange-400 checked:border-orange-400  outline-orange-400 checked:bg-orange-400 hover:checked:bg-orange-400 hover:border-orange-400 hover:bg-orange-400
                                focus:border-orange-400 rounded-md shadow-md focus:checked:bg-orange-400 focus:checked:border-orange-400  focus:bg-orange-400"
                             required
-                            onChange={() => handleCheckboxChange(complemento.id)}
+                            onChange={(e) => handleCheckboxChange(e, complemento.id)}
                           />
                           {complemento.images.length > 0 ? (
                             complemento.images.map((image) =>

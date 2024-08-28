@@ -58,7 +58,7 @@ const agregarComplementoPedido = async (id) => {
 
       // Guardar el carrito actualizado en el almacenamiento local
       Local.set('carrito', carrito);
-
+      const cartButton = document.getElementById('open-cart')
 
 
       const item = $('#gift-icon')
