@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import CreateReactScript from './Utils/CreateReactScript'
 import AccordionSimple from './AccordionSimple';
 

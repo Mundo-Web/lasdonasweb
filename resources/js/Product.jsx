@@ -105,11 +105,11 @@ const Product = ({
 
       if (e.target.checked) {
 
-        console.log('Checkeando')
+        // console.log('Checkeando')
 
         agregarComplementoPedido(id)
       } else {
-        console.log('Descheckeando lo debe de quitar');
+        // console.log('Descheckeando lo debe de quitar');
 
         deleteOnCarBtnR(id)
 
