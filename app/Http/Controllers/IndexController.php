@@ -251,9 +251,6 @@ class IndexController extends Controller
 
   public function carrito()
   {
-    //
-    $url_env = $_ENV['APP_URL'];
-    $departamentos = DB::table('departments')->get();
     $complementos  = Tag::where('status', '=', 1)
     ->join('tags_xproducts', 'tags_xproducts.tag_id', 'tags.id')
     ->where('visible', '=', 1)
@@ -272,10 +269,8 @@ class IndexController extends Controller
 
     // return view('public.checkout_carrito', compact('url_env', 'departamentos'));
     return Inertia::render('Carrito', [
-      'url_env' => $url_env,
-      'departamentos' => $departamentos,
-      'complementos' => $complementos
-
+      'complementos' => $complementos,
+      'points' => Auth::user()->points
     ])->rootView('app');
   }
 

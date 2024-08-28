@@ -4,7 +4,7 @@ import agregarComplementoPedido from './Utils/agregarComplemento';
 
 
 
-const AccordionContent = ({ id, url_env, setDetallePedido }) => {
+const AccordionContent = ({ id, setDetallePedido }) => {
   const [complementos, setComplementos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -79,7 +79,7 @@ const AccordionContent = ({ id, url_env, setDetallePedido }) => {
                     <img
                       key={image.id}
                       className="size-full w-48 h-56 rounded-lg object-cover"
-                      src={image.name_imagen ? `${url_env}/${image.name_imagen}` : 'path/to/default.jpg'}
+                      src={image.name_imagen ? `/${image.name_imagen}` : 'path/to/default.jpg'}
                       alt={complemento.producto}
                     />
                   ) : null
@@ -87,7 +87,7 @@ const AccordionContent = ({ id, url_env, setDetallePedido }) => {
               ) : (
                 <img
                   className="size-full w-48 h-56 rounded-lg object-cover"
-                  src={`${url_env}/images/img/noimagen.jpg`}
+                  src={`/images/img/noimagen.jpg`}
                   alt="No imagen"
                 />
               )}

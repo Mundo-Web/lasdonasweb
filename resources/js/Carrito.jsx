@@ -1,22 +1,17 @@
 import { createRoot } from 'react-dom/client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CreateReactScript from './Utils/CreateReactScript'
-import SelectSearch from './components/SelectSearch';
-import Card from './components/Card';
-import axios from 'axios';
 import AccordionSimple from './AccordionSimple';
 
 import './fade.css';
-import { set } from 'sode-extend-react/sources/cookies';
 import { Local } from 'sode-extend-react/sources/storage'
-import truncateText from './Utils/truncateText'
 import Accordion from './Accordion2';
 import calculartotal from './Utils/calcularTotal'
 import Button from './components/Button';
 import QuantitySelector from './components/QuantitySelector';
 
 
-const Carrito = ({ url_env, departamentos, complementos }) => {
+const Carrito = ({ complementos, points = 0 }) => {
 
   const [carrito, setCarrito] = useState(Local.get('carrito') || []);
   const [montoTotal, setMontoTotal] = useState(0);
@@ -144,12 +139,11 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
 
                 <div className='flex flex-col gap-5'>
                   {carrito.map((item) => (
-                    console.log(item),
                     <div className="flex flex-col md:flex-row py-5  px-4 rounded-xl border-[#E8ECEF] gap-6 text-[#112212] border
                      hover:border-[#336234] group ">
                       <img src={`/images/img/xcoral.png`} type="icon" onClick={() => deleteItemR(item.id)} className='flex w-5 h-5 cursor-pointer' alt="" />
 
-                      <img className='h-[170px] w-[176px] transform transition-transform duration-300 ease-in-out group-hover:scale-110' src={`/${item.imagen} `} alt="" />
+                      <img className='h-[100px] aspect-square object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110' src={`/${item.imagen} `} alt="" />
                       <div className='flex flex-row gap-4 w-full px-2'>
                         <div className="flex flex-col self-stretch w-52">
                           <div className="flex flex-col w-full">
@@ -166,7 +160,15 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
                                 Precio
                               </span>
                               <span>
-                                {item.precio}
+                                S/. {item.precio}
+                                {
+                                  item.puntos_complemento > 0 && <>
+                                  <br />
+                                  o
+                                  <br />
+                                  {item.puntos_complemento} puntos
+                                  </>
+                                }
                               </span>
 
                             </div>
@@ -177,7 +179,7 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
                                 Total
                               </span>
                               <span>
-                                {Number(item.precio) * Number(item.cantidad).toFixed(2)}
+                                {(Number(item.precio) * Number(item.cantidad)).toFixed(2)}
                               </span>
 
                             </div>
@@ -297,7 +299,7 @@ const Carrito = ({ url_env, departamentos, complementos }) => {
                         onClick={handlemodalComplementos} />
                     </div>
                     <div className="mt-5 gap-4 " id="containerComplementos" data-accordion="collapse">
-                      <Accordion datos={currentComplemento} url_env={url_env}
+                      <Accordion datos={currentComplemento}
                         setDetallePedido={setDetallePedido} />
                     </div>
                   </div>

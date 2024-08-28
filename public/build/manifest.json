@@ -1,6 +1,6 @@
 {
-  "_Accordion2-V0N5zbel.js": {
-    "file": "assets/Accordion2-V0N5zbel.js",
+  "_Accordion2-2zkk2As3.js": {
+    "file": "assets/Accordion2-2zkk2As3.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -118,7 +118,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Cxh6-gu8.css",
+    "file": "assets/app-PreFQucf.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -202,21 +202,21 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Carrito-SevKyK3s.js",
+    "file": "assets/Carrito-pEfTd-jK.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_CreateReactScript-BXBBo-c3.js",
-      "_index-XJuWVQ-l.js",
       "_storage-zp2nPsZU.js",
-      "_Accordion2-V0N5zbel.js",
+      "_Accordion2-2zkk2As3.js",
       "_calcularTotal-sXLDybB7.js",
       "_Button-mPI2Y0vv.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_axios-_sX4vCAy.js"
+      "_axios-_sX4vCAy.js",
+      "_index-XJuWVQ-l.js"
     ],
     "isEntry": true,
     "src": "resources/js/Carrito.jsx"
@@ -300,7 +300,7 @@
       "assets/Product-C64i7G0l.css",
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Product-Gntl3LAa.js",
+    "file": "assets/Product-IcOhGHsV.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -311,7 +311,7 @@
       "resources/js/components/ListHorariosPopup.jsx",
       "_setPrototypeOf-7MT-VylK.js",
       "_index-38suPYpT.js",
-      "_Accordion2-V0N5zbel.js",
+      "_Accordion2-2zkk2As3.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_es-Hz-LnzMB.js",
       "_ProductCard-DeN9ohYo.js",

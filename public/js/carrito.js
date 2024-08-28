@@ -48,8 +48,6 @@ let articulosCarrito = [];
       Local.set('carrito', articulosCarrito)
       limpiarHTML()
       PintarCarrito()
-
-
     }
 
    /*  function addOnCarBtn(id, operacion, colorId, talla) {
@@ -208,8 +206,6 @@ let articulosCarrito = [];
         },
         success: function(success) {
 
-          console.log(success.valorAtributo.attribute_id)
-
           let {
             producto,
             id,
@@ -233,7 +229,8 @@ let articulosCarrito = [];
               hex:  success.valorAtributo.color
             },
             caratula: success.caratula.images[0].name_imagen,
-            talla: talla.trim()
+            talla: talla.trim(),
+            points: success.points
           }
 
           console.log(detalleProducto)

@@ -180,7 +180,7 @@ const Product = ({ complementos, general,
           extract: producto.extract,
         }
         let detalleComplemento = complementos.map(item => {
-          return {
+          const object = {
             id: item.id,
             producto: item.producto,
             precio: item.descuento > 0 ? item.descuento : item.precio,
@@ -191,7 +191,12 @@ const Product = ({ complementos, general,
             fecha: fecha,
             horario: horario,
             extract: item.extract,
+
           }
+          if (item.tipo_servicio == 'complemento' && item.puntos_complemento > 0) {
+            object.points = item.puntos_complemento
+          }
+          return object
         })
 
 
