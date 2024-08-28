@@ -270,7 +270,7 @@
                   class="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:opacity-75 dark:group-hover:text-slate-200 text-[#272727] ">
                   {{ explode(' ', Auth::user()->name)[0] }}</span>
                 <i class="mdi mdi-chevron-down"></i>
-                  {{-- <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
+                {{-- <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
                   <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                 </svg> --}}
               </div>
@@ -528,9 +528,9 @@
     $('#itemsCount').text(contarArticulos)
   }
 
-  function addOnCarBtn(id, isCombo) {
+  function addOnCarBtn(id) {
     let prodRepetido = articulosCarrito.map(item => {
-      if (item.id === id && item.isCombo == isCombo) {
+      if (item.id === id) {
 
         item.cantidad += 1;
       }
@@ -544,7 +544,7 @@
 
   function deleteOnCarBtn(id, isCombo) {
     let prodRepetido = articulosCarrito.map(item => {
-      if (item.id === id && item.isCombo == isCombo && item.cantidad > 0) {
+      if (item.id === id && item.cantidad > 0) {
 
         item.cantidad -= 1;
       }
