@@ -42,7 +42,6 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
       }
     }))
     // Aquí puedes manejar cualquier lógica adicional que necesites
-    console.log('Opción seleccionada:', selected);
   };
 
   useEffect(() => {
@@ -51,7 +50,6 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
     script.async = true;
     script.defer = true;
     script.onload = () => {
-      console.log('Google Maps API loaded');
       setScriptLoaded(true)
     };
 
@@ -85,7 +83,6 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
   if (carrito.length == 0) return location.href = '/';
 
   const onSelectAddress = (direccion) => {
-    console.log(direccion);
     setDatosFinales((prevDatos) => ({
       ...prevDatos,
       address: direccion,
@@ -229,7 +226,6 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
 
                 </ModalGoogle>
 
-                {console.log(datosFinales)}
                 <p className='my-2 text-base font-light'>Direccion: {datosFinales.address?.fulladdress ?? 'Sin direccion'}</p>
                 <p className='my-2 text-base font-light'>Costo de envio: {costoEnvio > 0 ? <>S/ {costoEnvio} </> : 'Evaluando'}</p>
 
