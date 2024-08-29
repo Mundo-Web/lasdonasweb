@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Collection;
 use App\Models\General;
 use App\Models\Message;
+use App\Models\PoliticaDatos;
+use App\Models\TermsAndCondition;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 use Illuminate\Support\Facades\View;
@@ -27,6 +29,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::composer('auth.register', function ($view) {
+            $termsAndCondicitions = TermsAndCondition::first();
+            $politicas = PoliticaDatos::first() ?? new PoliticaDatos();
+            $view->with(['politicas'=> $politicas , 'terminos' => $termsAndCondicitions]);
+        });
+
         View::composer('components.public.footer', function ($view) {
             // Obtener los datos del footer
             $datosgenerales = General::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él

@@ -331,7 +331,7 @@
   @php
     $currentUrl = url()->full();
   @endphp
-  @if (!request()->is('login'))
+  @if (!request()->is('login') && !request()->is('register'))
     <div class="header_bottom hidden 2md:flex h-12 bg-[#336234] px-[5%] lg:px-[8%] 2md:justify-center">
       <div class="text-base font-b_classic_bold ">
 

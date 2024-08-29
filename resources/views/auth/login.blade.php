@@ -83,7 +83,7 @@
         </div>
         <div class="flex self-start mt-12 text-sm font-medium leading-tight text-center w-full gap-2 justify-center">
           <span class="">Eres nuevo? </span>
-          <a href="#" class="text-orange-400 underline">Regístrate aquí</a>
+          <a href="/register" class="text-orange-400 underline">Regístrate aquí</a>
         </div>
       </div>
     </div>
