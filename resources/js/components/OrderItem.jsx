@@ -3,7 +3,7 @@ import React from 'react';
 function OrderItem({ producto, extract, sku, precio, cantidad, total, usePoints, imagen, points,  userPoints}) {
   let finalQuantity = structuredClone(cantidad)
   for (let i = 0; i < cantidad; i++) {
-    if (usePoints && userPoints > points) {
+    if (usePoints && userPoints >= points) {
       finalQuantity--
       userPoints -= points
     }

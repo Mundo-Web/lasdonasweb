@@ -9,12 +9,15 @@ class DetalleOrden extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'producto_id',
-        'cantidad',
         'orden_id',
+        'producto_id',
+        'name',
+        'imagen',
+        'cantidad',
         'precio',
-        'talla',
-        'color'
+        'price_used',
+        'points',
+        'points_used',
     ];
 
     public function ordenes()
@@ -31,5 +34,4 @@ class DetalleOrden extends Model
     {
         return $this->hasOne(ImagenProducto::class, 'product_id', 'producto_id')->where('caratula', 1);
     }
-
 }

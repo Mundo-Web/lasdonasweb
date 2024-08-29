@@ -34,8 +34,8 @@
   "_axios-_sX4vCAy.js": {
     "file": "assets/axios-_sX4vCAy.js"
   },
-  "_calcularTotal-v8O7gacH.js": {
-    "file": "assets/calcularTotal-v8O7gacH.js"
+  "_calcularTotal-FPqXOtx1.js": {
+    "file": "assets/calcularTotal-FPqXOtx1.js"
   },
   "_es-!~{012}~.js": {
     "file": "assets/es-D87rtk4j.css",
@@ -202,7 +202,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Carrito-q4o2-F0m.js",
+    "file": "assets/Carrito-5krmmTL5.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -210,7 +210,7 @@
       "_CreateReactScript-nMB6kyAI.js",
       "_storage-zp2nPsZU.js",
       "_Accordion2-1IUm3Q-f.js",
-      "_calcularTotal-v8O7gacH.js",
+      "_calcularTotal-FPqXOtx1.js",
       "_Button-pfbHwtIn.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
@@ -275,14 +275,14 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Pago-XYmNlESM.js",
+    "file": "assets/Pago-FiLtEPO_.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_CreateReactScript-nMB6kyAI.js",
       "_storage-zp2nPsZU.js",
-      "_calcularTotal-v8O7gacH.js",
+      "_calcularTotal-FPqXOtx1.js",
       "_Button-pfbHwtIn.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
@@ -300,7 +300,7 @@
     "css": [
       "assets/fade-WxPIMcx6.css"
     ],
-    "file": "assets/Product-N5NB38hC.js",
+    "file": "assets/Product-IradfZt-.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",

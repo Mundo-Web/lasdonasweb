@@ -8,7 +8,7 @@ const calculartotal = (points = 0) => {
     let totalPrice = 0;
     let cantidadGeneral = structuredClone(item.cantidad)
     for (let i = 0; i < item.cantidad; i++) {
-      if (restPoints > item.points) {
+      if (restPoints >= item.points) {
         restPoints -= item.points
         cantidadGeneral--
       } else break

@@ -72,6 +72,7 @@
               _token: $('[name="_token"]').val(),
               cart: carrito.map((x) => ({
                 id: x.id,
+                imagen: x.imagen,
                 quantity: x.cantidad,
                 usePoints: x.usePoints || false
               })),

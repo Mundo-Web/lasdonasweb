@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\DetalleOrden;
+use App\Models\General;
 use App\Models\Offer;
 use App\Models\Ordenes;
+use App\Models\PrecioEnvio;
 use App\Models\Price;
 use App\Models\Products;
 use App\Models\Sale;
 use App\Models\SaleDetail;
+use App\Models\User;
 use App\Services\InstagramService;
 use Culqi\Culqi;
 use Exception;
@@ -16,7 +20,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use SoDe\Extend\JSON;
+use SoDe\Extend\Math;
 use SoDe\Extend\Response;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use SoDe\Extend\Crypto;
+use SoDe\Extend\File;
 
 class PaymentController extends Controller
 {
@@ -28,116 +37,113 @@ class PaymentController extends Controller
 
     $sale = new Ordenes();
 
-
-    // // INICIO: Borrar
-    // $response->status = 200;
-    // $response->message = 'Operacion correcta';
-    // $response->data = [
-    //   'reference_code' => random_int(1000, 9999)
-    // ];
-    // return response($response->toArray(), $response->status);
-    // // FIN: borrar
-
     try {
 
       $products = $body['cart'];
+      $generals = General::select('point_equivalence')->first();
 
-      $productsJpa = Products::select(['id', 'imagen', 'producto', 'color', 'precio', 'descuento'])
+      $productsJpa = Products::select(['id', 'imagen', 'producto', 'precio', 'descuento', 'puntos_complemento', 'tipo_servicio'])
         ->whereIn('id', array_map(fn($x) => $x['id'], $products))
         ->get();
 
+      $restPoints = Auth::check() ? Auth::user()->points : 0;
       $totalCost = 0;
+      $points2discount = 0;
+
+      $details = [];
+
       foreach ($productsJpa as $productJpa) {
         $key = array_search($productJpa->id, array_column($body['cart'], 'id'));
-        if ($productJpa->descuento > 0) {
-          $totalCost += $productJpa->descuento * $body['cart'][$key]['quantity'];
-        } else {
-          $totalCost += $productJpa->precio * $body['cart'][$key]['quantity'];
+        $finalQuantity = $body['cart'][$key]['quantity'];
+        $finalPrice = $productJpa->descuento > 0 ? $productJpa->descuento :  $productJpa->precio;
+
+        $points_used = 0;
+        for ($i = 0; $i < $body['cart'][$key]['quantity']; $i++) {
+          if ($body['cart'][$key]['usePoints'] && $restPoints >= $productJpa->puntos_complemento) {
+            $finalQuantity--;
+            $points2discount += $productJpa->puntos_complemento;
+            $points_used += $productJpa->puntos_complemento;
+            $restPoints -= $productJpa->puntos_complemento;
+          } else break;
         }
+
+        $totalCost += $finalPrice * $finalQuantity;
+
+        $details[] = [
+          'producto_id' => $productJpa->id,
+          'name' => $productJpa->producto,
+          'imagen' => $body['cart'][$key]['imagen'],
+          'cantidad' => $body['cart'][$key]['quantity'],
+          'precio' => $finalPrice,
+          'price_used' => $finalPrice * $finalQuantity,
+          'points' => $productJpa->puntos_complemento,
+          'points_used' => $points_used,
+        ];
       }
+      
+      $precioEnvioJpa = PrecioEnvio::where('zip_code', $body['address']['postal_code'])->first();
+      $precioEnvio = $precioEnvioJpa->price;
 
-      $sale->name = $body['contact']['name'];
-      $sale->lastname = $body['contact']['lastname'];
-      $sale->email = Auth::check() ? Auth::user()->email : $body['contact']['email'];
-      $sale->phone = $body['contact']['phone'];
-      $sale->address_price = 0;
-      $sale->total = $totalCost;
-      $sale->tipo_comprobante = $body['tipo_comprobante'];
-      $sale->doc_number = $body['contact']['doc_number'] ?? null;
-      $sale->razon_fact = $body['contact']['razon_fact'] ?? null;
-      $sale->direccion_fact = $body['contact']['direccion_fact'] ?? null;
-      $sale->code = '000000000000';
+      $points2give = Math::floor(($totalCost + $precioEnvio) / $generals->point_equivalence);
 
-      if ($request->address) {
-        $price = Price::with([
-          'district',
-          'district.province',
-          'district.province.department'
-        ])
-          ->where('prices.id', $body['address']['id'])
-          ->first();
-
-        if ($price) {
-          $totalCost += $price->price;
-
-          $sale->address_department = $price->district->province->department->description;
-          $sale->address_province = $price->district->province->description;
-          $sale->address_district = $price->district->description;
-          $sale->address_street = $body['address']['street'];
-          $sale->address_number = $body['address']['number'];
-          $sale->address_description = $body['address']['description'];
-          $sale->address_price = $price->price;
-          try {
-            if ($request->saveAddress) {
-              Address::create([
-                'email' =>  Auth::check() ? Auth::user()->email : $body['contact']['email'],
-                'price_id' => $price->id,
-                'street' =>  $body['address']['street'],
-                'number' => $body['address']['number'],
-                'description' => $body['address']['description'],
-              ]);
-            }
-          } catch (\Throwable $th) {
-            // dump('No se pudo guardar la direccion', $th);
-          }
-        }
-      }
-
+      $sale->usuario_id = Auth::user()?->id ?? null;
       $sale->status_id = 1;
-      $sale->status_message = 'La venta se ha creado. Aun no se ha pagado';
+      $sale->codigo_orden = '00000000';
+      $sale->points = $points2give;
+      $sale->tipo_tarjeta = $body['culqi']['iin']['card_type'] . ' - ' . $body['culqi']['iin']['card_brand'];
+      $sale->numero_tarjeta = $body['culqi']['card_number'];
+      $sale->culqi_data = JSON::stringify($body['culqi']);
+      $sale->address_full = $body['address']['street'] . ', ' . $body['address']['district'] . ' ' . $body['address']['postal_code'];
+      $sale->address_owner = $body['address']['fullname'];
+      $sale->address_zipcode = $body['address']['postal_code'];
+      $sale->address_latitude = $body['address']['coordinates']['latitude'];
+      $sale->address_longitude = $body['address']['coordinates']['longitude'];
+      $sale->address_data = JSON::stringify($body['address']);
+      $sale->precio_envio = $precioEnvio;
+      $sale->monto = $totalCost;
+      $sale->billing_type = $body['billing']['type'];
+      $sale->billing_document = $body['billing']['type'] == 'boleta' ? $body['billing']['dni'] : $body['billing']['ruc'];
+      $sale->billing_name = $body['billing']['name'] . ' ' . $body['billing']['lastname'];
+      $sale->billing_address = $body['billing']['address'];
+      $sale->billing_email = $body['billing']['email'];
+      $sale->consumer_phone = $body['consumer']['phone'];
+      $sale->dedication_id = $body['dedication']['id'] ?? null;
+      $sale->dedication_title = $body['dedication']['title'] ?? null;
+      $sale->dedication_message = $body['dedication']['message'] ?? null;
+      $sale->dedication_sign = $body['dedication']['sign'] ?? null;
+
+      if ($body['dedication']['image']) {
+        try {
+          $sale->dedication_image = $this->saveDedicationImage($body['dedication']['image']);
+        } catch (\Throwable $th) {
+          $sale->dedication_image = null;
+        }
+      }
 
       $sale->save();
 
-      foreach ($productsJpa as $productJpa) {
-        $key = array_search($productJpa->id, array_column($body['cart'], 'id'));
-        $quantity = $body['cart'][$key]['quantity'];
-        $price = $productJpa->descuento > 0 ? $productJpa->descuento : $productJpa->precio;
-
-        SaleDetail::create([
-          'sale_id' => $sale->id,
-          'product_image' => $productJpa->imagen,
-          'product_name' => $productJpa->producto,
-          'product_color' => $productJpa->color,
-          'quantity' => $quantity,
-          'price' => $price
+      foreach ($details as $detail) {
+        DetalleOrden::create([
+          ...$detail,
+          'orden_id' => $sale->id
         ]);
       }
       $config = [
-        "amount" => round($totalCost * 100),
+        "amount" => round(($totalCost + $precioEnvio) * 100),
         "capture" => true,
         "currency_code" => "PEN",
         "description" => "Compra en " . env('APP_NAME'),
-        "email" => $body['culqi']['email'] ?? $body['contact']['email'],
+        "email" => $body['culqi']['email'] ?? $body['billing']['email'],
         "installments" => 0,
         "antifraud_details" => [
-          "address" => isset($request['address']['street']) ? $request['address']['street'] : 'Sin direccion',
-          "address_city" => isset($request['address']['city']) ? $request['address']['city'] : 'Sin ciudad',
+          "address" => $body['address']['street'],
+          "address_city" => $body['address']['district'],
           "country_code" => "PE",
-          "first_name" => $request['contact']['name'],
-          "last_name" => $request['contact']['lastname'],
-          "phone_number" => $request['contact']['phone'],
+          "first_name" => $body['billing']['name'],
+          "last_name" => $body['billing']['lastname'] ?? $body['billing']['name'],
+          "phone_number" => $body['consumer']['phone'],
         ],
-        "source_id" => $request['culqi']['id']
+        "source_id" => $body['culqi']['id']
       ];
 
       $charge = $culqi->Charges->create($config);
@@ -155,31 +161,51 @@ class PaymentController extends Controller
         'amount' => $totalCost
       ];
 
-      $sale->status_id = 3;
-      $sale->status_message = 'La venta se ha generado y ha sido pagada';
-      $sale->code = $charge?->reference_code ?? null;
+      $userJpa = User::find(Auth::user()->id);
+      $userJpa->points = Auth::user()->points + ($points2give - $points2discount);
+      $userJpa->save();
 
-      $indexController = new IndexController(new InstagramService());
-      $datacorreo = [
-        'nombre' => $sale->name . ' ' . $sale->lastname,
+      $sale->status_id = 2;
+      $sale->codigo_orden = $charge?->reference_code ?? null;
 
-        'email' => $sale->email,
+      // $indexController = new IndexController(new InstagramService());
+      // $datacorreo = [
+      //   'nombre' => $sale->name . ' ' . $sale->lastname,
 
-      ];
-      $indexController->envioCorreoCompra($datacorreo);
+      //   'email' => $sale->email,
+
+      // ];
+      // $indexController->envioCorreoCompra($datacorreo);
     } catch (\Throwable $th) {
       $response->status = 400;
       $response->message = $th->getMessage();
 
-      if (!$sale->code) {
-        $sale->code = '000000000000';
+      if (!$sale->codigo_orden) {
+        $sale->codigo_orden = '000000000000';
       }
-      $sale->status_id = 2;
-      $sale->status_message = $th->getMessage();
+      $sale->status_id = 1;
     } finally {
 
       $sale->save();
       return response($response->toArray(), $response->status);
+    }
+  }
+
+  public function saveDedicationImage($file)
+  {
+    try {
+      [$first, $code] = explode(';base64,', $file);
+      $imageData = base64_decode($code);
+      $routeImg = 'storage/images/dedication/';
+      $ext = File::getExtention(str_replace("data:", '', $first));
+      $nombreImagen = Crypto::randomUUID() . '.' . $ext;
+      if (!file_exists($routeImg)) {
+        mkdir($routeImg, 0777, true);
+      }
+      file_put_contents($routeImg . $nombreImagen, $imageData);
+      return $routeImg . $nombreImagen;
+    } catch (\Throwable $th) {
+      return null;
     }
   }
 }

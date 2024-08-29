@@ -98,7 +98,7 @@ const Product = ({
     if (carrito.length > 0) {
       if (e.target.checked) {
         let isConfirmed = false
-        if (points > complemento.puntos_complemento) {
+        if (points >= complemento.puntos_complemento) {
           const swalRes = await Swal.fire({
             title: 'Deseas intercambiarlo con puntos?',
             text: 'Si, usar puntos',
