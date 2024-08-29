@@ -76,7 +76,7 @@ class PaymentController extends Controller
           'cantidad' => $body['cart'][$key]['quantity'],
           'precio' => $finalPrice,
           'price_used' => $finalPrice * $finalQuantity,
-          'points' => $productJpa->puntos_complemento,
+          'points' => $productJpa->puntos_complemento ?? 0,
           'points_used' => $points_used,
         ];
       }

@@ -31,7 +31,7 @@ const Agradecimiento = ({ orden_code, orden }) => {
           </div>
           <div className="flex flex-col justify-center p-4 mt-16 w-full text-center bg-green-400 rounded-2xl max-md:mt-10 max-md:max-w-full">
             <h2 className="text-xl font-medium tracking-wider leading-none text-white max-md:max-w-full">
-              Has acumulado (X) puntos.
+              Has acumulado {orden.points} puntos.
             </h2>
             <p className="mt-3 text-sm tracking-wide leading-5 text-white max-md:max-w-full">
               Recuerda, por cada compra que realices obtienes puntos para canjear por más productos
