@@ -41,6 +41,11 @@
 </head>
 
 <body class="body">
+  @if (request()->is('pago') && !auth()->check())
+    <script>
+      window.location.href = "{{ route('login', ['ref' => 'pago']) }}";
+    </script>
+  @endif
   {{-- <div class="overlay"></div> --}}
   @include('components.public.header')
 

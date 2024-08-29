@@ -32,7 +32,13 @@
           </p>
         </div>
         <div class="">
-          <form method="POST" action="{{ route('login') }}" class="flex flex-col gap-5">
+          @php
+            $currentUrl = url()->full();
+          @endphp
+
+          <form method="POST"
+            action="{{ strpos($currentUrl, 'ref=pago') !== false ? route('login', ['ref' => 'pago']) : route('login') }}"
+            class="flex flex-col gap-5">
             @csrf
             <div>
               <input type="text" placeholder="Tu nombre de usuario o correo electrónico" name="email"
