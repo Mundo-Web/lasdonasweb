@@ -69,7 +69,7 @@
               cart: carrito.map((x) => ({
                 id: x.id,
                 quantity: x.cantidad,
-                isCombo: x.isCombo || false
+                usePoints: x.usePoints || false
               })),
               ...paymentData,
               culqi: Culqi.token

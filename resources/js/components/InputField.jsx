@@ -1,7 +1,6 @@
 import React from "react";
 
 function InputField({ eRef, label, type = "text", value, defaultValue, placeholder, handleDatosFinales, name, className, required = false }) {
-  console.log(required)
   return (
     <div className="flex flex-col mt-1 w-full max-md:max-w-full">
       {label && (
