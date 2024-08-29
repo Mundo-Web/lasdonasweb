@@ -121,7 +121,6 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
       billing: datosFinales.billing,
       consumer: datosFinales.consumer,
     })
-    console.log(datosFinales)
   }, [datosFinales]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -396,8 +395,8 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
                       }} />
                     <InputField
                       name={'razonSocial'}
-                      label="Razón Social"
-                      placeholder="Ingrese una Razón Social"
+                      label={datosFinales.billing.type == 'boleta' ? 'Nombre' : "Razón Social"}
+                      placeholder="Ingrese una nombre"
                       required
                       handleDatosFinales={(e) => {
                         setDatosFinales(old => ({
@@ -408,6 +407,24 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
                           }
                         }))
                       }} />
+                    {
+                      datosFinales.billing.type === 'boleta' && <>
+                        <InputField
+                          name={'lastname'}
+                          label="Apellido"
+                          placeholder="Ingrese su apellido"
+                          required
+                          handleDatosFinales={(e) => {
+                            setDatosFinales(old => ({
+                              ...old,
+                              billing: {
+                                ...old.billing,
+                                lastname: e.target.value
+                              }
+                            }))
+                          }} />
+                      </>
+                    }
                     <InputField
                       label="Dirección Fiscal"
                       placeholder="Ingrese una dirección"
