@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ModalGoogle = ({ isModalOpen, children, handlemodalMaps, tittle }) => {
-  console.log(isModalOpen)
   return (
     <div className={isModalOpen ? 'block' : 'hidden'}>
       <div className=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity"></div>

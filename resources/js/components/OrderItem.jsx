@@ -1,6 +1,15 @@
 import React from 'react';
 
-function OrderItem({ producto, extract, sku, precio, cantidad, total, imagen }) {
+function OrderItem({ producto, extract, sku, precio, cantidad, total, usePoints, imagen, points,  userPoints}) {
+  let finalQuantity = structuredClone(cantidad)
+  for (let i = 0; i < cantidad; i++) {
+    if (usePoints && userPoints > points) {
+      finalQuantity--
+      userPoints -= points
+    }
+  }
+
+  const subtotal = finalQuantity * precio
   return (
     <div className="flex flex-wrap gap-10 justify-between items-start w-full max-md:max-w-full">
       <div className="flex gap-8 min-w-[240px]">
@@ -9,6 +18,11 @@ function OrderItem({ producto, extract, sku, precio, cantidad, total, imagen }) 
           <div className="flex flex-col w-full">
             <h2 className="text-base font-bold tracking-wider text-neutral-900">{producto}</h2>
             <p className="mt-2 text-sm tracking-wide leading-5 text-neutral-900 text-opacity-80">{extract}</p>
+            {
+              usePoints && <span className="text-orange-500 text-sm">
+                Usando puntos
+              </span>
+            }
           </div>
           <p className="mt-5 text-xs font-bold tracking-wide text-neutral-900">SKU: {sku}</p>
         </div>
@@ -24,7 +38,7 @@ function OrderItem({ producto, extract, sku, precio, cantidad, total, imagen }) 
         </div>
         <div className="flex flex-col flex-1 shrink justify-center basis-0">
           <p className="text-sm tracking-wide text-neutral-900 text-opacity-80">Total</p>
-          <p className="mt-2 text-base tracking-wider text-neutral-900">{Number(precio) * Number(cantidad)}</p>
+          <p className="mt-2 text-base tracking-wider text-neutral-900">{subtotal.toFixed(2)}</p>
         </div>
       </div>
     </div>

@@ -1,0 +1,1 @@
+const n=(e=0)=>{console.log(e);let i=Local.get("carrito"),o=0,l=structuredClone(e);for(const t of i){let r=0,a=structuredClone(t.cantidad);for(let c=0;c<t.cantidad&&l>t.points;c++)l-=t.points,a--;r=a*Number(t.precio),o+=r}return o};export{n as c};

@@ -7,19 +7,17 @@ import calculartotal from '../Utils/calcularTotal';
 
 
 
-const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen }) => {
-  const subtotal = calculartotal()
+const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points }) => {
+  const subtotal = calculartotal(points)
   const [total, setTotal] = useState(subtotal);
   useEffect(() => {
-    console.log('cambio costo envio')
     setTotal(Number(subtotal) + Number(costoEnvio))
   }, [costoEnvio]);
   return (
     <main className="flex flex-col flex-1 shrink justify-center self-stretch my-auto w-full basis-0 min-w-[240px] max-md:max-w-full">
-      {console.log(carrito)}
       {carrito.map((item, index) => (
         <React.Fragment key={item.id}>
-          <OrderItem {...item} />
+          <OrderItem {...item} userPoints={points} />
           {index < carrito.length - 1 && <Divider />}
         </React.Fragment>
       ))}

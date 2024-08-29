@@ -9,18 +9,17 @@ import ProgressBar from './components/ProgressBar';
 
 import DateTimeDisplay from "./components/DateTimeDisplay";
 import InputField from "./components/InputField";
-import SignatureField from "./components/SignatureField";
 import ReceiptTypeSelector from "./components/ReceiptTypeSelector";
 import Button from "./components/Button";
 
-import PaymentForm from './components/PaymentForm';
 import ModalGoogle from './components/ModalGoogle';
 import AddressForm from './components/AddressForm';
 import Checkbox from './components/Checkbox';
 import SelectSecond from './components/SelectSecond';
 import Swal from 'sweetalert2';
+import calculartotal from './Utils/calcularTotal';
 
-const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) => {
+const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
 
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [showDedicatoria, setShowDedicatoria] = useState(false)
@@ -42,7 +41,6 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
       }
     }))
     // Aquí puedes manejar cualquier lógica adicional que necesites
-    console.log('Opción seleccionada:', selected);
   };
 
   useEffect(() => {
@@ -51,7 +49,6 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
     script.async = true;
     script.defer = true;
     script.onload = () => {
-      console.log('Google Maps API loaded');
       setScriptLoaded(true)
     };
 
@@ -85,7 +82,6 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
   if (carrito.length == 0) return location.href = '/';
 
   const onSelectAddress = (direccion) => {
-    console.log(direccion);
     setDatosFinales((prevDatos) => ({
       ...prevDatos,
       address: direccion,
@@ -192,8 +188,7 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
       consumer: datosFinales.consumer,
     })
 
-    const totalPrice = carrito.reduce((total, item) => total + Number(item.precio) * Number(item.cantidad), 0) + Number(costoEnvio);
-
+    const totalPrice = calculartotal(points) + Number(costoEnvio);
     Culqi.settings({
       title: app_name,
       currency: 'PEN',
@@ -216,7 +211,7 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
 
           <div className='flex flex-col w-full my-8'>
 
-            <OrderSummary carrito={carrito} costoEnvio={costoEnvio} setIsModalOpen={setIsModalOpen} />
+            <OrderSummary carrito={carrito} costoEnvio={costoEnvio} setIsModalOpen={setIsModalOpen} points={points} />
           </div>
           <div className='text-center flex w-full content-center justify-center'>
             <ProgressBar />
@@ -262,7 +257,6 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
 
                 </ModalGoogle>
 
-                {console.log(datosFinales)}
                 <p className='my-2 text-base font-light'>Direccion: {datosFinales.address?.fulladdress ?? 'Sin direccion'}</p>
                 <p className='my-2 text-base font-light'>Costo de envio: {costoEnvio > 0 ? <>S/ {costoEnvio} </> : 'Evaluando'}</p>
 

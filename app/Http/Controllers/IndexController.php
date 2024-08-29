@@ -362,7 +362,8 @@ class IndexController extends Controller
       'addresses' => $addresses,
       'hasDefaultAddress' => $hasDefaultAddress,
       // 'MensajesPredefinidos' => $MensajesPredefinidos,
-      'greetings' => $greetings
+      'greetings' => $greetings,
+      'points' => Auth::check() ? Auth::user()->points : 0
     ])->rootView('app');
   }
 
