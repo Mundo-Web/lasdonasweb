@@ -6,6 +6,7 @@ import SvgFlorDeluxe from './components/svg/SvgFlorDeluxe'
 import SvgFlorClasic from './components/svg/SvgFlorClasic'
 import axios from 'axios'
 
+
 import { Local } from 'sode-extend-react/sources/storage'
 
 import HorarioSection from './components/HorarioSection';
@@ -33,6 +34,7 @@ import agregarComplementoPedido from './Utils/agregarComplemento'
 import Button from './components/Button'
 
 import { deleteOnCarBtnR } from './Utils/carritoR'
+
 
 const Product = ({
   complementos,
@@ -352,20 +354,15 @@ const Product = ({
   const fileInputRef = useRef(null);
   const imagePreviewRef = useRef(null);
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      console.log('entro here')
-      const base64String = e.target.result;
-      setImageSrc(base64String);
-      setSelectedImage(base64String);
-      localStorage.setItem('imageDedicatoria', base64String);
-      imagePreviewRef.current.style.display = 'block';
-    };
-    reader.readAsDataURL(file);
+    const { type, full } = await File.compress(file, { square: false, full_length: 750, })
 
-    console.log(selectedImage)
+    const base64 = `data:${type};base64,${full}`
+    setImageSrc(base64);
+    setSelectedImage(base64);
+    localStorage.setItem('imageDedicatoria', base64);
+    imagePreviewRef.current.style.display = 'block';
   };
 
   const openModalComplementos = (item) => {

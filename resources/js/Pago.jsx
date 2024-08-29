@@ -62,7 +62,9 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
   const [carrito, setCarrito] = useState(Local.get('carrito') || []);
   const [datosFinales, setDatosFinales] = useState({
     address: {},
-    dedication: {},
+    dedication: {
+      image: localStorage.getItem('imageDedicatoria') || null,
+    },
     billing: { type: 'boleta' },
     consumer: {},
     fecha: '',
@@ -78,6 +80,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
     direccionFiscal: '',
     correoElectronico: '',
   });
+
 
   if (carrito.length == 0) return location.href = '/';
 
@@ -130,7 +133,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
     setShowshowFirma(!showFirma)
     setDatosFinales((prevDatos) => ({
       ...prevDatos,
-      dedication: { ...prevDatos.message, signedBy: '' }
+      dedication: { ...prevDatos.dedication, signedBy: '' }
     }))
   }
 
