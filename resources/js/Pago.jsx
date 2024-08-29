@@ -66,7 +66,7 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
   const [datosFinales, setDatosFinales] = useState({
     address: {},
     dedication: {},
-    billing: {},
+    billing: { type: 'boleta' },
     consumer: {},
     fecha: '',
     horario: '',
@@ -111,19 +111,31 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
   }
 
   const handleDatosFinales = (e) => {
+    console.log(datosFinales)
     const { name, value } = e.target;
     setDatosFinales((prevDatos) => ({
       ...prevDatos,
       [name]: value,
     }));
   };
+  useEffect(() => {
+    console.log(datosFinales)
+  }, [datosFinales]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleMensaje = () => {
     setShowDedicatoria(!showDedicatoria)
+    setDatosFinales((prevDatos) => ({
+      ...prevDatos,
+      dedication: { ...prevDatos.dedication, message: '' }
+    }))
   }
   const handleFirma = () => {
     setShowshowFirma(!showFirma)
+    setDatosFinales((prevDatos) => ({
+      ...prevDatos,
+      dedication: { ...prevDatos.message, signedBy: '' }
+    }))
   }
 
   const handlemodalMaps = () => {
@@ -152,7 +164,27 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#EF4444'
     })
-   
+
+    console.log(datosFinales.billing.type, datosFinales.billing.ruc.length)
+    if (datosFinales.billing.type == 'factura' && (datosFinales.billing.ruc.length > 11 || datosFinales.billing.ruc.length < 11)) return Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Por favor, la longitud del RUC debe ser de 11 digitos',
+      showConfirmButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#EF4444'
+    })
+    if (datosFinales.billing.type == 'boleta' && (datosFinales.billing.dni.length > 8 || datosFinales.billing.dni.length < 8)) return Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Por favor, la longitud del DNI debe ser de 8 digitos',
+      showConfirmButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#EF4444'
+    })
+
     Local.set('payment-data', {
       address: datosFinales.address,
       dedication: datosFinales.dedication,
@@ -160,7 +192,8 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
       consumer: datosFinales.consumer,
     })
 
-    const totalPrice = carrito.reduce((total, item) => total + Number(item.precio) * Number(item.cantidad), 0);
+    const totalPrice = carrito.reduce((total, item) => total + Number(item.precio) * Number(item.cantidad), 0) + Number(costoEnvio);
+
     Culqi.settings({
       title: app_name,
       currency: 'PEN',
@@ -327,60 +360,81 @@ const Pago = ({ MensajesPredefinidos, culqi_public_key, app_name, greetings }) =
                       }
                     }))
                   }} />
+
+
                   <div className="flex flex-col mt-8 w-full max-md:max-w-full">
                     <InputField
-                    label="Número de RUC"
-                    placeholder="Ingrese un RUC"
-                    required
-                    handleDatosFinales={(e) => {
-                      setDatosFinales(old => ({
-                        ...old,
-                        billing: {
-                          ...old.billing,
-                          ruc: e.target.value
+                      label={`Número de ${datosFinales.billing.type === 'boleta' ? 'DNI' : 'RUC'}`}
+                      placeholder={`Número de ${datosFinales.billing.type === 'boleta' ? 'DNI' : 'RUC'}`}
+                      required
+                      type='number'
+                      maxLength={datosFinales.billing.type === 'boleta' ? 8 : 11}
+
+
+
+                      handleDatosFinales={(e) => {
+
+                        if (datosFinales.billing.type === 'boleta') {
+                          setDatosFinales(old => ({
+                            ...old,
+                            billing: {
+                              ...old.billing,
+                              ruc: '',
+                              dni: e.target.value
+                            }
+                          }))
+                        } else {
+                          setDatosFinales(old => ({
+                            ...old,
+                            billing: {
+                              ...old.billing,
+                              dni: '',
+                              ruc: e.target.value
+                            }
+                          }))
                         }
-                      }))
-                    }} />
+                      }} />
                     <InputField
-                    label="Razón Social"
-                    placeholder="Ingrese una Razón Social"
-                    required
-                    handleDatosFinales={(e) => {
-                      setDatosFinales(old => ({
-                        ...old,
-                        billing: {
-                          ...old.billing,
-                          name: e.target.value
-                        }
-                      }))
-                    }} />
+                      name={'razonSocial'}
+                      label="Razón Social"
+                      placeholder="Ingrese una Razón Social"
+                      required
+                      handleDatosFinales={(e) => {
+                        setDatosFinales(old => ({
+                          ...old,
+                          billing: {
+                            ...old.billing,
+                            name: e.target.value
+                          }
+                        }))
+                      }} />
                     <InputField
-                    label="Dirección Fiscal"
-                    placeholder="Ingrese una dirección"
-                    required
-                    handleDatosFinales={(e) => {
-                      setDatosFinales(old => ({
-                        ...old,
-                        billing: {
-                          ...old.billing,
-                          address: e.target.value
-                        }
-                      }))
-                    }} />
+                      label="Dirección Fiscal"
+                      placeholder="Ingrese una dirección"
+                      required
+                      handleDatosFinales={(e) => {
+                        setDatosFinales(old => ({
+                          ...old,
+                          billing: {
+                            ...old.billing,
+                            address: e.target.value
+                          }
+                        }))
+                      }} />
                     <InputField
-                    label="Correo electrónico"
-                    type="email"
-                    placeholder="Ingrese un correo"
-                    required
-                    handleDatosFinales={(e) => {
-                      setDatosFinales(old => ({
-                        ...old,
-                        billing: {
-                          ...old.billing,
-                          email: e.target.value
-                        }
-                      }))
-                    }} />
+                      label="Correo electrónico"
+                      type="email"
+                      placeholder="Ingrese un correo"
+                      required
+                      handleDatosFinales={(e) => {
+                        setDatosFinales(old => ({
+                          ...old,
+                          billing: {
+                            ...old.billing,
+                            email: e.target.value
+                          }
+                        }))
+                      }} />
                   </div>
                   <div className="flex flex-row items-center gap-4 justify-center mt-8 w-full text-sm font-bold tracking-wide whitespace-nowrap max-md:max-w-full">
                     <Button variant="primary" type='submit'>Continuar</Button>
