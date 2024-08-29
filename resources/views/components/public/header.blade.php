@@ -307,7 +307,7 @@
             <div class="relative inline-block cursor-pointer">
               <button class="bg-[#336234] text-white font-bold px-2 pr-3 pt-[2px] rounded-full">
                 <i class="mdi mdi-dots-hexagon"></i>
-                {{ Auth::user()->points }}
+                <span data-id="txt-user-points">{{ Auth::user()->points }}</span>
               </button>
             </div>
           </div>
@@ -451,7 +451,15 @@
   <div class="p-4 flex flex-col h-[90vh] justify-between gap-2">
     <div class="flex flex-col">
       <div class="flex justify-between ">
-        <h2 class="font-semibold font-Inter_Medium text-[28px] text-[#151515] pb-5">Carrito</h2>
+        <h2 class="flex items-center gap-2 font-semibold font-Inter_Medium text-[28px] text-[#151515] pb-5">
+          Carrito
+          @if (Auth::check())
+            <button class="bg-[#336234] text-white text-base font-bold px-2 pr-3 pt-[2px] rounded-full h-max">
+              <i class="mdi mdi-dots-hexagon"></i>
+              <span data-id="txt-user-points">{{ Auth::user()->points }}</span>
+            </button>
+          @endif
+        </h2>
         <div id="close-cart" class="cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-6 h-6">
@@ -500,6 +508,7 @@
   });
 </script> --}}
 <script>
+  let userPoints = {{ $points }};
   const appUrl = "{{ env('APP_URL') }}"
   var articulosCarrito = Local.get('carrito') || [];
   $(document).ready(() => {
@@ -616,7 +625,14 @@
     let itemsCarrito = $('#itemsCarrito')
     let itemsCarritoCheck = $('#itemsCarritoCheck')
 
+    let restPoints = structuredClone(userPoints)
+
     articulosCarrito.forEach(element => {
+
+      if (element.usePoints && restPoints > (element.points * element.cantidad)) {
+        element.precio = 0
+        restPoints -= element.points * element.cantidad
+      }
 
       let plantilla = `<tr class=" font-poppins border-b">
           <td class="p-2">
@@ -626,16 +642,19 @@
             <p class="font-semibold text-[14px] text-[#151515] mb-1">
               ${element.producto} - ${element.tipo}
             </p>
-            <div class="flex w-20 justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
-              <button type="button" onClick="deleteOnCarBtn(${element.id})" class="w-6 h-6 flex justify-center items-center ">
-                <span  class="text-[20px]">-</span>
-              </button>
-              <div class="w-6 h-6 flex justify-center items-center">
-                <span  class="font-semibold text-[12px]">${element.cantidad}</span>
+            <div class="flex gap-2 items-center">
+              <div class="flex w-20 justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
+                <button type="button" onClick="deleteOnCarBtn(${element.id})" class="w-6 h-6 flex justify-center items-center ">
+                  <span  class="text-[20px]">-</span>
+                </button>
+                <div class="w-6 h-6 flex justify-center items-center">
+                  <span  class="font-semibold text-[12px]">${element.cantidad}</span>
+                </div>
+                <button type="button" onClick="addOnCarBtn(${element.id})" class="w-6 h-6 flex justify-center items-center ">
+                  <span class="text-[20px]">+</span>
+                </button>
               </div>
-              <button type="button" onClick="addOnCarBtn(${element.id})" class="w-6 h-6 flex justify-center items-center ">
-                <span class="text-[20px]">+</span>
-              </button>
+              <span class="text-orange-500 text-sm">${element.usePoints ? 'Usando puntos': ''}</span>
             </div>
           </td>
           <td class="p-2 text-end">
@@ -663,23 +682,32 @@
 
   function calcularTotal() {
     let articulos = Local.get('carrito')
-    let total = articulos.map(item => {
-      let total = 0
-      total += item.cantidad * Number(item.precio)
-      /* if (item.complementos.length > 0) {
-        item.complementos.forEach(complemento => {
-          total += Number(complemento.preciofiltro)
-        })
-      } */
-      return total
 
+    let total = 0
+    let restPoints = structuredClone(userPoints)
 
-    }).reduce((total, elemento) => total + elemento, 0);
+    for (const item of articulos) {
+      let totalPrice = 0;
+      let cantidadGeneral = structuredClone(item.cantidad)
+      for (let i = 0; i < item.cantidad; i++) {
+        if (restPoints > item.points) {
+          restPoints -= item.points
+          cantidadGeneral--
+        } else break
+      }
+      totalPrice = cantidadGeneral * Number(item.precio);
+      total += totalPrice
+    }
 
-    // const suma = total.
+    $('[data-id="txt-user-points"]').text(restPoints)
+
+    // let total = articulos.map(item => {
+    //   let total = 0
+    //   total += item.cantidad * Number(item.precio)
+    //   return total
+    // }).reduce((total, elemento) => total + elemento, 0);
 
     $('#itemsTotal').text(`S/. ${total} `)
-
   }
 </script>
 

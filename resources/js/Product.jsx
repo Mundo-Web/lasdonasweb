@@ -47,13 +47,9 @@ const Product = ({
   categorias,
   politicasSustitucion,
   politicaEnvio,
-  complementosAcordion
+  complementosAcordion,
+  points
 }) => {
-
-
-
-
-
   const [selectedHorario, setSelectedHorario] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -95,19 +91,24 @@ const Product = ({
   });
 
 
-  const handleCheckboxChange = (e, id) => {
-
-
-
-
+  const handleCheckboxChange = async (e, id, complemento) => {
     let carrito = Local.get('carrito') ?? [];
     if (carrito.length > 0) {
-
       if (e.target.checked) {
-
-        // console.log('Checkeando')
-
-        agregarComplementoPedido(id)
+        let isConfirmed = false
+        if (points > complemento.puntos_complemento) {
+          const swalRes = await Swal.fire({
+            title: 'Deseas intercambiarlo con puntos?',
+            text: 'Si, usar puntos',
+            showCancelButton: true,
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No',
+            confirmButtonColor: '#336234',
+            cancelButtonColor: '#EF4444'
+          });
+          isConfirmed = swalRes.isConfirmed
+        }
+        agregarComplementoPedido(id, isConfirmed)
       } else {
         // console.log('Descheckeando lo debe de quitar');
 
@@ -706,7 +707,7 @@ const Product = ({
                       onClick={handleClearImage}
                       className="px-4 py-2 bg-red-500 text-white rounded-lg"
                     >
-                      <i class="fa-solid fa-trash"></i>
+                      <i className="fa-solid fa-trash"></i>
                     </button>
                   </div>
                 )}
@@ -768,7 +769,7 @@ const Product = ({
                             className="peer absolute top-3 left-3 w-5 h-5 border-orange-400  accent-rosalasdonasborder-orange-400 checked:border-orange-400  outline-orange-400 checked:bg-orange-400 hover:checked:bg-orange-400 hover:border-orange-400 hover:bg-orange-400
                                focus:border-orange-400 rounded-md shadow-md focus:checked:bg-orange-400 focus:checked:border-orange-400  focus:bg-orange-400"
                             required
-                            onChange={(e) => handleCheckboxChange(e, complemento.id)}
+                            onChange={(e) => handleCheckboxChange(e, complemento.id, complemento)}
                           />
                           {complemento.images.length > 0 ? (
                             complemento.images.map((image) =>

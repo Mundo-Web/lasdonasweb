@@ -9,11 +9,9 @@ import Accordion from './Accordion2';
 import calculartotal from './Utils/calcularTotal'
 import Button from './components/Button';
 import QuantitySelector from './components/QuantitySelector';
-import Tippy from '@tippyjs/react';
-
 
 const Carrito = ({ complementos, points = 0 }) => {
-
+  let restPoints = structuredClone(points)
   const [carrito, setCarrito] = useState(Local.get('carrito') || []);
   const [montoTotal, setMontoTotal] = useState(0);
   const [activeModal, setActiveModal] = useState(true);
@@ -46,8 +44,6 @@ const Carrito = ({ complementos, points = 0 }) => {
     };
   }, [activeModal]);
   const deleteItemR = (id) => {
-
-    console.log('entreo aca');
 
     let articulosCarrito = Local.get('carrito') || [];
     let idCount = {};
@@ -139,7 +135,7 @@ const Carrito = ({ complementos, points = 0 }) => {
 
 
   useEffect(() => {
-    setMontoTotal(calculartotal())
+    setMontoTotal(calculartotal(points))
   }, [carrito])
 
   return (
@@ -158,8 +154,17 @@ const Carrito = ({ complementos, points = 0 }) => {
 
 
                 <div className='flex flex-col gap-5'>
-                  {carrito.map((item) => (
-                    <div className="flex flex-col md:flex-row py-5  px-4 rounded-xl border-[#E8ECEF] gap-6 text-[#112212] border
+                  {carrito.map((item) => {
+                    let totalPrice = 0
+                    let cantidadGeneral = structuredClone(item.cantidad)
+                    for (let i = 0; i < item.cantidad; i++) {
+                      if (restPoints > item.points) {
+                        restPoints -= item.points
+                        cantidadGeneral--
+                      } else break
+                    }
+                    totalPrice = cantidadGeneral * Number(item.precio)
+                    return <div className="flex flex-col md:flex-row py-5  px-4 rounded-xl border-[#E8ECEF] gap-6 text-[#112212] border
                      hover:border-[#336234] group ">
                       <img src={`/images/img/xcoral.png`} type="icon" onClick={() => deleteItemR(item.id)} className='flex w-5 h-5 cursor-pointer' alt="" />
 
@@ -184,19 +189,7 @@ const Carrito = ({ complementos, points = 0 }) => {
                                 {
                                   item.points > 0 && <>
                                     <br />
-                                    o
-                                    <br />
-                                    <Tippy content={`${item.points} puntos`}>
-                                      <span className=' bg-orange-400 text-sm px-2 pb-1 pt-[8px] rounded-md text-white'>
-                                        <i className='mdi mdi-dots-hexagon me-1'></i>
-                                        <span>{item.points}</span>
-                                      </span>
-                                    </Tippy>
-                                    <br />
-                                    <div class="flex items-center mt-1">
-                                      <input id={`use-points-${item.id}`} type="checkbox" value="" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                      <label for={`use-points-${item.id}`} class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 text-nowrap">Usar puntos</label>
-                                    </div>
+                                    <span className="text-orange-500 text-sm">Usando puntos</span>
                                   </>
                                 }
                               </span>
@@ -209,7 +202,8 @@ const Carrito = ({ complementos, points = 0 }) => {
                                 Total
                               </span>
                               <span>
-                                {(Number(item.precio) * Number(item.cantidad)).toFixed(2)}
+                                {/* {(Number(item.precio) * Number(item.cantidad)).toFixed(2)} */}
+                                {totalPrice.toFixed(2)}
                               </span>
 
                             </div>
@@ -221,7 +215,7 @@ const Carrito = ({ complementos, points = 0 }) => {
 
 
                     </div>
-                  ))}
+                  })}
 
                   <hr />
 
@@ -277,7 +271,7 @@ const Carrito = ({ complementos, points = 0 }) => {
                     {/* <span className='opacity-80'>
                       S/ 10,00
                     </span> */}
-                    <span className='text-[#112212] font-bold' id='itemsTotal'>
+                    <span className='text-[#112212] font-bold text-nowrap' id='itemsTotal'>
                       S/ {montoTotal.toFixed(2)}
                     </span>
                   </div>

@@ -38,9 +38,9 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
 
     return (
       <div className="header flex flex-row justify-between mb-5 px-10">
-        <button className='font-bold text-xl' onClick={() => handleMonthChange(-1)}><i class="fa-solid fa-chevron-left"></i></button>
+        <button className='font-bold text-xl' onClick={() => handleMonthChange(-1)}><i className="fa-solid fa-chevron-left"></i></button>
         <div className='text-lg font-b_slick_bold'>{monthNames[selectedDate.getMonth()]} de {selectedDate.getFullYear()}</div>
-        <button className='font-bold text-xl' onClick={() => handleMonthChange(1)}><i class="fa-solid fa-chevron-right"></i></button>
+        <button className='font-bold text-xl' onClick={() => handleMonthChange(1)}><i className="fa-solid fa-chevron-right"></i></button>
       </div>
     );
   };

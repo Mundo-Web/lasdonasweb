@@ -10,6 +10,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,18 +40,20 @@ class AppServiceProvider extends ServiceProvider
             $submenucolecciones = Collection::all();
             $appUrl = env('APP_URL');
             // Pasar los datos a la vista
-            $view->with('submenucategorias', $submenucategorias)
-                    ->with('appUrl', $appUrl)
-                    ->with('submenucolecciones', $submenucolecciones);
+            $view
+                ->with('submenucategorias', $submenucategorias)
+                ->with('appUrl', $appUrl)
+                ->with('submenucolecciones', $submenucolecciones)
+                ->with('points', Auth::check() ? Auth::user()->points : 0);
         });
 
         View::composer('components.app.sidebar', function ($view) {
             // Obtener los datos del footer
-            $mensajes = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)->count(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
+            $mensajes = Message::where('is_read', '!=', 1)->where('status', '!=', 0)->count(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             // Pasar los datos a la vista
             $view->with('mensajes', $mensajes);
         });
 
-         PaginationPaginator::useTailwind();   
+        PaginationPaginator::useTailwind();
     }
 }
