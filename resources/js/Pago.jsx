@@ -115,6 +115,12 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
     }));
   };
   useEffect(() => {
+    Local.set('payment-data', {
+      address: datosFinales.address,
+      dedication: datosFinales.dedication,
+      billing: datosFinales.billing,
+      consumer: datosFinales.consumer,
+    })
     console.log(datosFinales)
   }, [datosFinales]);
 
