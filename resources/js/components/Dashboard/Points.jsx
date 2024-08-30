@@ -3,38 +3,38 @@ import React from "react";
 function Points() {
 
 return (
-    <section class="flex flex-col justify-center rounded-3xl font-b_slick_regular">
-        <div class="flex flex-col w-full max-md:max-w-full">
-            <h2 class="text-3xl font-bold tracking-normal leading-none text-neutral-900 max-md:max-w-full font-b_slick_bold ">
+    <section  className="flex flex-col justify-center rounded-3xl font-b_slick_regular">
+        <div  className="flex flex-col w-full max-md:max-w-full">
+            <h2  className="text-3xl font-bold tracking-normal leading-none text-neutral-900 max-md:max-w-full font-b_slick_bold ">
                 Programa de recompensas
             </h2>
-            <p class="mt-2 text-base tracking-wider leading-6 text-neutral-900 text-opacity-80 max-md:max-w-full">
+            <p  className="mt-2 text-base tracking-wider leading-6 text-neutral-900 text-opacity-80 max-md:max-w-full">
                Por cada sol pagado (excluyendo el del envío) se optiene
-                <strong class="text-neutral-900"> 1 punto </strong>
+                <strong  className="text-neutral-900"> 1 punto </strong>
                  con vigencia de 12 meses. Al acumular
-                <strong class="text-neutral-900"> 3000 puntos</strong>
+                <strong  className="text-neutral-900"> 3000 puntos</strong>
                , obtienes un cupón por
-                <strong class="text-neutral-900"> S/ 200,00</strong>
+                <strong  className="text-neutral-900"> S/ 200,00</strong>
                 que podrás usar en tu siguiente compra.
             </p>
         </div>
-        <article class="flex flex-col p-6 mt-10 max-w-full rounded-3xl bg-[#F6F8F2] w-[635px] max-md:px-5">
-            <div class="flex flex-col w-full max-md:max-w-full">
-                <h3 class="text-base font-bold tracking-wider text-green-400 uppercase max-md:max-w-full">
+        <article  className="flex flex-col p-6 mt-10 max-w-full rounded-3xl bg-[#F6F8F2] w-[635px] max-md:px-5">
+            <div  className="flex flex-col w-full max-md:max-w-full">
+                <h3  className="text-base font-bold tracking-wider text-green-400 uppercase max-md:max-w-full">
                     Llevas acumulados
                 </h3>
-                <div class="flex gap-3 items-center self-start mt-3">
+                <div  className="flex gap-3 items-center self-start mt-3">
                     <p
-                        class="self-stretch my-auto text-5xl font-medium tracking-normal leading-none text-green-800 max-md:text-4xl">
+                         className="self-stretch my-auto text-5xl font-medium tracking-normal leading-none text-green-800 max-md:text-4xl">
                         0 puntos
                     </p>
                     <span
-                        class="gap-2.5 self-stretch px-2 py-1 my-auto text-xs font-bold tracking-normal text-white bg-green-400 rounded-3xl">
+                         className="gap-2.5 self-stretch px-2 py-1 my-auto text-xs font-bold tracking-normal text-white bg-green-400 rounded-3xl">
                         Nivel básico
                     </span>
                 </div>
             </div>
-            <p class="mt-6 text-base tracking-wider leading-6 text-green-800 max-md:max-w-full">
+            <p  className="mt-6 text-base tracking-wider leading-6 text-green-800 max-md:max-w-full">
                 Nunca es tarde para comenzar acumular puntos y obtener beneficios. Ve a inicio y selecciona hacia donde
                 deseas enviar tu próximo regalo.
             </p>
