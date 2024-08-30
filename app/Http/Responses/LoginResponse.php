@@ -13,6 +13,13 @@ class LoginResponse implements LoginResponseContract
     {
         $role = Auth::user()->roles->pluck('name');
         
+       
+        if ($request->query('ref')) {
+            $ref = $request->query('ref');
+            return redirect()->intended($ref);
+        }
+
+       
         
         if ($request->wantsJson()) {
             return response()->json(['two_factor' => false]);
