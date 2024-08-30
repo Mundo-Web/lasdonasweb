@@ -112,7 +112,7 @@ Route::post('/buscaSubComplementosDetalle', [IndexController::class, 'buscaSubCo
 Route::get('/instagram', [App\Http\Controllers\InstagramController::class, 'index']);
 
 
-
+Route::get('/dashboard', [IndexController::class, 'dashboard'])->name('Dashboard.jsx');
 
 
 Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () {
@@ -293,6 +293,10 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function 
  Route::post('/guardarDireccion', [IndexController::class, 'guardarDireccion'])->name('guardar.direccion');
 
  Route::post('/micuenta/actualizarPerfil', [IndexController::class, 'actualizarPerfil'] )->name('actualizarPerfil');
+
+
+
+
 
 
 });

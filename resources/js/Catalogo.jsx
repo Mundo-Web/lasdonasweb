@@ -552,12 +552,6 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
               )}
             </div>
 
-
-
-            {/* <SelectCatalogo options={categorias} title={'Ocasión'} handleOptionChange={handlecatChange} /> */}
-
-            {/* <SelectCatalogo title={'Ordenar por'}/> */}
-
           </div>
 
           <div className='flex flex-wrap gap-4 mt-7'>

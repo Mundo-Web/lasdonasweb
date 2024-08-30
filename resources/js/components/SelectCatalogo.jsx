@@ -66,7 +66,7 @@ const customStyles = {
 const SelectCatalogo = ({ title, handleOptionChange, options = [] }) => {
 
   return (
-    <Select className='font-poppins_regular font-bold text-lg w-full z-0'
+    <Select className='font-poppins_regular font-bold text-lg w-72 z-0'
       styles={customStyles}
       options={options.map((option) => ({ value: option.id, label: option.name }))}
       placeholder={title}

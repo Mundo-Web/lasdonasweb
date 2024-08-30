@@ -993,4 +993,19 @@ class IndexController extends Controller
 
     return response()->json(['productos' => $productos]);
   }
+
+
+  public function dashboard()
+  {
+    try{
+      
+
+      
+      return Inertia::render('Dashboard')->rootView('app');
+
+    }catch (\Throwable $th) {
+     
+    }
+  }
+  
 }
