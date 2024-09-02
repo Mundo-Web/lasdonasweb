@@ -30,7 +30,7 @@
                     </svg>
                   </div>
                   <input type="text" id="id" name="id" value="{{ $envio->id }}" class="hidden">
-                  <input type="text" id="name" name="name" value="{{ $envio->name }}"
+                  <input type="text" id="name" name="name" value="{{ $envio->name }}" required
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Nombre">
                 </div>
@@ -70,7 +70,7 @@
                       </g>
                     </svg>
                   </div>
-                  <input type="text" id="zip_code" name="zip_code" value="{{ $envio->zip_code }}"
+                  <input type="text" id="zip_code" name="zip_code" value="{{ $envio->zip_code }}" required
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Codigo Postal ">
 
@@ -91,7 +91,7 @@
                       </g>
                     </svg>
                   </div>
-                  <input type="text" id="price" name="price" value="{{ $envio->price }}"
+                  <input type="text" id="price" name="price" value="{{ $envio->price }}" required
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Precio ">
 
