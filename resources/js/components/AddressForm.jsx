@@ -70,7 +70,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'La direccion que ha elegido no tiene covertura en nuestra zona de reparto',
+            text: 'La direccion que ha elegido no tiene cobertura en nuestra zona de reparto',
             showConfirmButton: true,
             showCancelButton: false,
             confirmButtonText: 'Aceptar',
