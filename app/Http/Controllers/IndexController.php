@@ -492,40 +492,67 @@ class IndexController extends Controller
 
   public function actualizarPerfil(Request $request)
   {
+
     $name = $request->name;
     $lastname = $request->lastname;
     $email = $request->email;
+    $phone = $request->phone;
     $user = User::findOrFail($request->id);
+
+    $imprimir = '';
+    $imrimirPassword = '';
 
     if ($request->password !== null || $request->newpassword !== null || $request->confirmnewpassword !== null) {
       if (!Hash::check($request->password, $user->password)) {
-        $imprimir = 'La contraseña actual no es correcta';
-        $alert = 'error';
+        $imrimirPassword = "La contraseña actual no es correcta";
+        $alert = "error";
       } else {
         $user->password = Hash::make($request->newpassword);
-        $imprimir = 'Cambio de contraseña exitosa';
-        $alert = 'success';
+        $imrimirPassword = "Cambio de contraseña exitosa";
+        $alert = "success";
       }
     }
 
-    if ($user->name == $name && $user->lastname == $lastname) {
-      $imprimir = 'Sin datos que actualizar';
-      $alert = 'question';
+
+    if ($user->name == $name &&  $user->lastname == $lastname && $user->email == $email && $user->phone == $phone) {
+      $imprimir = "Sin datos que actualizar";
+      $alert = "question";
     } else {
       $user->name = $name;
       $user->lastname = $lastname;
-      $alert = 'success';
-      $imprimir = 'Datos actualizados';
+      $user->email = $email;
+      $user->phone = $phone;
+      $alert = "success";
+      $imprimir = "Datos actualizados";
+    }
+    if ($request->hasFile("image")) {
+
+      $file = $request->file('image');
+      $route = 'storage/images/users/';
+      $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+      if (File::exists(storage_path() . '/app/public/' . $user->profile_photo_path)) {
+        File::delete(storage_path() . '/app/public/' . $user->profile_photo_path);
+      }
+
+      $this->saveImg($file, $route, $nombreImagen);
+
+      $routeforshow = 'images/users/';
+      $user->profile_photo_path = $routeforshow . $nombreImagen;
     }
 
+
     $user->save();
-    return response()->json(['message' => $imprimir, 'alert' => $alert]);
+    return response()->json(['message' => "Datos Personales: $imprimir, Contraseña: $imrimirPassword ", 'alert' => $alert]);
   }
 
   public function micuenta()
   {
     $user = Auth::user();
-    return view('public.dashboard', compact('user'));
+    // return view('public.dashboard', compact('user'));
+    return Inertia::render('Dashboard', [
+      'user' => $user,
+    ])->rootView('micuenta');
   }
 
   public function pedidos()

@@ -279,7 +279,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
 Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function () {
 
- Route::get('/micuenta', [IndexController::class, 'micuenta'] )->name('micuenta');
+ Route::get('/micuenta', [IndexController::class, 'micuenta'] )->name('Dashboard.jsx');
  Route::get('/micuenta/pedidos', [IndexController::class, 'pedidos'] )->name('pedidos');
  Route::get('/micuenta/direccion', [IndexController::class, 'direccion'] )->name('direccion');
  Route::post('/micuenta/direccion/direccionFavorita', [IndexController::class, 'direccionFavorita'])->name('direccionFavorita');

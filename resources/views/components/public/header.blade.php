@@ -286,7 +286,7 @@
                       @focusout="open = false">Dashboard</a>
                   @else
                     <a class="font-medium text-sm text-black flex items-center py-1 px-3"
-                      href="{{ route('micuenta') }}" @click="open = false" @focus="open = true"
+                      href="{{ route('Dashboard.jsx') }}" @click="open = false" @focus="open = true"
                       @focusout="open = false">Mi Cuenta</a>
                   @endif
                 </li>
@@ -331,7 +331,7 @@
   @php
     $currentUrl = url()->full();
   @endphp
-  @if (!request()->is('login') && !request()->is('register'))
+  @if (!request()->is('login') && !request()->is('register') && !request()->is('micuenta'))
     <div class="header_bottom hidden 2md:flex h-12 bg-[#336234] px-[5%] lg:px-[8%] 2md:justify-center">
       <div class="text-base font-b_classic_bold ">
 
