@@ -37,7 +37,7 @@ class PrecioEnvioController extends Controller
         // dump($request->all());
         $request->validate([
             'name' => 'required',
-            'direcction' => 'required',
+            
             'zip_code' => 'required',
             'price' => 'required',
         ]);
