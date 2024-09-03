@@ -493,10 +493,17 @@ class IndexController extends Controller
   public function actualizarPerfil(Request $request)
   {
 
+    
     $name = $request->name;
     $lastname = $request->lastname;
     $email = $request->email;
     $phone = $request->phone;
+    $direccion = $request->direccion;
+    $departamento = $request->departamento;
+    $provincia = $request->provincia;
+    $distrito = $request->distrito;
+    $codigo_postal = $request->codigo_postal;
+
     $user = User::findOrFail($request->id);
 
     $imprimir = '';
@@ -522,6 +529,14 @@ class IndexController extends Controller
       $user->lastname = $lastname;
       $user->email = $email;
       $user->phone = $phone;
+      
+      $user->direccion = $direccion;
+      $user->departamento = $departamento;
+      $user->provincia = $provincia;
+      $user->distrito = $distrito;
+      $user->codigo_postal = $codigo_postal;
+
+
       $alert = "success";
       $imprimir = "Datos actualizados";
     }
@@ -546,12 +561,15 @@ class IndexController extends Controller
     return response()->json(['message' => "Datos Personales: $imprimir, Contraseña: $imrimirPassword ", 'alert' => $alert]);
   }
 
-  public function micuenta()
+  public function micuenta($section = null)
   {
     $user = Auth::user();
+    $general = General::first();
     // return view('public.dashboard', compact('user'));
     return Inertia::render('Dashboard', [
       'user' => $user,
+      'section' => $section,
+      'general' => $general
     ])->rootView('micuenta');
   }
 
@@ -1024,15 +1042,12 @@ class IndexController extends Controller
 
   public function dashboard()
   {
-    try{
-      
+    try {
 
-      
+
+
       return Inertia::render('Dashboard')->rootView('app');
-
-    }catch (\Throwable $th) {
-     
+    } catch (\Throwable $th) {
     }
   }
-  
 }

@@ -194,7 +194,7 @@
     src="{{ asset('img_donas/spa.svg') }}">
 </div>
 
-<header class="font-b_classic_regular sticky top-0" style="z-index:1">
+<header class="font-b_classic_regular @if (!request()->is('micuenta*')) sticky @endif top-0" style="z-index:1">
 
   <div id="header-mid" class="h-[80px] flex flex-row items-center bg-white">
     <div
@@ -277,7 +277,8 @@
             </button>
             <div
               class="origin-top-right z-30 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1"
-              @click.outside="open = false" @keydown.escape.window="open = false" x-show="open">
+              @click.outside="open = false" @keydown.escape.window="open = false" x-show="open"
+              style="z-index: 10">
               <ul>
                 <li class="hover:bg-gray-100">
                   @if (Auth::user()->hasRole('Admin'))
@@ -331,8 +332,8 @@
   @php
     $currentUrl = url()->full();
   @endphp
-  @if (!request()->is('login') && !request()->is('register') && !request()->is('micuenta'))
-    <div class="header_bottom hidden 2md:flex h-12 bg-[#336234] px-[5%] lg:px-[8%] 2md:justify-center">
+  @if (!request()->is('login') && !request()->is('register') && !request()->is('micuenta*'))
+    <div class=" header_bottom hidden 2md:flex h-12 bg-[#336234] px-[5%] lg:px-[8%] 2md:justify-center">
       <div class="text-base font-b_classic_bold ">
 
 

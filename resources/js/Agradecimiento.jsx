@@ -38,12 +38,14 @@ const Agradecimiento = ({ orden_code, orden }) => {
             </p>
           </div>
           <div className="flex flex-col mt-16 w-full text-sm font-bold tracking-wide max-md:mt-10 max-md:max-w-full">
-            <button className='gap-2 self-stretch px-6 py-4 rounded-3xl text-white bg-green-800 w-full'>
+            <button className='gap-2 self-stretch px-6 py-4 rounded-3xl text-green-800 hover:text-white hover:bg-green-800 w-full border border-green-800'>
               Seguir comprando
             </button>
-            <button className='gap-2 self-stretch px-6 py-4 rounded-3xl text-green-800 bg-white border border-green-800 border-solid mt-2 w-full'>
+            <a
+              href='/micuenta/historial'
+              className='gap-2 self-stretch px-6 py-4 rounded-3xl text-green-800 hover:text-white hover:bg-green-800 bg-white border text-center border-green-800 border-solid mt-2 w-full'>
               Historial de compras
-            </button>
+            </a>
           </div>
         </section>
       </section>

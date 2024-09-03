@@ -33,7 +33,12 @@ class User extends Authenticatable
         'email',
         'password',
         'users', 
-        
+        'points',
+        'direccion',
+        'departamento',
+        'codigo_postal',
+        'provincia',
+        'distrito'
     ];
 
     /**

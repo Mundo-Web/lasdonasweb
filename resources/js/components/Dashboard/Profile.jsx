@@ -1,17 +1,49 @@
 import React from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function Profile({ userDetail }) {
 
   const handleformChange = (e) => {
-    console.log(e.target.value);
+
     let value = e.target.value;
     let name = e.target.name;
 
     userDetail.current = { ...userDetail.current, [name]: value };
 
-    console.log(userDetail.current);
+
 
   }
+
+  const actualizarPerfil = async () => {
+    try {
+      const response = await axios.post('/api/actualizar-perfil', userDetail.current)
+      const { data, status } = response
+      console.log(data, status)
+
+      if (status === 200) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Perfil actualizado',
+          text: 'Los datos de tu perfil han sido actualizados correctamente'
+        })
+      }
+
+    } catch (error) {
+      console.error('Inconveniente al guardar los datos ', error);
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al guardar',
+        text: 'Hubo un inconveniente al guardar los datos, por favor intente nuevamente'
+      })
+
+    }
+
+
+  }
+
+
   return (
     <section className="flex flex-col rounded-3xl font-b_slick_regular">
       <div className="flex flex-col w-full max-md:max-w-full">
@@ -81,7 +113,8 @@ function Profile({ userDetail }) {
           </div>
           <div
             className="flex gap-8 items-center self-end mt-8 max-w-full text-base font-bold tracking-wider text-center text-white whitespace-nowrap w-[211px]">
-            <button type="submit"
+            <button type="button"
+              onClick={actualizarPerfil}
               className="overflow-hidden gap-2 self-stretch px-7 py-3.5 my-auto bg-green-800 min-h-[52px] rounded-[50px] w-[211px] max-md:px-5">
               Guardar
             </button>

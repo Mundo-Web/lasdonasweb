@@ -9,10 +9,30 @@ import Address from './components/Dashboard/Address';
 import Record from './components/Dashboard/Record';
 import Privacy from './components/Dashboard/Privacy';
 import { useRef } from 'react';
+import axios from 'axios';
 
-const Dashboard = ({ user }) => {
-  const [selectedOption, setSelectedOption] = useState('Mi Perfil');
+const Dashboard = ({ user, section, general }) => {
+  const [selectedOption, setSelectedOption] = useState(section !== null ? section : 'Mi Perfil');
   const userDetail = useRef(user)
+
+  const handleLogout = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('/logout', {}, {
+        headers: {
+          'Content-Type': 'application/json',
+          // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      });
+      if (response.status === 204) {
+        window.location.href = '/'; // Redirigir a la página de inicio u otra página después del cierre de sesión
+      } else {
+        console.error('Error al cerrar sesión');
+      }
+    } catch (error) {
+      console.error('Error al cerrar sesión', error);
+    }
+  };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -63,8 +83,8 @@ const Dashboard = ({ user }) => {
             </li>
             <li>
               <a
-                onClick={() => handleOptionClick('Mis Pedidos')}
-                className={getOptionClass('Mis Pedidos')}
+                onClick={() => handleOptionClick('historial')}
+                className={getOptionClass('historial')}
               >
                 Mis Pedidos
               </a>
@@ -110,20 +130,23 @@ const Dashboard = ({ user }) => {
               </a>
             </li>
           </ul>
-          <a href="#" className="flex gap-2 items-center self-stretch px-3 pt-5 sm:pt-0 pb-2 text-green-800 rounded-3xl">
-            <span className="self-stretch my-auto">Cerrar Sesión</span>
+
+          <form method="POST" action="/logout" onSubmit={handleLogout} className="flex gap-2 items-center self-stretch px-3 pt-5 sm:pt-0 pb-2 text-green-800 rounded-3xl">
+            <button type="submit" className="flex gap-2 items-center self-stretch px-3 pt-5 sm:pt-0 pb-2 text-green-800 rounded-3xl">
+              Cerrar Sesión
+            </button>
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/7113fee8d194dc80992517b9231b5f12c3604e22f90d8cffe710f10f068284b8?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da"
               alt=""
               className="object-contain shrink-0 self-stretch my-auto w-4 aspect-square"
             />
-          </a>
+          </form>
         </nav>
         <div className='mt-10'>
           {selectedOption === 'Mi Perfil' && <Profile userDetail={userDetail} />}
-          {selectedOption === 'Mis Pedidos' && <Orders />}
-          {selectedOption === 'Mis Puntos' && <Points />}
+          {selectedOption === 'historial' && <Orders />}
+          {selectedOption === 'Mis Puntos' && <Points userDetail={userDetail} general={general} />}
           {selectedOption === 'Mis Cupones' && <Coupons />}
           {selectedOption === 'Direcciones' && <Address />}
           {selectedOption === 'Recordatorios' && <Record />}
