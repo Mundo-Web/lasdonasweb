@@ -26,4 +26,9 @@ class Horarios extends Model
             $builder->where('status', 1);
         });
     }
+
+    public function ordenes($query)
+    {
+        return $this->hasMany(Ordenes::class, 'horario_envio');
+    }
 }

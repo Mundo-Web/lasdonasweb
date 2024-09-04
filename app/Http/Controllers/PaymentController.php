@@ -26,6 +26,7 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use SoDe\Extend\Crypto;
 use SoDe\Extend\File;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -34,6 +35,14 @@ class PaymentController extends Controller
     $body = $request->all();
     $response = new Response();
     $culqi = new Culqi(['api_key' => env('CULQI_PRIVATE_KEY')]);
+
+    $body['address']['entrega'];
+    $fechaEntrega = $body['address']['entrega']['fecha'];
+    $horarioEntrega = $body['address']['entrega']['horario'];
+    
+   
+
+    
 
     $sale = new Ordenes();
 
@@ -111,6 +120,8 @@ class PaymentController extends Controller
       $sale->dedication_title = $body['dedication']['title'] ?? null;
       $sale->dedication_message = $body['dedication']['message'] ?? null;
       $sale->dedication_sign = $body['dedication']['sign'] ?? null;
+      $sale->fechaenvio = $fechaEntrega;
+      $sale->horario_envio = $horarioEntrega;
 
       if ($body['dedication']['image']) {
         try {
@@ -165,7 +176,7 @@ class PaymentController extends Controller
       $userJpa->points = Auth::user()->points + ($points2give - $points2discount);
       $userJpa->save();
 
-      $sale->status_id = 2;
+      $sale->status_id = 3;
       $sale->codigo_orden = $charge?->reference_code ?? null;
 
       // $indexController = new IndexController(new InstagramService());
@@ -183,7 +194,7 @@ class PaymentController extends Controller
       if (!$sale->codigo_orden) {
         $sale->codigo_orden = '000000000000';
       }
-      $sale->status_id = 1;
+      $sale->status_id = 2;
     } finally {
 
       $sale->save();

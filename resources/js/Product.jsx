@@ -713,7 +713,7 @@ const Product = ({
               {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                 onClick={agregarPedido}
               >
-                Agregar al carrito
+                Confirmar
                 <i className='fa fa-cart-plus ms-1'></i>
               </div>)}
             </div>
@@ -963,7 +963,7 @@ const Product = ({
                   {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                     onClick={agregarPedido}
                   >
-                    Agregar al carrito
+                    Confirmar
                     <i className='fa fa-cart-plus ml-2 mb-1'></i>
                   </div>)}
                 </div>

@@ -9,4 +9,9 @@ class PrecioEnvio extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'direcction', 'zip_code', 'price', 'visible', 'status'];
+
+    public function address()
+    {
+        return $this->hasMany(Address::class, 'precio_id');
+    }
 }

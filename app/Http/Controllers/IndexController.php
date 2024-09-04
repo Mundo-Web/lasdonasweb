@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\EmailConfig;
 use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
+use App\Models\Address;
 use App\Models\AddressUser;
 use App\Models\Attributes;
 use App\Models\AttributesValues;
@@ -29,6 +30,7 @@ use App\Models\MensajesPredefinidos;
 use App\Models\Ordenes;
 use App\Models\PoliticaSustitucion;
 use App\Models\PolyticsCondition;
+use App\Models\Price;
 use App\Models\Specifications;
 use App\Models\Tag;
 use App\Models\TermsAndCondition;
@@ -565,11 +567,12 @@ class IndexController extends Controller
   {
     $user = Auth::user();
     $general = General::first();
+    $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
     // return view('public.dashboard', compact('user'));
     return Inertia::render('Dashboard', [
       'user' => $user,
       'section' => $section,
-      'general' => $general
+      'general' => $general, 'categorias' => $categorias
     ])->rootView('micuenta');
   }
 
@@ -608,24 +611,54 @@ class IndexController extends Controller
   public function direccion()
   {
     $user = Auth::user();
-    $direcciones = AddressUser::where('user_id', $user->id)->get();
-    $departamentofiltro = DB::select('select * from departments where active = ? order by 2', [1]);
-    $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
+    $addresses = Address::where('user_id', $user->id)->get();
+    // $addresses = Address::where('email', $user->email) ->with('price')->get();
+      
 
-    foreach ($direcciones as $direccion) {
-      $distrito = DB::table('districts')->where('id', $direccion->distrito_id)->first();
-      $provincia = DB::table('provinces')->where('id', $direccion->provincia_id)->first();
-      $departamento = DB::table('departments')->where('id', $direccion->departamento_id)->first();
+    $departments = Price::select([
+      'departments.id AS id',
+      'departments.description AS description',
+    ])
+      ->join('districts', 'districts.id', 'prices.distrito_id')
+      ->join('provinces', 'provinces.id', 'districts.province_id')
+      ->join('departments', 'departments.id', 'provinces.department_id')
+      ->where('departments.active', 1)
+      ->groupBy('id', 'description')
+      ->get();
 
+    $provinces = Price::select([
+      'provinces.id AS id',
+      'provinces.description AS description',
+      'provinces.department_id AS department_id'
+    ])
+      ->join('districts', 'districts.id', 'prices.distrito_id')
+      ->join('provinces', 'provinces.id', 'districts.province_id')
+      ->where('provinces.active', 1)
+      ->groupBy('id', 'description', 'department_id')
+      ->get();
 
+    $districts = Price::select([
+      'districts.id AS id',
+      'districts.description AS description',
+      'districts.province_id AS province_id',
+      'prices.id AS price_id',
+      'prices.price AS price'
+    ])
+      ->join('districts', 'districts.id', 'prices.distrito_id')
+      ->where('districts.active', 1)
+      ->groupBy('id', 'description', 'province_id', 'price', 'price_id')
+      ->get();
+    $categorias = Category::all();
 
-      $direccion->distrito_id = $distrito ? $distrito->description : '';
-      $direccion->provincia_id = $provincia ? $provincia->description : '';
-      $direccion->departamento_id = $departamento ? $departamento->description : '';
-    }
-
-
-    return view('public.dashboard_direccion', compact('user', 'direcciones', 'departamento', 'departamentofiltro'));
+    // return view('public.dashboard_direccion', compact('user', 'addresses', 'categorias', 'departments', 'provinces', 'districts'));
+    return response()->json([
+      'user' => $user,
+      'addresses' => $addresses,
+      'categorias' => $categorias,
+      'departments' => $departments,
+      'provinces' => $provinces,
+      'districts' => $districts,
+    ]);
   }
 
   public function obtenerProvincia($departmentId)

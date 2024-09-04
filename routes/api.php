@@ -6,6 +6,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PrecioEnvioController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleDetailController;
 use Illuminate\Http\Request;
@@ -37,9 +38,12 @@ Route::post('/consultar-localidad', [PrecioEnvioController::class, 'searchzip'])
 Route::post('/actualizar-perfil', [IndexController::class, 'actualizarPerfil'] );
 
 
+
 Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/dashboard/top-products/{orderBy}', [DashboardController::class, 'topProducts'])->name('dashboard.top-products');
+
+    Route::get('/direccion', [IndexController::class, 'direccion'])->name('address.all');
 
     Route::post('/address', [AddressController::class, 'save'])->name('address.save');
     Route::delete('/address/{id}', [AddressController::class, 'delete'])->name('address.delete');
@@ -49,6 +53,12 @@ Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
     Route::post('/sales/confirmation', [SaleController::class, 'confirmation'])->name('sales.confirmation');
     Route::patch('/sales/status', [SaleController::class, 'status'])->name('sales.status');
     Route::get('/saledetails/{sale}', [SaleDetailController::class, 'bySale'])->name('sale.bySale');
+
+    Route::post('/reminders', [ReminderController::class, 'create']);
+    Route::put('/reminders/{id}', [ReminderController::class, 'update']);
+   
+   
+   
 
    /*  Route::get('/offers', [OfferController::class, 'all'])->name('offers.all');
     Route::patch('/offers', [OfferController::class, 'save'])->name('offers.save');

@@ -9,32 +9,30 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 
-function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio }) {
+function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio, addreses }) {
 
-  const [carrito, setCarrito] = useState(Local.get('carrito') || []);
+  console.log(addressRef.current)
   const [formState, setFormState] = useState({
-    fullname: '',
-    phone: '',
-    fulladdress: '',
-    street: '',
-    number: '',
-    mz: '',
-    department: '',
-    province: '',
-    district: '',
-    residenceType: '',
-    reference: '',
-    postal_code: '',
+    fulladdress: addressRef.current?.fulladdress ?? '',
+    street: addressRef.current?.street ?? '',
+    number: addressRef.current?.number ?? '',
+    mz: addressRef.current?.mz ?? '',
+    department: addressRef.current?.department ?? '',
+    province: addressRef.current?.province ?? '',
+    district: addressRef.current?.district ?? '',
+    residenceType: addressRef.current?.residenceType ?? '',
+    reference: addressRef.current?.reference ?? '',
+    postal_code: addressRef.current?.postal_code ?? '',
     coordinates: {
-      latitude: 0,
-      longitude: 0
+      latitude: addressRef.current?.coordinates?.latitude ?? 0,
+      longitude: addressRef.current?.coordinates?.longitude ?? 0
     },
-    entrega: { fecha: carrito[0].fecha, horario: `${carrito[0].horario.id} ` }
-
-  })
+    price: 0,
+    id: addressRef.current?.id ?? null
+  });
   const validateForm = () => {
     const requiredFields = [
-      'fullname', 'phone', 'fulladdress', 'street', 'number', 'mz',
+      'fulladdress', 'street', 'number', 'mz',
       'department', 'province', 'district', 'residenceType', 'reference', 'postal_code'
     ];
 
@@ -52,7 +50,13 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
 
       let { data, status } = response
       if (status === 200) {
-        setCostoEnvio(data.price)
+        // (data.price)
+        setFormState(old => {
+          return {
+            ...old,
+            price: data.price
+          }
+        })
         Swal.fire({
           icon: 'success',
           title: 'Ubicación encontrada',
@@ -169,10 +173,29 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
       [name]: value
     }));
   }
+  const saveNewAddress = async () => {
+    try {
+      let response = await axios.post('/api/address', formState);
+      handlemodalMaps();
+      addreses()
+      Swal.fire({
+        icon: 'success',
+        title: 'Dirección guardada',
+        showConfirmButton: true,
+        confirmButtonText: 'Aceptar',
+      })
+      console.log(response);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
+  }
 
   const continueToPayment = () => {
     if (validateForm()) {
-      onSelectAddress(formState);
+      saveNewAddress();
+
+
     } else {
       Swal.fire({
         icon: 'error',
@@ -190,7 +213,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
   return (
     <main className="flex flex-col justify-center self-stretch p-1 text-sm font-bold tracking-wide bg-white rounded-none max-w-[880px] max-md:px-5">
       <form className="flex flex-col w-full">
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+        {/* <section className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
           <div className="md:col-span-2">
             <InputField
               required={true}
@@ -216,7 +239,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
               handleDatosFinales={handlechange}
             />
           </div>
-        </section>
+        </section> */}
 
         {scriptLoaded && <GoogleMapsComponent managezipCode={managezipCode} addressRef={addressRef} />}
 
@@ -349,7 +372,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
             Cerrar
           </Button>
           <Button variant="secondary" color="green" className="w-full md:w-auto" callback={continueToPayment}>
-            Siguiente
+            Guardar
           </Button>
         </div>
       </form>
@@ -358,4 +381,4 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
   );
 }
 
-export default AddressForm;
+export default NewAdressForm;

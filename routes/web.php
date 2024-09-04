@@ -37,6 +37,7 @@ use App\Http\Controllers\PolyticsConditionController;
 use App\Http\Controllers\PrecioEnvioController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StrengthController;
@@ -295,8 +296,10 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function 
  Route::post('/micuenta/actualizarPerfil', [IndexController::class, 'actualizarPerfil'] )->name('actualizarPerfil');
 
 
-
-
+ // routes/web.php
+ 
+ 
+ 
 
 
 });

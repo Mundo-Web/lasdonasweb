@@ -40,9 +40,9 @@
   "_calcularTotal-FPqXOtx1.js": {
     "file": "assets/calcularTotal-FPqXOtx1.js"
   },
-  "_es-!~{01i}~.js": {
+  "_es-!~{01l}~.js": {
     "file": "assets/es-D87rtk4j.css",
-    "src": "_es-!~{01i}~.js"
+    "src": "_es-!~{01l}~.js"
   },
   "_es-Hz-LnzMB.js": {
     "css": [
@@ -55,9 +55,9 @@
       "_floating-ui.dom-KYqStz1f.js"
     ]
   },
-  "_fade-!~{01c}~.js": {
+  "_fade-!~{01f}~.js": {
     "file": "assets/fade-WxPIMcx6.css",
-    "src": "_fade-!~{01c}~.js"
+    "src": "_fade-!~{01f}~.js"
   },
   "_floating-ui.dom-KYqStz1f.js": {
     "file": "assets/floating-ui.dom-KYqStz1f.js"
@@ -87,11 +87,12 @@
   "_objectWithoutPropertiesLoose-RRuG-_4m.js": {
     "file": "assets/objectWithoutPropertiesLoose-RRuG-_4m.js"
   },
-  "_react-select.esm-llSg7uFa.js": {
-    "file": "assets/react-select.esm-llSg7uFa.js",
+  "_react-select.esm-bOoZgVz1.js": {
+    "file": "assets/react-select.esm-bOoZgVz1.js",
     "imports": [
-      "_objectWithoutPropertiesLoose-RRuG-_4m.js",
+      "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
+      "_objectWithoutPropertiesLoose-RRuG-_4m.js",
       "_setPrototypeOf-ahVgEFUp.js",
       "_index-38suPYpT.js",
       "_floating-ui.dom-KYqStz1f.js"
@@ -106,9 +107,9 @@
       "_index-XJuWVQ-l.js"
     ]
   },
-  "_tippy-!~{01g}~.js": {
+  "_tippy-!~{01j}~.js": {
     "file": "assets/tippy-C64i7G0l.css",
-    "src": "_tippy-!~{01g}~.js"
+    "src": "_tippy-!~{01j}~.js"
   },
   "_tippy.esm-vXDZ6XwW.js": {
     "file": "assets/tippy.esm-vXDZ6XwW.js"
@@ -162,7 +163,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-dpW8bIWd.css",
+    "file": "assets/app-7FRWThEX.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -295,7 +296,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-7h9ojMBs.js",
+    "file": "assets/Dashboard-_65ejVTt.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -303,15 +304,18 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-llSg7uFa.js",
+      "_react-select.esm-bOoZgVz1.js",
       "resources/js/components/SalesDatagrid.jsx",
+      "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
       "_tippy.esm-vXDZ6XwW.js",
       "resources/js/components/InvoiceModal.jsx",
+      "resources/js/components/ClasicModal.jsx",
+      "_Button-pfbHwtIn.js",
+      "_index-XJuWVQ-l.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_index-XJuWVQ-l.js",
       "_storage-zp2nPsZU.js",
       "_objectWithoutPropertiesLoose-RRuG-_4m.js",
       "_setPrototypeOf-ahVgEFUp.js",
@@ -357,7 +361,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-X4XHeUeK.js",
+    "file": "assets/Pago-H7yxNbpf.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -365,11 +369,11 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
+      "_react-select.esm-bOoZgVz1.js",
       "_Button-pfbHwtIn.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-llSg7uFa.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -385,7 +389,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-Az6hjv8i.js",
+    "file": "assets/Product-LNOJLywO.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -491,6 +495,18 @@
     "isEntry": true,
     "src": "resources/js/components/AddressForm.jsx"
   },
+  "resources/js/components/AddressList.jsx": {
+    "file": "assets/AddressList-SY6cN41j.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "resources/js/components/Dashboard/Profile.jsx",
+      "_index-XJuWVQ-l.js",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/AddressList.jsx"
+  },
   "resources/js/components/Button.jsx": {
     "file": "assets/Button-tmMjkXlv.js",
     "imports": [
@@ -545,11 +561,24 @@
     "isEntry": true,
     "src": "resources/js/components/Checkbox.jsx"
   },
-  "resources/js/components/Dashboard/Address.jsx": {
-    "file": "assets/Address-tmMjkXlv.js",
+  "resources/js/components/ClasicModal.jsx": {
+    "file": "assets/ClasicModal-2SaBLr4U.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_index-38suPYpT.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/ClasicModal.jsx"
+  },
+  "resources/js/components/Dashboard/Address.jsx": {
+    "file": "assets/Address-SY6cN41j.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "resources/js/components/Dashboard/Profile.jsx",
+      "_index-XJuWVQ-l.js",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
@@ -569,13 +598,15 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Orders-7xVuTZOA.js",
+    "file": "assets/Orders-Fqf2afN-.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "resources/js/components/SalesDatagrid.jsx",
+      "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
       "resources/js/components/InvoiceModal.jsx",
+      "resources/js/components/ClasicModal.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
       "_objectWithoutPropertiesLoose-RRuG-_4m.js",
       "_index-38suPYpT.js",
@@ -615,11 +646,20 @@
     "src": "resources/js/components/Dashboard/Profile.jsx"
   },
   "resources/js/components/Dashboard/Record.jsx": {
-    "file": "assets/Record-tmMjkXlv.js",
+    "css": [
+      "assets/Record-B32oYo7W.css",
+      "assets/tippy-C64i7G0l.css"
+    ],
+    "file": "assets/Record-WIoA-nP0.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "__commonjsHelpers-4gQjN7DL.js"
+      "_jquery-_-XaHmv-.js",
+      "_moment-WSJ9un1t.js",
+      "resources/js/components/InvoiceModal.jsx",
+      "resources/js/components/ClasicModal.jsx",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_index-38suPYpT.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Dashboard/Record.jsx"
@@ -676,13 +716,14 @@
     "src": "resources/js/components/InputField.jsx"
   },
   "resources/js/components/InvoiceModal.jsx": {
-    "file": "assets/InvoiceModal-8ILyzqZt.js",
+    "file": "assets/InvoiceModal-pCiAOzum.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
+      "resources/js/components/ClasicModal.jsx",
+      "_moment-WSJ9un1t.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_index-38suPYpT.js",
-      "_moment-WSJ9un1t.js"
+      "_index-38suPYpT.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/InvoiceModal.jsx"
@@ -747,6 +788,18 @@
     ],
     "isEntry": true,
     "src": "resources/js/components/MonthsOption.jsx"
+  },
+  "resources/js/components/NewAdressForm.jsx": {
+    "file": "assets/NewAdressForm-eGxBXIr6.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "_index-XJuWVQ-l.js",
+      "resources/js/components/Dashboard/Profile.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/NewAdressForm.jsx"
   },
   "resources/js/components/OrderItem.jsx": {
     "file": "assets/OrderItem-tmMjkXlv.js",
@@ -845,19 +898,21 @@
       "assets/dxicons-NVJDH3Nn.ttf"
     ],
     "css": [
-      "assets/SalesDatagrid-I-vBUh6f.css",
+      "assets/SalesDatagrid-kvJOWtWG.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/SalesDatagrid-8gxBXXOb.js",
+    "file": "assets/SalesDatagrid-ry-EriVH.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
+      "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
       "resources/js/components/InvoiceModal.jsx",
+      "resources/js/components/ClasicModal.jsx",
       "_objectWithoutPropertiesLoose-RRuG-_4m.js",
       "_index-38suPYpT.js",
-      "_jquery-_-XaHmv-.js",
-      "__commonjsHelpers-4gQjN7DL.js"
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_jquery-_-XaHmv-.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/SalesDatagrid.jsx"

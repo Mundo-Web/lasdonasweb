@@ -350,9 +350,9 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
                   Tipo de comprobante
                 </h2>
                 <div className="flex flex-col justify-center mt-6 w-full max-md:max-w-full">
-                  <h3 className="w-full text-base font-bold tracking-wider text-neutral-900 max-md:max-w-full">
+                  {/* <h3 className="w-full text-base font-bold tracking-wider text-neutral-900 max-md:max-w-full">
                     ¿Qué tipo de comprobante desea?
-                  </h3>
+                  </h3> */}
                   <ReceiptTypeSelector onChange={value => {
                     setDatosFinales(old => ({
                       ...old,

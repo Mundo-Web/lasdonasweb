@@ -15,6 +15,30 @@ const SalesDataGrid = ({ isAdmin, statuses }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedSale, setSelectedSale] = useState(null);
 
+  const formattedTime = (timeString) => {
+
+    console.log(timeString)
+
+    const [hours, minutes, seconds] = timeString.split(':');
+    const date = new Date();
+    date.setHours(hours, minutes, seconds);
+
+    // Verificar si la hora es válida
+    if (isNaN(date.getTime())) {
+      return 'Not Set';
+    }
+
+    // Formatear la hora
+    const options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+    const formattedTime = new Intl.DateTimeFormat('es-ES', options).format(date);
+
+    // Capitalizar la hora formateada
+    const capitalizedTime = formattedTime.charAt(0).toUpperCase() + formattedTime.slice(1);
+
+    return capitalizedTime;
+  }
+
+
   useEffect(() => {
     const loadData = async () => {
       const res = await fetch(`${isAdmin ? '/api/sales/paginate' : '/api/sales/paginate?data=mine'}`, {
@@ -63,7 +87,7 @@ const SalesDataGrid = ({ isAdmin, statuses }) => {
   const renderDateCell = (data) => {
     return (
       <div className="!px-3 !py-2">
-        {data.fechaenvio ? moment(data.fechaenvio).format('YYYY-MM-DD hh:mm A') : 'Sin fecha'}
+        {data.fechaenvio ? <> {moment(data.fechaenvio).format('YYYY-MM-DD ')} {formattedTime(data.horario_envio.start_time)} - {formattedTime(data.horario_envio.end_time)}   </> : 'Sin fecha'}
       </div>
     );
   }
@@ -74,7 +98,7 @@ const SalesDataGrid = ({ isAdmin, statuses }) => {
           className="block text-sm font-medium truncate dark:text-white text-blue-500 cursor-pointer max-w-max"
           onClick={() => openSaleModal(data)}
         >
-          #{data.code}
+          #{data.codigo_orden}
           {data.confirmation_client && (
             <span
               className="ms-1 inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full dark:bg-green-900 dark:text-green-300 w-max"
@@ -95,8 +119,8 @@ const SalesDataGrid = ({ isAdmin, statuses }) => {
           )}
         </a>
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          {data.address_description
-            ? `${data.address_department}, ${data.address_province}, ${data.address_district} - ${data.address_street} #${data.address_number}`
+          {data.address_full
+            ? `${data.address_full}`
             : 'Recojo en tienda'}
         </p>
         <p className="text-xs text-gray-400">
@@ -108,29 +132,30 @@ const SalesDataGrid = ({ isAdmin, statuses }) => {
   };
 
   const renderStatusCell = (data) => {
-    const color = data.status?.color ?? '#000000';
+    const color = data.status_ordenes?.color ?? '#000000';
+
     return (
-      <div className="!px-3 !py-2 !text-center" style={{ verticalAlign: 'middle' }}>
+      <div className="!px-3 !py-2 !text-center flex items-center justify-center content-center" style={{ verticalAlign: 'middle' }}>
         <span
           className={`inline-flex items-center bg-[${color}77] text-[${color}30] text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-[${color}22] dark:text-[${color}bb] w-max`}
         >
-          {data.status?.name ?? 'Sin estado'}
+          {data.status_ordenes?.name ?? 'Sin estado'}
         </span>
       </div>
     );
   };
 
   const renderTotalCell = (data) => {
-    const isFree = !Boolean(Number(data.address_price));
+    const isFree = !Boolean(Number(data.precio_envio));
     return (
       <div className="!px-3 !py-2 !text-center" style={{ verticalAlign: 'middle' }}>
         <div className="text-center">
-          <span className="block w-max mx-auto">S/. {data.total}</span>
+          <span className="block w-max mx-auto">S/. {data.monto}</span>
           <span
             className={`inline-flex items-center ${isFree ? 'bg-green-100' : 'bg-blue-100'} ${isFree ? 'text-green-800' : 'text-blue-800'} text-xs font-medium px-2.5 py-0.5 rounded-full dark:${isFree ? 'bg-green-900' : 'bg-blue-900'} dark:${isFree ? 'text-green-300' : 'text-blue-300'} w-max`}
           >
             <span className={`w-2 h-2 me-1 ${isFree ? 'bg-green-500' : 'bg-blue-500'} rounded-full`}></span>
-            {isFree ? 'Envio gratis' : `S/. ${Number(data.address_price).toFixed(2)}`}
+            {isFree ? 'Envio gratis' : `S/. ${Number(data.precio_envio).toFixed(2)}`}
           </span>
         </div>
       </div>

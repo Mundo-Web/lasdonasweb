@@ -16,4 +16,9 @@ class Status extends Model
         'icon',
         'status',
     ];
+
+    public function ordenes()
+    {
+        return $this->hasMany(Ordenes::class, 'status_id');
+    }
 }

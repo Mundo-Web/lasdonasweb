@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Http\Classes\dxResponse;
 use App\Models\dxDataGrid;
+use App\Models\Ordenes;
 use App\Models\Status;
 use App\Models\User;
 use SoDe\Extend\JSON;
@@ -29,19 +30,20 @@ class SaleController extends Controller
     {
         $response =  new dxResponse();
         try {
-            $instance = Sale::select()->with('status');
+            // $instance = Sale::select()->with('status');
+            $instance = Ordenes::select()->with(['usuarioPedido', 'horarioEnvio', 'statusOrdenes', 'DetalleOrden']);
 
             if ($request->group != null) {
                 [$grouping] = $request->group;
                 $selector = \str_replace('.', '__', $grouping['selector']);
-                $instance = Sale::select([
+                $instance = Ordenes::select([
                     "{$selector} AS key"
                 ])->with('status')
                     ->groupBy($selector);
             }
 
             if (!Auth::user()->hasRole('Admin') || $request->data == 'mine') {
-                $instance->where('email', Auth::user()->email);
+                $instance->where('usuario_id', Auth::user()->id);
             }
 
            

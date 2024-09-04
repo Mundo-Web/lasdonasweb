@@ -7,6 +7,7 @@ import axios from 'axios';
 const InvoiceModal = ({ isOpen, onRequestClose, data, isAdmin, statuses }) => {
   const [invoiceData, setInvoiceData] = useState(null);
 
+
   useEffect(() => {
     if (data) {
       setInvoiceData(data);
@@ -117,25 +118,26 @@ const InvoiceModal = ({ isOpen, onRequestClose, data, isAdmin, statuses }) => {
           >
             &times;
           </button>
+
           <div className="relative md:absolute border rounded-lg right-8 top-6 py-2 px-3 mb-2 text-center">
             {/* <b className="block">{invoiceData.tipo_comprobante.toUpperCase()}</b> */}
-            <b className="block">{invoiceData.tipo_comprobante ?? ''}</b>
-            <b className="block">{invoiceData.doc_number}</b>
-            <h4 className="h4 mb-1">S/. {Number(invoiceData.total) + Number(invoiceData.address_price)}</h4>
+            <b className="block">{invoiceData.billing_type.toUpperCase() ?? ''}</b>
+            <b className="block">{invoiceData.billing_document}</b>
+            <h4 className="h4 mb-1">S/. {Number(invoiceData.monto) + Number(invoiceData.precio_envio)}</h4>
           </div>
-          <h4 className="h4 mb-2 mt-2">Orden #{invoiceData.code}</h4>
+          <h4 className="h4 mb-2 mt-2">Orden #{invoiceData.codigo_orden}</h4>
           <p className="font-bold mb-2">{invoiceData.name} {invoiceData.lastname}</p>
           <span>Direccion Envio:</span>
-          <p className="text-gray-700 mb-2">{invoiceData.address_description ? `${invoiceData.address_department}, ${invoiceData.address_province}, ${invoiceData.address_district} - ${invoiceData.address_street} #${invoiceData.address_number}` : 'Recojo en tienda'}</p>
+          <p className="text-gray-700 mb-2">{invoiceData.address_full ? `${invoiceData.address_full}` : 'Recojo en tienda'}</p>
 
           <p className="font-bold"> Datos Facturacion: </p>
           <p>
             <span>Nombre / Razon Social: </span>
-            <span>{invoiceData.razon_fact}</span>
+            <span>{invoiceData.billing_name}</span>
           </p>
           <p className="mb-2">
             <span> Direccion Fiscal:</span>
-            <span>{invoiceData.direccion_fact}</span>
+            <span> {invoiceData.billing_address}</span>
           </p>
 
           {isAdmin ? (
@@ -148,7 +150,7 @@ const InvoiceModal = ({ isOpen, onRequestClose, data, isAdmin, statuses }) => {
               </select>
             </div>
           ) : (
-            <p className="mb-2">Estado: <span className="font-bold">{invoiceData.status?.name ?? 'Sin estado'}</span></p>
+            <p className="mb-2">Estado: <span className="font-bold">{invoiceData.status_ordenes?.name ?? 'Sin estado'}</span></p>
           )}
 
           <div className="flex gap-4">
@@ -180,14 +182,15 @@ const InvoiceModal = ({ isOpen, onRequestClose, data, isAdmin, statuses }) => {
                 </tr>
               </thead>
               <tbody>
-                {invoiceData.products ? (
-                  invoiceData.products.length > 0 ? (
-                    invoiceData.products.map((item, index) => (
+
+                {invoiceData.detalle_orden ? (
+                  invoiceData.detalle_orden.length > 0 ? (
+                    invoiceData.detalle_orden.map((item, index) => (
                       <tr key={index} className="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.product_name}</th>
-                        <td className="px-6 py-4">S/. {Number(item.price).toFixed(2)}</td>
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.name}</th>
+                        <td className="px-6 py-4">S/. {Number(item.precio).toFixed(2)}</td>
                         <td className="px-6 py-4">{item.quantity}</td>
-                        <td className="px-6 py-4">S/. {(item.price * item.quantity).toFixed(2)}</td>
+                        <td className="px-6 py-4">S/. {(item.precio * item.cantidad).toFixed(2)}</td>
                       </tr>
                     ))
                   ) : (
@@ -204,12 +207,12 @@ const InvoiceModal = ({ isOpen, onRequestClose, data, isAdmin, statuses }) => {
                     </th>
                   </tr>
                 )}
-                {invoiceData.address_price && (
+                {invoiceData.precio_envio && (
                   <tr className="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Envio</th>
-                    <td className="px-6 py-4">S/. {invoiceData.address_price}</td>
+                    <td className="px-6 py-4">S/. {invoiceData.precio_envio}</td>
                     <td className="px-6 py-4">1</td>
-                    <td className="px-6 py-4">S/. {invoiceData.address_price}</td>
+                    <td className="px-6 py-4">S/. {invoiceData.precio_envio}</td>
                   </tr>
                 )}
               </tbody>
