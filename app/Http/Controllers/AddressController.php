@@ -25,7 +25,7 @@ class AddressController extends Controller
         $data = $request->all();
         $datafull = $request->except('coordinates');
 
-        dump($data)  ;  
+        // dump($data)  ;  
 
         $body = [];
         $body['user_id'] = Auth::user()->id;
