@@ -54,12 +54,12 @@ class CuponController extends Controller
     public function destroy(Cupon $cupon , $id)
     {
         try {
-            dump($id);
+            
             Cupon::destroy($id);
             
         } catch (\Throwable $th) {
             //throw $th;
-            dump($th);
+            
         }
         
 
