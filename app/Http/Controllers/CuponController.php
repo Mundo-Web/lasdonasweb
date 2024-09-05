@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cupon;
+use App\Models\HistoricoCupon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CuponController extends Controller
 {
@@ -18,51 +21,104 @@ class CuponController extends Controller
     public function create()
     {
         $clientes = User::all();
-        return view('pages.cupones.create', compact('clientes'));
+        $cupon = new Cupon();
+        return view('pages.cupones.create', compact('clientes' , 'cupon'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'codigo' => 'required|unique:cupons',
-            'cliente_id' => 'required',
+            'fecha_caducidad' => 'required',
+            'monto' => 'required',
         ]);
         $data= $request->all();
-        $data['fecha_asignacion'] = now();
+        $data['codigo'] = strtoupper($data['codigo']);
+        $data['porcentaje'] = $request->has('porcentaje') ? true : false;
+        dump($data);
+
+
 
         Cupon::create($data);
         return redirect()->route('cupones.index');
     }
 
-    public function edit(Cupon $cupon)
+    public function edit(Cupon $cupon, string $id)
     {
         $clientes = User::all();
-        return view('cupones.edit', compact('cupon', 'clientes'));
+
+        $cupon= Cupon::find($id);
+        return view('pages.cupones.edit', compact('cupon', 'clientes'));
     }
 
-    public function update(Request $request, Cupon $cupon)
+    public function update(Request $request,string $id, Cupon $cupon)
     {
         $request->validate([
-            'codigo' => 'required|unique:cupons,codigo,' . $cupon->id,
-            'cliente_id' => 'required|exists:clientes,id',
+            'codigo' => 'required',
+            'fecha_caducidad' => 'required',
+            'monto' => 'required',
         ]);
 
-        $cupon->update($request->all());
+        $cupon  = Cupon::find($id);
+        $data= $request->all();
+        $data['codigo'] = strtoupper($data['codigo']);
+        $data['porcentaje'] = $request->has('porcentaje') ? true : false;
+
+        $cupon->update($data);
         return redirect()->route('cupones.index');
     }
 
     public function destroy(Cupon $cupon , $id)
     {
         try {
-            
+            DB::table('historico_cupones')->where('cupones_id', $id)->delete();
             Cupon::destroy($id);
             
         } catch (\Throwable $th) {
             //throw $th;
+            dump($th);
             
         }
         
 
         return redirect()->route('cupones.index');
+    }
+
+    public function addHistorico(Request $request ){
+
+        // dump($request->id)  ; 
+        // buscamos el usuario logueado 
+        try {
+            //code...
+            $user = User::find( Auth::user())->toArray();
+        
+
+            //consultamos en el historico de cupones si la persona tiene un cupon sin usar 
+            $cupon = HistoricoCupon::where('user_id', $user[0]['id'])->where('usado', false)->first();
+            dump($cupon);
+
+            if(isset($cupon)){
+                // si tiene un cupon sin usar , no se le asigna otro cupon y se actualiza el id del cupon en el historico de cupones
+                $cupon->update(['cupones_id' => $request->id]);
+            }else{
+                // si no tiene un cupon sin usar , se le asigna un cupon con id del cupon en el historico de cupones
+                HistoricoCupon::create([
+                    'cupones_id' => $request->id,
+                    'user_id' => $user[0]['id'],
+                    
+                    'usado' => false,
+                    
+                ]);
+            }
+    
+            
+    
+    
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            dump($th);
+        }
+       
     }
 }

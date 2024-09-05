@@ -15,11 +15,13 @@ return new class extends Migration
         Schema::create('cupons', function (Blueprint $table) {
             $table->id();
             $table->string('codigo')->unique();
-            $table->foreignId('cliente_id');
-            $table->date('fecha_asignacion');
+            
+            $table->date('fecha_caducidad');
             $table->decimal('monto', 10, 2);
-            $table->boolean('usado')->default(false);
-            $table->timestamps();
+            $table->boolean('porcentaje')->default(false);
+            $table->boolean('visible')->default(true);
+            $table->boolean('status')->default(true);
+            $table->timestamps(); 
         });
     }
 

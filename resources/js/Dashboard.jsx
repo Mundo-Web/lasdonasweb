@@ -11,7 +11,7 @@ import Privacy from './components/Dashboard/Privacy';
 import { useRef } from 'react';
 import axios from 'axios';
 
-const Dashboard = ({ user, section, general, categorias }) => {
+const Dashboard = ({ user, section, general, categorias, cupones, cuponesUsados }) => {
   const [selectedOption, setSelectedOption] = useState(section !== null ? section : 'Mi Perfil');
   const userDetail = useRef(user)
 
@@ -147,7 +147,7 @@ const Dashboard = ({ user, section, general, categorias }) => {
           {selectedOption === 'Mi Perfil' && <Profile userDetail={userDetail} />}
           {selectedOption === 'historial' && <Orders />}
           {selectedOption === 'Mis Puntos' && <Points userDetail={userDetail} general={general} />}
-          {selectedOption === 'Mis Cupones' && <Coupons />}
+          {selectedOption === 'Mis Cupones' && <Coupons cupones={cupones} cuponesUsados={cuponesUsados} />}
           {selectedOption === 'Direcciones' && <Address />}
           {/* {selectedOption === 'Recordatorios' && <Record categorias={categorias} />} */}
           {selectedOption === 'Privacidad' && <Privacy />}

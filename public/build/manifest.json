@@ -55,9 +55,9 @@
       "_floating-ui.dom-KYqStz1f.js"
     ]
   },
-  "_fade-!~{01f}~.js": {
+  "_fade-!~{01g}~.js": {
     "file": "assets/fade-WxPIMcx6.css",
-    "src": "_fade-!~{01f}~.js"
+    "src": "_fade-!~{01g}~.js"
   },
   "_floating-ui.dom-KYqStz1f.js": {
     "file": "assets/floating-ui.dom-KYqStz1f.js"
@@ -87,8 +87,8 @@
   "_objectWithoutPropertiesLoose-RRuG-_4m.js": {
     "file": "assets/objectWithoutPropertiesLoose-RRuG-_4m.js"
   },
-  "_react-select.esm-bOoZgVz1.js": {
-    "file": "assets/react-select.esm-bOoZgVz1.js",
+  "_react-select.esm-V4spaMBB.js": {
+    "file": "assets/react-select.esm-V4spaMBB.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -251,7 +251,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-v9YuSH4E.js",
+    "file": "assets/Carrito-13SNcLqy.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -296,7 +296,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-ExyElJiu.js",
+    "file": "assets/Dashboard-ka8rGjZv.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -304,7 +304,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-bOoZgVz1.js",
+      "_react-select.esm-V4spaMBB.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
@@ -361,7 +361,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-H7yxNbpf.js",
+    "file": "assets/Pago-9itU7iZu.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -369,7 +369,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_react-select.esm-bOoZgVz1.js",
+      "_react-select.esm-V4spaMBB.js",
       "_Button-pfbHwtIn.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
@@ -626,11 +626,12 @@
     "src": "resources/js/components/Dashboard/Points.jsx"
   },
   "resources/js/components/Dashboard/Privacy.jsx": {
-    "file": "assets/Privacy-crwy_8Dh.js",
+    "file": "assets/Privacy-v0adnISp.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "resources/js/components/ClasicModal.jsx",
+      "resources/js/components/Dashboard/Profile.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
       "_index-38suPYpT.js"
     ],

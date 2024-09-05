@@ -21,8 +21,10 @@ use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Combinacion;
 use App\Models\Complemento;
+use App\Models\Cupon;
 use App\Models\DetalleOrden;
 use App\Models\Greeting;
+use App\Models\HistoricoCupon;
 use App\Models\Horarios;
 use App\Models\ImagenProducto;
 use App\Models\Liquidacion;
@@ -50,6 +52,7 @@ use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -259,6 +262,8 @@ class IndexController extends Controller
       ->groupBy('tags.id')
       ->get();
 
+      $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', Auth::user()->id)->where('usado', false)->get();
+
     /* $complementos = Complemento::select('complementos.*')
       ->join('products', 'products.complemento_id', '=', 'complementos.id')
       ->where('complementos.status', 1)
@@ -272,7 +277,8 @@ class IndexController extends Controller
     // return view('public.checkout_carrito', compact('url_env', 'departamentos'));
     return Inertia::render('Carrito', [
       'complementos' => $complementos,
-      'points' => Auth::check() ? Auth::user()->points : 0
+      'points' => Auth::check() ? Auth::user()->points : 0, 
+      'historicoCupones' => $historicoCupones
     ])->rootView('app');
   }
 
@@ -286,6 +292,9 @@ class IndexController extends Controller
     if (!is_null($user)) {
       $detalleUsuario = UserDetails::where('email', $user->email)->get();
     }
+
+    $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', Auth::user()->id)->where('usado', false)->get();
+
 
     // $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
     /* $departments = Price::select([
@@ -362,10 +371,10 @@ class IndexController extends Controller
       'destacados'  => $destacados,
       'culqi_public_key' => $culqi_public_key,
       'addresses' => $addresses,
-      'hasDefaultAddress' => $hasDefaultAddress,
       // 'MensajesPredefinidos' => $MensajesPredefinidos,
       'greetings' => $greetings,
-      'points' => Auth::check() ? Auth::user()->points : 0
+      'points' => Auth::check() ? Auth::user()->points : 0,
+      'historicoCupones' => $historicoCupones
     ])->rootView('app');
   }
 
@@ -565,14 +574,19 @@ class IndexController extends Controller
 
   public function micuenta($section = null)
   {
+
+    $fechahoy = Carbon::today();
+
     $user = Auth::user();
     $general = General::first();
     $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
+    $cupones = Cupon::where('status', '=', 1)->where('visible', '=', 1)->where('fecha_caducidad', '>', $fechahoy)->get();
+    $cuponesUsados = HistoricoCupon::where('user_id', $user->id)->where('usado', 1)->pluck('cupones_id');
     // return view('public.dashboard', compact('user'));
     return Inertia::render('Dashboard', [
       'user' => $user,
       'section' => $section,
-      'general' => $general, 'categorias' => $categorias
+      'general' => $general, 'categorias' => $categorias , 'cupones' => $cupones, 'cuponesUsados' => $cuponesUsados
     ])->rootView('micuenta');
   }
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Modal from 'react-modal';
+import Swal from "sweetalert2";
 
 
 function Privacy() {
@@ -17,6 +18,12 @@ function Privacy() {
       const response = await axios.post('/api/eliminarCuenta');
 
       if (response.status === 200) {
+        handleModal()
+        Swal.fire({
+          icon: 'success',
+          title: 'Cuenta eliminada con éxito',
+          text: 'Tu cuenta ha sido eliminada exitosamente, En breve te redireccionaremos a la página de inicio',
+        })
         const logout = await axios.post('/logout');
         window.location.href = '/'; // Redirigir a la página de inicio u otra página después del cierre de sesión
 
@@ -105,6 +112,7 @@ function Privacy() {
           Eliminar
         </button>
         <button
+          onClick={handleModal}
           type='button'
           className="font-b_slick_bold gap-2 self-stretch px-6 py-4 mt-2 w-full text-green-800 bg-white rounded-3xl border border-green-800 border-solid hover:text-white hover:bg-green-800 ">
           Cancelar

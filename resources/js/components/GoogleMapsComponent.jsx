@@ -25,7 +25,9 @@ const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
       });
     }
 
-    const autocomplete = new window.google.maps.places.Autocomplete(inputElement);
+    const autocomplete = new window.google.maps.places.Autocomplete(inputElement, {
+      componentRestrictions: { country: 'pe' },
+    });
 
     const placeMarker = (location) => {
       if (markerRef.current) {
@@ -43,18 +45,6 @@ const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
       if (place.geometry) {
         mapRef.current.setCenter(place.geometry.location);
         placeMarker(place.geometry.location);
-
-        // Obtener el código postal
-        let postalCode = '';
-        for (const component of place.address_components) {
-          if (component.types.includes('postal_code')) {
-            postalCode = component.long_name;
-            break;
-          }
-        }
-
-        // Pasar el lugar y el código postal a la función managezipCode
-        managezipCode(place, postalCode);
       }
     });
 

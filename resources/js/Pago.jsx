@@ -19,7 +19,7 @@ import SelectSecond from './components/SelectSecond';
 import Swal from 'sweetalert2';
 import calculartotal from './Utils/calcularTotal';
 
-const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
+const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones }) => {
 
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [showDedicatoria, setShowDedicatoria] = useState(false)
@@ -196,7 +196,20 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
       consumer: datosFinales.consumer,
     })
 
-    const totalPrice = calculartotal(points) + Number(costoEnvio);
+
+
+    let totalPrice = calculartotal(points);
+    let descuento = 0;
+    const cupon = historicoCupones[0].cupon;
+
+    if (cupon.porcentaje == 1) {
+      // Si es un porcentaje, calcula el descuento
+      descuento = (totalPrice * cupon.monto) / 100;
+    } else {
+      // Si no es un porcentaje, el descuento es el monto fijo
+      descuento = cupon.monto;
+    }
+    totalPrice = totalPrice + Number(costoEnvio) - descuento;
     Culqi.settings({
       title: app_name,
       currency: 'PEN',
@@ -219,7 +232,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points }) => {
 
           <div className='flex flex-col w-full my-8'>
 
-            <OrderSummary carrito={carrito} costoEnvio={costoEnvio} setIsModalOpen={setIsModalOpen} points={points} />
+            <OrderSummary historicoCupones={historicoCupones} carrito={carrito} costoEnvio={costoEnvio} setIsModalOpen={setIsModalOpen} points={points} />
           </div>
           <div className='text-center flex w-full content-center justify-center'>
             <ProgressBar />

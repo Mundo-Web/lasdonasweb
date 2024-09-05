@@ -10,7 +10,7 @@ import calculartotal from './Utils/calcularTotal'
 import Button from './components/Button';
 import QuantitySelector from './components/QuantitySelector';
 
-const Carrito = ({ complementos, points = 0 }) => {
+const Carrito = ({ complementos, points = 0, historicoCupones }) => {
   let restPoints = structuredClone(points)
   const [carrito, setCarrito] = useState(Local.get('carrito') || []);
   const [montoTotal, setMontoTotal] = useState(0);
@@ -242,7 +242,9 @@ const Carrito = ({ complementos, points = 0 }) => {
                 Codigo de promocion
               </h2>
               <div className="flex gap-5 relative">
+                {console.log(historicoCupones)}
                 <input
+                  value={historicoCupones[0]?.cupon?.codigo ?? ''}
                   type="text"
                   id="txtCodigoPromocion"
                   className="w-full border-[#336234] rounded-3xl py-3 px-5 focus:outline-none focus:ring-2 focus:ring-[#336234]"
@@ -261,19 +263,38 @@ const Carrito = ({ complementos, points = 0 }) => {
                   Resumen del pedido </h2>
                 <div className='flex flex-row gap-4 mt-4'>
                   <div className='w-8/12 text-[#112212] flex flex-col'>
-                    {/* <span id="itemTotal" className='opacity-80'>
-                      Productos</span> */}
+
+                    {historicoCupones.length > 0 && (
+
+                      <>
+                        <span className='opacity-80'> SubTotal</span>
+                        <span id="itemTotal" className='opacity-80'>
+                          Descuento</span>
+                      </>
+                    )}
+
                     {/* <span className='opacity-80'>Envío (Chaclacayo - Lima)</span> */}
                     <span className='font-bold'>Sub Total</span>
                   </div>
                   <div className='w-4/12 flex flex-col justify-end items-end px-4 font-bold'>
+                    <span className='opacity-80'>S/ {Number(montoTotal)}</span>
+                    {historicoCupones.length > 0 && (
+                      <>
+                        <span className='opacity-80'>
+                          {historicoCupones[0]?.cupon?.porcentaje == 1 ? `${Number(historicoCupones[0].cupon.monto).toFixed(0)} %` : `S/ ${historicoCupones[0].cupon.monto}`}
 
-                    {/* <span className='opacity-80'>
-                      S/ 10,00
-                    </span> */}
-                    <span className='text-[#112212] font-bold text-nowrap' id='itemsTotal'>
-                      S/ {montoTotal.toFixed(2)}
-                    </span>
+                        </span>
+                        <span className='text-[#112212] font-bold text-nowrap' id='itemsTotal'>
+                          {historicoCupones[0]?.cupon?.porcentaje == 1 ? `S/  ${Number(montoTotal) - ((Number(montoTotal) * Number(historicoCupones[0].cupon.monto).toFixed(0) / 100))} ` : `S/ ${Number(montoTotal) - Number(historicoCupones[0].cupon.monto)}`}
+
+
+                        </span>
+                      </>
+
+                    )}
+
+
+
                   </div>
                 </div>
 

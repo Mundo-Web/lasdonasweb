@@ -1,12 +1,13 @@
 <x-app-layout>
 
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-    <form action="{{ route('cupones.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('cupones.update', $cupon->id) }}" method="POST">
       @csrf
+      @method('PUT')
       <div
         class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
         <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Crear un nuevo cupon
+          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Editar Cupon
           </h2>
         </header>
 
@@ -30,7 +31,7 @@
                       </g>
                     </svg>
                   </div>
-                  <input type="text" id="codigo" name="codigo" required
+                  <input type="text" id="codigo" name="codigo" required value="{{ $cupon->codigo }}"
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Código" required>
                 </div>
@@ -52,6 +53,7 @@
                     </svg>
                   </div>
                   <input type="date" id="fecha_caducidad" name="fecha_caducidad" required
+                    value="{{ $cupon->fecha_caducidad }}"
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Indique fecha de vencimiento" required>
                 </div>
@@ -72,7 +74,7 @@
                       </g>
                     </svg>
                   </div>
-                  <input type="text" id="monto" name="monto" required
+                  <input type="text" id="monto" name="monto" required value="{{ $cupon->monto }}"
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Monto" required>
                 </div>
@@ -81,7 +83,8 @@
                 <label for="monto">Porcentaje ?:</label>
                 <div class="relative mb-2 mt-2">
 
-                  <input type="checkbox" id="porcentaje" name="porcentaje" class="" placeholder="Monto">
+                  <input type="checkbox" id="porcentaje" name="porcentaje" class="" placeholder="Monto"
+                    @if ($cupon->porcentaje == 1) checked @endif()>
                 </div>
               </div>
 

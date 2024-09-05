@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CuponController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PaymentController;
@@ -58,6 +59,8 @@ Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
     Route::put('/reminders/{id}', [ReminderController::class, 'update']);
 
     Route::post('/eliminarCuenta', [IndexController::class, 'eliminarCuenta'] );
+
+    Route::post('/cupon', [CuponController::class, 'addHistorico'] );
    
    
    

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\DetalleOrden;
 use App\Models\General;
+use App\Models\HistoricoCupon;
 use App\Models\Offer;
 use App\Models\Ordenes;
 use App\Models\PrecioEnvio;
@@ -39,10 +40,10 @@ class PaymentController extends Controller
     $body['address']['entrega'];
     $fechaEntrega = $body['address']['entrega']['fecha'];
     $horarioEntrega = $body['address']['entrega']['horario'];
-    
-   
 
-    
+
+
+
 
     $sale = new Ordenes();
 
@@ -89,11 +90,33 @@ class PaymentController extends Controller
           'points_used' => $points_used,
         ];
       }
-      
+
+
       $precioEnvioJpa = PrecioEnvio::where('zip_code', $body['address']['postal_code'])->first();
       $precioEnvio = $precioEnvioJpa->price;
 
-      $points2give = Math::floor(($totalCost + $precioEnvio) / $generals->point_equivalence);
+      $historicoCupon = HistoricoCupon::with('cupon')
+        ->where('user_id', Auth::user()->id)
+        ->where('usado', 0)
+        ->first();
+
+      $descuento = 0;
+
+      
+      if ($historicoCupon) {
+        $cupon = $historicoCupon->cupon;
+        if ($cupon->porcentaje == 1) {
+          
+          $descuento += ($totalCost) * ($cupon->monto / 100);
+        } else {
+          
+          $descuento += $cupon->monto;
+        }
+        $historicoCupon->usado = true;
+        $historicoCupon->save();
+      }
+
+      $points2give = Math::floor(($totalCost + $precioEnvio - $descuento) / $generals->point_equivalence);
 
       $sale->usuario_id = Auth::user()?->id ?? null;
       $sale->status_id = 1;
@@ -109,7 +132,7 @@ class PaymentController extends Controller
       $sale->address_longitude = $body['address']['coordinates']['longitude'];
       $sale->address_data = JSON::stringify($body['address']);
       $sale->precio_envio = $precioEnvio;
-      $sale->monto = $totalCost;
+      $sale->monto = $totalCost - $descuento;
       $sale->billing_type = $body['billing']['type'];
       $sale->billing_document = $body['billing']['type'] == 'boleta' ? $body['billing']['dni'] : $body['billing']['ruc'];
       $sale->billing_name = $body['billing']['name'] . ' ' . $body['billing']['lastname'];
@@ -131,6 +154,9 @@ class PaymentController extends Controller
         }
       }
 
+      
+     
+
       $sale->save();
 
       foreach ($details as $detail) {
@@ -139,8 +165,12 @@ class PaymentController extends Controller
           'orden_id' => $sale->id
         ]);
       }
+
+
+
+
       $config = [
-        "amount" => round(($totalCost + $precioEnvio) * 100),
+        "amount" => round(($totalCost + $precioEnvio - $descuento) * 100),
         "capture" => true,
         "currency_code" => "PEN",
         "description" => "Compra en " . env('APP_NAME'),
@@ -156,6 +186,7 @@ class PaymentController extends Controller
         ],
         "source_id" => $body['culqi']['id']
       ];
+      
 
       $charge = $culqi->Charges->create($config);
 
@@ -169,7 +200,7 @@ class PaymentController extends Controller
       $response->data = [
         'charge' => $charge,
         'reference_code' => $charge?->reference_code ?? null,
-        'amount' => $totalCost
+        'amount' => $totalCost - $descuento,
       ];
 
       $userJpa = User::find(Auth::user()->id);

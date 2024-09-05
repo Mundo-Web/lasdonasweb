@@ -307,8 +307,12 @@
           <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Mantenedores</span>
         </h3>
         <ul class="mt-3">
+          <x-menu.item id="cupones" href="{{ route('cupones.index') }}" icon="fa-solid fa-ticket">
+            Cupones
+          </x-menu.item>
 
           <x-menu.item id="greetings" href="{{ route('greetings.index') }}" icon="fas fa-hand-sparkles">
+
             Mensajes predefinidos
           </x-menu.item>
 
