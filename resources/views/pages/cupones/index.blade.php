@@ -109,7 +109,7 @@
       responsive: true
     });
 
-    $(".btn_swithc").on("change", function() {
+    $(document).on("change", ".btn_swithc", function() {
 
       let status = 0;
       let id = $(this).attr('data-idService');
@@ -125,7 +125,7 @@
 
 
       $.ajax({
-        url: "{{ route('faqs.updateVisible') }}",
+        url: "{{ route('cupones.updateVisible') }}",
         method: 'POST',
         data: {
           _token: $('input[name="_token"]').val(),

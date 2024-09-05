@@ -87,4 +87,23 @@ class TipoFlorController extends Controller
 
         return response()->json(['success' => 'Tipo de flor eliminado']);
     }
+    public function updateVisible(Request $request)
+    {
+        // Lógica para manejar la solicitud AJAX
+        //return response()->json(['mensaje' => 'Solicitud AJAX manejada con éxito']);
+        $id = $request->id;
+
+        $field = $request->field;
+
+        $status = $request->status;
+
+        $testimony = TipoFlor::findOrFail($id);
+        
+        $testimony->$field = $status;
+
+        $testimony->save();
+
+         return response()->json(['message' => 'Estado modificado.']);
+    
+    }
 }

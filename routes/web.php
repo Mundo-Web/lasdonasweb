@@ -136,6 +136,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::get('/horarios',  [HorariosController::class, 'index'])->name('Horarios.jsx');
 
         Route::resource('/cupones', CuponController::class);
+        Route::post('/cupones/updateVisible', [CuponController::class, 'updateVisible'] )->name('cupones.updateVisible');
+
 
 
         Route::resource('/tipo-flor', TipoFlorController::class);
