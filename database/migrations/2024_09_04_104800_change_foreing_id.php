@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('ordenes', function (Blueprint $table) {
             //
-            // $table->dropForeign('ordenes_status_id_foreign');
+            $table->dropForeign('ordenes_status_id_foreign');
 
             // Agregar la nueva clave foránea
             $table->foreign('status_id')->references('id')->on('statuses');
