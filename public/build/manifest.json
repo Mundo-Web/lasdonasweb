@@ -296,7 +296,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-_65ejVTt.js",
+    "file": "assets/Dashboard-U7MYX3Sb.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -626,11 +626,13 @@
     "src": "resources/js/components/Dashboard/Points.jsx"
   },
   "resources/js/components/Dashboard/Privacy.jsx": {
-    "file": "assets/Privacy-tmMjkXlv.js",
+    "file": "assets/Privacy-crwy_8Dh.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "__commonjsHelpers-4gQjN7DL.js"
+      "resources/js/components/ClasicModal.jsx",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_index-38suPYpT.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Dashboard/Privacy.jsx"

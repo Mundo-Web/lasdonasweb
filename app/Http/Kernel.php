@@ -69,4 +69,9 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         'can_admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
     ];
+
+    protected $routeMiddleware = [
+        // Otros middlewares...
+        'check.banned' => \App\Http\Middleware\CheckIfBanned::class,
+    ];
 }

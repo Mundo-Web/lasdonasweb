@@ -51,6 +51,9 @@ use App\Models\AboutUs;
 use App\Models\Price;
 use Inertia\Inertia;
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CuponController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,6 +71,8 @@ Route::get('/example', function () {
         'message' => 'Hello from Laravel!'
     ]);
 });
+
+
 
 Route::get('/', [IndexController::class, 'index'] )->name('index');
 Route::get('/nosotros', [IndexController::class, 'nosotros'] )->name('nosotros');
@@ -130,6 +135,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         Route::get('/horarios',  [HorariosController::class, 'index'])->name('Horarios.jsx');
 
+        Route::resource('/cupones', CuponController::class);
 
 
         Route::resource('/tipo-flor', TipoFlorController::class);

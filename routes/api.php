@@ -56,6 +56,8 @@ Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
 
     Route::post('/reminders', [ReminderController::class, 'create']);
     Route::put('/reminders/{id}', [ReminderController::class, 'update']);
+
+    Route::post('/eliminarCuenta', [IndexController::class, 'eliminarCuenta'] );
    
    
    

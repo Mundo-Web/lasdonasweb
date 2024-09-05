@@ -28,6 +28,15 @@
             Esperamos que puedas encontrar lo que buscas en nuestro sitio web.
           </p>
         </div>
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <div class="flex flex-col mt-12 w-full px-4">
           @php
             $currentUrl = url()->full();

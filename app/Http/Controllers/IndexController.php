@@ -848,12 +848,13 @@ class IndexController extends Controller
     return response()->json($resultados);
   }
   //  --------------------------------------------
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
+  public function eliminarCuenta()
   {
     //
+    $user = Auth::user();
+    // Auth::logout();
+    User::where('id', $user->id)->update(['ban' => 1]);
+    return response()->json(['message' => 'Cuenta eliminada']);
   }
 
   /**

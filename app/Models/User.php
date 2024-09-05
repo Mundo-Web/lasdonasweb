@@ -38,7 +38,8 @@ class User extends Authenticatable
         'departamento',
         'codigo_postal',
         'provincia',
-        'distrito'
+        'distrito', 
+        'ban'
     ];
 
     /**
