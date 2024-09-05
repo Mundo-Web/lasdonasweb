@@ -113,14 +113,14 @@ const Dashboard = ({ user, section, general, categorias }) => {
                 Direcciones
               </a>
             </li>
-            <li>
+            {/* <li>
               <a
                 onClick={() => handleOptionClick('Recordatorios')}
                 className={getOptionClass('Recordatorios')}
               >
                 Recordatorios
               </a>
-            </li>
+            </li> */}
             <li>
               <a
                 onClick={() => handleOptionClick('Privacidad')}
@@ -149,7 +149,7 @@ const Dashboard = ({ user, section, general, categorias }) => {
           {selectedOption === 'Mis Puntos' && <Points userDetail={userDetail} general={general} />}
           {selectedOption === 'Mis Cupones' && <Coupons />}
           {selectedOption === 'Direcciones' && <Address />}
-          {selectedOption === 'Recordatorios' && <Record categorias={categorias} />}
+          {/* {selectedOption === 'Recordatorios' && <Record categorias={categorias} />} */}
           {selectedOption === 'Privacidad' && <Privacy />}
         </div>
       </section>
