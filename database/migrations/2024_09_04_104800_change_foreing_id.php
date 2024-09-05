@@ -9,26 +9,29 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('ordenes', function (Blueprint $table) {
-            // Verificar si la clave foránea existe antes de eliminarla
-            $foreignKeys = Schema::getConnection()->getDoctrineSchemaManager()->listTableForeignKeys('ordenes');
-            foreach ($foreignKeys as $foreignKey) {
-                if ($foreignKey->getName() === 'ordenes_status_id_foreign') {
-                    $table->dropForeign(['status_id']);
-                }
-            }
+            //
+            // $table->dropForeign('ordenes_status_id_foreign');
 
             // Agregar la nueva clave foránea
             $table->foreign('status_id')->references('id')->on('statuses');
+
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::table('ordenes', function (Blueprint $table) {
+            //
             $table->dropForeign(['status_id']);
+
+            // Restaurar la clave foránea original
+            $table->foreign('status_id')->references('id')->on('status_ordens');
         });
     }
 };
