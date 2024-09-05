@@ -35,7 +35,7 @@ class CuponController extends Controller
         $data= $request->all();
         $data['codigo'] = strtoupper($data['codigo']);
         $data['porcentaje'] = $request->has('porcentaje') ? true : false;
-        dump($data);
+        
 
 
 
@@ -76,7 +76,7 @@ class CuponController extends Controller
             
         } catch (\Throwable $th) {
             //throw $th;
-            dump($th);
+            
             
         }
         
@@ -86,7 +86,7 @@ class CuponController extends Controller
 
     public function addHistorico(Request $request ){
 
-        // dump($request->id)  ; 
+        
         // buscamos el usuario logueado 
         try {
             //code...
@@ -95,7 +95,7 @@ class CuponController extends Controller
 
             //consultamos en el historico de cupones si la persona tiene un cupon sin usar 
             $cupon = HistoricoCupon::where('user_id', $user[0]['id'])->where('usado', false)->first();
-            dump($cupon);
+            
 
             if(isset($cupon)){
                 // si tiene un cupon sin usar , no se le asigna otro cupon y se actualiza el id del cupon en el historico de cupones
@@ -117,7 +117,7 @@ class CuponController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
 
-            dump($th);
+            
         }
        
     }
