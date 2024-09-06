@@ -51,6 +51,9 @@
     margin-right: 2rem;
   }
 
+
+
+
   .category-image img {
     max-width: 100px;
     height: auto;
@@ -306,9 +309,11 @@
           </div>
           <div class="flex justify-center items-center min-w-[38px]">
             <div class="relative inline-block cursor-pointer">
-              <button class="bg-[#336234] text-white font-bold px-2 pr-3 pt-[2px] rounded-full">
+              <button
+                class="bg-[#336234] text-white font-bold px-2 pr-3 pt-[2px] rounded-full flex flex-row gap-1 items-center justify-center">
                 <i class="mdi mdi-dots-hexagon"></i>
-                <span data-id="txt-user-points">{{ Auth::user()->points }}</span>
+                <span data-id="txt-user-points" class="items-center flex pt-1">{{ Auth::user()->points }}</span>
+                <span class="hidden md:block puntos text-[14px]">Puntos</span>
               </button>
             </div>
           </div>
