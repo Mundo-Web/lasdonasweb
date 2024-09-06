@@ -632,13 +632,14 @@ const Product = ({
 
                         {Number(product.descuento) > 0 ? (
                           <>
-                            <p className="text-base font-bold">
-                              S/ <span>{Number(product.descuento).toFixed(0)}</span>
-                            </p>
-                            <p className="text-base font-normal line-through text-[14px] ">
+                            <p className={` font-normal line-through ${currentProduct?.tipos?.name == undefined ? 'text-gray-400 text-[14px]' : ''}`}>
 
                               S/ <span>{Number(product.precio).toFixed(0)}</span>
                             </p>
+                            <p className="text-base font-bold">
+                              S/ <span>{Number(product.descuento).toFixed(0)}</span>
+                            </p>
+
                           </>
                         ) : (<><p className="text-base font-bold">
                           S/ <span>{Number(product.precio).toFixed(0)}</span>
@@ -683,20 +684,23 @@ const Product = ({
                           </div>
 
                           <div
-                            className={`flex flex-col justify-center items-center ${selected && (item.tipos.name === 'Premium' || item.tipos.name === 'Deluxe')
-                              ? 'text-[#73B473]'
-                              : 'text-[#E8EDDE]'
+                            className={`flex flex-col justify-center items-center 
+                              ${selected && (item.tipos.name === 'Premium' || item.tipos.name === 'Deluxe')
+                                ? 'text-[#73B473]'
+                                : 'text-[#E8EDDE]'
                               }`}
                           >
                             <p className="text-base font-semibold">{item.tipos.name}</p>
+                            {console.log(selected)}
                             {Number(item.descuento) > 0 ? (
                               <>
+                                <p className={` font-normal line-through ${selected == true ? 'text-gray-400 text-[14px]' : ''} `}>
+                                  S/ <span>{Number(item.precio).toFixed(0)}</span>
+                                </p>
                                 <p className="text-base font-bold ">
                                   S/ <span>{Number(item.descuento).toFixed(0)}</span>
                                 </p>
-                                <p className="text-base font-normal line-through">
-                                  S/ <span>{Number(item.precio).toFixed(0)}</span>
-                                </p>
+
                               </>
                             ) : (
                               <>
@@ -719,7 +723,7 @@ const Product = ({
 
               */}
               <div className='relative z-1'>
-                <p className="text-2xl font-bold text-black pb-2">Paso 3: Personalizar</p>
+                <p className="text-2xl font-bold text-black pb-2">Paso 3: Incluye una imagen en tu dedicatoria (Opcional)</p>
                 <p className="text-lg font-normal text-black pb-4">Personaliza con una foto:</p>
 
                 <div className="flex items-center justify-center w-full pb-8">
