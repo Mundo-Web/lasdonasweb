@@ -91,8 +91,8 @@ const Dashboard = ({ user, section, general, categorias, cupones, cuponesUsados 
             </li>
             <li>
               <a
-                onClick={() => handleOptionClick('Mis Puntos')}
-                className={getOptionClass('Mis Puntos')}
+                onClick={() => handleOptionClick('puntos')}
+                className={getOptionClass('puntos')}
               >
                 Mis Puntos
               </a>
@@ -146,7 +146,7 @@ const Dashboard = ({ user, section, general, categorias, cupones, cuponesUsados 
         <div className='mt-10'>
           {selectedOption === 'Mi Perfil' && <Profile userDetail={userDetail} />}
           {selectedOption === 'historial' && <Orders />}
-          {selectedOption === 'Mis Puntos' && <Points userDetail={userDetail} general={general} />}
+          {selectedOption === 'puntos' && <Points userDetail={userDetail} general={general} />}
           {selectedOption === 'Mis Cupones' && <Coupons cupones={cupones} cuponesUsados={cuponesUsados} />}
           {selectedOption === 'Direcciones' && <Address />}
           {/* {selectedOption === 'Recordatorios' && <Record categorias={categorias} />} */}
