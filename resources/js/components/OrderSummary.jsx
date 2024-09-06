@@ -10,6 +10,7 @@ import calculartotal from '../Utils/calcularTotal';
 const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCupones }) => {
   const subtotal = calculartotal(points);
   const [total, setTotal] = useState(subtotal);
+  let haycupon = false;
 
   console.log(historicoCupones)
   useEffect(() => {
@@ -25,6 +26,7 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
         // Si no es un porcentaje, el descuento es el monto fijo
         descuento = cupon.monto;
       }
+      haycupon = true;
     }
 
 
@@ -47,7 +49,7 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
       <Divider />
       <TotalRow label="Sub Total" value={subtotal} />
       <Divider />
-      {cuponMonto && (<>
+      {haycupon && (<>
         <div className="flex items-center gap-5 self-end mt-6 max-w-full font-bold text-right w-[400px]">
           <div className={`self-stretch my-auto text-sm tracking-wide text-right text-neutral-900 text-opacity-80 w-[133px]`}>
             Descuento

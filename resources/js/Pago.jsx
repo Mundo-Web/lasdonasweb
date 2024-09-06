@@ -201,14 +201,16 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
     let totalPrice = calculartotal(points);
     let descuento = 0;
     const cupon = historicoCupones[0]?.cupon ?? 0;
-
-    if (cupon.porcentaje == 1) {
-      // Si es un porcentaje, calcula el descuento
-      descuento = (totalPrice * cupon.monto) / 100;
-    } else {
-      // Si no es un porcentaje, el descuento es el monto fijo
-      descuento = cupon.monto;
+    if (historicoCupones.length > 0) {
+      if (cupon.porcentaje == 1) {
+        // Si es un porcentaje, calcula el descuento
+        descuento = (totalPrice * cupon.monto) / 100;
+      } else {
+        // Si no es un porcentaje, el descuento es el monto fijo
+        descuento = cupon.monto;
+      }
     }
+
     totalPrice = totalPrice + Number(costoEnvio) - descuento;
     Culqi.settings({
       title: app_name,
