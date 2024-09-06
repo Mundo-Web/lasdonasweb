@@ -7,6 +7,7 @@ import GoogleMapsComponent from "./GoogleMapsComponent";
 import { set } from "sode-extend-react/sources/cookies";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Select from 'react-select';
 
 
 function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio }) {
@@ -32,7 +33,9 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
     entrega: { fecha: carrito[0].fecha, horario: `${carrito[0].horario.id} ` }
 
   })
+
   const validateForm = () => {
+    console.log(formState)
     const requiredFields = [
       'fullname', 'phone', 'fulladdress', 'street', 'number', 'mz',
       'department', 'province', 'district', 'residenceType', 'reference', 'postal_code'
@@ -44,6 +47,31 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
       }
     }
     return true;
+  };
+
+  const customStyles2 = {
+    control: (provided) => ({
+      ...provided,
+      outline: 'none',
+      boxShadow: 'none',
+      borderColor: 'transparent',
+      borderRight: 'none',
+      '&:hover': {
+        borderColor: 'transparent',
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      width: '90%', // Asegura que el menú no sobresalga del contenedor principal
+    }),
+    option: (provided) => ({
+      ...provided,
+      fontSize: '0.875rem', // Ajusta el tamaño de fuente de las opciones
+      padding: '8px 12px', // Ajusta el padding de las opciones
+    }),
+    indicatorSeparator: () => ({
+      display: 'none',
+    }),
   };
 
   const consultarLocalicad = async (zip_code, cancelToken) => {
@@ -171,6 +199,8 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
   }
 
   const continueToPayment = () => {
+
+    console.log(formState)
     if (validateForm()) {
       onSelectAddress(formState);
     } else {
@@ -185,6 +215,31 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
       });
     }
   };
+
+  const handleSelectChange = (selectedOption) => {
+
+    console.log(formState)
+    setFormState({
+      ...formState,
+      residenceType: selectedOption.value,
+      otherResidenceType: selectedOption.value === 'Otro' ? '' : formState.otherResidenceType
+    });
+  };
+
+  const handleOtherChange = (event) => {
+    console.log(formState)
+    setFormState({
+      ...formState,
+      otherResidenceType: event.target.value
+    });
+  };
+
+  const options = [
+    { value: 'Casa', label: 'Casa' },
+    { value: 'Departamento', label: 'Departamento' },
+    { value: 'Oficina', label: 'Oficina' },
+    { value: 'Otro', label: 'Otro' }
+  ];
 
 
   return (
@@ -314,16 +369,26 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full">
           <div className="md:col-span-2">
-            <InputField
-              required={true}
-              eRef={addressRef.residenceType}
-              label="Tipo de domicilio"
-              placeholder="Ingresa Tipo de Domicilio"
-              className="w-full"
-              value={formState.residenceType}
-              name="residenceType"
-              handleDatosFinales={handlechange}
-            />
+            <div className="w-full">
+              <label className="block text-sm font-medium text-gray-700">Tipo de domicilio</label>
+              <Select
+                styles={customStyles2}
+                options={options}
+                onChange={handleSelectChange}
+                value={options.find(option => option.value === formState.residenceType)}
+                placeholder="Selecciona Tipo de Domicilio"
+                className="gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
+              />
+              {formState.residenceType === 'Otro' && (
+                <input
+                  type="text"
+                  placeholder="Ingresa Tipo de Domicilio"
+                  value={formState.otherResidenceType}
+                  onChange={handleOtherChange}
+                  className="gap-2 self-stretch px-6 py-4 mt-4 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
+                />
+              )}
+            </div>
           </div>
         </section>
 
