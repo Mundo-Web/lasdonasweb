@@ -39,8 +39,8 @@ const ListHorariosPopup = ({ id, horarios, selectedHorario, setSelectedHorario, 
   return (
     <div className={clase}>
       <Swiper
-        spaceBetween={10} 
-        slidesPerView={3} 
+        spaceBetween={10}
+        slidesPerView={3}
         pagination={{ clickable: true }}
         breakpoints={{
           0: {
@@ -74,7 +74,7 @@ const ListHorariosPopup = ({ id, horarios, selectedHorario, setSelectedHorario, 
                   hover:text-[#73B473] hover:bg-[#73B473] `}
               >
                 <div className="flex flex-col justify-center items-center text-center">
-                  <p className="flex content-center justify-center text-base text-[#E8EDDE] font-semibold text-center">
+                  <p className={`flex content-center justify-center text-base  font-semibold text-center ${selectedHorario === item.id ? "text-white" : "text-gray-400 "}`}>
                     {formatTime(item.start_time)}-{formatTime(item.end_time)}
                   </p>
                 </div>

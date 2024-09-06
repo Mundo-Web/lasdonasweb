@@ -35,7 +35,10 @@ const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase
 
 
   return (
-    <div className={clase}>
+    <div className={`${clase} overflow-y-auto h-56`} style={{
+      scrollbarWidth: 'thin',
+      scrollbarColor: '#166534 #e0e0e0'
+    }}>
       {horarios.map((item, index) => (
 
         <li key={item.id} className="list-none w-full">
@@ -57,7 +60,7 @@ const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase
              hover:text-[#73B473] hover:bg-[#73B473] `}
           >
             <div className="flex flex-col justify-center items-center text-center">
-              <p className="flex content-center justify-center text-base text-[#E8EDDE] font-semibold text-center">
+              <p className="flex content-center justify-center text-base text-gray-400 hover:text-white font-semibold text-center">
                 {/* {selectedHorario === item.id ? 'bg-[#73B473] text-white' : 'text-[#73B473]'} */}
                 {formatTime(item.start_time)}-{formatTime(item.end_time)}
               </p>

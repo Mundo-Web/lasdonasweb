@@ -148,7 +148,7 @@ const Product = ({
 
 
   useEffect(() => {
-    console.log(detallePedido)
+
   }, [detallePedido])
 
   const agregarPedido = async (e) => {
@@ -289,7 +289,7 @@ const Product = ({
     checkboxes.forEach(checkbox => {
       checkbox.checked = false;
     });
-    console.log(detallePedido)
+
     setCurrentProduct(item);
 
 
@@ -487,7 +487,7 @@ const Product = ({
                       setSelectedHorario={setSelectedHorario}
                       setDetallePedido={setDetallePedido}
                     />
-                    {console.log(horariosHoy)}
+
                     {horariosHoy.length === 0 ? (
                       <p key="no-disponible" className="text-sm font-normal">No disponible</p>
                     ) : (
@@ -497,7 +497,23 @@ const Product = ({
                       </p>
 
                     )}
+                    <div className='mt-2'>
 
+                      {
+
+                        selectedHorario && detallePedido.fecha == 'hoy' && (
+                          <>
+                            {(() => {
+                              const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                              if (selectedHorarioItem) {
+                                return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                              }
+                              return null;
+                            })()}
+                          </>
+                        )
+                      }
+                    </div>
 
                   </div>) : (
                     <div
@@ -505,7 +521,10 @@ const Product = ({
                       <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
                     </div>)
 
+
+
                 }
+
 
                 <div className={`relative flex flex-col justify-center items-center  text-center w-1/3 
                 ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
@@ -525,14 +544,50 @@ const Product = ({
 
                   />
 
+                  <div className='mt-2'>
+
+                    {
+
+                      selectedHorario && detallePedido.fecha == 'manana' && (
+                        <>
+                          {(() => {
+                            const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                            if (selectedHorarioItem) {
+                              return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                            }
+                            return null;
+                          })()}
+                        </>
+                      )
+                    }
+                  </div>
+
                 </div>
 
-                {console.log(detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '')}
+
                 <div
 
                   onClick={openModalCalendario}
                   className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
                   <p className="text-lg font-bold m-auto ">Más fechas</p>
+                  <div className='mt-2'>
+
+                    {console.log(detallePedido)}
+                    {
+
+                      selectedHorario && detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && (
+                        <>
+                          {(() => {
+                            const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                            if (selectedHorarioItem) {
+                              return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                            }
+                            return null;
+                          })()}
+                        </>
+                      )
+                    }
+                  </div>
                 </div>
 
               </div>
@@ -558,7 +613,7 @@ const Product = ({
                       className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-2 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
                       onClick={() => handleSelecttionOption(productos)}
                     >
-                      {console.log(productos)}
+
                       <div className="flex flex-col justify-center items-center">
 
                         {tipoDefault.name === 'Premium' ? (
@@ -663,7 +718,7 @@ const Product = ({
               <p className="text-lg  font-normal text-black pb-4 ">Personaliza con una foto:</p>
 
               */}
-              <div className='relative'>
+              <div className='relative z-1'>
                 <p className="text-2xl font-bold text-black pb-2">Paso 3: Personalizar</p>
                 <p className="text-lg font-normal text-black pb-4">Personaliza con una foto:</p>
 
@@ -926,15 +981,20 @@ const Product = ({
       </main >
 
       <div id="modalCalendario" className={modalCalendario ? 'block modal-calendario' : 'hidden'}>
-        <div className=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-        <div className=" fixed inset-0 z-30 w-screen overflow-y-auto">
+        <div className="fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity" onClick={CloseModalCalendario}></div>
+        <div className="fixed inset-0 z-30 w-screen overflow-y-auto" onClick={CloseModalCalendario}>
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
-              className="relative flex flex-col lg:flex-row transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-2xl md:max-w-4xl">
+              className="relative flex flex-col lg:flex-row transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-2xl md:max-w-4xl"
+              onClick={(e) => e.stopPropagation()} // Evitar que el clic dentro del modal cierre el modal
+            >
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full lg:w-2/3">
                 <div className="sm:flex items-center justify-center w-full flex-col">
-                  <CalendarComponent horarios={horarios} selectedHorario={selectedHorario}
-                    setSelectedHorario={setSelectedHorario} selectedDatecalendar={selectedDate}
+                  <CalendarComponent
+                    horarios={horarios}
+                    selectedHorario={selectedHorario}
+                    setSelectedHorario={setSelectedHorario}
+                    selectedDatecalendar={selectedDate}
                     setSelectedDatecalendar={setSelectedDate}
                     categorias={categorias}
                     categoryP={productos.categoria_id}
@@ -943,14 +1003,11 @@ const Product = ({
                 </div>
               </div>
               <div className="bg-[#73B473] px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full lg:w-1/3">
-
-                <div className="lg:flex lg:flex-row lg:justify-end absolute right-0 mr-3" onClick={CloseModalCalendario} >
-                  <img src='/images/img/x-square-contained.png' alt="" className="h-6 cursor-pointer"
-                  />
+                <div className="lg:flex lg:flex-row lg:justify-end absolute right-0 mr-3" onClick={CloseModalCalendario}>
+                  <img src='/images/img/x-square-contained.png' alt="" className="h-6 cursor-pointer" />
                 </div>
-
                 <div className="flex flex-col text-white font-b_slick_regular">
-                  <div className="flex flex-col font-base gap-2 pt-4 ">
+                  <div className="flex flex-col font-base gap-2 pt-4">
                     <p>Su pedido se entregara el día :</p>
                     <p className='text-[24px] font-bold py-3'>
                       {formattedDate(selectedDate)}
@@ -958,14 +1015,19 @@ const Product = ({
                   </div>
                   <div>
                     <p className="">En el horario:</p>
-                    <p className=" text-[24px]">{formatTime(horarios.filter((item) => item.id == selectedHorario)[0]?.start_time)} - {formatTime(horarios.filter((item) => item.id == selectedHorario)[0]?.end_time)}  </p>
+                    <p className="text-[24px]">
+                      {formatTime(horarios.filter((item) => item.id == selectedHorario)[0]?.start_time)} - {formatTime(horarios.filter((item) => item.id == selectedHorario)[0]?.end_time)}
+                    </p>
                   </div>
-                  {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
-                    onClick={agregarPedido}
-                  >
-                    Confirmar
-                    <i className='fa fa-cart-plus ml-2 mb-1'></i>
-                  </div>)}
+                  {selectedHorario !== null && (
+                    <div
+                      className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
+                      onClick={agregarPedido}
+                    >
+                      Confirmar
+                      <i className='fa fa-cart-plus ml-2 mb-1'></i>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
