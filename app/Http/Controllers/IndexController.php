@@ -262,7 +262,14 @@ class IndexController extends Controller
       ->groupBy('tags.id')
       ->get();
 
-      $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', Auth::user()->id)->where('usado', false)->get();
+      $historicoCupones = [];
+      
+      if(Auth::check()){
+        $usuario = Auth::user()->id; 
+        $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->get();
+      }
+
+      // $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', Auth::user()->id)->where('usado', false)->get();
 
     /* $complementos = Complemento::select('complementos.*')
       ->join('products', 'products.complemento_id', '=', 'complementos.id')
@@ -293,7 +300,12 @@ class IndexController extends Controller
       $detalleUsuario = UserDetails::where('email', $user->email)->get();
     }
 
-    $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', Auth::user()->id)->where('usado', false)->get();
+    $historicoCupones = [];
+      
+      if(Auth::check()){
+        $usuario = Auth::user()->id; 
+        $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->get();
+      }
 
 
     // $departamento = DB::select('select * from departments where active = ? order by 2', [1]);

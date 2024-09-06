@@ -200,7 +200,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
 
     let totalPrice = calculartotal(points);
     let descuento = 0;
-    const cupon = historicoCupones[0].cupon;
+    const cupon = historicoCupones[0]?.cupon ?? 0;
 
     if (cupon.porcentaje == 1) {
       // Si es un porcentaje, calcula el descuento
