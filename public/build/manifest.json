@@ -87,8 +87,8 @@
   "_objectWithoutPropertiesLoose-RRuG-_4m.js": {
     "file": "assets/objectWithoutPropertiesLoose-RRuG-_4m.js"
   },
-  "_react-select.esm-AVAMmwMc.js": {
-    "file": "assets/react-select.esm-AVAMmwMc.js",
+  "_react-select.esm-V4spaMBB.js": {
+    "file": "assets/react-select.esm-V4spaMBB.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -296,7 +296,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-1Cs_FmPa.js",
+    "file": "assets/Dashboard-E-QmBdqL.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -304,7 +304,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-AVAMmwMc.js",
+      "_react-select.esm-V4spaMBB.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
@@ -361,7 +361,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-95PDfl7y.js",
+    "file": "assets/Pago-IHauB3cE.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -369,7 +369,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_react-select.esm-AVAMmwMc.js",
+      "_react-select.esm-V4spaMBB.js",
       "_Button-pfbHwtIn.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",

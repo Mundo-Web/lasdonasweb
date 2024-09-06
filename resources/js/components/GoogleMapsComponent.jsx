@@ -27,11 +27,6 @@ const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
 
     const autocomplete = new window.google.maps.places.Autocomplete(inputElement, {
       componentRestrictions: { country: 'pe' },
-      bounds: new window.google.maps.LatLngBounds(
-        new window.google.maps.LatLng(-12.026, -77.127), // Suroeste de Lima
-        new window.google.maps.LatLng(-11.836, -76.919)  // Noreste de Lima
-      ),
-      strictBounds: true
     });
 
     const placeMarker = (location) => {
