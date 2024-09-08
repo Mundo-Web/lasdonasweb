@@ -283,6 +283,11 @@ const Product = ({
 
   const handleSelecttionOption = (item) => {
 
+    console.log(item)
+
+    let caratula = item.images.find((image) => image.caratula == 1)
+    console.log(caratula)
+    setCaratula2(caratula);
     const checkboxes = document.querySelectorAll('[id^="react-option"]');
 
     // Recorre los elementos y desmárcalos
