@@ -1,40 +1,39 @@
-import { createRoot } from 'react-dom/client'
-import React, { useEffect, useRef, useState } from 'react'
-import CreateReactScript from './Utils/CreateReactScript'
-import SvgFlorPremium from './components/svg/svgFlorPremium'
-import SvgFlorDeluxe from './components/svg/SvgFlorDeluxe'
-import SvgFlorClasic from './components/svg/SvgFlorClasic'
 import axios from 'axios'
+import React, { useEffect, useRef, useState } from 'react'
+import { createRoot } from 'react-dom/client'
+import CreateReactScript from './Utils/CreateReactScript'
+import SvgFlorClasic from './components/svg/SvgFlorClasic'
+import SvgFlorDeluxe from './components/svg/SvgFlorDeluxe'
+import SvgFlorPremium from './components/svg/svgFlorPremium'
 
 
 import { Local } from 'sode-extend-react/sources/storage'
 
-import HorarioSection from './components/HorarioSection';
-import ModalSimple from './components/ModalSimple';
+import HorarioSection from './components/HorarioSection'
+import ModalSimple from './components/ModalSimple'
 
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { format, toZonedTime } from 'date-fns-tz';
+import { format, toZonedTime } from 'date-fns-tz'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
-import Accordion from './Accordion2';
+import Accordion from './Accordion2'
 
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'
 
 
 
-import './fade.css';
-import CalendarComponent from './components/CalendarComponent';
-import ProductCard from './components/ProductCard'
 import { prepareToSend } from './Utils/SendToCart'
+import CalendarComponent from './components/CalendarComponent'
+import ProductCard from './components/ProductCard'
+import './fade.css'
 
-import Tippy from '@tippyjs/react';
+import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'; // Importa los estilos de Tippy
 
 import agregarComplementoPedido from './Utils/agregarComplemento'
 import Button from './components/Button'
 
 import { deleteOnCarBtnR } from './Utils/carritoR'
-
 
 const Product = ({
   complementos,
@@ -112,10 +111,7 @@ const Product = ({
         }
         agregarComplementoPedido(id, isConfirmed)
       } else {
-        // console.log('Descheckeando lo debe de quitar');
-
         deleteOnCarBtnR(id)
-
       }
 
 
@@ -150,6 +146,8 @@ const Product = ({
   useEffect(() => {
 
   }, [detallePedido])
+
+  const horarioSeleccionado = horarios.find(x => x.id == selectedHorario)
 
   const agregarPedido = async (e) => {
 
@@ -346,12 +344,10 @@ const Product = ({
       const today = new Date();
       const tomorrow = new Date(today);
       tomorrow.setDate(today.getDate() + 1);
-
+      return tomorrow
       const options = { day: '2-digit', month: 'long', year: 'numeric' };
       return tomorrow.toLocaleDateString('es-ES', options);
     };
-
-
 
     setTomorrowDate(getTomorrowDate());
   }, []);
@@ -476,126 +472,151 @@ const Product = ({
 
               <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase">{currentProduct.producto}</h2>
               <p className="text-2xl  font-bold text-black pb-6">Paso 1: Selecciona un horario</p>
-              <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
 
-                {general.acept_incoming_orders_today == true ?
-                  (<div
-                    className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
-                    <HorarioSection
-                      id="hoy"
-                      title="Hoy"
-                      date=""
-                      horarios={horariosHoy}
-                      loadListHorarios={loadListHorariosHoy}
-                      setLoadListHorarios={setLoadListHorariosHoy}
-                      selectedHorario={selectedHorario}
-                      setSelectedHorario={setSelectedHorario}
-                      setDetallePedido={setDetallePedido}
-                    />
-
-                    {horariosHoy.length === 0 ? (
-                      <p key="no-disponible" className="text-sm font-normal">No disponible</p>
-                    ) : (
-
-                      <p className="text-sm font-normal">
-                        Disponible
+              {
+                selectedHorario && selectedDate
+                  ? <div className='mb-8 flex flex-row justify-between border rounded-lg p-3'>
+                    <div>
+                      <p>
+                        Fecha escogida: {new Intl.DateTimeFormat('es-ES', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        }).format(selectedDate)}
                       </p>
+                      <span>
+                        De {horarioSeleccionado?.start_time} a {horarioSeleccionado?.end_time}
+                      </span>
+                    </div>
+                    <Tippy content='Seleccionar otra fecha'>
+                      <button className='py-2 px-3 text-red-500 hover:text-red-300' onClick={() => {
+                        setSelectedHorario(null)
+                        setSelectedDate(new Date())
+                      }}>
+                        <i className='fa fa-trash'></i>
+                      </button>
+                    </Tippy>
+                  </div>
+                  : <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
 
-                    )}
-                    <div className='mt-2'>
+                    {general.acept_incoming_orders_today == true ?
+                      (<div
+                        className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
+                        <HorarioSection
+                          id="hoy"
+                          title="Hoy"
+                          horarios={horariosHoy}
+                          loadListHorarios={loadListHorariosHoy}
+                          setLoadListHorarios={setLoadListHorariosHoy}
+                          selectedHorario={selectedHorario}
+                          setSelectedHorario={setSelectedHorario}
+                          setDetallePedido={setDetallePedido}
+                          setSelectedDate={setSelectedDate}
+                        />
 
-                      {
+                        {horariosHoy.length === 0 ? (
+                          <p key="no-disponible" className="text-sm font-normal">No disponible</p>
+                        ) : (
 
-                        selectedHorario && detallePedido.fecha == 'hoy' && (
-                          <>
-                            {(() => {
-                              const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
-                              if (selectedHorarioItem) {
-                                return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
-                              }
-                              return null;
-                            })()}
-                          </>
-                        )
-                      }
+                          <p className="text-sm font-normal">
+                            Disponible
+                          </p>
+
+                        )}
+                        <div className='mt-2'>
+
+                          {
+
+                            selectedHorario && detallePedido.fecha == 'hoy' && (
+                              <>
+                                {(() => {
+                                  const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                                  if (selectedHorarioItem) {
+                                    return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                                  }
+                                  return null;
+                                })()}
+                              </>
+                            )
+                          }
+                        </div>
+
+                      </div>) : (
+                        <div
+                          className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
+                          <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
+                        </div>)
+
+
+
+                    }
+
+
+                    <div className={`relative flex flex-col justify-center items-center  text-center w-1/3 
+                ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
+                      htmlFor="manana"
+                    >
+                      <HorarioSection
+                        id="manana"
+                        title="Mañana"
+                        date={tomorrowDate}
+                        horarios={horarios}
+                        loadListHorarios={loadListHorariosManana}
+                        setLoadListHorarios={setLoadListHorariosManana}
+                        selectedHorario={selectedHorario}
+                        setSelectedHorario={setSelectedHorario}
+                        setDetallePedido={setDetallePedido}
+                        setSelectedDate={setSelectedDate}
+                      />
+
+                      <div className='mt-2'>
+
+                        {
+
+                          selectedHorario && detallePedido.fecha == 'manana' && (
+                            <>
+                              {(() => {
+                                const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                                if (selectedHorarioItem) {
+                                  return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                                }
+                                return null;
+                              })()}
+                            </>
+                          )
+                        }
+                      </div>
+
                     </div>
 
-                  </div>) : (
+
                     <div
-                      className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
-                      <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
-                    </div>)
 
+                      onClick={openModalCalendario}
+                      className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
+                      <p className="text-lg font-bold m-auto ">Más fechas</p>
+                      <div className='mt-2'>
 
+                        {
 
-                }
+                          selectedHorario && detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && (
+                            <>
+                              {(() => {
+                                const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                                if (selectedHorarioItem) {
+                                  return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                                }
+                                return null;
+                              })()}
+                            </>
+                          )
+                        }
+                      </div>
+                    </div>
 
-
-                <div className={`relative flex flex-col justify-center items-center  text-center w-1/3 
-                ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
-                  htmlFor="manana"
-                >
-
-                  <HorarioSection
-                    id="manana"
-                    title="Mañana"
-                    date={tomorrowDate}
-                    horarios={horarios}
-                    loadListHorarios={loadListHorariosManana}
-                    setLoadListHorarios={setLoadListHorariosManana}
-                    selectedHorario={selectedHorario}
-                    setSelectedHorario={setSelectedHorario}
-                    setDetallePedido={setDetallePedido}
-
-                  />
-
-                  <div className='mt-2'>
-
-                    {
-
-                      selectedHorario && detallePedido.fecha == 'manana' && (
-                        <>
-                          {(() => {
-                            const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
-                            if (selectedHorarioItem) {
-                              return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
-                            }
-                            return null;
-                          })()}
-                        </>
-                      )
-                    }
                   </div>
-
-                </div>
-
-
-                <div
-
-                  onClick={openModalCalendario}
-                  className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
-                  <p className="text-lg font-bold m-auto ">Más fechas</p>
-                  <div className='mt-2'>
-
-                    {console.log(detallePedido)}
-                    {
-
-                      selectedHorario && detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && (
-                        <>
-                          {(() => {
-                            const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
-                            if (selectedHorarioItem) {
-                              return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
-                            }
-                            return null;
-                          })()}
-                        </>
-                      )
-                    }
-                  </div>
-                </div>
-
-              </div>
+              }
 
               <p className="text-2xl  font-bold text-black pb-6">Paso 2: Elige tu opcion favorita</p>
 
@@ -868,48 +889,13 @@ const Product = ({
 
                       </div>
                     </div>
-                    {/* <div className="m-auto">
-                      <label
-                        onClick={() => openModalComplementos([item])}
-                        htmlFor={`react-option-${item.id}`}
-                        className="inline-flex items-center justify-between w-full bg-white rounded-lg cursor-pointer hover:border-[#df3876] hover:border-2"
-                      >
-                        <div className="block relative p-2">
-                          {item.images?.length > 0 ? (
-                            item.images.map((image, imgIndex) => (
-                              image.caratula === 1 && (
-                                <img
-                                  key={imgIndex}
-                                  className="size-full w-48 h-56 rounded-xl transition-transform duration-500 ease-in-out"
-                                  src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
-                                  alt="Complemento"
-                                  onError={(e) => {
-                                    // Si la imagen no se carga, se muestra una imagen por defecto en su lugar
-                                    e.target.src = '/images/img/noimagen.jpg';
-                                  }}
-                                />
-                              )
-                            ))
-                          ) : (
-                            <img className="size-full w-48 h-56 rounded-xl transition-transform duration-500 ease-in-out" src="/images/img/noimagen.jpg" alt="No image available" />
-                          )}
-                        </div>
-                      </label>
-                      <h2 className="text-base font-normal text-[#112212] text-center">{item.producto}</h2>
-                      <div className="flex font-bold justify-center min-h-6 text-[#112212]" style={{ minHeight: "24px" }}>
-                        {item.min_price && (
-                          <p className='text-[#112212]'>
-                            Desde S/ <span className='text-[#112212]'>{Number(item.min_price).toFixed(0)}</span>
-                          </p>
-                        )}
-                      </div>
-                    </div> */}
+
                   </SwiperSlide>
                 ))}
               </Swiper>
             </div>
             <div className="col-span-1">
-              <div className="flex flex-col justify-center items-center text-center w-46 m-auto h-56 border-[#FF8555] border-2 p-3 rounded-xl">
+              <div className="flex flex-col justify-center items-center text-center w-46 m-auto max-h-56 border-[#FF8555] border-2 p-3 rounded-xl">
                 <div className="grid grid-cols-1 gap-3 xl:gap-5">
                   <div className="flex flex-col justify-center items-center">
                     <img src="/img_donas/regalo.svg" alt="Regalo" />
@@ -1031,10 +1017,11 @@ const Product = ({
                   {selectedHorario !== null && (
                     <div
                       className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
-                      onClick={agregarPedido}
+                      // onClick={agregarPedido}
+                      onClick={CloseModalCalendario}
                     >
                       Confirmar
-                      <i className='fa fa-cart-plus ml-2 mb-1'></i>
+                      <i className='fa fa-check ml-2 mb-1'></i>
                     </div>
                   )}
                 </div>

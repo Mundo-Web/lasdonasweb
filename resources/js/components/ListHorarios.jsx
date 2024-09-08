@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase = 'absolute w-full flex flex-col gap-2 top-[80px] bg-white shadow-2xl p-2', setDetallePedido, setLoadListHorarios = () => { } }) => {
+const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase = 'absolute w-full flex flex-col gap-2 top-[80px] bg-white shadow-2xl p-2', setDetallePedido, setLoadListHorarios = () => { }, date, setSelectedDate }) => {
+
+  console.log(date)
 
   const checked = useRef(null);
 
@@ -15,7 +17,7 @@ const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase
 
 
   const handleRadioChange = (index) => {
-
+    setSelectedDate(date ?? new Date())
     setSelectedHorario(index);
     setLoadListHorarios(false);
     setDetallePedido((prevState) => {
@@ -35,7 +37,7 @@ const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase
 
 
   return (
-    <div className={`${clase} overflow-y-auto h-56`} style={{
+    <div className={`${clase} overflow-y-auto max-h-56`} style={{
       scrollbarWidth: 'thin',
       scrollbarColor: '#166534 #e0e0e0'
     }}>
