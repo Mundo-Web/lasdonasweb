@@ -184,8 +184,6 @@ const Product = ({
 
     const faltantes = Object.keys(opciones).filter(opcion => detallePedido[opcion] === '');
 
-    console.log('Detalle pedido', detallePedido)
-
     if (faltantes.length > 0) {
       const textFaltantes = faltantes.map(opcion => opciones[opcion]).join(', ');
 
@@ -198,7 +196,10 @@ const Product = ({
     }
 
     try {
-      const res = await axios.post('/api/products/AddOrder', detallePedido);
+      const res = await axios.post('/api/products/AddOrder', {
+        ...detallePedido,
+        complementos: detallePedido?.complementos?.map(x => x.id) ?? []
+      });
 
       if (res.status === 200) {
         const { producto,
@@ -219,6 +220,7 @@ const Product = ({
           extract: producto.extract,
         }
         let detalleComplemento = complementos.map(item => {
+          const found = detallePedido?.complementos?.find(x => x.id == item.id)
           const object = {
             id: item.id,
             producto: item.producto,
@@ -230,7 +232,7 @@ const Product = ({
             fecha: fecha,
             horario: horario,
             extract: item.extract,
-
+            usePoints: Boolean(found?.usePoints)
           }
           if (item.tipo_servicio == 'complemento' && item.puntos_complemento > 0) {
             object.points = item.puntos_complemento
