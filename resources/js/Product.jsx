@@ -119,6 +119,7 @@ const Product = ({
 
       const prev = structuredClone(detallePedido)
       const index = prev.complementos.findIndex((complemento) => complemento.id === id);
+      let newDetalle = {}
       if (index === -1) {
         let isConfirmed = false
         if (points >= complemento.puntos_complemento) {
@@ -133,19 +134,20 @@ const Product = ({
           });
           isConfirmed = swalRes.isConfirmed
         }
-        return {
+        newDetalle = {
           ...prev,
           complementos: [...prev.complementos, {
             ...complemento,
             usePoints: isConfirmed
           }],
         };
+      } else {
+        newDetalle = {
+          ...prev,
+          complementos: prev.complementos.filter((complemento) => complemento.id !== id),
+        }
       }
 
-      const newDetalle = {
-        ...prev,
-        complementos: prev.complementos.filter((complemento) => complemento.id !== id),
-      }
       setDetallePedido(newDetalle);
     }
 
