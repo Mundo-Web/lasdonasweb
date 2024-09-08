@@ -43,7 +43,7 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
       {carrito.map((item, index) => (
         <React.Fragment key={item.id}>
           <OrderItem {...item} userPoints={points} />
-          {index < carrito.length - 1 && <Divider />}
+          {index < carrito.length - 1 }
         </React.Fragment>
       ))}
       <Divider />

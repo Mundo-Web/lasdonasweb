@@ -535,7 +535,7 @@
       showClose: false,
       fadeDuration: 100
     })
-    $('#cart-modal').css('z-index', 10000);
+    $('#cart-modal').css('z-index', 999999);
   })
 
   $('#close-cart').on('click', () => {

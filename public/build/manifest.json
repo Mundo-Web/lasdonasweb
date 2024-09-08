@@ -8,8 +8,8 @@
       "_storage-zp2nPsZU.js"
     ]
   },
-  "_Button-pfbHwtIn.js": {
-    "file": "assets/Button-pfbHwtIn.js",
+  "_Button-Kf83L5Z1.js": {
+    "file": "assets/Button-Kf83L5Z1.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx"
@@ -96,8 +96,8 @@
   "_objectWithoutPropertiesLoose-RRuG-_4m.js": {
     "file": "assets/objectWithoutPropertiesLoose-RRuG-_4m.js"
   },
-  "_react-select.esm-U_GwhZpx.js": {
-    "file": "assets/react-select.esm-U_GwhZpx.js",
+  "_react-select.esm-RHoaPkqD.js": {
+    "file": "assets/react-select.esm-RHoaPkqD.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -172,7 +172,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Fcf9Nq_y.css",
+    "file": "assets/app-O4uyP_Rh.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -239,7 +239,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-OyDAoVUI.js",
+    "file": "assets/Agradecimiento-ttocQw_E.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -260,7 +260,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-13SNcLqy.js",
+    "file": "assets/Carrito-vSCDpPpf.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -269,7 +269,7 @@
       "_storage-zp2nPsZU.js",
       "_Accordion2-1IUm3Q-f.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_Button-pfbHwtIn.js",
+      "_Button-Kf83L5Z1.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -305,7 +305,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-BrkGuJPV.js",
+    "file": "assets/Dashboard-Qxd3Uo7q.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -313,14 +313,14 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-U_GwhZpx.js",
+      "_react-select.esm-RHoaPkqD.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
       "_tippy.esm-vXDZ6XwW.js",
       "resources/js/components/InvoiceModal.jsx",
       "resources/js/components/ClasicModal.jsx",
-      "_Button-pfbHwtIn.js",
+      "_Button-Kf83L5Z1.js",
       "_index-XJuWVQ-l.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
@@ -370,7 +370,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-jvwCZGFx.js",
+    "file": "assets/Pago-9h7FeE_K.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -378,8 +378,8 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_react-select.esm-U_GwhZpx.js",
-      "_Button-pfbHwtIn.js",
+      "_react-select.esm-RHoaPkqD.js",
+      "_Button-Kf83L5Z1.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
@@ -400,7 +400,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-TpUhL-wc.js",
+    "file": "assets/Product-U_eM14Wi.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -417,7 +417,7 @@
       "_es-nY04P_z-.js",
       "_ProductCard-DeN9ohYo.js",
       "_tippy.esm-vXDZ6XwW.js",
-      "_Button-pfbHwtIn.js",
+      "_Button-Kf83L5Z1.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_index-XJuWVQ-l.js",
@@ -611,7 +611,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Orders-Fqf2afN-.js",
+    "file": "assets/Orders-cg8knXB1.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -914,10 +914,10 @@
       "assets/dxicons-NVJDH3Nn.ttf"
     ],
     "css": [
-      "assets/SalesDatagrid-kvJOWtWG.css",
+      "assets/SalesDatagrid-y6BCjmn-.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/SalesDatagrid-ry-EriVH.js",
+    "file": "assets/SalesDatagrid-RieZA41i.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",

@@ -141,12 +141,12 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
   return (
     <>
       <section className='mb-24 font-b_slick_bold'>
-        <div className='mt-12 px-[8%]'>
+        <div className='mt-12 px-[5%] md:px-[8%]'>
           <span>
             Home / Aniversario / Suspendisse potenti /Validación de pedido
           </span>
-          <div className='mt-16'>
-            <h1 className='text-[#112212] font-bold text-[40px]'>CARRITO DE COMPRAS</h1>
+          <div className='mt-8'>
+            <h1 className='text-[#112212] font-bold text-2xl md:text-4xl'>CARRITO DE COMPRAS</h1>
           </div>
           <div className='flex flex-col md:flex-row gap-20 mt-12'>
             <div className="flex flex-col  md:basis-8/12 w-full md:w-auto">
