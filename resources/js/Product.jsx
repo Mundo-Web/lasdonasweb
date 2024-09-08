@@ -909,7 +909,20 @@ const Product = ({
                         <h2 className="text-base font-normal text-black text-center truncate w-full">{complemento.producto}</h2>
                       </Tippy>
                       <div className="flex font-medium justify-center gap-4">
-                        0
+                        {complemento.descuento > 0 ? (
+                          <>
+                            <p>S/ <span>{complemento.descuento}</span></p>
+
+                            <p className='line-through text-gray-400'>S/ <span >{complemento.precio}</span></p>
+
+                          </>
+                        ) : (
+                          <>
+
+                            <p>S/ </p>
+                            <span>{complemento.precio}</span>
+                          </>
+                        )}
 
                       </div>
                     </div>
