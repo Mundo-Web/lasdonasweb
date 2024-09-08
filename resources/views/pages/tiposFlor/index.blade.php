@@ -269,6 +269,46 @@
         responsive: true
       });
 
+      $(document).on("change", ".btn_swithc", function() {
+
+      console.log('swithc')
+
+      let status = 0;
+      let id = $(this).attr('data-idService');
+      let titleService = $(this).attr('data-titleService');
+      let field = $(this).attr('data-field');
+
+      if ($(this).is(':checked')) {
+        status = 1;
+      } else {
+        status = 0;
+      }
+
+      console.log(status)
+
+      $.ajax({
+        url: "{{ route('tipo-flor.updateVisible') }}",
+        method: 'POST',
+        data: {
+          _token: $('input[name="_token"]').val(),
+          status: status,
+          id: id,
+          field: field,
+        }
+      }).done(function(res) {
+
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: titleService + " a sido modificado",
+          showConfirmButton: false,
+          timer: 1500
+
+        });
+
+      })
+    });
+
       $(document).on("click", ".btn_delete", function(e) {
 
         var id = $(this).attr('data-idService');

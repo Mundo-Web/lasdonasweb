@@ -27,7 +27,7 @@ const Horarios = ({ url_env, horarios }) => {
       <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
         <section className="py-4 border-b border-slate-100 dark:border-slate-700">
           <a
-            href="/categorias/create"
+            href="/horarios/create"
             className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm"
           >
             Agregar Horario
