@@ -882,7 +882,7 @@ const Product = ({
                               image.caratula === 1 ? (
                                 <img
                                   key={image.id}
-                                  className="w-full aspect-square rounded-lg object-cover"
+                                  className="w-48 aspect-square rounded-lg object-cover"
                                   src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
                                   alt={complemento.producto}
                                 />
@@ -890,7 +890,7 @@ const Product = ({
                             )
                           ) : (
                             <img
-                              className="w-full aspect-square rounded-lg object-cover"
+                              className="w-48 aspect-square rounded-lg object-cover"
                               src='/images/img/noimagen.jpg'
                               alt="No imagen"
                             />
