@@ -234,12 +234,12 @@
   },
   "resources/js/Agradecimiento.jsx": {
     "assets": [
-      "assets/SvgPuntos--FnXd_aC.svg"
+      "assets/SvgPuntos-hzKALqiY.svg"
     ],
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-ojQEt4uO.js",
+    "file": "assets/Agradecimiento-OyDAoVUI.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -1015,7 +1015,7 @@
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/SvgPuntos.svg": {
-    "file": "assets/SvgPuntos--FnXd_aC.svg",
+    "file": "assets/SvgPuntos-hzKALqiY.svg",
     "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {
