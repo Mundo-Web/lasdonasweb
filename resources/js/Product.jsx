@@ -117,7 +117,7 @@ const Product = ({
 
     } else {
       setDetallePedido(async (prev) => {
-        const index = prev.complementos.findIndex((x) => x.id === id);
+        const index = prev.complementos?.findIndex((x) => x.id === id);
         if (index === -1) {
           let isConfirmed = false
           if (points >= complemento.puntos_complemento) {
