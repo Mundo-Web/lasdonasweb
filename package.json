@@ -50,6 +50,7 @@
         "react-modal": "^3.16.1",
         "react-router-dom": "^6.26.1",
         "react-select": "^5.8.0",
+        "react-tooltip": "^5.28.0",
         "react-transition-group": "^4.4.5",
         "sode-extend-react": "^1.1.111",
         "sweetalert2": "^11.11.1",

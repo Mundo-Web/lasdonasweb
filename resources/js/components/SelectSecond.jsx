@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Select from 'react-select'
+import { Tooltip as ReactTooltip } from 'react-tooltip'
+
 
 const customStyles = {
   control: (provided) => ({
@@ -28,14 +30,24 @@ const customStyles = {
 
 
 const SelectSecond = ({ options, title, handleOptionChange }) => {
+
+  console.log(options);
   return (
-    <Select
-      className='gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full'
-      styles={customStyles}
-      options={options.map((option) => ({ value: option.id, label: option.name }))}
-      placeholder={title}
-      onChange={handleOptionChange}
-    />
+    <div>
+      <Select
+        className='gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full'
+        styles={customStyles}
+        options={options.map((option) => ({ value: option.id, label: option.name, description: option.description }))}
+        placeholder={title}
+        onChange={handleOptionChange}
+        getOptionLabel={(option) => (
+          <div data-tooltip-id={`tooltip-${option.value}`} data-tooltip-content={option.description}>
+            {option.label}
+            <ReactTooltip id={`tooltip-${option.value}`} place="right-end" effect="solid" />
+          </div>
+        )}
+      />
+    </div>
   );
 };
 
