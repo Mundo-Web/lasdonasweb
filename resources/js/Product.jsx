@@ -116,35 +116,17 @@ const Product = ({
 
 
     } else {
-      setDetallePedido(async (prev) => {
-        const index = prev.complementos?.findIndex((x) => x.id === id);
+      setDetallePedido((prev) => {
+        const index = prev.complementos.findIndex((complemento) => complemento === id);
         if (index === -1) {
-          let isConfirmed = false
-          if (points >= complemento.puntos_complemento) {
-            const swalRes = await Swal.fire({
-              title: 'Deseas intercambiarlo con puntos?',
-              text: 'Si, usar puntos',
-              showCancelButton: true,
-              confirmButtonText: 'Si',
-              cancelButtonText: 'No',
-              confirmButtonColor: '#336234',
-              cancelButtonColor: '#EF4444'
-            });
-            isConfirmed = swalRes.isConfirmed
-          }
           return {
             ...prev,
-            complementos: [
-              ...prev.complementos, {
-                ...complemento,
-                usePoints: isConfirmed
-              }
-            ],
+            complementos: [...prev.complementos, id],
           };
         }
         return {
           ...prev,
-          complementos: prev.complementos.filter((x) => x.id !== id),
+          complementos: prev.complementos.filter((complemento) => complemento !== id),
         };
       });
     }
@@ -194,10 +176,7 @@ const Product = ({
     }
 
     try {
-      const res = await axios.post('/api/products/AddOrder', {
-        ...detallePedido,
-        complementos: detallePedido?.complementos?.map(x => x.id)
-      });
+      const res = await axios.post('/api/products/AddOrder', detallePedido);
 
       if (res.status === 200) {
         const { producto,
@@ -218,7 +197,6 @@ const Product = ({
           extract: producto.extract,
         }
         let detalleComplemento = complementos.map(item => {
-          const { usePoints } = detallePedido?.complementos?.find(x => x.id == item.id) ?? {}
           const object = {
             id: item.id,
             producto: item.producto,
@@ -230,7 +208,7 @@ const Product = ({
             fecha: fecha,
             horario: horario,
             extract: item.extract,
-            usePoints: Boolean(usePoints)
+
           }
           if (item.tipo_servicio == 'complemento' && item.puntos_complemento > 0) {
             object.points = item.puntos_complemento
