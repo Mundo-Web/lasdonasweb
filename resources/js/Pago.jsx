@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import CreateReactScript from './Utils/CreateReactScript'
 
 import './fade.css';
@@ -223,6 +223,20 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
     Culqi.open();
   }
 
+  const textareaRef = useRef(null);
+  const adjustTextareaHeight = () => {
+    console.log("entrando here")
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = 'auto'; // Reset height to auto to calculate the new height
+      textarea.style.height = `${textarea.scrollHeight}px`; // Set height to scrollHeight
+    }
+  };
+  useEffect(() => {
+    adjustTextareaHeight(); // Adjust height on initial render
+  }, [datosFinales.dedication.message]);
+
+
   return (
     <>
       <form className='mb-24' onSubmit={startCulqi}>
@@ -316,7 +330,11 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                       </button> */}
                     </div>
                     <textarea
-                      className="flex-1 shrink gap-2 self-stretch px-6 py-4 mt-2 w-full text-sm tracking-wide leading-5 rounded-3xl border border-solid border-stone-300 text-neutral-900 max-md:px-5 max-md:max-w-full"
+                      style={{ overflow: 'hidden', resize: 'none' }}
+                      ref={textareaRef}
+                      className=" shrink gap-2 self-stretch px-6 py-4 mt-2 w-full  h-c
+                      text-sm tracking-wide leading-5 rounded-3xl border border-solid border-stone-300
+                       text-neutral-900 max-md:px-5 max-md:max-w-full"
                       value={datosFinales.dedication.message}
                       onChange={(e) => {
                         setDatosFinales(old => ({
@@ -326,6 +344,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                             message: e.target.value
                           }
                         }))
+                        changetextArea()
                       }}
                     />
                   </div></>)}
