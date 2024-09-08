@@ -116,35 +116,37 @@ const Product = ({
 
 
     } else {
-      setDetallePedido(async (prev) => {
-        const index = prev.complementos.findIndex((complemento) => complemento.id === id);
-        if (index === -1) {
-          let isConfirmed = false
-          if (points >= complemento.puntos_complemento) {
-            const swalRes = await Swal.fire({
-              title: 'Deseas intercambiarlo con puntos?',
-              text: 'Si, usar puntos',
-              showCancelButton: true,
-              confirmButtonText: 'Si',
-              cancelButtonText: 'No',
-              confirmButtonColor: '#336234',
-              cancelButtonColor: '#EF4444'
-            });
-            isConfirmed = swalRes.isConfirmed
-          }
-          return {
-            ...prev,
-            complementos: [...prev.complementos, {
-              ...complemento,
-              usePoints: isConfirmed
-            }],
-          };
+
+      const prev = structuredClone(detallePedido)
+      const index = prev.complementos.findIndex((complemento) => complemento.id === id);
+      if (index === -1) {
+        let isConfirmed = false
+        if (points >= complemento.puntos_complemento) {
+          const swalRes = await Swal.fire({
+            title: 'Deseas intercambiarlo con puntos?',
+            text: 'Si, usar puntos',
+            showCancelButton: true,
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No',
+            confirmButtonColor: '#336234',
+            cancelButtonColor: '#EF4444'
+          });
+          isConfirmed = swalRes.isConfirmed
         }
         return {
           ...prev,
-          complementos: prev.complementos.filter((complemento) => complemento.id !== id),
+          complementos: [...prev.complementos, {
+            ...complemento,
+            usePoints: isConfirmed
+          }],
         };
-      });
+      }
+
+      const newDetalle = {
+        ...prev,
+        complementos: prev.complementos.filter((complemento) => complemento.id !== id),
+      }
+      setDetallePedido(newDetalle);
     }
 
 
