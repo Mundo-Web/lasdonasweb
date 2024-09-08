@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 function InputField({ eRef, label, type = "text", value, defaultValue, placeholder, handleDatosFinales, name, className,
   required = false, maxLength, min, max }) {
+
+
+  const [touched, setTouched] = useState(true);
+
+
+
+  const handleBlur = () => {
+    setTouched(true);
+  };
+
+  const isError = required && touched && !value;
+
 
   return (
     <div className="flex flex-col mt-1 w-full max-md:max-w-full">
@@ -11,6 +23,7 @@ function InputField({ eRef, label, type = "text", value, defaultValue, placehold
         </label>
       )}
       <input
+        onBlur={handleBlur}
         ref={eRef}
         value={value}
         onChange={handleDatosFinales}
@@ -22,8 +35,9 @@ function InputField({ eRef, label, type = "text", value, defaultValue, placehold
         maxLength={type === "number" ? undefined : maxLength}
         min={type === "number" ? min : undefined}
         max={type === "number" ? max : undefined}
-        className="gap-2 self-stretch px-6 py-4 mt-1 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
+        className={`gap-2 self-stretch px-6 py-4 mt-1 w-full text-sm tracking-wide rounded-3xl border border-solid ${isError ? 'border-red-500' : 'border-stone-300'} max-md:px-5 max-md:max-w-full`}
       />
+      {isError && <span className="text-red-500 text-sm mt-1">Este campo es obligatorio</span>}
     </div>
   );
 }

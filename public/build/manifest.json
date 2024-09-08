@@ -87,8 +87,8 @@
   "_objectWithoutPropertiesLoose-RRuG-_4m.js": {
     "file": "assets/objectWithoutPropertiesLoose-RRuG-_4m.js"
   },
-  "_react-select.esm-V4spaMBB.js": {
-    "file": "assets/react-select.esm-V4spaMBB.js",
+  "_react-select.esm-XScc3B0I.js": {
+    "file": "assets/react-select.esm-XScc3B0I.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -163,7 +163,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-7FRWThEX.css",
+    "file": "assets/app-JSIVTYOA.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -296,7 +296,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-E-QmBdqL.js",
+    "file": "assets/Dashboard-ympuyUPA.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -304,7 +304,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-V4spaMBB.js",
+      "_react-select.esm-XScc3B0I.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
@@ -361,7 +361,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-jAfu5Emo.js",
+    "file": "assets/Pago-vK_EID9x.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -369,7 +369,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_react-select.esm-V4spaMBB.js",
+      "_react-select.esm-XScc3B0I.js",
       "_Button-pfbHwtIn.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
@@ -389,7 +389,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-1-2JdMpu.js",
+    "file": "assets/Product-oDiGhGpY.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",

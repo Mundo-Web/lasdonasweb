@@ -27,6 +27,11 @@ const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
 
     const autocomplete = new window.google.maps.places.Autocomplete(inputElement, {
       componentRestrictions: { country: 'pe' },
+      bounds: new window.google.maps.LatLngBounds(
+        new window.google.maps.LatLng(-12.200, -77.150), // Suroeste de Lima y Callao
+        new window.google.maps.LatLng(-11.800, -76.850)  // Noreste de Lima y Callao
+      ),
+      strictBounds: true
     });
 
     const placeMarker = (location) => {

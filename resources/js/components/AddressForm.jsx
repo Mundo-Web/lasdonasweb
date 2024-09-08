@@ -37,7 +37,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
   const validateForm = () => {
     console.log(formState)
     const requiredFields = [
-      'fullname', 'phone', 'fulladdress', 'street', 'number', 'mz',
+      'fullname', 'phone', 'fulladdress', 'street', 'number',
       'department', 'province', 'district', 'residenceType', 'reference', 'postal_code'
     ];
 
@@ -198,7 +198,10 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
     }));
   }
 
-  const continueToPayment = () => {
+  const continueToPayment = (e) => {
+
+    console.log('entrando here')
+    e.preventDefault();
 
     console.log(formState)
     if (validateForm()) {
@@ -244,7 +247,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
 
   return (
     <main className="flex flex-col justify-center self-stretch p-1 text-sm font-bold tracking-wide bg-white rounded-none max-w-[880px] max-md:px-5">
-      <form className="flex flex-col w-full">
+      <form className="flex flex-col w-full" >
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
           <div className="md:col-span-2">
             <InputField
@@ -304,9 +307,9 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full text-neutral-900">
           <div className="md:col-span-2">
             <InputField
-              required={true}
+
               eRef={addressRef.mz}
-              label="Manzana"
+              label="Urbanizacion"
               placeholder="Faucibus"
               className="w-full"
               value={formState.mz}
@@ -371,14 +374,20 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           <div className="md:col-span-2">
             <div className="w-full">
               <label className="block text-sm font-medium text-gray-700">Tipo de domicilio</label>
-              <Select
-                styles={customStyles2}
-                options={options}
-                onChange={handleSelectChange}
-                value={options.find(option => option.value === formState.residenceType)}
-                placeholder="Selecciona Tipo de Domicilio"
-                className="gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
-              />
+              <div>
+                <Select
+                  name="residenceType"
+                  required={true}
+                  styles={customStyles2}
+                  options={options}
+                  onChange={handleSelectChange}
+                  value={options.find(option => option.value === formState.residenceType)}
+                  placeholder="Selecciona Tipo de Domicilio"
+                  className="gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
+                />
+                {formState.residenceType === '' && (<span className="text-red-500 text-sm mt-1">Este campo es obligatorio</span>)}
+              </div>
+
               {formState.residenceType === 'Otro' && (
                 <input
                   type="text"
