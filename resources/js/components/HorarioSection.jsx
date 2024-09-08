@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import ListHorarios from './ListHorarios';
 import useOutsideClick from './useOutsideClick';
 
-const HorarioSection = ({ id, title, date, horarios, loadListHorarios, setLoadListHorarios, selectedHorario, setSelectedHorario, setDetallePedido }) => {
+const HorarioSection = ({ id, title, date, horarios, loadListHorarios, setLoadListHorarios, selectedHorario, setSelectedHorario, setDetallePedido, setSelectedDate }) => {
   const containerRef = useRef(null);
 
   useOutsideClick(containerRef, () => {
@@ -14,9 +14,9 @@ const HorarioSection = ({ id, title, date, horarios, loadListHorarios, setLoadLi
 
   return (
     <div ref={containerRef} className="flex flex-col justify-center items-center  text-center cursor-pointer ">
-      <div onClick={() => setLoadListHorarios(!loadListHorarios)}>
+      <div className='w-full' onClick={() => setLoadListHorarios(!loadListHorarios)}>
         <p className="text-lg font-bold ">{title}</p>
-        <p className="text-sm font-normal" >{date}</p>
+        <p className="text-sm font-normal" >{date ? date.toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' }): ''}</p>
       </div>
 
       <CSSTransition
@@ -31,6 +31,8 @@ const HorarioSection = ({ id, title, date, horarios, loadListHorarios, setLoadLi
           setSelectedHorario={setSelectedHorario}
           setDetallePedido={setDetallePedido}
           setLoadListHorarios={setLoadListHorarios}
+          date={date}
+          setSelectedDate={setSelectedDate}
           id={id}
         />
       </CSSTransition>
