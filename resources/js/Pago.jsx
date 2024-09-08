@@ -317,7 +317,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                     </div>
                     <textarea
                       className="flex-1 shrink gap-2 self-stretch px-6 py-4 mt-2 w-full text-sm tracking-wide leading-5 rounded-3xl border border-solid border-stone-300 text-neutral-900 max-md:px-5 max-md:max-w-full"
-                      defaultValue={datosFinales.dedicatoria}
+                      value={datosFinales.dedication.message}
                       onChange={(e) => {
                         setDatosFinales(old => ({
                           ...old,
