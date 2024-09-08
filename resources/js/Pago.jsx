@@ -18,6 +18,7 @@ import Checkbox from './components/Checkbox';
 import SelectSecond from './components/SelectSecond';
 import Swal from 'sweetalert2';
 import calculartotal from './Utils/calcularTotal';
+import { Modal } from 'flowbite-react';
 
 const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones }) => {
 
@@ -143,6 +144,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
   }
 
   const handlemodalMaps = () => {
+    console.log('manejando Modal')
     setIsModalOpen(!isModalOpen)
   }
 
@@ -256,6 +258,8 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                   label={'1. Confirma tu telefono'}
                   name='phone'
                   defaultValue={datosFinales.telefono}
+                  type='number'
+                  value={datosFinales.consumer.phone}
                   required
                   handleDatosFinales={(e) => {
                     setDatosFinales(old => ({
@@ -340,7 +344,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                     id="signature"
                     type="text"
                     placeholder="Persona que firma el mensaje de la tarjeta"
-                    className="flex-1 shrink gap-2 self-stretch px-6 py-4 mt-2 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 text-stone-300 max-md:px-5 max-md:max-w-full"
+                    className="flex-1 shrink gap-2 self-stretch px-6 py-4 mt-2 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300  max-md:px-5 max-md:max-w-full"
                     onChange={(e) => {
                       setDatosFinales(old => ({
                         ...old,
@@ -383,10 +387,10 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                     <InputField
                       label={`Número de ${datosFinales.billing.type === 'boleta' ? 'DNI' : 'RUC'}`}
                       placeholder={`Número de ${datosFinales.billing.type === 'boleta' ? 'DNI' : 'RUC'}`}
-                      required
+                      required={true}
                       type='number'
                       maxLength={datosFinales.billing.type === 'boleta' ? 8 : 11}
-
+                      value={datosFinales.billing.type === 'boleta' ? datosFinales.billing.dni : datosFinales.billing.ruc}
 
 
                       handleDatosFinales={(e) => {
@@ -411,11 +415,14 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                           }))
                         }
                       }} />
+                    {console.log(datosFinales)}
+
                     <InputField
                       name={'razonSocial'}
                       label={datosFinales.billing.type == 'boleta' ? 'Nombre' : "Razón Social"}
                       placeholder="Ingrese una nombre"
-                      required
+                      value={datosFinales.billing.name}
+                      required={true}
                       handleDatosFinales={(e) => {
                         setDatosFinales(old => ({
                           ...old,
@@ -430,6 +437,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                         <InputField
                           name={'lastname'}
                           label="Apellido"
+                          value={datosFinales.billing.lastname}
                           placeholder="Ingrese su apellido"
                           required
                           handleDatosFinales={(e) => {
@@ -444,6 +452,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                       </>
                     }
                     <InputField
+                      value={datosFinales.billing.address}
                       label="Dirección Fiscal"
                       placeholder="Ingrese una dirección"
                       required
@@ -457,6 +466,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                         }))
                       }} />
                     <InputField
+                      value={datosFinales.billing.email}
                       label="Correo electrónico"
                       type="email"
                       placeholder="Ingrese un correo"
