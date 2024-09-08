@@ -96,8 +96,8 @@
   "_objectWithoutPropertiesLoose-RRuG-_4m.js": {
     "file": "assets/objectWithoutPropertiesLoose-RRuG-_4m.js"
   },
-  "_react-select.esm-RHoaPkqD.js": {
-    "file": "assets/react-select.esm-RHoaPkqD.js",
+  "_react-select.esm-iwj2nLkI.js": {
+    "file": "assets/react-select.esm-iwj2nLkI.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -234,12 +234,12 @@
   },
   "resources/js/Agradecimiento.jsx": {
     "assets": [
-      "assets/SvgPuntos-hzKALqiY.svg"
+      "assets/SvgPuntos--FnXd_aC.svg"
     ],
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-ttocQw_E.js",
+    "file": "assets/Agradecimiento-ojQEt4uO.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -305,7 +305,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-Qxd3Uo7q.js",
+    "file": "assets/Dashboard-cEptkJRD.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -313,7 +313,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-RHoaPkqD.js",
+      "_react-select.esm-iwj2nLkI.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
@@ -370,7 +370,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-9h7FeE_K.js",
+    "file": "assets/Pago-FZKEfMI4.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -378,8 +378,8 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_react-select.esm-RHoaPkqD.js",
-      "_Button-Kf83L5Z1.js",
+      "_react-select.esm-iwj2nLkI.js",
+      "_Button-pfbHwtIn.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
@@ -400,7 +400,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-U_eM14Wi.js",
+    "file": "assets/Product-9n36aTpr.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -964,7 +964,7 @@
     "src": "resources/js/components/SelectSearch.jsx"
   },
   "resources/js/components/SelectSecond.jsx": {
-    "file": "assets/SelectSecond-UzDVyKNn.js",
+    "file": "assets/SelectSecond-1lj4pq8p.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -1015,7 +1015,7 @@
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/SvgPuntos.svg": {
-    "file": "assets/SvgPuntos-hzKALqiY.svg",
+    "file": "assets/SvgPuntos--FnXd_aC.svg",
     "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {
