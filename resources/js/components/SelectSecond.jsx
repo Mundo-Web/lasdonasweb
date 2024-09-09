@@ -25,7 +25,7 @@ const customStyles = {
     fontSize: '0.875rem', // Ajusta el tamaño de fuente de las opciones
     padding: '8px 12px', // Ajusta el padding de las opciones
     fontFamily: 'Arial, sans-serif', // Establecer la tipografía por defecto
-    fontSize: '14px',
+
     opacity: '0.8',
   }),
   indicatorSeparator: () => ({
