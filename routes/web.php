@@ -133,7 +133,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         Route::resource('/terminos-y-condiciones', TermsAndConditionController::class);
 
-        Route::get('/horarios',  [HorariosController::class, 'index'])->name('Horarios.jsx');
+        Route::resource('/horarios',  HorariosController::class);
+        Route::post('/horarios/save',  [HorariosController::class, 'save'])->name('horarios.save');
 
         Route::resource('/cupones', CuponController::class);
         Route::post('/cupones/updateVisible', [CuponController::class, 'updateVisible'] )->name('cupones.updateVisible');

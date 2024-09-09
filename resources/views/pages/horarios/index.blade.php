@@ -2,8 +2,8 @@
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
     <section class="py-4 border-b border-slate-100 dark:border-slate-700">
-      <a href="{{ route('greetings.create') }}"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm">Agregar mensaje</a>
+      <a href="{{ route('horarios.create') }}"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm">Agregar Horario</a>
     </section>
 
 
@@ -12,7 +12,7 @@
 
 
       <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-        <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Mensajes predefinidos</h2>
+        <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Horarios predefinidos</h2>
       </header>
       <div class="p-3">
 
@@ -22,18 +22,18 @@
           <table id="tabladatos" class="display text-lg" style="width:100%">
             <thead>
               <tr>
-                <th>Titulo</th>
-                <th>Mensaje</th>
+                <th>Hora Inicio </th>
+                <th>Hora Fin</th>
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
 
-              @foreach ($greetings as $item)
+              @foreach ($horarios as $item)
                 <tr>
-                  <td>{{ $item->name }}</td>
-                  <td>{{ Str::limit($item->description, 160) }}</td>
+                  <td>{{ $item->start_time }}</td>
+                  <td>{{ $item->end_time }}</td>
                   <td>
                     <form method="POST" action="">
                       @csrf
@@ -54,7 +54,7 @@
                   </td>
                   <td class="flex flex-row justify-end items-center gap-5">
 
-                    <a href="{{ route('greetings.edit', $item->id) }}"
+                    <a href="{{ route('horarios.edit', $item->id) }}"
                       class="bg-yellow-400 px-3 py-2 rounded text-white  "><i
                         class="fa-regular fa-pen-to-square"></i></a>
                     {{-- {{  route('servicios.destroy', $item->id) }} --}}
@@ -73,8 +73,8 @@
             </tbody>
             <tfoot>
               <tr>
-                <th>Titulo</th>
-                <th>Descripción</th>
+                <th>Hora Inicio </th>
+                <th>Hora Fin</th>
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>
@@ -98,6 +98,7 @@
 
         var id = $(this).attr('data-idService');
 
+        // axios.post('/api/horarios/destroy', { id }
         Swal.fire({
           title: "Seguro que deseas eliminar?",
           text: "Si eliminas, se perderán todas las relaciones con los productos",
@@ -111,10 +112,11 @@
           if (result.isConfirmed) {
 
             $.ajax({
-              url: `/admin/greetings/${id}`,
-              method: 'DELETE',
+              url: `/api/horarios/destroy`,
+              method: 'POST',
               data: {
-                _token: $('[name="_token"]').val()
+                _token: $('[name="_token"]').val(),
+                id
               }
             }).done(function(res) {
 
@@ -132,6 +134,37 @@
         });
 
       });
+
+    })
+
+    $(document).on('change', '.btn_swithc', function() {
+      console.log('cambiando')
+      var status = 0;
+      var id = $(this).attr('data-idService');
+      var titleService = $(this).attr('data-titleService');
+      var field = $(this).attr('data-field');
+
+
+
+      $.ajax({
+        url: `/api/horarios/updateVisible`,
+        method: 'POST',
+        data: {
+          _token: $('[name="_token"]').val(),
+          id
+        }
+      }).done(function(res) {
+
+        Swal.fire({
+          title: res.message,
+          icon: "success"
+        });
+
+        location.reload();
+
+      })
+
+
 
     })
   </script>

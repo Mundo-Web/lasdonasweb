@@ -33,9 +33,15 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
     entrega: { fecha: carrito[0].fecha, horario: `${carrito[0].horario.id} ` }
 
   })
+  const [handleSend, setHandleSend] = useState(false)
+
+  const handlemodalMapsForm = () => {
+    setHandleSend(false)
+    handlemodalMaps()
+  }
 
   const validateForm = () => {
-    console.log(formState)
+
     const requiredFields = [
       'fullname', 'phone', 'fulladdress', 'street', 'number',
       'department', 'province', 'district', 'residenceType', 'reference', 'postal_code'
@@ -81,32 +87,26 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
       let { data, status } = response
       if (status === 200) {
         setCostoEnvio(data.price)
-        Swal.fire({
-          icon: 'success',
-          title: 'Ubicación encontrada',
-          text: 'Hemos encontrado tu ubicación, por favor verifica que los datos sean correctos',
-          showConfirmButton: true,
-          showCancelButton: false,
-          confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#10B981'
-        })
+        return 'success'
       }
-      console.log(response);
+
     } catch (error) {
       console.log('Error:', error);
       if (axios.isCancel(error)) {
         console.log('Request canceled', error.message);
       } else {
         if (error.response.status == 404) {
+
           Swal.fire({
-            icon: 'error',
-            title: 'Error',
+            icon: 'info',
+            title: 'Sin Cobertura',
             text: 'La direccion que ha elegido no tiene cobertura en nuestra zona de reparto',
             showConfirmButton: true,
             showCancelButton: false,
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#EF4444'
+            confirmButtonText: 'Escoger otra ubicacion',
+            confirmButtonColor: '#138496'
           })
+          return 'noCobertura'
 
         } else {
           console.error('Error:', error);
@@ -118,69 +118,93 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
   const cancelTokenSource = useRef(null);
 
   const managezipCode = async (place, postalCode) => {
-    console.log('cambio el zipcode')
+
 
     if (cancelTokenSource.current) {
       cancelTokenSource.current.cancel('Operation canceled due to new request.');
     }
     cancelTokenSource.current = axios.CancelToken.source();
-    await consultarLocalicad(postalCode, cancelTokenSource.current.token);
+    let cobertura = await consultarLocalicad(postalCode, cancelTokenSource.current.token);
 
-    setFormState(old => {
-      return {
-        ...old,
-        coordinates: {
-          latitude: place.geometry.location.lat(),
-          longitude: place.geometry.location.lng()
+
+    if (cobertura === 'success') {
+      setFormState(old => {
+        return {
+          ...old,
+          coordinates: {
+            latitude: place.geometry.location.lat(),
+            longitude: place.geometry.location.lng()
+          }
         }
-      }
-    })
-    place.address_components.forEach((component) => {
-      if (component.types.includes('administrative_area_level_2')) {
-        setFormState((old) => {
-          return {
-            ...old,
-            province: component.long_name
-          }
-        })
-      }
-      if (component.types.includes('administrative_area_level_1')) {
-        setFormState((old) => {
-          return {
-            ...old,
-            department: component.long_name
-          }
-        })
-      }
-      if (component.types.includes('locality')) {
-        setFormState((old) => {
-          return {
-            ...old,
-            district: component.long_name
-          }
-        })
-        setFormState((old) => {
-          return {
-            ...old,
-            postal_code: postalCode,
-            fulladdress: place.formatted_address
-          }
-        })
-      }
+      })
+      place.address_components.forEach((component) => {
+        if (component.types.includes('administrative_area_level_2')) {
+          setFormState((old) => {
+            return {
+              ...old,
+              province: component.long_name
+            }
+          })
+        }
+        if (component.types.includes('administrative_area_level_1')) {
+          setFormState((old) => {
+            return {
+              ...old,
+              department: component.long_name
+            }
+          })
+        }
+        if (component.types.includes('locality')) {
+          setFormState((old) => {
+            return {
+              ...old,
+              district: component.long_name
+            }
+          })
+          setFormState((old) => {
+            return {
+              ...old,
+              postal_code: postalCode,
+              fulladdress: place.formatted_address
+            }
+          })
+        }
 
-      if (component.types.includes('street_number')) {
-        setFormState(old => ({
+        if (component.types.includes('street_number')) {
+          setFormState(old => ({
+            ...old,
+            number: component.long_name
+          }))
+        }
+        if (component.types.includes('route')) {
+          setFormState(old => ({
+            ...old,
+            street: component.long_name
+          }))
+        }
+      })
+    }
+    else {
+      setCostoEnvio(0)
+      setFormState((old) => {
+        return {
           ...old,
-          number: component.long_name
-        }))
-      }
-      if (component.types.includes('route')) {
-        setFormState(old => ({
-          ...old,
-          street: component.long_name
-        }))
-      }
-    })
+          coordinates: {
+            latitude: 0,
+            longitude: 0
+          },
+
+          department: '',
+          district: '',
+          province: '',
+          street: '',
+          number: '',
+          postal_code: '',
+          fulladdress: '',
+        }
+      })
+    }
+
   }
   useEffect(() => {
     return () => {
@@ -200,28 +224,22 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
 
   const continueToPayment = (e) => {
 
-    console.log('entrando here')
+
     e.preventDefault();
 
-    console.log(formState)
+
     if (validateForm()) {
       onSelectAddress(formState);
+      handleSend(false)
     } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Por favor, completa todos los campos requeridos antes de continuar.',
-        showConfirmButton: true,
-        showCancelButton: false,
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#EF4444'
-      });
+      setHandleSend(true)
+
     }
   };
 
   const handleSelectChange = (selectedOption) => {
 
-    console.log(formState)
+
     setFormState({
       ...formState,
       residenceType: selectedOption.value,
@@ -230,7 +248,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
   };
 
   const handleOtherChange = (event) => {
-    console.log(formState)
+
     setFormState({
       ...formState,
       otherResidenceType: event.target.value
@@ -252,7 +270,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           <div className="md:col-span-2">
             <InputField
               required={true}
-
+              sendForm={handleSend}
               eRef={addressRef.fullname}
               label="Nombre del destinatario"
               placeholder="Nombre del destinatario"
@@ -265,6 +283,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           <div className="md:col-span-1">
             <InputField
               required={true}
+              sendForm={handleSend}
               eRef={addressRef.phone}
               label="Teléfono del destinatario"
               placeholder="+51"
@@ -282,6 +301,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           <div className="md:col-span-2">
             <InputField
               required={true}
+              sendForm={handleSend}
               eRef={addressRef.street}
               label="Calle"
               placeholder="Faucibus"
@@ -294,6 +314,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           <div className="md:col-span-1">
             <InputField
               required={true}
+              sendForm={handleSend}
               eRef={addressRef.number}
               label="Número"
               className="w-full"
@@ -320,6 +341,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           <div className="md:col-span-1">
             <InputField
               required={true}
+              sendForm={handleSend}
               eRef={addressRef.postalCode}
               label="Código postal"
               placeholder="C.P. 987-2346"
@@ -335,6 +357,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           <div className="md:col-span-1">
             <InputField
               required={true}
+              sendForm={handleSend}
               eRef={addressRef.department}
               label="Departamento"
               placeholder="Departamento..."
@@ -347,6 +370,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           <div className="md:col-span-1">
             <InputField
               required={true}
+              sendForm={handleSend}
               eRef={addressRef.province}
               label="Provincia"
               placeholder="Benito..."
@@ -359,6 +383,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           <div className="md:col-span-1">
             <InputField
               required={true}
+              sendForm={handleSend}
               eRef={addressRef.district}
               label="Distrito"
               placeholder="Seleccionar"
@@ -375,17 +400,19 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
             <div className="w-full">
               <label className="block text-sm font-medium text-gray-700">Tipo de domicilio</label>
               <div>
+                {console.log(formState.residenceType)}
                 <Select
                   name="residenceType"
                   required={true}
+                  sendForm={handleSend}
                   styles={customStyles2}
                   options={options}
                   onChange={handleSelectChange}
                   value={options.find(option => option.value === formState.residenceType)}
                   placeholder="Selecciona Tipo de Domicilio"
-                  className="gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
+                  className="gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-2xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
                 />
-                {formState.residenceType === '' && (<span className="text-red-500 text-sm mt-1">Este campo es obligatorio</span>)}
+                {handleSend && formState.residenceType == '' && <span className="text-red-500 text-sm mt-1">Este campo es obligatorio</span>}
               </div>
 
               {formState.residenceType === 'Otro' && (
@@ -394,7 +421,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
                   placeholder="Ingresa Tipo de Domicilio"
                   value={formState.otherResidenceType}
                   onChange={handleOtherChange}
-                  className="gap-2 self-stretch px-6 py-4 mt-4 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
+                  className="gap-2 self-stretch px-6 py-4 mt-4 w-full text-sm tracking-wide rounded-2xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
                 />
               )}
             </div>
@@ -403,6 +430,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
 
         <InputField
           required={true}
+          sendForm={handleSend}
           eRef={addressRef.reference}
           label="Referencias"
           className="w-full mt-4"
@@ -419,7 +447,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
         </p>
 
         <div className="flex flex-col md:flex-row gap-4 justify-between mt-8 w-full">
-          <Button variant="secondary" color="green" className="w-full md:w-auto" callback={handlemodalMaps}>
+          <Button variant="secondary" color="green" className="w-full md:w-auto" callback={handlemodalMapsForm}>
             Cerrar
           </Button>
           <Button variant="secondary" color="green" className="w-full md:w-auto" callback={continueToPayment}>

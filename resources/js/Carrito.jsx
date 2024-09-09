@@ -32,17 +32,19 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
     }
   };
 
-
-  useEffect(() => {
-    if (activeModal) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [activeModal]);
+  const pruebahandle = () => {
+    console.log('preuba')
+  }
+  // useEffect(() => {
+  //   if (activeModal) {
+  //     document.addEventListener('mousedown', handleClickOutside);
+  //   } else {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   }
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, [activeModal]);
   const deleteItemR = (id) => {
 
     let articulosCarrito = Local.get('carrito') || [];
@@ -242,7 +244,6 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                 Codigo de promocion
               </h2>
               <div className="flex gap-5 relative">
-                {console.log(historicoCupones)}
                 <input
                   value={historicoCupones[0]?.cupon?.codigo ?? ''}
                   type="text"
@@ -325,12 +326,14 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
       </section>
 
       <div id="modalComplementos" className={activeModal ? 'block ease-in ' : 'hidden'} >
-        <div className=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+        <div className=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity" onClick={handlemodalComplementos}></div>
 
 
-        <div className=" fixed inset-0 z-30 w-screen overflow-y-auto">
+        <div className=" fixed inset-0 z-30 w-screen overflow-y-auto " onClick={handlemodalComplementos}>
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
+              onClick={(e) => e.stopPropagation()}
               ref={modalRef}
               className="relative font-b_slick_bold transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
@@ -351,15 +354,15 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                   </div>
                 </div>
               </div>
-              {currentComplemento.length === 1 && (<div className='flex w-full justify-center items-center'>
+              {/* {currentComplemento.length === 1 && (<div className='flex w-full justify-center items-center'>
                 <button type="button" className="flex flex-col justify-center  text-white rounded-lg items-center bg-rosalasdonas p-2"
                   onClick={() => openModalComplementos(complementos)}>
                   Ver más
                 </button>
-              </div>)}
+              </div>)} */}
 
 
-              <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse content-between justify-between  sm:px-6 ">
+              {/* <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse content-between justify-between  sm:px-6 ">
 
 
                 <Button
@@ -369,10 +372,8 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                 >
                   Cerrar
                 </Button>
-                {/* <button onClick={handlemodalComplementos} type="button"
-                  className="inline-flex w-full justify-center rounded-md  bg-red-600 px-3 py-2 text-sm font-semibold 
-                  text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Cerrar</button> */}
-              </div>
+                
+              </div> */}
             </div>
           </div>
         </div>

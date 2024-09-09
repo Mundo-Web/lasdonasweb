@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AccordionContent from './AccordionContent';
 
 const Accordion2 = ({ datos, setDetallePedido }) => {
@@ -16,7 +16,9 @@ const Accordion2 = ({ datos, setDetallePedido }) => {
     }
   };
 
-
+  useEffect(() => {
+    handleAccordionClick(0)
+  }, [null])
 
 
   return (
@@ -25,7 +27,7 @@ const Accordion2 = ({ datos, setDetallePedido }) => {
         <div key={complemento.id} className='mt-3'>
           <h2 id={`accordion-collapse-heading-${complemento.id}`} className='gap-4 flex flex-col'>
             <button
-              className={`flex items-center justify-between w-full p-5 font-medium rounded-t-xl  dark:focus:ring-gray-800 dark:border-gray-700 dark:text-black hover:bg-gray-100 bg-[#F8F8F8] dark:hover:bg-gray-800 gap-3 ${activeIndex === index ? 'bg-[#FF8555] text-white' : 'text-black'}`}
+              className={`flex items-center justify-between w-full p-5 font-medium rounded-t-xl  dark:focus:ring-gray-800 dark:border-gray-700 dark:text-black hover:bg-gray-100 bg-[#F8F8F8] dark:hover:bg-gray-800 gap-3 ${activeIndex === index ? 'bg-[#FF8555] text-white' : 'text-black rounded-b-xl'}`}
               data-accordion-target={`#accordion-collapse-body-${complemento.id}`}
               aria-expanded={activeIndex === index}
               aria-controls={`accordion-collapse-body-${complemento.id}`}
@@ -55,7 +57,7 @@ const Accordion2 = ({ datos, setDetallePedido }) => {
             className={`${activeIndex === index ? '' : 'hidden'}`}
             aria-labelledby={`accordion-collapse-heading-${complemento.id}`}
           >
-            <div className="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            <div className="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900 rounded-b-xl">
               {loadedIndexes.includes(index) && <AccordionContent id={complemento.id} setDetallePedido={setDetallePedido} />}
             </div>
           </div>

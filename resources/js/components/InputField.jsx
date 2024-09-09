@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function InputField({ eRef, label, type = "text", value, defaultValue, placeholder, handleDatosFinales, name, className,
-  required = false, maxLength, min, max }) {
+  required = false, maxLength, min, max, sendForm = false }) {
 
 
   const [touched, setTouched] = useState(true);
@@ -12,7 +12,7 @@ function InputField({ eRef, label, type = "text", value, defaultValue, placehold
     setTouched(true);
   };
 
-  const isError = required && touched && !value;
+  const isError = required && touched && !value && sendForm;
 
 
   return (
@@ -35,7 +35,7 @@ function InputField({ eRef, label, type = "text", value, defaultValue, placehold
         maxLength={type === "number" ? undefined : maxLength}
         min={type === "number" ? min : undefined}
         max={type === "number" ? max : undefined}
-        className={`gap-2 self-stretch px-6 py-4 mt-1 w-full text-sm tracking-wide rounded-3xl border border-[#BDBDBD] focus:ring-0 focus:outline-none focus:border-[#336234] ${isError ? 'border-red-500' : 'border-[#BDBDBD]'} max-md:px-5 max-md:max-w-full`}
+        className={`gap-2 self-stretch px-6 py-4 mt-1 w-full text-sm tracking-wide rounded-2xl border  focus:ring-0 focus:outline-none focus:border-[#336234] ${isError ? 'border-red-500' : 'border-[#BDBDBD]'} max-md:px-5 max-md:max-w-full`}
       />
       {isError && <span className="text-red-500 text-sm mt-1">Este campo es obligatorio</span>}
     </div>
