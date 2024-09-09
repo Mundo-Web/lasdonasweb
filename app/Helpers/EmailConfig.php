@@ -19,7 +19,7 @@ class EmailConfig
         $mail->Port = env('MAIL_PORT');
         $mail->Subject = 'Notificación de ' . env('APP_NAME');
         $mail->CharSet = 'UTF-8';
-        $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+        $mail->setFrom(env('MAIL_FROM_ADDRESS', 'hola@mundoweb.pe'), env('MAIL_FROM_NAME', 'Las doñas'));
         return $mail;
     }
 }
