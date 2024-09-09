@@ -168,7 +168,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-UIHXtUtJ.css",
+    "file": "assets/app-zDWCVJFQ.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -233,12 +233,12 @@
   },
   "resources/js/Agradecimiento.jsx": {
     "assets": [
-      "assets/SvgPuntos-hzKALqiY.svg"
+      "assets/SvgPuntos--FnXd_aC.svg"
     ],
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-ttocQw_E.js",
+    "file": "assets/Agradecimiento-ojQEt4uO.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -305,7 +305,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-9aJT-E6e.js",
+    "file": "assets/Dashboard-YoogJll2.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -411,7 +411,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-V5LjBT77.js",
+    "file": "assets/Product-jST3Vdht.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -631,7 +631,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Orders-cg8knXB1.js",
+    "file": "assets/Orders-Fqf2afN-.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -934,10 +934,10 @@
       "assets/dxicons-NVJDH3Nn.ttf"
     ],
     "css": [
-      "assets/SalesDatagrid-y6BCjmn-.css",
+      "assets/SalesDatagrid-kvJOWtWG.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/SalesDatagrid-RieZA41i.js",
+    "file": "assets/SalesDatagrid-ry-EriVH.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -1035,7 +1035,7 @@
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/SvgPuntos.svg": {
-    "file": "assets/SvgPuntos-hzKALqiY.svg",
+    "file": "assets/SvgPuntos--FnXd_aC.svg",
     "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {
