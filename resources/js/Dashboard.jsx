@@ -14,7 +14,51 @@ import axios from 'axios';
 const Dashboard = ({ user, section, general, categorias, cupones, cuponesUsados }) => {
   const [selectedOption, setSelectedOption] = useState(section !== null ? section : 'Mi Perfil');
   const userDetail = useRef(user)
+  const file = useRef(null)
+  console.log(user.profile_photo_path)
+  const [imagePreview, setImagePreview] = useState(user.profile_photo_path ? `/${user.profile_photo_path}` : '/img_donas/user1.png');
 
+  const fileInputRef = useRef(null);
+  const formUser = useRef({})
+
+  const changeImg = async () => {
+    console.log('changeImg')
+    fileInputRef.current.click();
+    // '/micuenta/cambiofoto'
+
+
+
+
+
+  }
+
+  const actualizarImg = async () => {
+    const formData = new FormData();
+    formData.append('image', file.current);
+    try {
+      const response = await axios.post('/micuenta/cambiofoto', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Imagen subida exitosamente:', response.data);
+    } catch (error) {
+      console.error('Error al subir la imagen:', error);
+    }
+  }
+
+  const handleFileChange = (event) => {
+    file.current = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+        formUser.current.image = file; // Actualizar formUser con la imagen
+      };
+      reader.readAsDataURL(file.current);
+    }
+    actualizarImg()
+  };
   const handleLogout = async (event) => {
     event.preventDefault();
     try {
@@ -49,11 +93,19 @@ const Dashboard = ({ user, section, general, categorias, cupones, cuponesUsados 
       <section className="flex flex-col px-[5%] lg:px-[8%] py-12 md:py-20">
         <div className="flex relative flex-col items-start max-w-full font-b_classic_regular">
           <img
+            onClick={changeImg}
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/78d0f1badc7a14d74dc54b4e0994c2f662aaae01d6f899c89c16f57c18a29b13?placeholderIfAbsent=true&apiKey=72fae0f4c808496790606e16dad566da"
+            src={imagePreview}
             alt="User profile picture"
-            className="object-contain z-0 max-w-full rounded-full aspect-square w-[131px]"
+            className="object-cover z-0 max-w-full rounded-full aspect-square w-[131px] cursor-pointer"
+
           />
+          <div className=" relative gap-2 justify-center items-end p-3 bg-black bg-opacity-50 hidden">
+            <label htmlFor="file-upload" className="self-stretch my-auto cursor-pointer hidden">
+              Subir foto
+              <input ref={fileInputRef} className="hidden" id="file-upload" type="file" hidden onChange={handleFileChange} />
+            </label>
+          </div>
           <div className="flex z-0 flex-col self-stretch mt-4 w-full">
             <h1 className="text-3xl font-bold tracking-widest leading-none text-neutral-900 font-b_slick_bold">
               {userDetail.current.name} {userDetail.current.lastname}

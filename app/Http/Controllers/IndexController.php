@@ -493,9 +493,10 @@ class IndexController extends Controller
 
   public function cambiofoto(Request $request)
   {
-    $user = User::findOrFail($request->id);
+    $user = User::findOrFail(Auth::user()->id);
 
-    if ($request->hasFile('image')) {
+    if ($request->hasFile("image")) {
+
       $file = $request->file('image');
       $route = 'storage/images/users/';
       $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
@@ -504,16 +505,26 @@ class IndexController extends Controller
         File::delete(storage_path() . '/app/public/' . $user->profile_photo_path);
       }
 
-      $this->saveImg($file, $route, $nombreImagen);
+      $this->saveImg2($file, $route, $nombreImagen);
 
       $routeforshow = 'images/users/';
-      $user->profile_photo_path = $routeforshow . $nombreImagen;
-
-      $user->save();
-
-      return response()->json(['message' => 'La imagen se cargó correctamente.']);
+      $user->profile_photo_path = $route . $nombreImagen;
     }
+    $user->save();
+    return response()->json(['message' => 'La imagen se cargó correctamente.']);
   }
+
+  public function saveImg2($file, $route, $nombreImagen)
+  {
+    $manager = new ImageManager(new Driver());
+    $img =  $manager->read($file);
+
+    if (!file_exists($route)) {
+      mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+    }
+    $img->save($route . $nombreImagen);
+  }
+ 
 
   public function actualizarPerfil(Request $request)
   {
@@ -1100,7 +1111,7 @@ class IndexController extends Controller
 
     // Paso 3: Buscar los productos que coincidan con esos producto_id
     if (!empty($productoIds)) {
-      $productos = Products::with('images')->where('tipo_servicio', 'complemento')->where('parent_id', null) ->whereIn('id', $productoIds)->get();
+      $productos = Products::with('images')->where('tipo_servicio', 'complemento')->where('parent_id', null)->whereIn('id', $productoIds)->get();
     } else {
       $productos = [];
     }
