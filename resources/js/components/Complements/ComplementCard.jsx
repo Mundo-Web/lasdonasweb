@@ -52,10 +52,10 @@ const ComplementCard = ({ onChange, ...complemento }) => {
     <Tippy content={complemento.producto}>
       <h2 className="text-base font-normal text-black text-center truncate w-full mt-2 mb-1">{complemento.producto}</h2>
     </Tippy>
-    <div className="flex items-center font-medium justify-center gap-4">
+    <div className="flex items-center font-medium justify-center gap-3">
       {complemento.descuento > 0 ? (
         <>
-          <p className='line-through text-gray-400 text-sm'>S/ <span >{complemento.precio}</span></p>
+          <p className='line-through text-gray-400 text-xs sm:text-sm'>S/ <span >{complemento.precio}</span></p>
           <p>S/ {complemento.descuento}</p>
         </>
       ) : (

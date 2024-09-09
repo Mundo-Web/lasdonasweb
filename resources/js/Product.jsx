@@ -414,11 +414,11 @@ const Product = ({
 
   return (
     <>
-      <main className="flex flex-col gap-12 mt-12 font-b_slick_bold">
+      <main className="flex flex-col gap-3 lg:gap-12 mt-3 md:mt-12 font-b_slick_bold">
         <section>
-
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 px-[5%] lg:px-[5%] gap-5 lg:gap-10 pt-10">
-
+          <h2 className="text-4xl md:text-5xl font-bold text-black uppercase pb-3 lg:hidden">{currentProduct.producto}</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3  gap-y-5 lg:gap-8 h-max" id="containerImagenesP">
 
               {caratula2 ? (
@@ -503,8 +503,8 @@ const Product = ({
 
             <div className=''>
 
-              <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase">{currentProduct.producto}</h2>
-              <p className="text-2xl  font-bold text-black pb-6">Paso 1: Selecciona un horario</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase hidden lg:flex">{currentProduct.producto}</h2>
+              <p className="text-2xl  font-bold text-black pb-6 mt-5 lg:mt-0">Paso 1: Selecciona un horario</p>
 
 
 
@@ -536,7 +536,7 @@ const Product = ({
                     </div>
                   : <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
                 
-                <Swiper
+                {/* <Swiper
                   className="h-full horario"
                   slidesPerView={1}
                   autoHeight={true}
@@ -563,8 +563,8 @@ const Product = ({
                       centeredSlides: false,
                     },
                   }}
-                >     
-                      <SwiperSlide className='!overflow-visible'>
+                >      */}
+                      {/* <SwiperSlide className='!overflow-visible'> */}
                         {general.acept_incoming_orders_today == true ?
                           (<div
                             className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-full  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
@@ -613,8 +613,8 @@ const Product = ({
                               <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
                           </div>)
                         }
-                      </SwiperSlide>
-                      <SwiperSlide className='!overflow-y-visible'>
+                      {/* </SwiperSlide> */}
+                      {/* <SwiperSlide className='!overflow-y-visible'> */}
                       <div className={`relative flex flex-col justify-center items-center  text-center w-full 
                   ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
                         htmlFor="manana"
@@ -651,8 +651,8 @@ const Product = ({
                         </div>
 
                       </div>
-                      </SwiperSlide>
-                      <SwiperSlide className='!overflow-y-visible'>
+                      {/* </SwiperSlide> */}
+                      {/* <SwiperSlide className='!overflow-y-visible'> */}
                       <div
 
                         onClick={openModalCalendario}
@@ -676,8 +676,8 @@ const Product = ({
                           }
                         </div>
                       </div>
-                      </SwiperSlide>
-                </Swiper>
+                      {/* </SwiperSlide> */}
+                {/* </Swiper> */}
                     </div>
               }
 
@@ -715,7 +715,7 @@ const Product = ({
                   breakpoints={{
                     0: {
                       slidesPerView: 1,
-                      centeredSlides: true,
+                      centeredSlides: false,
                       spaceBetween:20,
                       loop: true,
                     },
@@ -935,7 +935,7 @@ const Product = ({
                 }}
                 breakpoints={{
                   0: {
-                    slidesPerView: 1,   // Pantallas muy pequeñas
+                    slidesPerView: 2,   // Pantallas muy pequeñas
                     centeredSlides: false,
                     loop: true,
                   },
@@ -966,7 +966,7 @@ const Product = ({
             <div className="w-full flex justify-start mt-4">
               <button
                 type="button"
-                className="flex items-center bg-white text-[#ff7344] px-4 py-2 rounded-lg border border-[#ff7344]"
+                className="flex items-center bg-white text-[#ff7344] px-4 py-2 rounded-lg border border-[#ff7344] hover:text-white hover:bg-[#ff7344]"
                 onClick={() => openModalComplementos(complementosAcordion)}
               >
                 <img src="/img_donas/regalo.svg" alt="Regalo" className="w-5 h-5 mr-2" />
