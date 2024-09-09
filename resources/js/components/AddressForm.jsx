@@ -233,6 +233,17 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
       handleSend(false)
     } else {
       setHandleSend(true)
+      Swal.fire({
+
+        position: 'top-end',
+
+        title: 'Faltan campos por completar',
+        text: 'Complete todos los campos obligatorios para continuar',
+        showConfirmButton: false,
+        showCancelButton: false,
+
+        timer: 3000,
+      })
 
     }
   };

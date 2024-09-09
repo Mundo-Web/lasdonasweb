@@ -11,14 +11,30 @@
       "_index-38suPYpT.js"
     ]
   },
-  "_CreateReactScript-OQMMn-O_.js": {
+  "_CreateReactScript-VVPwJ0HX.js": {
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/CreateReactScript-OQMMn-O_.js",
+    "file": "assets/CreateReactScript-VVPwJ0HX.js",
     "imports": [
-      "resources/js/Utils/CreateReactScript.jsx"
+      "resources/js/Utils/CreateReactScript.jsx",
+      "_main-Vi8adC25.js"
     ]
+  },
+  "_GoogleMapsComponent-ucoQQmgE.js": {
+    "file": "assets/GoogleMapsComponent-ucoQQmgE.js",
+    "imports": [
+      "_extends-wRoo2ExD.js",
+      "resources/js/components/useOutsideClick.jsx",
+      "_setPrototypeOf-ahVgEFUp.js",
+      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
+      "_index-38suPYpT.js",
+      "_floating-ui.dom-3uxmUvem.js",
+      "resources/js/Example.jsx"
+    ]
+  },
+  "_JSEncrypt-jwo8Dr6z.js": {
+    "file": "assets/JSEncrypt-jwo8Dr6z.js"
   },
   "_ProductCard-DeN9ohYo.js": {
     "file": "assets/ProductCard-DeN9ohYo.js",
@@ -36,35 +52,44 @@
   "_calcularTotal-FPqXOtx1.js": {
     "file": "assets/calcularTotal-FPqXOtx1.js"
   },
-  "_es-!~{01o}~.js": {
+  "_es-!~{01C}~.js": {
     "file": "assets/es-D87rtk4j.css",
-    "src": "_es-!~{01o}~.js"
+    "src": "_es-!~{01C}~.js"
   },
-  "_es-nY04P_z-.js": {
+  "_es-wXA00dMN.js": {
     "css": [
       "assets/es-D87rtk4j.css"
     ],
-    "file": "assets/es-nY04P_z-.js",
+    "file": "assets/es-wXA00dMN.js",
     "imports": [
       "resources/js/components/useOutsideClick.jsx",
       "_index-38suPYpT.js",
-      "_floating-ui.dom-g3wJg7y0.js",
-      "_floating-ui.react-dom-usBoWXbv.js"
+      "_floating-ui.dom-3uxmUvem.js",
+      "_floating-ui.react-dom-R4KlLOlI.js"
     ]
   },
-  "_fade-!~{01h}~.js": {
+  "_extends-wRoo2ExD.js": {
+    "file": "assets/extends-wRoo2ExD.js"
+  },
+  "_fade-!~{01y}~.js": {
     "file": "assets/fade-WxPIMcx6.css",
-    "src": "_fade-!~{01h}~.js"
+    "src": "_fade-!~{01y}~.js"
   },
-  "_floating-ui.dom-g3wJg7y0.js": {
-    "file": "assets/floating-ui.dom-g3wJg7y0.js"
+  "_floating-ui.dom-3uxmUvem.js": {
+    "file": "assets/floating-ui.dom-3uxmUvem.js"
   },
-  "_floating-ui.react-dom-usBoWXbv.js": {
-    "file": "assets/floating-ui.react-dom-usBoWXbv.js",
+  "_floating-ui.react-dom-R4KlLOlI.js": {
+    "file": "assets/floating-ui.react-dom-R4KlLOlI.js",
     "imports": [
-      "_floating-ui.dom-g3wJg7y0.js",
+      "_floating-ui.dom-3uxmUvem.js",
       "resources/js/components/useOutsideClick.jsx",
       "_index-38suPYpT.js"
+    ]
+  },
+  "_hoist-non-react-statics.cjs-YYlJ_Lof.js": {
+    "file": "assets/hoist-non-react-statics.cjs-YYlJ_Lof.js",
+    "imports": [
+      "__commonjsHelpers-4gQjN7DL.js"
     ]
   },
   "_index-38suPYpT.js": {
@@ -72,6 +97,12 @@
     "imports": [
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/components/useOutsideClick.jsx"
+    ]
+  },
+  "_index-VFMbf6KQ.js": {
+    "file": "assets/index-VFMbf6KQ.js",
+    "imports": [
+      "__commonjsHelpers-4gQjN7DL.js"
     ]
   },
   "_index-XJuWVQ-l.js": {
@@ -86,22 +117,15 @@
       "__commonjsHelpers-4gQjN7DL.js"
     ]
   },
+  "_main-Vi8adC25.js": {
+    "file": "assets/main-Vi8adC25.js",
+    "imports": [
+      "_index-XJuWVQ-l.js",
+      "_storage-zp2nPsZU.js"
+    ]
+  },
   "_moment-WSJ9un1t.js": {
     "file": "assets/moment-WSJ9un1t.js"
-  },
-  "_objectWithoutPropertiesLoose-RRuG-_4m.js": {
-    "file": "assets/objectWithoutPropertiesLoose-RRuG-_4m.js"
-  },
-  "_react-select.esm-5VT3loop.js": {
-    "file": "assets/react-select.esm-5VT3loop.js",
-    "imports": [
-      "resources/js/Example.jsx",
-      "resources/js/components/useOutsideClick.jsx",
-      "_objectWithoutPropertiesLoose-RRuG-_4m.js",
-      "_setPrototypeOf-ahVgEFUp.js",
-      "_index-38suPYpT.js",
-      "_floating-ui.dom-g3wJg7y0.js"
-    ]
   },
   "_setPrototypeOf-ahVgEFUp.js": {
     "file": "assets/setPrototypeOf-ahVgEFUp.js"
@@ -112,9 +136,9 @@
       "_index-XJuWVQ-l.js"
     ]
   },
-  "_tippy-!~{01k}~.js": {
+  "_tippy-!~{01l}~.js": {
     "file": "assets/tippy-C64i7G0l.css",
-    "src": "_tippy-!~{01k}~.js"
+    "src": "_tippy-!~{01l}~.js"
   },
   "_tippy.esm-vXDZ6XwW.js": {
     "file": "assets/tippy.esm-vXDZ6XwW.js"
@@ -168,7 +192,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-5D-wxgw9.css",
+    "file": "assets/app-4WxGZ5vG.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -238,16 +262,17 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-ojQEt4uO.js",
+    "file": "assets/Agradecimiento-VDyLOQls.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-OQMMn-O_.js",
+      "_CreateReactScript-VVPwJ0HX.js",
       "resources/js/Utils/ReactAppend.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
+      "_main-Vi8adC25.js",
       "_storage-zp2nPsZU.js",
       "_index-38suPYpT.js"
     ],
@@ -259,12 +284,12 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-WZYFNEU3.js",
+    "file": "assets/Carrito-JP2zRT1q.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-OQMMn-O_.js",
+      "_CreateReactScript-VVPwJ0HX.js",
       "_storage-zp2nPsZU.js",
       "_Accordion2-z_2N6FZY.js",
       "_calcularTotal-FPqXOtx1.js",
@@ -273,6 +298,7 @@
       "resources/js/Utils/CreateReactScript.jsx",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
+      "_main-Vi8adC25.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_tippy.esm-vXDZ6XwW.js"
     ],
@@ -284,36 +310,59 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Catalogo-CfGI98qR.js",
+    "file": "assets/Catalogo-fPUDkcIk.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-OQMMn-O_.js",
+      "_CreateReactScript-VVPwJ0HX.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
       "_ProductCard-DeN9ohYo.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
+      "_main-Vi8adC25.js",
       "_storage-zp2nPsZU.js"
     ],
     "isEntry": true,
     "src": "resources/js/Catalogo.jsx"
   },
-  "resources/js/Dashboard.jsx": {
+  "resources/js/ConfirmEmail.jsx": {
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-YoogJll2.js",
+    "file": "assets/ConfirmEmail-Tq6iuS9I.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-OQMMn-O_.js",
+      "_JSEncrypt-jwo8Dr6z.js",
+      "_CreateReactScript-VVPwJ0HX.js",
+      "_main-Vi8adC25.js",
+      "resources/js/Utils/CreateReactScript.jsx",
+      "_index-38suPYpT.js",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_index-XJuWVQ-l.js",
+      "_storage-zp2nPsZU.js",
+      "_axios-_sX4vCAy.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/ConfirmEmail.jsx"
+  },
+  "resources/js/Dashboard.jsx": {
+    "css": [
+      "assets/tippy-C64i7G0l.css"
+    ],
+    "file": "assets/Dashboard-01qmzhxZ.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/Utils/ReactAppend.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "_CreateReactScript-VVPwJ0HX.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-5VT3loop.js",
+      "_GoogleMapsComponent-ucoQQmgE.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
@@ -324,11 +373,14 @@
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
+      "_main-Vi8adC25.js",
       "_storage-zp2nPsZU.js",
-      "_objectWithoutPropertiesLoose-RRuG-_4m.js",
+      "_extends-wRoo2ExD.js",
       "_setPrototypeOf-ahVgEFUp.js",
-      "_floating-ui.dom-g3wJg7y0.js",
-      "_jquery-_-XaHmv-.js"
+      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
+      "_floating-ui.dom-3uxmUvem.js",
+      "_jquery-_-XaHmv-.js",
+      "_index-VFMbf6KQ.js"
     ],
     "isEntry": true,
     "src": "resources/js/Dashboard.jsx"
@@ -347,12 +399,12 @@
       "assets/Horarios-i7P6CmCQ.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Horarios-9TV0blRt.js",
+    "file": "assets/Horarios-kKkPeYCI.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-OQMMn-O_.js",
+      "_CreateReactScript-VVPwJ0HX.js",
       "_jquery-_-XaHmv-.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
@@ -360,6 +412,7 @@
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
+      "_main-Vi8adC25.js",
       "_storage-zp2nPsZU.js"
     ],
     "isEntry": true,
@@ -382,26 +435,28 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-RCnzor_V.js",
+    "file": "assets/Pago-zCxBzONH.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-OQMMn-O_.js",
+      "_CreateReactScript-VVPwJ0HX.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_react-select.esm-5VT3loop.js",
+      "_GoogleMapsComponent-ucoQQmgE.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "resources/js/components/SelectSecond.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_floating-ui.dom-g3wJg7y0.js",
-      "_floating-ui.react-dom-usBoWXbv.js",
+      "_floating-ui.dom-3uxmUvem.js",
+      "_floating-ui.react-dom-R4KlLOlI.js",
       "_index-38suPYpT.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_objectWithoutPropertiesLoose-RRuG-_4m.js",
-      "_setPrototypeOf-ahVgEFUp.js"
+      "_main-Vi8adC25.js",
+      "_extends-wRoo2ExD.js",
+      "_setPrototypeOf-ahVgEFUp.js",
+      "_hoist-non-react-statics.cjs-YYlJ_Lof.js"
     ],
     "isEntry": true,
     "src": "resources/js/Pago.jsx"
@@ -411,42 +466,69 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-jST3Vdht.js",
+    "file": "assets/Product-G-jk9t0H.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
       "resources/js/components/useOutsideClick.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_CreateReactScript-OQMMn-O_.js",
+      "_CreateReactScript-VVPwJ0HX.js",
       "_storage-zp2nPsZU.js",
       "resources/js/components/ListHorariosPopup.jsx",
-      "_objectWithoutPropertiesLoose-RRuG-_4m.js",
+      "_extends-wRoo2ExD.js",
       "_setPrototypeOf-ahVgEFUp.js",
       "_index-38suPYpT.js",
       "_Accordion2-z_2N6FZY.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_es-nY04P_z-.js",
+      "_es-wXA00dMN.js",
       "_ProductCard-DeN9ohYo.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_index-XJuWVQ-l.js",
+      "_main-Vi8adC25.js",
       "_tippy.esm-vXDZ6XwW.js",
-      "_floating-ui.dom-g3wJg7y0.js",
-      "_floating-ui.react-dom-usBoWXbv.js"
+      "_floating-ui.dom-3uxmUvem.js",
+      "_floating-ui.react-dom-R4KlLOlI.js"
     ],
     "isEntry": true,
     "src": "resources/js/Product.jsx"
+  },
+  "resources/js/Register.jsx": {
+    "css": [
+      "assets/tippy-C64i7G0l.css"
+    ],
+    "file": "assets/Register-3zq99DI1.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/Utils/ReactAppend.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "_JSEncrypt-jwo8Dr6z.js",
+      "_CreateReactScript-VVPwJ0HX.js",
+      "_main-Vi8adC25.js",
+      "_index-VFMbf6KQ.js",
+      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
+      "resources/js/Utils/CreateReactScript.jsx",
+      "resources/js/components/Dashboard/Profile.jsx",
+      "_index-38suPYpT.js",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_index-XJuWVQ-l.js",
+      "_storage-zp2nPsZU.js",
+      "_axios-_sX4vCAy.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/Register.jsx"
   },
   "resources/js/Utils/CreateReactScript.jsx": {
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/CreateReactScript-TJU9eeEG.js",
+    "file": "assets/CreateReactScript-scAdndyK.js",
     "imports": [
       "_axios-_sX4vCAy.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "_index-XJuWVQ-l.js",
       "resources/js/components/useOutsideClick.jsx",
+      "_main-Vi8adC25.js",
       "_storage-zp2nPsZU.js"
     ],
     "isEntry": true,
@@ -540,16 +622,16 @@
     "src": "resources/js/components/Button.jsx"
   },
   "resources/js/components/CalendarComponent.jsx": {
-    "file": "assets/CalendarComponent-l1It1ho9.js",
+    "file": "assets/CalendarComponent-nTZ_Ytan.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_es-nY04P_z-.js",
+      "_es-wXA00dMN.js",
       "resources/js/components/ListHorariosPopup.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
       "_index-38suPYpT.js",
-      "_floating-ui.dom-g3wJg7y0.js",
-      "_floating-ui.react-dom-usBoWXbv.js"
+      "_floating-ui.dom-3uxmUvem.js",
+      "_floating-ui.react-dom-R4KlLOlI.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/CalendarComponent.jsx"
@@ -585,12 +667,13 @@
     "src": "resources/js/components/Checkbox.jsx"
   },
   "resources/js/components/ClasicModal.jsx": {
-    "file": "assets/ClasicModal-2SaBLr4U.js",
+    "file": "assets/ClasicModal-peLy3-GT.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_index-38suPYpT.js"
+      "_index-38suPYpT.js",
+      "_index-VFMbf6KQ.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/ClasicModal.jsx"
@@ -631,7 +714,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Orders-Fqf2afN-.js",
+    "file": "assets/Orders-OUpSQ6d4.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -641,9 +724,10 @@
       "resources/js/components/InvoiceModal.jsx",
       "resources/js/components/ClasicModal.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_objectWithoutPropertiesLoose-RRuG-_4m.js",
+      "_extends-wRoo2ExD.js",
       "_index-38suPYpT.js",
-      "_jquery-_-XaHmv-.js"
+      "_jquery-_-XaHmv-.js",
+      "_index-VFMbf6KQ.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Dashboard/Orders.jsx"
@@ -659,14 +743,15 @@
     "src": "resources/js/components/Dashboard/Points.jsx"
   },
   "resources/js/components/Dashboard/Privacy.jsx": {
-    "file": "assets/Privacy-v0adnISp.js",
+    "file": "assets/Privacy-8bJZY1V_.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "resources/js/components/ClasicModal.jsx",
       "resources/js/components/Dashboard/Profile.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_index-38suPYpT.js"
+      "_index-38suPYpT.js",
+      "_index-VFMbf6KQ.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Dashboard/Privacy.jsx"
@@ -686,7 +771,7 @@
       "assets/Record-B32oYo7W.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Record-WIoA-nP0.js",
+    "file": "assets/Record-YLSks1D3.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -695,7 +780,8 @@
       "resources/js/components/InvoiceModal.jsx",
       "resources/js/components/ClasicModal.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_index-38suPYpT.js"
+      "_index-38suPYpT.js",
+      "_index-VFMbf6KQ.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Dashboard/Record.jsx"
@@ -752,14 +838,15 @@
     "src": "resources/js/components/InputField.jsx"
   },
   "resources/js/components/InvoiceModal.jsx": {
-    "file": "assets/InvoiceModal-pCiAOzum.js",
+    "file": "assets/InvoiceModal-t6MQvdX2.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "resources/js/components/ClasicModal.jsx",
       "_moment-WSJ9un1t.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_index-38suPYpT.js"
+      "_index-38suPYpT.js",
+      "_index-VFMbf6KQ.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/InvoiceModal.jsx"
@@ -794,6 +881,16 @@
     ],
     "isEntry": true,
     "src": "resources/js/components/MessageField.jsx"
+  },
+  "resources/js/components/Modal.jsx": {
+    "file": "assets/Modal-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/Modal.jsx"
   },
   "resources/js/components/ModalGoogle.jsx": {
     "file": "assets/ModalGoogle-tmMjkXlv.js",
@@ -937,7 +1034,7 @@
       "assets/SalesDatagrid-kvJOWtWG.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/SalesDatagrid-ry-EriVH.js",
+    "file": "assets/SalesDatagrid-8L3JaYBg.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -945,10 +1042,11 @@
       "_moment-WSJ9un1t.js",
       "resources/js/components/InvoiceModal.jsx",
       "resources/js/components/ClasicModal.jsx",
-      "_objectWithoutPropertiesLoose-RRuG-_4m.js",
+      "_extends-wRoo2ExD.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_jquery-_-XaHmv-.js"
+      "_jquery-_-XaHmv-.js",
+      "_index-VFMbf6KQ.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/SalesDatagrid.jsx"
@@ -984,11 +1082,11 @@
     "src": "resources/js/components/SelectSearch.jsx"
   },
   "resources/js/components/SelectSecond.jsx": {
-    "file": "assets/SelectSecond-1lj4pq8p.js",
+    "file": "assets/SelectSecond-26NyW4f5.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_floating-ui.dom-g3wJg7y0.js",
+      "_floating-ui.dom-3uxmUvem.js",
       "__commonjsHelpers-4gQjN7DL.js"
     ],
     "isEntry": true,
@@ -1013,6 +1111,92 @@
     ],
     "isEntry": true,
     "src": "resources/js/components/TotalRow.jsx"
+  },
+  "resources/js/components/form/CheckboxFormGroup.jsx": {
+    "file": "assets/CheckboxFormGroup-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/form/CheckboxFormGroup.jsx"
+  },
+  "resources/js/components/form/InputFormGroup.jsx": {
+    "file": "assets/InputFormGroup-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/form/InputFormGroup.jsx"
+  },
+  "resources/js/components/form/PasswordFormGroup.jsx": {
+    "file": "assets/PasswordFormGroup-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/form/PasswordFormGroup.jsx"
+  },
+  "resources/js/components/form/QuillFormGroup.jsx": {
+    "file": "assets/QuillFormGroup-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/form/QuillFormGroup.jsx"
+  },
+  "resources/js/components/form/SelectAPIFormGroup.jsx": {
+    "file": "assets/SelectAPIFormGroup-g_BHsvKh.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "_main-Vi8adC25.js",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_index-XJuWVQ-l.js",
+      "_storage-zp2nPsZU.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/form/SelectAPIFormGroup.jsx"
+  },
+  "resources/js/components/form/SelectFormGroup.jsx": {
+    "file": "assets/SelectFormGroup-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/form/SelectFormGroup.jsx"
+  },
+  "resources/js/components/form/TextareaFormGroup.jsx": {
+    "file": "assets/TextareaFormGroup-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/form/TextareaFormGroup.jsx"
+  },
+  "resources/js/components/form/TippyButton.jsx": {
+    "css": [
+      "assets/tippy-C64i7G0l.css"
+    ],
+    "file": "assets/TippyButton-8Saz6Hj8.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/form/TippyButton.jsx"
   },
   "resources/js/components/svg/SvgFlorClasic.jsx": {
     "file": "assets/SvgFlorClasic-tmMjkXlv.js",
@@ -1060,17 +1244,18 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboardsweq-gsy6Cj7X.js",
+    "file": "assets/Dashboardsweq-bDVT-IHa.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_CreateReactScript-OQMMn-O_.js",
+      "_CreateReactScript-VVPwJ0HX.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
+      "_main-Vi8adC25.js",
       "_storage-zp2nPsZU.js"
     ],
     "isEntry": true,

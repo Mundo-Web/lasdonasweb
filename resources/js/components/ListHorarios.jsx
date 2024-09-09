@@ -39,7 +39,8 @@ const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase
   return (
     <div className={`${clase} overflow-y-auto max-h-56`} style={{
       scrollbarWidth: 'thin',
-      scrollbarColor: '#166534 #e0e0e0'
+      scrollbarColor: '#166534 #e0e0e0',
+      zIndex: 1
     }}>
       {horarios.map((item, index) => (
 
