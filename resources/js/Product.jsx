@@ -34,6 +34,7 @@ import agregarComplementoPedido from './Utils/agregarComplemento'
 import Button from './components/Button'
 
 import { deleteOnCarBtnR } from './Utils/carritoR'
+import ComplementCard from './components/Complements/ComplementCard'
 
 const Product = ({
   complementos,
@@ -97,7 +98,7 @@ const Product = ({
     if (carrito.length > 0) {
       if (e.target.checked) {
         let isConfirmed = false
-        if (points >= complemento.puntos_complemento) {
+        if (points >= complemento.puntos_complemento && complemento.puntos_complemento > 0) {
           const swalRes = await Swal.fire({
             title: 'Deseas intercambiarlo con puntos?',
             text: 'Si, usar puntos',
@@ -122,7 +123,7 @@ const Product = ({
       let newDetalle = {}
       if (index === -1) {
         let isConfirmed = false
-        if (points >= complemento.puntos_complemento) {
+        if (points >= complemento.puntos_complemento && complemento.puntos_complemento > 0) {
           const swalRes = await Swal.fire({
             title: 'Deseas intercambiarlo con puntos?',
             text: 'Si, usar puntos',
@@ -832,11 +833,11 @@ const Product = ({
         </section>
         <section className="px-[5%] pt-2">
           <p className="text-2xl font-bold text-black pb-2">Complementar al pedido (opcional)</p>
-          <div className="grid grid-cols-6 gap-6">
-            <div className="col-span-5">
+          <div className="grid grid-cols-1 gap-4 justify-start items-start">
+            {/* Swiper: Ocupa toda la fila */}
+            <div className="w-full mt-4">
               <Swiper
                 className="img-complementarias h-full"
-                slidesPerView={3}
                 spaceBetween={25}
                 loop={false}
                 centeredSlides={false}
@@ -849,105 +850,46 @@ const Product = ({
                 }}
                 breakpoints={{
                   0: {
-                    slidesPerView: 1,
+                    slidesPerView: 1,   // Pantallas muy pequeñas
                     centeredSlides: false,
                     loop: true,
                   },
+                  640: {
+                    slidesPerView: 2,   // Pantallas pequeñas
+                  },
+                  768: {
+                    slidesPerView: 3,   // Tablets
+                  },
                   1024: {
-                    slidesPerView: 5,
-                    centeredSlides: false,
+                    slidesPerView: 4,   // Laptops
+                  },
+                  1280: {
+                    slidesPerView: 5,   // Desktops grandes (Swiper toma 5 columnas)
                   },
                 }}
-                style={{ zIndex: 0 }}
+                style={{ zIndex: 0}}
               >
                 {complementos.map((complemento, index) => (
-                  <SwiperSlide key={index}>
-                    <div key={complemento.id} className="m-auto w-min">
-                      <label
-                        htmlFor={`react-option-${complemento.id}`}
-                        className="inline-flex items-center justify-between w-max bg-white rounded-lg cursor-pointer shadow-md border"
-                      >
-                        <div className="block relative z-0">
-                          <input
-                            type="checkbox"
-                            id={`react-option-${complemento.id}`}
-                            name="complementos[]"
-                            className="peer absolute top-3 left-3 w-5 h-5 border-orange-400  accent-rosalasdonasborder-orange-400 checked:border-orange-400  outline-orange-400 checked:bg-orange-400 hover:checked:bg-orange-400 hover:border-orange-400 hover:bg-orange-400
-                               focus:border-orange-400 rounded-md shadow-md focus:checked:bg-orange-400 focus:checked:border-orange-400  focus:bg-orange-400"
-                            required
-                            onChange={(e) => handleCheckboxChange(e, complemento.id, complemento)}
-                          />
-                          {complemento.images.length > 0 ? (
-                            complemento.images.map((image) =>
-                              image.caratula === 1 ? (
-                                <img
-                                  key={image.id}
-                                  className="w-48 aspect-square rounded-lg object-cover"
-                                  src={image.name_imagen ? `/${image.name_imagen}` : '/images/img/noimagen.jpg'}
-                                  alt={complemento.producto}
-                                />
-                              ) : null
-                            )
-                          ) : (
-                            <img
-                              className="w-48 aspect-square rounded-lg object-cover"
-                              src='/images/img/noimagen.jpg'
-                              alt="No imagen"
-                            />
-                          )}
-                          {
-                            complemento.puntos_complemento && <Tippy content={`Tambien puedes cambiarlo por ${complemento.puntos_complemento} puntos`}>
-                              <span className='absolute bg-orange-400 right-2 bottom-2 text-sm px-2 pt-[2px] rounded-md text-white'>
-                                <i className='mdi mdi-dots-hexagon me-1'></i>
-                                <span>{complemento.puntos_complemento}</span>
-                              </span>
-                            </Tippy>
-                          }
-                        </div>
-                      </label>
-                      <Tippy content={complemento.producto}>
-                        <h2 className="text-base font-normal text-black text-center truncate w-full">{complemento.producto}</h2>
-                      </Tippy>
-                      <div className="flex font-medium justify-center gap-4">
-                        {complemento.descuento > 0 ? (
-                          <>
-                            <p>S/ <span>{complemento.descuento}</span></p>
-
-                            <p className='line-through text-gray-400'>S/ <span >{complemento.precio}</span></p>
-
-                          </>
-                        ) : (
-                          <>
-
-                            <p>S/ </p>
-                            <span>{complemento.precio}</span>
-                          </>
-                        )}
-
-                      </div>
-                    </div>
-
+                  <SwiperSlide key={index} className='self-start'>
+                    <ComplementCard {...complemento} onChange={handleCheckboxChange} />
                   </SwiperSlide>
                 ))}
               </Swiper>
             </div>
-            <div className="col-span-1">
-              <div className="flex flex-col justify-center items-center text-center w-46 m-auto max-h-56 border-[#FF8555] border-2 p-3 rounded-xl">
-                <div className="grid grid-cols-1 gap-3 xl:gap-5">
-                  <div className="flex flex-col justify-center items-center">
-                    <img src="/img_donas/regalo.svg" alt="Regalo" />
-                  </div>
-                  <button
-                    type="button"
-                    className="flex flex-col justify-center items-center text-[#FF8555]"
-                    onClick={() => openModalComplementos(complementosAcordion)}
-                  >
-                    Ver más
-                  </button>
-                </div>
-              </div>
+
+            {/* Botón de "Ver más" alineado debajo */}
+            <div className="w-full flex justify-start mt-4">
+              <button
+                type="button"
+                className="flex items-center bg-white text-[#ff7344] px-4 py-2 rounded-lg border border-[#ff7344]"
+                onClick={() => openModalComplementos(complementosAcordion)}
+              >
+                <img src="/img_donas/regalo.svg" alt="Regalo" className="w-5 h-5 mr-2" />
+                Ver más complementos
+              </button>
             </div>
           </div>
+
         </section>
 
         <section>
@@ -1111,14 +1053,14 @@ const Product = ({
                   </div>
                 </div>
               </div>
-              {currentComplemento.length === 1 && (<div className='flex w-full justify-center items-center'>
+              {/* {currentComplemento.length === 1 && (<div className='flex w-full justify-center items-center'>
                 <button type="button" className="flex flex-col justify-center  text-white rounded-lg items-center bg-rosalasdonas p-2"
                   onClick={() => openModalComplementos(complementosAcordion)}>
                   Ver más
                 </button>
-              </div>)}
+              </div>)} */}
 
-              <hr />
+              {/* <hr />
 
               <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse content-between justify-between  sm:px-6 ">
 
@@ -1130,9 +1072,7 @@ const Product = ({
                 >
                   Cerrar
                 </Button>
-                {/* <button onClick={closeModalComplementos} type="button"
-                  className="inline-flex w-full justify-center rounded-md  bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Cerrar</button> */}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

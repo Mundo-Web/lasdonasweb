@@ -774,7 +774,11 @@ class IndexController extends Controller
       $complementos[$key]['min_price'] = $complemento->min_price;
     }
 
-    $complementosAcordion = Tag::where('status', '=', 1)->where('visible', '=', 1)->get();
+    $complementosAcordion = Tag::withCount(['complements'])
+    ->where('status', '=', 1)
+    ->where('visible', '=', 1)
+    ->having('complements_count', '>', 0) // Filtra los tags que tienen complementos
+    ->get();
 
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)

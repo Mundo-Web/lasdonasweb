@@ -351,15 +351,15 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                   </div>
                 </div>
               </div>
-              {currentComplemento.length === 1 && (<div className='flex w-full justify-center items-center'>
+              {/* {currentComplemento.length === 1 && (<div className='flex w-full justify-center items-center'>
                 <button type="button" className="flex flex-col justify-center  text-white rounded-lg items-center bg-rosalasdonas p-2"
                   onClick={() => openModalComplementos(complementos)}>
                   Ver más
                 </button>
-              </div>)}
+              </div>)} */}
 
 
-              <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse content-between justify-between  sm:px-6 ">
+              {/* <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse content-between justify-between  sm:px-6 ">
 
 
                 <Button
@@ -369,10 +369,8 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                 >
                   Cerrar
                 </Button>
-                {/* <button onClick={handlemodalComplementos} type="button"
-                  className="inline-flex w-full justify-center rounded-md  bg-red-600 px-3 py-2 text-sm font-semibold 
-                  text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Cerrar</button> */}
-              </div>
+                
+              </div> */}
             </div>
           </div>
         </div>
