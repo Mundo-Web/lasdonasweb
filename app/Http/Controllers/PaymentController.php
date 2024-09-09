@@ -207,6 +207,10 @@ class PaymentController extends Controller
       $userJpa->points = Auth::user()->points + ($points2give - $points2discount);
       $userJpa->save();
 
+      if ($sale->points > 0) {
+        MailingController::notifyPoints($userJpa, $sale);
+      }
+
       $sale->status_id = 3;
       $sale->codigo_orden = $charge?->reference_code ?? null;
 
