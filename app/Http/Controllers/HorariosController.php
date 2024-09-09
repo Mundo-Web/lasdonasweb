@@ -15,13 +15,14 @@ class HorariosController extends Controller
     {
         //
         $url_env = env('APP_URL');
-        $horarios = Horarios::all(); 
+        $horarios = Horarios::all();
 
-        return Inertia::render('Horarios', [
-            'horarios' => $horarios, 
+        return view('pages.horarios.index', compact('horarios'));
+       /*  return Inertia::render('Horarios', [
+            'horarios' => $horarios,
             'url_env' => $url_env,
-            
-          ])->rootView('admin');
+
+        ])->rootView('admin'); */
     }
 
     /**
@@ -30,14 +31,33 @@ class HorariosController extends Controller
     public function create()
     {
         //
+        $horarios = new Horarios();
+        return view('pages.horarios.save', compact('horarios'));
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function save(Request $request)
     {
         //
+
+        if ($request->id) {
+            $horario = Horarios::find($request->id);
+            $horario->update($request->all());
+            // return response()->json(['message' => 'Horario Actualizado ']);
+            return redirect()->route('horarios.index');
+        } else {
+
+            $horario = new Horarios();
+            $data = $request->all();
+            $data['visible'] = 1;
+            $horario->fill($data);
+            $horario->save();
+            // return response()->json(['message' => 'Horario creado', 'horario' => $horario]);
+            return redirect()->route('horarios.index');
+        }
     }
 
     /**
@@ -51,9 +71,12 @@ class HorariosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Horarios $horarios)
+    public function edit(Horarios $horarios,$id)
     {
         //
+        $horarios = Horarios::find($id);
+        // return response()->json(['horario' => $horarios]);
+        return view('pages.horarios.save', compact('horarios'));
     }
 
     /**
@@ -67,8 +90,27 @@ class HorariosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Horarios $horarios)
+    public function destroy(Horarios $horarios, Request $request)
     {
         //
+        $id = $request->id;
+        $horario = Horarios::find($id);
+        $horario->delete();
+
+        return response()->json(['message' => 'Horario eliminado']);
+    }
+
+    public function updateVisible(Request $request)
+    {
+
+        $id = $request->id;
+        $horario = Horarios::find($id);
+
+        $horario->visible = $horario->visible == 1 ? 0 : 1;
+        $horario->save();
+
+
+
+        return response()->json(['message' => 'Horario actualizado']);
     }
 }

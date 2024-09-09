@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CuponController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HorariosController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PrecioEnvioController;
@@ -37,6 +38,13 @@ Route::post('/products/addComplemento', [ProductsController::class, 'addCompleme
 Route::middleware('web')->post('/payment/culqi', [PaymentController::class, 'culqi'])->name('payment.culqi');
 Route::post('/consultar-localidad', [PrecioEnvioController::class, 'searchzip'])->name('payment.searchzip');
 Route::post('/actualizar-perfil', [IndexController::class, 'actualizarPerfil'] );
+
+Route::post('/horarios/updateVisible', [HorariosController::class, 'updateVisible']);
+Route::post('/horarios/destroy', [HorariosController::class, 'destroy']);
+Route::post('/horarios/save', [HorariosController::class, 'store']);
+Route::get('/horarios/{id}', [HorariosController::class, 'edit']);
+
+
 
 
 
