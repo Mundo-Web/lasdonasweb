@@ -17,7 +17,8 @@ class MailingController extends Controller
             $content = File::get('../storage/app/utils/mailing/points.html');
             $data=  [
                 'client' => $userJpa->toArray(),
-                'sale' => $ordenJpa->toArray()
+                'sale' => $ordenJpa->toArray(),
+                'domain' => env('APP_DOMAIN')
             ];
             $mail = EmailConfig::config();
             $mail->Subject = 'Has acumulado ' . $ordenJpa->points . ' puntos';
