@@ -11,15 +11,15 @@ class EmailConfig
         $mail = new PHPMailer(true);
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = env('MAIL_HOST');
         $mail->SMTPAuth = true;
-        $mail->Username = 'diegomartinez1996x@gmail.com';
-        $mail->Password = 'piqutsbcfdzsrnkp';
+        $mail->Username = env('MAIL_USERNAME');
+        $mail->Password = env('MAIL_PASSWORD');
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port = 465;
-        $mail->Subject = 'Notificación de informacion Recibida';
+        $mail->Port = env('MAIL_PORT');
+        $mail->Subject = 'Notificación de ' . env('APP_NAME');
         $mail->CharSet = 'UTF-8';
-        $mail->setFrom('info@decotab.com', 'Dommine');
+        $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
         return $mail;
     }
 }
