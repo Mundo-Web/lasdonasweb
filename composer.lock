@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f8ce327b0932c56fac4ca540f5e4812",
+    "content-hash": "811e512779e9a465b22e6cace8dd9229",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -4344,12 +4344,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gysmoy/extend-php.git",
-                "reference": "f555c0ca6c33714e6c6f7c8378bd627f36036a5b"
+                "reference": "8d7126810501d9b41c15e592be60add80010c4f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gysmoy/extend-php/zipball/f555c0ca6c33714e6c6f7c8378bd627f36036a5b",
-                "reference": "f555c0ca6c33714e6c6f7c8378bd627f36036a5b",
+                "url": "https://api.github.com/repos/Gysmoy/extend-php/zipball/8d7126810501d9b41c15e592be60add80010c4f6",
+                "reference": "8d7126810501d9b41c15e592be60add80010c4f6",
                 "shasum": ""
             },
             "require": {
@@ -4377,7 +4377,7 @@
                 "issues": "https://github.com/Gysmoy/extend-php/issues",
                 "source": "https://github.com/Gysmoy/extend-php/tree/master"
             },
-            "time": "2024-08-26T17:41:06+00:00"
+            "time": "2024-09-05T20:22:03+00:00"
         },
         {
             "name": "spatie/laravel-permission",

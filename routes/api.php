@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CuponController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HorariosController;
@@ -45,7 +46,7 @@ Route::post('/horarios/save', [HorariosController::class, 'store']);
 Route::get('/horarios/{id}', [HorariosController::class, 'edit']);
 
 
-
+Route::post('signup', [AuthController::class, 'signup']);
 
 
 Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {

@@ -19,45 +19,53 @@
     overflow-x: visible !important;
   }
 
-  .tiporamo, .horario{
-    z-index: 0!important;
-  }
-   /* ---------------------------*/
-
-  .tiporamo .swiper-pagination{
-    position: relative!important;
-    margin-top: 20px!important;
-  }
-
-  .swiper-pagination-bullet {
-  background-color: #3e3b3a; /* Cambia el color del bullet */
-  width: 12px; /* Cambia el tamaño del bullet */
-  height: 12px;
-  }
-
-  .swiper-pagination-bullet-active {
-    background-color: #73b473; /* Cambia el color del bullet activo */
+  .tiporamo,
+  .horario {
+    z-index: 0 !important;
   }
 
   /* ---------------------------*/
 
-  .img-complementarias .swiper-pagination{
-    position: relative!important;
-    margin-top: -8px!important;
+  .tiporamo .swiper-pagination {
+    position: relative !important;
+    margin-top: 20px !important;
   }
 
   .swiper-pagination-bullet {
-  background-color: #3e3b3a; /* Cambia el color del bullet */
-  width: 12px; /* Cambia el tamaño del bullet */
-  height: 12px;
+    background-color: #3e3b3a;
+    /* Cambia el color del bullet */
+    width: 12px;
+    /* Cambia el tamaño del bullet */
+    height: 12px;
   }
 
   .swiper-pagination-bullet-active {
-    background-color: #73b473; /* Cambia el color del bullet activo */
+    background-color: #73b473;
+    /* Cambia el color del bullet activo */
   }
 
   /* ---------------------------*/
-  
+
+  .img-complementarias .swiper-pagination {
+    position: relative !important;
+    margin-top: -8px !important;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: #3e3b3a;
+    /* Cambia el color del bullet */
+    width: 12px;
+    /* Cambia el tamaño del bullet */
+    height: 12px;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #73b473;
+    /* Cambia el color del bullet activo */
+  }
+
+  /* ---------------------------*/
+
   body {
     overflow-x: hidden;
   }
@@ -387,7 +395,11 @@
   @php
     $currentUrl = url()->full();
   @endphp
-  @if (!request()->is('login') && !request()->is('register') && !request()->is('micuenta*'))
+  @if (
+      !request()->is('login') &&
+          !request()->is('register') &&
+          !request()->is('micuenta*') &&
+          !request()->is('register-rev'))
     <div class=" header_bottom hidden 2md:flex h-12 bg-[#336234] px-[5%] lg:px-[8%] 2md:justify-center">
       <div class="text-base font-b_classic_bold ">
 

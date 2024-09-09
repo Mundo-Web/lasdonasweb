@@ -19,7 +19,7 @@ class EmailConfig
         $mail->Port = 465;
         $mail->Subject = 'Notificación de informacion Recibida';
         $mail->CharSet = 'UTF-8';
-        $mail->setFrom('info@decotab.com', 'Dommine');
+        $mail->setFrom('info@decotab.com', 'Las Doñas');
         return $mail;
     }
 }

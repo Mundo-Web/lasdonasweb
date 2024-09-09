@@ -52,6 +52,7 @@ use App\Models\Price;
 use Inertia\Inertia;
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CuponController;
 
 /*
@@ -71,8 +72,13 @@ Route::get('/example', function () {
         'message' => 'Hello from Laravel!'
     ]);
 });
+Route::get('/register', function(){
+    return redirect()->route('Register.jsx');
+});
 
-
+Route::get('/confirm-email/{token}', [AuthController::class, 'confirmEmailView'])->name('ConfirmEmail.jsx');
+Route::get('/confirmation/{token}', [AuthController::class, 'loginView']);
+Route::get('/register-rev', [AuthController::class, 'registerView'])->name('Register.jsx');
 
 Route::get('/', [IndexController::class, 'index'] )->name('index');
 Route::get('/nosotros', [IndexController::class, 'nosotros'] )->name('nosotros');
