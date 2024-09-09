@@ -33,16 +33,16 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
   };
 
 
-  useEffect(() => {
-    if (activeModal) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [activeModal]);
+  // useEffect(() => {
+  //   if (activeModal) {
+  //     document.addEventListener('mousedown', handleClickOutside);
+  //   } else {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   }
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, [activeModal]);
   const deleteItemR = (id) => {
 
     let articulosCarrito = Local.get('carrito') || [];
@@ -242,7 +242,6 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                 Codigo de promocion
               </h2>
               <div className="flex gap-5 relative">
-                {console.log(historicoCupones)}
                 <input
                   value={historicoCupones[0]?.cupon?.codigo ?? ''}
                   type="text"

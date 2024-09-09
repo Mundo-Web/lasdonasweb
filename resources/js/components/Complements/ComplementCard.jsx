@@ -2,6 +2,9 @@ import Tippy from "@tippyjs/react"
 import React from "react"
 
 const ComplementCard = ({ onChange, ...complemento }) => {
+  let carrito = Local.get('carrito') ?? [];
+  const found = carrito.findIndex(x => x.id == complemento.id) != -1
+
   return <div className="m-auto w-full max-w-48">
     <label
       htmlFor={`react-option-${complemento.id}`}
@@ -15,6 +18,7 @@ const ComplementCard = ({ onChange, ...complemento }) => {
           className="peer absolute top-3 left-3 w-5 h-5 border-orange-400  accent-rosalasdonasborder-orange-400 checked:border-orange-400  outline-orange-400 checked:bg-orange-400 hover:checked:bg-orange-400 hover:border-orange-400 hover:bg-orange-400
                                focus:border-orange-400 rounded-md shadow-md focus:checked:bg-orange-400 focus:checked:border-orange-400  focus:bg-orange-400"
           required
+          defaultChecked={found}
           onChange={(e) => onChange(e, complemento.id, complemento)}
         />
         {complemento.images.length > 0 ? (

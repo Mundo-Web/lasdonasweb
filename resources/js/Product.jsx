@@ -151,9 +151,6 @@ const Product = ({
 
       setDetallePedido(newDetalle);
     }
-
-
-
   }
 
   const handleClearImage = () => {
