@@ -168,7 +168,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-fCfdFNhA.css",
+    "file": "assets/app-Q1CNjpVk.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -238,7 +238,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-ttocQw_E.js",
+    "file": "assets/Agradecimiento-OyDAoVUI.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -305,7 +305,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-oxSC1UO1.js",
+    "file": "assets/Dashboard-YoogJll2.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -631,7 +631,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Orders-cg8knXB1.js",
+    "file": "assets/Orders-Fqf2afN-.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -934,10 +934,10 @@
       "assets/dxicons-NVJDH3Nn.ttf"
     ],
     "css": [
-      "assets/SalesDatagrid-y6BCjmn-.css",
+      "assets/SalesDatagrid-kvJOWtWG.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/SalesDatagrid-RieZA41i.js",
+    "file": "assets/SalesDatagrid-ry-EriVH.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
