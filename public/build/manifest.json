@@ -80,8 +80,8 @@
       "__commonjsHelpers-4gQjN7DL.js"
     ]
   },
-  "_jquery-6sbh2-mr.js": {
-    "file": "assets/jquery-6sbh2-mr.js",
+  "_jquery-_-XaHmv-.js": {
+    "file": "assets/jquery-_-XaHmv-.js",
     "imports": [
       "__commonjsHelpers-4gQjN7DL.js"
     ]
@@ -305,7 +305,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-VFPDYHIr.js",
+    "file": "assets/Dashboard-9aJT-E6e.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -328,7 +328,7 @@
       "_objectWithoutPropertiesLoose-RRuG-_4m.js",
       "_setPrototypeOf-ahVgEFUp.js",
       "_floating-ui.dom-g3wJg7y0.js",
-      "_jquery-6sbh2-mr.js"
+      "_jquery-_-XaHmv-.js"
     ],
     "isEntry": true,
     "src": "resources/js/Dashboard.jsx"
@@ -347,18 +347,18 @@
       "assets/Horarios-i7P6CmCQ.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Horarios-fH8185aY.js",
+    "file": "assets/Horarios-9TV0blRt.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_CreateReactScript-OQMMn-O_.js",
-      "__commonjsHelpers-4gQjN7DL.js",
-      "_jquery-6sbh2-mr.js",
+      "_jquery-_-XaHmv-.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_index-XJuWVQ-l.js",
       "_index-38suPYpT.js",
+      "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_storage-zp2nPsZU.js"
     ],
@@ -411,7 +411,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-r9uwy02W.js",
+    "file": "assets/Product-V5LjBT77.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -631,7 +631,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Orders-eBlyKWv1.js",
+    "file": "assets/Orders-cg8knXB1.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -643,7 +643,7 @@
       "__commonjsHelpers-4gQjN7DL.js",
       "_objectWithoutPropertiesLoose-RRuG-_4m.js",
       "_index-38suPYpT.js",
-      "_jquery-6sbh2-mr.js"
+      "_jquery-_-XaHmv-.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/Dashboard/Orders.jsx"
@@ -686,11 +686,11 @@
       "assets/Record-B32oYo7W.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Record-vPMayiux.js",
+    "file": "assets/Record-WIoA-nP0.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
-      "_jquery-6sbh2-mr.js",
+      "_jquery-_-XaHmv-.js",
       "_moment-WSJ9un1t.js",
       "resources/js/components/InvoiceModal.jsx",
       "resources/js/components/ClasicModal.jsx",
@@ -937,7 +937,7 @@
       "assets/SalesDatagrid-y6BCjmn-.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/SalesDatagrid-pL2Oqe0a.js",
+    "file": "assets/SalesDatagrid-RieZA41i.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -948,7 +948,7 @@
       "_objectWithoutPropertiesLoose-RRuG-_4m.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
-      "_jquery-6sbh2-mr.js"
+      "_jquery-_-XaHmv-.js"
     ],
     "isEntry": true,
     "src": "resources/js/components/SalesDatagrid.jsx"
