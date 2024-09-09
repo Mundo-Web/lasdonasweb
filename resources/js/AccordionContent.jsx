@@ -34,8 +34,6 @@ const AccordionContent = ({ id, setDetallePedido }) => {
     let carrito = Local.get('carrito') ?? [];
     if (carrito.length > 0) {
 
-      console.log('entra porque tiene algo ')
-
       agregarComplementoPedido(id)
 
     } else {

@@ -256,20 +256,22 @@ class IndexController extends Controller
 
   public function carrito()
   {
-    $complementos  = Tag::where('status', '=', 1)
+    $complementos  = Tag::withCount(['complements'])
+      ->where('tags.status', '=', 1)
       ->join('tags_xproducts', 'tags_xproducts.tag_id', 'tags.id')
-      ->where('visible', '=', 1)
+      ->where('tags.visible', '=', 1)
+      ->having('complements_count', '>', 0)
       ->groupBy('tags.id')
       ->get();
 
-      $historicoCupones = [];
-      
-      if(Auth::check()){
-        $usuario = Auth::user()->id; 
-        $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->get();
-      }
+    $historicoCupones = [];
 
-      // $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', Auth::user()->id)->where('usado', false)->get();
+    if (Auth::check()) {
+      $usuario = Auth::user()->id;
+      $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->get();
+    }
+
+    // $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', Auth::user()->id)->where('usado', false)->get();
 
     /* $complementos = Complemento::select('complementos.*')
       ->join('products', 'products.complemento_id', '=', 'complementos.id')
@@ -284,7 +286,7 @@ class IndexController extends Controller
     // return view('public.checkout_carrito', compact('url_env', 'departamentos'));
     return Inertia::render('Carrito', [
       'complementos' => $complementos,
-      'points' => Auth::check() ? Auth::user()->points : 0, 
+      'points' => Auth::check() ? Auth::user()->points : 0,
       'historicoCupones' => $historicoCupones
     ])->rootView('app');
   }
@@ -301,11 +303,11 @@ class IndexController extends Controller
     }
 
     $historicoCupones = [];
-      
-      if(Auth::check()){
-        $usuario = Auth::user()->id; 
-        $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->get();
-      }
+
+    if (Auth::check()) {
+      $usuario = Auth::user()->id;
+      $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->get();
+    }
 
 
     // $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
@@ -516,7 +518,7 @@ class IndexController extends Controller
   public function actualizarPerfil(Request $request)
   {
 
-    
+
     $name = $request->name;
     $lastname = $request->lastname;
     $email = $request->email;
@@ -552,7 +554,7 @@ class IndexController extends Controller
       $user->lastname = $lastname;
       $user->email = $email;
       $user->phone = $phone;
-      
+
       $user->direccion = $direccion;
       $user->departamento = $departamento;
       $user->provincia = $provincia;
@@ -598,7 +600,10 @@ class IndexController extends Controller
     return Inertia::render('Dashboard', [
       'user' => $user,
       'section' => $section,
-      'general' => $general, 'categorias' => $categorias , 'cupones' => $cupones, 'cuponesUsados' => $cuponesUsados
+      'general' => $general,
+      'categorias' => $categorias,
+      'cupones' => $cupones,
+      'cuponesUsados' => $cuponesUsados
     ])->rootView('micuenta');
   }
 
@@ -639,7 +644,7 @@ class IndexController extends Controller
     $user = Auth::user();
     $addresses = Address::where('user_id', $user->id)->get();
     // $addresses = Address::where('email', $user->email) ->with('price')->get();
-      
+
 
     $departments = Price::select([
       'departments.id AS id',
@@ -775,10 +780,10 @@ class IndexController extends Controller
     }
 
     $complementosAcordion = Tag::withCount(['complements'])
-    ->where('status', '=', 1)
-    ->where('visible', '=', 1)
-    ->having('complements_count', '>', 0) // Filtra los tags que tienen complementos
-    ->get();
+      ->where('status', '=', 1)
+      ->where('visible', '=', 1)
+      ->having('complements_count', '>', 0) // Filtra los tags que tienen complementos
+      ->get();
 
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
