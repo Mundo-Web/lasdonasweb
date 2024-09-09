@@ -1100,7 +1100,7 @@ class IndexController extends Controller
 
     // Paso 3: Buscar los productos que coincidan con esos producto_id
     if (!empty($productoIds)) {
-      $productos = Products::with('images')->where('tipo_servicio', 'complemento')->whereIn('id', $productoIds)->get();
+      $productos = Products::with('images')->where('tipo_servicio', 'complemento')->where('parent_id', null) ->whereIn('id', $productoIds)->get();
     } else {
       $productos = [];
     }
