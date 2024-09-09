@@ -414,11 +414,11 @@ const Product = ({
 
   return (
     <>
-      <main className="flex flex-col gap-12 mt-12 font-b_slick_bold">
+      <main className="flex flex-col gap-3 lg:gap-12 mt-3 md:mt-12 font-b_slick_bold">
         <section>
-
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 px-[5%] lg:px-[5%] gap-5 lg:gap-10 pt-10">
-
+          <h2 className="text-4xl md:text-5xl font-bold text-black uppercase pb-3 lg:hidden">{currentProduct.producto}</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3  gap-y-5 lg:gap-8 h-max" id="containerImagenesP">
 
               {caratula2 ? (
@@ -503,8 +503,8 @@ const Product = ({
 
             <div className=''>
 
-              <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase">{currentProduct.producto}</h2>
-              <p className="text-2xl  font-bold text-black pb-6">Paso 1: Selecciona un horario</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase hidden lg:flex">{currentProduct.producto}</h2>
+              <p className="text-2xl  font-bold text-black pb-6 mt-5 lg:mt-0">Paso 1: Selecciona un horario</p>
 
 
 
@@ -715,7 +715,7 @@ const Product = ({
                   breakpoints={{
                     0: {
                       slidesPerView: 1,
-                      centeredSlides: true,
+                      centeredSlides: false,
                       spaceBetween:20,
                       loop: true,
                     },
@@ -935,7 +935,7 @@ const Product = ({
                 }}
                 breakpoints={{
                   0: {
-                    slidesPerView: 1,   // Pantallas muy pequeñas
+                    slidesPerView: 2,   // Pantallas muy pequeñas
                     centeredSlides: false,
                     loop: true,
                   },

@@ -43,7 +43,7 @@
 
   .img-complementarias .swiper-pagination{
     position: relative!important;
-    margin-top: -8px!important;
+    margin-top: 20px!important;
   }
 
   .swiper-pagination-bullet {
