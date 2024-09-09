@@ -9,7 +9,7 @@
     border: none;
     border-radius: 0.5em;
     color: #DEDEDE;
-    box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3);
+    
   }
 
   #btnespecial::before {
@@ -31,11 +31,12 @@
   }
 
   #btnespecial:active {
-    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+    
     transform: translate(0.1em, 0.1em);
   }
+  
 </style>
-
+{{-- box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3); --}}
 <div class="flex flex-col gap-7 col-span-1 font-b_slick_bold tracking-wider">
   <a class="rounded-xl bg-white shadow-lg overflow-hidden" href="{{ route('Product.jsx', $item->id) }}">
     <div class="bg-[#FFF4ED] rounded-t-xl overflow-hidden relative">
