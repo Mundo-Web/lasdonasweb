@@ -1,7 +1,7 @@
 import React from "react";
 
 function MessageField({ defaultMessage, data }) {
-  console.log(data);
+
   return (
     <div className="flex flex-wrap gap-10 justify-between items-center px-6 py-4 mt-6 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 text-neutral-900 max-md:px-5 max-md:max-w-full">
       <select className="self-stretch my-auto border border-orange-400 rounded-md p-2">

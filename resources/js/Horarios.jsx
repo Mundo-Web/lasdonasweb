@@ -99,7 +99,7 @@ const Horarios = ({ url_env, horarios }) => {
 
 
   const handleCheckd = (e) => {
-    console.log('manejar cambio', e.target.value);
+
     actualizarVisible(e.target.value)
 
   }

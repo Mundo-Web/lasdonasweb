@@ -821,7 +821,7 @@ const Product = ({
                                   }`}
                               >
                                 <p className="text-base font-semibold">{item.tipos.name}</p>
-                                {console.log(selected)}
+
                                 {Number(item.descuento) > 0 ? (
                                   <>
                                     <p className={` font-normal line-through ${selected == true ? 'text-gray-400 text-[14px]' : ''} `}>

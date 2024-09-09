@@ -27,7 +27,7 @@ const Modal = ({ isOpen, onClose, children, create = true, setHorarios, id }) =>
 
   }, [create])
 
-  console.log(create)
+
   const handleSave = async (id) => {
 
 

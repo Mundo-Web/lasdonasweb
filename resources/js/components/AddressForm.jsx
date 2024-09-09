@@ -411,7 +411,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
             <div className="w-full">
               <label className="block text-sm font-medium text-gray-700">Tipo de domicilio</label>
               <div>
-                {console.log(formState.residenceType)}
+
                 <Select
                   name="residenceType"
                   required={true}

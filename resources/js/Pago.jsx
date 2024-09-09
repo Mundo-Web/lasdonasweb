@@ -111,7 +111,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
   }
 
   const handleDatosFinales = (e) => {
-    console.log(datosFinales)
+
     const { name, value } = e.target;
     setDatosFinales((prevDatos) => ({
       ...prevDatos,
@@ -144,7 +144,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
   }
 
   const handlemodalMaps = () => {
-    console.log('manejando Modal')
+
     setIsModalOpen(!isModalOpen)
   }
 
@@ -171,7 +171,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
       confirmButtonColor: '#EF4444'
     })
 
-    console.log(datosFinales.billing.type, datosFinales.billing.ruc.length)
+
     if (datosFinales.billing.type == 'factura' && (datosFinales.billing.ruc.length > 11 || datosFinales.billing.ruc.length < 11)) return Swal.fire({
       icon: 'error',
       title: 'Error',
@@ -225,7 +225,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
 
   const textareaRef = useRef(null);
   const adjustTextareaHeight = () => {
-    console.log("entrando here")
+
     const textarea = textareaRef.current;
     if (textarea) {
       textarea.style.height = 'auto'; // Reset height to auto to calculate the new height
@@ -255,23 +255,23 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
           <div className='text-center max-w-4xl content-center justify-center mx-auto'>
             {/* <ProgressBar /> */}
             <div class="stepper-wrapper !font-b_slick_bold">
-                <div class="stepper-item completed">
-                  <div class="step-name">Iniciar sesión</div>
-                  <div class="step-counter"></div>
-                  
-                </div>
-                <div class="stepper-item completed">
-                  <div class="step-name -mt-5 md:mt-0">Datos de envío y formas de pago</div>
-                  <div class="step-counter"></div>
-                  
-                </div>
-                <div class="stepper-item active">
-                  <div class="step-name">Confirmación</div>
-                  <div class="step-counter"></div> 
-                </div>
+              <div class="stepper-item completed">
+                <div class="step-name">Iniciar sesión</div>
+                <div class="step-counter"></div>
+
+              </div>
+              <div class="stepper-item completed">
+                <div class="step-name -mt-5 md:mt-0">Datos de envío y formas de pago</div>
+                <div class="step-counter"></div>
+
+              </div>
+              <div class="stepper-item active">
+                <div class="step-name">Confirmación</div>
+                <div class="step-counter"></div>
+              </div>
             </div>
           </div>
-          
+
           <div className="flex flex-col lg:flex-row gap-4 md:gap-20 pt-10 w-full">
 
             <div className='flex flex-col w-full'>
@@ -450,7 +450,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                           }))
                         }
                       }} />
-                    {console.log(datosFinales)}
+
 
                     <InputField
                       name={'razonSocial'}

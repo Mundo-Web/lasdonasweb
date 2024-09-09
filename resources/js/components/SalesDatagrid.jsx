@@ -17,7 +17,7 @@ const SalesDataGrid = ({ isAdmin, statuses }) => {
 
   const formattedTime = (timeString) => {
 
-    console.log(timeString)
+
 
     const [hours, minutes, seconds] = timeString.split(':');
     const date = new Date();
@@ -53,7 +53,7 @@ const SalesDataGrid = ({ isAdmin, statuses }) => {
         })
       });
       const data = await res.json();
-      console.log(data.data)
+
       setDataSource(data.data);
     };
 

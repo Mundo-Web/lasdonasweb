@@ -19,7 +19,7 @@ function Profile({ userDetail }) {
     try {
       const response = await axios.post('/api/actualizar-perfil', userDetail.current)
       const { data, status } = response
-      console.log(data, status)
+
 
       if (status === 200) {
         Swal.fire({

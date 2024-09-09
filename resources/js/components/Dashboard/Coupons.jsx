@@ -5,8 +5,8 @@ import React from "react";
 function Coupons({ cupones, cuponesUsados }) {
   const cuponimg = '/img_donas/cupon.png';
 
-  console.log(cupones)
-  console.log(cuponesUsados)
+
+
   const cuponesFiltrados = cupones.filter(cupon => !cuponesUsados.includes(cupon.id));
 
   const handleCouponChange = (e) => {

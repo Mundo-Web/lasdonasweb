@@ -24,7 +24,7 @@ function Points({ userDetail, general }) {
           <div className="flex gap-3 items-center self-start mt-3">
             <p
               className="self-stretch my-auto text-5xl font-medium tracking-normal leading-none text-green-800 max-md:text-4xl">
-              {console.log(userDetail.current.points)}
+
               {userDetail.current.points} puntos
             </p>
             {/* <span

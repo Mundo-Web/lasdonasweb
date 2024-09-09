@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 
 function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio, addreses }) {
 
-  console.log(addressRef.current)
+
   const [formState, setFormState] = useState({
     fulladdress: addressRef.current?.fulladdress ?? '',
     street: addressRef.current?.street ?? '',
@@ -67,7 +67,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
           confirmButtonColor: '#10B981'
         })
       }
-      console.log(response);
+
     } catch (error) {
       console.log('Error:', error);
       if (axios.isCancel(error)) {
@@ -94,7 +94,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
   const cancelTokenSource = useRef(null);
 
   const managezipCode = async (place, postalCode) => {
-    console.log('cambio el zipcode')
+
 
     if (cancelTokenSource.current) {
       cancelTokenSource.current.cancel('Operation canceled due to new request.');
@@ -184,7 +184,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
         showConfirmButton: true,
         confirmButtonText: 'Aceptar',
       })
-      console.log(response);
+
     } catch (error) {
       console.error('Error:', error);
     }

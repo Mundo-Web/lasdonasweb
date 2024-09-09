@@ -12,7 +12,7 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
   const [total, setTotal] = useState(subtotal);
   let haycupon = false;
 
-  console.log(historicoCupones)
+
   useEffect(() => {
     let descuento = 0;
     let cupon
@@ -37,13 +37,13 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
 
   const porcentaje = historicoCupones[0]?.cupon?.porcentaje == 1 ? '%' : 'S/';
   const cuponMonto = `${porcentaje} ${historicoCupones[0]?.cupon?.monto}`;
-  console.log('historicoCupones', cuponMonto);
+
   return (
     <main className="flex flex-col flex-1 shrink justify-center self-stretch my-auto w-full basis-0 min-w-[240px] max-md:max-w-full">
       {carrito.map((item, index) => (
         <React.Fragment key={item.id}>
           <OrderItem {...item} userPoints={points} />
-          {index < carrito.length - 1 }
+          {index < carrito.length - 1}
         </React.Fragment>
       ))}
       <Divider />

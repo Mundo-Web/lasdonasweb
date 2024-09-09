@@ -13,7 +13,7 @@ function Privacy() {
   };
 
   const EliminarCuenta = async () => {
-    console.log('Cuenta eliminada');
+
     try {
       const response = await axios.post('/api/eliminarCuenta');
 
