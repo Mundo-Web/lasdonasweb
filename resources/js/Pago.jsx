@@ -240,8 +240,8 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
   return (
     <>
       <form className='mb-24' onSubmit={startCulqi}>
-        <div className='mt-12 px-[5%] md:px-[10%]'>
-          <span className='text-[#447279] text-[12px] uppercase'>
+        <div className='mt-12 px-[5%] md:px-[8%] font-b_slick_bold'>
+          <span>
             Home / Aniversario / Suspendisse potenti /Validación de pedido
           </span>
           <div className='mt-8'>
@@ -249,14 +249,30 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
           </div>
 
           <div className='flex flex-col w-full my-8'>
-
             <OrderSummary historicoCupones={historicoCupones} carrito={carrito} costoEnvio={costoEnvio} setIsModalOpen={setIsModalOpen} points={points} />
           </div>
-          <div className='text-center flex w-full content-center justify-center'>
-            <ProgressBar />
 
+          <div className='text-center max-w-4xl content-center justify-center mx-auto'>
+            {/* <ProgressBar /> */}
+            <div class="stepper-wrapper !font-b_slick_bold">
+                <div class="stepper-item completed">
+                  <div class="step-name">Iniciar sesión</div>
+                  <div class="step-counter"></div>
+                  
+                </div>
+                <div class="stepper-item completed">
+                  <div class="step-name -mt-5 md:mt-0">Datos de envío y formas de pago</div>
+                  <div class="step-counter"></div>
+                  
+                </div>
+                <div class="stepper-item active">
+                  <div class="step-name">Confirmación</div>
+                  <div class="step-counter"></div> 
+                </div>
+            </div>
           </div>
-          <div className="flex flex-col lg:flex-row gap-20 pt-10 w-full">
+          
+          <div className="flex flex-col lg:flex-row gap-4 md:gap-20 pt-10 w-full">
 
             <div className='flex flex-col w-full'>
 
@@ -317,7 +333,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
 
                   <div className="flex flex-col mt-6 w-full max-md:max-w-full">
                     <div className="flex flex-wrap gap-2 items-start w-full text-xs tracking-wide max-md:max-w-full">
-                      <p className="flex-1 shrink basis-0 text-neutral-900 text-opacity-80">
+                      <p className="flex-1 shrink basis-0 text-neutral-900 text-opacity-80 text-base">
                         Escribe tu mensaje
                       </p>
                       {/* <button className="flex-1 shrink text-right text-orange-400 basis-0" onClick={() => {
@@ -356,14 +372,14 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                   </div>
                 </div>
                 {!showFirma && (<div className="flex flex-col mt-6 w-full max-md:max-w-full">
-                  <label htmlFor="signature" className="text-xs tracking-wide text-neutral-900">
+                  <label htmlFor="signature" className="text-xs tracking-wide text-neutral-900 text-base">
                     Firma
                   </label>
                   <input
                     id="signature"
                     type="text"
                     placeholder="Persona que firma el mensaje de la tarjeta"
-                    className="flex-1 shrink gap-2 self-stretch px-6 py-4 mt-2 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300  max-md:px-5 max-md:max-w-full"
+                    className="gap-2 self-stretch px-6 py-4 mt-1 w-full text-sm tracking-wide rounded-3xl border border-[#BDBDBD] focus:ring-0 focus:outline-none focus:border-[#336234]  max-md:px-5 max-md:max-w-full"
                     onChange={(e) => {
                       setDatosFinales(old => ({
                         ...old,
@@ -500,7 +516,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                         }))
                       }} />
                   </div>
-                  <div className="flex flex-row items-center gap-4 justify-center mt-8 w-full text-sm font-bold tracking-wide whitespace-nowrap max-md:max-w-full">
+                  <div className="flex flex-row items-center gap-4 justify-center mt-8 w-full text-base font-bold tracking-wide whitespace-nowrap max-md:max-w-full">
                     <Button variant="primary" type='submit'>Continuar</Button>
                     <Button href='/carrito' variant="secondary">Regresar</Button>
                   </div>

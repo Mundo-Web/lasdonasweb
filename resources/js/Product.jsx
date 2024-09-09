@@ -116,19 +116,39 @@ const Product = ({
 
 
     } else {
-      setDetallePedido((prev) => {
-        const index = prev.complementos.findIndex((complemento) => complemento === id);
-        if (index === -1) {
-          return {
-            ...prev,
-            complementos: [...prev.complementos, id],
-          };
+
+      const prev = structuredClone(detallePedido)
+      const index = prev.complementos.findIndex((complemento) => complemento.id === id);
+      let newDetalle = {}
+      if (index === -1) {
+        let isConfirmed = false
+        if (points >= complemento.puntos_complemento) {
+          const swalRes = await Swal.fire({
+            title: 'Deseas intercambiarlo con puntos?',
+            text: 'Si, usar puntos',
+            showCancelButton: true,
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No',
+            confirmButtonColor: '#336234',
+            cancelButtonColor: '#EF4444'
+          });
+          isConfirmed = swalRes.isConfirmed
         }
-        return {
+        newDetalle = {
           ...prev,
-          complementos: prev.complementos.filter((complemento) => complemento !== id),
+          complementos: [...prev.complementos, {
+            ...complemento,
+            usePoints: isConfirmed
+          }],
         };
-      });
+      } else {
+        newDetalle = {
+          ...prev,
+          complementos: prev.complementos.filter((complemento) => complemento.id !== id),
+        }
+      }
+
+      setDetallePedido(newDetalle);
     }
 
 
@@ -176,7 +196,10 @@ const Product = ({
     }
 
     try {
-      const res = await axios.post('/api/products/AddOrder', detallePedido);
+      const res = await axios.post('/api/products/AddOrder', {
+        ...detallePedido,
+        complementos: detallePedido?.complementos?.map(x => x.id) ?? []
+      });
 
       if (res.status === 200) {
         const { producto,
@@ -197,6 +220,7 @@ const Product = ({
           extract: producto.extract,
         }
         let detalleComplemento = complementos.map(item => {
+          const found = detallePedido?.complementos?.find(x => x.id == item.id)
           const object = {
             id: item.id,
             producto: item.producto,
@@ -208,7 +232,7 @@ const Product = ({
             fecha: fecha,
             horario: horario,
             extract: item.extract,
-
+            usePoints: Boolean(found?.usePoints)
           }
           if (item.tipo_servicio == 'complemento' && item.puntos_complemento > 0) {
             object.points = item.puntos_complemento
@@ -885,7 +909,20 @@ const Product = ({
                         <h2 className="text-base font-normal text-black text-center truncate w-full">{complemento.producto}</h2>
                       </Tippy>
                       <div className="flex font-medium justify-center gap-4">
-                        0
+                        {complemento.descuento > 0 ? (
+                          <>
+                            <p>S/ <span>{complemento.descuento}</span></p>
+
+                            <p className='line-through text-gray-400'>S/ <span >{complemento.precio}</span></p>
+
+                          </>
+                        ) : (
+                          <>
+
+                            <p>S/ </p>
+                            <span>{complemento.precio}</span>
+                          </>
+                        )}
 
                       </div>
                     </div>

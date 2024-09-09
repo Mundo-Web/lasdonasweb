@@ -14,7 +14,7 @@ function Button({ href, variant, children, width = 'w-full', type = 'button', ca
   return (
     <button
       type={type}
-      className={`${baseClasses} ${variantClasses[variant]} hover:text-white hover:bg-green-800`} onClick={callback}>
+      className={`${baseClasses} ${variantClasses[variant]} hover:text-white hover:bg-green-800 `} onClick={callback}>
       {children}
     </button>
   );

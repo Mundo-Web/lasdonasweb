@@ -6,7 +6,7 @@ function ReceiptTypeSelector({ onChange }) {
           type="radio"
           name="receiptType"
           value="boleta"
-          className="hover:text-orange-400 hover:border-orange-400 focus:ring-0 focus:ring-offset-0 focus:outline-none checked:bg-orange-400 checked:border-orange-400"
+          className="hover:text-orange-400 hover:border-orange-400 focus:ring-0 focus:ring-offset-0 focus:outline-none checked:text-orange-400 "
           onChange={() => onChange('boleta')}
           required
           defaultChecked
@@ -18,7 +18,7 @@ function ReceiptTypeSelector({ onChange }) {
           type="radio"
           name="receiptType"
           value="factura"
-          className="hover:text-orange-400 hover:border-orange-400 focus:ring-0 focus:ring-offset-0 focus:outline-none checked:bg-orange-400 checked:border-orange-400"
+          className="hover:text-orange-400 hover:border-orange-400 focus:ring-0 focus:ring-offset-0 focus:outline-none checked:text-orange-400 "
           onChange={() => onChange('factura')}
           required
         />
