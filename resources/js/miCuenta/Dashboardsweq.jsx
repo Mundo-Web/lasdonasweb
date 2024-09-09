@@ -22,7 +22,7 @@ const Dashboard = ({ user }) => {
               />
               <div className="flex z-0 flex-col self-stretch mt-4 w-full ">
                 <div className="text-3xl font-bold tracking-widest leading-none text-neutral-900">
-                  {console.log(user)}
+
                   {user.name} {user.lastname}
                 </div>
                 <div className="flex gap-4 flex-row items-center mt-1 w-full text-lg text-neutral-900 text-opacity-80">

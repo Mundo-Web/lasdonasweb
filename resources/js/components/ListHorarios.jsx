@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 const ListHorarios = ({ id, horarios, selectedHorario, setSelectedHorario, clase = 'absolute w-full flex flex-col gap-2 top-[80px] bg-white shadow-2xl p-2', setDetallePedido, setLoadListHorarios = () => { }, date, setSelectedDate }) => {
 
-  console.log(date)
+
 
   const checked = useRef(null);
 

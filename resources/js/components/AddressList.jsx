@@ -54,9 +54,9 @@ const AddressList = ({ }) => {
   const handleEdit = (address) => {
     // Lógica para editar la dirección
 
-    console.log(address)
+
     addressRef.current = address.address_data;
-    console.log(addressRef.current);
+
     addressRef.current.id = address.id
 
     setIsEddit(true);
@@ -69,7 +69,7 @@ const AddressList = ({ }) => {
 
   const handleDefault = async (id) => {
     // Lógica para marcar la dirección como predeterminada
-    console.log(id)
+
     try {
       const response = await axios.patch(`/api/address/markasfavorite`, { id: id });
       Swal.fire({
@@ -139,7 +139,7 @@ const AddressList = ({ }) => {
 
             : (<div className="flow-root"><ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
               {addressList.map((address) => {
-                // console.log(address)
+
                 const isFree = address.address_zipcode === null;
                 return (
                   <li key={address.id} className="py-3 sm:py-4">
@@ -197,7 +197,7 @@ const AddressList = ({ }) => {
 
         </div>
       </div>
-      {console.log(isEddit, addressRef.current)}
+
       <ModalGoogle handlemodalMaps={handlemodalMaps} isModalOpen={isModalOpen} tittle={'Dirección de envío'} >
         <NewAdressForm onSelectAddress={onSelectAddress} scriptLoaded={scriptLoaded} handlemodalMaps={handlemodalMaps} setCostoEnvio={setCostoEnvio}
           address={() => addreses()}

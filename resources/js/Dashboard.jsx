@@ -15,14 +15,14 @@ const Dashboard = ({ user, section, general, categorias, cupones, cuponesUsados 
   const [selectedOption, setSelectedOption] = useState(section !== null ? section : 'Mi Perfil');
   const userDetail = useRef(user)
   const file = useRef(null)
-  console.log(user.profile_photo_path)
+
   const [imagePreview, setImagePreview] = useState(user.profile_photo_path ? `/${user.profile_photo_path}` : '/img_donas/user1.png');
 
   const fileInputRef = useRef(null);
   const formUser = useRef({})
 
   const changeImg = async () => {
-    console.log('changeImg')
+
     fileInputRef.current.click();
     // '/micuenta/cambiofoto'
 
@@ -41,7 +41,7 @@ const Dashboard = ({ user, section, general, categorias, cupones, cuponesUsados 
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('Imagen subida exitosamente:', response.data);
+
     } catch (error) {
       console.error('Error al subir la imagen:', error);
     }

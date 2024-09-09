@@ -33,7 +33,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
   };
 
   const pruebahandle = () => {
-    console.log('preuba')
+
   }
   // useEffect(() => {
   //   if (activeModal) {

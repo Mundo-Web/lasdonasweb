@@ -168,11 +168,11 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     //si ya existe el filtro que no lo agregue 
 
 
-    console.log(badges.tipoFlor)
+
 
 
     if (badges.tipoFlor.find(flor => flor.id == inputId)) {
-      console.log('erntro en el return');
+
 
       return
     }
@@ -183,7 +183,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
         tipoFlor: [{ id: inputId, name: spanContent }]
       }
     });
-    console.log(badges)
+
 
 
 

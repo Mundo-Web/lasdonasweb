@@ -43,7 +43,7 @@ const Option = (props) => {
 
 const SelectSecond = ({ options, title, handleOptionChange }) => {
 
-  console.log(options);
+
   return (
     <div>
       <Select
