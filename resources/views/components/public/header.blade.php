@@ -249,7 +249,7 @@
 
 <header class="font-b_classic_regular @if (!request()->is('micuenta*')) sticky @endif top-0" style="z-index:1">
 
-  <div id="header-mid" class="h-[80px] flex flex-row items-center bg-white">
+  <div id="header-mid" class="h-[80px] flex flex-row items-center bg-white !z-10">
     <div
       class="flex flex-row items-center justify-between gap-3 w-full px-[2%] xl:px-[8%]   text-[17px] relative bg-white ">
 
@@ -315,7 +315,7 @@
           <a class="flex" href="{{ route('login') }}"><img class="bg-white rounded-lg"
               src="{{ asset('img_donas/Group11.png') }}" alt="user" /></a>
         @else
-          <div class="relative  hidden md:inline-flex" x-data="{ open: false }">
+          <div class="relative  hidden md:inline-flex z-30" x-data="{ open: false }">
             <button class="px-3 py-5 inline-flex justify-center items-center group" aria-haspopup="true"
               @click.prevent="open = !open" :aria-expanded="open">
               <div class="flex items-center truncate">
@@ -330,8 +330,7 @@
             </button>
             <div
               class="origin-top-right z-30 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1"
-              @click.outside="open = false" @keydown.escape.window="open = false" x-show="open"
-              style="z-index: 10">
+              @click.outside="open = false" @keydown.escape.window="open = false" x-show="open">
               <ul>
                 <li class="hover:bg-gray-100">
                   @if (Auth::user()->hasRole('Admin'))
