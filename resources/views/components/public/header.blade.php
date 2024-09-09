@@ -8,6 +8,56 @@
 @endphp
 
 <style>
+  .swiper-container,
+  .swiper-wrapper,
+  .swiper-slide {
+    overflow: visible !important;
+  }
+
+  .swiper-slide {
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+  }
+
+  .tiporamo, .horario{
+    z-index: -1!important;
+  }
+   /* ---------------------------*/
+
+  .tiporamo .swiper-pagination{
+    position: relative!important;
+    margin-top: 20px!important;
+  }
+
+  .swiper-pagination-bullet {
+  background-color: #3e3b3a; /* Cambia el color del bullet */
+  width: 12px; /* Cambia el tamaño del bullet */
+  height: 12px;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #73b473; /* Cambia el color del bullet activo */
+  }
+
+  /* ---------------------------*/
+
+  .img-complementarias .swiper-pagination{
+    position: relative!important;
+    margin-top: 20px!important;
+  }
+
+  .swiper-pagination-bullet {
+  background-color: #3e3b3a; /* Cambia el color del bullet */
+  width: 12px; /* Cambia el tamaño del bullet */
+  height: 12px;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #73b473; /* Cambia el color del bullet activo */
+  }
+
+  /* ---------------------------*/
+  
   body {
     overflow-x: hidden;
   }

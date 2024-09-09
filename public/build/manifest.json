@@ -1,6 +1,6 @@
 {
-  "_Accordion2-JwOpBX2Z.js": {
-    "file": "assets/Accordion2-JwOpBX2Z.js",
+  "_Accordion2-z_2N6FZY.js": {
+    "file": "assets/Accordion2-z_2N6FZY.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -92,8 +92,8 @@
   "_objectWithoutPropertiesLoose-RRuG-_4m.js": {
     "file": "assets/objectWithoutPropertiesLoose-RRuG-_4m.js"
   },
-  "_react-select.esm-TyoCo2vl.js": {
-    "file": "assets/react-select.esm-TyoCo2vl.js",
+  "_react-select.esm-5VT3loop.js": {
+    "file": "assets/react-select.esm-5VT3loop.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -168,7 +168,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-C8WmlcLs.css",
+    "file": "assets/app-UIHXtUtJ.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -233,12 +233,12 @@
   },
   "resources/js/Agradecimiento.jsx": {
     "assets": [
-      "assets/SvgPuntos--FnXd_aC.svg"
+      "assets/SvgPuntos-hzKALqiY.svg"
     ],
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-ojQEt4uO.js",
+    "file": "assets/Agradecimiento-ttocQw_E.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -259,14 +259,14 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-GoEEgQhq.js",
+    "file": "assets/Carrito-WZYFNEU3.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
-      "_Accordion2-JwOpBX2Z.js",
+      "_Accordion2-z_2N6FZY.js",
       "_calcularTotal-FPqXOtx1.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
@@ -305,7 +305,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-k8iGcLFW.js",
+    "file": "assets/Dashboard-9aJT-E6e.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -313,7 +313,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-TyoCo2vl.js",
+      "_react-select.esm-5VT3loop.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
@@ -382,7 +382,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-AcMgV-JY.js",
+    "file": "assets/Pago-RCnzor_V.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -390,7 +390,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_react-select.esm-TyoCo2vl.js",
+      "_react-select.esm-5VT3loop.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
@@ -411,7 +411,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-1TwPbqXS.js",
+    "file": "assets/Product-V5LjBT77.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -423,7 +423,7 @@
       "_objectWithoutPropertiesLoose-RRuG-_4m.js",
       "_setPrototypeOf-ahVgEFUp.js",
       "_index-38suPYpT.js",
-      "_Accordion2-JwOpBX2Z.js",
+      "_Accordion2-z_2N6FZY.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-nY04P_z-.js",
       "_ProductCard-DeN9ohYo.js",
@@ -540,7 +540,7 @@
     "src": "resources/js/components/Button.jsx"
   },
   "resources/js/components/CalendarComponent.jsx": {
-    "file": "assets/CalendarComponent-bOcYKtRQ.js",
+    "file": "assets/CalendarComponent-l1It1ho9.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -631,7 +631,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Orders-Fqf2afN-.js",
+    "file": "assets/Orders-cg8knXB1.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -731,7 +731,7 @@
     "src": "resources/js/components/GoogleMapsComponent.jsx"
   },
   "resources/js/components/HorarioSection.jsx": {
-    "file": "assets/HorarioSection-SO9mNosc.js",
+    "file": "assets/HorarioSection-xJuW0iSd.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -765,7 +765,7 @@
     "src": "resources/js/components/InvoiceModal.jsx"
   },
   "resources/js/components/ListHorarios.jsx": {
-    "file": "assets/ListHorarios-SO9mNosc.js",
+    "file": "assets/ListHorarios-xJuW0iSd.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -776,7 +776,7 @@
     "src": "resources/js/components/ListHorarios.jsx"
   },
   "resources/js/components/ListHorariosPopup.jsx": {
-    "file": "assets/ListHorariosPopup-pM0eRYFM.js",
+    "file": "assets/ListHorariosPopup-tCa3Hi_V.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -934,10 +934,10 @@
       "assets/dxicons-NVJDH3Nn.ttf"
     ],
     "css": [
-      "assets/SalesDatagrid-kvJOWtWG.css",
+      "assets/SalesDatagrid-y6BCjmn-.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/SalesDatagrid-ry-EriVH.js",
+    "file": "assets/SalesDatagrid-RieZA41i.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -1035,7 +1035,7 @@
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/SvgPuntos.svg": {
-    "file": "assets/SvgPuntos--FnXd_aC.svg",
+    "file": "assets/SvgPuntos-hzKALqiY.svg",
     "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {

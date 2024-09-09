@@ -567,13 +567,13 @@
                     @enderror
                   </div>
                 </div>
-                <div class="md:col-span-5">
+                <div class="md:col-span-5" id=tipoFlorDiv>
                   <label for="costo_x_art">Tipo Flor</label>
                   <div class="relative mb-2  mt-2">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <i class="fa fa-pencil"></i>
                     </div>
-                    <select name="tipo_flor_id" required
+                    <select name="tipo_flor_id" required id="tipo_flor_id"
                       class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('tipo-flor_id') is-invalid @enderror">
                       <option value="">Seleccionar Tipo de Flor </option>
                       @foreach ($tipoFlor as $item)
@@ -1624,7 +1624,12 @@
         $('#puntos_container').show(); // Mostrar contenedor de puntos
         $('#puntos_complemento').prop('required', true); // Hacer el campo requerido
         $('#complemento_id').prop('required', true); // Hacer complemento_id requerido
+
+        $('#tipoFlorDiv').hide(); // Hacer complemento_id requerido
+        $('#tipo_flor_id').prop('required', false); // Hacer complemento_id requerido
+
       } else {
+
         $('[id="title"]').text('Producto')
         $('#producto').attr('placeholder', 'Producto')
 
@@ -1635,6 +1640,9 @@
         $('#agregarOpciones').show(); // Mostrar agregar opciones
         $('#puntos_complemento').prop('required', false); // Quitar el required del campo
         $('#complemento_id').prop('required', false); // Quitar el required de complemento_id
+
+        $('#tipoFlorDiv').show(); // Hacer complemento_id requerido
+        $('#tipo_flor_id').prop('required', true); // Hacer complemento_id requerido
       }
     });
   </script>
