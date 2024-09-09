@@ -12,10 +12,11 @@ use SoDe\Extend\Text;
 
 class MailingController extends Controller
 {
-    static function notifyPoints (User $userJpa, Ordenes $ordenJpa) {
+    static function notifyPoints(User $userJpa, Ordenes $ordenJpa)
+    {
         try {
             $content = File::get('../storage/app/utils/mailing/points.html');
-            $data=  [
+            $data =  [
                 'client' => $userJpa->toArray(),
                 'sale' => $ordenJpa->toArray(),
                 'domain' => env('APP_DOMAIN')
@@ -23,11 +24,13 @@ class MailingController extends Controller
             $mail = EmailConfig::config();
             $mail->Subject = 'Has acumulado ' . $ordenJpa->points . ' puntos';
             $mail->isHTML(true);
-            $mail->Body = Text::replaceData($content, JSON::flatten($data));
+            $mail->Body = Text::replaceData($content, JSON::flatten($data), [
+                'name' => fn($x) => explode(' ', $x)[0]
+            ]);
             $mail->addAddress($userJpa->email, $userJpa->name);
             $mail->send();
         } catch (\Throwable $th) {
-            dump($th->getMessage());
+            // dump($th->getMessage());
         }
     }
 }
