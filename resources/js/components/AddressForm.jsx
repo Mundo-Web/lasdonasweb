@@ -400,6 +400,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
             <div className="w-full">
               <label className="block text-sm font-medium text-gray-700">Tipo de domicilio</label>
               <div>
+                {console.log(formState.residenceType)}
                 <Select
                   name="residenceType"
                   required={true}
@@ -411,7 +412,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
                   placeholder="Selecciona Tipo de Domicilio"
                   className="gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-2xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
                 />
-
+                {handleSend && formState.residenceType == '' && <span className="text-red-500 text-sm mt-1">Este campo es obligatorio</span>}
               </div>
 
               {formState.residenceType === 'Otro' && (
