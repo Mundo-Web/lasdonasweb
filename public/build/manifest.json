@@ -21,13 +21,13 @@
       "_main-Vi8adC25.js"
     ]
   },
-  "_GoogleMapsComponent-ucoQQmgE.js": {
-    "file": "assets/GoogleMapsComponent-ucoQQmgE.js",
+  "_GoogleMapsComponent-HKLiRLHI.js": {
+    "file": "assets/GoogleMapsComponent-HKLiRLHI.js",
     "imports": [
       "_extends-wRoo2ExD.js",
       "resources/js/components/useOutsideClick.jsx",
       "_setPrototypeOf-ahVgEFUp.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
+      "_ModalGoogle-A55CytES.js",
       "_index-38suPYpT.js",
       "_floating-ui.dom-3uxmUvem.js",
       "resources/js/Example.jsx"
@@ -35,6 +35,14 @@
   },
   "_JSEncrypt-jwo8Dr6z.js": {
     "file": "assets/JSEncrypt-jwo8Dr6z.js"
+  },
+  "_ModalGoogle-A55CytES.js": {
+    "file": "assets/ModalGoogle-A55CytES.js",
+    "imports": [
+      "__commonjsHelpers-4gQjN7DL.js",
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx"
+    ]
   },
   "_ProductCard-DeN9ohYo.js": {
     "file": "assets/ProductCard-DeN9ohYo.js",
@@ -84,12 +92,6 @@
       "_floating-ui.dom-3uxmUvem.js",
       "resources/js/components/useOutsideClick.jsx",
       "_index-38suPYpT.js"
-    ]
-  },
-  "_hoist-non-react-statics.cjs-YYlJ_Lof.js": {
-    "file": "assets/hoist-non-react-statics.cjs-YYlJ_Lof.js",
-    "imports": [
-      "__commonjsHelpers-4gQjN7DL.js"
     ]
   },
   "_index-38suPYpT.js": {
@@ -354,7 +356,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-01qmzhxZ.js",
+    "file": "assets/Dashboard-iFHqwPzG.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -362,13 +364,14 @@
       "_CreateReactScript-VVPwJ0HX.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_GoogleMapsComponent-ucoQQmgE.js",
+      "_GoogleMapsComponent-HKLiRLHI.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
       "_tippy.esm-vXDZ6XwW.js",
       "resources/js/components/InvoiceModal.jsx",
       "resources/js/components/ClasicModal.jsx",
+      "_ModalGoogle-A55CytES.js",
       "_index-XJuWVQ-l.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
@@ -377,7 +380,6 @@
       "_storage-zp2nPsZU.js",
       "_extends-wRoo2ExD.js",
       "_setPrototypeOf-ahVgEFUp.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
       "_floating-ui.dom-3uxmUvem.js",
       "_jquery-_-XaHmv-.js",
       "_index-VFMbf6KQ.js"
@@ -435,7 +437,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-zCxBzONH.js",
+    "file": "assets/Pago-bf4abZio.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -443,7 +445,8 @@
       "_CreateReactScript-VVPwJ0HX.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_GoogleMapsComponent-ucoQQmgE.js",
+      "_GoogleMapsComponent-HKLiRLHI.js",
+      "_ModalGoogle-A55CytES.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
@@ -455,8 +458,7 @@
       "resources/js/Utils/CreateReactScript.jsx",
       "_main-Vi8adC25.js",
       "_extends-wRoo2ExD.js",
-      "_setPrototypeOf-ahVgEFUp.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js"
+      "_setPrototypeOf-ahVgEFUp.js"
     ],
     "isEntry": true,
     "src": "resources/js/Pago.jsx"
@@ -497,7 +499,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Register-3zq99DI1.js",
+    "file": "assets/Register-kCx19dac.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -506,7 +508,7 @@
       "_CreateReactScript-VVPwJ0HX.js",
       "_main-Vi8adC25.js",
       "_index-VFMbf6KQ.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
+      "_ModalGoogle-A55CytES.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "resources/js/components/Dashboard/Profile.jsx",
       "_index-38suPYpT.js",

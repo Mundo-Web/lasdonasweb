@@ -8,7 +8,10 @@ use App\Models\Constant;
 use App\Models\ModelHasRoles;
 use App\Models\User;
 use App\Models\Person;
+use App\Models\PoliticaDatos;
+use App\Models\PolyticsCondition;
 use App\Models\PreUser;
+use App\Models\TermsAndCondition;
 use App\Providers\RouteServiceProvider;
 use Exception;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -89,13 +92,19 @@ class AuthController extends Controller
         // ->with('PUBLIC_RSA_KEY', Controller::$PUBLIC_RSA_KEY)
         // ...
 
+        $termsAndCondicitions = TermsAndCondition::first();
+        $politicas = PolyticsCondition::first() ?? new PolyticsCondition();
+        
+
 
         return Inertia::render('Register', [
             'APP_PROTOCOL' => env('APP_PROTOCOL', 'https'),
             'PUBLIC_RSA_KEY' => Controller::$PUBLIC_RSA_KEY,
             'RECAPTCHA_SITE_KEY' => env('NOCAPTCHA_SITEKEY'),
             'APP_URL' => env('APP_URL'),
-            'terms' => Constant::value('terms')
+            'terms' => Constant::value('terms'),
+            'termsAndCondicitions' => $termsAndCondicitions, 
+            'politicas' => $politicas
         ])->rootView('auth');
     }
 

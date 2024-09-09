@@ -11,8 +11,9 @@ import Modal from './components/Modal'
 import HtmlContent from './Utils/HtmlContent'
 import Select from 'react-select';
 import Swal from 'sweetalert2'
+import ModalGoogle from './components/ModalGoogle'
 
-const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos y condiciones', APP_URL }) => {
+const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos y condiciones', APP_URL, termsAndCondicitions, politicas }) => {
 
   document.title = 'Registro | Las Doñas'
 
@@ -42,7 +43,7 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
   };
   const jsEncrypt = new JSEncrypt()
   jsEncrypt.setPublicKey(PUBLIC_RSA_KEY)
-  console.log(PUBLIC_RSA_KEY)
+
 
   // Estados
   const [loading, setLoading] = useState(true)
@@ -58,6 +59,10 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
   const confirmationRef = useRef()
   const termsRef = useRef()
 
+  const modalitem = useRef()
+
+  const [modalMaps, setModalMaps] = useState(false)
+
   const termsModalRef = useRef();
 
   useEffect(() => {
@@ -72,7 +77,7 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
     const password = passwordRef.current.value
     const confirmation = confirmationRef.current.value
 
-    console.log(password)
+
 
     if (password != confirmation) {
       return Swal.fire({
@@ -109,7 +114,7 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
       captcha: captchaValue,
       _token: token
     }
-    console.log(request)
+
     const result = await AuthRest.signup(request)
     if (!result) return setLoading(false)
 
@@ -126,6 +131,18 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
     { value: 'DNI', label: 'DNI - Documento Nacional de Identidad' },
     { value: 'CE', label: 'CE - Carnet de Extranjeria' },
   ];
+
+  const handlemodalMaps = () => {
+    setModalMaps(!modalMaps)
+  }
+
+  const handleModalpolic = (e) => {
+    const tipo = e.target.getAttribute('data-tipo')
+
+
+    modalitem.current = tipo
+    handlemodalMaps()
+  }
 
   return (<>
 
@@ -196,7 +213,7 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
                   placeholder="Confirme su contraseña" />
               </div>
               <div className="flex flex-col">
-                <div className="form-check mx-auto" style={{ width: 'max-content' }}>
+                {/* <div className="form-check mx-auto" style={{ width: 'max-content' }}>
                   <input ref={termsRef} type="checkbox" className="form-check-input" id="checkbox-signup" required />
                   <label className="form-check-label" htmlFor="checkbox-signup">
                     Acepto los
@@ -204,6 +221,18 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
                       href="#terms" className="ms-1 text-blue" onClick={() => $(termsModalRef.current).modal('show')}>
                       terminos y condiciones
                     </a>
+                  </label>
+                </div> */}
+                <div class="flex gap-3 px-4 items-center">
+                  <input ref={termsRef} type="checkbox" className="form-check-input" id="checkbox-signup" required />
+                  <label for="" class="font-normal text-sm ">Acepto la
+                    <span class=" font-bold text-[#006BF6]  cursor-pointer open-modal" data-tipo='PoliticaPriv' onClick={handleModalpolic}> Política
+                      de
+                      Privacidad </span>
+                    y los {' '}
+                    <span class=" font-bold text-[#006BF6] open-modal cursor-pointer open-modal" data-tipo='terminosUso'
+                      onClick={handleModalpolic}>
+                      Términos de Uso </span>
                   </label>
                 </div>
               </div>
@@ -220,8 +249,8 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
 
             <div className="row mt-3">
               <div className="col-12 text-center">
-                <p className="text-muted">Ya tienes una cuenta? <Link href="/login"
-                  className="text-dark ms-1"><b>Iniciar sesion</b></Link></p>
+                <p className="text-muted">Ya tienes una cuenta? <a href="/login"
+                  className="text-dark ms-1"><b>Iniciar sesion</b></a></p>
               </div>
             </div>
 
@@ -230,6 +259,15 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
         </div>
       </div>
     </div>
+
+
+    <ModalGoogle handlemodalMaps={handlemodalMaps}
+      isModalOpen={modalMaps} tittle={modalitem.current == 'PoliticaPriv' ? 'Politica de Prtivacidad ' : 'Terminos de Uso'}
+    >
+      {
+        modalitem.current == 'PoliticaPriv' ? <HtmlContent html={politicas.content} /> : <HtmlContent html={termsAndCondicitions.content} />
+      }
+    </ModalGoogle>
 
 
   </>)
