@@ -15,7 +15,7 @@ import ModalSimple from './components/ModalSimple'
 
 import { format, toZonedTime } from 'date-fns-tz'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'; 
+import { Navigation } from 'swiper/modules';
 import { Pagination } from 'swiper/modules';
 
 import Accordion from './Accordion2'
@@ -416,9 +416,9 @@ const Product = ({
     <>
       <main className="flex flex-col gap-3 lg:gap-12 mt-3 md:mt-12 font-b_slick_bold">
         <section>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 px-[5%] lg:px-[5%] gap-5 lg:gap-10 pt-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-black uppercase pb-3 lg:hidden">{currentProduct.producto}</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-black uppercase pb-3 lg:hidden">{currentProduct.producto}</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3  gap-y-5 lg:gap-8 h-max" id="containerImagenesP">
 
               {caratula2 ? (
@@ -460,7 +460,7 @@ const Product = ({
                     disableOnInteraction: true,
                     pauseOnMouseEnter: true,
                   }}
-                  navigation={{ 
+                  navigation={{
                     nextEl: '.navnext',
                     prevEl: '.navprev',
                   }}
@@ -469,7 +469,7 @@ const Product = ({
                     0: {
                       slidesPerView: 3,
                       centeredSlides: false,
-                      spaceBetween:10,
+                      spaceBetween: 10,
                       loop: true,
                     },
                     1024: {
@@ -493,9 +493,9 @@ const Product = ({
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                <div className="sm:hidden cursor-pointer navprev text-2xl absolute top-1/2 left-0 z-10 transform -translate-y-1/2"><i class="fa-solid fa-circle-left rounded-full bg-white text-[#FF8555]"></i></div>
-                <div className="sm:hidden cursor-pointer navnext text-2xl  absolute top-1/2 right-0 z-10 transform -translate-y-1/2"><i class="fa-solid fa-circle-right rounded-full bg-white text-[#FF8555]"></i></div>
-               
+                <div className="sm:hidden cursor-pointer navprev text-2xl absolute top-1/2 left-0 z-10 transform -translate-y-1/2"><i className="fa-solid fa-circle-left rounded-full bg-white text-[#FF8555]"></i></div>
+                <div className="sm:hidden cursor-pointer navnext text-2xl  absolute top-1/2 right-0 z-10 transform -translate-y-1/2"><i className="fa-solid fa-circle-right rounded-full bg-white text-[#FF8555]"></i></div>
+
               </div>
 
             </div>
@@ -512,31 +512,31 @@ const Product = ({
               {
                 selectedHorario && selectedDate
                   ? <div className='mb-8 flex flex-row justify-between border rounded-lg p-3'>
-                      <div>
-                        <p>
-                          Fecha escogida: {new Intl.DateTimeFormat('es-ES', {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                          }).format(selectedDate)}
-                        </p>
-                        <span>
-                          De {horarioSeleccionado?.start_time} a {horarioSeleccionado?.end_time}
-                        </span>
-                      </div>
-                      <Tippy content='Seleccionar otra fecha'>
-                        <button className='py-2 px-3 text-red-500 hover:text-red-300' onClick={() => {
-                          setSelectedHorario(null)
-                          setSelectedDate(new Date())
-                        }}>
-                          <i className='fa fa-trash'></i>
-                        </button>
-                      </Tippy>
+                    <div>
+                      <p>
+                        Fecha escogida: {new Intl.DateTimeFormat('es-ES', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        }).format(selectedDate)}
+                      </p>
+                      <span>
+                        De {horarioSeleccionado?.start_time} a {horarioSeleccionado?.end_time}
+                      </span>
                     </div>
+                    <Tippy content='Seleccionar otra fecha'>
+                      <button className='py-2 px-3 text-red-500 hover:text-red-300' onClick={() => {
+                        setSelectedHorario(null)
+                        setSelectedDate(new Date())
+                      }}>
+                        <i className='fa fa-trash'></i>
+                      </button>
+                    </Tippy>
+                  </div>
                   : <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
-                
-                {/* <Swiper
+
+                    {/* <Swiper
                   className="h-full horario"
                   slidesPerView={1}
                   autoHeight={true}
@@ -564,79 +564,36 @@ const Product = ({
                     },
                   }}
                 >      */}
-                      {/* <SwiperSlide className='!overflow-visible'> */}
-                        {general.acept_incoming_orders_today == true ?
-                          (<div
-                            className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-full  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
-                            <HorarioSection
-                              id="hoy"
-                              title="Hoy"
-                              horarios={horariosHoy}
-                              loadListHorarios={loadListHorariosHoy}
-                              setLoadListHorarios={setLoadListHorariosHoy}
-                              selectedHorario={selectedHorario}
-                              setSelectedHorario={setSelectedHorario}
-                              setDetallePedido={setDetallePedido}
-                              setSelectedDate={setSelectedDate}
-                            />
-
-                            {horariosHoy.length === 0 ? (
-                              <p key="no-disponible" className="text-sm font-normal">No disponible</p>
-                            ) : (
-
-                              <p className="text-sm font-normal">
-                                Disponible
-                              </p>
-
-                            )}
-                            <div className='mt-2'>
-
-                              {
-
-                                selectedHorario && detallePedido.fecha == 'hoy' && (
-                                  <>
-                                    {(() => {
-                                      const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
-                                      if (selectedHorarioItem) {
-                                        return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
-                                      }
-                                      return null;
-                                    })()}
-                                  </>
-                                )
-                              }
-                            </div>
-
-                          </div>) : (
-                          <div
-                              className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
-                              <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
-                          </div>)
-                        }
-                      {/* </SwiperSlide> */}
-                      {/* <SwiperSlide className='!overflow-y-visible'> */}
-                      <div className={`relative flex flex-col justify-center items-center  text-center w-full 
-                  ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
-                        htmlFor="manana"
-                      >
+                    {/* <SwiperSlide className='!overflow-visible'> */}
+                    {general.acept_incoming_orders_today == true ?
+                      (<div
+                        className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-full  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
                         <HorarioSection
-                          id="manana"
-                          title="Mañana"
-                          date={tomorrowDate}
-                          horarios={horarios}
-                          loadListHorarios={loadListHorariosManana}
-                          setLoadListHorarios={setLoadListHorariosManana}
+                          id="hoy"
+                          title="Hoy"
+                          horarios={horariosHoy}
+                          loadListHorarios={loadListHorariosHoy}
+                          setLoadListHorarios={setLoadListHorariosHoy}
                           selectedHorario={selectedHorario}
                           setSelectedHorario={setSelectedHorario}
                           setDetallePedido={setDetallePedido}
                           setSelectedDate={setSelectedDate}
                         />
 
+                        {horariosHoy.length === 0 ? (
+                          <p key="no-disponible" className="text-sm font-normal">No disponible</p>
+                        ) : (
+
+                          <p className="text-sm font-normal">
+                            Disponible
+                          </p>
+
+                        )}
                         <div className='mt-2'>
 
                           {
 
-                            selectedHorario && detallePedido.fecha == 'manana' && (
+                            selectedHorario && detallePedido.fecha == 'hoy' && (
                               <>
                                 {(() => {
                                   const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
@@ -650,35 +607,78 @@ const Product = ({
                           }
                         </div>
 
+                      </div>) : (
+                        <div
+                          className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
+                          <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
+                        </div>)
+                    }
+                    {/* </SwiperSlide> */}
+                    {/* <SwiperSlide className='!overflow-y-visible'> */}
+                    <div className={`relative flex flex-col justify-center items-center  text-center w-full 
+                  ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
+                      htmlFor="manana"
+                    >
+                      <HorarioSection
+                        id="manana"
+                        title="Mañana"
+                        date={tomorrowDate}
+                        horarios={horarios}
+                        loadListHorarios={loadListHorariosManana}
+                        setLoadListHorarios={setLoadListHorariosManana}
+                        selectedHorario={selectedHorario}
+                        setSelectedHorario={setSelectedHorario}
+                        setDetallePedido={setDetallePedido}
+                        setSelectedDate={setSelectedDate}
+                      />
+
+                      <div className='mt-2'>
+
+                        {
+
+                          selectedHorario && detallePedido.fecha == 'manana' && (
+                            <>
+                              {(() => {
+                                const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                                if (selectedHorarioItem) {
+                                  return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                                }
+                                return null;
+                              })()}
+                            </>
+                          )
+                        }
                       </div>
-                      {/* </SwiperSlide> */}
-                      {/* <SwiperSlide className='!overflow-y-visible'> */}
-                      <div
 
-                        onClick={openModalCalendario}
-                        className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-full  border-2 px-3 py-5 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
-                        <p className="text-lg font-bold m-auto">Más fechas</p>
-                        <div className='mt-2'>
-
-                          {
-
-                            selectedHorario && detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && (
-                              <>
-                                {(() => {
-                                  const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
-                                  if (selectedHorarioItem) {
-                                    return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
-                                  }
-                                  return null;
-                                })()}
-                              </>
-                            )
-                          }
-                        </div>
-                      </div>
-                      {/* </SwiperSlide> */}
-                {/* </Swiper> */}
                     </div>
+                    {/* </SwiperSlide> */}
+                    {/* <SwiperSlide className='!overflow-y-visible'> */}
+                    <div
+
+                      onClick={openModalCalendario}
+                      className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-full  border-2 px-3 py-5 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
+                      <p className="text-lg font-bold m-auto">Más fechas</p>
+                      <div className='mt-2'>
+
+                        {
+
+                          selectedHorario && detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && (
+                            <>
+                              {(() => {
+                                const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                                if (selectedHorarioItem) {
+                                  return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                                }
+                                return null;
+                              })()}
+                            </>
+                          )
+                        }
+                      </div>
+                    </div>
+                    {/* </SwiperSlide> */}
+                    {/* </Swiper> */}
+                  </div>
               }
 
 
@@ -692,159 +692,159 @@ const Product = ({
 
               <div className="flex flex-row justify-between gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
                 <ul className=" w-full gap-6 ">
-                  
-                <Swiper
-                  className="h-full tiporamo mx-5 md:mx-0"
-                  slidesPerView={2}
-                  autoHeight={true}
-                  spaceBetween={25}
-                  loop={false}
-                  centeredSlides={true}
-                  initialSlide={0}
-                  allowTouchMove={true}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  modules={[Pagination]} 
-                  autoplay={{
-                    delay: 5500,
-                    disableOnInteraction: true,
-                    pauseOnMouseEnter: true,
-                  }}
 
-                  breakpoints={{
-                    0: {
-                      slidesPerView: 1,
-                      centeredSlides: false,
-                      spaceBetween:20,
-                      loop: true,
-                    },
-                    1024: {
-                      slidesPerView: 3,
-                      centeredSlides: false,
-                    },
-                  }}
-                >     
-                <SwiperSlide>
-                  <li>
-                    <input
-                      type="radio"
-                      id="react-option"
-                      name="framework"
-                      value={tipoDefault.name}
-                      className="hidden peer radio-option"
-                      required
-                      defaultChecked={tipoDefault.name === 'Clasico'}
-                    />
-                    <label
-                      htmlFor="react-option"
-                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-around gap-5 w-full p-5 border-2 border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-2 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
-                      onClick={() => handleSelecttionOption(productos)}
-                    >
+                  <Swiper
+                    className="h-full tiporamo mx-5 md:mx-0"
+                    slidesPerView={2}
+                    autoHeight={true}
+                    spaceBetween={25}
+                    loop={false}
+                    centeredSlides={true}
+                    initialSlide={0}
+                    allowTouchMove={true}
+                    pagination={{
+                      clickable: true,
+                    }}
+                    modules={[Pagination]}
+                    autoplay={{
+                      delay: 5500,
+                      disableOnInteraction: true,
+                      pauseOnMouseEnter: true,
+                    }}
 
-                      <div className="flex flex-col justify-center items-center">
-
-                        {tipoDefault.name === 'Premium' ? (
-                          <svgFlorPremium className="svg-icon" />
-                        ) : tipoDefault.name === 'Deluxe' ? (
-                          <SvgFlorDeluxe className="svg-icon" />
-                        ) : (
-
-                          <SvgFlorClasic className="svg-icon" />
-                        )}
-                      </div>
-
-                      <div className={`flex flex-col justify-center items-center ${currentProduct?.tipos?.name == undefined ? 'text-[#73B473]' : 'text-[#E8EDDE]'}`}>
-
-                        <p className="text-base font-semibold">{tipoDefault.name}</p>
-
-                        {Number(product.descuento) > 0 ? (
-                          <>
-                            <p className={` font-normal line-through ${currentProduct?.tipos?.name == undefined ? 'text-gray-400 text-[14px]' : ''}`}>
-
-                              S/ <span>{Number(product.precio).toFixed(0)}</span>
-                            </p>
-                            <p className="text-base font-bold">
-                              S/ <span>{Number(product.descuento).toFixed(0)}</span>
-                            </p>
-
-                          </>
-                        ) : (<><p className="text-base font-bold">
-                          S/ <span>{Number(product.precio).toFixed(0)}</span>
-                        </p></>)}
-
-                      </div>
-                    </label>
-                  </li>
-                  </SwiperSlide>
-                  {subproductos.map((item, index) => {
-
-
-                    let selected = currentProduct.tipos?.name === item.tipos.name;
-
-                    if (currentProduct.tipos?.name == undefined) {
-                      selected = false;
-                    } else if (currentProduct.tipos?.name == item.tipos.name) {
-                      selected = true;
-                    }
-
-                    return (
-                      <SwiperSlide>
-                      <li key={index}>
+                    breakpoints={{
+                      0: {
+                        slidesPerView: 1,
+                        centeredSlides: false,
+                        spaceBetween: 20,
+                        loop: true,
+                      },
+                      1024: {
+                        slidesPerView: 3,
+                        centeredSlides: false,
+                      },
+                    }}
+                  >
+                    <SwiperSlide>
+                      <li>
                         <input
                           type="radio"
-                          id={`${item.tipos.name}-option`}
+                          id="react-option"
                           name="framework"
-                          value={item.tipos.name}
+                          value={tipoDefault.name}
                           className="hidden peer radio-option"
+                          required
+                          defaultChecked={tipoDefault.name === 'Clasico'}
                         />
                         <label
-                          onClick={() => handleSelecttionOption(item)}
-                          htmlFor={`${item.tipos.name}-option`}
-                          className="box-sizing: border-box radio-option-label inline-flex items-center justify-around gap-5 w-full p-5 border-2 border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100 peer-checked:border-2"
+                          htmlFor="react-option"
+                          className="box-sizing: border-box radio-option-label inline-flex items-center justify-around gap-5 w-full p-5 border-2 border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-2 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
+                          onClick={() => handleSelecttionOption(productos)}
                         >
+
                           <div className="flex flex-col justify-center items-center">
-                            {item.tipos.name === 'Premium' ? (
-                              <SvgFlorPremium className="svg-icon" />
-                            ) : item.tipos.name === 'Deluxe' ? (
+
+                            {tipoDefault.name === 'Premium' ? (
+                              <svgFlorPremium className="svg-icon" />
+                            ) : tipoDefault.name === 'Deluxe' ? (
                               <SvgFlorDeluxe className="svg-icon" />
                             ) : (
+
                               <SvgFlorClasic className="svg-icon" />
                             )}
                           </div>
 
-                          <div
-                            className={`flex flex-col justify-center items-center 
-                              ${selected && (item.tipos.name === 'Premium' || item.tipos.name === 'Deluxe')
-                                ? 'text-[#73B473]'
-                                : 'text-[#E8EDDE]'
-                              }`}
-                          >
-                            <p className="text-base font-semibold">{item.tipos.name}</p>
-                            {console.log(selected)}
-                            {Number(item.descuento) > 0 ? (
+                          <div className={`flex flex-col justify-center items-center ${currentProduct?.tipos?.name == undefined ? 'text-[#73B473]' : 'text-[#E8EDDE]'}`}>
+
+                            <p className="text-base font-semibold">{tipoDefault.name}</p>
+
+                            {Number(product.descuento) > 0 ? (
                               <>
-                                <p className={` font-normal line-through ${selected == true ? 'text-gray-400 text-[14px]' : ''} `}>
-                                  S/ <span>{Number(item.precio).toFixed(0)}</span>
+                                <p className={` font-normal line-through ${currentProduct?.tipos?.name == undefined ? 'text-gray-400 text-[14px]' : ''}`}>
+
+                                  S/ <span>{Number(product.precio).toFixed(0)}</span>
                                 </p>
-                                <p className="text-base font-bold ">
-                                  S/ <span>{Number(item.descuento).toFixed(0)}</span>
+                                <p className="text-base font-bold">
+                                  S/ <span>{Number(product.descuento).toFixed(0)}</span>
                                 </p>
 
                               </>
-                            ) : (
-                              <>
-                                <p className="text-base font-normal">
-                                  S/ <span>{Number(item.precio).toFixed(0)}</span>
-                                </p>
-                              </>
-                            )}
+                            ) : (<><p className="text-base font-bold">
+                              S/ <span>{Number(product.precio).toFixed(0)}</span>
+                            </p></>)}
+
                           </div>
                         </label>
                       </li>
-                      </SwiperSlide>
-                    );
-                  })}
+                    </SwiperSlide>
+                    {subproductos.map((item, index) => {
+
+
+                      let selected = currentProduct.tipos?.name === item.tipos.name;
+
+                      if (currentProduct.tipos?.name == undefined) {
+                        selected = false;
+                      } else if (currentProduct.tipos?.name == item.tipos.name) {
+                        selected = true;
+                      }
+
+                      return (
+                        <SwiperSlide>
+                          <li key={index}>
+                            <input
+                              type="radio"
+                              id={`${item.tipos.name}-option`}
+                              name="framework"
+                              value={item.tipos.name}
+                              className="hidden peer radio-option"
+                            />
+                            <label
+                              onClick={() => handleSelecttionOption(item)}
+                              htmlFor={`${item.tipos.name}-option`}
+                              className="box-sizing: border-box radio-option-label inline-flex items-center justify-around gap-5 w-full p-5 border-2 border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100 peer-checked:border-2"
+                            >
+                              <div className="flex flex-col justify-center items-center">
+                                {item.tipos.name === 'Premium' ? (
+                                  <SvgFlorPremium className="svg-icon" />
+                                ) : item.tipos.name === 'Deluxe' ? (
+                                  <SvgFlorDeluxe className="svg-icon" />
+                                ) : (
+                                  <SvgFlorClasic className="svg-icon" />
+                                )}
+                              </div>
+
+                              <div
+                                className={`flex flex-col justify-center items-center 
+                              ${selected && (item.tipos.name === 'Premium' || item.tipos.name === 'Deluxe')
+                                    ? 'text-[#73B473]'
+                                    : 'text-[#E8EDDE]'
+                                  }`}
+                              >
+                                <p className="text-base font-semibold">{item.tipos.name}</p>
+                                {console.log(selected)}
+                                {Number(item.descuento) > 0 ? (
+                                  <>
+                                    <p className={` font-normal line-through ${selected == true ? 'text-gray-400 text-[14px]' : ''} `}>
+                                      S/ <span>{Number(item.precio).toFixed(0)}</span>
+                                    </p>
+                                    <p className="text-base font-bold ">
+                                      S/ <span>{Number(item.descuento).toFixed(0)}</span>
+                                    </p>
+
+                                  </>
+                                ) : (
+                                  <>
+                                    <p className="text-base font-normal">
+                                      S/ <span>{Number(item.precio).toFixed(0)}</span>
+                                    </p>
+                                  </>
+                                )}
+                              </div>
+                            </label>
+                          </li>
+                        </SwiperSlide>
+                      );
+                    })}
                   </Swiper>
                 </ul>
               </div>
@@ -927,7 +927,7 @@ const Product = ({
                 pagination={{
                   clickable: true,
                 }}
-                modules={[Pagination]} 
+                modules={[Pagination]}
                 autoplay={{
                   delay: 5500,
                   disableOnInteraction: true,
@@ -952,7 +952,7 @@ const Product = ({
                     slidesPerView: 5,   // Desktops grandes (Swiper toma 5 columnas)
                   },
                 }}
-                style={{ zIndex: 0}}
+                style={{ zIndex: 0 }}
               >
                 {complementos.map((complemento, index) => (
                   <SwiperSlide key={index} className='self-start'>

@@ -26,6 +26,10 @@
 
   /* ---------------------------*/
 
+  .jquery-modal.blocker.current {
+    z-index: 20 !important;
+  }
+
   .tiporamo .swiper-pagination {
     position: relative !important;
     margin-top: 20px !important;
