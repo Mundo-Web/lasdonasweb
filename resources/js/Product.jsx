@@ -878,7 +878,7 @@ const Product = ({
             <div className="w-full flex justify-start mt-4">
               <button
                 type="button"
-                className="flex items-center bg-white text-[#ff7344] px-4 py-2 rounded-lg border border-[#ff7344]"
+                className="flex items-center bg-white text-[#ff7344] px-4 py-2 rounded-lg border border-[#ff7344] hover:text-white hover:bg-[#ff7344]"
                 onClick={() => openModalComplementos(complementosAcordion)}
               >
                 <img src="/img_donas/regalo.svg" alt="Regalo" className="w-5 h-5 mr-2" />
