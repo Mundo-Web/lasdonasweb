@@ -45,11 +45,33 @@ const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
       }
     };
 
+    // autocomplete.addListener('place_changed', () => {
+    //   const place = autocomplete.getPlace();
+    //   if (place.geometry) {
+    //     mapRef.current.setCenter(place.geometry.location);
+    //     placeMarker(place.geometry.location);
+    //   }
+    // });
+
     autocomplete.addListener('place_changed', () => {
+
       const place = autocomplete.getPlace();
       if (place.geometry) {
         mapRef.current.setCenter(place.geometry.location);
         placeMarker(place.geometry.location);
+
+        // Obtener el cÃ³digo postal
+        let postalCode = '';
+        for (const component of place.address_components) {
+          if (component.types.includes('postal_code')) {
+            postalCode = component.long_name;
+            break;
+          }
+        }
+
+        // Pasar el lugar y el cÃ³digo postal a la funciÃ³n managezipCode
+
+        managezipCode(place, postalCode);
       }
     });
 
@@ -77,7 +99,7 @@ const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
 
   return (
     <div>
-      <input id="pac-input" className="controls w-full mb-5 gap-2 self-stretch px-6 py-4 mt-4  text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full" type="text" placeholder="Ingresa una ubicacion" />
+      <input id="pac-input" className="controls w-full mb-5 gap-2 self-stretch px-6 py-4 mt-4  text-sm tracking-wide rounded-2xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full" type="text" placeholder="Ingresa una ubicacion" />
       <div id="map" style={{ height: '400px', width: '100%' }}></div>
     </div>
   );
