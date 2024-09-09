@@ -265,7 +265,7 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
       isModalOpen={modalMaps} tittle={modalitem.current == 'PoliticaPriv' ? 'Politica de Prtivacidad ' : 'Terminos de Uso'}
     >
       {
-        modalitem.current == 'PoliticaPriv' ? <HtmlContent html={politicas.content} /> : <HtmlContent html={termsAndCondicitions.content} />
+        modalitem.current == 'PoliticaPriv' ? <HtmlContent html={politicas?.content ?? ''} /> : <HtmlContent html={termsAndCondicitions?.content ?? ''} />
       }
     </ModalGoogle>
 

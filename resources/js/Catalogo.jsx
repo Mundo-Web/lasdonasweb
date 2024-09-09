@@ -428,6 +428,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
       signal: signal
     });
 
+    console.log(result.data)
 
     const { data, totalCount: totalRegistros } = result.data
     if (currentPage == 1) {

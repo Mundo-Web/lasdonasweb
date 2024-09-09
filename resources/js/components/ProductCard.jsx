@@ -20,6 +20,12 @@ const ProductCard = (item) => {
     }
   }, [item.descuento]);
 
+  const maxPrice = item.componentes_hijos?.reduce((max, current) => {
+    return current.precio > max ? current.precio : max;
+  }, 0);
+
+  console.log(maxPrice);
+
   return (
     <div className="flex flex-col gap-7 col-span-1 font-b_slick_bold">
       <a
@@ -61,28 +67,36 @@ const ProductCard = (item) => {
           )}
         </div>
         <div className="p-4">
-          <h2 className="block text-xl text-[#112212] mb-1 font-bold truncate">{item.producto}</h2>
+          <h2 className="block text-xl text-[#112212] mb-1 font-bold truncate content-between">{item.producto}</h2>
           <p className="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[48px] mb-1 font-b_classic_regular tracking-wide">
             {item.extract}
+
           </p>
-          <div className="flex items-center space-x-2">
-            {item.descuento > 0 ? (
+          <div className={`flex  space-x-2 ${maxPrice > 0 ? 'items-between  justify-between content-between' : ''}`}>
+
+            {maxPrice ? (
               <>
-                <p className="text-[#112212] font-bold">
-                  S/ <span>{item.descuento}</span>
-                </p>
-                <p className="text-[rgba(17,34,18,0.8)] line-through text-sm">
-                  S/ <span>{item.precio}</span>
-                </p>
+                <div className="flex gap-10 ">
+                  <div className="text-[#112212] font-bold flex flex-col">
+                    <span className="text-[#112212] opacity-80">Desde</span>
+                    <span> S/ {item.precio} </span>
+                  </div>
+                  <div className="text-[#112212] font-bold flex flex-col">
+                    <span className="text-[#112212] opacity-80">Hasta </span>
+                    <span>S/ {maxPrice}</span>
+                  </div>
+                </div>
+
               </>
             ) : (
-              <p className="text-[#112212] font-bold">
-                S/ <span>{item.precio}</span>
-              </p>
+              <div className="text-[#112212] font-bold flex flex-col">
+                <span className="text-[#112212] opacity-80">Precio</span>
+                <span> S/ {item.precio} </span>
+              </div>
             )}
           </div>
         </div>
-      </a>
+      </a >
       <div className="w-full mt-4">
         <a
           href={`/producto/${item.id}`}
@@ -93,7 +107,7 @@ const ProductCard = (item) => {
           <i className="ml-2 fa-solid fa-arrow-right"></i>
         </a>
       </div>
-    </div>
+    </div >
   );
 };
 

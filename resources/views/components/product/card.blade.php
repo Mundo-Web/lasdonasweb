@@ -9,7 +9,7 @@
     border: none;
     border-radius: 0.5em;
     color: #DEDEDE;
-    
+
   }
 
   #btnespecial::before {
@@ -31,12 +31,23 @@
   }
 
   #btnespecial:active {
-    
+
     transform: translate(0.1em, 0.1em);
   }
-  
 </style>
 {{-- box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3); --}}
+@php
+  $maxPrice = 0;
+
+  if (isset($item->componentes_hijos)) {
+      foreach ($item->componentes_hijos as $componente) {
+          // dump($componente->precio); // Esto imprimirá el precio en cada iteración
+          if (isset($componente->precio) && floatval($componente->precio) > $maxPrice) {
+              $maxPrice = floatval($componente->precio);
+          }
+      }
+  }
+@endphp
 <div class="flex flex-col gap-7 col-span-1 font-b_slick_bold tracking-wider">
   <a class="rounded-xl bg-white shadow-lg overflow-hidden" href="{{ route('Product.jsx', $item->id) }}">
     <div class="bg-[#FFF4ED] rounded-t-xl overflow-hidden relative">
@@ -76,11 +87,22 @@
       {{ $item->extract }}
     </p>
     <div class="flex items-center  space-x-2">
-      @if ($item->descuento > 0)
-        <p class="text-[#112212] font-bold">S/ <span>{{ $item->descuento }}</span></p>
-        <p class="text-[rgba(17,34,18,0.8)] line-through text-sm">S/ <span>{{ $item->precio }}</span></p>
+      @if ($maxPrice)
+        <div class="flex gap-10">
+          <div class="text-[#112212] font-bold flex flex-col">
+            <span class="text-[#112212] opacity-80">Desde</span>
+            <span>S/ {{ $item->precio }}</span>
+          </div>
+          <div class="text-[#112212] font-bold flex flex-col">
+            <span class="text-[#112212] opacity-80">Hasta</span>
+            <span>S/ {{ $maxPrice }}</span>
+          </div>
+        </div>
       @else
-        <p class="text-[#112212] font-bold">S/ <span>{{ $item->precio }}</span></p>
+        <div class="text-[#112212] font-bold flex flex-col">
+          <span class="text-[#112212] opacity-80">Precio</span>
+          <span>{{ $maxPrice }} S/ {{ $item->precio }}</span>
+        </div>
       @endif
     </div>
   </div>
