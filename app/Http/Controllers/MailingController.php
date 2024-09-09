@@ -25,7 +25,7 @@ class MailingController extends Controller
             $mail->Subject = 'Has acumulado ' . $ordenJpa->points . ' puntos';
             $mail->isHTML(true);
             $mail->Body = Text::replaceData($content, JSON::flatten($data), [
-                'name' => fn($x) => explode(' ', $x)[0]
+                'client.name' => fn($x) => explode(' ', $x)[0]
             ]);
             $mail->addAddress($userJpa->email, $userJpa->name);
             $mail->send();
