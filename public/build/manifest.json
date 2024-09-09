@@ -1,18 +1,14 @@
 {
-  "_Accordion2-1IUm3Q-f.js": {
-    "file": "assets/Accordion2-1IUm3Q-f.js",
+  "_Accordion2-ZBD-2n7B.js": {
+    "file": "assets/Accordion2-ZBD-2n7B.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_axios-_sX4vCAy.js",
-      "_storage-zp2nPsZU.js"
-    ]
-  },
-  "_Button-Kf83L5Z1.js": {
-    "file": "assets/Button-Kf83L5Z1.js",
-    "imports": [
-      "resources/js/Example.jsx",
-      "resources/js/components/useOutsideClick.jsx"
+      "_storage-zp2nPsZU.js",
+      "resources/js/components/Dashboard/Profile.jsx",
+      "_tippy.esm-vXDZ6XwW.js",
+      "_index-38suPYpT.js"
     ]
   },
   "_CreateReactScript-OQMMn-O_.js": {
@@ -96,8 +92,8 @@
   "_objectWithoutPropertiesLoose-RRuG-_4m.js": {
     "file": "assets/objectWithoutPropertiesLoose-RRuG-_4m.js"
   },
-  "_react-select.esm-EJLyBHlG.js": {
-    "file": "assets/react-select.esm-EJLyBHlG.js",
+  "_react-select.esm-AzgxgjZy.js": {
+    "file": "assets/react-select.esm-AzgxgjZy.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -172,16 +168,17 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-i-f5hTjF.css",
+    "file": "assets/app-C8WmlcLs.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/Accordion.jsx": {
-    "file": "assets/Accordion-38S3R8rg.js",
+    "file": "assets/Accordion-CAt2oyD-.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_storage-zp2nPsZU.js",
+      "resources/js/components/Dashboard/Profile.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
       "_index-XJuWVQ-l.js"
     ],
@@ -189,11 +186,12 @@
     "src": "resources/js/Accordion.jsx"
   },
   "resources/js/Accordion2.jsx": {
-    "file": "assets/Accordion2-38S3R8rg.js",
+    "file": "assets/Accordion2-CAt2oyD-.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_storage-zp2nPsZU.js",
+      "resources/js/components/Dashboard/Profile.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
       "_index-XJuWVQ-l.js"
     ],
@@ -201,11 +199,12 @@
     "src": "resources/js/Accordion2.jsx"
   },
   "resources/js/AccordionContent.jsx": {
-    "file": "assets/AccordionContent-38S3R8rg.js",
+    "file": "assets/AccordionContent-CAt2oyD-.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_storage-zp2nPsZU.js",
+      "resources/js/components/Dashboard/Profile.jsx",
       "__commonjsHelpers-4gQjN7DL.js",
       "_index-XJuWVQ-l.js"
     ],
@@ -260,21 +259,22 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-vSCDpPpf.js",
+    "file": "assets/Carrito-2ZNpU_t1.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
-      "_Accordion2-1IUm3Q-f.js",
+      "_Accordion2-ZBD-2n7B.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_Button-Kf83L5Z1.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_axios-_sX4vCAy.js",
-      "_index-XJuWVQ-l.js"
+      "_index-XJuWVQ-l.js",
+      "resources/js/components/Dashboard/Profile.jsx",
+      "_tippy.esm-vXDZ6XwW.js"
     ],
     "isEntry": true,
     "src": "resources/js/Carrito.jsx"
@@ -305,7 +305,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-Y_WddgVJ.js",
+    "file": "assets/Dashboard-4vsvHfDf.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -313,14 +313,13 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_react-select.esm-EJLyBHlG.js",
+      "_react-select.esm-AzgxgjZy.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
       "_tippy.esm-vXDZ6XwW.js",
       "resources/js/components/InvoiceModal.jsx",
       "resources/js/components/ClasicModal.jsx",
-      "_Button-Kf83L5Z1.js",
       "_index-XJuWVQ-l.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
@@ -383,7 +382,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-I-XYgkG0.js",
+    "file": "assets/Pago-aCGySf8m.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -391,8 +390,7 @@
       "_CreateReactScript-OQMMn-O_.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_react-select.esm-EJLyBHlG.js",
-      "_Button-Kf83L5Z1.js",
+      "_react-select.esm-AzgxgjZy.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
@@ -413,7 +411,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-8b4Y1m4e.js",
+    "file": "assets/Product-5ZHFK9x6.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -425,15 +423,14 @@
       "_objectWithoutPropertiesLoose-RRuG-_4m.js",
       "_setPrototypeOf-ahVgEFUp.js",
       "_index-38suPYpT.js",
-      "_Accordion2-1IUm3Q-f.js",
+      "_Accordion2-ZBD-2n7B.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-nY04P_z-.js",
       "_ProductCard-DeN9ohYo.js",
-      "_tippy.esm-vXDZ6XwW.js",
-      "_Button-Kf83L5Z1.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_index-XJuWVQ-l.js",
+      "_tippy.esm-vXDZ6XwW.js",
       "_floating-ui.dom-g3wJg7y0.js",
       "_floating-ui.react-dom-usBoWXbv.js"
     ],
@@ -597,6 +594,16 @@
     ],
     "isEntry": true,
     "src": "resources/js/components/ClasicModal.jsx"
+  },
+  "resources/js/components/Complements/ComplementCard.jsx": {
+    "file": "assets/ComplementCard-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/Complements/ComplementCard.jsx"
   },
   "resources/js/components/Dashboard/Address.jsx": {
     "file": "assets/Address-SY6cN41j.js",
