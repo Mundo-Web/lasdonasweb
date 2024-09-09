@@ -20,7 +20,7 @@
   }
 
   .tiporamo, .horario{
-    z-index: 0!important;
+    z-index: -1!important;
   }
    /* ---------------------------*/
 
