@@ -33,7 +33,7 @@ const ClasicModal = ({ isOpen, onRequestClose, data, isAdmin, statuses, categori
   const handleDateChange = (date) => {
     setSelectedDate(date);
     formREcordatorio.current = { ...formREcordatorio.current, date: date.toISOString().split('T')[0] };
-    console.log(formREcordatorio.current);
+    
   };
 
   const handleMonthChange = (offset) => {
@@ -92,18 +92,18 @@ const ClasicModal = ({ isOpen, onRequestClose, data, isAdmin, statuses, categori
   };
 
   const handleformChange = (e) => {
-    console.log(e.target.name)
+    
     formREcordatorio.current = { ...formREcordatorio.current, [e.target.name]: e.target.value };
-    console.log(formREcordatorio.current);
+    
   };
   const handleOptionChange = (selectedOption) => {
     formREcordatorio.current = { ...formREcordatorio.current, category: selectedOption.value };
   }
 
   const GuardarRecordatorio = async () => {
-    console.log(formREcordatorio.current);
+    
     const response = await axios.post('/api/reminders', formREcordatorio.current); reminders
-    console.log(response);
+    
   }
 
   const options = categorias.map((categoria) => {

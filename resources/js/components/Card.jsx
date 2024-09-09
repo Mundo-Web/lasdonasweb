@@ -2,7 +2,7 @@ import React from 'react'
 import truncateText from '../Utils/truncateText'
 
 export default function Card({ item, url }) {
-  console.log(item)
+
   return (
     <div className='flex flex-col p-4 rounded-3xl bg-[#E8EDDE] min-w-[240px]'  >
       <img src={`${url}/${item.icono}`} alt="" className='w-12 h-12 object-contain aspect-square' />
