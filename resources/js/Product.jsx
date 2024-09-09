@@ -536,7 +536,7 @@ const Product = ({
                     </div>
                   : <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
                 
-                <Swiper
+                {/* <Swiper
                   className="h-full horario"
                   slidesPerView={1}
                   autoHeight={true}
@@ -563,8 +563,8 @@ const Product = ({
                       centeredSlides: false,
                     },
                   }}
-                >     
-                      <SwiperSlide className='!overflow-visible'>
+                >      */}
+                      {/* <SwiperSlide className='!overflow-visible'> */}
                         {general.acept_incoming_orders_today == true ?
                           (<div
                             className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-full  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
@@ -613,8 +613,8 @@ const Product = ({
                               <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
                           </div>)
                         }
-                      </SwiperSlide>
-                      <SwiperSlide className='!overflow-y-visible'>
+                      {/* </SwiperSlide> */}
+                      {/* <SwiperSlide className='!overflow-y-visible'> */}
                       <div className={`relative flex flex-col justify-center items-center  text-center w-full 
                   ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
                         htmlFor="manana"
@@ -651,8 +651,8 @@ const Product = ({
                         </div>
 
                       </div>
-                      </SwiperSlide>
-                      <SwiperSlide className='!overflow-y-visible'>
+                      {/* </SwiperSlide> */}
+                      {/* <SwiperSlide className='!overflow-y-visible'> */}
                       <div
 
                         onClick={openModalCalendario}
@@ -676,8 +676,8 @@ const Product = ({
                           }
                         </div>
                       </div>
-                      </SwiperSlide>
-                </Swiper>
+                      {/* </SwiperSlide> */}
+                {/* </Swiper> */}
                     </div>
               }
 
