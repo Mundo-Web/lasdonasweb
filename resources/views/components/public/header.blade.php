@@ -79,7 +79,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
   }
 
   #header-mid.fixed-header {
@@ -255,7 +255,7 @@
     src="{{ asset('img_donas/spa.svg') }}">
 </div>
 
-<header class="font-b_classic_regular @if (!request()->is('micuenta*')) sticky @endif top-0" style="z-index:1">
+<header class="font-b_classic_regular @if (!request()->is('micuenta*')) sticky @endif top-0" style="z-index:2">
 
   <div id="header-mid" class="h-[80px] flex flex-row items-center bg-white !z-10">
     <div
