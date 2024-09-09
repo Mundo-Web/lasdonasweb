@@ -15,6 +15,8 @@ import ModalSimple from './components/ModalSimple'
 
 import { format, toZonedTime } from 'date-fns-tz'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper/modules'; 
+import { Pagination } from 'swiper/modules';
 
 import Accordion from './Accordion2'
 
@@ -419,7 +421,7 @@ const Product = ({
 
           <div className="grid grid-cols-1 lg:grid-cols-2 px-[5%] lg:px-[5%] gap-5 lg:gap-10 pt-10">
 
-            <div className="grid grid-cols-2 sm:grid-cols-3  gap-8 h-max" id="containerImagenesP">
+            <div className="grid grid-cols-2 sm:grid-cols-3  gap-y-5 lg:gap-8 h-max" id="containerImagenesP">
 
               {caratula2 ? (
                 <div className="col-span-2 sm:col-span-3 relative h-max">
@@ -446,9 +448,9 @@ const Product = ({
                 />
               )}
 
-              <div className="col-span-3 h-max" data-aos="fade-up" data-aos-offset="150">
+              <div className="col-span-3 h-max relative" data-aos="fade-up" data-aos-offset="150">
                 <Swiper
-                  className="img-complementarias h-full"
+                  className="img-complementarias h-full mx-4 sm:mx-0"
                   slidesPerView={3}
                   spaceBetween={25}
                   loop={false}
@@ -460,10 +462,16 @@ const Product = ({
                     disableOnInteraction: true,
                     pauseOnMouseEnter: true,
                   }}
+                  navigation={{ 
+                    nextEl: '.navnext',
+                    prevEl: '.navprev',
+                  }}
+                  modules={[Navigation]}
                   breakpoints={{
                     0: {
-                      slidesPerView: 1,
+                      slidesPerView: 3,
                       centeredSlides: false,
+                      spaceBetween:10,
                       loop: true,
                     },
                     1024: {
@@ -487,6 +495,9 @@ const Product = ({
                     </SwiperSlide>
                   ))}
                 </Swiper>
+                <div className="sm:hidden cursor-pointer navprev text-2xl absolute top-1/2 left-0 z-10 transform -translate-y-1/2"><i class="fa-solid fa-circle-left rounded-full bg-white text-[#FF8555]"></i></div>
+                <div className="sm:hidden cursor-pointer navnext text-2xl  absolute top-1/2 right-0 z-10 transform -translate-y-1/2"><i class="fa-solid fa-circle-right rounded-full bg-white text-[#FF8555]"></i></div>
+               
               </div>
 
             </div>
@@ -497,62 +508,137 @@ const Product = ({
               <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase">{currentProduct.producto}</h2>
               <p className="text-2xl  font-bold text-black pb-6">Paso 1: Selecciona un horario</p>
 
+
+
+
               {
                 selectedHorario && selectedDate
                   ? <div className='mb-8 flex flex-row justify-between border rounded-lg p-3'>
-                    <div>
-                      <p>
-                        Fecha escogida: {new Intl.DateTimeFormat('es-ES', {
-                          weekday: 'long',
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        }).format(selectedDate)}
-                      </p>
-                      <span>
-                        De {horarioSeleccionado?.start_time} a {horarioSeleccionado?.end_time}
-                      </span>
+                      <div>
+                        <p>
+                          Fecha escogida: {new Intl.DateTimeFormat('es-ES', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          }).format(selectedDate)}
+                        </p>
+                        <span>
+                          De {horarioSeleccionado?.start_time} a {horarioSeleccionado?.end_time}
+                        </span>
+                      </div>
+                      <Tippy content='Seleccionar otra fecha'>
+                        <button className='py-2 px-3 text-red-500 hover:text-red-300' onClick={() => {
+                          setSelectedHorario(null)
+                          setSelectedDate(new Date())
+                        }}>
+                          <i className='fa fa-trash'></i>
+                        </button>
+                      </Tippy>
                     </div>
-                    <Tippy content='Seleccionar otra fecha'>
-                      <button className='py-2 px-3 text-red-500 hover:text-red-300' onClick={() => {
-                        setSelectedHorario(null)
-                        setSelectedDate(new Date())
-                      }}>
-                        <i className='fa fa-trash'></i>
-                      </button>
-                    </Tippy>
-                  </div>
                   : <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
+                
+                <Swiper
+                  className="h-full horario"
+                  slidesPerView={1}
+                  autoHeight={true}
+                  spaceBetween={25}
+                  loop={false}
+                  centeredSlides={false}
+                  initialSlide={0}
+                  allowTouchMove={true}
+                  autoplay={{
+                    delay: 5500,
+                    disableOnInteraction: true,
+                    pauseOnMouseEnter: true,
+                  }}
 
-                    {general.acept_incoming_orders_today == true ?
-                      (<div
-                        className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 1,
+                      centeredSlides: false,
+                      spaceBetween:10,
+                      loop: true,
+                    },
+                    1024: {
+                      slidesPerView: 3,
+                      centeredSlides: false,
+                    },
+                  }}
+                >     
+                      <SwiperSlide className='!overflow-visible'>
+                        {general.acept_incoming_orders_today == true ?
+                          (<div
+                            className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-full  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
+                            <HorarioSection
+                              id="hoy"
+                              title="Hoy"
+                              horarios={horariosHoy}
+                              loadListHorarios={loadListHorariosHoy}
+                              setLoadListHorarios={setLoadListHorariosHoy}
+                              selectedHorario={selectedHorario}
+                              setSelectedHorario={setSelectedHorario}
+                              setDetallePedido={setDetallePedido}
+                              setSelectedDate={setSelectedDate}
+                            />
+
+                            {horariosHoy.length === 0 ? (
+                              <p key="no-disponible" className="text-sm font-normal">No disponible</p>
+                            ) : (
+
+                              <p className="text-sm font-normal">
+                                Disponible
+                              </p>
+
+                            )}
+                            <div className='mt-2'>
+
+                              {
+
+                                selectedHorario && detallePedido.fecha == 'hoy' && (
+                                  <>
+                                    {(() => {
+                                      const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                                      if (selectedHorarioItem) {
+                                        return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                                      }
+                                      return null;
+                                    })()}
+                                  </>
+                                )
+                              }
+                            </div>
+
+                          </div>) : (
+                          <div
+                              className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
+                              <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
+                          </div>)
+                        }
+                      </SwiperSlide>
+                      <SwiperSlide className='!overflow-y-visible'>
+                      <div className={`relative flex flex-col justify-center items-center  text-center w-full 
+                  ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
+                        htmlFor="manana"
+                      >
                         <HorarioSection
-                          id="hoy"
-                          title="Hoy"
-                          horarios={horariosHoy}
-                          loadListHorarios={loadListHorariosHoy}
-                          setLoadListHorarios={setLoadListHorariosHoy}
+                          id="manana"
+                          title="Mañana"
+                          date={tomorrowDate}
+                          horarios={horarios}
+                          loadListHorarios={loadListHorariosManana}
+                          setLoadListHorarios={setLoadListHorariosManana}
                           selectedHorario={selectedHorario}
                           setSelectedHorario={setSelectedHorario}
                           setDetallePedido={setDetallePedido}
                           setSelectedDate={setSelectedDate}
                         />
 
-                        {horariosHoy.length === 0 ? (
-                          <p key="no-disponible" className="text-sm font-normal">No disponible</p>
-                        ) : (
-
-                          <p className="text-sm font-normal">
-                            Disponible
-                          </p>
-
-                        )}
                         <div className='mt-2'>
 
                           {
 
-                            selectedHorario && detallePedido.fecha == 'hoy' && (
+                            selectedHorario && detallePedido.fecha == 'manana' && (
                               <>
                                 {(() => {
                                   const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
@@ -566,88 +652,82 @@ const Product = ({
                           }
                         </div>
 
-                      </div>) : (
-                        <div
-                          className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
-                          <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
-                        </div>)
-
-
-
-                    }
-
-
-                    <div className={`relative flex flex-col justify-center items-center  text-center w-1/3 
-                ${detallePedido.fecha == 'manana' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400  border-[#E8EDDE]'} border-2 p-3 rounded-xl hover:text-[#73B473]`}
-                      htmlFor="manana"
-                    >
-                      <HorarioSection
-                        id="manana"
-                        title="Mañana"
-                        date={tomorrowDate}
-                        horarios={horarios}
-                        loadListHorarios={loadListHorariosManana}
-                        setLoadListHorarios={setLoadListHorariosManana}
-                        selectedHorario={selectedHorario}
-                        setSelectedHorario={setSelectedHorario}
-                        setDetallePedido={setDetallePedido}
-                        setSelectedDate={setSelectedDate}
-                      />
-
-                      <div className='mt-2'>
-
-                        {
-
-                          selectedHorario && detallePedido.fecha == 'manana' && (
-                            <>
-                              {(() => {
-                                const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
-                                if (selectedHorarioItem) {
-                                  return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
-                                }
-                                return null;
-                              })()}
-                            </>
-                          )
-                        }
                       </div>
+                      </SwiperSlide>
+                      <SwiperSlide className='!overflow-y-visible'>
+                      <div
 
-                    </div>
+                        onClick={openModalCalendario}
+                        className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-full  border-2 px-3 py-5 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
+                        <p className="text-lg font-bold m-auto">Más fechas</p>
+                        <div className='mt-2'>
 
+                          {
 
-                    <div
-
-                      onClick={openModalCalendario}
-                      className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  text-center w-1/3  border-2 p-3 rounded-xl ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
-                      <p className="text-lg font-bold m-auto ">Más fechas</p>
-                      <div className='mt-2'>
-
-                        {
-
-                          selectedHorario && detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && (
-                            <>
-                              {(() => {
-                                const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
-                                if (selectedHorarioItem) {
-                                  return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
-                                }
-                                return null;
-                              })()}
-                            </>
-                          )
-                        }
+                            selectedHorario && detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && (
+                              <>
+                                {(() => {
+                                  const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                                  if (selectedHorarioItem) {
+                                    return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                                  }
+                                  return null;
+                                })()}
+                              </>
+                            )
+                          }
+                        </div>
                       </div>
+                      </SwiperSlide>
+                </Swiper>
                     </div>
-
-                  </div>
               }
+
+
+
+
+
+
+
 
               <p className="text-2xl  font-bold text-black pb-6">Paso 2: Elige tu opcion favorita</p>
 
-
-
               <div className="flex flex-row justify-between gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
-                <ul className="grid w-full gap-6 md:grid-cols-3">
+                <ul className=" w-full gap-6 ">
+                  
+                <Swiper
+                  className="h-full tiporamo mx-5 md:mx-0"
+                  slidesPerView={2}
+                  autoHeight={true}
+                  spaceBetween={25}
+                  loop={false}
+                  centeredSlides={true}
+                  initialSlide={0}
+                  allowTouchMove={true}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  modules={[Pagination]} 
+                  autoplay={{
+                    delay: 5500,
+                    disableOnInteraction: true,
+                    pauseOnMouseEnter: true,
+                  }}
+
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 1,
+                      centeredSlides: true,
+                      spaceBetween:20,
+                      loop: true,
+                    },
+                    1024: {
+                      slidesPerView: 3,
+                      centeredSlides: false,
+                    },
+                  }}
+                >     
+                <SwiperSlide>
                   <li>
                     <input
                       type="radio"
@@ -660,7 +740,7 @@ const Product = ({
                     />
                     <label
                       htmlFor="react-option"
-                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-2 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
+                      className="box-sizing: border-box radio-option-label inline-flex items-center justify-around gap-5 w-full p-5 border-2 border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] peer-checked:border-2 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100"
                       onClick={() => handleSelecttionOption(productos)}
                     >
 
@@ -698,6 +778,7 @@ const Product = ({
                       </div>
                     </label>
                   </li>
+                  </SwiperSlide>
                   {subproductos.map((item, index) => {
 
 
@@ -710,6 +791,7 @@ const Product = ({
                     }
 
                     return (
+                      <SwiperSlide>
                       <li key={index}>
                         <input
                           type="radio"
@@ -721,7 +803,7 @@ const Product = ({
                         <label
                           onClick={() => handleSelecttionOption(item)}
                           htmlFor={`${item.tipos.name}-option`}
-                          className="box-sizing: border-box radio-option-label inline-flex items-center justify-between w-full p-5 border border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100 peer-checked:border-2"
+                          className="box-sizing: border-box radio-option-label inline-flex items-center justify-around gap-5 w-full p-5 border-2 border-[#E8EDDE] rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-[#73B473] hover:text-[#73B473] dark:peer-checked:text-gray-300 peer-checked:text-[#73B473] hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-100 peer-checked:border-2"
                         >
                           <div className="flex flex-col justify-center items-center">
                             {item.tipos.name === 'Premium' ? (
@@ -762,8 +844,10 @@ const Product = ({
                           </div>
                         </label>
                       </li>
+                      </SwiperSlide>
                     );
                   })}
+                  </Swiper>
                 </ul>
               </div>
 
@@ -833,15 +917,19 @@ const Product = ({
         <section className="px-[5%] pt-2">
           <p className="text-2xl font-bold text-black pb-2">Complementar al pedido (opcional)</p>
           <div className="grid grid-cols-6 gap-6">
-            <div className="col-span-5">
+            <div className="col-span-4 lg:col-span-5">
               <Swiper
                 className="img-complementarias h-full"
                 slidesPerView={3}
-                spaceBetween={25}
+                spaceBetween={20}
                 loop={false}
                 centeredSlides={false}
                 initialSlide={0}
                 allowTouchMove={true}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Pagination]} 
                 autoplay={{
                   delay: 5500,
                   disableOnInteraction: true,
@@ -853,16 +941,31 @@ const Product = ({
                     centeredSlides: false,
                     loop: true,
                   },
-                  1024: {
+                  750: {
+                    slidesPerView: 2,
+                    centeredSlides: false,
+                    loop: true,
+                  },
+                  1060: {
+                    slidesPerView: 3,
+                    centeredSlides: false,
+                  },
+                  1348: {
+                    slidesPerView: 4,
+                    centeredSlides: false,
+                    spaceBetween:20,
+                  },
+                  1400: {
                     slidesPerView: 5,
                     centeredSlides: false,
+                    spaceBetween:15,
                   },
                 }}
                 style={{ zIndex: 0 }}
               >
                 {complementos.map((complemento, index) => (
                   <SwiperSlide key={index}>
-                    <div key={complemento.id} className="m-auto w-min">
+                    <div key={complemento.id} className="m-auto w-[200px]">
                       <label
                         htmlFor={`react-option-${complemento.id}`}
                         className="inline-flex items-center justify-between w-max bg-white rounded-lg cursor-pointer shadow-md border"
@@ -906,7 +1009,7 @@ const Product = ({
                         </div>
                       </label>
                       <Tippy content={complemento.producto}>
-                        <h2 className="text-base font-normal text-black text-center truncate w-full">{complemento.producto}</h2>
+                        <h2 className="text-base font-normal text-black text-center truncate w-full line-clamp-1">{complemento.producto}</h2>
                       </Tippy>
                       <div className="flex font-medium justify-center gap-4">
                         {complemento.descuento > 0 ? (
@@ -931,8 +1034,8 @@ const Product = ({
                 ))}
               </Swiper>
             </div>
-            <div className="col-span-1">
-              <div className="flex flex-col justify-center items-center text-center w-46 m-auto max-h-56 border-[#FF8555] border-2 p-3 rounded-xl">
+            <div className="col-span-2 lg:col-span-1">
+              <div className="flex flex-col justify-center items-center text-center w-46 m-auto md:h-full max-h-56 border-[#FF8555] border-2 p-3 rounded-xl">
                 <div className="grid grid-cols-1 gap-3 xl:gap-5">
                   <div className="flex flex-col justify-center items-center">
                     <img src="/img_donas/regalo.svg" alt="Regalo" />
@@ -1091,7 +1194,7 @@ const Product = ({
         <div className=" fixed inset-0 z-30 w-screen overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
-              className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
+              className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-4xl">
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start w-full">
 
