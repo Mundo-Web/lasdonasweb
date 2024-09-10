@@ -70,6 +70,7 @@ const agregarComplementoPedido = async (id, usePoints = false) => {
       //   title: 'Exito',
       //   text: `Producto agregado correctamente al CArro de compras`,
       // });
+      return carrito
     }
 
   } catch (error) {

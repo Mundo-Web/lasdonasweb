@@ -70,14 +70,15 @@ class IndexController extends Controller
   public function index()
   {
     // $productos = Products::all(); Products::where("tipo_servicio", "=", 'complemento')
-    $productos = Products::where('status', '=', 1)->where('destacar', 1)->where('tipo_servicio', 'producto')->with('tags')->get();
+    $productos = Products::where('status', '=', 1)->where('destacar', 1)->with(['images','componentesHijos']) ->where('tipo_servicio', 'producto')->with('tags')->get();
     $categorias = Category::all();
-    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with('images')->get();
-    $recomendados = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with('images')->get();
+    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with(['images','componentesHijos'])->get();
+    $recomendados = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with(['images','componentesHijos'])->get();
     // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
     // ->where('visible', '=', 1)->with('tags')->get();
     // $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
 
+    // dump($destacados->toArray());
     $general = General::find(1);
     $benefit = Strength::where('status', '=', 1)->get();
     $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();

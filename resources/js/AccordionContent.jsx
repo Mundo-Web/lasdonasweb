@@ -3,11 +3,11 @@ import axios from 'axios';
 import agregarComplementoPedido from './Utils/agregarComplemento';
 import Swal from 'sweetalert2';
 import ComplementCard from './components/Complements/ComplementCard';
-import { deleteOnCarBtnR } from './Utils/carritoR';
+import { deleteOnCarBtnR, deleteItemR } from './Utils/carritoR';
 
 
 
-const AccordionContent = ({ id, setDetallePedido, onChange }) => {
+const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => { } }) => {
   const [complementos, setComplementos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,9 +49,22 @@ const AccordionContent = ({ id, setDetallePedido, onChange }) => {
           });
           isConfirmed = swalRes.isConfirmed
         }
-        agregarComplementoPedido(id, isConfirmed)
+        let actcarrito = await agregarComplementoPedido(id, isConfirmed)
+
+        setCarrito(actcarrito)
       } else {
         deleteOnCarBtnR(id)
+
+        let nuevaCantidad = Local.get('carrito').find((item) => item.id === id).cantidad
+
+        console.log(nuevaCantidad)
+        if (nuevaCantidad == 0) {
+          let articulos = deleteItemR(id)
+          console.log(articulos)
+          setCarrito(articulos)
+        }
+
+
       }
 
 
@@ -95,7 +108,7 @@ const AccordionContent = ({ id, setDetallePedido, onChange }) => {
   return (
     <div className="grid w-full gap-4 grid-cols-1 md:grid-cols-4 mt-6">
       {complementos.map((complemento) => (
-        <ComplementCard {...complemento} onChange={handleCheckboxChange}/>
+        <ComplementCard {...complemento} onChange={handleCheckboxChange} />
         // <div key={complemento.id} className="m-auto">
         //   <label
         //     htmlFor={`react-option-${complemento.id}`}

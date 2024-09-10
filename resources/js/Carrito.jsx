@@ -32,9 +32,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
     }
   };
 
-  const pruebahandle = () => {
 
-  }
   // useEffect(() => {
   //   if (activeModal) {
   //     document.addEventListener('mousedown', handleClickOutside);
@@ -103,6 +101,18 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
     limpiarHTML();
     PintarCarrito();
   }
+
+  useEffect(() => {
+    console.log('detalle pedido act')
+    let carrito2 = Local.get('carrito') ?? [];
+    console.log(carrito2)
+
+    setCarrito(carrito2)
+    limpiarHTML();
+    PintarCarrito();
+  }, [detallePedido])
+
+
 
   const deleteOnCarBtnR = (id) => {
     let articulosCarrito = Local.get('carrito') || [];
@@ -349,7 +359,9 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                     </div>
                     <div className="mt-5 gap-4 " id="containerComplementos" data-accordion="collapse">
                       <Accordion datos={currentComplemento}
-                        setDetallePedido={setDetallePedido} />
+                        setDetallePedido={setDetallePedido}
+                        setCarrito={setCarrito}
+                      />
                     </div>
                   </div>
                 </div>

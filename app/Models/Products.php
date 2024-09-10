@@ -75,6 +75,9 @@ class Products extends Model
         return $this->hasMany(AttributesValues::class, 'product_id');
     }
 
+    public function componentesHijos() {
+        return $this->hasMany(Products::class, 'parent_id');
+    }
 
     public function attributes()
     {
