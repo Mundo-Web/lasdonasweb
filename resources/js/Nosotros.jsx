@@ -21,10 +21,10 @@ const Nosotros = ({ nosotros }) => {
     <>
 
       <div className="grid grid-cols-5  gap-10 justify-center  font-b_slick_bold  py-[4%] px-[10%]">
-        <div className='flex flex-col col-span-3 items-center'>
+        <div className='flex flex-col col-span-3 '>
 
           <div className='flex justify-start items-start content-start mb-10'>
-            <h1 className='text-4xl  text-start'>Sobre Nosotros</h1>
+            <h1 className='text-4xl justify-start items-start content-start text-start'>Sobre Nosotros</h1>
 
           </div>
           <div className='text-justify'>
