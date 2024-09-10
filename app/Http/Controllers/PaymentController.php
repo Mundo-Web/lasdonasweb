@@ -135,7 +135,7 @@ class PaymentController extends Controller
       $sale->monto = $totalCost - $descuento;
       $sale->billing_type = $body['billing']['type'];
       $sale->billing_document = $body['billing']['type'] == 'boleta' ? $body['billing']['dni'] : $body['billing']['ruc'];
-      $sale->billing_name = $body['billing']['name'] . ' ' . $body['billing']['lastname'];
+      $sale->billing_name = $body['billing']['name']; // . ' ' . $body['billing']['lastname'];
       $sale->billing_address = $body['billing']['address'];
       $sale->billing_email = $body['billing']['email'];
       $sale->consumer_phone = $body['consumer']['phone'];
@@ -181,7 +181,8 @@ class PaymentController extends Controller
           "address_city" => $body['address']['district'],
           "country_code" => "PE",
           "first_name" => $body['billing']['name'],
-          "last_name" => $body['billing']['lastname'] ?? $body['billing']['name'],
+          // "last_name" => $body['billing']['lastname'] ?? $body['billing']['name'],
+          "last_name" => $body['billing']['name'],
           "phone_number" => $body['consumer']['phone'],
         ],
         "source_id" => $body['culqi']['id']
