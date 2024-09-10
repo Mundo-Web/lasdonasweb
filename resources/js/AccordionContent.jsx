@@ -3,7 +3,7 @@ import axios from 'axios';
 import agregarComplementoPedido from './Utils/agregarComplemento';
 import Swal from 'sweetalert2';
 import ComplementCard from './components/Complements/ComplementCard';
-import { deleteOnCarBtnR } from './Utils/carritoR';
+import { deleteOnCarBtnR, deleteItemR } from './Utils/carritoR';
 
 
 
@@ -54,6 +54,17 @@ const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => {
         setCarrito(actcarrito)
       } else {
         deleteOnCarBtnR(id)
+
+        let nuevaCantidad = Local.get('carrito').find((item) => item.id === id).cantidad
+
+        console.log(nuevaCantidad)
+        if (nuevaCantidad == 0) {
+          let articulos = deleteItemR(id)
+          console.log(articulos)
+          setCarrito(articulos)
+        }
+
+
       }
 
 
