@@ -11,6 +11,13 @@
       "_index-38suPYpT.js"
     ]
   },
+  "_Card-eNbsL1sp.js": {
+    "file": "assets/Card-eNbsL1sp.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx"
+    ]
+  },
   "_CreateReactScript-VVPwJ0HX.js": {
     "css": [
       "assets/tippy-C64i7G0l.css"
@@ -21,13 +28,13 @@
       "_main-Vi8adC25.js"
     ]
   },
-  "_GoogleMapsComponent-WnSc8Cs9.js": {
-    "file": "assets/GoogleMapsComponent-WnSc8Cs9.js",
+  "_GoogleMapsComponent-llj7t7_s.js": {
+    "file": "assets/GoogleMapsComponent-llj7t7_s.js",
     "imports": [
       "_extends-wRoo2ExD.js",
       "resources/js/components/useOutsideClick.jsx",
       "_setPrototypeOf-ahVgEFUp.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
+      "_hoist-non-react-statics.cjs-Lm1c23b2.js",
       "_index-38suPYpT.js",
       "_floating-ui.dom-3uxmUvem.js",
       "resources/js/Example.jsx"
@@ -59,9 +66,9 @@
   "_calcularTotal-FPqXOtx1.js": {
     "file": "assets/calcularTotal-FPqXOtx1.js"
   },
-  "_es-!~{01G}~.js": {
+  "_es-!~{01I}~.js": {
     "file": "assets/es-D87rtk4j.css",
-    "src": "_es-!~{01G}~.js"
+    "src": "_es-!~{01I}~.js"
   },
   "_es-wXA00dMN.js": {
     "css": [
@@ -78,9 +85,9 @@
   "_extends-wRoo2ExD.js": {
     "file": "assets/extends-wRoo2ExD.js"
   },
-  "_fade-!~{01C}~.js": {
+  "_fade-!~{01x}~.js": {
     "file": "assets/fade-WxPIMcx6.css",
-    "src": "_fade-!~{01C}~.js"
+    "src": "_fade-!~{01x}~.js"
   },
   "_floating-ui.dom-3uxmUvem.js": {
     "file": "assets/floating-ui.dom-3uxmUvem.js"
@@ -93,8 +100,8 @@
       "_index-38suPYpT.js"
     ]
   },
-  "_hoist-non-react-statics.cjs-YYlJ_Lof.js": {
-    "file": "assets/hoist-non-react-statics.cjs-YYlJ_Lof.js",
+  "_hoist-non-react-statics.cjs-Lm1c23b2.js": {
+    "file": "assets/hoist-non-react-statics.cjs-Lm1c23b2.js",
     "imports": [
       "__commonjsHelpers-4gQjN7DL.js"
     ]
@@ -134,12 +141,12 @@
   "_moment-WSJ9un1t.js": {
     "file": "assets/moment-WSJ9un1t.js"
   },
-  "_recaptcha-wrapper-1yTr_owW.js": {
-    "file": "assets/recaptcha-wrapper-1yTr_owW.js",
+  "_recaptcha-wrapper-SUZHBnda.js": {
+    "file": "assets/recaptcha-wrapper-SUZHBnda.js",
     "imports": [
       "resources/js/components/useOutsideClick.jsx",
       "_index-VFMbf6KQ.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js"
+      "_hoist-non-react-statics.cjs-Lm1c23b2.js"
     ]
   },
   "_setPrototypeOf-ahVgEFUp.js": {
@@ -151,9 +158,9 @@
       "_index-XJuWVQ-l.js"
     ]
   },
-  "_tippy-!~{01m}~.js": {
+  "_tippy-!~{01n}~.js": {
     "file": "assets/tippy-C64i7G0l.css",
-    "src": "_tippy-!~{01m}~.js"
+    "src": "_tippy-!~{01n}~.js"
   },
   "_tippy.esm-vXDZ6XwW.js": {
     "file": "assets/tippy.esm-vXDZ6XwW.js"
@@ -207,7 +214,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-V2FD1bWR.css",
+    "file": "assets/app-idGY0KMN.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -325,12 +332,13 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Catalogo-P9D4IP8j.js",
+    "file": "assets/Catalogo-bixQ2Zsu.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_CreateReactScript-VVPwJ0HX.js",
+      "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
       "_ProductCard-tGEu-Js7.js",
@@ -369,7 +377,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-IZw-jW3N.js",
+    "file": "assets/Dashboard-QaqfWKsC.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -377,7 +385,7 @@
       "_CreateReactScript-VVPwJ0HX.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_GoogleMapsComponent-WnSc8Cs9.js",
+      "_GoogleMapsComponent-llj7t7_s.js",
       "resources/js/components/SalesDatagrid.jsx",
       "resources/js/components/Dashboard/Record.jsx",
       "_moment-WSJ9un1t.js",
@@ -393,7 +401,7 @@
       "_storage-zp2nPsZU.js",
       "_extends-wRoo2ExD.js",
       "_setPrototypeOf-ahVgEFUp.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
+      "_hoist-non-react-statics.cjs-Lm1c23b2.js",
       "_floating-ui.dom-3uxmUvem.js",
       "_jquery-_-XaHmv-.js",
       "_index-VFMbf6KQ.js"
@@ -450,7 +458,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Nosotros-R7HPUUsC.js",
+    "file": "assets/Nosotros-1idPOOpg.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -458,7 +466,7 @@
       "_JSEncrypt-jwo8Dr6z.js",
       "_CreateReactScript-VVPwJ0HX.js",
       "_main-Vi8adC25.js",
-      "_recaptcha-wrapper-1yTr_owW.js",
+      "_recaptcha-wrapper-SUZHBnda.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "resources/js/components/Dashboard/Profile.jsx",
       "_index-38suPYpT.js",
@@ -466,7 +474,7 @@
       "_index-XJuWVQ-l.js",
       "_storage-zp2nPsZU.js",
       "_index-VFMbf6KQ.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
+      "_hoist-non-react-statics.cjs-Lm1c23b2.js",
       "_axios-_sX4vCAy.js"
     ],
     "isEntry": true,
@@ -477,7 +485,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-yMTM1vCM.js",
+    "file": "assets/Pago-xIdWgPQK.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -485,7 +493,7 @@
       "_CreateReactScript-VVPwJ0HX.js",
       "_storage-zp2nPsZU.js",
       "_calcularTotal-FPqXOtx1.js",
-      "_GoogleMapsComponent-WnSc8Cs9.js",
+      "_GoogleMapsComponent-llj7t7_s.js",
       "_ModalGoogle-6wSbWolA.js",
       "_index-XJuWVQ-l.js",
       "_axios-_sX4vCAy.js",
@@ -499,7 +507,7 @@
       "resources/js/Utils/CreateReactScript.jsx",
       "_extends-wRoo2ExD.js",
       "_setPrototypeOf-ahVgEFUp.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js"
+      "_hoist-non-react-statics.cjs-Lm1c23b2.js"
     ],
     "isEntry": true,
     "src": "resources/js/Pago.jsx"
@@ -540,7 +548,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Register-M0BiOOGo.js",
+    "file": "assets/Register-o2Z7DFmQ.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -548,7 +556,7 @@
       "_JSEncrypt-jwo8Dr6z.js",
       "_CreateReactScript-VVPwJ0HX.js",
       "_main-Vi8adC25.js",
-      "_recaptcha-wrapper-1yTr_owW.js",
+      "_recaptcha-wrapper-SUZHBnda.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "resources/js/components/Dashboard/Profile.jsx",
       "_ModalGoogle-6wSbWolA.js",
@@ -557,11 +565,35 @@
       "_index-XJuWVQ-l.js",
       "_storage-zp2nPsZU.js",
       "_index-VFMbf6KQ.js",
-      "_hoist-non-react-statics.cjs-YYlJ_Lof.js",
+      "_hoist-non-react-statics.cjs-Lm1c23b2.js",
       "_axios-_sX4vCAy.js"
     ],
     "isEntry": true,
     "src": "resources/js/Register.jsx"
+  },
+  "resources/js/TipoFlor.jsx": {
+    "css": [
+      "assets/fade-WxPIMcx6.css",
+      "assets/tippy-C64i7G0l.css"
+    ],
+    "file": "assets/TipoFlor-M0Z0e-Zy.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/Utils/ReactAppend.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "_CreateReactScript-VVPwJ0HX.js",
+      "_Card-eNbsL1sp.js",
+      "_axios-_sX4vCAy.js",
+      "_index-XJuWVQ-l.js",
+      "_ProductCard-tGEu-Js7.js",
+      "_main-Vi8adC25.js",
+      "_index-38suPYpT.js",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "resources/js/Utils/CreateReactScript.jsx",
+      "_storage-zp2nPsZU.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/TipoFlor.jsx"
   },
   "resources/js/Utils/CreateReactScript.jsx": {
     "css": [
