@@ -78,7 +78,7 @@ class IndexController extends Controller
     // ->where('visible', '=', 1)->with('tags')->get();
     // $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
 
-    // dump($destacados->toArray());
+    
     $general = General::find(1);
     $benefit = Strength::where('status', '=', 1)->get();
     $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();

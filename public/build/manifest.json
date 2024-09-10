@@ -259,12 +259,12 @@
   },
   "resources/js/Agradecimiento.jsx": {
     "assets": [
-      "assets/SvgPuntos--FnXd_aC.svg"
+      "assets/SvgPuntos-hzKALqiY.svg"
     ],
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-VDyLOQls.js",
+    "file": "assets/Agradecimiento-SYr53ojX.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -286,7 +286,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-9qGbcbvl.js",
+    "file": "assets/Carrito-hv1onzqn.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -1221,7 +1221,7 @@
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/SvgPuntos.svg": {
-    "file": "assets/SvgPuntos--FnXd_aC.svg",
+    "file": "assets/SvgPuntos-hzKALqiY.svg",
     "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {

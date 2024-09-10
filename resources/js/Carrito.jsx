@@ -319,7 +319,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                     className="h-[54px] text-[#336234] hover:text-white bg-white hover:bg-[#336234] transition-colors duration-300 border border-[#336234] w-full py-4 rounded-3xl cursor-pointer font-semibold text-[16px] inline-block text-center">
                     Realizar Pedido
                   </a>
-                  <a href="/catalogo/1"
+                  <a href="/catalogo"
                     className="h-[54px] text-[#336234] hover:text-white bg-white hover:bg-[#336234] transition-colors duration-300 border border-[#336234] w-full py-4 rounded-3xl cursor-pointer font-semibold text-[16px] inline-block text-center">Seguir comprando
                   </a>
                 </div>
