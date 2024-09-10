@@ -41,9 +41,14 @@
 
   if (isset($item->componentesHijos)) {
       foreach ($item->componentesHijos as $componente) {
-          // dump($componente->precio); // Esto imprimirá el precio en cada iteración
-          if (isset($componente->precio) && floatval($componente->precio) > floatval($maxPrice)) {
-              $maxPrice = floatval($componente->precio);
+          if (isset($componente->precio)) {
+              if (floatval($componente->descuento > 0) && floatval($componente->descuento) > $maxPrice) {
+                  $maxPrice = floatval($componente->descuento);
+              } else {
+                  if (floatval($componente->precio) > $maxPrice) {
+                      $maxPrice = floatval($componente->precio);
+                  }
+              }
           }
 
           // $maxPrice = $maxPrice + 1;
@@ -93,27 +98,33 @@
         <div class="flex gap-10">
           <div class="text-[#112212] font-bold flex flex-col">
             <span class="text-[#112212] opacity-80">Desde</span>
-            <span>S/ {{ $item->precio }}</span>
-          </div>
-          <div class="text-[#112212] font-bold flex flex-col">
-            <span class="text-[#112212] opacity-80">Hasta</span>
-            <span>S/ {{ $maxPrice }}</span>
-          </div>
-        </div>
-      @else
-        <div class="text-[#112212] font-bold flex flex-col">
-          <span class="text-[#112212] opacity-80">Precio</span>
-          <span> S/ {{ $item->precio }}</span>
-        </div>
+            <span>
+              @if ($item->descuento > 0)
+                S/ {{ $item->descuento }}
+              @else
+                S/ {{ $item->precio }}
+            </span>
       @endif
     </div>
+    <div class="text-[#112212] font-bold flex flex-col">
+      <span class="text-[#112212] opacity-80">Hasta</span>
+      <span>S/ {{ $maxPrice }}</span>
+    </div>
   </div>
+@else
+  <div class="text-[#112212] font-bold flex flex-col">
+    <span class="text-[#112212] opacity-80">Precio</span>
+    <span> S/ {{ $item->precio }}</span>
+  </div>
+  @endif
+</div>
+</div>
 </a>
 <div class="w-full mt-4">
-  <a id='btnespecial' href="{{ route('Product.jsx', $item->id) }}" type="button"
-    class="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-base hover:bg-[#2d5228] transition-colors duration-300">
-    <span>Ver producto</span>
-    <i class="ml-2 fa-solid fa-arrow-right"></i>
-  </a>
+<a id='btnespecial' href="{{ route('Product.jsx', $item->id) }}" type="button"
+  class="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-base hover:bg-[#2d5228] transition-colors duration-300">
+  <span>Ver producto</span>
+  <i class="ml-2 fa-solid fa-arrow-right"></i>
+</a>
 </div>
 </div>
