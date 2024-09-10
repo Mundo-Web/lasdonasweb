@@ -39,7 +39,10 @@ class AppServiceProvider extends ServiceProvider
             // Obtener los datos del footer
             $datosgenerales = General::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             // Pasar los datos a la vista
-            $view->with('datosgenerales', $datosgenerales);
+            $categories = Category::where('status', true)->where('visible', true)->get();
+            $view
+            ->with('datosgenerales', $datosgenerales)
+            ->with('categories', $categories);
         });
 
         View::composer('components.public.header', function ($view) {

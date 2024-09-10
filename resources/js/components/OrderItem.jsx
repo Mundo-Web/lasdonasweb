@@ -16,7 +16,7 @@ function OrderItem({ producto, extract, sku, precio, cantidad, total, usePoints,
         <img loading="lazy" src={imagen} alt={producto} className="object-contain shrink-0 self-start w-28 aspect-square" />
         <div className="flex flex-col w-full">
           <div className="flex flex-col w-full">
-            <h2 className="text-base lg:text-2xl font-bold tracking-wider text-[#336234] line-clamp-2">{producto}</h2>
+            <h2 className="text-lg lg:text-2xl font-bold tracking-wider text-[#336234] line-clamp-2">{producto}</h2>
             <p className="mt-2 text-sm tracking-wide leading-5 text-neutral-900 line-clamp-2 text-opacity-80">{extract}</p>
             {
               usePoints && <span className="text-orange-500 text-sm">
@@ -27,17 +27,17 @@ function OrderItem({ producto, extract, sku, precio, cantidad, total, usePoints,
           <p className="mt-5 text-xs font-bold tracking-wide text-neutral-900">SKU: {sku}</p>
         </div>
       </div>
-      <div className="flex justify-between items-start font-bold text-right min-w-[240px] w-full md:w-[400px] text-[#112212]">
+      <div className="flex justify-between items-start font-bold text-right min-w-[240px] w-full md:w-[600px] text-[#112212]">
         <div className="flex flex-col flex-1 shrink justify-center basis-0">
-          <p className="tracking-wide text-opacity-80">Precio</p>
+          <p className="text-base lg:text-xl font-bold tracking-wider text-[#336234] line-clamp-2">Precio</p>
           <p className="mt-2 text-base tracking-wider text-neutral-900">{precio}</p>
         </div>
         <div className="flex flex-col flex-1 shrink justify-center whitespace-nowrap basis-0">
-          <p className="tracking-wide text-opacity-80">Cantidad</p>
+          <p className="text-base lg:text-xl font-bold tracking-wider text-[#336234] line-clamp-2">Cantidad</p>
           <p className="mt-2 text-base tracking-wider text-neutral-900">{cantidad}</p>
         </div>
         <div className="flex flex-col flex-1 shrink justify-center basis-0">
-          <p className="tracking-wide text-opacity-80">Total</p>
+          <p className="text-base lg:text-xl font-bold tracking-wider text-[#336234] line-clamp-2">Total</p>
           <p className="mt-2 text-base tracking-wider text-neutral-900">{subtotal.toFixed(2)}</p>
         </div>
       </div>

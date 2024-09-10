@@ -180,11 +180,11 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                      hover:border-[#336234] group ">
                       <img src={`/images/img/xcoral.png`} type="icon" onClick={() => deleteItemR(item.id)} className='flex w-5 h-5 cursor-pointer' alt="" />
 
-                      <img className='h-[100px] aspect-square object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110' src={`/${item.imagen} `} alt="" />
+                      <img className='h-full sm:h-[100px] aspect-square object-cover transform transition-transform duration-300 ease-in-out group-hover:scale-110' src={`/${item.imagen} `} alt="" />
                       <div className='flex flex-row gap-4 w-full px-2'>
                         <div className="flex flex-col self-stretch w-52">
                           <div className="flex flex-col w-full">
-                            <h2 className="text-base font-bold tracking-wider text-neutral-900">{item.producto}</h2>
+                            <h2 className="text-base lg:text-xl font-bold tracking-wider text-[#336234] line-clamp-2">{item.producto}</h2>
                             <p className="mt-2 text-sm tracking-wide leading-5 text-neutral-900 text-opacity-80 line-clamp-2">{item.extract}</p>
                           </div>
                           <p className="mt-5 text-xs font-bold tracking-wide text-neutral-900">SKU: {item.sku}</p>
@@ -193,7 +193,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                         <div className="grid grid-cols-2 w-full">
                           <div className="col-span1">
                             <div className="flex flex-col font-bold text-[#112212] items-center justify-center content-end">
-                              <span className='opacity-80'>
+                              <span className='text-base lg:text-xl font-bold tracking-wider text-[#336234] line-clamp-2'>
                                 Precio
                               </span>
                               <span className='text-center'>
@@ -210,7 +210,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                           </div>
                           <div className="col-span1">
                             <div className="flex flex-col  font-bold text-[#112212] items-end content-end">
-                              <span className='opacity-80'>
+                              <span className='text-base lg:text-xl font-bold tracking-wider text-[#336234] line-clamp-2'>
                                 Total
                               </span>
                               <span>
