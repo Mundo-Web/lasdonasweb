@@ -16,7 +16,7 @@ function OrderItem({ producto, extract, sku, precio, cantidad, total, usePoints,
         <img loading="lazy" src={imagen} alt={producto} className="object-contain shrink-0 self-start w-28 aspect-square" />
         <div className="flex flex-col w-full">
           <div className="flex flex-col w-full">
-            <h2 className="text-base font-bold tracking-wider text-neutral-900 line-clamp-2">{producto}</h2>
+            <h2 className="text-base lg:text-2xl font-bold tracking-wider text-[#336234] line-clamp-2">{producto}</h2>
             <p className="mt-2 text-sm tracking-wide leading-5 text-neutral-900 line-clamp-2 text-opacity-80">{extract}</p>
             {
               usePoints && <span className="text-orange-500 text-sm">
