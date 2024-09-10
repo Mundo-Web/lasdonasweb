@@ -50,7 +50,7 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
       <TotalRow label="Sub Total" value={subtotal} />
       <Divider />
       {haycupon && (<>
-        <div className="flex items-center gap-5 self-end mt-6 max-w-full font-bold text-right w-[400px]">
+        <div className="flex items-center gap-5 self-end mt-6 max-w-full font-bold text-right w-[600px]">
           <div className={`self-stretch my-auto text-sm tracking-wide text-right text-neutral-900 text-opacity-80 w-[133px]`}>
             Descuento
           </div>
