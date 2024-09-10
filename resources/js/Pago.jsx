@@ -216,33 +216,33 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
     e.preventDefault()
 
     if (!datosFinales.address.postal_code) return Swal.fire({
-      icon: 'error',
-      title: 'Error',
+      icon: 'warning',
+      title: 'Falta Seleccionar una dirección',
       text: 'Por favor, seleccione una direccion para continuar',
       showConfirmButton: true,
       showCancelButton: false,
       confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#EF4444'
+      confirmButtonColor: '#138496'
     })
 
 
     if (datosFinales.billing.type == 'factura' && (datosFinales.billing.ruc.length > 11 || datosFinales.billing.ruc.length < 11)) return Swal.fire({
-      icon: 'error',
-      title: 'Error',
+      icon: 'warning',
+      title: 'Por favor, la longitud del RUC es incorrecta',
       text: 'Por favor, la longitud del RUC debe ser de 11 digitos',
       showConfirmButton: true,
       showCancelButton: false,
       confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#EF4444'
+      confirmButtonColor: '#138496'
     })
     if (datosFinales.billing.type == 'boleta' && (datosFinales.billing.dni.length > 8 || datosFinales.billing.dni.length < 8)) return Swal.fire({
-      icon: 'error',
-      title: 'Error',
+      icon: 'Warning',
+      title: 'Longitud de DNI incorrecta',
       text: 'Por favor, la longitud del DNI debe ser de 8 digitos',
       showConfirmButton: true,
       showCancelButton: false,
       confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#EF4444'
+      confirmButtonColor: '#138496'
     })
 
     Local.set('payment-data', {
