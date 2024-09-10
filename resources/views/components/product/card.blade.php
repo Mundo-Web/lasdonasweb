@@ -39,12 +39,14 @@
 @php
   $maxPrice = 0;
 
-  if (isset($item->componentes_hijos)) {
-      foreach ($item->componentes_hijos as $componente) {
+  if (isset($item->componentesHijos)) {
+      foreach ($item->componentesHijos as $componente) {
           // dump($componente->precio); // Esto imprimirá el precio en cada iteración
-          if (isset($componente->precio) && floatval($componente->precio) > $maxPrice) {
+          if (isset($componente->precio) && floatval($componente->precio) > floatval($maxPrice)) {
               $maxPrice = floatval($componente->precio);
           }
+
+          // $maxPrice = $maxPrice + 1;
       }
   }
 @endphp
@@ -101,7 +103,7 @@
       @else
         <div class="text-[#112212] font-bold flex flex-col">
           <span class="text-[#112212] opacity-80">Precio</span>
-          <span>{{ $maxPrice }} S/ {{ $item->precio }}</span>
+          <span> S/ {{ $item->precio }}</span>
         </div>
       @endif
     </div>
