@@ -7,7 +7,7 @@ import { deleteOnCarBtnR } from './Utils/carritoR';
 
 
 
-const AccordionContent = ({ id, setDetallePedido, onChange }) => {
+const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => { } }) => {
   const [complementos, setComplementos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,7 +49,9 @@ const AccordionContent = ({ id, setDetallePedido, onChange }) => {
           });
           isConfirmed = swalRes.isConfirmed
         }
-        agregarComplementoPedido(id, isConfirmed)
+        let actcarrito = await agregarComplementoPedido(id, isConfirmed)
+
+        setCarrito(actcarrito)
       } else {
         deleteOnCarBtnR(id)
       }
@@ -95,7 +97,7 @@ const AccordionContent = ({ id, setDetallePedido, onChange }) => {
   return (
     <div className="grid w-full gap-4 grid-cols-1 md:grid-cols-4 mt-6">
       {complementos.map((complemento) => (
-        <ComplementCard {...complemento} onChange={handleCheckboxChange}/>
+        <ComplementCard {...complemento} onChange={handleCheckboxChange} />
         // <div key={complemento.id} className="m-auto">
         //   <label
         //     htmlFor={`react-option-${complemento.id}`}
