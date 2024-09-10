@@ -8,6 +8,7 @@ use App\Models\General;
 use App\Models\Message;
 use App\Models\PoliticaDatos;
 use App\Models\TermsAndCondition;
+use App\Models\TipoFlor;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 use Illuminate\Support\Facades\View;
@@ -50,8 +51,10 @@ class AppServiceProvider extends ServiceProvider
             $submenucategorias = Category::with(['subcategories'])->where('status', true)->get(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             $submenucolecciones = Collection::all();
             $appUrl = env('APP_URL');
+            $tipoFlores = TipoFlor::select('tipo_flors.*')->join('products', 'products.tipo_flor_id', '=', 'tipo_flors.id')->where('tipo_flors.status', '=', 1)->groupBy('tipo_flors.id')->get();
             // Pasar los datos a la vista
             $view
+                ->with('tipoFlores', $tipoFlores)
                 ->with('submenucategorias', $submenucategorias)
                 ->with('appUrl', $appUrl)
                 ->with('submenucolecciones', $submenucolecciones)

@@ -87,6 +87,8 @@ Route::get('/comentario', [IndexController::class, 'comentario'] )->name('coment
 Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'] )->name('nuevocomentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
 
+Route::get('/tipoflor/{id?}', [IndexController::class, 'tipoFlor'] )->name('TipoFlor.jsx');
+
 
 /* Proceso de pago */
 Route::get('/carrito', [IndexController::class, 'carrito'] )->name('Carrito.jsx');

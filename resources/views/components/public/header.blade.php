@@ -506,10 +506,123 @@
 
             </div>
           </div>
+          {{-- <div x-data="{ openCatalogo: false }" x-init="$el.style.display = 'flex'" style="display: none;"
+            @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false">
+            <ul class="menu flex flex-row justify-center items-center text-center py-3 px-6">
+              <li><a href="/catalogo">Catálogo</a></li>
+            </ul>
 
-          <a href="/" class="font-medium hover:opacity-75  other-class py-3 px-6">
-            <span class="underline-this">Tipos de flor</span>
-          </a>
+            <div x-show="openCatalogo"
+              class="font-b_slick_bold text-white  origin-top-right  top-full left-0 w- mt-0 bg-[#73B473] p-8 shadow-lg overflow-hidden grid gap-8 grid-cols-12"
+              @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false">
+
+              <div class="col-span-3">
+                <h2 class="px-3 py-1 text-xl tracking-wider">Categorias</h2>
+                <hr class="mx-3 my-3">
+                <ul class="col-span-3 font-b_slick_regular tracking-normal">
+                  @foreach ($submenucategorias as $category)
+                    @if ($category->subcategories->isNotEmpty())
+                      <li>
+                        <a @click="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}"
+                          href="javascript:void(0)"
+                          class="flex justify-between items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                          <span class="underline-this">
+                            {{ $category->name }}
+                          </span>
+                          <span :class="{ 'rotate-180': openSubMenu === {{ $category->id }} }"
+                            class="ms-1 inline-block transform transition-transform duration-300">↓</span>
+                        </a>
+                        <ul x-show="openSubMenu === {{ $category->id }}" x-transition
+                          class="ml-3 mt-1 space-y-1 border-l border-white">
+                          <li>
+                            <a href="/catalogo/{{ $category->slug }}"
+                              class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                              <span class="underline-this">
+                                Ver todo {{ $category->name }}
+                              </span>
+                            </a>
+                          </li>
+                          @foreach ($category->subcategories as $subcategory)
+                            <li>
+                              <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
+                                class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                                <span class="underline-this">{{ $subcategory->name }}</span>
+                              </a>
+                            </li>
+                          @endforeach
+                        </ul>
+                      </li>
+                    @else
+                      <li>
+                        <a href="{{ route('Catalogo.jsx', $category->id) }}"
+                          class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
+                          <span class="underline-this">
+                            {{ $category->name }}
+                          </span>
+                        </a>
+                      </li>
+                    @endif
+                  @endforeach
+                </ul>
+              </div>
+
+              <div class="col-span-9">
+                <div class="swiper categories-header">
+                  <div class="swiper-wrapper mt-2 mb-4">
+                    @foreach ($submenucategorias as $category)
+                      @if ($category->destacar)
+                        <div class="swiper-slide rounded-2xl">
+                          <x-category.container :item="$category" />
+                        </div>
+                      @endif
+                    @endforeach
+                  </div>
+                  <div class="swiper-scrollbar-categories-header h-2"></div>
+                  <div class="mt-4 text-end">
+                    <button type="button"
+                      class="swiper-button-prev-categories-header text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-4 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
+                      ←
+                    </button>
+                    <button type="button"
+                      class="swiper-button-next-categories-header text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-4 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
+                      →
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div> --}}
+
+          <div x-data="{ openFlor: false }" x-init="$el.style.display = 'flex'" style="display: none;" @mouseenter="openFlor = true"
+            @mouseleave="openFlor = false" class="relative min-h-12 flex items-center">
+
+            <ul>
+              <li class="menu flex flex-row justify-center items-center text-center  px-6">
+                <a href="/" class="font-medium hover:opacity-75  other-class  px-6">
+                  <span class="underline-this">Tipos de flor</span>
+                </a>
+              </li>
+            </ul>
+            <div x-show="openFlor"
+              class=" py-4 font-b_slick_bold text-white  origin-top-right absolute top-[100%] left-0 w-full mt-0 bg-[#73B473] p-2  shadow-lg overflow-hidden grid gap-8 grid-cols-12"
+              @click.outside="openFlor = false" @keydown.escape.window="openFlor = false">
+
+              <div class="flex flex-col w-full ">
+
+                @foreach ($tipoFlores as $item)
+                  <a href="/tipoflor?tipo_flor={{ $item->id }}"
+                    class="flex items-center py-1 px-3 hover:opacity-75 hover:text-white transition-opacity duration-300 normal-case">
+                    <span class="underline-this">
+                      {{ $item->name }}
+                    </span>
+                  </a>
+                @endforeach
+              </div>
+            </div>
+
+          </div>
+
 
           <a href="/" class="font-medium hover:opacity-75  other-class py-3 px-6">
             <span class="underline-this">Oferta</span>

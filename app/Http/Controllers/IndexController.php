@@ -71,15 +71,15 @@ class IndexController extends Controller
   public function index()
   {
     // $productos = Products::all(); Products::where("tipo_servicio", "=", 'complemento')
-    $productos = Products::where('status', '=', 1)->where('destacar', 1)->with(['images','componentesHijos']) ->where('tipo_servicio', 'producto')->with('tags')->get();
+    $productos = Products::where('status', '=', 1)->where('destacar', 1)->with(['images', 'componentesHijos'])->where('tipo_servicio', 'producto')->with('tags')->get();
     $categorias = Category::all();
-    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with(['images','componentesHijos'])->get();
-    $recomendados = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with(['images','componentesHijos'])->get();
+    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with(['images', 'componentesHijos'])->get();
+    $recomendados = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('tipo_servicio', 'producto')->where('visible', '=', 1)->with('tags')->with(['images', 'componentesHijos'])->get();
     // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
     // ->where('visible', '=', 1)->with('tags')->get();
     // $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
 
-    
+
     $general = General::find(1);
     $benefit = Strength::where('status', '=', 1)->get();
     $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -293,6 +293,78 @@ class IndexController extends Controller
     ])->rootView('app');
   }
 
+  public function tipoFlor(Request $request, ?string $id = null)
+  {
+
+    $categorias = null;
+    $productos = null;
+
+    // $rangefrom = $request->query('rangefrom');
+    // $rangeto = $request->query('rangeto');
+    // $tituloAtributo = $request->query('rangeto');
+    // $valorAtributo = $request->query('rangeto');
+    // dd($request);
+    try {
+      $general = General::all();
+      $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
+      $categorias = Category::select('categories.*')
+        ->join('products', 'products.categoria_id', '=', 'categories.id')
+        ->where('categories.status', '=', 1)
+        ->where('categories.visible', '=', 1)
+        ->groupBy('categories.id')
+        ->get();
+      $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
+      $atributos = Attributes::where('status', '=', 1)->where('visible', '=', 1)->get();
+      $colecciones = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
+
+      if ($id == 0) {
+        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
+        $productos = Products::obtenerProductos();
+
+        $categoria = Category::all();
+        $filtro = null;
+      } else {
+        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
+        $productos = Products::obtenerProductos($id);
+
+        $categoria = Category::findOrFail($id);
+      }
+
+      $page = 0;
+      if (!empty($productos->nextPageUrl())) {
+        $parse_url = parse_url($productos->nextPageUrl());
+
+        if (!empty($parse_url['query'])) {
+          parse_str($parse_url['query'], $get_array);
+          $page = !empty($get_array['page']) ? $get_array['page'] : 0;
+        }
+      }
+      $beneficios = Strength::where('status', '=', 1)->get();
+      $tipoFlores = TipoFlor::select('tipo_flors.*')->join('products', 'products.tipo_flor_id', '=', 'tipo_flors.id')->where('tipo_flors.status', '=', 1)->groupBy('tipo_flors.id')->get();
+
+
+
+      return Inertia::render('TipoFlor', [
+        'general' => $general,
+        'faqs' => $faqs,
+        'categorias' => $categorias,
+        'testimonie' => $testimonie,
+        'selected_category' => $filtro,
+        'productos' => $productos,
+        'categoria' => $categoria,
+        'atributos' => $atributos,
+        'colecciones' => $colecciones,
+        'tipoFloresList' => $tipoFlores,
+        'page ' => $page,
+        'url_env' => $_ENV['APP_URL'],
+
+        'beneficios' => $beneficios,
+      ])->rootView('app');
+    } catch (\Throwable $th) {
+      // dump($th);
+    }
+  }
+
   public function pago(Request $request)
   {
     //
@@ -492,15 +564,16 @@ class IndexController extends Controller
       'orden' => $ordenJpa
     ])->rootView('app');
   }
-   public function nosotros(){
+  public function nosotros()
+  {
     $general = General::all();
-    $nosotros = AboutUs::all(); 
+    $nosotros = AboutUs::all();
     return Inertia::render('Nosotros', [
       'general' => $general,
       'nosotros' => $nosotros
-      
+
     ])->rootView('app');
-   }
+  }
 
   public function cambiofoto(Request $request)
   {
@@ -535,7 +608,7 @@ class IndexController extends Controller
     }
     $img->save($route . $nombreImagen);
   }
- 
+
 
   public function actualizarPerfil(Request $request)
   {
