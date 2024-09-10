@@ -144,76 +144,77 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
     handlemodalMaps()
   }
 
-  return (<>
+  return (
+    <>
 
-    <div className="flex flex-row md:h-screen justify-center h-screen font-b_slick_bold min-h-[869px]">
+      <div className="flex flex-row md:h-screen justify-center h-screen font-b_slick_bold min-h-[999px]">
 
-      <div className="basis-1/2 hidden md:block font-poppins">
+        <div className="basis-1/2 hidden md:block font-poppins">
 
-        <div class="basis-1/2 hidden md:block ">
+          <div class="basis-1/2 hidden md:block ">
 
-          <div
+            <div
 
-            className="bg-cover bg-center bg-no-repeat w-full h-full"
-          >
-            <img src={backgroundImageUrl} alt="" className='w-full h-full object-cover' />
+              className="bg-cover bg-center bg-no-repeat w-full h-full"
+            >
+              <img src={backgroundImageUrl} alt="" className='w-full h-full object-cover min-h-[999px]' />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="w-full md:basis-1/2  text-[#151515] flex justify-center items-center  " >
-        <div className="w-5/6 flex flex-col gap-5 py-5">
-          <div className="flex flex-col">
+        <div className="w-full md:basis-1/2  text-[#151515] flex justify-center items-center px-12 " >
+          <div className="w-5/6 flex flex-col gap-5 py-5">
+            <div className="flex flex-col">
 
 
-            <div className="text-center mb-4">
-              <h4 className="text-uppercase mt-0 font-bold">Registrate</h4>
-            </div>
-            <form onSubmit={onRegisterSubmit} className='flex flex-col gap-4'>
-              <div className="flex flex-col">
-                <label htmlFor="document_type" className="form-label">Tipo documento <b className="text-danger">*</b></label>
-                <select className='relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="text" id="document_number" placeholder="Ingrese su documento"' name="" id="" ref={documentTypeRef} onChange={onDocumentTypeChange} required>
-                  <option value="DNI">DNI - Documento Nacional de Identidad</option>
-                  <option value="CE">CE - Carnet de Extranjeria</option>
-                </select>
-
-
+              <div className="text-center mb-4">
+                <h4 className="text-uppercase mt-0 font-bold">Registrate</h4>
               </div>
-              <div className="flex flex-col">
+              <form onSubmit={onRegisterSubmit} className='flex flex-col gap-4'>
+                <div className="flex flex-col">
+                  <label htmlFor="document_type" className="form-label">Tipo documento <b className="text-danger">*</b></label>
+                  <select className='relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="text" id="document_number" placeholder="Ingrese su documento"' name="" id="" ref={documentTypeRef} onChange={onDocumentTypeChange} required>
+                    <option value="DNI">DNI - Documento Nacional de Identidad</option>
+                    <option value="CE">CE - Carnet de Extranjeria</option>
+                  </select>
 
 
-                <input ref={documentNumberRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="text" id="document_number" placeholder="Ingrese su documento"
-                  required />
-              </div>
-              <div className="grid grid-cols-4 gap-2">
-                <div className="flex flex-col col-span-2">
+                </div>
+                <div className="flex flex-col">
 
-                  <input ref={nameRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="text" id="name" placeholder="Ingrese su nombre"
+
+                  <input ref={documentNumberRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="text" id="document_number" placeholder="Ingrese su documento"
                     required />
                 </div>
-                <div className="flex flex-col col-span-2">
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="flex flex-col col-span-2">
 
-                  <input ref={lastnameRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="text" id="lastname" placeholder="Ingrese sus apellidos"
-                    required />
+                    <input ref={nameRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="text" id="name" placeholder="Ingrese su nombre"
+                      required />
+                  </div>
+                  <div className="flex flex-col col-span-2">
+
+                    <input ref={lastnameRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="text" id="lastname" placeholder="Ingrese sus apellidos"
+                      required />
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex flex-col">
+                <div className="flex flex-col">
 
-                <input ref={emailRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="email" id="email" required
-                  placeholder="Ingrese su correo electronico" />
-              </div>
-              <div className="flex flex-col">
+                  <input ref={emailRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="email" id="email" required
+                    placeholder="Ingrese su correo electronico" />
+                </div>
+                <div className="flex flex-col">
 
-                <input ref={passwordRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="password" required id="password"
-                  placeholder="Ingrese su contraseña" />
-              </div>
-              <div className="flex flex-col">
+                  <input ref={passwordRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="password" required id="password"
+                    placeholder="Ingrese su contraseña" />
+                </div>
+                <div className="flex flex-col">
 
-                <input ref={confirmationRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="password" required id="confirmation"
-                  placeholder="Confirme su contraseña" />
-              </div>
-              <div className="flex flex-col">
-                {/* <div className="form-check mx-auto" style={{ width: 'max-content' }}>
+                  <input ref={confirmationRef} className="relative my-auto bg-transparent  outline-none focus:border-none  gap-10 justify-between items-center px-6  w-full font-medium leading-tight rounded-3xl border py-4 border-orange-400 border-solid " type="password" required id="confirmation"
+                    placeholder="Confirme su contraseña" />
+                </div>
+                <div className="flex flex-col">
+                  {/* <div className="form-check mx-auto" style={{ width: 'max-content' }}>
                   <input ref={termsRef} type="checkbox" className="form-check-input" id="checkbox-signup" required />
                   <label className="form-check-label" htmlFor="checkbox-signup">
                     Acepto los
@@ -223,54 +224,54 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
                     </a>
                   </label>
                 </div> */}
-                <div class="flex gap-3 px-4 items-center">
-                  <input ref={termsRef} type="checkbox" className="form-check-input" id="checkbox-signup" required />
-                  <label for="" class="font-normal text-sm ">Acepto la
-                    <span class=" font-bold text-[#006BF6]  cursor-pointer open-modal" data-tipo='PoliticaPriv' onClick={handleModalpolic}> Política
-                      de
-                      Privacidad </span>
-                    y los {' '}
-                    <span class=" font-bold text-[#006BF6] open-modal cursor-pointer open-modal" data-tipo='terminosUso'
-                      onClick={handleModalpolic}>
-                      Términos de Uso </span>
-                  </label>
+                  <div class="flex gap-3 px-4 items-center">
+                    <input ref={termsRef} type="checkbox" className="form-check-input" id="checkbox-signup" required />
+                    <label for="" class="font-normal text-sm ">Acepto la
+                      <span class=" font-bold text-[#006BF6]  cursor-pointer open-modal" data-tipo='PoliticaPriv' onClick={handleModalpolic}> Política
+                        de
+                        Privacidad </span>
+                      y los {' '}
+                      <span class=" font-bold text-[#006BF6] open-modal cursor-pointer open-modal" data-tipo='terminosUso'
+                        onClick={handleModalpolic}>
+                        Términos de Uso </span>
+                    </label>
+                  </div>
+                </div>
+                <ReCAPTCHA className='m-auto mb-3' sitekey={RECAPTCHA_SITE_KEY} onChange={setCaptchaValue} style={{ display: "block", width: 'max-content' }} />
+                <div className="mb-0 text-center d-grid">
+                  <button className="text-white bg-green-800 w-full py-4 rounded-3xl cursor-pointer font-light font-Inter_Medium tracking-wide" type="submit" disabled={loading}>
+                    {loading ? <>
+                      <i className='fa fa-spinner fa-spin'></i> Verificando
+                    </> : 'Registrarme'}
+                  </button>
+                </div>
+              </form>
+
+
+              <div className="row mt-3">
+                <div className="col-12 text-center">
+                  <p className="text-muted">Ya tienes una cuenta? <a href="/login"
+                    className="text-dark ms-1"><b>Iniciar sesion</b></a></p>
                 </div>
               </div>
-              <ReCAPTCHA className='m-auto mb-3' sitekey={RECAPTCHA_SITE_KEY} onChange={setCaptchaValue} style={{ display: "block", width: 'max-content' }} />
-              <div className="mb-0 text-center d-grid">
-                <button className="text-white bg-green-800 w-full py-4 rounded-3xl cursor-pointer font-light font-Inter_Medium tracking-wide" type="submit" disabled={loading}>
-                  {loading ? <>
-                    <i className='fa fa-spinner fa-spin'></i> Verificando
-                  </> : 'Registrarme'}
-                </button>
-              </div>
-            </form>
 
-
-            <div className="row mt-3">
-              <div className="col-12 text-center">
-                <p className="text-muted">Ya tienes una cuenta? <a href="/login"
-                  className="text-dark ms-1"><b>Iniciar sesion</b></a></p>
-              </div>
             </div>
 
           </div>
-
         </div>
       </div>
-    </div>
 
 
-    <ModalGoogle handlemodalMaps={handlemodalMaps}
-      isModalOpen={modalMaps} tittle={modalitem.current == 'PoliticaPriv' ? 'Politica de Prtivacidad ' : 'Terminos de Uso'}
-    >
-      {
-        modalitem.current == 'PoliticaPriv' ? <HtmlContent html={politicas?.content ?? ''} /> : <HtmlContent html={termsAndCondicitions?.content ?? ''} />
-      }
-    </ModalGoogle>
+      <ModalGoogle handlemodalMaps={handlemodalMaps}
+        isModalOpen={modalMaps} tittle={modalitem.current == 'PoliticaPriv' ? 'Politica de Prtivacidad ' : 'Terminos de Uso'}
+      >
+        {
+          modalitem.current == 'PoliticaPriv' ? <HtmlContent html={politicas?.content ?? ''} /> : <HtmlContent html={termsAndCondicitions?.content ?? ''} />
+        }
+      </ModalGoogle>
 
 
-  </>)
+    </>)
 };
 
 CreateReactScript((el, properties) => {
