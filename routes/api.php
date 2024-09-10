@@ -6,7 +6,7 @@ use App\Http\Controllers\CuponController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HorariosController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\MereyRest;
+use App\Http\Controllers\MereyController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PrecioEnvioController;
 use App\Http\Controllers\ProductsController;
@@ -51,7 +51,7 @@ Route::post('signup', [AuthController::class, 'signup']);
 
 Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
 
-    Route::post('/people/search', [MereyRest::class, 'get']);
+    Route::post('/people/search', [MereyController::class, 'get']);
     Route::get('/dashboard/top-products/{orderBy}', [DashboardController::class, 'topProducts'])->name('dashboard.top-products');
 
     Route::get('/direccion', [IndexController::class, 'direccion'])->name('address.all');
