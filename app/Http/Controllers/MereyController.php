@@ -8,7 +8,7 @@ use SoDe\Extend\Fetch;
 use SoDe\Extend\JSON;
 use SoDe\Extend\Response;
 
-class MereyRest extends Controller
+class MereyController extends Controller
 {
     public function get(Request $request)
     {
