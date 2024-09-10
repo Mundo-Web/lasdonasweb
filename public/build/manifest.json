@@ -259,12 +259,12 @@
   },
   "resources/js/Agradecimiento.jsx": {
     "assets": [
-      "assets/SvgPuntos-hzKALqiY.svg"
+      "assets/SvgPuntos--FnXd_aC.svg"
     ],
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-SYr53ojX.js",
+    "file": "assets/Agradecimiento-VDyLOQls.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -437,7 +437,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-Kz3lSw54.js",
+    "file": "assets/Pago-AUWCGiXd.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -455,8 +455,8 @@
       "_floating-ui.dom-3uxmUvem.js",
       "_floating-ui.react-dom-R4KlLOlI.js",
       "_index-38suPYpT.js",
-      "resources/js/Utils/CreateReactScript.jsx",
       "_main-Vi8adC25.js",
+      "resources/js/Utils/CreateReactScript.jsx",
       "_extends-wRoo2ExD.js",
       "_setPrototypeOf-ahVgEFUp.js"
     ],
@@ -1221,7 +1221,7 @@
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/SvgPuntos.svg": {
-    "file": "assets/SvgPuntos-hzKALqiY.svg",
+    "file": "assets/SvgPuntos--FnXd_aC.svg",
     "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {

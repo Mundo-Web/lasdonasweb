@@ -19,6 +19,7 @@ import SelectSecond from './components/SelectSecond';
 import Swal from 'sweetalert2';
 import calculartotal from './Utils/calcularTotal';
 import { Modal } from 'flowbite-react';
+import { Fetch, Notify } from 'sode-extend-react';
 
 const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones }) => {
 
@@ -26,6 +27,59 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
   const [showDedicatoria, setShowDedicatoria] = useState(false)
   const [showFirma, setShowshowFirma] = useState(false)
   const [costoEnvio, setCostoEnvio] = useState(0)
+  const [document2Search, setDocument2Search] = useState(null)
+  const [documentFound, setDocumentFound] = useState(false)
+
+  useEffect(() => {
+    if (documentFound) return
+
+    if (datosFinales.billing.type == 'boleta' && document2Search?.length == 8) {
+      Fetch('/api/people/search', {
+        method: 'POST', body: JSON.stringify({
+          type: 'dni',
+          number: document2Search
+        })
+      }).then(({ status, result }) => {
+        if (!status) return Notify.add({
+          'icon': '/img_donas/icon.svg',
+          'title': 'Error',
+          'body': result?.message || 'No se encontraron datos',
+          'type': 'danger'
+        })
+        setDatosFinales(old => ({
+          ...old,
+          billing: {
+            ...old.billing,
+            name: result?.data?.name
+          }
+        }))
+        setDocumentFound(true)
+      })
+    } else if (datosFinales.billing.type == 'factura' && document2Search?.length == 11) {
+      Fetch('/api/people/search', {
+        method: 'POST', body: JSON.stringify({
+          type: 'ruc',
+          number: document2Search
+        })
+      }).then(({ status, result }) => {
+        if (!status) return Notify.add({
+          'icon': '/img_donas/icon.svg',
+          'title': 'Error',
+          'body': result?.message || 'No se encontraron datos',
+          'type': 'danger'
+        })
+        setDatosFinales(old => ({
+          ...old,
+          billing: {
+            ...old.billing,
+            name: result?.data?.name,
+            address: result?.data?.address
+          }
+        }))
+        setDocumentFound(true)
+      })
+    }
+  }, [document2Search, documentFound])
 
   const [selectedOption, setSelectedOption] = useState(null);
   const handleOptionChange = (selected) => {
@@ -408,6 +462,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                     ¿Qué tipo de comprobante desea?
                   </h3> */}
                   <ReceiptTypeSelector onChange={value => {
+                    setDocumentFound(false)
                     setDatosFinales(old => ({
                       ...old,
                       billing: {
@@ -429,7 +484,6 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
 
 
                       handleDatosFinales={(e) => {
-
                         if (datosFinales.billing.type === 'boleta') {
                           setDatosFinales(old => ({
                             ...old,
@@ -449,12 +503,14 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                             }
                           }))
                         }
+                        setDocumentFound(false)
+                        setDocument2Search(e.target.value)
                       }} />
 
 
                     <InputField
                       name={'razonSocial'}
-                      label={datosFinales.billing.type == 'boleta' ? 'Nombre' : "Razón Social"}
+                      label={datosFinales.billing.type == 'boleta' ? 'Nombre completo' : "Razón Social"}
                       placeholder="Ingrese una nombre"
                       value={datosFinales.billing.name}
                       required={true}
@@ -467,25 +523,25 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                           }
                         }))
                       }} />
-                    {
-                      datosFinales.billing.type === 'boleta' && <>
-                        <InputField
-                          name={'lastname'}
-                          label="Apellido"
-                          value={datosFinales.billing.lastname}
-                          placeholder="Ingrese su apellido"
-                          required
-                          handleDatosFinales={(e) => {
-                            setDatosFinales(old => ({
-                              ...old,
-                              billing: {
-                                ...old.billing,
-                                lastname: e.target.value
-                              }
-                            }))
-                          }} />
-                      </>
-                    }
+                    {/* {
+                        datosFinales.billing.type === 'boleta' && <>
+                          <InputField
+                            name={'lastname'}
+                            label="Apellido"
+                            value={datosFinales.billing.lastname}
+                            placeholder="Ingrese su apellido"
+                            required
+                            handleDatosFinales={(e) => {
+                              setDatosFinales(old => ({
+                                ...old,
+                                billing: {
+                                  ...old.billing,
+                                  lastname: e.target.value
+                                }
+                              }))
+                            }} />
+                        </>
+                      } */}
                     <InputField
                       value={datosFinales.billing.address}
                       label="Dirección Fiscal"
