@@ -20,8 +20,9 @@ const ProductCard = (item) => {
     }
   }, [item.descuento]);
 
+  console.log(item)
   const maxPrice = item.componentes_hijos?.reduce((max, current) => {
-    return current.precio > max ? current.precio : max;
+    return Number(current.precio) > max ? (Number(current.descuento) > 0 ? Number(current.descuento) : Number(current.precio)) : max;
   }, 0);
 
   console.log(maxPrice);
@@ -79,7 +80,7 @@ const ProductCard = (item) => {
                 <div className="flex gap-10 ">
                   <div className="text-[#112212] font-bold flex flex-col">
                     <span className="text-[#112212] opacity-80">Desde</span>
-                    <span> S/ {item.precio} </span>
+                    <span> S/ {item.descuento > 0 ? item.descuento : item.precio} </span>
                   </div>
                   <div className="text-[#112212] font-bold flex flex-col">
                     <span className="text-[#112212] opacity-80">Hasta </span>

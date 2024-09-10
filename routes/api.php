@@ -48,10 +48,10 @@ Route::get('/horarios/{id}', [HorariosController::class, 'edit']);
 
 
 Route::post('signup', [AuthController::class, 'signup']);
+Route::post('/people/search', [MereyController::class, 'get']);
 
 Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
 
-    Route::post('/people/search', [MereyController::class, 'get']);
     Route::get('/dashboard/top-products/{orderBy}', [DashboardController::class, 'topProducts'])->name('dashboard.top-products');
 
     Route::get('/direccion', [IndexController::class, 'direccion'])->name('address.all');

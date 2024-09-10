@@ -1,3 +1,7 @@
+@php
+  use SoDe\Extend\Text;
+@endphp
+
 <footer class="bg-[#ff8555] p-[10%] sm:p-[7%] md:p-[5%] lg:p-[5%] font-b_slick_regular !tracking-wider">
   <div class="footer_main pb-10 border-b">
     <div class="grid grid-cols-1 sm:grid-cols-12 md:grid-cols-12 gap-7">
@@ -22,10 +26,11 @@
         <nav>
           <h2 class="text-lg font-b_slick_bold">Categorías</h2>
           <ul class="text-base space-y-1 mt-2">
-            <li>Pellentesque</li>
-            <li>Suspendisse</li>
-            <li>Curabitur</li>
-            <li>Etiam fringilla</li>
+            @foreach ($categories as $item)
+              <li>
+                <a href="/catalogo/{{$item->id}}">{{Text::toTitleCase($item->name)}}</a>
+              </li>
+            @endforeach
           </ul>
         </nav>
       </div>
