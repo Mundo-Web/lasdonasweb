@@ -44,8 +44,8 @@
       "resources/js/components/useOutsideClick.jsx"
     ]
   },
-  "_ProductCard-YnzF15RD.js": {
-    "file": "assets/ProductCard-YnzF15RD.js",
+  "_ProductCard-tGEu-Js7.js": {
+    "file": "assets/ProductCard-tGEu-Js7.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx"
@@ -312,7 +312,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Catalogo-L7RyZRgb.js",
+    "file": "assets/Catalogo-P9D4IP8j.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -320,7 +320,7 @@
       "_CreateReactScript-VVPwJ0HX.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-YnzF15RD.js",
+      "_ProductCard-tGEu-Js7.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -468,7 +468,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-UXi7JiBr.js",
+    "file": "assets/Product-jhdd_LPN.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -483,7 +483,7 @@
       "_Accordion2-XzXrcu58.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-wXA00dMN.js",
-      "_ProductCard-YnzF15RD.js",
+      "_ProductCard-tGEu-Js7.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_index-XJuWVQ-l.js",
