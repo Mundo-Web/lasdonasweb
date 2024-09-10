@@ -81,7 +81,7 @@ Route::get('/confirmation/{token}', [AuthController::class, 'loginView']);
 Route::get('/register-rev', [AuthController::class, 'registerView'])->name('Register.jsx');
 
 Route::get('/', [IndexController::class, 'index'] )->name('index');
-Route::get('/nosotros', [IndexController::class, 'nosotros'] )->name('nosotros');
+Route::get('/nosotros', [IndexController::class, 'nosotros'] )->name('Nosotros.jsx');
 Route::get('/servicios', [IndexController::class, 'servicios'] )->name('servicios');
 Route::get('/comentario', [IndexController::class, 'comentario'] )->name('comentario');
 Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'] )->name('nuevocomentario');

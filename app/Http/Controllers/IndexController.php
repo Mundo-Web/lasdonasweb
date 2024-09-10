@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\EmailConfig;
 use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
+use App\Models\AboutUs;
 use App\Models\Address;
 use App\Models\AddressUser;
 use App\Models\Attributes;
@@ -491,6 +492,15 @@ class IndexController extends Controller
       'orden' => $ordenJpa
     ])->rootView('app');
   }
+   public function nosotros(){
+    $general = General::all();
+    $nosotros = AboutUs::all(); 
+    return Inertia::render('Nosotros', [
+      'general' => $general,
+      'nosotros' => $nosotros
+      
+    ])->rootView('app');
+   }
 
   public function cambiofoto(Request $request)
   {

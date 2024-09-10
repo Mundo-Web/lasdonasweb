@@ -415,7 +415,7 @@
             <span class="underline-this">Inicio</span>
           </a>
 
-          <a href="/" class="font-medium hover:opacity-75 other-class py-3 px-6">
+          <a href="/nosotros" class="font-medium hover:opacity-75 other-class py-3 px-6">
             <span class="underline-this">Nosotros</span>
           </a>
 
