@@ -536,38 +536,11 @@ const Product = ({
                   </div>
                   : <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
 
-                    {/* <Swiper
-                  className="h-full horario"
-                  slidesPerView={1}
-                  autoHeight={true}
-                  spaceBetween={25}
-                  loop={false}
-                  centeredSlides={false}
-                  initialSlide={0}
-                  allowTouchMove={true}
-                  autoplay={{
-                    delay: 5500,
-                    disableOnInteraction: true,
-                    pauseOnMouseEnter: true,
-                  }}
 
-                  breakpoints={{
-                    0: {
-                      slidesPerView: 1,
-                      centeredSlides: false,
-                      spaceBetween:10,
-                      loop: true,
-                    },
-                    1024: {
-                      slidesPerView: 3,
-                      centeredSlides: false,
-                    },
-                  }}
-                >      */}
-                    {/* <SwiperSlide className='!overflow-visible'> */}
                     {general.acept_incoming_orders_today == true ?
                       (<div
-                        className={`flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-full  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
+                        onClick={() => setLoadListHorariosHoy(!loadListHorariosHoy)}
+                        className={`cursor-pointer flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-full  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
                         <HorarioSection
                           id="hoy"
                           title="Hoy"
