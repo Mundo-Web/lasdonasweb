@@ -6,16 +6,20 @@
   <div class="footer_main pb-10 border-b">
     <div class="grid grid-cols-1 sm:grid-cols-12 md:grid-cols-12 gap-7">
       <div
-        class="flex flex-col justify-center items-center  sm:col-span-12 md:col-span-12 lg:col-span-4 lg:justify-start lg:items-start">
+        class="flex flex-col justify-center items-center  sm:col-span-12 md:col-span-12 lg:col-span-5 lg:justify-start lg:items-start">
         <img class="md:w-64 lg:max-w-64" src="{{ asset('img_donas/logoblancodonas.png') }}">
+        <span class="text-white  mt-4">
+          Florería Online “Las Doñas”. Empresa peruana que busca rescatar
+          las prácticas de las antiguas mujeres
+          artistas caracterizadas por plasmar su creatividad, talento y habilidad en todo lo que hacían.</span>
       </div>
 
-      <div class="text-white sm:col-span-3 lg:col-span-2">
+      {{-- <div class="text-white sm:col-span-3 lg:col-span-2">
         <nav>
           <a href="/nosotros" class="text-lg font-b_slick_bold">Nosotros</a>
 
         </nav>
-      </div>
+      </div> --}}
 
       <div class="text-white sm:col-span-3 lg:col-span-3">
         <nav>
@@ -44,7 +48,7 @@
       </div> --}}
 
 
-      <div class="text-white sm:col-span-3 lg:col-span-3">
+      <div class="text-white sm:col-span-3 lg:col-span-4">
         <nav>
           <h2 class="text-lg font-b_slick_bold">Políticas</h2>
           <ul class="text-base  space-y-1 mt-2 flex flex-col">

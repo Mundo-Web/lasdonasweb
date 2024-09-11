@@ -37,7 +37,7 @@
               @foreach ($orders as $item)
                 <tr>
                   <td><a href="{{ route('verPedido', $item->id) }}">#{{ $item->codigo_orden }}</a></td>
-                  <td>{{ $item->usuarioPedido->email }}</td>
+                  <td>{{ $item->usuarioPedido->email ?? '' }}</td>
                   <td>{{ $item->monto }}</td>
                   <td>{{ $item->precio_envio }}</td>
                   <td><span
