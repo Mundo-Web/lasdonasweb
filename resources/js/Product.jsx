@@ -85,6 +85,7 @@ const Product = ({
     return (horaActual >= horaInicio && horaActual <= horaFin) || (horaActual < horaInicio);
   });
 
+  const modalRef = useRef(null);
 
   const [detallePedido, setDetallePedido] = useState({
     fecha: '',
@@ -122,7 +123,7 @@ const Product = ({
         if (nuevaCantidad == 0) {
           let articulos = deleteItemR(id)
           console.log(articulos)
-          setCarrito(articulos)
+          // setCarrito(articulos)
         }
       }
 
@@ -1097,12 +1098,14 @@ const Product = ({
       </ModalSimple >
 
       <div id="modalComplementos" className={isModalOpen ? 'block' : 'hidden'}>
-        <div className=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div className=" fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity" onClick={closeModalComplementos}></div>
 
 
-        <div className=" fixed inset-0 z-30 w-screen overflow-y-auto">
+        <div className=" fixed inset-0 z-30 w-screen overflow-y-auto" onClick={closeModalComplementos}>
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
+              ref={modalRef}
+              onClick={(e) => e.stopPropagation()}
               className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-4xl">
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start w-full">
