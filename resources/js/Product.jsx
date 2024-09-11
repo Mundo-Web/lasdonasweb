@@ -35,7 +35,7 @@ import 'tippy.js/dist/tippy.css'; // Importa los estilos de Tippy
 import agregarComplementoPedido from './Utils/agregarComplemento'
 import Button from './components/Button'
 
-import { deleteOnCarBtnR } from './Utils/carritoR'
+import { deleteOnCarBtnR, deleteItemR } from './Utils/carritoR'
 import ComplementCard from './components/Complements/ComplementCard'
 
 const Product = ({
@@ -115,6 +115,15 @@ const Product = ({
         agregarComplementoPedido(id, isConfirmed)
       } else {
         deleteOnCarBtnR(id)
+
+        let nuevaCantidad = Local.get('carrito').find((item) => item.id === id).cantidad
+
+        console.log(nuevaCantidad)
+        if (nuevaCantidad == 0) {
+          let articulos = deleteItemR(id)
+          console.log(articulos)
+          setCarrito(articulos)
+        }
       }
 
 
