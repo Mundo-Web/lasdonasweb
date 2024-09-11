@@ -129,7 +129,7 @@
       <path d="M18 2L2 18M18 18L2 2" stroke="#272727" stroke-width="2.66667" stroke-linecap="round" />
     </svg>
   </button>
-  <nav class="w-full h-full overflow-y-auto p-8" x-data="{ openCatalogo: true, openSubMenu: null }">
+  <nav class="w-full h-full overflow-y-auto p-8 font-b_slick_bold" x-data="{ openCatalogo: true, openSubMenu: null }">
     <ul class="space-y-1">
       <li>
         <a href="/"
@@ -149,7 +149,7 @@
       <li>
         <a @click="openCatalogo = !openCatalogo" href="javascript:void(0)"
           class="text-[#272727] flex justify-between items-center  text-sm py-2 px-3 hover:opacity-75 transition-opacity duration-300 {{ $pagina == 'catalogo' ? 'text-[#FF5E14]' : '' }}">
-          <span class="underline-this text-lg">
+          <span class="underline-this text-lg font-b_slick_bold">
             <svg
               class="inline-block  w-3 h-3 mb-0.5 me-2 text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-500"
               aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -411,18 +411,18 @@
           class="text-white tracking-wider text-base flex flex-row gap-5 xl:gap-6 items-center justify-between max-w-4xl mx-auto"
           x-data="{ openCatalogo: false, openSubMenu: null }">
 
-          <a href="/" class="font-medium hover:opacity-75 other-class py-3 px-6">
+          <a href="/" class="font-b_slick_bold hover:opacity-75 other-class py-3 px-6">
             <span class="underline-this">Inicio</span>
           </a>
 
-          <a href="/nosotros" class="font-medium hover:opacity-75 other-class py-3 px-6">
+          <a href="/nosotros" class="font-b_slick_bold hover:opacity-75 other-class py-3 px-6">
             <span class="underline-this">Nosotros</span>
           </a>
 
           <div x-data="{ openCatalogo: false }" x-init="$el.style.display = 'flex'" style="display: none;"
             @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false">
-            <ul class="menu flex flex-row justify-center items-center text-center py-3 px-6">
-              <li><a href="/catalogo">Catálogo</a></li>
+            <ul class="menu flex flex-row justify-center items-center text-center py-3 px-6 ">
+              <li><a href="/catalogo" class="font-b_slick_bold">Catálogo</a></li>
             </ul>
 
             <div x-show="openCatalogo"
@@ -430,7 +430,7 @@
               @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false">
 
               <div class="col-span-3">
-                <h2 class="px-3 py-1 text-xl tracking-wider">Categorias</h2>
+                <h2 class="px-3 py-1 text-xl tracking-wider font-b_slick_bold">Categorias</h2>
                 <hr class="mx-3 my-3">
                 <ul class="col-span-3 font-b_slick_regular tracking-normal">
                   @foreach ($submenucategorias as $category)
@@ -446,11 +446,11 @@
                             class="ms-1 inline-block transform transition-transform duration-300">↓</span>
                         </a>
                         <ul x-show="openSubMenu === {{ $category->id }}" x-transition
-                          class="ml-3 mt-1 space-y-1 border-l border-white">
+                          class="ml-3 mt-1 space-y-1 border-l border-white font-b_slick_bold">
                           <li>
                             <a href="/catalogo/{{ $category->slug }}"
                               class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
-                              <span class="underline-this">
+                              <span class="underline-this font-b_slick_bold">
                                 Ver todo {{ $category->name }}
                               </span>
                             </a>
@@ -459,7 +459,7 @@
                             <li>
                               <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
                                 class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
-                                <span class="underline-this">{{ $subcategory->name }}</span>
+                                <span class="underline-this font-b_slick_bold">{{ $subcategory->name }}</span>
                               </a>
                             </li>
                           @endforeach
@@ -469,7 +469,7 @@
                       <li>
                         <a href="{{ route('Catalogo.jsx', $category->id) }}"
                           class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
-                          <span class="underline-this">
+                          <span class="underline-this font-b_slick_bold">
                             {{ $category->name }}
                           </span>
                         </a>
@@ -600,7 +600,7 @@
             <ul>
               <li class="menu flex flex-row justify-center items-center text-center  px-6">
                 <a href="/" class="font-medium hover:opacity-75  other-class  px-6">
-                  <span class="underline-this">Tipos de flor</span>
+                  <span class="underline-this font-b_slick_bold">Tipos de flor</span>
                 </a>
               </li>
             </ul>
@@ -613,7 +613,7 @@
                 @foreach ($tipoFlores as $item)
                   <a href="/tipoflor?tipo_flor={{ $item->id }}"
                     class="flex items-center py-1 px-3 hover:opacity-75 hover:text-white transition-opacity duration-300 normal-case">
-                    <span class="underline-this">
+                    <span class="underline-this font-b_slick_bold">
                       {{ $item->name }}
                     </span>
                   </a>
@@ -625,7 +625,7 @@
 
 
           <a href="/" class="font-medium hover:opacity-75  other-class py-3 px-6">
-            <span class="underline-this">Oferta</span>
+            <span class="underline-this font-b_slick_bold">Promociones</span>
           </a>
         </nav>
       </div>

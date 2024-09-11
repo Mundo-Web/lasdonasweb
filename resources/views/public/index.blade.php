@@ -48,31 +48,36 @@
   <main class="flex flex-col gap-12">
 
     <section class="z-0">
-       <div class="swiper slider-portada">
-          <div class="swiper-wrapper">
-            @foreach ($slider as $slide)
-                <div class="swiper-slide">
-                  <div class="bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
-                    style="background-image:  @if ($slide->name_image) url('{{ asset($slide->url_image . $slide->name_image) }}')
+      <div class="swiper slider-portada">
+        <div class="swiper-wrapper">
+          @foreach ($slider as $slide)
+            <div class="swiper-slide">
+              <div
+                class="bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
+                style="background-image:  @if ($slide->name_image) url('{{ asset($slide->url_image . $slide->name_image) }}')
                             @else url('{{ asset('images/img/noimagenslider.jpg') }}') @endif">
-                    <h4 class="text-xl text-[#336234] tracking-wider">{{$slide->subtitle}}</h4>
-                    <h2 class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
-                       {{$slide->title2}}
-                    </h2>
-                    <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">{{$slide->description}}</p>
-                    <a href="{{$slide->link1}}" type="button" class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">{{$slide->botontext1}}</a>
-                  </div>
-                </div>
-            @endforeach
-          </div>
-       </div>
+                <h4 class="text-xl text-[#336234] tracking-wider">{{ $slide->subtitle }}</h4>
+                <h2
+                  class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
+                  {{ $slide->title2 }}
+                </h2>
+                <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">
+                  {{ $slide->description }}</p>
+                <a href="{{ $slide->link1 }}" type="button"
+                  class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a>
+              </div>
+            </div>
+          @endforeach
+        </div>
+      </div>
     </section>
 
     <section class="z-0">
       <div class="px-[5%] lg:px-[8%]  space-y-10">
         <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] gap-3 px-5">
           <h3 class="text-lg font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
-          <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212]">DESCUBRE NUESTROS PRODUCTOS MAS VENDIDOS</h2>
+          <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212]">DESCUBRE NUESTROS PRODUCTOS MAS
+            VENDIDOS</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6">
@@ -110,124 +115,123 @@
         <p class="text-3xl sm:text-4xl">LO MEJOR DE NUESTRA TIENDA PARA TI</p>
       </div>
       @php
-          $categories = $categoriasindex;
-          $chunks = $categories->chunk(4);
-          $processedCategories = collect();
+        $categories = $categoriasindex;
+        $chunks = $categories->chunk(4);
+        $processedCategories = collect();
       @endphp
-      
+
       @foreach ($chunks as $chunk)
-            @if ($chunk->count() == 4)
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-[5%] lg:px-[8%] gap-8 pt-10">
-                    @foreach ($chunk as $category)
-                      @if ($loop->first)
-                          <div class="w-full lg:row-span-2 lg:col-span-2">
-                            <a href="{{ route('Catalogo.jsx', $category->id) }}">
-                              <div class="h-full">
-                                  <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                      class="h-52 sm:h-52 md:h-64 lg:h-[660px] xl:h-[760px] flex flex-col justify-end items-start object-cover w-full"
-                                      onerror="this.src='/images/img/noimagen.jpg';">
-                                  <h3 class="text-base font-medium text-[#FE4A11] mt-4">Categoría</h3>
-                                  <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
-                              </div>
-                            </a>
-                          </div>
-                      @elseif ($loop->iteration == 2)
-                          <div class="w-full lg:col-span-2">
-                            <a href="{{ route('Catalogo.jsx', $category->id) }}">
-                              <div class="h-full w-full">
-                                  <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                      class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
-                                      onerror="this.src='/images/img/noimagen.jpg';">
-                                  <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                                  <h2 class="text-[32px] font-bold ">{{ $category->name }}</h2>
-                              </div>
-                            </a>
-                          </div>
-                      @else
-                          <div class="w-full">
-                            <a href="{{ route('Catalogo.jsx', $category->id) }}">
-                              <div class="h-full">
-                                  <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                      class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
-                                      onerror="this.src='/images/img/noimagen.jpg';">
-                                  <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                                  <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
-                              </div>
-                            </a>
-                          </div>
-                      @endif
-                    @endforeach
+        @if ($chunk->count() == 4)
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-[5%] lg:px-[8%] gap-8 pt-10">
+            @foreach ($chunk as $category)
+              @if ($loop->first)
+                <div class="w-full lg:row-span-2 lg:col-span-2">
+                  <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                    <div class="h-full">
+                      <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                        class="h-52 sm:h-52 md:h-64 lg:h-[660px] xl:h-[760px] flex flex-col justify-end items-start object-cover w-full"
+                        onerror="this.src='/images/img/noimagen.jpg';">
+                      <h3 class="text-base font-medium text-[#FE4A11] mt-4 mb-[5%]"></h3>
+                      <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
+                    </div>
+                  </a>
                 </div>
-            @endif
-          
-            @php
-                  $processedCategories = $processedCategories->merge($chunk); // Guardamos las categorías procesadas.
-            @endphp
+              @elseif ($loop->iteration == 2)
+                <div class="w-full lg:col-span-2">
+                  <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                    <div class="h-full w-full">
+                      <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                        class="h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                        onerror="this.src='/images/img/noimagen.jpg';">
+                      <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                      <h2 class="text-[32px] font-bold ">{{ $category->name }}</h2>
+                    </div>
+                  </a>
+                </div>
+              @else
+                <div class="w-full">
+                  <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                    <div class="h-full">
+                      <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                        class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                        onerror="this.src='/images/img/noimagen.jpg';">
+                      <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                      <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
+                    </div>
+                  </a>
+                </div>
+              @endif
+            @endforeach
+          </div>
+        @endif
+
+        @php
+          $processedCategories = $processedCategories->merge($chunk); // Guardamos las categorías procesadas.
+        @endphp
       @endforeach
-    
+
       {{-- Manejo de categorías restantes si no son múltiplos de 4 --}}
       @php
-          $remainder = $categories->count() % 4;
-          $remainderCategories = $categories->diff($processedCategories);
+        $remainder = $categories->count() % 4;
+        $remainderCategories = $categories->diff($processedCategories);
       @endphp
-      
+
       @php
-          $remainderCategories = $categories->slice(-$remainder);
+        $remainderCategories = $categories->slice(-$remainder);
       @endphp
 
 
       @if ($remainder > 0)
-          @if ($remainder == 1)
-              
-                  @foreach ($remainderCategories as $category)
-                  <div class="grid grid-cols-1 px-[5%] lg:px-[8%] pb-10 mt-10">
-                          <div class="w-full">
-                            <a href="{{ route('Catalogo.jsx', $category->id) }}">
-                              <div class="h-full">
-                                  <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                                      class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 w-full flex flex-col justify-end items-start object-cover"
-                                      onerror="this.src='/images/img/noimagen.jpg';">
-                                  <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                                  <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
-                              </div>
-                            </a>
-                          </div>
-                      </div>
-                  @endforeach
-              
-          @elseif ($remainder == 2)
-              <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
-                  @foreach ($remainderCategories as $category)
-                  <div class="w-full">
-                    <a href="{{ route('Catalogo.jsx', $category->id) }}">
-                      <div class="h-full">
-                          <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                              class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
-                              onerror="this.src='/images/img/noimagen.jpg';">
-                          <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                          <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
-                      </div>
-                    </a>  
+        @if ($remainder == 1)
+
+          @foreach ($remainderCategories as $category)
+            <div class="grid grid-cols-1 px-[5%] lg:px-[8%] pb-10 mt-10">
+              <div class="w-full">
+                <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                  <div class="h-full">
+                    <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                      class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 w-full flex flex-col justify-end items-start object-cover"
+                      onerror="this.src='/images/img/noimagen.jpg';">
+                    <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                    <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
                   </div>
-                  @endforeach
+                </a>
               </div>
-          @elseif ($remainder == 3)
-              <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
-                  @foreach ($remainderCategories as $category)
-                  <div class="w-full {{ $loop->first ? 'sm:row-span-2' : '' }}">
-                    <a href="{{ route('Catalogo.jsx', $category->id) }}">
-                      <div class="h-full">
-                          <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                              class="{{ $loop->first ? 'h-96 sm:h-[760px]' : 'h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80' }} w-full flex flex-col justify-end items-start object-cover"
-                              onerror="this.src='/images/img/noimagen.jpg';">
-                          <h3 class="text-base font-medium text-[#FE4A11] pt-4">Categoría</h3>
-                          <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
-                      </div>
-                    </a>  
+            </div>
+          @endforeach
+        @elseif ($remainder == 2)
+          <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
+            @foreach ($remainderCategories as $category)
+              <div class="w-full">
+                <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                  <div class="h-full">
+                    <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                      class="h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full flex flex-col justify-end items-start object-cover"
+                      onerror="this.src='/images/img/noimagen.jpg';">
+                    <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                    <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
                   </div>
-                  @endforeach
+                </a>
               </div>
-          @endif
+            @endforeach
+          </div>
+        @elseif ($remainder == 3)
+          <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
+            @foreach ($remainderCategories as $category)
+              <div class="w-full {{ $loop->first ? 'sm:row-span-2' : '' }}">
+                <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                  <div class="h-full">
+                    <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
+                      class="{{ $loop->first ? 'h-96 sm:h-[760px]' : 'h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80' }} w-full flex flex-col justify-end items-start object-cover"
+                      onerror="this.src='/images/img/noimagen.jpg';">
+                    <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                    <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
+                  </div>
+                </a>
+              </div>
+            @endforeach
+          </div>
+        @endif
       @endif
     </section>
 
@@ -277,65 +281,75 @@
 
         <div class="swiper testimonios flex flex-row w-full px-[5%]">
           <div class="swiper-wrapper">
-           @foreach ($testimonie as $item)  
-            <div class="swiper-slide">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
-                
-                <div class="flex flex-col lg:col-span-5 justify-center items-center">
-                  <div class="w-full h-[500px] 2xl:h-[700px] overflow-hidden relative bg-cover bg-center flex justify-center items-center"
-                      {{-- style="background-image: url('{{ asset('img_donas/testimonios.png') }}');" --}}
-                      >
-                        <img src="{{ asset('img_donas/testimonios.png') }}" class="rounded-none bg-cover w-full h-full object-cover md:object-contain" />
-                  </div>
-                </div>
+            @foreach ($testimonie as $item)
+              <div class="swiper-slide">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
 
-                <div class="flex flex-col lg:col-span-7 gap-10 justify-center items-start w-full font-b_slick_bold">
-                  <h2 class="text-3xl lg:text-4xl 2xl:text-5xl leading-none  text-black  text-left line-clamp-6">
-                   {{ $item->testimonie }}
-                  </h2>
-                  <div class="flex flex-col justify-start items-center">
-                    <div class="flex flex-row items-center gap-3">
-                      <img class="rounded-full w-20 h-20 object-cover" src="{{ asset('img_donas/carlossiles.png') }}" />
-                      <div>
-                        <h3 class="text-lg font-outfitSemiBold">{{ $item->name }}</h3>
-                        <p class="text-base font-outfitLight">{{ $item->ocupation }}</p>
+                  <div class="flex flex-col lg:col-span-5 justify-center items-center">
+                    <div
+                      class="w-full h-[500px] 2xl:h-[700px] overflow-hidden relative bg-cover bg-center flex justify-center items-center"
+                      {{-- style="background-image: url('{{ asset('img_donas/testimonios.png') }}');" --}}>
+                      <img src="{{ asset('img_donas/testimonios.png') }}"
+                        class="rounded-none bg-cover w-full h-full object-cover md:object-contain" />
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col lg:col-span-7 gap-10 justify-center items-start w-full font-b_slick_bold">
+                    <h2 class="text-3xl lg:text-4xl 2xl:text-5xl leading-none  text-black  text-left line-clamp-6">
+                      {{ $item->testimonie }}
+                    </h2>
+                    <div class="flex flex-col justify-start items-center">
+                      <div class="flex flex-row items-center gap-3">
+                        <img class="rounded-full w-20 h-20 object-cover"
+                          src="{{ asset('img_donas/carlossiles.png') }}" />
+                        <div>
+                          <h3 class="text-lg font-outfitSemiBold">{{ $item->name }}</h3>
+                          <p class="text-base font-outfitLight">{{ $item->ocupation }}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
+                </div>
               </div>
-            </div>
-           @endforeach
+            @endforeach
           </div>
         </div>
 
         <div class="flex flex-row justify-start gap-3 ">
-              <div
-                class="prevtestimonio h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
-                <img src="{{ asset('images\prev.png') }}" alt="Prev">
-              </div>
-              <div
-                class="nexttestimonio h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
-                <img src="{{ asset('images\next.png') }}" alt="Next">
-              </div>
+          <div
+            class="prevtestimonio h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+            <img src="{{ asset('images\prev.png') }}" alt="Prev">
+          </div>
+          <div
+            class="nexttestimonio h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+            <img src="{{ asset('images\next.png') }}" alt="Next">
+          </div>
         </div>
       </section>
     @endif
 
     <section class="z-0">
       <div class="grid grid-cols-1 ">
-          @php
-            $videoUrl = $general->url_video;
-            parse_str(parse_url($videoUrl, PHP_URL_QUERY), $queryParams);
-            $videoId = $queryParams['v'] ?? null;
-          @endphp
+        @php
+          $videoUrl = $general->url_video;
+          parse_str(parse_url($videoUrl, PHP_URL_QUERY), $queryParams);
+          $videoId = $queryParams['v'] ?? null;
+        @endphp
 
-        <div class="contenedorvideo w-full h-[500px] lg:h-[600px] border border-gray-200 rounded-none overflow-hidden relative bg-cover bg-center" style="background-image: url('{{ asset('img_donas/Video.png') }}');">
-            <div class="absolute inset-0 flex items-center justify-center disparo bg-opacity-50 cursor-pointer" onclick="showVideo(this)">
-              <button class="text-white text-2xl"><img class="w-20 hover:scale-125 transition-transform duration-300" src="{{ asset('img_donas/botonplay.png') }}" /></button>
-            </div>
-            <iframe id="videoIframe" class="videoIframe w-full h-full hidden" src="https://www.youtube.com/embed/{{ $videoId }}" referrerpolicy="strict-origin-when-cross-origin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div
+          class="contenedorvideo w-full h-[500px] lg:h-[600px] border border-gray-200 rounded-none overflow-hidden relative bg-cover bg-center"
+          style="background-image: url('{{ asset('img_donas/Video.png') }}');">
+          <div class="absolute inset-0 flex items-center justify-center disparo bg-opacity-50 cursor-pointer"
+            onclick="showVideo(this)">
+            <button class="text-white text-2xl"><img class="w-20 hover:scale-125 transition-transform duration-300"
+                src="{{ asset('img_donas/botonplay.png') }}" /></button>
+          </div>
+          <iframe id="videoIframe" class="videoIframe w-full h-full hidden"
+            src="https://www.youtube.com/embed/{{ $videoId }}" referrerpolicy="strict-origin-when-cross-origin"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
         </div>
       </div>
     </section>
@@ -345,7 +359,8 @@
         <div class="px-[5%] lg:px-[8%] pt-8 pb-12 flex flex-col">
           <div class="text-center flex flex-col gap-6 items-center max-w-4xl mx-auto">
             <h3 class="font-b_slick_bold text-xl text-[#FE4A11] tracking-wider">REDES SOCIALES</h3>
-            <h2 class="text-4xl md:text-4xl font-b_slick_bold text-[#112212] uppercase tracking-wider">Únete a nuestra comunidad floral</h2>
+            <h2 class="text-4xl md:text-4xl font-b_slick_bold text-[#112212] uppercase tracking-wider">Únete a nuestra
+              comunidad floral</h2>
             <p class="text-xl font-b_classic_regular text-[#112212CC]">Descubre la frescura de cada pétalo siguiéndonos.
               Síguenos para estar al tanto de nuestras últimas creaciones y ofertas exclusivas.
               Te esperamos para compartir juntos la belleza floral.</p>
@@ -391,7 +406,7 @@
 
           </div>
         @endforeach
-        
+
       </div>
 
     </section>
@@ -463,20 +478,20 @@
       return null;
     }
   </script>
-  
+
   <script>
     var headerServices = new Swiper(".productos-relacionados", {
       slidesPerView: 4,
-      spaceBetween: 30, 
+      spaceBetween: 30,
       loop: true,
       centeredSlides: false,
-      initialSlide: 0, 
+      initialSlide: 0,
       allowTouchMove: true,
       autoplay: {
         delay: 3000,
         disableOnInteraction: true,
         pauseOnMouseEnter: true
-      }, 
+      },
       navigation: {
         nextEl: ".customnext",
         prevEl: ".customprev",
@@ -510,16 +525,16 @@
 
     var headerServices = new Swiper(".productos-novedades", {
       slidesPerView: 4,
-      spaceBetween: 30, 
+      spaceBetween: 30,
       loop: true,
       centeredSlides: false,
-      initialSlide: 0, 
+      initialSlide: 0,
       allowTouchMove: true,
       autoplay: {
         delay: 3000,
         disableOnInteraction: true,
         pauseOnMouseEnter: true
-      }, 
+      },
       navigation: {
         nextEl: ".nextnovedades",
         prevEl: ".prevnovedades",
@@ -550,7 +565,7 @@
       },
     });
 
-     var swiper = new Swiper(".testimonios", {
+    var swiper = new Swiper(".testimonios", {
       slidesPerView: 1,
       spaceBetween: 30,
       loop: true,
@@ -575,7 +590,7 @@
           spaceBetween: 30,
         },
       },
-      
+
     });
 
     var swiper = new Swiper(".slider-portada", {
@@ -599,7 +614,7 @@
           spaceBetween: 30,
         },
       },
-      
+
     });
   </script>
   <script>

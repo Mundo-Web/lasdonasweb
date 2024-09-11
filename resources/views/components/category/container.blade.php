@@ -1,5 +1,5 @@
-<a href="{{ route('Catalogo.jsx', $item->id) }}" x-data="{ showAmbiente: false }" @mouseenter="showAmbiente = true" @mouseleave="showAmbiente = false"
-  class="flex flex-col relative" data-aos="zoom-in-left">
+<a href="{{ route('Catalogo.jsx', $item->id) }}" x-data="{ showAmbiente: false }" @mouseenter="showAmbiente = true"
+  @mouseleave="showAmbiente = false" class="flex flex-col relative" data-aos="zoom-in-left">
   <div class="bg-colorBackgroundProducts rounded-sm product_container basis-4/5 flex flex-col justify-center relative">
     <div>
       <div class="relative flex justify-center items-center w-full h-[300px] bg-cover object-cover aspect-square">
@@ -20,7 +20,8 @@
             src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
             class="w-full  h-full object-cover absolute inset-0 transition-transform duration-300" />
         @endif
-        <span class="h4 absolute bottom-2 left-2 right-2 flex justify-start items-center text-white font-bold" style="text-shadow: 0 0 8px rgba(0, 0, 0, .25)">
+        <span class="h4 absolute bottom-2 left-2 right-2 flex justify-start items-center text-white font-b_slick_bold"
+          style="text-shadow: 0 0 8px rgba(0, 0, 0, .25)">
           {{ $item->name }}
         </span>
       </div>

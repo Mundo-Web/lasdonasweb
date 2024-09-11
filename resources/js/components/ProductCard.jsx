@@ -20,12 +20,12 @@ const ProductCard = (item) => {
     }
   }, [item.descuento]);
 
-  console.log(item)
+
   const maxPrice = item.componentes_hijos?.reduce((max, current) => {
     return Number(current.precio) > max ? (Number(current.descuento) > 0 ? Number(current.descuento) : Number(current.precio)) : max;
   }, 0);
 
-  console.log(maxPrice);
+
 
   return (
     <div className="flex flex-col gap-7 col-span-1 font-b_slick_bold">
@@ -79,20 +79,17 @@ const ProductCard = (item) => {
               <>
                 <div className="flex gap-10 ">
                   <div className="text-[#112212] font-bold flex flex-col">
-                    <span className="text-[#112212] opacity-80">Desde</span>
-                    <span> S/ {item.descuento > 0 ? item.descuento : item.precio} </span>
+                    <span className="text-[#112212] opacity-80">Precio</span>
+                    <span> S/ {item.descuento > 0 ? Number(item.descuento).toFixed(0) : Number(item.precio).toFixed(0)} </span>
                   </div>
-                  <div className="text-[#112212] font-bold flex flex-col">
-                    <span className="text-[#112212] opacity-80">Hasta </span>
-                    <span>S/ {maxPrice}</span>
-                  </div>
+
                 </div>
 
               </>
             ) : (
               <div className="text-[#112212] font-bold flex flex-col">
                 <span className="text-[#112212] opacity-80">Precio</span>
-                <span> S/ {item.precio} </span>
+                <span> S/ {Number(item.precio).toFixed(0)} </span>
               </div>
             )}
           </div>
