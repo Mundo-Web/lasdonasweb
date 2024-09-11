@@ -56,7 +56,7 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
           </div>
           <div className={`self-stretch px-2 text-sm tracking-wide  text-neutral-900 w-[133px] text-start`}>
 
-            {cuponMonto}
+            {Number(cuponMonto).toFixed(0)}
           </div>
         </div>
         <Divider />

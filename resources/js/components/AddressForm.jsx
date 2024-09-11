@@ -315,7 +315,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
               sendForm={handleSend}
               eRef={addressRef.street}
               label="Calle"
-              placeholder="Faucibus"
+              placeholder="Urbanización, Calle, Av."
               className="w-full min-w-[240px]"
               value={formState.street}
               name="street"
@@ -443,7 +443,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           required={true}
           sendForm={handleSend}
           eRef={addressRef.reference}
-          label="Referencias"
+          label="# Dpto, Ofic o Referencia"
           className="w-full mt-4"
           value={formState.reference}
           name="reference"

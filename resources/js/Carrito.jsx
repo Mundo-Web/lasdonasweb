@@ -175,7 +175,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                         cantidadGeneral--
                       } else break
                     }
-                    totalPrice = cantidadGeneral * Number(item.precio)
+                    totalPrice = cantidadGeneral * Number(item.precio).toFixed(0)
                     return <div className="flex flex-col md:flex-row py-5  px-4 rounded-xl border-[#E8ECEF] gap-6 text-[#112212] border
                      hover:border-[#336234] group ">
                       <img src={`/images/img/xcoral.png`} type="icon" onClick={() => deleteItemR(item.id)} className='flex w-5 h-5 cursor-pointer' alt="" />
@@ -197,7 +197,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                                 Precio
                               </span>
                               <span className='text-center'>
-                                S/. {item.precio}
+                                S/. {Number(item.precio).toFixed(0)}
                                 {
                                   item.usePoints && <>
                                     <br />
@@ -215,7 +215,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                               </span>
                               <span>
                                 {/* {(Number(item.precio) * Number(item.cantidad)).toFixed(2)} */}
-                                {totalPrice.toFixed(2)}
+                                {totalPrice.toFixed(0)}
                               </span>
 
                             </div>

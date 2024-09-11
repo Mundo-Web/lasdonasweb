@@ -55,11 +55,11 @@ const ComplementCard = ({ onChange, ...complemento }) => {
     <div className="flex items-center font-medium justify-center gap-3">
       {complemento.descuento > 0 ? (
         <>
-          <p className='line-through text-gray-400 text-xs sm:text-sm'>S/ <span >{complemento.precio}</span></p>
-          <p>S/ {complemento.descuento}</p>
+          <p className='line-through text-gray-400 text-xs sm:text-sm'>S/ <span >{Number(complemento.precio).toFixed(0)}</span></p>
+          <p>S/ {Number(complemento.descuento).toFixed(0)}</p>
         </>
       ) : (
-        <p>S/ {complemento.precio}</p>
+        <p>S/ {Number(complemento.precio).toFixed(0)}</p>
       )}
 
     </div>

@@ -369,7 +369,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                 </ModalGoogle>
 
                 <p className='my-2 text-base font-light'>Direccion: {datosFinales.address?.fulladdress ?? 'Sin direccion'}</p>
-                <p className='my-2 text-base font-light'>Costo de envio: {costoEnvio > 0 ? <>S/ {costoEnvio} </> : 'Evaluando'}</p>
+                <p className='my-2 text-base font-light'>Costo de envio: {costoEnvio > 0 ? <>S/ {Number(costoEnvio).toFixed(0)} </> : 'Evaluando'}</p>
 
 
               </section>
