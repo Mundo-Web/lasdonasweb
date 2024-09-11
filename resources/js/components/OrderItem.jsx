@@ -30,7 +30,7 @@ function OrderItem({ producto, extract, sku, precio, cantidad, total, usePoints,
       <div className="flex justify-between items-start font-bold text-right min-w-[240px] w-full md:w-[600px] text-[#112212]">
         <div className="flex flex-col flex-1 shrink justify-center basis-0">
           <p className="text-base lg:text-xl font-bold tracking-wider text-[#336234] line-clamp-2">Precio</p>
-          <p className="mt-2 text-base tracking-wider text-neutral-900">{Number(precio).toFixed(0)}</p>
+          <p className="mt-2 text-base tracking-wider text-neutral-900">S/ {Number(precio).toFixed(0)}</p>
         </div>
         <div className="flex flex-col flex-1 shrink justify-center whitespace-nowrap basis-0">
           <p className="text-base lg:text-xl font-bold tracking-wider text-[#336234] line-clamp-2">Cantidad</p>
@@ -38,7 +38,7 @@ function OrderItem({ producto, extract, sku, precio, cantidad, total, usePoints,
         </div>
         <div className="flex flex-col flex-1 shrink justify-center basis-0">
           <p className="text-base lg:text-xl font-bold tracking-wider text-[#336234] line-clamp-2">Total</p>
-          <p className="mt-2 text-base tracking-wider text-neutral-900">{subtotal.toFixed(0)}</p>
+          <p className="mt-2 text-base tracking-wider text-neutral-900">S/ {subtotal.toFixed(0)}</p>
         </div>
       </div>
     </div>
