@@ -885,6 +885,43 @@ const Product = ({
           </div>
 
         </section>
+        <section>
+          <div className="px-[5%] pt-16 pb-0 space-y-10">
+            <div className="text-left  space-y-4">
+
+              <div className="text-white font-semibold pb-6 md:space-x-6 space-y-3">
+                <button type="button" className="bg-[#336234] px-6 py-3 rounded-full h-[56px]">Descripción del producto</button>
+                <button onClick={openPoliticaEnvio} type="button" className="bg-[#336234] px-6 py-3 rounded-full h-[56px]">Políticas de envío</button>
+                <button onClick={togleModalSustitucion} type="button" className="bg-[#336234] px-6 py-3 rounded-full h-[56px]">Políticas de sustitución</button>
+              </div>
+
+              <div id="containerDetalles">
+                {/* {!! $productos->description !!} */}
+
+                <div dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
+
+
+              </div>
+
+
+
+              <div className='flex flex-col'>
+                {currentProduct.especificaciones.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`w-[488px] max-w-full h-12 px-4 flex flex-row content-between justify-between items-center ${index % 2 === 0 ? 'bg-[#DBDED6]' : 'bg-[#e8eddee5]'}`}
+                  >
+                    <span className='flex flex-row content-between justify-between px-4'><div className='font-bold'>{item.tittle} </div> </span> <div>{item.specifications}</div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+
         <section className="px-[5%] pt-2">
           <p className="text-2xl font-bold text-black pb-2">Complementar al pedido (opcional)</p>
           <div className="grid grid-cols-1 gap-4 justify-start items-start">
@@ -950,41 +987,7 @@ const Product = ({
 
         </section>
 
-        <section>
-          <div className="px-[5%] pt-16 pb-0 space-y-10">
-            <div className="text-left  space-y-4">
 
-              <div className="text-white font-semibold pb-6 md:space-x-6 space-y-3">
-                <button type="button" className="bg-[#336234] px-6 py-3 rounded-full h-[56px]">Descripción del producto</button>
-                <button onClick={openPoliticaEnvio} type="button" className="bg-[#336234] px-6 py-3 rounded-full h-[56px]">Políticas de envío</button>
-                <button onClick={togleModalSustitucion} type="button" className="bg-[#336234] px-6 py-3 rounded-full h-[56px]">Políticas de sustitución</button>
-              </div>
-
-              <div id="containerDetalles">
-                {/* {!! $productos->description !!} */}
-
-                <div dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
-
-
-              </div>
-
-
-
-              <div className='flex flex-col'>
-                {currentProduct.especificaciones.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`w-[488px] max-w-full h-12 flex flex-row content-between items-center ${index % 2 === 0 ? 'bg-[#DBDED6]' : 'bg-[#e8eddee5]'}`}
-                  >
-                    <span className='flex flex-row content-between justify-between px-4'><div className='font-bold'>{item.tittle} </div> </span> <div>{item.specifications}</div>
-                  </div>
-                ))}
-              </div>
-
-            </div>
-          </div>
-
-        </section>
 
         {ProdComplementarios.length > 0 ?
           (<section>
