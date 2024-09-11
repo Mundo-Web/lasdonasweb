@@ -5,17 +5,32 @@
   @viteReactRefresh
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> --}}
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
   {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}" /> --}}
 
 
-  @stack('head')
+  @livewireStyles
+
+
+
+  {{-- <script src="{{ asset('js/notify.extend.min.js') }}"></script> --}}
+
+  <!-- Remember to include jQuery :) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+  <!-- jQuery Modal -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
   {{-- Aqui van los CSS --}}
   @yield('css_importados')
+  @stack('head')
+
+
+
 
   {{-- Swipper --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -56,7 +71,7 @@
   {{-- <script src="{{ asset('js/function.js') }}"></script> --}}
   {{-- <script src="{{ asset('js/carrito.js') }}"></script> --}}
 
-
+  @livewireScripts
 </body>
 
 </html>

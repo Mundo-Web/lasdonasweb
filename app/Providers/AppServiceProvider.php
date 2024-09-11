@@ -7,6 +7,7 @@ use App\Models\Collection;
 use App\Models\General;
 use App\Models\Message;
 use App\Models\PoliticaDatos;
+use App\Models\PolyticsCondition;
 use App\Models\TermsAndCondition;
 use App\Models\TipoFlor;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -41,9 +42,13 @@ class AppServiceProvider extends ServiceProvider
             $datosgenerales = General::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             // Pasar los datos a la vista
             $categories = Category::where('status', true)->where('visible', true)->get();
+            $politicDev = PolyticsCondition::first();
+            $termsAndCondicitions = TermsAndCondition::first();
+            $bioseguridad = PoliticaDatos::first();
             $view
             ->with('datosgenerales', $datosgenerales)
-            ->with('categories', $categories);
+            ->with('categories', $categories)
+            ->with([ 'politicas' => $politicDev, 'terminos' => $termsAndCondicitions , 'bioseguridad' => $bioseguridad]);
         });
 
         View::composer('components.public.header', function ($view) {

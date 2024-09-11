@@ -960,7 +960,10 @@
       headerMid.classList.add('fixed-header', 'h-[80px]');
       headerMid.classList.remove('h-[100px]');
       headerBottom.classList.add('fixed-header', 'shadow-lg', 'shadow-black/40');
-      portada.classList.add('mt-[150px]');
+      if (portada) {
+        portada.classList.add('mt-[150px]');
+      }
+
       //main.classList.add('mt-[128px]'); 
     } else {
       headerMid.classList.remove('fixed-header', 'h-[80px]');

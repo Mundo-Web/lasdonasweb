@@ -610,6 +610,15 @@ class IndexController extends Controller
   }
 
 
+  public function librodereclamaciones()
+  {
+    $departamentofiltro = DB::select('select * from departments where active = ? order by 2', [1]);
+
+    return view('public.librodereclamaciones', compact('departamentofiltro'));
+  }
+
+
+
   public function actualizarPerfil(Request $request)
   {
 

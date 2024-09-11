@@ -54,6 +54,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CuponController;
+use App\Http\Controllers\LibroReclamacionesController;
+use App\Http\Controllers\PoliticaDatosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +91,10 @@ Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto')
 
 Route::get('/tipoflor/{id?}', [IndexController::class, 'tipoFlor'] )->name('TipoFlor.jsx');
 
+Route::get('/libro-de-reclamaciones', [IndexController::class, 'librodereclamaciones'])->name('librodereclamaciones');
+Route::post('guardarformulario', [LibroReclamacionesController::class, 'storePublic'])->name('guardarFormReclamo');
+Route::get('/obtenerProvincia/{departmentId}', [IndexController::class, 'obtenerProvincia'])->name('obtenerProvincia');
+Route::get('/obtenerDistritos/{provinceId}', [IndexController::class, 'obtenerDistritos'])->name('obtenerDistritos');
 
 /* Proceso de pago */
 Route::get('/carrito', [IndexController::class, 'carrito'] )->name('Carrito.jsx');
@@ -147,6 +153,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::resource('/cupones', CuponController::class);
         Route::post('/cupones/updateVisible', [CuponController::class, 'updateVisible'] )->name('cupones.updateVisible');
 
+        Route::get('/politica-datos/{id?}', [PoliticaDatosController::class, 'edit'])->name('politicadatos.detalle');
+        Route::post('/politica-datos/save', [PoliticaDatosController::class, 'save'])->name('politicadatos.save');
 
 
         Route::resource('/tipo-flor', TipoFlorController::class);
@@ -180,6 +188,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/servicios/deleteService', [ServiceController::class, 'deleteService'] )->name('servicio.deleteService');
         Route::post('/servicios/updateVisible', [ServiceController::class, 'updateVisible'] )->name('servicio.updateVisible');
 
+        Route::resource('/reclamo', LibroReclamacionesController::class);
+        Route::post('/reclamo/borrar', [LibroReclamacionesController::class, 'borrar'])->name('reclamo.borrar');
 
         //Blog
         Route::resource('/blog', BlogController::class);
@@ -306,8 +316,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function 
  Route::post('/micuenta/direccion/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
  Route::post('/micuenta/pedidos/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
 
- Route::get('/obtenerProvincia/{departmentId}', [IndexController::class, 'obtenerProvincia'])->name('obtenerProvincia');
- Route::get('/obtenerDistritos/{provinceId}', [IndexController::class, 'obtenerDistritos'])->name('obtenerDistritos');
+
  Route::post('/guardarDireccion', [IndexController::class, 'guardarDireccion'])->name('guardar.direccion');
 
  Route::post('/micuenta/actualizarPerfil', [IndexController::class, 'actualizarPerfil'] )->name('actualizarPerfil');
