@@ -136,7 +136,7 @@ class PaymentController extends Controller
       $sale->billing_type = $body['billing']['type'];
       $sale->billing_document = $body['billing']['type'] == 'boleta' ? $body['billing']['dni'] : $body['billing']['ruc'];
       $sale->billing_name = $body['billing']['name']; // . ' ' . $body['billing']['lastname'];
-      $sale->billing_address = $body['billing']['address'];
+      $sale->billing_address = $body['billing']['address'] ?? '';
       $sale->billing_email = $body['billing']['email'];
       $sale->consumer_phone = $body['consumer']['phone'];
       $sale->dedication_id = $body['dedication']['id'] ?? null;

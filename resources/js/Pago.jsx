@@ -542,20 +542,22 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                             }} />
                         </>
                       } */}
-                    <InputField
-                      value={datosFinales.billing.address}
-                      label="Dirección Fiscal"
-                      placeholder="Ingrese una dirección"
-                      required
-                      handleDatosFinales={(e) => {
-                        setDatosFinales(old => ({
-                          ...old,
-                          billing: {
-                            ...old.billing,
-                            address: e.target.value
-                          }
-                        }))
-                      }} />
+                    {datosFinales.billing.type !== 'boleta' && <>
+                      <InputField
+                        value={datosFinales.billing.address}
+                        label="Dirección Fiscal"
+                        placeholder="Ingrese una dirección"
+                        required
+                        handleDatosFinales={(e) => {
+                          setDatosFinales(old => ({
+                            ...old,
+                            billing: {
+                              ...old.billing,
+                              address: e.target.value
+                            }
+                          }))
+                        }} /></>}
+
                     <InputField
                       value={datosFinales.billing.email}
                       label="Correo electrónico"
