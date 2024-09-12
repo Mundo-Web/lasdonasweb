@@ -90,10 +90,7 @@ const Product = ({
     // Agregar una hora
     dateInicio.setHours(dateInicio.getHours() + 1);
 
-    // Convertir de nuevo a formato 'HH:mm:ss'
     const horaLimite = dateInicio.toTimeString().split(' ')[0];
-
-
 
 
     return (horaLimite > horaActual) || (horaActual < horaInicio);

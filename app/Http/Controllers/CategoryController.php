@@ -45,6 +45,9 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    
+
     public function store(Request $request)
     {
         $category = new Category();
@@ -64,6 +67,23 @@ class CategoryController extends Controller
 
             $category->url_image = $routeImg;
             $category->name_image = $nombreImagen;
+        }
+
+        if ($request->hasFile('img_miniatura')) {
+            $file = $request->file('img_miniatura');
+            $routeImg = 'storage/images/categories/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+            $this->saveImg($file, $routeImg, $nombreImagen);
+
+            $category->img_miniatura = $routeImg . $nombreImagen;
+        } else {
+
+            ///images\img\noimagen.jpg
+            $routeImg = 'images/img/';
+            $nombreImagen = 'noimagen.jpg';
+
+            $category->img_miniatura = $routeImg . $nombreImagen;
         }
 
         $slug = strtolower(str_replace(' ', '-', $request->name));
@@ -123,6 +143,16 @@ class CategoryController extends Controller
             $category->url_image = $routeImg;
             $category->name_image = $nombreImagen;
         }
+
+        if ($request->hasFile('img_miniatura')) {
+            $file = $request->file('img_miniatura');
+            $routeImg = 'storage/images/categories/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+            $this->saveImg($file, $routeImg, $nombreImagen);
+
+            $category->img_miniatura = $routeImg . $nombreImagen;
+        } 
 
         $slug = strtolower(str_replace(' ', '-', $request->name));
 

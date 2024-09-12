@@ -8,8 +8,9 @@
             x-transition:enter-start="opacity-100 scale-100" x-transition:enter-end="opacity-100 scale-105"
             x-transition:leave="transition ease-in duration-300 transform"
             x-transition:leave-start="opacity-100 scale-105" x-transition:leave-end="opacity-100 scale-100"
-            :class="{ 'scale-105': showAmbiente, 'scale-100': !showAmbiente }"
-            src="{{ asset($item->url_image) }}/{{ $item->name_image }}" alt="{{ $item->name }}"
+            :class="{ 'scale-105': showAmbiente, 'scale-100': !showAmbiente }" {{-- src="{{ asset($item->url_image) }}/{{ $item->name_image }}" alt="{{ $item->name }}" --}}
+            src="{{ asset($item->img_miniatura) }}" alt="{{ $item->name }}"
+            onerror="this.src='{{ asset('images/img/noimagen.jpg') }}'"
             class="w-full h-full object-cover absolute inset-0 transition-transform duration-300 aspect-square" />
         @else
           <img x-transition:enter="transition ease-out duration-300 transform"

@@ -101,7 +101,7 @@
               <div class="md:col-span-5">
                 <label for="categoria">Imagen de categoría</label>
                 <div class="relative mb-2 mt-2">
-                  <img src="{{ asset($category->url_image . $category->name_image) }}"
+                  <img src="{{ asset($category->url_image . $category->name_image) }}" id="imagen1"
                     class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
               </div>
@@ -111,8 +111,26 @@
               <div class="md:col-span-5">
                 <label for="imagen">Subir una foto</label>
                 <div class="relative mb-2  mt-2">
-                  <input name="imagen"
+                  <input name="imagen" id="imagen"
                     class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                </div>
+              </div>
+
+              <div class="md:col-span-5">
+                <label for="categoria">Imagen de header</label>
+                <div class="relative mb-2 mt-2">
+                  <img src="{{ asset($category->img_miniatura) }}" id="img_miniatura1"
+                    class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+              </div>
+
+              <div class="md:col-span-5">
+                <label for="address">Subir foto para Header </label>
+                <div class="relative mb-2  mt-2">
+                  <input name="img_miniatura" id="img_miniatura"
+                    class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50
+                     dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     aria-describedby="user_avatar_help" id="user_avatar" type="file">
                 </div>
               </div>
@@ -137,3 +155,25 @@
 
 
 </x-app-layout>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Selecciona todos los inputs de tipo archivo
+    document.querySelectorAll('input[type="file"]').forEach(function(fileInput) {
+      fileInput.addEventListener('change', function(event) {
+        var reader = new FileReader();
+        var itemId = this.id; // Obtiene el ID del item del atributo 'id' del input
+        var imagePreviewId = itemId + 1; // Construye el ID del elemento de previsualización de imagen
+
+        reader.onload = function(e) {
+          // Selecciona el elemento img correspondiente y actualiza su atributo 'src'
+          var imagePreview = document.getElementById(imagePreviewId);
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = 'block'; // Muestra la imagen
+        };
+
+        // Lee el archivo seleccionado como una URL de datos
+        reader.readAsDataURL(event.target.files[0]);
+      });
+    });
+  });
+</script>
