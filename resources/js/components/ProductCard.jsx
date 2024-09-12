@@ -24,7 +24,7 @@ const ProductCard = (item) => {
   const maxPrice = item.componentes_hijos?.reduce((max, current) => {
     return Number(current.precio) > max ? (Number(current.descuento) > 0 ? Number(current.descuento) : Number(current.precio)) : max;
   }, 0);
-  console.log(maxPrice)
+
 
   const componentMedio = item.componentes_hijos?.find((component) => item.descuento !== maxPrice || item.precio !== maxPrice);
   console.log(componentMedio)
@@ -54,7 +54,7 @@ const ProductCard = (item) => {
           ) : (
             item.componentes_hijos?.length == 2 ? (
               componentMedio.images.map((image, index) => {
-                console.log(image);
+
                 return (
                   image.caratula === 1 && (
                     <img
