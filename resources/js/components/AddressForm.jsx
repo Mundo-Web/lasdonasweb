@@ -342,7 +342,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
 
               eRef={addressRef.mz}
               label="Urbanizacion"
-              placeholder="Faucibus"
+
               className="w-full"
               value={formState.mz}
               name="mz"
@@ -355,7 +355,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
               sendForm={handleSend}
               eRef={addressRef.postalCode}
               label="Código postal"
-              placeholder="C.P. 987-2346"
+              placeholder=""
               className="w-full"
               value={formState.postal_code}
               name="postal_code"
@@ -384,7 +384,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
               sendForm={handleSend}
               eRef={addressRef.province}
               label="Provincia"
-              placeholder="Benito..."
+              placeholder=""
               className="w-full"
               value={formState.province}
               name="province"
