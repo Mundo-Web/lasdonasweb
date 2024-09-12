@@ -103,7 +103,7 @@ class HorariosController extends Controller
     public function updateVisible(Request $request)
     {
 
-        $id = $request->id;
+        /* $id = $request->id;
         $horario = Horarios::find($id);
 
         $horario->visible = $horario->visible == 1 ? 0 : 1;
@@ -111,6 +111,23 @@ class HorariosController extends Controller
 
 
 
-        return response()->json(['message' => 'Horario actualizado']);
+        return response()->json(['message' => 'Horario actualizado']); */
+
+        $id = $request->id;
+        $field = $request->field;
+        $status = $request->status;
+    
+        // Verificar si el producto existe
+        $product = Horarios::find($id);
+    
+        if (!$product) {
+          return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+    
+        // Actualizar el campo dinámicamente
+        $product->update([
+          $field => $status
+        ]);
+        return response()->json(['message' => 'registro actualizado']);
     }
 }

@@ -119,6 +119,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
     address: {},
     dedication: {
       image: localStorage.getItem('imageDedicatoria') || null,
+      message: '',
     },
     billing: { type: 'boleta' },
     consumer: {},
@@ -134,6 +135,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
     razonSocial: '',
     direccionFiscal: '',
     correoElectronico: '',
+
   });
 
 
@@ -380,6 +382,36 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                 <div className='px-1.5 mt-4'>
                   <Checkbox title={"Sin Mensaje"} callback={handleMensaje} />
                 </div>
+                <InputField
+                  value={datosFinales.dedication.from}
+                  label="De:"
+                  type="text"
+                  placeholder=""
+                  required
+                  handleDatosFinales={(e) => {
+                    setDatosFinales(old => ({
+                      ...old,
+                      dedication: {
+                        ...old.dedication,
+                        from: e.target.value
+                      }
+                    }))
+                  }} />
+                <InputField
+                  value={datosFinales.dedication.to}
+                  label="Para:"
+                  type="text"
+                  placeholder=""
+                  required
+                  handleDatosFinales={(e) => {
+                    setDatosFinales(old => ({
+                      ...old,
+                      dedication: {
+                        ...old.dedication,
+                        to: e.target.value
+                      }
+                    }))
+                  }} />
 
                 {!showDedicatoria && (<>
                   <SelectSecond title={'Seleccionar Mensaje'} options={greetings} handleOptionChange={handleOptionChange} />
@@ -388,7 +420,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                   <div className="flex flex-col mt-6 w-full max-md:max-w-full">
                     <div className="flex flex-wrap gap-2 items-start w-full text-xs tracking-wide max-md:max-w-full">
                       <p className="flex-1 shrink basis-0 text-neutral-900 text-opacity-80 text-base">
-                        Escribe tu mensaje
+                        Escribe tu mensaje <span className='pl-4 opacity-75'>{`${datosFinales.dedication.message.split(' ').length} / 60`}</span>
                       </p>
                       {/* <button className="flex-1 shrink text-right text-orange-400 basis-0" onClick={() => {
                         setDatosFinales((prev) => ({
@@ -407,11 +439,24 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                        text-neutral-900 max-md:px-5 max-md:max-w-full"
                       value={datosFinales.dedication.message}
                       onChange={(e) => {
+                        const palabras = e.target.value.split(' ');
+
+                        const maxWordLength = 20; // Define el máximo número de caracteres por palabra
+
+                        // Limitar la longitud de cada palabra
+                        const palabrasLimitadas = palabras.map(palabra =>
+                          palabra.length > maxWordLength ? palabra.substring(0, maxWordLength) : palabra
+                        );
+
+                        // Tomar las primeras 60 palabras
+                        const primeras60Palabras = palabrasLimitadas.slice(0, 60).join(' ');
+
+
                         setDatosFinales(old => ({
                           ...old,
                           dedication: {
                             ...old.dedication,
-                            message: e.target.value
+                            message: primeras60Palabras.slice(0, 1500)
                           }
                         }))
                         changetextArea()
@@ -419,32 +464,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                     />
                   </div></>)}
 
-                <div className="flex flex-wrap gap-1 items-center mt-6 w-full text-xs tracking-wide whitespace-nowrap text-neutral-900 text-opacity-80 max-md:max-w-full">
-                  <div className='px-1.5'>
-                    <Checkbox title={"Anonimo"} callback={handleFirma} />
 
-                  </div>
-                </div>
-                {!showFirma && (<div className="flex flex-col mt-6 w-full max-md:max-w-full">
-                  <label htmlFor="signature" className="text-xs tracking-wide text-neutral-900 text-base">
-                    Firma
-                  </label>
-                  <input
-                    id="signature"
-                    type="text"
-                    placeholder="Persona que firma el mensaje de la tarjeta"
-                    className="gap-2 self-stretch px-6 py-4 mt-1 w-full text-sm tracking-wide rounded-3xl border border-[#BDBDBD] focus:ring-0 focus:outline-none focus:border-[#336234]  max-md:px-5 max-md:max-w-full"
-                    onChange={(e) => {
-                      setDatosFinales(old => ({
-                        ...old,
-                        dedication: {
-                          ...old.dedication,
-                          signedBy: e.target.value
-                        }
-                      }))
-                    }}
-                  />
-                </div>)}
 
               </section>
 

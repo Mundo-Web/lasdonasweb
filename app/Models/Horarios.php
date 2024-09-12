@@ -15,7 +15,8 @@ class Horarios extends Model
         'end_time',
         'day',
         'visible',
-        'status'
+        'status', 
+        'despacho_disponible'
         
     ];
     protected static function boot()

@@ -37,7 +37,9 @@ class Ordenes extends Model
         'dedication_sign',
         'dedication_image',
         'fechaenvio',
-        'horario_envio'
+        'horario_envio',
+        'to',
+        'from'
     ];
 
     public function DetalleOrden()

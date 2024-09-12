@@ -915,7 +915,7 @@ class IndexController extends Controller
       $ProdComplementarios = Products::whereIn('id',  $IdProductosComplementarios)->with('images')->get();
     }
 
-    $horarios = Horarios::all();
+    $horarios = Horarios::where('despacho_disponible',1)->where('visible',1)->get();
 
     $atributos = Attributes::where('status', '=', true)->get();
     // $atributos = $product->attributes()->get();

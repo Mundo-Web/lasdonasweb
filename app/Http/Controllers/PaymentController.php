@@ -145,6 +145,8 @@ class PaymentController extends Controller
       $sale->dedication_sign = $body['dedication']['sign'] ?? null;
       $sale->fechaenvio = $fechaEntrega;
       $sale->horario_envio = $horarioEntrega;
+      $sale->to = $body['dedication']['to'] ?? null;
+      $sale->from = $body['dedication']['from'] ?? null;
 
       if ($body['dedication']['image']) {
         try {
