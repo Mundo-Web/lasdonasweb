@@ -24,8 +24,10 @@ const ProductCard = (item) => {
   const maxPrice = item.componentes_hijos?.reduce((max, current) => {
     return Number(current.precio) > max ? (Number(current.descuento) > 0 ? Number(current.descuento) : Number(current.precio)) : max;
   }, 0);
+  console.log(maxPrice)
 
-
+  const componentMedio = item.componentes_hijos?.find((component) => item.descuento !== maxPrice || item.precio !== maxPrice);
+  console.log(componentMedio)
 
   return (
     <div className="flex flex-col gap-7 col-span-1 font-b_slick_bold">
@@ -50,21 +52,40 @@ const ProductCard = (item) => {
               className="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300"
             />
           ) : (
-            item.images.map((image, index) => {
-              return (
-                image.caratula === 1 && (
-                  <img
-                    key={index}
-                    src={image.name_imagen ? `/${image.name_imagen}` : "/images/img/noimagen.jpg"}
-                    alt={item.producto}
-                    className="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300"
-                    onError={(e) => {
-                      e.target.src = "/images/img/noimagen.jpg";
-                    }}
-                  />
-                )
-              );
-            })
+            item.componentes_hijos?.length == 2 ? (
+              componentMedio.images.map((image, index) => {
+                console.log(image);
+                return (
+                  image.caratula === 1 && (
+                    <img
+                      key={index}
+                      src={image.name_imagen ? `/${image.name_imagen}` : "/images/img/noimagen.jpg"}
+                      alt={item.producto}
+                      className="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300"
+                      onError={(e) => {
+                        e.target.src = "/images/img/noimagen.jpg";
+                      }}
+                    />
+                  )
+                );
+              })
+            ) : (
+              item.images.map((image, index) => {
+                return (
+                  image.caratula === 1 && (
+                    <img
+                      key={index}
+                      src={image.name_imagen ? `/${image.name_imagen}` : "/images/img/noimagen.jpg"}
+                      alt={item.producto}
+                      className="w-full aspect-square object-cover hover:scale-110 transition-transform duration-300"
+                      onError={(e) => {
+                        e.target.src = "/images/img/noimagen.jpg";
+                      }}
+                    />
+                  )
+                );
+              }))
+
           )}
         </div>
         <div className="p-4">

@@ -50,8 +50,8 @@
       "resources/js/components/useOutsideClick.jsx"
     ]
   },
-  "_ProductCard-MWC-_EEA.js": {
-    "file": "assets/ProductCard-MWC-_EEA.js",
+  "_ProductCard-AlGtOiPF.js": {
+    "file": "assets/ProductCard-AlGtOiPF.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx"
@@ -214,7 +214,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-zGHodmk_.css",
+    "file": "assets/app-BEUF6HO3.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -332,7 +332,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Catalogo-4VVrQL4p.js",
+    "file": "assets/Catalogo-2HWniZuu.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -341,7 +341,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-MWC-_EEA.js",
+      "_ProductCard-AlGtOiPF.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -517,7 +517,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-tUh_FknO.js",
+    "file": "assets/Product-69EK_lr2.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -532,7 +532,7 @@
       "_Accordion2-qFrvz2Sm.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-wXA00dMN.js",
-      "_ProductCard-MWC-_EEA.js",
+      "_ProductCard-AlGtOiPF.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_index-XJuWVQ-l.js",
@@ -576,7 +576,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/TipoFlor-ER_0jI2S.js",
+    "file": "assets/TipoFlor-RjQKSFt4.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -585,7 +585,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-MWC-_EEA.js",
+      "_ProductCard-AlGtOiPF.js",
       "_main-Vi8adC25.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",

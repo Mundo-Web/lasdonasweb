@@ -854,7 +854,7 @@ class ProductsController extends Controller
       $instance = Products::select([
         DB::raw('DISTINCT products.*')
       ])
-        ->with(['categoria', 'images', 'componentesHijos'])
+        ->with(['categoria', 'images', 'componentesHijos' , 'componentesHijos.images'])
 
         ->join('categories', 'categories.id', 'products.categoria_id')
 
