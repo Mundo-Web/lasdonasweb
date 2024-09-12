@@ -26,7 +26,8 @@
 
                   <div class=" rounded shadow-lg p-4 px-4 mb-4">
                     <div class="md:col-span-2">
-                      <label for="point_equivalence">Cuantos soles debe comprar el cliente para obtener un punto?</label>
+                      <label for="point_equivalence">Cuantos soles debe comprar el cliente para obtener un
+                        punto?</label>
                       <div class="relative mb-2">
 
                         <div class="flex flex-wrap gap-3 items-center">
@@ -44,10 +45,7 @@
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                               <i class="mdi mdi-dots-hexagon"></i>
                             </div>
-                            <input type="text"
-                              value="1"
-                              disabled
-                              readonly
+                            <input type="text" value="1" disabled readonly
                               class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                               placeholder="Puntos">
                           </div>
@@ -64,17 +62,7 @@
                           <h2 class="md:col-span-5 text-lg font-semibold text-slate-800 dark:text-white">
                             Información de contacto</h2>
 
-                          <div class="md:col-span-2 gap-x-2">
-                            <label for="despacho_pedidos">Despachar Pedidos </label>
-                            <input type="checkbox" id="despacho_pedidos" name="acept_incoming_orders_today"
-                              class="check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
-                              rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
-                              checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
-                              dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
-                              before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
-                              before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200 ml-4"
-                              {{ $general->acept_incoming_orders_today == 1 ? 'checked' : '' }}>
-                          </div>
+
                           <div class="md:col-span-5">
                             <label for="address">Dirección de la empresa</label>
                             <div class="relative mb-2 ">
