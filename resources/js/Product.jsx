@@ -70,7 +70,9 @@ const Product = ({
   const [modalCalendario, setModalCalendario] = useState(false);
 
   const horariosHoy = horarios.filter((item) => {
-    // Obtener la hora actual en el uso horario de Lima
+
+
+
     const now = new Date();
     const timeZone = 'America/Lima';
     const zonedNow = toZonedTime(now, timeZone);
@@ -80,10 +82,23 @@ const Product = ({
     const horaFin = item.end_time.trim();
 
 
+    // Convertir horaInicio a un objeto Date
+    const [horaInicioHoras, horaInicioMinutos, horaInicioSegundos] = horaInicio.split(':').map(Number);
+    const dateInicio = new Date();
+    dateInicio.setHours(horaInicioHoras, horaInicioMinutos, horaInicioSegundos);
+
+    // Agregar una hora
+    dateInicio.setHours(dateInicio.getHours() + 1);
+
+    // Convertir de nuevo a formato 'HH:mm:ss'
+    const horaLimite = dateInicio.toTimeString().split(' ')[0];
 
 
-    return (horaActual >= horaInicio && horaActual <= horaFin) || (horaActual < horaInicio);
+
+
+    return (horaLimite > horaActual) || (horaActual < horaInicio);
   });
+
 
   const modalRef = useRef(null);
 
@@ -119,10 +134,10 @@ const Product = ({
 
         let nuevaCantidad = Local.get('carrito').find((item) => item.id === id).cantidad
 
-        console.log(nuevaCantidad)
+
         if (nuevaCantidad == 0) {
           let articulos = deleteItemR(id)
-          console.log(articulos)
+
           // setCarrito(articulos)
         }
       }
