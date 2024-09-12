@@ -97,7 +97,7 @@
       @if ($maxPrice)
         <div class="flex gap-10">
           <div class="text-[#112212] font-bold flex flex-col">
-            <span class="text-[#112212] opacity-80">Precio</span>
+            <span class="text-[#112212] opacity-80">Desde</span>
             <span>
               @if ($item->descuento > 0)
                 S/ {{ intval($item->descuento) }}

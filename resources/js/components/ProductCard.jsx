@@ -79,7 +79,7 @@ const ProductCard = (item) => {
               <>
                 <div className="flex gap-10 ">
                   <div className="text-[#112212] font-bold flex flex-col">
-                    <span className="text-[#112212] opacity-80">Precio</span>
+                    <span className="text-[#112212] opacity-80">Desde</span>
                     <span> S/ {item.descuento > 0 ? Number(item.descuento).toFixed(0) : Number(item.precio).toFixed(0)} </span>
                   </div>
 

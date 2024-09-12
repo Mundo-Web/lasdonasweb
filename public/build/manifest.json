@@ -50,8 +50,8 @@
       "resources/js/components/useOutsideClick.jsx"
     ]
   },
-  "_ProductCard-4ySPUhib.js": {
-    "file": "assets/ProductCard-4ySPUhib.js",
+  "_ProductCard-MWC-_EEA.js": {
+    "file": "assets/ProductCard-MWC-_EEA.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx"
@@ -332,7 +332,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Catalogo-Pwb_dI38.js",
+    "file": "assets/Catalogo-4VVrQL4p.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -341,7 +341,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-4ySPUhib.js",
+      "_ProductCard-MWC-_EEA.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -517,7 +517,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-jTxzeHkZ.js",
+    "file": "assets/Product-YeJDjZ_m.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -532,7 +532,7 @@
       "_Accordion2-qFrvz2Sm.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-wXA00dMN.js",
-      "_ProductCard-4ySPUhib.js",
+      "_ProductCard-MWC-_EEA.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_index-XJuWVQ-l.js",
@@ -576,7 +576,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/TipoFlor-1KI7dBJI.js",
+    "file": "assets/TipoFlor-ER_0jI2S.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -585,7 +585,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-4ySPUhib.js",
+      "_ProductCard-MWC-_EEA.js",
       "_main-Vi8adC25.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
