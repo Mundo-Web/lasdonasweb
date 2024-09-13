@@ -214,7 +214,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BEUF6HO3.css",
+    "file": "assets/app-AlBcu-tM.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -278,13 +278,10 @@
     "src": "resources/js/AccordionSimple.jsx"
   },
   "resources/js/Agradecimiento.jsx": {
-    "assets": [
-      "assets/SvgPuntos-hzKALqiY.svg"
-    ],
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Agradecimiento-SYr53ojX.js",
+    "file": "assets/Agradecimiento-cDwadJxX.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -485,7 +482,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-nA3baLVJ.js",
+    "file": "assets/Pago-hogClo1F.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",

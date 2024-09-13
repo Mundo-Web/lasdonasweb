@@ -13,42 +13,46 @@ const Agradecimiento = ({ orden_code, orden }) => {
 
   return <>
     <main className='p-[5%]'>
-      <section className="flex flex-col w-full max-w-[647px] mx-auto">
-        <section className="flex flex-col w-full max-md:max-w-full">
-          <img loading="lazy" src={SvgPuntos} alt="Order confirmation illustration" className="object-contain self-center max-w-full aspect-square w-[280px]" />
-          <div className="flex flex-col mt-16 w-full text-base tracking-wider max-md:mt-10 max-md:max-w-full">
-            <div className="flex flex-col w-full max-md:max-w-full">
-              <div className="gap-2.5 self-center px-3 py-1 text-center text-white bg-green-800 rounded-3xl">
-                # {orden_code}
-              </div>
-              <h1 className="mt-4 text-2xl md:text-4xl text-center font-medium tracking-widest leading-none uppercase text-neutral-900 max-md:max-w-full">
-                TU ORDEN HA SIDO RECIBIDA
-              </h1>
-              <p className="mt-4 text-center text-neutral-900 max-md:max-w-full">
-                Gracias por tu compra
-              </p>
-            </div>
+
+      <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
+        <div className="w-full max-w-md">
+          <div className="flex justify-center mb-8">
+
+            {/* <span className="text-orange-400 font-bold text-xl">LD's</span> */}
+            <img src="/img_donas/selloCoral.png" alt="" className='h-48 w-48' />
+
           </div>
-          <div className="flex flex-col justify-center p-4 mt-16 w-full text-center bg-green-400 rounded-2xl max-md:mt-10 max-md:max-w-full">
-            <h2 className="text-xl font-medium tracking-wider leading-none text-white max-md:max-w-full">
-              Has acumulado {orden.points} puntos.
-            </h2>
-            <p className="mt-3 text-sm tracking-wide leading-5 text-white max-md:max-w-full">
-              Recuerda, por cada compra que realices obtienes puntos para canjear por más productos
+
+          <h1 className="text-2xl font-bold text-green-500 text-center mb-2">
+            ¡TU ORDEN HA SIDO RECIBIDA!
+          </h1>
+          <p className="text-center text-gray-600 mb-4">¡Gracias por tu compra!</p>
+
+          <div className="bg-green-100 rounded-full py-2 px-4 mb-6">
+            <p className="text-center text-green-800 font-semibold"># Pedido: {orden_code}</p>
+          </div>
+
+          <div className="text-center mb-6">
+            <h2 className="text-xl font-bold text-green-500 mb-2">¡Felicitaciones!</h2>
+            <p className="text-gray-600">Acabas de ganar {orden.points} puntos 🎉</p>
+            <p className="text-gray-600 text-sm">
+              ¡Recuerda! Cada una de tus compras en LAS DONAS suma puntos que podrás canjear por complementos en tus próximos pedidos!🍩
             </p>
           </div>
-          <div className="flex flex-col mt-16 w-full text-sm font-bold tracking-wide max-md:mt-10 max-md:max-w-full">
-            <a href='/catalogo' className='gap-2 self-stretch px-6 py-4 rounded-3xl text-green-800 hover:text-white hover:bg-green-800 w-full border border-green-800 text-center'>
+
+          <div className="space-y-4">
+            <a className="w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
+              Conoce nuestro programa de puntos
+            </a>
+            <a href='/micuenta/historial' className=" w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
+              Haz seguimiento a tu pedido
+            </a>
+            <a href='/catalogo' className="w-full py-2 px-4 bg-[#ff8555] block  text-center text-white rounded-full hover:bg-[#ff8555] transition-colors duration-300">
               Seguir comprando
             </a>
-            <a
-              href='/micuenta/historial'
-              className='gap-2 self-stretch px-6 py-4 rounded-3xl text-green-800 hover:text-white hover:bg-green-800 bg-white border text-center border-green-800 border-solid mt-2 w-full'>
-              Historial de compras
-            </a>
           </div>
-        </section>
-      </section>
+        </div>
+      </div>
     </main>
   </>
 }

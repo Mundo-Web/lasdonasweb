@@ -390,7 +390,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                   label="De:"
                   type="text"
                   placeholder=""
-                  required
+
                   handleDatosFinales={(e) => {
                     setDatosFinales(old => ({
                       ...old,
@@ -405,7 +405,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                   label="Para:"
                   type="text"
                   placeholder=""
-                  required
+
                   handleDatosFinales={(e) => {
                     setDatosFinales(old => ({
                       ...old,
