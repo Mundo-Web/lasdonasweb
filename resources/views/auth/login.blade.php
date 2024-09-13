@@ -81,7 +81,7 @@
             <div class="flex flex-col mt-12 w-full text-base font-bold leading-tight text-neutral-900">
               <input type="submit" value="Ingresar"
                 class="cursor-pointer gap-2  px-6 py-4 w-full whitespace-nowrap bg-green-800 rounded-3xl text-zinc-100" />
-              <a href="#"
+              <a href="/login-google"
                 class="flex flex-row gap-2 justify-center items-center px-6 py-3.5 mt-4 w-full rounded-3xl border border-green-800 border-solid min-h-[51px]">
                 <img loading="lazy" src="/img_donas/Google1.png" alt=""
                   class="object-contain shrink-0  my-auto w-6 aspect-square" />

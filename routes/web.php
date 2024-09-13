@@ -56,6 +56,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CuponController;
 use App\Http\Controllers\LibroReclamacionesController;
 use App\Http\Controllers\PoliticaDatosController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +79,33 @@ Route::get('/example', function () {
 });
 Route::get('/register', function(){
     return redirect()->route('Register.jsx');
+});
+
+Route::get('/login-google', function () {
+    return Socialite::driver('google')->redirect();
+});
+ 
+Route::get('/google-callback', function () {
+    $user = Socialite::driver('google')->user();
+    $userExist = User::where('external_id', $user->id)->where('external_auth', 'google')->first(); 
+
+    if($userExist){
+        Auth::login($userExist);
+        return redirect()->route('index');
+    }else{
+        
+        $userNew = User::create([
+            'name' => $user->user['given_name'],
+            'lastname' => $user->user['family_name'],
+            'email' => $user->email,
+            'external_id' => $user->id,
+            'external_auth' => 'google',
+            'avatar' => $user->avatar
+            
+        ])->assignRole('Customer');
+        Auth::login($userNew);
+        return redirect()->route('index');
+    }
 });
 
 Route::get('/confirm-email/{token}', [AuthController::class, 'confirmEmailView'])->name('ConfirmEmail.jsx');

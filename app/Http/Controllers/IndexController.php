@@ -593,6 +593,7 @@ class IndexController extends Controller
 
       $routeforshow = 'images/users/';
       $user->profile_photo_path = $route . $nombreImagen;
+      $user->avatar = $route . $nombreImagen;
     }
     $user->save();
     return response()->json(['message' => 'La imagen se cargó correctamente.']);

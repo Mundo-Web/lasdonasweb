@@ -39,7 +39,10 @@ class User extends Authenticatable
         'codigo_postal',
         'provincia',
         'distrito', 
-        'ban'
+        'ban', 
+        'external_id',
+        'external_auth',
+        'avatar'
     ];
 
     /**

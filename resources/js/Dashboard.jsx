@@ -92,10 +92,11 @@ const Dashboard = ({ user, section, general, categorias, cupones, cuponesUsados 
     <>
       <section className="flex flex-col px-[5%] lg:px-[8%] py-12 md:py-20">
         <div className="flex relative flex-col items-start max-w-full font-b_classic_regular">
+          { }
           <img
             onClick={changeImg}
             loading="lazy"
-            src={imagePreview}
+            src={user.avatar ? user.avatar : imagePreview}
             alt="User profile picture"
             className="object-cover z-0 max-w-full rounded-full aspect-square w-[131px] cursor-pointer"
 

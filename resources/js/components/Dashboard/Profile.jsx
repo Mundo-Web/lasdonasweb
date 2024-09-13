@@ -50,10 +50,10 @@ function Profile({ userDetail }) {
         <h2 className="text-3xl font-bold font-b_slick_bold tracking-widest leading-none uppercase text-neutral-900">
           Mi Perfil
         </h2>
-        <p className="mt-2 text-base tracking-wider text-neutral-900 text-opacity-80 max-md:max-w-full font-b_slick_regular">
+        {/* <p className="mt-2 text-base tracking-wider text-neutral-900 text-opacity-80 max-md:max-w-full font-b_slick_regular">
           Ut vehicula quam urna, id sodales lacus sodales eget. Integer elementum turpis sed quam interdum, vel
           laoreet tortor hendrerit.
-        </p>
+        </p> */}
       </div>
       <form className="flex flex-col mt-6 w-full max-md:max-w-full">
         <div className="flex flex-col w-full max-md:max-w-full">

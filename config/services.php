@@ -2,7 +2,7 @@
 
 return [
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Third Party Services
     |--------------------------------------------------------------------------
@@ -14,29 +14,36 @@ return [
     |
     */
 
-    'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
-        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
-        'scheme' => 'https',
-    ],
+  'mailgun' => [
+    'domain' => env('MAILGUN_DOMAIN'),
+    'secret' => env('MAILGUN_SECRET'),
+    'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+    'scheme' => 'https',
+  ],
 
-    'postmark' => [
-        'token' => env('POSTMARK_TOKEN'),
-    ],
+  'postmark' => [
+    'token' => env('POSTMARK_TOKEN'),
+  ],
 
-    'ses' => [
-        'key' => env('AWS_ACCESS_KEY_ID'),
-        'secret' => env('AWS_SECRET_ACCESS_KEY'),
-        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-    ],
+  'ses' => [
+    'key' => env('AWS_ACCESS_KEY_ID'),
+    'secret' => env('AWS_SECRET_ACCESS_KEY'),
+    'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+  ],
 
-    'izipay' => [
-        'url' => env('IZIPAY_URL'),
-        'client_id' => env('IZIPAY_CLIENT_ID'),
-        'client_secret' => env('IZIPAY_CLIENT_SECRET'),
-        'public_key' => env('IZIPAY_PUBLIC_KEY'),
-        'hash_key' => env('IZIPAY_HASH_KEY')
-    ],
+  'izipay' => [
+    'url' => env('IZIPAY_URL'),
+    'client_id' => env('IZIPAY_CLIENT_ID'),
+    'client_secret' => env('IZIPAY_CLIENT_SECRET'),
+    'public_key' => env('IZIPAY_PUBLIC_KEY'),
+    'hash_key' => env('IZIPAY_HASH_KEY')
+  ],
+
+  'google' => [
+    'client_id' => env('GOOGLE_OAUTH_ID'),
+    'client_secret' => env('GOOGLE_OAUTH_KEY'),
+    'redirect' => '/google-callback',
+
+  ],
 
 ];
