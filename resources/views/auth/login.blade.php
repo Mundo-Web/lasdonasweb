@@ -28,6 +28,13 @@
             Esperamos que puedas encontrar lo que buscas en nuestro sitio web.
           </p>
         </div>
+        @if (request()->query('email') == 'emailExiste')
+          <div class="alert alert-danger">
+            <ul class="">
+              <li class="text-red-500 p-4 bg-gray-200 rounded-lg shadow-lg">El email ya existe</li>
+            </ul>
+          </div>
+        @endif
         @if ($errors->any())
           <div class="alert alert-danger">
             <ul class="">
