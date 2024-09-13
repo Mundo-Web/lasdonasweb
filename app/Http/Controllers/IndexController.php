@@ -916,7 +916,8 @@ class IndexController extends Controller
       $ProdComplementarios = Products::whereIn('id',  $IdProductosComplementarios)->with('images')->get();
     }
 
-    $horarios = Horarios::where('despacho_disponible',1)->where('visible',1)->get();
+    $horariosHoy = Horarios::where('despacho_disponible',1)->where('visible',1)->get();
+    $horarios = Horarios::where('visible',1)->get();
 
     $atributos = Attributes::where('status', '=', true)->get();
     // $atributos = $product->attributes()->get();
@@ -950,7 +951,8 @@ class IndexController extends Controller
       'politicasSustitucion' => $politicasSustitucion,
       'politicaEnvio' => $politicaEnvio,
       'complementosAcordion' => $complementosAcordion,
-      'points' => Auth::check() ? Auth::user()->points : 0
+      'points' => Auth::check() ? Auth::user()->points : 0,
+      'horariosHoy' => $horariosHoy
     ])->rootView('app');
   }
 

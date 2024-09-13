@@ -52,7 +52,7 @@ const Product = ({
   politicasSustitucion,
   politicaEnvio,
   complementosAcordion,
-  points
+  points, horariosHoy
 }) => {
   const [selectedHorario, setSelectedHorario] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -69,7 +69,7 @@ const Product = ({
   const [loadListHorariosManana, setLoadListHorariosManana] = useState(false);
   const [modalCalendario, setModalCalendario] = useState(false);
 
-  const horariosHoy = horarios.filter((item) => {
+  const horariosHoy = horariosHoy.filter((item) => {
 
 
 
