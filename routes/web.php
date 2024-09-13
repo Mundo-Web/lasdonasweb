@@ -93,7 +93,9 @@ Route::get('/google-callback', function () {
         Auth::login($userExist);
         return redirect()->route('index');
     }else{
-        
+        if(User::where('email', $user->email)->exists()){
+            return redirect()->route('login', ['email' => $user->email]);
+        }
         $userNew = User::create([
             'name' => $user->user['given_name'],
             'lastname' => $user->user['family_name'],
