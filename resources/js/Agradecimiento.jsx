@@ -41,7 +41,7 @@ const Agradecimiento = ({ orden_code, orden }) => {
           </div>
 
           <div className="space-y-4">
-            <a className="w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
+            <a href='/micuenta/puntos' className="w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
               Conoce nuestro programa de puntos
             </a>
             <a href='/micuenta/historial' className=" w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
