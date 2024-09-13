@@ -485,7 +485,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-pjYChf5t.js",
+    "file": "assets/Pago-nA3baLVJ.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -504,6 +504,7 @@
       "_floating-ui.react-dom-R4KlLOlI.js",
       "_index-38suPYpT.js",
       "_main-Vi8adC25.js",
+      "_jquery-_-XaHmv-.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_extends-wRoo2ExD.js",
       "_setPrototypeOf-ahVgEFUp.js",

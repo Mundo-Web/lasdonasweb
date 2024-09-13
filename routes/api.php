@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ApiperuController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CuponController;
 use App\Http\Controllers\DashboardController;
@@ -48,7 +49,8 @@ Route::get('/horarios/{id}', [HorariosController::class, 'edit']);
 
 
 Route::post('signup', [AuthController::class, 'signup']);
-Route::post('/people/search', [MereyController::class, 'get']);
+// Route::post('/people/search', [MereyController::class, 'get']);
+Route::post('/people/search', [ApiperuController::class, 'get']);
 
 Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
 

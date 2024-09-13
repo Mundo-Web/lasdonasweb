@@ -20,6 +20,7 @@ import Swal from 'sweetalert2';
 import calculartotal from './Utils/calcularTotal';
 import { Modal } from 'flowbite-react';
 import { Fetch, Notify } from 'sode-extend-react';
+import { data } from 'jquery';
 
 const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones }) => {
 
@@ -50,7 +51,9 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
           ...old,
           billing: {
             ...old.billing,
-            name: result?.data?.name
+            name: result?.data?.nombres,
+
+            lastname: result?.data?.apellido_paterno + ' ' + result?.data?.apellido_materno
           }
         }))
         setDocumentFound(true)
@@ -72,8 +75,8 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
           ...old,
           billing: {
             ...old.billing,
-            name: result?.data?.name,
-            address: result?.data?.address
+            name: result?.data?.nombre_o_razon_social,
+            address: result?.data?.direccion_completa || 'Sin direccion',
           }
         }))
         setDocumentFound(true)
@@ -530,7 +533,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
 
                     <InputField
                       name={'razonSocial'}
-                      label={datosFinales.billing.type == 'boleta' ? 'Nombre completo' : "Razón Social"}
+                      label={datosFinales.billing.type == 'boleta' ? 'Nombre' : "Razón Social"}
                       placeholder="Ingrese una nombre"
                       value={datosFinales.billing.name}
                       required={true}
@@ -543,25 +546,25 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                           }
                         }))
                       }} />
-                    {/* {
-                        datosFinales.billing.type === 'boleta' && <>
-                          <InputField
-                            name={'lastname'}
-                            label="Apellido"
-                            value={datosFinales.billing.lastname}
-                            placeholder="Ingrese su apellido"
-                            required
-                            handleDatosFinales={(e) => {
-                              setDatosFinales(old => ({
-                                ...old,
-                                billing: {
-                                  ...old.billing,
-                                  lastname: e.target.value
-                                }
-                              }))
-                            }} />
-                        </>
-                      } */}
+                    {
+                      datosFinales.billing.type === 'boleta' && <>
+                        <InputField
+                          name={'lastname'}
+                          label="Apellido"
+                          value={datosFinales.billing.lastname}
+                          placeholder="Ingrese su apellido"
+                          required
+                          handleDatosFinales={(e) => {
+                            setDatosFinales(old => ({
+                              ...old,
+                              billing: {
+                                ...old.billing,
+                                lastname: e.target.value
+                              }
+                            }))
+                          }} />
+                      </>
+                    }
                     {datosFinales.billing.type !== 'boleta' && <>
                       <InputField
                         value={datosFinales.billing.address}
