@@ -94,18 +94,24 @@ Route::get('/google-callback', function () {
         return redirect()->route('index');
     }else{
         if(User::where('email', $user->email)->exists()){
-            return redirect()->route('login', ['email' => 'emailExiste']);
+            $userExist = User::where('email', $user->email)->first();
+            $userExist->external_id = $user->id;
+            $userExist->external_auth = 'google';
+            $userExist->save();
+            Auth::login($userExist);
+        }else {
+            $userNew = User::create([
+                'name' => $user->user['given_name'],
+                'lastname' => $user->user['family_name'],
+                'email' => $user->email,
+                'external_id' => $user->id,
+                'external_auth' => 'google',
+                'avatar' => $user->avatar
+                
+            ])->assignRole('Customer');
+            Auth::login($userNew);
         }
-        $userNew = User::create([
-            'name' => $user->user['given_name'],
-            'lastname' => $user->user['family_name'],
-            'email' => $user->email,
-            'external_id' => $user->id,
-            'external_auth' => 'google',
-            'avatar' => $user->avatar
-            
-        ])->assignRole('Customer');
-        Auth::login($userNew);
+       
         return redirect()->route('index');
     }
 });
