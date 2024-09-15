@@ -563,55 +563,51 @@ const Product = ({
                   : <div className="flex flex-row justify-between  gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
 
 
-                    {general.acept_incoming_orders_today == true ?
-                      (<div
-                        onClick={() => setLoadListHorariosHoy(!loadListHorariosHoy)}
-                        className={`cursor-pointer flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-full  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
-                        <HorarioSection
-                          id="hoy"
-                          title="Hoy"
-                          horarios={horariosHoyF}
-                          loadListHorarios={loadListHorariosHoy}
-                          setLoadListHorarios={setLoadListHorariosHoy}
-                          selectedHorario={selectedHorario}
-                          setSelectedHorario={setSelectedHorario}
-                          setDetallePedido={setDetallePedido}
-                          setSelectedDate={setSelectedDate}
-                        />
 
-                        {horariosHoy.length === 0 ? (
-                          <p key="no-disponible" className="text-sm font-normal">Hoy No disponible</p>
-                        ) : (
+                    <div
+                      onClick={() => setLoadListHorariosHoy(!loadListHorariosHoy)}
+                      className={`cursor-pointer flex flex-col ${detallePedido.fecha == 'hoy' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} justify-center items-center  text-center w-full  border-2 p-3 rounded-xl relative hover:text-[#73B473]`}>
+                      <HorarioSection
+                        id="hoy"
+                        title="Hoy"
+                        horarios={horariosHoyF}
+                        loadListHorarios={loadListHorariosHoy}
+                        setLoadListHorarios={setLoadListHorariosHoy}
+                        selectedHorario={selectedHorario}
+                        setSelectedHorario={setSelectedHorario}
+                        setDetallePedido={setDetallePedido}
+                        setSelectedDate={setSelectedDate}
+                      />
 
-                          <p className="text-sm font-normal">
-                            Disponible
-                          </p>
+                      {horariosHoy.length === 0 ? (
+                        <p key="no-disponible" className="text-sm font-normal">Hoy No disponible</p>
+                      ) : (
 
-                        )}
-                        <div className='mt-2'>
+                        <p className="text-sm font-normal">
+                          Disponible
+                        </p>
 
-                          {
+                      )}
+                      <div className='mt-2'>
 
-                            selectedHorario && detallePedido.fecha == 'hoy' && (
-                              <>
-                                {(() => {
-                                  const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
-                                  if (selectedHorarioItem) {
-                                    return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
-                                  }
-                                  return null;
-                                })()}
-                              </>
-                            )
-                          }
-                        </div>
+                        {
 
-                      </div>) : (
-                        <div
-                          className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
-                          <p key="no-disponible" className="text-sm font-normal text-gray-400">hoy No disponible</p>
-                        </div>)
-                    }
+                          selectedHorario && detallePedido.fecha == 'hoy' && (
+                            <>
+                              {(() => {
+                                const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                                if (selectedHorarioItem) {
+                                  return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                                }
+                                return null;
+                              })()}
+                            </>
+                          )
+                        }
+                      </div>
+
+                    </div>
+
                     {/* </SwiperSlide> */}
                     {/* <SwiperSlide className='!overflow-y-visible'> */}
                     <div className={`relative flex flex-col justify-center items-center  text-center w-full 
