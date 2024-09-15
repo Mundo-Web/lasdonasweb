@@ -609,7 +609,7 @@ const Product = ({
                       </div>) : (
                         <div
                           className="flex flex-col justify-center items-center  text-center w-1/3 border-[#E8EDDE] border-2 p-3 rounded-xl relative">
-                          <p key="no-disponible" className="text-sm font-normal text-gray-400">No disponible</p>
+                          <p key="no-disponible" className="text-sm font-normal text-gray-400">hoy No disponible</p>
                         </div>)
                     }
                     {/* </SwiperSlide> */}
