@@ -69,7 +69,7 @@ const Product = ({
   const [loadListHorariosManana, setLoadListHorariosManana] = useState(false);
   const [modalCalendario, setModalCalendario] = useState(false);
 
-  const horariosHoy = horariosHoy.filter((item) => {
+  const horariosHoyF = horariosHoy.filter((item) => {
 
 
 
@@ -566,7 +566,7 @@ const Product = ({
                         <HorarioSection
                           id="hoy"
                           title="Hoy"
-                          horarios={horariosHoy}
+                          horarios={horariosHoyF}
                           loadListHorarios={loadListHorariosHoy}
                           setLoadListHorarios={setLoadListHorariosHoy}
                           selectedHorario={selectedHorario}
@@ -575,7 +575,7 @@ const Product = ({
                           setSelectedDate={setSelectedDate}
                         />
 
-                        {horariosHoy.length === 0 ? (
+                        {horariosHoyF.length === 0 ? (
                           <p key="no-disponible" className="text-sm font-normal">No disponible</p>
                         ) : (
 
