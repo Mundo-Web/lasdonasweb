@@ -250,7 +250,7 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
                 class="flex flex-row gap-2 justify-center items-center px-6 py-3.5 mt-4 w-full rounded-3xl border border-green-800 border-solid min-h-[51px]">
                 <img loading="lazy" src="/img_donas/Google1.png" alt=""
                   class="object-contain shrink-0  my-auto w-6 aspect-square" />
-                <span class=" my-auto">Registrar con mi cuenta de Google</span>
+                <span class=" my-auto"> Registrarse con Google</span>
               </a>
 
               <div className="row mt-3">
