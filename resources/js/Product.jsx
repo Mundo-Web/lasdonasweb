@@ -578,7 +578,7 @@ const Product = ({
                           setSelectedDate={setSelectedDate}
                         />
 
-                        {horariosHoyF.length === 0 ? (
+                        {horariosHoy.length === 0 ? (
                           <p key="no-disponible" className="text-sm font-normal">No disponible</p>
                         ) : (
 
