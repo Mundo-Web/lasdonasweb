@@ -95,6 +95,7 @@ const Product = ({
 
     const horaLimite = dateInicio.toTimeString().split(' ')[0];
 
+    console.log(horaLimite, horaActual, horaInicio)
 
     return (horaLimite > horaActual) || (horaActual < horaInicio);
   });
@@ -579,7 +580,7 @@ const Product = ({
                         />
 
                         {horariosHoy.length === 0 ? (
-                          <p key="no-disponible" className="text-sm font-normal">No disponible</p>
+                          <p key="no-disponible" className="text-sm font-normal">Hoy No disponible</p>
                         ) : (
 
                           <p className="text-sm font-normal">
