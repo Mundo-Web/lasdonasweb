@@ -66,9 +66,9 @@
   "_calcularTotal-FPqXOtx1.js": {
     "file": "assets/calcularTotal-FPqXOtx1.js"
   },
-  "_es-!~{01I}~.js": {
+  "_es-!~{01L}~.js": {
     "file": "assets/es-D87rtk4j.css",
-    "src": "_es-!~{01I}~.js"
+    "src": "_es-!~{01L}~.js"
   },
   "_es-wXA00dMN.js": {
     "css": [
@@ -85,9 +85,9 @@
   "_extends-wRoo2ExD.js": {
     "file": "assets/extends-wRoo2ExD.js"
   },
-  "_fade-!~{01x}~.js": {
+  "_fade-!~{01A}~.js": {
     "file": "assets/fade-WxPIMcx6.css",
-    "src": "_fade-!~{01x}~.js"
+    "src": "_fade-!~{01A}~.js"
   },
   "_floating-ui.dom-3uxmUvem.js": {
     "file": "assets/floating-ui.dom-3uxmUvem.js"
@@ -158,9 +158,9 @@
       "_index-XJuWVQ-l.js"
     ]
   },
-  "_tippy-!~{01n}~.js": {
+  "_tippy-!~{01q}~.js": {
     "file": "assets/tippy-C64i7G0l.css",
-    "src": "_tippy-!~{01n}~.js"
+    "src": "_tippy-!~{01q}~.js"
   },
   "_tippy.esm-vXDZ6XwW.js": {
     "file": "assets/tippy.esm-vXDZ6XwW.js"
@@ -214,7 +214,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-AlBcu-tM.css",
+    "file": "assets/app-Kr_sx10c.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -276,6 +276,29 @@
     ],
     "isEntry": true,
     "src": "resources/js/AccordionSimple.jsx"
+  },
+  "resources/js/Admin/Sales.jsx": {
+    "css": [
+      "assets/tippy-C64i7G0l.css"
+    ],
+    "file": "assets/Sales-UtavtHHu.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "_CreateReactScript-VVPwJ0HX.js",
+      "resources/js/Utils/ReactAppend.jsx",
+      "_main-Vi8adC25.js",
+      "resources/js/components/ClasicModal.jsx",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "resources/js/Utils/CreateReactScript.jsx",
+      "_axios-_sX4vCAy.js",
+      "_index-XJuWVQ-l.js",
+      "_index-38suPYpT.js",
+      "_storage-zp2nPsZU.js",
+      "_index-VFMbf6KQ.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/Admin/Sales.jsx"
   },
   "resources/js/Agradecimiento.jsx": {
     "css": [
@@ -546,7 +569,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Register--xq5kbyg.js",
+    "file": "assets/Register--BoRTfgC.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -860,6 +883,16 @@
     ],
     "isEntry": true,
     "src": "resources/js/components/Dashboard/Record.jsx"
+  },
+  "resources/js/components/DataGrid.jsx": {
+    "file": "assets/DataGrid-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/DataGrid.jsx"
   },
   "resources/js/components/DateTimeDisplay.jsx": {
     "file": "assets/DateTimeDisplay-tmMjkXlv.js",
@@ -1177,6 +1210,16 @@
     "isEntry": true,
     "src": "resources/js/components/SignatureField.jsx"
   },
+  "resources/js/components/Table.jsx": {
+    "file": "assets/Table-tmMjkXlv.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "__commonjsHelpers-4gQjN7DL.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/Table.jsx"
+  },
   "resources/js/components/TotalRow.jsx": {
     "file": "assets/TotalRow-tmMjkXlv.js",
     "imports": [
@@ -1294,7 +1337,7 @@
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/SvgPuntos.svg": {
-    "file": "assets/SvgPuntos-hzKALqiY.svg",
+    "file": "assets/SvgPuntos--FnXd_aC.svg",
     "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {

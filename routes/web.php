@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\Admin\OrdenController;
 use App\Http\Controllers\AttributesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
@@ -322,6 +323,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         //Pedidos
         Route::get('/orders', [PedidosController::class, 'listadoPedidos'])->name('orders');
         Route::get('/orders/{id}', [PedidosController::class, 'verPedido'])->name('verPedido');
+
+        Route::get('/sales', [OrdenController::class, 'reactView'])->name('Admin/Sales.jsx');
 
         //Complementos 
         Route::resource('complemento', ComplementosController::class);
