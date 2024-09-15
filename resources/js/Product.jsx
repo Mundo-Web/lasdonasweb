@@ -68,6 +68,7 @@ const Product = ({
   const [loadListHorariosHoy, setLoadListHorariosHoy] = useState(false);
   const [loadListHorariosManana, setLoadListHorariosManana] = useState(false);
   const [modalCalendario, setModalCalendario] = useState(false);
+  console.log(horariosHoy)
 
   const horariosHoyF = horariosHoy.filter((item) => {
 
@@ -77,6 +78,8 @@ const Product = ({
     const timeZone = 'America/Lima';
     const zonedNow = toZonedTime(now, timeZone);
     const horaActual = format(zonedNow, 'HH:mm:ss');
+
+    console.log(horaActual)
 
     const horaInicio = item.start_time.trim();
     const horaFin = item.end_time.trim();
