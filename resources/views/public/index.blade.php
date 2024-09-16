@@ -630,7 +630,7 @@
     const ref = localStorage.getItem('ref');
     if (ref && ref === 'pago') {
       localStorage.removeItem('ref');
-      window.location.href = `${appUrl}/pago`;
+      window.location.href = `/pago`;
     }
   </script>
 @stop
