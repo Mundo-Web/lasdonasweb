@@ -30,7 +30,7 @@ class MailingController extends Controller
             $mail->addAddress($userJpa->email, $userJpa->name);
             $mail->send();
         } catch (\Throwable $th) {
-            // dump($th->getMessage());
+            
         }
     }
 }

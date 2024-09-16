@@ -204,7 +204,7 @@ class IndexController extends Controller
         'beneficios' => $beneficios,
       ])->rootView('app');
     } catch (\Throwable $th) {
-      // dump($th);
+      
     }
   }
 
@@ -361,7 +361,7 @@ class IndexController extends Controller
         'beneficios' => $beneficios,
       ])->rootView('app');
     } catch (\Throwable $th) {
-      // dump($th);
+      
     }
   }
 
@@ -909,7 +909,7 @@ class IndexController extends Controller
     );
 
     $IdProductosComplementarios = $productos->toArray();
-    //  dump(json_decode($IdProductosComplementarios['uppsell'], true));
+    
     $ProdComplementarios = [];
 
     if (!is_null($IdProductosComplementarios) && isset($IdProductosComplementarios['uppsell'])) {

@@ -34,7 +34,7 @@ class PrecioEnvioController extends Controller
     public function save(Request $request)
     {
         //
-        // dump($request->all());
+        
         $request->validate([
             'name' => 'required',
             

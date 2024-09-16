@@ -295,7 +295,7 @@ class PaymentController extends Controller
         for ($i = 0; $i < $body['cart'][$key]['quantity']; $i++) {
          
           if ($body['cart'][$key]['usePoints'] !== "false" && $restPoints >= $productJpa->puntos_complemento) {
-            dump('entra aca');
+            
             $finalQuantity--;
             $points2discount += $productJpa->puntos_complemento;
             $points_used += $productJpa->puntos_complemento;
@@ -435,7 +435,7 @@ class PaymentController extends Controller
         $sale->codigo_orden = '000000000000';
       }
       $sale->status_id = 2;
-      dump($th);
+      
     } finally {
 
       $sale->save();

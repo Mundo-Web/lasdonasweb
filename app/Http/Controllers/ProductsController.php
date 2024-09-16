@@ -134,7 +134,7 @@ class ProductsController extends Controller
         $product = new Products($cleanedData);
         $product->save();
       } else $product->update($cleanedData);
-      // dump($product);
+      
 
       if ($product['descuento'] == 0 || is_null($product['descuento'])) {
         $precioFiltro = $product['precio'];
@@ -309,7 +309,7 @@ class ProductsController extends Controller
         ->withInput(); */
     } catch (\Throwable $th) {
       //throw $th;
-      // dump($th);
+      
 
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
     }
