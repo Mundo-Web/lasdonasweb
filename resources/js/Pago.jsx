@@ -379,7 +379,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
       <form className='mb-24' onSubmit={startCulqi} id='formPrincipal'>
         <div className='mt-12 px-[5%] md:px-[8%] font-b_slick_bold'>
           <span>
-            Home / Aniversario / Suspendisse potenti /Validación de pedido
+            Home / Validación de pedido
           </span>
           <div className='mt-8'>
             <h1 className='text-[#112212] font-bold text-2xl md:text-4xl'>CARRITO DE COMPRAS</h1>

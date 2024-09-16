@@ -75,6 +75,9 @@ Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
     Route::post('/eliminarCuenta', [IndexController::class, 'eliminarCuenta'] );
 
     Route::post('/cupon', [CuponController::class, 'addHistorico'] );
+    Route::delete('/cupon/{id}', [CuponController::class, 'deletecupon'] );
+    Route::post('/cupones/validar', [CuponController::class, 'validar'] );
+    
    
    
    

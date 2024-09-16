@@ -3,6 +3,7 @@ import OrderItem from './OrderItem';
 import TotalRow from './TotalRow';
 import Divider from './Divider';
 import calculartotal from '../Utils/calcularTotal';
+import { useRef } from 'react';
 
 
 
@@ -10,13 +11,15 @@ import calculartotal from '../Utils/calcularTotal';
 const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCupones }) => {
   const subtotal = calculartotal(points);
   const [total, setTotal] = useState(subtotal);
-  let haycupon = false;
+  const haycupon = useRef(false);
+  // let haycupon = false;
 
 
   useEffect(() => {
     let descuento = 0;
     let cupon
     if (historicoCupones.length > 0) {
+      console.log('entro here')
       cupon = historicoCupones[0].cupon ?? {};
 
       if (cupon.porcentaje == 1) {
@@ -26,7 +29,7 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
         // Si no es un porcentaje, el descuento es el monto fijo
         descuento = cupon.monto;
       }
-      haycupon = true;
+      haycupon.current = true;
     }
 
 
@@ -36,7 +39,9 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
   }, [costoEnvio, subtotal, historicoCupones]);
 
   const porcentaje = historicoCupones[0]?.cupon?.porcentaje == 1 ? '%' : 'S/';
-  const cuponMonto = `${porcentaje} ${historicoCupones[0]?.cupon?.monto}`;
+  const cuponMonto = `${porcentaje} ${Number(historicoCupones[0]?.cupon?.monto).toFixed(0)}`;
+
+  console.log(cuponMonto)
 
   return (
     <main className="flex flex-col flex-1 shrink justify-center self-stretch my-auto w-full basis-0 min-w-[240px] max-md:max-w-full">
@@ -49,16 +54,20 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
       <Divider />
       <TotalRow label="Sub Total" value={subtotal} />
       <Divider />
-      {haycupon && (<>
-        <div className="flex items-center gap-5 self-end mt-6 max-w-full font-bold text-right w-[600px]">
-          <div className={`self-stretch my-auto text-sm tracking-wide text-right text-neutral-900 text-opacity-80 w-[133px]`}>
-            Descuento
-          </div>
-          <div className={`self-stretch px-2 text-sm tracking-wide  text-neutral-900 w-[133px] text-start`}>
+      {haycupon.current && (<>
+        <div className='flex flex-row justify-end'>
+          <div className="flex  justify-end gap-5 self-end mt-6 max-w-full font-bold text-right w-[400px]">
+            <div className={`my-auto  text-neutral-900 text-opacity-80 w-[200px] md:w-[133px] text-start`}>
+              Descuento
+            </div>
+            <div className={`px-2 text-neutral-900 w-full md:w-[133px]`}>
 
-            {Number(cuponMonto).toFixed(0)}
+              {(cuponMonto)}
+            </div>
           </div>
+
         </div>
+
         <Divider />
       </>)}
 

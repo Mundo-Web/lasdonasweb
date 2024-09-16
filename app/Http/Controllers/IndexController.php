@@ -204,7 +204,6 @@ class IndexController extends Controller
         'beneficios' => $beneficios,
       ])->rootView('app');
     } catch (\Throwable $th) {
-      
     }
   }
 
@@ -258,24 +257,33 @@ class IndexController extends Controller
 
   public function carrito()
   {
-    $complementos  = Tag::withCount(['complements'])
-      ->where('tags.status', '=', 1)
-      ->join('tags_xproducts', 'tags_xproducts.tag_id', 'tags.id')
-      ->where('tags.visible', '=', 1)
-      ->having('complements_count', '>', 0)
-      ->groupBy('tags.id')
-      ->get();
 
-    $historicoCupones = [];
+    try {
+      //code...
+      $complementos  = Tag::withCount(['complements'])
+        ->where('tags.status', '=', 1)
+        ->join('tags_xproducts', 'tags_xproducts.tag_id', 'tags.id')
+        ->where('tags.visible', '=', 1)
+        ->having('complements_count', '>', 0)
+        ->groupBy('tags.id')
+        ->get();
 
-    if (Auth::check()) {
-      $usuario = Auth::user()->id;
-      $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->get();
-    }
+      $historicoCupones = [];
 
-    // $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', Auth::user()->id)->where('usado', false)->get();
+      if (Auth::check()) {
+        // dump('estamos entrando aca ');
+        $usuario = Auth::user()->id;
+        
 
-    /* $complementos = Complemento::select('complementos.*')
+        $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->get();
+      
+
+      }
+
+
+      // $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', Auth::user()->id)->where('usado', false)->get();
+
+      /* $complementos = Complemento::select('complementos.*')
       ->join('products', 'products.complemento_id', '=', 'complementos.id')
       ->where('complementos.status', 1)
       ->groupBy('complementos.id')
@@ -285,12 +293,16 @@ class IndexController extends Controller
       $complementos[$key]['min_price'] = $complemento->min_price;
     } */
 
-    // return view('public.checkout_carrito', compact('url_env', 'departamentos'));
-    return Inertia::render('Carrito', [
-      'complementos' => $complementos,
-      'points' => Auth::check() ? Auth::user()->points : 0,
-      'historicoCupones' => $historicoCupones
-    ])->rootView('app');
+      // return view('public.checkout_carrito', compact('url_env', 'departamentos'));
+      return Inertia::render('Carrito', [
+        'complementos' => $complementos,
+        'points' => Auth::check() ? Auth::user()->points : 0,
+        'historicoCupones' => $historicoCupones
+      ])->rootView('app');
+    } catch (\Throwable $th) {
+      //throw $th;
+      dump($th);
+    }
   }
 
   public function tipoFlor(Request $request, ?string $id = null)
@@ -361,7 +373,6 @@ class IndexController extends Controller
         'beneficios' => $beneficios,
       ])->rootView('app');
     } catch (\Throwable $th) {
-      
     }
   }
 
@@ -464,7 +475,8 @@ class IndexController extends Controller
       // 'MensajesPredefinidos' => $MensajesPredefinidos,
       'greetings' => $greetings,
       'points' => Auth::check() ? Auth::user()->points : 0,
-      'historicoCupones' => $historicoCupones , 'general'=> $general
+      'historicoCupones' => $historicoCupones,
+      'general' => $general
     ])->rootView('app');
   }
 
@@ -909,7 +921,7 @@ class IndexController extends Controller
     );
 
     $IdProductosComplementarios = $productos->toArray();
-    
+
     $ProdComplementarios = [];
 
     if (!is_null($IdProductosComplementarios) && isset($IdProductosComplementarios['uppsell'])) {
@@ -918,8 +930,8 @@ class IndexController extends Controller
       $ProdComplementarios = Products::whereIn('id',  $IdProductosComplementarios)->with('images')->get();
     }
 
-    $horariosHoy = Horarios::where('despacho_disponible',1)->where('visible',1)->get();
-    $horarios = Horarios::where('visible',1)->get();
+    $horariosHoy = Horarios::where('despacho_disponible', 1)->where('visible', 1)->get();
+    $horarios = Horarios::where('visible', 1)->get();
 
     $atributos = Attributes::where('status', '=', true)->get();
     // $atributos = $product->attributes()->get();

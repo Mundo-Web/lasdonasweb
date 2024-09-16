@@ -40,9 +40,7 @@ function Coupons({ cupones, cuponesUsados }) {
         {cuponesFiltrados.map((cupon) => (
 
           <label key={cupon.id} className="flex gap-6 items-start my-auto min-w-[240px]  font-b_slick_bold ">
-            <input
-              onChange={handleCouponChange}
-              type="radio" name="coupon" value={cupon.id} className="shrink-0 mt-1.5 w-6 h-6 cursor-pointer text-[#FF8555] focus:bg-[#FF8555] focus:border-0 focus:ring-0" />
+
             <div className="flex flex-col min-w-[240px] w-[254px]  font-b_slick_bold">
               <h3 className="text-2xl font-medium leading-none text-neutral-900 font-b_slick_regular">
                 Cupón {cupon.porcentaje == 1 ? `${Number(cupon.monto).toFixed(0)} %` : `S/ ${cupon.monto}`}

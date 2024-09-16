@@ -9,12 +9,18 @@ import Accordion from './Accordion2';
 import calculartotal from './Utils/calcularTotal'
 import Button from './components/Button';
 import QuantitySelector from './components/QuantitySelector';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Carrito = ({ complementos, points = 0, historicoCupones }) => {
+
+  console.log(historicoCupones)
   let restPoints = structuredClone(points)
   const [carrito, setCarrito] = useState(Local.get('carrito') || []);
   const [montoTotal, setMontoTotal] = useState(0);
   const [activeModal, setActiveModal] = useState(true);
+
+  const [cuponActivo, setCuponActivo] = useState(historicoCupones ?? []);
 
   const [currentComplemento, setCurrentComplemento] = useState(complementos);
   const [detallePedido, setDetallePedido] = useState({
@@ -33,16 +39,35 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
   };
 
 
-  // useEffect(() => {
-  //   if (activeModal) {
-  //     document.addEventListener('mousedown', handleClickOutside);
-  //   } else {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   }
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // }, [activeModal]);
+  useEffect(() => {
+
+
+    if (historicoCupones.length > 0) {
+      Swal.fire({
+        title: 'Cupón de Descuento Activo',
+        text: 'Tienes un cupon de Descuento activo que aun no se ha utilizado, deseas aplicarlo? ',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'No, gracias',
+        cancelButtonText: 'Si Aplicar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          EliminarCupon(historicoCupones[0].id)
+        }
+      })
+    }
+  }, []);
+
+  const EliminarCupon = async (id) => {
+
+    try {
+      const response = await axios.delete(`/api/cupon/${id}`)
+      console.log(response)
+      setCuponActivo([])
+    } catch (error) {
+      console.error('Error al eliminar cupon:', error)
+    }
+  }
   const deleteItemR = (id) => {
 
     let articulosCarrito = Local.get('carrito') || [];
@@ -103,9 +128,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
   }
 
   useEffect(() => {
-    console.log('detalle pedido act')
     let carrito2 = Local.get('carrito') ?? [];
-    console.log(carrito2)
 
     setCarrito(carrito2)
     limpiarHTML();
@@ -149,6 +172,65 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
   useEffect(() => {
     setMontoTotal(calculartotal(points))
   }, [carrito])
+
+  const codigoCupon = useRef(null)
+
+  const hnadleChangecupon = (e) => {
+    codigoCupon.current = e.target.value
+    console.log(e.target.value)
+  }
+
+  const agregarCuponADb = async (cuponId) => {
+    try {
+      const response = await axios.post('api/cupon', {
+        id: cuponId
+      })
+      // console.log('Cupon agregado:', response)
+
+      const { data, status } = response
+      setCuponActivo([data.cupon])
+      console.log(data)
+    } catch (error) {
+      console.error('Error al agregar cupon:', error)
+    }
+  }
+  const buscarCupon = async () => {
+
+    try {
+
+      const response = await axios.post('api/cupones/validar', {
+        cupon: codigoCupon.current
+
+      })
+      const { data, status } = response
+
+      if (status == 200) {
+        Swal.fire({
+          title: 'Cupón válido',
+          text: '¿Deseas aplicar este cupón?',
+          icon: 'success',
+          showCancelButton: true,
+          confirmButtonText: 'Aplicar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            agregarCuponADb(data.cupon.id)
+          }
+        })
+      }
+      console.log(response)
+
+    } catch (error) {
+      console.log(error.response)
+      Swal.fire({
+        title: 'Cupón inválido',
+        text: `${error.response.data.message}`,
+        icon: 'error'
+      })
+    }
+
+
+  }
 
   return (
     <>
@@ -255,12 +337,15 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
               </h2>
               <div className="flex gap-5 relative">
                 <input
-                  value={historicoCupones[0]?.cupon?.codigo ?? ''}
+                  defaultValue={codigoCupon.current}
                   type="text"
                   id="txtCodigoPromocion"
+                  name="txtCodigoPromocion"
                   className="w-full border-[#336234] rounded-3xl py-3 px-5 focus:outline-none focus:ring-2 focus:ring-[#336234]"
+                  onChange={hnadleChangecupon}
                 />
                 <button
+                  onClick={buscarCupon}
                   className="absolute rounded-3xl border right-[3%] p-2 px-4 text-white bg-[#336234] w-[113px] top-1/2 transform -translate-y-1/2"
                 >
                   Aplicar
@@ -275,7 +360,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                 <div className='flex flex-row gap-4 mt-4'>
                   <div className='w-8/12 text-[#112212] flex flex-col'>
 
-                    {historicoCupones.length > 0 && (
+                    {cuponActivo.length > 0 && (
 
                       <>
                         <span className='opacity-80'> SubTotal</span>
@@ -289,14 +374,14 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                   </div>
                   <div className='w-4/12 flex flex-col justify-end items-end px-4 font-bold'>
                     <span className='opacity-80'>S/ {Number(montoTotal)}</span>
-                    {historicoCupones.length > 0 && (
+                    {cuponActivo.length > 0 && (
                       <>
                         <span className='opacity-80'>
-                          {historicoCupones[0]?.cupon?.porcentaje == 1 ? `${Number(historicoCupones[0].cupon.monto).toFixed(0)} %` : `S/ ${historicoCupones[0].cupon.monto}`}
+                          {cuponActivo[0]?.cupon?.porcentaje == 1 ? `${Number(cuponActivo[0].cupon.monto).toFixed(0)} %` : `S/ ${cuponActivo[0].cupon.monto}`}
 
                         </span>
                         <span className='text-[#112212] font-bold text-nowrap' id='itemsTotal'>
-                          {historicoCupones[0]?.cupon?.porcentaje == 1 ? `S/  ${Number(montoTotal) - ((Number(montoTotal) * Number(historicoCupones[0].cupon.monto).toFixed(0) / 100))} ` : `S/ ${Number(montoTotal) - Number(historicoCupones[0].cupon.monto)}`}
+                          {cuponActivo[0]?.cupon?.porcentaje == 1 ? `S/  ${Number(montoTotal) - ((Number(montoTotal) * Number(cuponActivo[0].cupon.monto).toFixed(0) / 100))} ` : `S/ ${Number(montoTotal) - Number(cuponActivo[0].cupon.monto)}`}
 
 
                         </span>

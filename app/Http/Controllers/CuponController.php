@@ -83,18 +83,35 @@ class CuponController extends Controller
     return redirect()->route('cupones.index');
   }
 
+  public function deletecupon($id)
+  {
+    try {
+      DB::table('historico_cupones')->where('id', $id)->delete();
+      // Cupon::destroy($id);
+    } catch (\Throwable $th) {
+      //throw $th;
+    }
+  }
+
   public function addHistorico(Request $request)
   {
 
 
     // buscamos el usuario logueado 
+    $usuario = null;
+    if (Auth::check()) {
+      // dump('estamos entrando aca ');
+      $usuario = Auth::user()->id;
+    }
+
     try {
       //code...
       $user = User::find(Auth::user())->toArray();
 
 
+
       //consultamos en el historico de cupones si la persona tiene un cupon sin usar 
-      $cupon = HistoricoCupon::where('user_id', $user[0]['id'])->where('usado', false)->first();
+      $cupon = HistoricoCupon::where('user_id', $usuario)->where('usado', false)->first();
 
 
       if (isset($cupon)) {
@@ -102,14 +119,16 @@ class CuponController extends Controller
         $cupon->update(['cupones_id' => $request->id]);
       } else {
         // si no tiene un cupon sin usar , se le asigna un cupon con id del cupon en el historico de cupones
-        HistoricoCupon::create([
+        $cupon = HistoricoCupon::create([
           'cupones_id' => $request->id,
-          'user_id' => $user[0]['id'],
+          'user_id' => $usuario,
 
           'usado' => false,
 
         ]);
       }
+      $cupon = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->first();
+      return response()->json(['message' => 'Cupon asignado.', 'cupon' => $cupon], 200);
     } catch (\Throwable $th) {
       //throw $th;
 
@@ -117,23 +136,48 @@ class CuponController extends Controller
     }
   }
 
+  public function validar(Request $request)
+  {
+
+    $valido = true;
+    $hoyFecha = date('Y-m-d');
+    dump($request->all());
+    try {
+      //code...
+      $cupon = Cupon::where('codigo', '=', $request->cupon)->where('visible', 1)->where('status', 1)->where('fecha_caducidad', '>', $hoyFecha)->firstOrFail();
+
+      $Usoesecupon =  HistoricoCupon::where('cupones_id', $cupon->id)->where('usado', true)->first();
+      if (isset($Usoesecupon)) {
+        $valido = false;
+        return response()->json(['message' => 'Este cupon ya ha sido usado', 'valido' => $valido], 400);
+      }
+      
+
+
+      return response()->json(['message' => 'Cupon validado.', 'valido' => $valido, 'cupon' => $cupon], 200);
+    } catch (\Throwable $th) {
+      //throw $th;
+      $valido = false;
+      return response()->json(['message' => 'El cupón ingresado no es válido.', 'valido' => $valido], 400);
+    }
+  }
+
   public function updateVisible(Request $request)
   {
-      // Lógica para manejar la solicitud AJAX
-      //return response()->json(['mensaje' => 'Solicitud AJAX manejada con éxito']);
-      $id = $request->id;
+    // Lógica para manejar la solicitud AJAX
+    //return response()->json(['mensaje' => 'Solicitud AJAX manejada con éxito']);
+    $id = $request->id;
 
-      $field = $request->field;
+    $field = $request->field;
 
-      $status = $request->status;
+    $status = $request->status;
 
-      $testimony = Cupon::findOrFail($id);
-      
-      $testimony->$field = $status;
+    $testimony = Cupon::findOrFail($id);
 
-      $testimony->save();
+    $testimony->$field = $status;
 
-       return response()->json(['message' => 'Estado modificado.']);
-  
+    $testimony->save();
+
+    return response()->json(['message' => 'Estado modificado.']);
   }
 }

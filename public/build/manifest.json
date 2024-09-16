@@ -221,7 +221,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-A3uYervm.css",
+    "file": "assets/app-U6Wb5nYD.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -334,7 +334,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-q0ZwxBF0.js",
+    "file": "assets/Carrito-OSizvPR1.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -343,13 +343,13 @@
       "_storage-zp2nPsZU.js",
       "_Accordion2-qFrvz2Sm.js",
       "_calcularTotal-FPqXOtx1.js",
+      "_axios-_sX4vCAy.js",
+      "resources/js/components/Dashboard/Profile.jsx",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
       "_main-Vi8adC25.js",
-      "resources/js/components/Dashboard/Profile.jsx",
       "_tippy.esm-vXDZ6XwW.js"
     ],
     "isEntry": true,
@@ -405,7 +405,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Dashboard-lfOOkeTs.js",
+    "file": "assets/Dashboard-giHbk6o-.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -513,7 +513,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-6sVDElly.js",
+    "file": "assets/Pago-cpP5dMbT.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
