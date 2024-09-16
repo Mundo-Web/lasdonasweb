@@ -56,6 +56,7 @@ const Sales = ({ statuses }) => {
     }
     const result = await salesRest.save({ id, status_id: select.value })
     if (!result) return
+    $(gridRef.current).dxDataGrid('instance').refresh()
   }
 
   return <>
