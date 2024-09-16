@@ -100,7 +100,7 @@ class CuponController extends Controller
     // buscamos el usuario logueado 
     $usuario = null;
     if (Auth::check()) {
-      // dump('estamos entrando aca ');
+      
       $usuario = Auth::user()->id;
     }
 
@@ -141,7 +141,7 @@ class CuponController extends Controller
 
     $valido = true;
     $hoyFecha = date('Y-m-d');
-    dump($request->all());
+    
     try {
       //code...
       $cupon = Cupon::where('codigo', '=', $request->cupon)->where('visible', 1)->where('status', 1)->where('fecha_caducidad', '>', $hoyFecha)->firstOrFail();
