@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Collection;
 use App\Models\General;
 use App\Models\Message;
+use App\Models\Ordenes;
 use App\Models\PoliticaDatos;
 use App\Models\PolyticsCondition;
 use App\Models\TermsAndCondition;
@@ -67,10 +68,12 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('components.app.sidebar', function ($view) {
+            $salesCount = Ordenes::where('status_id', 3)->count();
             // Obtener los datos del footer
             $mensajes = Message::where('is_read', '!=', 1)->where('status', '!=', 0)->count(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             // Pasar los datos a la vista
-            $view->with('mensajes', $mensajes);
+            $view->with('mensajes', $mensajes)
+            ->with('salesCount', $salesCount);
         });
 
         PaginationPaginator::useTailwind();
