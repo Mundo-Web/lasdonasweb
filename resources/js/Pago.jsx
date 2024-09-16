@@ -21,8 +21,10 @@ import calculartotal from './Utils/calcularTotal';
 import { Modal } from 'flowbite-react';
 import { Fetch, Notify } from 'sode-extend-react';
 import { data } from 'jquery';
+import ModalSimple from './components/ModalSimple';
+import OrdenConfirmation from './components/OrdenConfirmation';
 
-const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones }) => {
+const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones, general }) => {
 
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [showDedicatoria, setShowDedicatoria] = useState(false)
@@ -295,10 +297,86 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
     adjustTextareaHeight(); // Adjust height on initial render
   }, [datosFinales.dedication.message]);
 
+  const [openModalOpciones, setOpenModalOpciones] = useState(false)
+
+  const handleOpenModal = () => {
+    const formPrincipal = document.getElementById('formPrincipal');
+
+    // Verificar si el formulario es válido
+    if (!formPrincipal.checkValidity()) {
+      // Mostrar mensajes de validación nativos
+      formPrincipal.reportValidity();
+      return;
+    }
+    if (!datosFinales.address.postal_code) return Swal.fire({
+      icon: 'warning',
+      title: 'Falta Seleccionar una dirección',
+      text: 'Por favor, seleccione una direccion para continuar',
+      showConfirmButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#138496'
+    })
+
+
+    if (datosFinales.billing.type == 'factura' && (datosFinales.billing.ruc.length > 11 || datosFinales.billing.ruc.length < 11)) return Swal.fire({
+      icon: 'warning',
+      title: 'Por favor, la longitud del RUC es incorrecta',
+      text: 'Por favor, la longitud del RUC debe ser de 11 digitos',
+      showConfirmButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#138496'
+    })
+    if (datosFinales.billing.type == 'boleta' && (datosFinales.billing.dni.length > 8 || datosFinales.billing.dni.length < 8)) return Swal.fire({
+      icon: 'Warning',
+      title: 'Longitud de DNI incorrecta',
+      text: 'Por favor, la longitud del DNI debe ser de 8 digitos',
+      showConfirmButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#138496'
+    })
+    Swal.fire({
+      title: ' <span style="color: #22c55e;">¡YA CASI ESTAMOS!</span> ',
+      html: `
+        <div class='px-[15%]'>
+          <h1 class="text-2xl font-bold text-gray-600 text-center mb-10">
+           Continuar con tu Compra
+          </h1>
+          <div class="space-y-4 mt-2">
+            <button id="transferencia" class="w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
+              Pagar Con Transferencia
+            </button>
+            <button id="tarjeta" type="submit" form="formPrincipal"  class="w-full py-2 px-4 bg-[#ff8555] block text-center text-white rounded-full hover:bg-[#ff8555] transition-colors duration-300">
+              Pagar con tarjeta
+            </button>
+          </div>
+        </div>
+      `,
+      showConfirmButton: false,
+      didOpen: () => {
+        document.getElementById('transferencia').addEventListener('click', () => {
+          // Lógica para pagar con transferencia
+          setOpenModalOpciones(true)
+          Swal.close();
+        });
+        document.getElementById('tarjeta').addEventListener('click', () => {
+          // Lógica para pagar con tarjeta
+
+
+        });
+      }
+    });
+  };
+  /*   const handleModalOPciones = () => {
+      console.log('abriendo modal ')
+      setOpenModalOpciones(true)
+    } */
 
   return (
     <>
-      <form className='mb-24' onSubmit={startCulqi}>
+      <form className='mb-24' onSubmit={startCulqi} id='formPrincipal'>
         <div className='mt-12 px-[5%] md:px-[8%] font-b_slick_bold'>
           <span>
             Home / Aniversario / Suspendisse potenti /Validación de pedido
@@ -598,7 +676,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
                       }} />
                   </div>
                   <div className="flex flex-row items-center gap-4 justify-center mt-8 w-full text-base font-bold tracking-wide whitespace-nowrap max-md:max-w-full">
-                    <Button variant="primary" type='submit'>Continuar</Button>
+                    <Button variant="primary" type='button' callback={handleOpenModal}>Continuar</Button>
                     <Button href='/carrito' variant="secondary">Regresar</Button>
                   </div>
                 </div>
@@ -609,7 +687,14 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones 
           </div>
 
         </div>
+
+        <input type="file" className='hidden' id='capturaTransferencia' />
       </form>
+
+      <ModalSimple id='modalmap' showModal={openModalOpciones} setshowModal={setOpenModalOpciones} width='w2xl' >
+        <OrdenConfirmation telefono={general.whatsapp} texto={general.mensaje_whatsapp} datosFinales={datosFinales} />
+      </ModalSimple>
+
     </>
 
   )

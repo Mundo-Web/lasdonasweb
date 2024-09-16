@@ -6,6 +6,7 @@
       <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
         <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl">Pedido #{{ $orders->codigo_orden }}
         </h2>
+        {{ $orders->tipo_tarjeta }}
       </header>
       <div class="p-6">
 
@@ -74,7 +75,8 @@
                                 <td class="px-4 py-2 text-sm font-bold text-center text-gray-800">
                                   @if ($item->points_used > 0)
                                     <span class="block">{{ $item->precio }}</span>
-                                    <span class="block text-orange-500"><i class="mdi mdi-dots-hexagon me-1"></i>{{ $item->points }}</span>
+                                    <span class="block text-orange-500"><i
+                                        class="mdi mdi-dots-hexagon me-1"></i>{{ $item->points }}</span>
                                   @else
                                     {{ $item->precio }}
                                   @endif
@@ -152,6 +154,15 @@
                   style="border:0;" allowfullscreen="" loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
+              <div class="mt-6">
+                @if ($orders->tipo_tarjeta == 'transferencia')
+                  <a class="underline" href="javascript:void(0);"
+                    onclick="descargarImg('{{ asset($orders->img_transferencia) }}')">
+                    Ver comprobante de Transferencia
+                  </a>
+                  </button>
+                @endif
+              </div>
             </div>
 
           </div>
@@ -180,4 +191,15 @@
   new DataTable('#tabladatos', {
     responsive: true
   });
+
+  function descargarImg(url) {
+    console.log(url)
+    var a = document.createElement('a')
+    a.href = url
+    // a.download = 'imagen_transferencia.jpg'
+    a.target = '_blank';
+    a.click()
+
+
+  }
 </script>

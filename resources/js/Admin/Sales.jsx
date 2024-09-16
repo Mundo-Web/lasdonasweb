@@ -1,16 +1,13 @@
-import React from 'react'
-import CreateReactScript from '../Utils/CreateReactScript';
+import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { useEffect } from 'react';
-import Table from '../components/Table';
-import { useRef } from 'react';
-import SalesRest from '../actions/SalesRest';
-import Modal from 'react-modal';
-import { useState } from 'react';
-import 'sode-extend-react/sources/string';
 import { renderToString } from 'react-dom/server';
-import ReactAppend from '../Utils/ReactAppend';
+import Modal from 'react-modal';
+import 'sode-extend-react/sources/string';
 import Swal from 'sweetalert2';
+import SalesRest from '../actions/SalesRest';
+import Table from '../components/Table';
+import CreateReactScript from '../Utils/CreateReactScript';
+import ReactAppend from '../Utils/ReactAppend';
 
 Modal.setAppElement('#app');
 
@@ -44,8 +41,8 @@ const Sales = ({ statuses }) => {
     document.title = 'Las doñas - Ventas'
   })
 
-  const onStatusChange = async (id, status_id) => {
-    const {isConfirmed} = await Swal.fire({
+  const onStatusChange = async ({ id, status_id }, select) => {
+    const { isConfirmed } = await Swal.fire({
       title: 'Confirmar cambio de estado',
       text: '¿Está seguro de cambiar el estado de la venta?',
       icon: 'warning',
@@ -53,7 +50,11 @@ const Sales = ({ statuses }) => {
       confirmButtonText: 'Si, cambiar',
       cancelButtonText: 'Cancelar'
     })
-    const result = await salesRest.save({ id, status_id })
+    if (!isConfirmed) {
+      $(select).val(status_id)
+      return
+    }
+    const result = await salesRest.save({ id, status_id: select.value })
     if (!result) return
   }
 
@@ -138,7 +139,7 @@ const Sales = ({ statuses }) => {
           width: '175px',
           cellTemplate: (container, { data }) => {
             ReactAppend(container, <>
-              <select class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(e) => onStatusChange(data.id, e.target.value)} defaultValue={data.status_ordenes.id}>
+              <select className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(e) => onStatusChange(data, e.target)} defaultValue={data.status_ordenes.id}>
                 {statuses.map(({ id, name }) => (<option key={id} value={id}>{name}</option>))}
               </select>
             </>)
@@ -324,7 +325,7 @@ const Sales = ({ statuses }) => {
           <p><b>Recibe</b>: {saleLoaded?.address_owner}</p>
           <p className='mb-2'><b>En</b>: {saleLoaded?.address_full}</p>
 
-          <iframe class="w-full aspect-video rounded-md"
+          <iframe className="w-full aspect-video rounded-md"
             src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBDikLz7ELBdUFW0TnvkWkcXPK48Wc003U&q=${saleLoaded?.address_latitude},${saleLoaded?.address_longitude}&zoom=16&maptype=satellite`}
             style={{ border: 0 }} allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>

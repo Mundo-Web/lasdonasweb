@@ -4619,12 +4619,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gysmoy/extend-php.git",
-                "reference": "8d7126810501d9b41c15e592be60add80010c4f6"
+                "reference": "be484b423dbdec7d44bea794c7b1794c89087951"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gysmoy/extend-php/zipball/8d7126810501d9b41c15e592be60add80010c4f6",
-                "reference": "8d7126810501d9b41c15e592be60add80010c4f6",
+                "url": "https://api.github.com/repos/Gysmoy/extend-php/zipball/be484b423dbdec7d44bea794c7b1794c89087951",
+                "reference": "be484b423dbdec7d44bea794c7b1794c89087951",
                 "shasum": ""
             },
             "require": {
@@ -4652,7 +4652,7 @@
                 "issues": "https://github.com/Gysmoy/extend-php/issues",
                 "source": "https://github.com/Gysmoy/extend-php/tree/master"
             },
-            "time": "2024-09-05T20:22:03+00:00"
+            "time": "2024-09-13T16:20:00+00:00"
         },
         {
             "name": "spatie/laravel-permission",

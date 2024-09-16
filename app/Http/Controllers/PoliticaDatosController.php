@@ -19,7 +19,7 @@ class PoliticaDatosController extends Controller
     {
         $id = $request->id;
 
-        // dump($request->id);
+        
         try {
             $request->validate([
                 'content' => 'required',
@@ -37,7 +37,7 @@ class PoliticaDatosController extends Controller
             }
         } catch (\Throwable $th) {
             //throw $th;
-            // dump($th);
+            
         }
 
 
