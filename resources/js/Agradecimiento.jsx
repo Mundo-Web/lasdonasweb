@@ -38,6 +38,8 @@ const Agradecimiento = ({ orden_code, orden }) => {
             <p className="text-gray-600 text-sm">
               ¡Recuerda! Cada una de tus compras en LAS DONAS suma puntos que podrás canjear por complementos en tus próximos pedidos!🍩
             </p>
+            <p className="text-gray-600">Si estas haciendo una transferencia en lo que se valide tu pago tus puntos seran sumados 🎉</p>
+
           </div>
 
           <div className="space-y-4">
