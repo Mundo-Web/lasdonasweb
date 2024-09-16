@@ -326,6 +326,8 @@ const Sales = ({ statuses }) => {
           <p><b>Recibe</b>: {saleLoaded?.address_owner}</p>
           <p className='mb-2'><b>En</b>: {saleLoaded?.address_full}</p>
 
+          {saleLoaded?.tipo_tarjeta == 'transferencia' && (<a className='underline pb-6' href={`/${saleLoaded?.img_transferencia}`} download={'transferencia.jpg'} target='_blank' > Img Transferencia</a>)}
+
           <iframe className="w-full aspect-video rounded-md"
             src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBDikLz7ELBdUFW0TnvkWkcXPK48Wc003U&q=${saleLoaded?.address_latitude},${saleLoaded?.address_longitude}&zoom=16&maptype=satellite`}
             style={{ border: 0 }} allowfullscreen="" loading="lazy"
