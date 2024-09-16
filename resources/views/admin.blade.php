@@ -44,8 +44,27 @@
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Index</title>
+
+  @if (Route::currentRouteName() == 'Admin/Sales.jsx')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <link href="/js/dxdatagrid/css/dx.light.css?v=06d3ebc8-645c-4d80-a600-c9652743c425" rel="stylesheet" type="text/css"
+      id="dg-default-stylesheet" />
+    <script src="/js/dxdatagrid/js/dx.all.js"></script>
+    <script src="/js/dxdatagrid/js/localization/dx.messages.es.js"></script>
+  @endif
+
   @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/' . Route::currentRouteName()])
   @inertiaHead
+
+  <script src="/js/tippy.all.min.js"></script>
+
+  <style>
+    .ReactModal__Overlay.ReactModal__Overlay--after-open {
+      z-index: 40 !important;
+    }
+  </style>
 </head>
 
 
@@ -83,6 +102,11 @@
   @livewireScripts
   @yield('scripts_importados')
 
+  <script src="/js/moment/min/moment.min.js"></script>
+  <script src="/js/moment/min/locales.min.js"></script>
+  <script>
+    moment.locale('es')
+  </script>
 </body>
 
 </html>

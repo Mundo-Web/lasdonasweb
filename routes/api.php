@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\Admin\OrdenController;
 use App\Http\Controllers\ApiperuController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CuponController;
@@ -81,4 +82,8 @@ Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
    /*  Route::get('/offers', [OfferController::class, 'all'])->name('offers.all');
     Route::patch('/offers', [OfferController::class, 'save'])->name('offers.save');
     Route::delete('/offers/{offer_id}', [OfferController::class, 'delete'])->name('offers.delete'); */
+
+    Route::prefix('admin')->group(function () {
+        Route::post('/sales/paginate', [OrdenController::class, 'paginate']);
+    });
 });
