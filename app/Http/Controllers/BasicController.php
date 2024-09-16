@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use SoDe\Extend\Crypto;
 use SoDe\Extend\Response;
+use SoDe\Extend\Text;
 
 class BasicController extends Controller
 {
@@ -25,6 +26,7 @@ class BasicController extends Controller
   public $reactView = 'Home';
   public $reactRootView = 'admin';
   public $imageFields = [];
+  public $prefix4filter = null;
 
   public function media(Request $request, string $uuid)
   {
@@ -94,7 +96,7 @@ class BasicController extends Controller
 
       if ($request->filter) {
         $instance->where(function ($query) use ($request) {
-          dxDataGrid::filter($query, $request->filter ?? [], false);
+          dxDataGrid::filter($query, $request->filter ?? [], false, $this->prefix4filter);
         });
       }
 
@@ -103,13 +105,20 @@ class BasicController extends Controller
           foreach ($request->sort as $sorting) {
             // $selector = \str_replace('.', '__', $sorting['selector']);
             $selector = $sorting['selector'];
+            if (!str_contains($selector, '.') && $this->prefix4filter) {
+              $selector = "{$this->prefix4filter}.{$selector}";
+            }
             $instance->orderBy(
-              $selector,
+              str_replace('!', '', $selector),
               $sorting['desc'] ? 'DESC' : 'ASC'
             );
           }
         } else {
-          $instance->orderBy('id', 'DESC');
+          if ($this->prefix4filter) {
+            $instance->orderBy("{$this->prefix4filter}.id", 'DESC');
+          } else {
+            $instance->orderBy('id', 'DESC');
+          }
         }
       }
 
@@ -117,7 +126,11 @@ class BasicController extends Controller
       if ($request->requireTotalCount) {
         $instance4count = clone $instance;
         $instance4count->getQuery()->groups = null;
-        $totalCount = $instance4count->select(DB::raw('COUNT(DISTINCT(id)) as total_count'))->value('total_count');
+        if ($this->prefix4filter) {
+          $totalCount = $instance4count->select(DB::raw('COUNT(DISTINCT(' . $this->prefix4filter . '.id)) as total_count'))->value('total_count');
+        } else {
+          $totalCount = $instance4count->select(DB::raw('COUNT(DISTINCT(id)) as total_count'))->value('total_count');
+        }
       }
 
       $jpas = $request->isLoadingAll

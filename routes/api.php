@@ -83,6 +83,7 @@ Route::middleware(['web', 'auth:sanctum', 'verified'])->group(function () {
     Route::delete('/offers/{offer_id}', [OfferController::class, 'delete'])->name('offers.delete'); */
 
     Route::prefix('admin')->group(function () {
+        Route::post('/sales', [OrdenController::class, 'save']);
         Route::post('/sales/paginate', [OrdenController::class, 'paginate']);
     });
 });

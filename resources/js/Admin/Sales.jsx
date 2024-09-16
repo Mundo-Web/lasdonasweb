@@ -10,6 +10,7 @@ import { useState } from 'react';
 import 'sode-extend-react/sources/string';
 import { renderToString } from 'react-dom/server';
 import ReactAppend from '../Utils/ReactAppend';
+import Swal from 'sweetalert2';
 
 Modal.setAppElement('#app');
 
@@ -23,7 +24,7 @@ const modalStyles = {
 
 const salesRest = new SalesRest()
 
-const Sales = () => {
+const Sales = ({ statuses }) => {
 
   const gridRef = useRef()
 
@@ -43,6 +44,19 @@ const Sales = () => {
     document.title = 'Las doñas - Ventas'
   })
 
+  const onStatusChange = async (id, status_id) => {
+    const {isConfirmed} = await Swal.fire({
+      title: 'Confirmar cambio de estado',
+      text: '¿Está seguro de cambiar el estado de la venta?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, cambiar',
+      cancelButtonText: 'Cancelar'
+    })
+    const result = await salesRest.save({ id, status_id })
+    if (!result) return
+  }
+
   return <>
     <Table gridRef={gridRef} rest={salesRest} exportable title='Ventas'
       toolBar={(container) => {
@@ -57,8 +71,15 @@ const Sales = () => {
       }}
       columns={[
         {
+          dataField: 'created_at',
+          caption: 'Fecha pedido',
+          visible: false,
+          sortOrder: 'desc'
+        },
+        {
           dataField: 'codigo_orden',
           caption: 'Codigo',
+          width: '130px',
           cellTemplate: (container, { data }) => {
             ReactAppend(container, <>
               <p>#{data.codigo_orden}</p>
@@ -95,7 +116,7 @@ const Sales = () => {
           }
         },
         {
-          dataField: 'sale.created_at',
+          dataField: 'fecha_envio',
           caption: 'Fecha envío',
           dataType: 'datetime',
           format: 'yyyy-MM-dd HH:mm:ss',
@@ -111,6 +132,18 @@ const Sales = () => {
             </>))
           }
         },
+        {
+          dataField: 'status_ordenes.name',
+          caption: 'Estado',
+          width: '175px',
+          cellTemplate: (container, { data }) => {
+            ReactAppend(container, <>
+              <select class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(e) => onStatusChange(data.id, e.target.value)} defaultValue={data.status_ordenes.id}>
+                {statuses.map(({ id, name }) => (<option key={id} value={id}>{name}</option>))}
+              </select>
+            </>)
+          }
+        }
       ]}
       customizeCell={(options) => {
         if (options?.gridCell?.rowType == 'data' && !options?.gridCell?.value) {
@@ -295,15 +328,6 @@ const Sales = () => {
             src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBDikLz7ELBdUFW0TnvkWkcXPK48Wc003U&q=${saleLoaded?.address_latitude},${saleLoaded?.address_longitude}&zoom=16&maptype=satellite`}
             style={{ border: 0 }} allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
-          {/* <div className="relative h-60 rounded-md overflow-hidden">
-            <div className="absolute top-2 left-2 bg-white p-2 rounded-full shadow-md">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <img src="https://g-g3zj-tgfl57.vusercontent.net/placeholder.svg" alt="Mapa de entrega" className="w-full h-full object-cover" />
-          </div> */}
         </div>
       </div>
     </Modal>
