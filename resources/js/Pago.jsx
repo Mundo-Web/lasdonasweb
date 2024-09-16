@@ -463,36 +463,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
                 <div className='px-1.5 mt-4'>
                   <Checkbox title={"Sin Mensaje"} callback={handleMensaje} />
                 </div>
-                <InputField
-                  value={datosFinales.dedication.from}
-                  label="De:"
-                  type="text"
-                  placeholder=""
 
-                  handleDatosFinales={(e) => {
-                    setDatosFinales(old => ({
-                      ...old,
-                      dedication: {
-                        ...old.dedication,
-                        from: e.target.value
-                      }
-                    }))
-                  }} />
-                <InputField
-                  value={datosFinales.dedication.to}
-                  label="Para:"
-                  type="text"
-                  placeholder=""
-
-                  handleDatosFinales={(e) => {
-                    setDatosFinales(old => ({
-                      ...old,
-                      dedication: {
-                        ...old.dedication,
-                        to: e.target.value
-                      }
-                    }))
-                  }} />
 
                 {!showDedicatoria && (<>
                   <SelectSecond title={'Seleccionar Mensaje'} options={greetings} handleOptionChange={handleOptionChange} />
@@ -544,6 +515,37 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
                       }}
                     />
                   </div></>)}
+
+                <InputField
+                  value={datosFinales.dedication.from}
+                  label="De:"
+                  type="text"
+                  placeholder=""
+
+                  handleDatosFinales={(e) => {
+                    setDatosFinales(old => ({
+                      ...old,
+                      dedication: {
+                        ...old.dedication,
+                        from: e.target.value
+                      }
+                    }))
+                  }} />
+                <InputField
+                  value={datosFinales.dedication.to}
+                  label="Para:"
+                  type="text"
+                  placeholder=""
+
+                  handleDatosFinales={(e) => {
+                    setDatosFinales(old => ({
+                      ...old,
+                      dedication: {
+                        ...old.dedication,
+                        to: e.target.value
+                      }
+                    }))
+                  }} />
 
 
 

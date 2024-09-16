@@ -139,6 +139,7 @@ class SaleController extends Controller
     {
         $response =  new Response();
         try {
+            
             $sale = Sale::findOrfail($request->id);
 
             $sale->status_id = $request->status_id;

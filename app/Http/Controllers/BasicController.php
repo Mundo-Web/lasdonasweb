@@ -6,6 +6,8 @@ use App\Http\Classes\dxResponse;
 use App\Models\Aboutus;
 use App\Models\dxDataGrid;
 use App\Models\Faq;
+use App\Models\General;
+use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -16,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use SoDe\Extend\Crypto;
+use SoDe\Extend\Math;
 use SoDe\Extend\Response;
 use SoDe\Extend\Text;
 
@@ -164,8 +167,8 @@ class BasicController extends Controller
   {
     $response = new Response();
     try {
-
       $body = $this->beforeSave($request);
+      dump($body);
 
       foreach ($this->imageFields as $field) {
         if (!$request->hasFile($field)) continue;
@@ -177,6 +180,23 @@ class BasicController extends Controller
       }
 
       $jpa = $this->model::find(isset($body['id']) ? $body['id'] : null);
+
+      if($jpa && $jpa->tipo_tarjeta == 'transferencia' && $jpa->puntos_calculados == 0){
+        dump('tansferencia sin calcular puntos');
+        $generals = General::select('point_equivalence')->first();
+
+
+
+         $points2give = Math::floor(($jpa->monto + $jpa->precio_envio ) / $generals->point_equivalence);
+         $jpa->points = $points2give;
+
+         $userJpa = User::find($jpa->usuario_id);
+         $userJpa->points = $userJpa->points + ($points2give);
+         $userJpa->save();
+
+        $body['puntos_calculados'] = 1;
+
+      }
 
       if (!$jpa) {
         $jpa = $this->model::create($body);

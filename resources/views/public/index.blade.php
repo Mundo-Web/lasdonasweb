@@ -626,6 +626,13 @@
       element.style.display = 'none';
     }
   </script>
+  <script>
+    const ref = localStorage.getItem('ref');
+    if (ref && ref === 'pago') {
+      localStorage.removeItem('ref');
+      window.location.href = `${appUrl}/pago`;
+    }
+  </script>
 @stop
 
 @stop

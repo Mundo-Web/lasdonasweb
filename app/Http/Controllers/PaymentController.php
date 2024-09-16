@@ -376,6 +376,7 @@ class PaymentController extends Controller
       $sale->horario_envio = $horarioEntrega;
       $sale->to = $body['dedication']['to'] ?? null;
       $sale->from = $body['dedication']['from'] ?? null;
+      $sale->puntos_calculados = false;
 
       if ($body['img']) {
         try {
