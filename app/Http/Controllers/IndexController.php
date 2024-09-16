@@ -450,6 +450,8 @@ class IndexController extends Controller
     // $MensajesPredefinidos = MensajesPredefinidos::where('status', '=', 1)->where('visible', '=', 1)->get();
     $greetings = Greeting::where('status', true)->where('visible', true)->get();
 
+    $general = General::first();
+
     $url_env = $_ENV['APP_URL'];
     return Inertia::render('Pago', [
       'url_env' => $url_env,
@@ -462,7 +464,7 @@ class IndexController extends Controller
       // 'MensajesPredefinidos' => $MensajesPredefinidos,
       'greetings' => $greetings,
       'points' => Auth::check() ? Auth::user()->points : 0,
-      'historicoCupones' => $historicoCupones
+      'historicoCupones' => $historicoCupones , 'general'=> $general
     ])->rootView('app');
   }
 

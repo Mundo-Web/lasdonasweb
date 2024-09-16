@@ -39,6 +39,7 @@ Route::post('/products/AddOrder', [ProductsController::class, 'AddOrder'])->name
 Route::post('/products/addComplemento', [ProductsController::class, 'addComplemento'])->name('products.addComplemento');
 
 Route::middleware('web')->post('/payment/culqi', [PaymentController::class, 'culqi'])->name('payment.culqi');
+Route::middleware('web')->post('/payment/pagarConTransferencia', [PaymentController::class, 'pagarConTransferencia'])->name('payment.pagarConTransferencia');
 Route::post('/consultar-localidad', [PrecioEnvioController::class, 'searchzip'])->name('payment.searchzip');
 Route::post('/actualizar-perfil', [IndexController::class, 'actualizarPerfil'] );
 

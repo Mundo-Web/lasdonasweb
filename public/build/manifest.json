@@ -50,6 +50,13 @@
       "resources/js/components/useOutsideClick.jsx"
     ]
   },
+  "_ModalSimple-wbpAEmbf.js": {
+    "file": "assets/ModalSimple-wbpAEmbf.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx"
+    ]
+  },
   "_ProductCard-2IBXtfot.js": {
     "file": "assets/ProductCard-2IBXtfot.js",
     "imports": [
@@ -66,9 +73,9 @@
   "_calcularTotal-FPqXOtx1.js": {
     "file": "assets/calcularTotal-FPqXOtx1.js"
   },
-  "_es-!~{01I}~.js": {
+  "_es-!~{01K}~.js": {
     "file": "assets/es-D87rtk4j.css",
-    "src": "_es-!~{01I}~.js"
+    "src": "_es-!~{01K}~.js"
   },
   "_es-wXA00dMN.js": {
     "css": [
@@ -85,9 +92,9 @@
   "_extends-wRoo2ExD.js": {
     "file": "assets/extends-wRoo2ExD.js"
   },
-  "_fade-!~{01x}~.js": {
+  "_fade-!~{01y}~.js": {
     "file": "assets/fade-WxPIMcx6.css",
-    "src": "_fade-!~{01x}~.js"
+    "src": "_fade-!~{01y}~.js"
   },
   "_floating-ui.dom-3uxmUvem.js": {
     "file": "assets/floating-ui.dom-3uxmUvem.js"
@@ -158,9 +165,9 @@
       "_index-XJuWVQ-l.js"
     ]
   },
-  "_tippy-!~{01n}~.js": {
+  "_tippy-!~{01o}~.js": {
     "file": "assets/tippy-C64i7G0l.css",
-    "src": "_tippy-!~{01n}~.js"
+    "src": "_tippy-!~{01o}~.js"
   },
   "_tippy.esm-vXDZ6XwW.js": {
     "file": "assets/tippy.esm-vXDZ6XwW.js"
@@ -214,7 +221,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-AlBcu-tM.css",
+    "file": "assets/app-XivD6tOR.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -482,7 +489,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-hogClo1F.js",
+    "file": "assets/Pago-p9esMXWJ.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -502,6 +509,8 @@
       "_index-38suPYpT.js",
       "_main-Vi8adC25.js",
       "_jquery-_-XaHmv-.js",
+      "_ModalSimple-wbpAEmbf.js",
+      "_index-VFMbf6KQ.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_extends-wRoo2ExD.js",
       "_setPrototypeOf-ahVgEFUp.js",
@@ -515,7 +524,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-Qe717xXE.js",
+    "file": "assets/Product-sUlXS1wZ.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -527,6 +536,7 @@
       "_extends-wRoo2ExD.js",
       "_setPrototypeOf-ahVgEFUp.js",
       "_index-38suPYpT.js",
+      "_ModalSimple-wbpAEmbf.js",
       "_Accordion2-qFrvz2Sm.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-wXA00dMN.js",
@@ -546,7 +556,7 @@
     "css": [
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Register--xq5kbyg.js",
+    "file": "assets/Register--BoRTfgC.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -1008,6 +1018,19 @@
     ],
     "isEntry": true,
     "src": "resources/js/components/NewAdressForm.jsx"
+  },
+  "resources/js/components/OrdenConfirmation.jsx": {
+    "file": "assets/OrdenConfirmation-g_BHsvKh.js",
+    "imports": [
+      "resources/js/Example.jsx",
+      "resources/js/components/useOutsideClick.jsx",
+      "_main-Vi8adC25.js",
+      "__commonjsHelpers-4gQjN7DL.js",
+      "_index-XJuWVQ-l.js",
+      "_storage-zp2nPsZU.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/OrdenConfirmation.jsx"
   },
   "resources/js/components/OrderItem.jsx": {
     "file": "assets/OrderItem-tmMjkXlv.js",

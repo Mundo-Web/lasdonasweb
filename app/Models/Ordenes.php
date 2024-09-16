@@ -39,7 +39,8 @@ class Ordenes extends Model
         'fechaenvio',
         'horario_envio',
         'to',
-        'from'
+        'from',
+        'img_transferencia'
     ];
 
     public function DetalleOrden()
