@@ -370,7 +370,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
     });
   };
   /*   const handleModalOPciones = () => {
-      console.log('abriendo modal ')
+      
       setOpenModalOpciones(true)
     } */
 
@@ -386,7 +386,8 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
           </div>
 
           <div className='flex flex-col w-full my-8'>
-            <OrderSummary historicoCupones={historicoCupones} carrito={carrito} costoEnvio={costoEnvio} setIsModalOpen={setIsModalOpen} points={points} />
+            <OrderSummary historicoCupones={historicoCupones} carrito={carrito} costoEnvio={costoEnvio}
+              setIsModalOpen={setIsModalOpen} points={points} />
           </div>
 
           <div className='text-center max-w-4xl content-center justify-center mx-auto'>
@@ -687,7 +688,11 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
       </form>
 
       <ModalSimple id='modalmap' showModal={openModalOpciones} setshowModal={setOpenModalOpciones} width='w2xl' >
-        <OrdenConfirmation telefono={general.whatsapp} texto={general.mensaje_whatsapp} datosFinales={datosFinales} />
+        <OrdenConfirmation telefono={general.whatsapp} texto={general.mensaje_whatsapp} datosFinales={datosFinales}
+          historicoCupones={historicoCupones}
+
+          carrito={carrito} costoEnvio={costoEnvio} setIsModalOpen={setIsModalOpen} points={points}
+        />
       </ModalSimple>
 
     </>

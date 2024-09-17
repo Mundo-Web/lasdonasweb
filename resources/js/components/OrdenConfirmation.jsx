@@ -1,33 +1,44 @@
 import axios from 'axios'
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 
 
 import { useDropzone } from 'react-dropzone'
 import { JSON } from 'sode-extend-react';
+import OrderSummary from './OrderSummary';
+import OrderItem from './OrderItem';
+import MobileShoppingCartMultiple from './MobileShoppingCartMultiple';
 
 
-export default function OrdenConfirmation({ telefono, texto, datosFinales }) {
+export default function OrdenConfirmation({ telefono, texto, datosFinales, historicoCupones, carrito, costoEnvio, setIsModalOpen, points }) {
 
   const fileimg = useRef(null)
 
+
+
   const elbase64 = async (file) => {
 
-    console.log(file)
+
     const { type, full } = await File.compress(file, { square: false, full_length: 750, })
 
     const base64 = `data:${type};base64,${full}`
     return base64
   }
+
+  const [files2, setFiles2] = useState([]);
   const onDrop = useCallback(async (acceptedFiles) => {
-    console.log(acceptedFiles);
+
 
     let input = document.getElementById('capturaTransferencia');
     let file = acceptedFiles[0];
 
 
+    setFiles2(acceptedFiles.map(file => Object.assign(file, {
+      preview: URL.createObjectURL(file)
+    })));
+
 
     fileimg.current = await elbase64(file);
-    console.log(fileimg.current);
+
 
     let reader = new FileReader();
     reader.onload = function (e) {
@@ -48,7 +59,17 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales }) {
     reader.readAsDataURL(file);
   }, []);
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDrop })
-
+  const thumbs = files2.map(file => (
+    <div key={file.name} className="thumb">
+      <div className="thumb-inner text-center ">
+        <img
+          src={file.preview}
+          className="img-preview max-h-96 block m-auto"
+          alt="Preview"
+        />
+      </div>
+    </div>
+  ));
 
   const files = acceptedFiles.map(file => (
     <li key={file.path}>
@@ -61,7 +82,7 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales }) {
 
 
 
-    console.log(fileimg.current)
+
     if (!fileimg.current) return Swal.fire({
       icon: 'warning',
       title: 'Falta la imagen',
@@ -118,7 +139,7 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales }) {
           // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
       });
-      console.log(res.data);
+
 
       let { status, message, data } = res.data
       if (status == 200) {
@@ -142,7 +163,7 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales }) {
       console.error('Error al enviar la solicitud:', error);
     }
 
-    console.log(res)
+
   }
 
   return (
@@ -193,6 +214,15 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales }) {
           <p>Fabrizio Renato Valderrama Gonzaga</p>
         </div>
       </div>
+      <div className='flex flex-col w-full my-8'>
+        <MobileShoppingCartMultiple
+          cartItems={carrito}
+          costoEnvio={costoEnvio}
+          historicoCupones={historicoCupones}
+          points={points}
+          userPoints={points}
+        />
+      </div>
 
       <div className="space-y-4">
         <div className="cursor-pointer h-26 w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-md hover:bg-green-50 transition-colors duration-300 relative">
@@ -201,7 +231,7 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales }) {
             {
               isDragActive ?
                 <p>Sueltas tur archivos aqui ...</p> :
-                <p>Arrastra y suelta tus archivos aqui, o preciona para seleccionar el archivo
+                <p>Sube tus comprobantes aca , Preciona para subir agregar tu comprobante de pago
 
                 </p>
 
@@ -212,8 +242,12 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales }) {
                 <path d="M149.1 64.8L138.7 96 64 96C28.7 96 0 124.7 0 160L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64l-74.7 0L362.9 64.8C356.4 45.2 338.1 32 317.4 32L194.6 32c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z" />
               </svg>
             </div>
-            {files.length > 0 && <><h4 className='mt-8'>Archivo Cargado</h4>
-              <ul>{files}</ul></>}
+            {files.length > 0 && <>
+              <h4 className='mt-8'>Archivo Cargado</h4>
+              <div className="thumbs-container">
+                {thumbs}
+              </div>
+            </>}
 
           </div>
         </div>

@@ -10,6 +10,7 @@ import { useRef } from 'react';
 
 const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCupones }) => {
   const subtotal = calculartotal(points);
+
   const [total, setTotal] = useState(subtotal);
   const haycupon = useRef(false);
   // let haycupon = false;
@@ -19,7 +20,7 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
     let descuento = 0;
     let cupon
     if (historicoCupones.length > 0) {
-      console.log('entro here')
+
       cupon = historicoCupones[0].cupon ?? {};
 
       if (cupon.porcentaje == 1) {
@@ -31,9 +32,6 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
       }
       haycupon.current = true;
     }
-
-
-
     const totalConDescuento = Number(subtotal) + Number(costoEnvio) - descuento;
     setTotal(totalConDescuento);
   }, [costoEnvio, subtotal, historicoCupones]);
@@ -41,7 +39,7 @@ const OrderSummary = ({ carrito, costoEnvio, setIsModalOpen, points, historicoCu
   const porcentaje = historicoCupones[0]?.cupon?.porcentaje == 1 ? '%' : 'S/';
   const cuponMonto = `${porcentaje} ${Number(historicoCupones[0]?.cupon?.monto).toFixed(0)}`;
 
-  console.log(cuponMonto)
+
 
   return (
     <main className="flex flex-col flex-1 shrink justify-center self-stretch my-auto w-full basis-0 min-w-[240px] max-md:max-w-full">
