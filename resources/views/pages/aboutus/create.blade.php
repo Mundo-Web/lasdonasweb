@@ -48,9 +48,8 @@
                       </g>
                     </svg>
                   </div>
-                  <input type="text" id="descripcion" name="descripcion" value=""
-                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Descripcion">
+                  <x-quill id="descripcion" name="descripcion" value="" />
+
                 </div>
               </div>
               <div class="md:col-span-5">
@@ -63,8 +62,9 @@
               </div>
               <div class="md:col-span-5 text-right mt-6 flex justify-between">
                 <div class="inline-flex items-end">
-                  <a href="{{ URL::previous() }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
-              </div>
+                  <a href="{{ URL::previous() }}"
+                    class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
+                </div>
                 <div class="inline-flex items-end">
                   <button type="submit"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Guardar

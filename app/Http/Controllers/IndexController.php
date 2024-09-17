@@ -572,10 +572,13 @@ class IndexController extends Controller
 
     if (!$codigo_orden) return redirect('/');
     $ordenJpa = Ordenes::where('codigo_orden', $codigo_orden)->first();
+    $general = General::first();
+
 
     return Inertia::render('Agradecimiento', [
       'orden_code' => $codigo_orden,
-      'orden' => $ordenJpa
+      'orden' => $ordenJpa, 
+      'general' => $general
     ])->rootView('app');
   }
   public function nosotros()

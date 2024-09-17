@@ -3,7 +3,7 @@ import CreateReactScript from './Utils/CreateReactScript';
 import { createRoot } from 'react-dom/client';
 import SvgPuntos from './components/svg/SvgPuntos.svg';
 
-const Agradecimiento = ({ orden_code, orden }) => {
+const Agradecimiento = ({ orden_code, orden, general }) => {
 
   const steps = [
     { label: 'Iniciar sesión', completed: true },
@@ -51,6 +51,9 @@ const Agradecimiento = ({ orden_code, orden }) => {
             </a>
             <a href='/catalogo' className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Seguir comprando
+            </a>
+            <a target="_blanck" href={`https://api.whatsapp.com/send?phone=${general.whatsapp}&text=${general.mensaje_whatsapp + ' ' + 'N Orden:' + orden_code}`} className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
+              Contactate con Nosostros via Whastapp
             </a>
           </div>
         </div>

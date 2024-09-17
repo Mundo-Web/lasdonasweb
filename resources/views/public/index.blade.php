@@ -289,8 +289,10 @@
                     <div
                       class="w-full h-[500px] 2xl:h-[700px] overflow-hidden relative bg-cover bg-center flex justify-center items-center"
                       {{-- style="background-image: url('{{ asset('img_donas/testimonios.png') }}');" --}}>
-                      <img src="{{ asset('img_donas/testimonios.png') }}"
-                        class="rounded-none bg-cover w-full h-full object-cover md:object-contain" />
+
+                      <img src="{{ asset($item->img) }}"
+                        class="rounded-none bg-cover w-full h-full object-cover md:object-contain"
+                        onerror="this.onerror=null; this.src='{{ asset('img_donas/testimonios.png') }}';" />
                     </div>
                   </div>
 

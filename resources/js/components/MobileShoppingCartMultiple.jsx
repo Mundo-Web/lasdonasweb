@@ -87,6 +87,7 @@ function MobileShoppingCartMultiple({ cartItems, costoEnvio, historicoCupones = 
       <h1 className="text-xl font-semibold mb-4">DETALLE DE COMPRAS</h1>
 
       {cartItems.map(item => {
+        console.log(item)
         let finalQuantity = structuredClone(item.cantidad)
         for (let i = 0; i < item.cantidad; i++) {
           if (item.usePoints && userPoints >= item.points) {
@@ -143,10 +144,12 @@ function MobileShoppingCartMultiple({ cartItems, costoEnvio, historicoCupones = 
           <span>Sub Total</span>
           <span>S/ {subtotal}</span>
         </div>
-        <div className="flex justify-between">
-          <span>Descuento</span>
-          <span>{cuponMonto}</span>
-        </div>
+        {historicoCupones.length > 0 && (
+          <div className="flex justify-between">
+            <span>Descuento</span>
+            <span>{cuponMonto}</span>
+          </div>)}
+
         <div className="flex justify-between">
           <span>Costo de envío</span>
           <span>S/ {Number(costoEnvio).toFixed(0)}</span>

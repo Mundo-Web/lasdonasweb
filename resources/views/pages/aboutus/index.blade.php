@@ -35,7 +35,9 @@
               @foreach ($aboutUs as $item)
                 <tr>
                   <td>{{ $item->titulo }}</td>
-                  <td>{{ $item->descripcion }}</td>
+
+                  <td>{{ Str::limit($item->descripcion, 90) }} </td>
+
 
                   <td class="px-3 py-2"><img class="w-20" src="{{ asset($item->imagen) }}" alt=""></td>
 

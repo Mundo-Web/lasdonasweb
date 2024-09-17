@@ -13,6 +13,7 @@ import Select from 'react-select';
 import Swal from 'sweetalert2'
 import ModalGoogle from './components/ModalGoogle'
 
+
 const Nosotros = ({ nosotros }) => {
   console.log(nosotros)
 
@@ -28,7 +29,10 @@ const Nosotros = ({ nosotros }) => {
 
           </div>
           <div className='text-justify'>
-            {nosotros[0].descripcion ?? ''}
+
+            <HtmlContent html={nosotros[0].descripcion ?? ''} />
+
+            {/* {nosotros[0].descripcion ?? ''} */}
           </div>
 
         </div>
