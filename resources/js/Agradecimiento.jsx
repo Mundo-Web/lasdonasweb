@@ -43,13 +43,13 @@ const Agradecimiento = ({ orden_code, orden }) => {
           </div>
 
           <div className="space-y-4">
-            <a href='/micuenta/puntos' className="w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
+            <a href='/micuenta/puntos' className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Conoce nuestro programa de puntos
             </a>
-            <a href='/micuenta/historial' className=" w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
+            <a href='/micuenta/historial' className=" w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Haz seguimiento a tu pedido
             </a>
-            <a href='/catalogo' className="w-full py-2 px-4 bg-[#ff8555] block  text-center text-white rounded-full hover:bg-[#ff8555] transition-colors duration-300">
+            <a href='/catalogo' className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Seguir comprando
             </a>
           </div>

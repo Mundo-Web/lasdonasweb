@@ -345,10 +345,10 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
            Continuar con tu Compra
           </h1>
           <div class="space-y-4 mt-2">
-            <button id="transferencia" class="w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
+            <button id="transferencia" class="w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Pagar Con Transferencia
             </button>
-            <button id="tarjeta" type="submit" form="formPrincipal"  class="w-full py-2 px-4 bg-[#ff8555] block text-center text-white rounded-full hover:bg-[#ff8555] transition-colors duration-300">
+            <button id="tarjeta" type="submit" form="formPrincipal"  class="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Pagar con tarjeta
             </button>
           </div>
@@ -460,11 +460,40 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
                 <h2 className="text-base font-bold tracking-wider text-neutral-900 max-md:max-w-full">
                   3. Dedicatoria
                 </h2>
-                <div className='px-1.5 mt-4'>
+                <div className='px-1.5 mt-4 mb-4'>
                   <Checkbox title={"Sin Mensaje"} callback={handleMensaje} />
                 </div>
 
+                <InputField
+                  value={datosFinales.dedication.from}
+                  label="De:"
+                  type="text"
+                  placeholder=""
 
+                  handleDatosFinales={(e) => {
+                    setDatosFinales(old => ({
+                      ...old,
+                      dedication: {
+                        ...old.dedication,
+                        from: e.target.value
+                      }
+                    }))
+                  }} />
+                <InputField
+                  value={datosFinales.dedication.to}
+                  label="Para:"
+                  type="text"
+                  placeholder=""
+
+                  handleDatosFinales={(e) => {
+                    setDatosFinales(old => ({
+                      ...old,
+                      dedication: {
+                        ...old.dedication,
+                        to: e.target.value
+                      }
+                    }))
+                  }} />
                 {!showDedicatoria && (<>
                   <SelectSecond title={'Seleccionar Mensaje'} options={greetings} handleOptionChange={handleOptionChange} />
 
@@ -474,14 +503,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
                       <p className="flex-1 shrink basis-0 text-neutral-900 text-opacity-80 text-base">
                         Escribe tu mensaje <span className='pl-4 opacity-75'>{`${datosFinales.dedication.message.split(' ').length} / 60`}</span>
                       </p>
-                      {/* <button className="flex-1 shrink text-right text-orange-400 basis-0" onClick={() => {
-                        setDatosFinales((prev) => ({
-                          ...prev,
-                          dedicatoria: ''
-                        }));
-                      }}>
-                        Limpiar
-                      </button> */}
+
                     </div>
                     <textarea
                       style={{ overflow: 'hidden', resize: 'none' }}
@@ -516,36 +538,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
                     />
                   </div></>)}
 
-                <InputField
-                  value={datosFinales.dedication.from}
-                  label="De:"
-                  type="text"
-                  placeholder=""
 
-                  handleDatosFinales={(e) => {
-                    setDatosFinales(old => ({
-                      ...old,
-                      dedication: {
-                        ...old.dedication,
-                        from: e.target.value
-                      }
-                    }))
-                  }} />
-                <InputField
-                  value={datosFinales.dedication.to}
-                  label="Para:"
-                  type="text"
-                  placeholder=""
-
-                  handleDatosFinales={(e) => {
-                    setDatosFinales(old => ({
-                      ...old,
-                      dedication: {
-                        ...old.dedication,
-                        to: e.target.value
-                      }
-                    }))
-                  }} />
 
 
 
