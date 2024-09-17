@@ -252,7 +252,7 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
           </div>
         </div>
 
-        <a target="_blanck" href={`https://api.whatsapp.com/send?phone=${telefono}&text=${texto}`} className="w-full py-2 px-4 border block text-center border-green-500 text-green-500 rounded-full hover:bg-green-50 transition-colors duration-300">
+        <a target="_blanck" href={`https://api.whatsapp.com/send?phone=${telefono}&text=${texto}`} className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
           Enviar imagen de pago por WhatsApp
         </a>
 
@@ -265,7 +265,7 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
           type="submit"
           form="formPrincipal"
           onClick={ProcesarTransferencia}
-          className="w-full py-2 px-4 bg-[#ff8555] block  text-center text-white rounded-full hover:bg-[#ff8555] transition-colors duration-300">
+          className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
           Procesar pago
         </button>
       </div>
