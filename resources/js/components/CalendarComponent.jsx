@@ -72,6 +72,9 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
     let today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    let tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+
     const dates = [];
     for (let i = 0; i < startDay; i++) {
       dates.push(<div key={`empty-${i}`} className="empty-date"></div>);
@@ -82,6 +85,7 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
       date.setHours(0, 0, 0, 0);
 
       const isToday = date.toDateString() === today.toDateString();
+      const isTomorrow = date.toDateString() === tomorrow.toDateString();
       const isSelected = date.toDateString() === selectedDatecalendar.toDateString();
       const isPastDate = date < today;
 
@@ -100,6 +104,11 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
           }
         }
       });
+      console.log(today)
+
+      if (isToday) isCampaignDate = true
+      if (isTomorrow) isCampaignDate = true
+      // console.log(date)
 
       dates.push(
         <div
