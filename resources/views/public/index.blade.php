@@ -301,7 +301,7 @@
                     <div class="flex flex-col justify-start items-center">
                       <div class="flex flex-row items-center gap-3">
                         <img class="rounded-full w-20 h-20 object-cover"
-                          src="{{ asset('img_donas/carlossiles.png') }}" />
+                          src="https://ui-avatars.com/api/?name={{ $item->name }}&color=FFF&background=FE4A11" />
                         <div>
                           <h3 class="text-lg font-outfitSemiBold">{{ $item->name }}</h3>
                           <p class="text-base font-outfitLight">{{ $item->ocupation }}</p>
