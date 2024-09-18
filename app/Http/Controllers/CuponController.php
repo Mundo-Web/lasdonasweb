@@ -144,7 +144,7 @@ class CuponController extends Controller
     
     try {
       //code...
-      $cupon = Cupon::where('codigo', '=', $request->cupon)->where('visible', 1)->where('status', 1)->where('fecha_caducidad', '>', $hoyFecha)->firstOrFail();
+      $cupon = Cupon::where('codigo', '=', $request->cupon)->where('status', 1)->where('fecha_caducidad', '>', $hoyFecha)->firstOrFail();
 
       $Usoesecupon =  HistoricoCupon::where('cupones_id', $cupon->id)->where('usado', true)->first();
       if (isset($Usoesecupon)) {
