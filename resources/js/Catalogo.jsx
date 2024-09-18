@@ -578,7 +578,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
               </div>))}
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-16'>
+          <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-16'>
             {
               items.map((item, index) => (
                 <ProductCard key={`product-${index}`} {...item} />

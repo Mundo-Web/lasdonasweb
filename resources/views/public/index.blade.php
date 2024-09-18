@@ -502,7 +502,7 @@
 
       breakpoints: {
         0: {
-          slidesPerView: 1,
+          slidesPerView: 2,
           centeredSlides: false,
           loop: true,
         },
@@ -545,7 +545,7 @@
 
       breakpoints: {
         0: {
-          slidesPerView: 1,
+          slidesPerView: 2,
           centeredSlides: false,
           loop: true,
         },
