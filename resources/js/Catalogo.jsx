@@ -559,22 +559,22 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
             {badges.categories.map((badge, index) => (
               <div className='cursor-pointer text-[#112212] text-sm rounded-xl shadow-lg flex flex-row items-center justify-center px-4 py-2' onClick={() => removeCategory(`${badge.id}`)}>
                 Categoria - {badge.name}
-                <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
+                <img src={`/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
               </div>))}
 
             {badges.priceOrder && (
               badges.priceOrder === 'price_high' ? (<div className='cursor-pointer text-[#112212] text-sm rounded-xl shadow-lg flex flex-row items-center justify-center px-4 py-2' onClick={clearPriceOrder}>
                 Orden - Ascendente
-                <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
+                <img src={`/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
               </div>) : (<div className='cursor-pointer text-[#112212] text-sm rounded-xl shadow-lg flex flex-row items-center justify-center px-4 py-2' onClick={clearPriceOrder}>
                 Orden - Descendente
-                <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
+                <img src={`/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
               </div>)
             )}
             {badges.tipoFlor.map((badge, index) => (
               <div className='cursor-pointer text-[#112212] text-sm rounded-xl shadow-lg flex flex-row items-center justify-center px-4 py-2' onClick={cleartipoflor}>
                 Tipo de Flor - {badge.name}
-                <img src={`${url_env}/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
+                <img src={`/img_donas/x.png`} type="icon" alt="" className='pl-2  flex items-center justify-center' />
               </div>))}
           </div>
 
