@@ -505,6 +505,7 @@
           slidesPerView: 2,
           centeredSlides: false,
           loop: true,
+          spaceBetween: 10
         },
         640: {
           slidesPerView: 2,
@@ -548,6 +549,7 @@
           slidesPerView: 2,
           centeredSlides: false,
           loop: true,
+          spaceBetween: 10
         },
         640: {
           slidesPerView: 2,
