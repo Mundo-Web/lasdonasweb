@@ -402,7 +402,7 @@
 
   </div>
   <div
-    class="mb-4 relative w-full lg:w-80 lg:py-0 border-b lg:border-0 border-[#082252] mr-3  flex lg:hidden font-b_classic_bold">
+    class="relative w-full lg:w-80 lg:py-0 border-b lg:border-0 border-[#082252] mr-3  flex lg:hidden font-b_classic_bold">
     <input id="buscarproducto" type="text" placeholder="Buscar..." autocomplete="off"
       class="w-full pl-12 pr-10 py-3 border lg:border-[#F8F8F8] bg-[#F8F8F8] rounded-3xl focus:outline-none focus:ring-0 text-gray-400 placeholder:text-gray-400 focus:border-transparent">
     <span class="absolute inset-y-0 left-0 flex  items-center bg-[#336234] rounded-full my-[7px] px-2 ml-2">
