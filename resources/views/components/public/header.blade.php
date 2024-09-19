@@ -163,7 +163,7 @@
               <path
                 d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z" />
             </svg>
-            Catalogo
+            Catálogo
           </span>
           <span :class="{ 'rotate-180': openCatalogo }"
             class="ms-1 inline-block transform transition-transform duration-300">↓</span>
