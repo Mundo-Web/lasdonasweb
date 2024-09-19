@@ -378,7 +378,7 @@ class PaymentController extends Controller
       $sale->from = $body['dedication']['from'] ?? null;
       $sale->puntos_calculados = false;
 
-      if ($body['img']) {
+      if (isset($body['img'])) {
         try {
           $sale->img_transferencia = $this->saveDedicationImage($body['img']);
         } catch (\Throwable $th) {

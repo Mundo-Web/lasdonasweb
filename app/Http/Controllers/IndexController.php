@@ -569,6 +569,7 @@ class IndexController extends Controller
   public function agradecimiento(Request $request)
   {
     $codigo_orden = $request->input('code');
+    $isWhatsapp = $request->input('whatsapp');
 
     if (!$codigo_orden) return redirect('/');
     $ordenJpa = Ordenes::where('codigo_orden', $codigo_orden)->first();

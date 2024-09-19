@@ -80,18 +80,35 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
   const ProcesarTransferencia = async (e) => {
     e.preventDefault()
 
+    //data-type="whatsapp"
+    let esWhataspp = true
+
+    console.log(e.target.dataset.type)
 
 
 
-    if (!fileimg.current) return Swal.fire({
-      icon: 'warning',
-      title: 'Falta la imagen',
-      text: 'Por favor agregue un imagen antes de continuar',
-      showConfirmButton: true,
-      showCancelButton: false,
-      confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#138496'
-    })
+
+    if (e.target.dataset.type !== 'whatsapp') {
+
+      esWhataspp = false
+
+      console.log(esWhataspp)
+      if (!fileimg.current) return Swal.fire({
+        icon: 'warning',
+        title: 'Falta la imagen',
+        text: 'Por favor agregue un imagen antes de continuar',
+        showConfirmButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#138496'
+      })
+
+    }
+
+    console.log(esWhataspp)
+
+
+
 
     Local.set('payment-data', {
       address: datosFinales.address,
@@ -156,7 +173,9 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
         Local.delete('payment-data')
 
         setTimeout(() => {
-          location.href = `/agradecimiento?code=${data.reference_code}`
+          let url = esWhataspp ? `/agradecimiento?code=${data.reference_code}&whatsapp=true ` : `/agradecimiento?code=${data.reference_code}`
+
+          location.href = url
         }, 1500);
       }
     } catch (error) {
@@ -178,11 +197,12 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
         <p className="text-lg font-semibold"># Pedido: 25600</p>
       </div> */}
 
+
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-green-600 mb-2"></h2>
-        <p className="mb-2">Estas a un paso de ganar  FloriPuntos 💐.</p>
-        <p className="mb-2">Carga la captura del pago realizado por deposito/transferencia, YAPE/PLIN o envianos la imagen por WhatsApp para confirmar tu pedido.</p>
-        <p className="mb-2">¡Recuerda! Cada una de tus compras en LAS DONAS suma FloriPuntos que podras canjear por complementos en tus proximos pedidos🎁</p>
+        <p className="mb-2">¡Estás a un paso de completar tu compra 💐! Realiza la transferencia/depósito a nuestras cuentas, o paga a través de YAPE o PLIN. </p>
+        <p className="mb-2">Luego, simplemente carga la imagen y envíanos la confirmación de pago. ¡Y listo 💫!</p>
+        <p className="mb-2">También puedes enviarnos tu confirmación de pago a través de WhatsApp.</p>
       </div>
 
       <div className="grid grid-cols-2 gap-4 mb-6">
@@ -252,22 +272,31 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
           </div>
         </div>
 
-        <a target="_blanck" href={`https://api.whatsapp.com/send?phone=${telefono}&text=${texto}`} className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
-          Enviar imagen de pago por WhatsApp
-        </a>
-
-
-
-      </div>
-
-      <div className="mt-4">
         <button
+          data-type="normal"
           type="submit"
           form="formPrincipal"
           onClick={ProcesarTransferencia}
           className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
           Procesar pago
         </button>
+
+
+
+      </div>
+      <p className='mt-4 text-center'> O </p>
+      <div className="mt-4">
+        <button
+          data-type="whatsapp"
+          type="submit"
+          form="formPrincipal"
+          onClick={ProcesarTransferencia}
+          // target="_blanck" href={`https://api.whatsapp.com/send?phone=${telefono}&text=${texto}`} 
+          className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  
+        hover:bg-[#ff8555] transition-colors duration-300">
+          Enviar confirmación por WhatsApp
+        </button>
+
       </div>
     </div>
   )
