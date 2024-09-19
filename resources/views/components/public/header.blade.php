@@ -263,7 +263,7 @@
 
       <li>
         <a href="/promociones" class="text-[#272727] font-b_slick_bold hover:opacity-75 other-class py-3 px-6">
-          <span class="underline-this">promociones</span>
+          <span class="underline-this">Promociones</span>
         </a>
       </li>
 
