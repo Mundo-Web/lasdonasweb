@@ -38,8 +38,8 @@ const Option = (props) => {
     <div>
       <components.Option {...props}>
         <div data-tooltip-id={`tooltip-${props.data.value}`} data-tooltip-content={props.data.description} className="line-clamp-3">
-          {props.data.label}
-
+          <div className="font-bold">{props.data.label}</div>
+          <div>{props.data.description}</div>
         </div>
       </components.Option>
     </div>
@@ -54,7 +54,7 @@ const SelectSecond = ({ options, title, handleOptionChange }) => {
       <Select
         className='line-clamp gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-3xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full'
         styles={customStyles}
-        options={options.map((option) => ({ value: option.id, label: option.description, description: option.description }))}
+        options={options.map((option) => ({ value: option.id, label: option.name, description: option.description }))}
         placeholder={title}
         onChange={handleOptionChange}
         components={{ Option }}
