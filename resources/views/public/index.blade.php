@@ -91,7 +91,9 @@
       <div class="px-[5%] lg:px-[8%]  space-y-10">
         <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] gap-3 px-5">
           <h3 class="text-lg font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
-          <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212]">DESCUBRE NUESTROS PRODUCTOS MAS
+          <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212]"> DESCUBRE NUESTROS
+            PRODUCTOS
+            MAS
             VENDIDOS</h2>
         </div>
 
