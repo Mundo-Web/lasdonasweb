@@ -33,7 +33,7 @@ const Agradecimiento = ({ orden_code, orden, general }) => {
 
 
   return <>
-    <main className='p-[5%]'>
+    <main className='p-[5%] font-b_slick_bold'>
 
       <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
         <div className="w-full max-w-md">
