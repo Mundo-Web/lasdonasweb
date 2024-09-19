@@ -238,7 +238,7 @@
               <path
                 d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z" />
             </svg>
-            Tipos de flor
+            Tipos de Flor
           </span>
           <span :class="{ 'rotate-180': openFlor }"
             class="ms-1 inline-block transform transition-transform duration-300">↓</span>
@@ -259,6 +259,12 @@
           @endforeach
 
         </ul>
+      </li>
+
+      <li>
+        <a href="/promociones" class="text-[#272727] font-b_slick_bold hover:opacity-75 other-class py-3 px-6">
+          <span class="underline-this">promociones</span>
+        </a>
       </li>
 
 
@@ -619,7 +625,7 @@
 
 
 
-          <a href="/" class="font-medium hover:opacity-75  other-class py-3 px-6">
+          <a href="/promociones" class="font-medium hover:opacity-75  other-class py-3 px-6">
             <span class="underline-this font-b_slick_bold">Promociones</span>
           </a>
         </nav>

@@ -124,6 +124,8 @@ Route::get('/google-callback', function () {
     }
 });
 
+Route::get('/promociones', [IndexController::class, 'OfertaSection' ])->name('Oferta.jsx');
+
 Route::get('/confirm-email/{token}', [AuthController::class, 'confirmEmailView'])->name('ConfirmEmail.jsx');
 Route::get('/confirmation/{token}', [AuthController::class, 'loginView']);
 Route::get('/register-rev', [AuthController::class, 'registerView'])->name('Register.jsx');
