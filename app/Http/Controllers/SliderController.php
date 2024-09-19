@@ -83,6 +83,23 @@ class SliderController extends Controller
                 $slider->name_image2 = $nombreImagen;
             }
 
+            if ($request->hasFile('img_mobile')) {
+                $file = $request->file('img_mobile');
+                $routeImg = 'storage/images/slider/';
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+                $this->saveImg($file, $routeImg, $nombreImagen);
+
+                $slider->img_mobile = $routeImg.$nombreImagen;
+
+            } else {
+                $routeImg = 'images/img/';
+                $nombreImagen = 'noimagenslider.jpg';
+
+                $slider->img_mobile = $routeImg.$nombreImagen;
+                
+            }
+
             $slider->subtitle = $request->subtitle;
             $slider->title2 = $request->title2;
             $slider->botontext1 = $request->botontext1;
@@ -156,6 +173,16 @@ class SliderController extends Controller
                 $slider->url_image2 = $routeImg;
                 $slider->name_image2 = $nombreImagen;
             }
+            if ($request->hasFile('img_mobile')) {
+                $file = $request->file('img_mobile');
+                $routeImg = 'storage/images/slider/';
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+                $this->saveImg($file, $routeImg, $nombreImagen);
+
+                $slider->img_mobile = $routeImg.$nombreImagen;
+
+            } 
 
             $slider->subtitle = $request->subtitle;
             $slider->title2 = $request->title2;

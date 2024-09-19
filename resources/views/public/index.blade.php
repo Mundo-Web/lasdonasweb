@@ -53,8 +53,23 @@
           @foreach ($slider as $slide)
             <div class="swiper-slide">
               <div
-                class="bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
+                class="hidden bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center md:flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
                 style="background-image:  @if ($slide->name_image) url('{{ asset($slide->url_image . $slide->name_image) }}')
+                            @else url('{{ asset('images/img/noimagenslider.jpg') }}') @endif">
+                <h4 class="text-xl text-[#336234] tracking-wider">{{ $slide->subtitle }}</h4>
+                <h2
+                  class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
+                  {{ $slide->title2 }}
+                </h2>
+                <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">
+                  {{ $slide->description }}</p>
+                <a href="{{ $slide->link1 }}" type="button"
+                  class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a>
+              </div>
+
+              <div
+                class="flex bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center md:hidden flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
+                style="background-image:  @if ($slide->name_image) url('{{ asset($slide->img_mobile) }}')
                             @else url('{{ asset('images/img/noimagenslider.jpg') }}') @endif">
                 <h4 class="text-xl text-[#336234] tracking-wider">{{ $slide->subtitle }}</h4>
                 <h2
