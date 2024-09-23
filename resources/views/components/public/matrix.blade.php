@@ -38,11 +38,7 @@
 
   {{-- Alpine --}}
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.store('debug', true);
-    });
-  </script>
+
   {{-- Sweet Alert --}}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -54,9 +50,7 @@
 </head>
 
 <body class="body">
-  <div x-data="{ message: 'Hello, Alpine!' }">
-    <p x-text="message"></p>
-  </div>
+
   {{-- <div class="overlay"></div> --}}
   @include('components.public.header')
 
