@@ -465,7 +465,7 @@
                   @foreach ($submenucategorias as $category)
                     @if ($category->subcategories->isNotEmpty())
                       <li>
-                        <a @click="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}"
+                        <a @click.stop="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}"
                           href="javascript:void(0)"
                           class="flex justify-between items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                           <span class="underline-this">
