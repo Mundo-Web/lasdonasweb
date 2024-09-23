@@ -300,6 +300,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     const filterBody = []
     let sort = [];
 
+    console.log(priceOrder)
     if (priceOrder) {
       if (priceOrder === 'price_high') {
         sort.push({
@@ -323,7 +324,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     }
 
 
-    if (filter.maxPrice || filter.minPrice) {
+    /* if (filter.maxPrice || filter.minPrice) {
       if (filter.maxPrice && filter.minPrice) {
         filterBody.push([
           [
@@ -347,7 +348,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
           ['descuento', '<=', filter.maxPrice]
         ]);
       }
-    }
+    } */
 
 
     if (filter['collections'] && filter['collections'].length > 0) {

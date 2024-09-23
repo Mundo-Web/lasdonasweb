@@ -27,7 +27,7 @@ const ProductCard = (item) => {
 
 
   const componentMedio = item.componentes_hijos?.find((component) => item.descuento !== maxPrice || item.precio !== maxPrice);
-  console.log(componentMedio)
+
 
   return (
     <div className="flex flex-col gap-7 col-span-1 font-b_slick_bold">
@@ -110,7 +110,7 @@ const ProductCard = (item) => {
             ) : (
               <div className="text-[#112212] font-bold flex flex-col">
                 <span className="text-[#112212] opacity-80">Precio</span>
-                <span> S/ {Number(item.precio).toFixed(0)} </span>
+                <span> S/ {item.descuento > 0 ? Number(item.descuento).toFixed(0) : Number(item.precio).toFixed(0)}  </span>
               </div>
             )}
           </div>

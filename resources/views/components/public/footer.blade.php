@@ -80,10 +80,10 @@
       </div>
     </div>
 
-    <div class="flex flex-row ">
+    {{-- <div class="flex flex-row ">
       <img class="pr-3" src="{{ asset('img_donas/reclamaciones.svg') }}" />
       <p class="text-base  text-white">Libro de reclamaciones</p>
-    </div>
+    </div> --}}
 
   </div>
 
