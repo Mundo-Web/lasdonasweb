@@ -242,9 +242,9 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#138496'
     })
-    if (datosFinales.billing.type == 'boleta' && (datosFinales.billing.dni.length > 8 || datosFinales.billing.dni.length < 8)) return Swal.fire({
+    if (datosFinales.billing.type == 'boleta' && (datosFinales.billing.dni.length > 9 || datosFinales.billing.dni.length < 8)) return Swal.fire({
       icon: 'Warning',
-      title: 'Longitud de DNI incorrecta',
+      title: 'Longitud de Documento de Identidad  incorrecta',
       text: 'Por favor, la longitud del DNI debe ser de 8 digitos',
       showConfirmButton: true,
       showCancelButton: false,
@@ -328,7 +328,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#138496'
     })
-    if (datosFinales.billing.type == 'boleta' && (datosFinales.billing.dni.length > 8 || datosFinales.billing.dni.length < 8)) return Swal.fire({
+    if (datosFinales.billing.type == 'boleta' && (datosFinales.billing.dni.length > 9 || datosFinales.billing.dni.length < 8)) return Swal.fire({
       icon: 'Warning',
       title: 'Longitud de DNI incorrecta',
       text: 'Por favor, la longitud del DNI debe ser de 8 digitos',
@@ -572,8 +572,8 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
 
                   <div className="flex flex-col mt-8 w-full max-md:max-w-full">
                     <InputField
-                      label={`Número de ${datosFinales.billing.type === 'boleta' ? 'DNI' : 'RUC'}`}
-                      placeholder={`Número de ${datosFinales.billing.type === 'boleta' ? 'DNI' : 'RUC'}`}
+                      label={`Número de ${datosFinales.billing.type === 'boleta' ? 'Documento de Identidad ' : 'RUC'}`}
+                      placeholder={`Número de ${datosFinales.billing.type === 'boleta' ? 'Documento de Identidad ' : 'RUC'}`}
                       required={true}
                       type='number'
                       maxLength={datosFinales.billing.type === 'boleta' ? 8 : 11}
