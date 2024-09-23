@@ -520,7 +520,7 @@
                     @endforeach
                   </div>
                   <div class="swiper-scrollbar-categories-header h-2"></div>
-                  <div class="mt-4 text-end">
+                  {{-- <div class="mt-4 text-end">
                     <button type="button"
                       class="swiper-button-prev-categories-header text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-4 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
                       ←
@@ -529,7 +529,7 @@
                       class="swiper-button-next-categories-header text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-4 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
                       →
                     </button>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
 
