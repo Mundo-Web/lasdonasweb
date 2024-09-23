@@ -458,7 +458,7 @@
               class="font-b_slick_bold text-white  origin-top-right absolute top-full left-0 w-[100vw] mt-0 bg-[#73B473] p-8 shadow-lg overflow-hidden grid gap-8 grid-cols-12"
               @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false">
 
-              <div class="col-span-3">
+              <div class="col-span-3 overflow-y-auto ">
                 <h2 class="px-3 py-1 text-xl tracking-wider font-b_slick_bold">Categorias</h2>
                 <hr class="mx-3 my-3">
                 <ul class="col-span-3 font-b_slick_regular tracking-normal">
@@ -475,7 +475,7 @@
                             class="ms-1 inline-block transform transition-transform duration-300">↓</span>
                         </a>
                         <ul x-show="openSubMenu === {{ $category->id }}" x-transition
-                          class="ml-3 mt-1 space-y-1 border-l border-white font-b_slick_bold overflow-y-auto ">
+                          class="ml-3 mt-1 space-y-1 border-l border-white font-b_slick_bold  ">
                           <li>
                             <a href="/catalogo/{{ $category->slug }}"
                               class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
