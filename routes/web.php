@@ -57,6 +57,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CuponController;
 use App\Http\Controllers\LibroReclamacionesController;
 use App\Http\Controllers\PoliticaDatosController;
+use App\Http\Controllers\SubcategoryController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -229,6 +230,11 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/categorias/updateVisible', [CategoryController::class, 'updateVisible'])->name('categorias.updateVisible');
         Route::get('/categorias/contarCategorias', [CategoryController::class, 'contarCategoriasDestacadas'])->name('categorias.contarCategoriasDestacadas');
 
+        Route::resource('/subcategories', SubcategoryController::class);
+        Route::delete('/subcategories', [SubCategoryController::class, 'delete'])->name('subcategories.delete');
+        Route::post('/subcategories', [SubCategoryController::class, 'save'])->name('subcategories.save');
+        Route::patch('/subcategories', [SubCategoryController::class, 'update'])->name('subcategories.update');
+        Route::get('/subcategories/count', [SubCategoryController::class, 'contarCategoriasDestacadas'])->name('subcategories.count');
 
 
         //Servicios
