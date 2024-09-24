@@ -74,7 +74,7 @@
                 <input type="checkbox" id="acepto_terminos" class="w-3 h-3 border:text-opacity-40" />
                 <span class="flex items-center">Recuerdame</span>
               </label>
-              <a href="#" class="flex gap-1 items-center  my-auto text-orange-400">
+              <a href="/forgot-password" class="flex gap-1 items-center  my-auto text-orange-400">
                 <span>¿Olvidaste tu contraseña?</span>
               </a>
             </div>
