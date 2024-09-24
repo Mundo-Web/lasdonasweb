@@ -152,7 +152,7 @@
       </li>
 
       <li>
-        <a @click="openCatalogo = !openCatalogo" href="javascript:void(0)"
+        <a @click="openCatalogo = !openCatalogo" href="javascript:void(0)" id="productos-link"
           class="text-[#272727] flex justify-between items-center  text-sm py-2 px-3 hover:opacity-75 transition-opacity duration-300 {{ $pagina == 'catalogo' ? 'text-[#FF5E14]' : '' }}">
           <span class="underline-this text-lg font-b_slick_bold">
             <svg
@@ -281,7 +281,8 @@
     src="{{ asset('img_donas/spa.svg') }}">
 </div>
 
-<header class="font-b_classic_regular @if (!request()->is('micuenta*')) sticky @endif top-0" style="z-index:2">
+<header id="headerPrincipal" class="font-b_classic_regular @if (!request()->is('micuenta*')) sticky @endif top-0"
+  style="z-index:2">
 
   <div id="header-mid" class="h-[80px] flex flex-row items-center bg-white !z-10">
     <div
@@ -449,14 +450,15 @@
           </a>
 
           <div x-data="{ openCatalogo: false }" x-init="$el.style.display = 'flex'" style="display: none;"
-            @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false">
+            @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false; handleOutsideClick()">
             <ul class="menu flex flex-row justify-center items-center text-center py-3 px-6 ">
               <li><a href="/catalogo" class="font-b_slick_bold">Catálogo</a></li>
             </ul>
 
-            <div x-show="openCatalogo"
+            <div x-show="openCatalogo" x-init="$watch('openCatalogo', value => { if (value) runMyFunction(); })"
               class="font-b_slick_bold text-white  origin-top-right absolute top-full left-0 w-[100vw] mt-0 bg-[#73B473] p-8 shadow-lg overflow-hidden grid gap-8 grid-cols-12"
-              @click.outside="openCatalogo = false" @keydown.escape.window="openCatalogo = false">
+              @click.outside="openCatalogo = false ; handleOutsideClick()"
+              @keydown.escape.window="openCatalogo = false;  handleOutsideClick()">
 
               <div class="col-span-3 overflow-y-auto ">
                 <h2 class="px-3 py-1 text-xl tracking-wider font-b_slick_bold">Categorias</h2>
@@ -465,16 +467,18 @@
                   @foreach ($submenucategorias as $category)
                     @if ($category->subcategories->isNotEmpty())
                       <li>
-                        <a @click.stop="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}"
+                        <a {{-- @click.stop="openSubMenu === {{ $category->id }} ? openSubMenu = null : openSubMenu = {{ $category->id }}" --}} onclick="toggleSubMenu({{ $category->id }})"
                           href="javascript:void(0)"
                           class="flex justify-between items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                           <span class="underline-this">
                             {{ $category->name }}
                           </span>
-                          <span :class="{ 'rotate-180': openSubMenu === {{ $category->id }} }"
+                          {{-- <span :class="{ 'rotate-180': openSubMenu === {{ $category->id }} }"
+                            class="ms-1 inline-block transform transition-transform duration-300">↓</span> --}}
+                          <span id="arrow-{{ $category->id }}"
                             class="ms-1 inline-block transform transition-transform duration-300">↓</span>
                         </a>
-                        <ul x-show="openSubMenu === {{ $category->id }}" x-transition
+                        <ul id="submenu-{{ $category->id }}" {{-- x-show="openSubMenu === {{ $category->id }}" x-transition --}}
                           class="ml-3 mt-1 space-y-1 border-l border-white font-b_slick_bold  ">
                           <li>
                             <a href="/catalogo/{{ $category->slug }}"
@@ -700,6 +704,33 @@
     }
   });
 </script> --}}
+<script>
+  $('#productos-link').hover(
+    function() {
+      // Evento mouseenter
+      console.log('abriendo hover')
+      $('#headerPrincipal').removeClass('sticky').addClass('relative');
+    },
+    function() {
+      // Evento mouseleave
+      // $('#headerPrincipal').removeClass('relative').addClass('sticky');
+    }
+  );
+
+  function runMyFunction() {
+    console.log('openCatalogo is now true');
+    $('#headerPrincipal').removeClass('sticky').addClass('relative');
+
+    // Tu lógica aquí
+  }
+
+  function handleOutsideClick() {
+    console.log('Clicked outside');
+    $('#headerPrincipal').removeClass('relative').addClass('sticky');
+
+    // Tu lógica aquí
+  }
+</script>
 <script>
   let userPoints = {{ $points }};
   const appUrl = "{{ env('APP_URL') }}"
@@ -1006,5 +1037,34 @@
         slidesPerView: 4
       },
     },
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let openSubMenu = null;
+
+    window.toggleSubMenu = function(categoryId) {
+      console.log(categoryId);
+      const submenu = document.getElementById(`submenu-${categoryId}`);
+      const arrow = document.getElementById(`arrow-${categoryId}`);
+
+      if (openSubMenu && openSubMenu !== submenu) {
+        openSubMenu.classList.add('hidden');
+        const openArrow = document.querySelector('.rotate-180');
+        if (openArrow) {
+          openArrow.classList.remove('rotate-180');
+        }
+      }
+
+      if (submenu.classList.contains('hidden')) {
+        submenu.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+        openSubMenu = submenu;
+      } else {
+        submenu.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+        openSubMenu = null;
+      }
+    };
   });
 </script>

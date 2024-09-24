@@ -199,6 +199,11 @@ class PaymentController extends Controller
         throw new Exception($res['user_message']);
       }
 
+    /*   dump($charge);
+
+      throw new Exception; */ 
+
+
       $response->status = 200;
       $response->message = "Cargo creado correctamente";
       $response->data = [
@@ -270,7 +275,8 @@ class PaymentController extends Controller
 
     $sale = new Ordenes();
 
-    $codigoOrden = Trace::getId( false);
+    // $codigoOrden = Trace::getId( false);
+    $codigoOrden = random_int(10000, 99999);
 
     try {
 
