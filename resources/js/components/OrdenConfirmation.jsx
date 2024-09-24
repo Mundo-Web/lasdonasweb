@@ -294,7 +294,7 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
           // target="_blanck" href={`https://api.whatsapp.com/send?phone=${telefono}&text=${texto}`} 
           className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  
         hover:bg-[#ff8555] transition-colors duration-300">
-          Enviar confirmación por WhatsApp
+          Enviar Pago por WhatsApp
         </button>
 
       </div>

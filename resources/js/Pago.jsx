@@ -330,8 +330,8 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
     })
     if (datosFinales.billing.type == 'boleta' && (datosFinales.billing.dni.length > 9 || datosFinales.billing.dni.length < 8)) return Swal.fire({
       icon: 'Warning',
-      title: 'Longitud de DNI incorrecta',
-      text: 'Por favor, la longitud del DNI debe ser de 8 digitos',
+      title: 'Longitud de Documento de Identidad  incorrecta',
+      text: 'Por favor, la longitud del Documento de Identidad  debe ser de 8 digitos ',
       showConfirmButton: true,
       showCancelButton: false,
       confirmButtonText: 'Aceptar',

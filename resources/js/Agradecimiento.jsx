@@ -96,14 +96,14 @@ const Agradecimiento = ({ orden_code, orden, general }) => {
             <p className="text-gray-600 text-sm">
               ¡Recuerda! Cada una de tus compras en LAS DONAS suma puntos que podrás canjear por complementos en tus próximos pedidos!🍩
             </p>
-            <p className="text-gray-600">Si estas haciendo una transferencia en lo que se valide tu pago tus puntos seran sumados 🎉</p>
+
 
           </div>)}
 
 
           <div className="space-y-4">
             <a target="_blanck" href={`https://api.whatsapp.com/send?phone=${general.whatsapp}&text=${general.mensaje_whatsapp + ' ' + 'N Orden:' + orden_code}`} className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
-              Contactate con Nosostros via Whastapp
+              Escríbenos por WhatsApp.
             </a>
             <a href='/micuenta/historial' className=" w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Haz seguimiento a tu pedido
