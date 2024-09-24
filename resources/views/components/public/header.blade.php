@@ -479,7 +479,7 @@
                             class="ms-1 inline-block transform transition-transform duration-300">↓</span>
                         </a>
                         <ul id="submenu-{{ $category->id }}" {{-- x-show="openSubMenu === {{ $category->id }}" x-transition --}}
-                          class="ml-3 mt-1 space-y-1 border-l border-white font-b_slick_bold  ">
+                          class="ml-3 mt-1 space-y-1 border-l border-white font-b_slick_bold  hidden">
                           <li>
                             <a href="/catalogo/{{ $category->slug }}"
                               class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
