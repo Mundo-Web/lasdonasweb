@@ -481,7 +481,7 @@
                         <ul id="submenu-{{ $category->id }}" {{-- x-show="openSubMenu === {{ $category->id }}" x-transition --}}
                           class="ml-3 mt-1 space-y-1 border-l border-white font-b_slick_bold  hidden">
                           <li>
-                            <a href="/catalogo/{{ $category->slug }}"
+                            <a href="/catalogo/{{ $category->id }}"
                               class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                               <span class="underline-this font-b_slick_bold">
                                 Ver todo {{ $category->name }}
@@ -490,7 +490,7 @@
                           </li>
                           @foreach ($category->subcategories as $subcategory)
                             <li>
-                              <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
+                              <a href="/catalogo/{{ $category->id }}?subcat={{ $subcategory->id }}"
                                 class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                                 <span class="underline-this font-b_slick_bold">{{ $subcategory->name }}</span>
                               </a>

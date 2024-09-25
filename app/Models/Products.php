@@ -37,7 +37,8 @@ class Products extends Model
         'puntos_complemento', 
         'uppsell',
         'complementos',
-        'tipo_flor_id'
+        'tipo_flor_id', 
+        'subcategory_id'
     ];
 
     public function tipos()

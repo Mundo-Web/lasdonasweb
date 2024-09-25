@@ -14,6 +14,7 @@ use App\Models\Horarios;
 use App\Models\ImagenProducto;
 use App\Models\Products;
 use App\Models\Specifications;
+use App\Models\Subcategory;
 use App\Models\Tag;
 use App\Models\Tipo;
 use App\Models\TipoFlor;
@@ -48,13 +49,14 @@ class ProductsController extends Controller
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
     $tags = Tag::where("status", "=", true)->get();
     $categoria = Category::all();
+    $subcategories = Subcategory::all();
     $collection = Collection::all();
     $tipo = Tipo::where("status", "=", true)->get();
     $complementos  = Complemento::where('status', 1)->get();
     $especificacion = [];
     $subproductos = [];
     $tipoFlor = TipoFlor::where('status', 1)->get();
-    return view('pages.products.create', compact('product', 'tipoFlor', 'atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
+    return view('pages.products.create', compact('product', 'subcategories', 'tipoFlor', 'atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'tipo', 'complementos', 'especificacion', 'subproductos'));
   }
 
   /**
@@ -77,6 +79,7 @@ class ProductsController extends Controller
     $especificacion = Specifications::where("product_id", "=", $id)->get();
     $allTags = Tag::all();
     $categoria = Category::all();
+    $subcategories = Subcategory::all();
     $collection = Collection::all();
 
     $subproductosEspeccifications = [];
@@ -89,7 +92,7 @@ class ProductsController extends Controller
     }
 
 
-    return view('pages.products.edit', compact('product', 'tipoFlor', 'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
+    return view('pages.products.edit', compact('product','subcategories', 'tipoFlor', 'subproductosEspeccifications', 'subproductos', 'tipo', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
   }
 
   public function save(Request $request)

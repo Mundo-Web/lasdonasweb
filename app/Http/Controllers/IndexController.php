@@ -35,6 +35,7 @@ use App\Models\PoliticaSustitucion;
 use App\Models\PolyticsCondition;
 use App\Models\Price;
 use App\Models\Specifications;
+use App\Models\Subcategory;
 use App\Models\Tag;
 use App\Models\TermsAndCondition;
 use App\Models\Tipo;
@@ -210,6 +211,9 @@ class IndexController extends Controller
   {
     $categorias = null;
     $productos = null;
+    $subcategoria = $request->query('subcat');
+    $categoriaSelected= null; 
+    
 
     // $rangefrom = $request->query('rangefrom');
     // $rangeto = $request->query('rangeto');
@@ -240,6 +244,9 @@ class IndexController extends Controller
         $productos = Products::obtenerProductos($filtro);
 
         $categoria = Category::findOrFail($filtro);
+        if(isset($subcategoria)){
+          $categoriaSelected = Subcategory::where('id', $subcategoria)->first();
+        }
       }
 
       $page = 0;
@@ -269,8 +276,9 @@ class IndexController extends Controller
         'tipoFloresList' => $tipoFlores,
         'page ' => $page,
         'url_env' => $_ENV['APP_URL'],
-
+        'subcategoria' => $subcategoria,
         'beneficios' => $beneficios,
+        'categoriaSelected' => $categoriaSelected
       ])->rootView('app');
     } catch (\Throwable $th) {
     }

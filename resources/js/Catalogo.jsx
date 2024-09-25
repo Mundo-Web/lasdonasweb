@@ -12,7 +12,8 @@ import { set } from 'sode-extend-react/sources/cookies';
 import ProductCard from './components/ProductCard';
 
 
-const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficios, tipoFloresList }) => {
+const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficios, tipoFloresList, subcategoria, categoriaSelected }) => {
+  console.log(categoriaSelected)
   const take = 12
   let abortController = new AbortController();
   const [items, setItems] = useState([])
@@ -33,7 +34,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     tipoFlor: []
   });
   const [currentcat, setCurrentCat] = useState(categoria ? categoria : {})
-
+  const subcatcurrent = useRef(categoriaSelected)
   const [ShowtipoFlores, setShowTipoFlores] = useState(false)
 
 
@@ -245,6 +246,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     setCatSelected('Ocasiones');
     updateUrlWithInputId(null);
     setCurrentCat({})
+    subcatcurrent.current = null
     setBadges((prevData) => ({
       ...prevData,
       categories: prevData.categories.filter(cat => cat.id !== categoryId)
@@ -323,6 +325,9 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
     }
 
+    if (subcategoria) {
+      filterBody.push(['subcategory_id', '=', subcategoria])
+    }
 
     /* if (filter.maxPrice || filter.minPrice) {
       if (filter.maxPrice && filter.minPrice) {
@@ -458,8 +463,8 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
 
           <div className='flex flex-col gap-3'>
-            <div className='text-[#FE4A11] text-base tracking-normal uppercase'> {`Inicio / ${currentcat.name ?? 'Todas las categorias'} `}</div>
-            <div className='text-3xl lg:text-5xl font-bold text-[#112212] uppercase tracking-wider'>{currentcat.name}</div>
+            <div className='text-[#FE4A11] text-base tracking-normal uppercase'> {`Inicio / ${currentcat.name ?? 'Todas las categorias'} `} {subcatcurrent.current && <>{`/ ${subcatcurrent.current.name}`}</>}</div>
+            <div className='text-3xl lg:text-5xl font-bold text-[#112212] uppercase tracking-wider'>{currentcat.name} {subcatcurrent.current && <>{`/ ${subcatcurrent.current.name}`}</>}</div>
             <div className='text-[#112212] opacity-80 font-b_slick_regular text-lg'>{currentcat.description}</div>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-4 mt-4 lg:mt-12 gap-4 lg:gap-10'>

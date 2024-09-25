@@ -16,6 +16,7 @@ class Category extends Model
         return $this->hasMany(Subcategory::class, 'category_id')->where('status', true);
     }
 
+    
     // public function blogs()
     // {
     //     return $this->hasMany(Blog::class, 'category_id');

@@ -572,7 +572,7 @@
                           d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                       </svg>
                     </div>
-                    <select name="categoria_id"
+                    <select name="categoria_id" id='categoria_id'
                       class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       <option value="">Seleccionar Categoria</option>
                       @foreach ($categoria as $item)
@@ -581,6 +581,24 @@
                           {{ $item->name }}</option>
                       @endforeach
 
+                    </select>
+                  </div>
+                </div>
+                <div class="md:col-span-5">
+                  <label for="subcategory_id">Subcategoria</label>
+                  <div class="relative mb-2  mt-2">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <i class="text-lg text-gray-500 dark:text-gray-400 fas fa-folder"></i>
+                    </div>
+
+                    <select id="subcategory_id" name="subcategory_id"
+                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option value="">Seleccionar Subcategoria </option>
+                      @foreach ($subcategories as $item)
+                        <option value="{{ $item->id }}" @if ($item->id == $product->subcategory_id) selected @endif
+                          data-category="{{ $item->category_id }}" @if ($item->category_id != $product->categoria_id) hidden @endif>
+                          {{ $item->name }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -2330,6 +2348,14 @@
 
 
     }
+  </script>
+  <script>
+    $('#categoria_id').on('change', function() {
+      console.log(this.value)
+      const value = this.value
+      $('#subcategory_id option[data-category]').prop('hidden', true)
+      $(`#subcategory_id option[data-category="${value}"]`).prop('hidden', false)
+    })
   </script>
   @include('_layout.scripts')
 
