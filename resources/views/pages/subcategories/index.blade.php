@@ -26,7 +26,7 @@
                 <th class="px-3 py-2">Descripción</th>
                 <th class="px-3 py-2">Categoria</th>
 
-                <th class="px-3 py-2">Visible</th>
+                {{-- <th class="px-3 py-2">Visible</th> --}}
                 <th class="w-32 px-3 py-2">Acciones</th>
               </tr>
             </thead>
@@ -38,7 +38,7 @@
                   <td class="px-3 py-2">{{ $item->description }}</td>
                   <td class="px-3 py-2">{{ $item->category()->name }}</td>
 
-                  <td>
+                  {{-- <td>
                     <label class="inline-flex items-center cursor-pointer">
                       <input id="btn_switch" type="checkbox" data-id="{{ $item->id }}"
                         data-name="{{ $item->name }}" data-field="visible" class="sr-only peer"
@@ -47,7 +47,7 @@
                         class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                       </div>
                     </label>
-                  </td>
+                  </td> --}}
                   <td class="px-3 py-2 flex flex-row justify-end items-center gap-1">
                     <a href="{{ route('subcategories.edit', $item->id) }}"
                       class="bg-yellow-400 px-3 py-1 rounded text-white  ">
@@ -68,8 +68,7 @@
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Categoria</th>
-                <th>Destacar</th>
-                <th>Visible</th>
+
                 <th>Acciones</th>
               </tr>
             </tfoot>
