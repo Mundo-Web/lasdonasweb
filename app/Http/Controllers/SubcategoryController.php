@@ -19,6 +19,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         $subcategories = SubCategory::where('status', true)->get();
+        // 
 
         return view('pages.subcategories.index', compact('subcategories'));
     }

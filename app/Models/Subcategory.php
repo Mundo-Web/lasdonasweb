@@ -11,6 +11,7 @@ class Subcategory extends Model
     protected $fillable=['category_id', 'name', 'description' ,'state'];
 
 
+    // 
     public function category()
     {
         return Category::find($this->category_id);
