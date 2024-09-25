@@ -251,9 +251,10 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
             {
               isDragActive ?
                 <p>Sueltas tur archivos aqui ...</p> :
-                <p>Sube tus comprobantes aca , Preciona para subir agregar tu comprobante de pago
+                <><p> 1. Cargar confirmación de pago
 
                 </p>
+                  <br></br> </>
 
 
             }
@@ -278,7 +279,7 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
           form="formPrincipal"
           onClick={ProcesarTransferencia}
           className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
-          Procesar pago
+          2. Enviar Imagen
         </button>
 
 
