@@ -234,7 +234,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-a8ldNApw.css",
+    "file": "assets/app-EoQeBhtb.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -376,7 +376,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Catalogo-shZv0TWA.js",
+    "file": "assets/Catalogo-_3zCnUxD.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -554,7 +554,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-IMY9wmh5.js",
+    "file": "assets/Pago-SVcIDYWL.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -1413,7 +1413,7 @@
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/SvgPuntos.svg": {
-    "file": "assets/SvgPuntos--FnXd_aC.svg",
+    "file": "assets/SvgPuntos-hzKALqiY.svg",
     "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {
