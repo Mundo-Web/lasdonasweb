@@ -35,11 +35,13 @@ const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
     });
 
     const placeMarker = (location) => {
+      const lat = location.lat() || 0;
+      const lng = location.lng() || 0;
       if (markerRef.current) {
         markerRef.current.setPosition(location);
       } else {
         markerRef.current = new window.google.maps.Marker({
-          position: location,
+          position: { lat, lng },
           map: mapRef.current,
         });
       }
@@ -79,9 +81,12 @@ const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
       const location = event.latLng;
       placeMarker(location);
 
+      const lat = location.lat() || 0;
+      const lng = location.lng() || 0;
+
       // Usar el servicio Geocoder para obtener la dirección y el código postal
       const geocoder = new window.google.maps.Geocoder();
-      geocoder.geocode({ location: location }, (results, status) => {
+      geocoder.geocode({ location: { lat, lng } }, (results, status) => {
         if (status === 'OK' && results[0]) {
           const place = results[0];
           let postalCode = '';
