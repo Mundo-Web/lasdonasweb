@@ -378,7 +378,7 @@ class IndexController extends Controller
       ])->rootView('app');
     } catch (\Throwable $th) {
       //throw $th;
-      dump($th);
+      // dump($th);
     }
   }
 

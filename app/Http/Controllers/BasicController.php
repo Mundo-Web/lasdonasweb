@@ -168,7 +168,7 @@ class BasicController extends Controller
     $response = new Response();
     try {
       $body = $this->beforeSave($request);
-      dump($body);
+      
 
       foreach ($this->imageFields as $field) {
         if (!$request->hasFile($field)) continue;
@@ -182,7 +182,7 @@ class BasicController extends Controller
       $jpa = $this->model::find(isset($body['id']) ? $body['id'] : null);
 
       if($jpa && $jpa->tipo_tarjeta == 'transferencia' && $jpa->puntos_calculados == 0){
-        dump('tansferencia sin calcular puntos');
+        
         $generals = General::select('point_equivalence')->first();
 
 

@@ -37,6 +37,8 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
   const subcatcurrent = useRef(categoriaSelected)
   const [ShowtipoFlores, setShowTipoFlores] = useState(false)
 
+  const subcategoriaSelectd = useRef(subcategoria)
+
 
   const labelRefs = useRef({});
   const labelCat = useRef({});
@@ -247,6 +249,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     updateUrlWithInputId(null);
     setCurrentCat({})
     subcatcurrent.current = null
+    subcategoriaSelectd.current = null
     setBadges((prevData) => ({
       ...prevData,
       categories: prevData.categories.filter(cat => cat.id !== categoryId)
@@ -255,6 +258,7 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     setFilter((prevFilter) => {
       return {
         ...filter,
+        subcategory_id: null,
         category_id: filter.category_id.filter((id) => id !== categoryId),
       };
     })
@@ -324,8 +328,8 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
 
 
     }
-
-    if (subcategoria) {
+    console.log(subcategoriaSelectd.current)
+    if (subcategoriaSelectd.current !== null) {
       filterBody.push(['subcategory_id', '=', subcategoria])
     }
 
