@@ -7,6 +7,7 @@ import GoogleMapsComponent from "./GoogleMapsComponent";
 import { set } from "sode-extend-react/sources/cookies";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Select from 'react-select';
 
 
 function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio, addreses }) {
@@ -190,6 +191,8 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
   }, []);
 
   const handlechange = (e) => {
+    console.log(e)
+    console.log(formState)
     const { name, value } = e.target;
     setFormState((old) => ({
       ...old,
@@ -232,6 +235,37 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
     }
   };
 
+  const options = [
+    { value: 'Casa', label: 'Casa' },
+    { value: 'Departamento', label: 'Departamento' },
+    { value: 'Oficina', label: 'Oficina' },
+    { value: 'Otro', label: 'Otro' }
+  ];
+
+  const customStyles2 = {
+    control: (provided) => ({
+      ...provided,
+      outline: 'none',
+      boxShadow: 'none',
+      borderColor: 'transparent',
+      borderRight: 'none',
+      '&:hover': {
+        borderColor: 'transparent',
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      width: '90%', // Asegura que el menú no sobresalga del contenedor principal
+    }),
+    option: (provided) => ({
+      ...provided,
+      fontSize: '0.875rem', // Ajusta el tamaño de fuente de las opciones
+      padding: '8px 12px', // Ajusta el padding de las opciones
+    }),
+    indicatorSeparator: () => ({
+      display: 'none',
+    }),
+  };
 
   return (
     <main className="flex flex-col justify-center self-stretch p-1 text-sm font-bold tracking-wide bg-white rounded-none max-w-[880px] max-md:px-5">
@@ -272,7 +306,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
               required={true}
               eRef={addressRef.street}
               label="Calle"
-              placeholder="Faucibus"
+              placeholder="Urbanización, Calle, Av."
               className="w-full min-w-[240px]"
               value={formState.street}
               name="street"
@@ -295,10 +329,8 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full text-neutral-900">
           <div className="md:col-span-2">
             <InputField
-              required={true}
               eRef={addressRef.mz}
-              label="Manzana"
-              placeholder="Faucibus"
+              label="Urbanizacion"
               className="w-full"
               value={formState.mz}
               name="mz"
@@ -310,12 +342,12 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
               required={true}
               eRef={addressRef.postalCode}
               label="Código postal"
-              placeholder="C.P. 987-2346"
+              placeholder=""
               className="w-full"
               value={formState.postal_code}
               name="postal_code"
               handleDatosFinales={handlechange}
-              />
+            />
           </div>
         </section>
 
@@ -337,7 +369,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
               required={true}
               eRef={addressRef.province}
               label="Provincia"
-              placeholder="Benito..."
+              placeholder=""
               className="w-full"
               value={formState.province}
               name="province"
@@ -360,7 +392,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full">
           <div className="md:col-span-2">
-            <InputField
+            {/* <InputField
               required={true}
               eRef={addressRef.residenceType}
               label="Tipo de domicilio"
@@ -369,14 +401,34 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
               value={formState.residenceType}
               name="residenceType"
               handleDatosFinales={handlechange}
+            /> */}
+            <Select
+              name="residenceType"
+              required={true}
+              styles={customStyles2}
+              options={options}
+              onChange={(e) => handlechange({ target: { ...e, name: 'residenceType' } })}
+              value={options.find(option => option.value === formState.residenceType)}
+              placeholder="Selecciona Tipo de Domicilio"
+              className="gap-2 self-stretch px-6 py-1.5 mt-4 w-full text-sm tracking-wide rounded-2xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
             />
           </div>
+          {formState.residenceType == 'Otro' && (
+            <input
+              name='otherResidenceType'
+              type="text"
+              placeholder="Ingresa Tipo de Domicilio"
+              value={formState.otherResidenceType}
+              onChange={handlechange}
+              className="gap-2 self-stretch px-6 py-4 mt-4 w-full text-sm tracking-wide rounded-2xl border border-solid border-stone-300 max-md:px-5 max-md:max-w-full"
+            />
+          )}
         </section>
 
         <InputField
           required={true}
           eRef={addressRef.reference}
-          label="Referencias"
+          label="# Dpto, Ofic o Referencia"
           className="w-full mt-4"
           value={formState.reference}
           name="reference"

@@ -238,7 +238,7 @@ class PaymentController extends Controller
         $addressJpa->address_zipcode = $body['address']['postal_code'];
         $addressJpa->address_latitude = $body['address']['coordinates']['latitude'];
         $addressJpa->address_longitude = $body['address']['coordinates']['longitude'];
-        $addressJpa->address_data = JSON::stringify($body['address']);
+        $addressJpa->address_data = $body['address'];
         $addressJpa->price_amount = $precioEnvio;
 
         $addressJpa->save();
@@ -476,7 +476,7 @@ class PaymentController extends Controller
         $addressJpa->address_zipcode = $body['address']['postal_code'];
         $addressJpa->address_latitude = $body['address']['coordinates']['latitude'];
         $addressJpa->address_longitude = $body['address']['coordinates']['longitude'];
-        $addressJpa->address_data = JSON::stringify($body['address']);
+        $addressJpa->address_data = $body['address'];
         $addressJpa->price_amount = $precioEnvio;
 
         $addressJpa->save();
