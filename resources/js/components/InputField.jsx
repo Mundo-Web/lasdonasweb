@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function InputField({ eRef, label, type = "text", value, defaultValue, placeholder, handleDatosFinales, name, className,
-  required = false, maxLength, min, max, sendForm = false }) {
+  required = false, maxLength, min, max, sendForm = false, disabled = false }) {
 
 
   const [touched, setTouched] = useState(true);
@@ -32,6 +32,7 @@ function InputField({ eRef, label, type = "text", value, defaultValue, placehold
         defaultValue={defaultValue}
         placeholder={placeholder}
         required={required}
+        disabled={disabled}
         maxLength={type === "number" ? undefined : maxLength}
         min={type === "number" ? min : undefined}
         max={type === "number" ? max : undefined}

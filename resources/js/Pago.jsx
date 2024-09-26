@@ -700,6 +700,7 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
                       placeholder="Ingrese una nombre"
                       value={datosFinales.billing.name}
                       required={true}
+                      disabled={documentFound}
                       handleDatosFinales={(e) => {
                         setDatosFinales(old => ({
                           ...old,
@@ -717,6 +718,7 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
                           value={datosFinales.billing.lastname}
                           placeholder="Ingrese su apellido"
                           required
+                          disabled={documentFound}
                           handleDatosFinales={(e) => {
                             setDatosFinales(old => ({
                               ...old,
