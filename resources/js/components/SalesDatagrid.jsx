@@ -87,7 +87,7 @@ const SalesDataGrid = ({ isAdmin, statuses }) => {
   const renderDateCell = (data) => {
     return (
       <div className="!px-3 !py-2">
-        {data.fechaenvio ? <> {moment(data.fechaenvio).format('YYYY-MM-DD ')} {formattedTime(data?.horario_envio?.start_time)} - {formattedTime(data?.horario_envio?.end_time)}   </> : 'Sin fecha'}
+        {data.fechaenvio && data?.horario_envio ? <> {moment(data.fechaenvio).format('YYYY-MM-DD ')} {formattedTime(data?.horario_envio?.start_time)} - {formattedTime(data?.horario_envio?.end_time)}   </> : 'Sin fecha'}
       </div>
     );
   }
