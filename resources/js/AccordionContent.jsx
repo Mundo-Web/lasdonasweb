@@ -108,7 +108,7 @@ const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => {
   return (
     <div className="grid w-full gap-4 grid-cols-1 md:grid-cols-4 mt-6">
       {complementos.map((complemento, index) => (
-        <ComplementCard key={}{...complemento} onChange={handleCheckboxChange} />
+        <ComplementCard key={index} {...complemento} onChange={handleCheckboxChange} />
         // <div key={complemento.id} className="m-auto">
         //   <label
         //     htmlFor={`react-option-${complemento.id}`}

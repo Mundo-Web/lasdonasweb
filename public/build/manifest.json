@@ -1,6 +1,6 @@
 {
-  "_Accordion2-qFrvz2Sm.js": {
-    "file": "assets/Accordion2-qFrvz2Sm.js",
+  "_Accordion2-wsHVDhnz.js": {
+    "file": "assets/Accordion2-wsHVDhnz.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -348,7 +348,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-0c6fC5_N.js",
+    "file": "assets/Carrito-J4avIYGR.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -356,7 +356,7 @@
       "_CreateReactScript-VVPwJ0HX.js",
       "_HtmlContent-Aen3UoIq.js",
       "_storage-zp2nPsZU.js",
-      "_Accordion2-qFrvz2Sm.js",
+      "_Accordion2-wsHVDhnz.js",
       "_calcularTotal-FPqXOtx1.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
@@ -589,7 +589,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-PP9qvlYW.js",
+    "file": "assets/Product-NNbnzim5.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -602,7 +602,7 @@
       "_setPrototypeOf-ahVgEFUp.js",
       "_index-38suPYpT.js",
       "_ModalSimple-wbpAEmbf.js",
-      "_Accordion2-qFrvz2Sm.js",
+      "_Accordion2-wsHVDhnz.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-wXA00dMN.js",
       "_ProductCard-0zHdWFxG.js",
