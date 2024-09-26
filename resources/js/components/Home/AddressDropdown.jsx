@@ -20,7 +20,7 @@ export default function AddressDropdown({ addresses, onSelectAddress = () => { }
 
   const handleSelectAddress = (address) => {
     onSelectAddress(address.id)
-    setIsModalOpen(true)
+    // setIsModalOpen(true)
     setIsOpen(false)
   }
 
