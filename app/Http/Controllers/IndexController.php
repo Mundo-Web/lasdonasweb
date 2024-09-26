@@ -540,6 +540,8 @@ class IndexController extends Controller
 
     $general = General::first();
 
+    $session = User::with(['person'])->find(Auth::user()->id);
+
     $url_env = $_ENV['APP_URL'];
     return Inertia::render('Pago', [
       'url_env' => $url_env,
@@ -555,7 +557,7 @@ class IndexController extends Controller
       'points' => Auth::check() ? Auth::user()->points : 0,
       'historicoCupones' => $historicoCupones,
       'general' => $general,
-      'session' => Auth::user()
+      'session' => $session
     ])->rootView('app');
   }
 
