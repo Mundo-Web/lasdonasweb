@@ -27,6 +27,8 @@ import AddressDropdown from './components/Home/AddressDropdown';
 
 const Pago = ({ session, culqi_public_key, app_name, greetings, points, historicoCupones, general, addresses, defaultAddress }) => {
 
+  console.log(session);
+
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [showDedicatoria, setShowDedicatoria] = useState(false)
   const [showFirma, setShowshowFirma] = useState(false)
