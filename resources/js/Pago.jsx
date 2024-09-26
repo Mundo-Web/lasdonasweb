@@ -130,7 +130,9 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
       message: '',
     },
     billing: { type: 'boleta' },
-    consumer: {},
+    consumer: {
+      phone: session?.person?.phone || session?.phone || ''
+    },
     fecha: '',
     horario: '',
     telefono: '',
