@@ -105,8 +105,8 @@ const GoogleMapsComponent = ({ managezipCode, addressRef, datosFinales }) => {
   useEffect(() => {
     // if (!datosFinales?.address?.id) return;
 
-    const lat = Number(datosFinales.address?.coordinates?.latitude);
-    const lng = Number(datosFinales.address?.coordinates?.longitude);
+    const lat = Number(datosFinales?.address?.coordinates?.latitude);
+    const lng = Number(datosFinales?.address?.coordinates?.longitude);
     const position = { lat, lng };
 
     // Borrar el marcador anterior, si existe
