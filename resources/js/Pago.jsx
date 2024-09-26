@@ -129,7 +129,10 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
       image: localStorage.getItem('imageDedicatoria') || null,
       message: '',
     },
-    billing: { type: 'boleta' },
+    billing: {
+      type: 'boleta',
+      email: session?.person?.email || session?.email || ''
+    },
     consumer: {
       phone: session?.person?.phone || session?.phone || ''
     },
