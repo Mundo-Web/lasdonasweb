@@ -131,6 +131,9 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
     },
     billing: {
       type: 'boleta',
+      document: session?.person?.document || '',
+      name: session?.person?.name || '',
+      lastname: session?.person?.lastname || '',
       email: session?.person?.email || session?.email || ''
     },
     consumer: {
