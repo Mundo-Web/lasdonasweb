@@ -105,13 +105,13 @@ const Agradecimiento = ({ orden_code, orden, general }) => {
             <a target="_blanck" href={`https://api.whatsapp.com/send?phone=${general.whatsapp}&text=${general.mensaje_whatsapp + ' ' + 'N Orden:' + orden_code}`} className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Escríbenos por WhatsApp.
             </a>
-            <a href='/micuenta' className=" w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
+            <a href='/micuenta/historial' className=" w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Haz seguimiento a tu pedido
             </a>
             <a href='/catalogo' className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Seguir comprando
             </a>
-            <a href='/micuenta' className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
+            <a href='/micuenta/puntos' className="w-full py-2 px-4 border  block text-center border-green-500 text-green-500 rounded-full hover:text-white  hover:bg-[#ff8555] transition-colors duration-300">
               Conoce nuestro programa de puntos
             </a>
 
