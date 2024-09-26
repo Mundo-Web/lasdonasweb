@@ -52,7 +52,9 @@ const AddressList = ({ }) => {
 
 
   const handleEdit = (address) => {
-    addressRef.current = address.address_data;
+    if (typeof address.address_data == 'string') addressRef.current = JSON.parse(address.address_data);
+    else addressRef.current = address.address_data
+    // addressRef.current = address.address_data;
     addressRef.current.id = address.id
 
     setIsEddit(true);
