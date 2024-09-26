@@ -151,7 +151,6 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
     razonSocial: '',
     direccionFiscal: '',
     correoElectronico: '',
-
   });
 
 

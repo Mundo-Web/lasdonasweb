@@ -8,6 +8,7 @@ use App\Models\General;
 use App\Models\HistoricoCupon;
 use App\Models\Offer;
 use App\Models\Ordenes;
+use App\Models\Person;
 use App\Models\PrecioEnvio;
 use App\Models\Price;
 use App\Models\Products;
@@ -244,6 +245,25 @@ class PaymentController extends Controller
       } catch (\Throwable $th) {
         // dump($th->getMessage());
       }
+
+      try {
+        if (!Auth::user()->person_id && $body['billing']['type'] == 'boleta') {
+          $personJpa = Person::updateOrCreate([
+            'document_type' => 'DNI',
+            'document_number' => $body['billing']['dni']
+          ], [
+            'name' => $body['billing']['name'],
+            'lastname' => $body['billing']['lastname'],
+            'email' => $body['billing']['email'],
+            'phone' => $body['consumer']['phone'],
+          ]);
+          $userJpa = User::find(Auth::user()->id);
+          $userJpa->person_id = $personJpa->id;
+          $userJpa->save();
+        }
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
     } catch (\Throwable $th) {
       $response->status = 400;
       $response->message = $th->getMessage();
@@ -446,6 +466,42 @@ class PaymentController extends Controller
       // ];
       // $indexController->envioCorreoCompra($datacorreo);
 
+      try {
+        $addressJpa = Address::find($body['address']['id'] ?? null);
+        if (!$addressJpa) $addressJpa = new Address();
+
+        $addressJpa->user_id = Auth::user()->id;
+        $addressJpa->address_full = $body['address']['fulladdress'] . ', ' . $body['address']['department'] . ', ' . $body['address']['province'] . ', ' . $body['address']['district'];
+        $addressJpa->address_owner = $body['address']['fullname'];
+        $addressJpa->address_zipcode = $body['address']['postal_code'];
+        $addressJpa->address_latitude = $body['address']['coordinates']['latitude'];
+        $addressJpa->address_longitude = $body['address']['coordinates']['longitude'];
+        $addressJpa->address_data = JSON::stringify($body['address']);
+        $addressJpa->price_amount = $precioEnvio;
+
+        $addressJpa->save();
+      } catch (\Throwable $th) {
+        // dump($th->getMessage());
+      }
+
+      try {
+        if (!Auth::user()->person_id && $body['billing']['type'] == 'boleta') {
+          $personJpa = Person::updateOrCreate([
+            'document_type' => 'DNI',
+            'document_number' => $body['billing']['dni']
+          ], [
+            'name' => $body['billing']['name'],
+            'lastname' => $body['billing']['lastname'],
+            'email' => $body['billing']['email'],
+            'phone' => $body['consumer']['phone'],
+          ]);
+          $userJpa = User::find(Auth::user()->id);
+          $userJpa->person_id = $personJpa->id;
+          $userJpa->save();
+        }
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
     } catch (\Throwable $th) {
       //throw $th;
       $response->status = 400;
