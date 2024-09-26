@@ -41,11 +41,6 @@ class PaymentController extends Controller
     $body['address']['entrega'];
     $fechaEntrega = $body['address']['entrega']['fecha'];
     $horarioEntrega = $body['address']['entrega']['horario'];
-
-
-
-
-
     $sale = new Ordenes();
 
     try {
@@ -231,6 +226,13 @@ class PaymentController extends Controller
 
       // ];
       // $indexController->envioCorreoCompra($datacorreo);
+
+      try {
+        if ($body['address'][])
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
+
     } catch (\Throwable $th) {
       $response->status = 400;
       $response->message = $th->getMessage();

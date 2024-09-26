@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
+const GoogleMapsComponent = ({ managezipCode, addressRef, datosFinales }) => {
   const mapRef = useRef(null);
   const markerRef = useRef(null);
 
@@ -101,6 +101,40 @@ const GoogleMapsComponent = ({ managezipCode, addressRef }) => {
       });
     });
   }, [managezipCode]);
+
+  useEffect(() => {
+    // if (!datosFinales?.address?.id) return;
+
+    const lat = Number(datosFinales.address?.coordinates?.latitude);
+    const lng = Number(datosFinales.address?.coordinates?.longitude);
+    const position = { lat, lng };
+
+    // Borrar el marcador anterior, si existe
+    if (markerRef.current) {
+      markerRef.current.setMap(null);
+    }
+
+    // Crear el nuevo marcador
+    if (lat != 0 || lng != 0) {
+      markerRef.current = new window.google.maps.Marker({
+        position,
+        map: mapRef.current,
+      });
+      mapRef.current.setCenter(position);
+    } else if (lat == 0 && lng == 0) {
+      markerRef.current = new window.google.maps.Marker({
+        map: mapRef.current,
+      });
+      mapRef.current.setCenter({
+        lat: -12.121,
+        lng: -77.029
+      });
+    }
+
+    // Enfocar el mapa en la posición del nuevo marcador
+
+  }, [datosFinales]);
+
 
   return (
     <div>

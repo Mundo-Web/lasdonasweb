@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import Select from 'react-select';
 
 
-function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio }) {
+function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio, datosFinales }) {
 
   const [carrito, setCarrito] = useState(Local.get('carrito') || []);
   const [formState, setFormState] = useState({
@@ -39,6 +39,33 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
     setHandleSend(false)
     handlemodalMaps()
   }
+
+  useEffect(() => {
+    if (Object.keys(datosFinales.address) == 0) setFormState({
+      fullname: '',
+      phone: '',
+      fulladdress: '',
+      street: '',
+      number: '',
+      mz: '',
+      department: '',
+      province: '',
+      district: '',
+      residenceType: '',
+      reference: '',
+      postal_code: '',
+      coordinates: {
+        latitude: 0,
+        longitude: 0
+      },
+      entrega: { fecha: carrito[0].fecha, horario: `${carrito[0].horario.id} ` }
+
+    })
+    else setFormState(old => ({
+      ...datosFinales.address,
+      entrega: { fecha: carrito[0].fecha, horario: `${carrito[0].horario.id} ` }
+    }))
+  }, [datosFinales])
 
   const validateForm = () => {
 
@@ -306,7 +333,7 @@ function AddressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRe
           </div>
         </section>
 
-        {scriptLoaded && <GoogleMapsComponent managezipCode={managezipCode} addressRef={addressRef} />}
+        {scriptLoaded && <GoogleMapsComponent managezipCode={managezipCode} addressRef={addressRef} datosFinales={datosFinales} />}
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full text-neutral-900">
           <div className="md:col-span-2">

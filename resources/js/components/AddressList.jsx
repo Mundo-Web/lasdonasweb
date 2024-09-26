@@ -52,11 +52,7 @@ const AddressList = ({ }) => {
 
 
   const handleEdit = (address) => {
-    // Lógica para editar la dirección
-
-
     addressRef.current = address.address_data;
-
     addressRef.current.id = address.id
 
     setIsEddit(true);
@@ -64,6 +60,7 @@ const AddressList = ({ }) => {
 
   };
   const handlemodalMaps = () => {
+    addressRef.current = null
     setIsModalOpen(!isModalOpen)
   }
 
@@ -201,7 +198,7 @@ const AddressList = ({ }) => {
 
       <ModalGoogle handlemodalMaps={handlemodalMaps} isModalOpen={isModalOpen} tittle={'Dirección de envío'} >
         <NewAdressForm onSelectAddress={onSelectAddress} scriptLoaded={scriptLoaded} handlemodalMaps={handlemodalMaps} setCostoEnvio={setCostoEnvio}
-          address={() => addreses()}
+          addreses={() => addreses()}
           {...(isEddit && { addressRef })}
         />
 

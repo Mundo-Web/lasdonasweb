@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 
 function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio, addreses }) {
 
-
   const [formState, setFormState] = useState({
     fulladdress: addressRef.current?.fulladdress ?? '',
     street: addressRef.current?.street ?? '',
@@ -30,6 +29,30 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
     price: 0,
     id: addressRef.current?.id ?? null
   });
+
+  useEffect(() => {
+    if (addressRef.current?.id == formState.id) return
+    setFormState(old => ({
+      ...old,
+      fulladdress: addressRef.current?.fulladdress ?? '',
+      street: addressRef.current?.street ?? '',
+      number: addressRef.current?.number ?? '',
+      mz: addressRef.current?.mz ?? '',
+      department: addressRef.current?.department ?? '',
+      province: addressRef.current?.province ?? '',
+      district: addressRef.current?.district ?? '',
+      residenceType: addressRef.current?.residenceType ?? '',
+      reference: addressRef.current?.reference ?? '',
+      postal_code: addressRef.current?.postal_code ?? '',
+      coordinates: {
+        latitude: addressRef.current?.coordinates?.latitude ?? 0,
+        longitude: addressRef.current?.coordinates?.longitude ?? 0
+      },
+      price: 0,
+      id: addressRef.current?.id ?? null
+    }))
+  }, [addressRef])
+
   const validateForm = () => {
     const requiredFields = [
       'fulladdress', 'street', 'number', 'mz',
@@ -184,7 +207,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
         showConfirmButton: true,
         confirmButtonText: 'Aceptar',
       })
-
+      location.reload()
     } catch (error) {
       console.error('Error:', error);
     }
@@ -292,7 +315,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
               value={formState.postal_code}
               name="postal_code"
               handleDatosFinales={handlechange}
-            />
+              />
           </div>
         </section>
 

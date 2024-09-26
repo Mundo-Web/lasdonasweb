@@ -113,7 +113,8 @@ class IndexController extends Controller
     }
   }
 
-  public function OfertaSection(Request $request , ?string $filtro = null){
+  public function OfertaSection(Request $request, ?string $filtro = null)
+  {
     $categorias = null;
     $productos = null;
 
@@ -212,8 +213,8 @@ class IndexController extends Controller
     $categorias = null;
     $productos = null;
     $subcategoria = $request->query('subcat');
-    $categoriaSelected= null; 
-    
+    $categoriaSelected = null;
+
 
     // $rangefrom = $request->query('rangefrom');
     // $rangeto = $request->query('rangeto');
@@ -244,7 +245,7 @@ class IndexController extends Controller
         $productos = Products::obtenerProductos($filtro);
 
         $categoria = Category::findOrFail($filtro);
-        if(isset($subcategoria)){
+        if (isset($subcategoria)) {
           $categoriaSelected = Subcategory::where('id', $subcategoria)->first();
         }
       }
@@ -350,11 +351,9 @@ class IndexController extends Controller
       if (Auth::check()) {
         // dump('estamos entrando aca ');
         $usuario = Auth::user()->id;
-        
+
 
         $historicoCupones = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->get();
-      
-
       }
 
 
@@ -521,20 +520,21 @@ class IndexController extends Controller
     $culqi_public_key = env('CULQI_PUBLIC_KEY');
 
     $addresses = [];
-    $hasDefaultAddress = false;
-    /* if (Auth::check()) {
-        $addresses = Address::with([
-          'price',
-          'price.district',
-          'price.district.province',
-          'price.district.province.department'
-        ])
-          ->where('email', $user->email)
-          ->get();
-        $hasDefaultAddress = Address::where('email', $user->email)
-          ->where('isDefault', true)
-          ->exists();
-      } */
+    // $defaultAddress = false;
+    if (Auth::check()) {
+      $addresses = Address::with([
+        'price',
+        // 'price.district',
+        // 'price.district.province',
+        // 'price.district.province.department'
+      ])
+        ->where('user_id', $user->id)
+        ->get();
+      // $defaultAddress = Address::with(['price'])
+      //   ->where('user_id', $user->id)
+      //   ->where('is_default', true)
+      //   ->exists();
+    }
     // $MensajesPredefinidos = MensajesPredefinidos::where('status', '=', 1)->where('visible', '=', 1)->get();
     $greetings = Greeting::where('status', true)->where('visible', true)->get();
 
@@ -549,6 +549,7 @@ class IndexController extends Controller
       'destacados'  => $destacados,
       'culqi_public_key' => $culqi_public_key,
       'addresses' => $addresses,
+      // 'defaultAddress' => $defaultAddress,
       // 'MensajesPredefinidos' => $MensajesPredefinidos,
       'greetings' => $greetings,
       'points' => Auth::check() ? Auth::user()->points : 0,
@@ -655,7 +656,7 @@ class IndexController extends Controller
 
     return Inertia::render('Agradecimiento', [
       'orden_code' => $codigo_orden,
-      'orden' => $ordenJpa, 
+      'orden' => $ordenJpa,
       'general' => $general
     ])->rootView('app');
   }
