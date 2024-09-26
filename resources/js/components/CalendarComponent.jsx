@@ -104,11 +104,9 @@ const CalendarComponent = ({ setDetallePedido, horarios, selectedHorario, setSel
           }
         }
       });
-      console.log(today)
 
       if (isToday) isCampaignDate = true
       if (isTomorrow) isCampaignDate = true
-      // console.log(date)
 
       dates.push(
         <div
