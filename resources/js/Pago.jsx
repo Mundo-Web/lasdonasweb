@@ -388,7 +388,7 @@ const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones,
   const [selectedAddress, setSelectedAddress] = useState(
     addresses.find(x => x.is_default && x.price !== null)?.id
     ?? addresses.filter(x => x.price !== null).sort((a, b) => a.updated_at > b.updated_at ? -1 : 1)?.[0]?.id
-    ?? null
+    ?? 0
   );
 
   useEffect(() => {
