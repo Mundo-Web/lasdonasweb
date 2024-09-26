@@ -554,7 +554,8 @@ class IndexController extends Controller
       'greetings' => $greetings,
       'points' => Auth::check() ? Auth::user()->points : 0,
       'historicoCupones' => $historicoCupones,
-      'general' => $general
+      'general' => $general,
+      'session' => Auth::user()
     ])->rootView('app');
   }
 

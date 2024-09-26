@@ -25,7 +25,7 @@ import ModalSimple from './components/ModalSimple';
 import OrdenConfirmation from './components/OrdenConfirmation';
 import AddressDropdown from './components/Home/AddressDropdown';
 
-const Pago = ({ culqi_public_key, app_name, greetings, points, historicoCupones, general, addresses, defaultAddress }) => {
+const Pago = ({ session, culqi_public_key, app_name, greetings, points, historicoCupones, general, addresses, defaultAddress }) => {
 
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [showDedicatoria, setShowDedicatoria] = useState(false)

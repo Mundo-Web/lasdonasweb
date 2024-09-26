@@ -21,7 +21,7 @@ class User extends Authenticatable
     use HasRoles;
 
 
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -32,17 +32,20 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
-        'users', 
+        'users',
         'points',
         'direccion',
         'departamento',
         'codigo_postal',
         'provincia',
-        'distrito', 
-        'ban', 
+        'distrito',
+        'ban',
         'external_id',
         'external_auth',
-        'avatar'
+        'avatar',
+        'person_id',
+        'birthdate',
+        'relative_id',
     ];
 
     /**
@@ -76,7 +79,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function isAdmin(){
+    public function isAdmin()
+    {
         return $this->hasRole('admin');
     }
 
