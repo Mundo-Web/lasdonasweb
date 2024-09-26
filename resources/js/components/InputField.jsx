@@ -36,7 +36,7 @@ function InputField({ eRef, label, type = "text", value, defaultValue, placehold
         maxLength={type === "number" ? undefined : maxLength}
         min={type === "number" ? min : undefined}
         max={type === "number" ? max : undefined}
-        className={`gap-2 self-stretch px-6 py-4 mt-1 w-full text-sm tracking-wide rounded-2xl border  focus:ring-0 focus:outline-none focus:border-[#336234] ${isError ? 'border-red-500' : 'border-[#BDBDBD]'} max-md:px-5 max-md:max-w-full`}
+        className={`gap-2 self-stretch px-6 py-4 mt-1 w-full text-sm tracking-wide rounded-2xl border  focus:ring-0 focus:outline-none focus:border-[#336234] ${isError ? 'border-red-500' : 'border-[#BDBDBD]'} max-md:px-5 max-md:max-w-full disabled:cursor-not-allowed`}
       />
       {isError && <span className="text-red-500 text-sm mt-1">Este campo es obligatorio</span>}
     </div>
