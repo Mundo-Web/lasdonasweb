@@ -194,9 +194,9 @@ class PaymentController extends Controller
         throw new Exception($res['user_message']);
       }
 
-    /*   dump($charge);
+      /*   dump($charge);
 
-      throw new Exception; */ 
+      throw new Exception; */
 
 
       $response->status = 200;
@@ -228,11 +228,22 @@ class PaymentController extends Controller
       // $indexController->envioCorreoCompra($datacorreo);
 
       try {
-        if ($body['address'][])
-      } catch (\Throwable $th) {
-        //throw $th;
-      }
+        $addressJpa = Address::find($body['address']['id'] ?? null);
+        if (!$addressJpa) $addressJpa = new Address();
 
+        $addressJpa->user_id = Auth::user()->id;
+        $addressJpa->address_full = $body['address']['fulladdress'] . ', ' . $body['address']['department'] . ', ' . $body['address']['province'] . ', ' . $body['address']['district'];
+        $addressJpa->address_owner = $body['address']['fullname'];
+        $addressJpa->address_zipcode = $body['address']['postal_code'];
+        $addressJpa->address_latitude = $body['address']['coordinates']['latitude'];
+        $addressJpa->address_longitude = $body['address']['coordinates']['longitude'];
+        $addressJpa->address_data = JSON::stringify($body['address']);
+        $addressJpa->price_amount = $precioEnvio;
+
+        $addressJpa->save();
+      } catch (\Throwable $th) {
+        // dump($th->getMessage());
+      }
     } catch (\Throwable $th) {
       $response->status = 400;
       $response->message = $th->getMessage();
@@ -301,20 +312,20 @@ class PaymentController extends Controller
         $finalPrice = $productJpa->descuento > 0 ? $productJpa->descuento :  $productJpa->precio;
         $points_used = 0;
         for ($i = 0; $i < $body['cart'][$key]['quantity']; $i++) {
-         
+
           if ($body['cart'][$key]['usePoints'] !== "false" && $restPoints >= $productJpa->puntos_complemento) {
-            
+
             $finalQuantity--;
             $points2discount += $productJpa->puntos_complemento;
             $points_used += $productJpa->puntos_complemento;
             $restPoints -= $productJpa->puntos_complemento;
           } else break;
         }
-        
+
 
 
         $totalCost += $finalPrice * $finalQuantity;
-        
+
         $details[] = [
           'producto_id' => $productJpa->id,
           'name' => $productJpa->producto,
@@ -410,7 +421,7 @@ class PaymentController extends Controller
       $response->status = 200;
       $response->message = "Cargo creado correctamente";
       $response->data = [
-        
+
         'reference_code' => $codigoOrden ?? null,
         'amount' => $totalCost - $descuento,
       ];
@@ -444,7 +455,6 @@ class PaymentController extends Controller
         $sale->codigo_orden = '000000000000';
       }
       $sale->status_id = 2;
-      
     } finally {
 
       $sale->save();
