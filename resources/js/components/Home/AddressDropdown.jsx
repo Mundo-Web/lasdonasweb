@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
 
-export default function AddressDropdown({ addresses, onSelectAddress = () => { }, selected = null, setIsModalOpen = () => {}}) {
+export default function AddressDropdown({ addresses, onSelectAddress = () => { }, selected = null, setIsModalOpen = () => { } }) {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
 
@@ -48,7 +48,13 @@ export default function AddressDropdown({ addresses, onSelectAddress = () => { }
         handleSelectAddress(address)
       }}
     >
-      <p className='line-clamp-2 text-ellipsis mb-1'>{address.address_full}</p>
+        <p className='text-orange-500'>Destinatario: {address.address_data?.fullname ?? 'Sin destinatario'}</p>
+      <p className='line-clamp-2 text-ellipsis mb-1'>
+        {
+          address.is_default == 1 && <i className='mdi mdi-star text-yellow-500 me-1'></i>
+        }
+        {address.address_full}
+        </p>
       {
         hasCobertura
           ? <p className='text-gray-500'>
@@ -65,6 +71,7 @@ export default function AddressDropdown({ addresses, onSelectAddress = () => { }
 
   return (
     <div className="relative inline-block text-left py-[2.5%]" ref={dropdownRef}>
+      <p className='text-gray-500 mb-1'>Selecciona una de tus direcciones o agrega una nueva</p>
       <div>
         <button
           type="button"
@@ -78,7 +85,10 @@ export default function AddressDropdown({ addresses, onSelectAddress = () => { }
                 <ChevronDown className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
               </>
               : selected == 0
-                ? <span className='block px-4 py-2'>Nueva dirección</span>
+                ? <span className='block px-4 py-2'>
+                  Selecciona uno de tus destinatarios
+                  <i className='mdi mdi-chevron-down ms-1'></i>
+                </span>
                 : <>
                   {addressTemplate(addresses.find(x => x.id == selected), false)}
                 </>
@@ -91,7 +101,7 @@ export default function AddressDropdown({ addresses, onSelectAddress = () => { }
         <div className="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
             {addresses.map((address) => addressTemplate(address))}
-            <a
+            {/* <a
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
@@ -100,8 +110,8 @@ export default function AddressDropdown({ addresses, onSelectAddress = () => { }
                 handleAddNewAddress()
               }}
             >
-              Nueva dirección
-            </a>
+              Agregar una nueva dirección
+            </a> */}
           </div>
         </div>
       )}

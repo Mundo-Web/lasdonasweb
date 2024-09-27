@@ -144,9 +144,11 @@ const AddressList = ({ }) => {
                   <li key={address.id} className="py-3 sm:py-4">
                     <div className="flex items-center gap-4">
                       <div className="flex-1 gap-2 min-w-0 text-start">
+                        <p className="text-sm font-medium text-orange-500 mb-2 dark:text-white ">
+                          Destinatario: {address.address_data?.fullname}
+                        </p>
                         <p className="text-sm font-medium text-gray-900 mb-2 dark:text-white ">
                           {address.address_full}
-                          
                         </p>
                         <p className="text-sm text-gray-500  dark:text-gray-400">
                           {address.address_data.street} - {address.address_data.number} - {address.address_data.reference}

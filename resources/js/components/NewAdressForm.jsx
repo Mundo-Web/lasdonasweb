@@ -13,6 +13,8 @@ import Select from 'react-select';
 function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, addressRef = {}, setCostoEnvio, addreses }) {
 
   const [formState, setFormState] = useState({
+    fullname: addressRef.current?.fullname ?? '',
+    phone: addressRef.current?.phone ?? '',
     fulladdress: addressRef.current?.fulladdress ?? '',
     street: addressRef.current?.street ?? '',
     number: addressRef.current?.number ?? '',
@@ -35,6 +37,8 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
     if (addressRef.current?.id == formState.id) return
     setFormState(old => ({
       ...old,
+      fullname: addressRef.current?.fullname ?? '',
+      phone: addressRef.current?.phone ?? '',
       fulladdress: addressRef.current?.fulladdress ?? '',
       street: addressRef.current?.street ?? '',
       number: addressRef.current?.number ?? '',
@@ -191,8 +195,6 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
   }, []);
 
   const handlechange = (e) => {
-    console.log(e)
-    console.log(formState)
     const { name, value } = e.target;
     setFormState((old) => ({
       ...old,
@@ -270,7 +272,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
   return (
     <main className="flex flex-col justify-center self-stretch p-1 text-sm font-bold tracking-wide bg-white rounded-none max-w-[880px] max-md:px-5">
       <form className="flex flex-col w-full">
-        {/* <section className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
           <div className="md:col-span-2">
             <InputField
               required={true}
@@ -296,7 +298,7 @@ function NewAdressForm({ onSelectAddress, scriptLoaded, handlemodalMaps, address
               handleDatosFinales={handlechange}
             />
           </div>
-        </section> */}
+        </section>
 
         {scriptLoaded && <GoogleMapsComponent managezipCode={managezipCode} addressRef={addressRef} />}
 

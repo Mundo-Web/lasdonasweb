@@ -213,7 +213,7 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
   }
 
   const handlemodalMaps = () => {
-
+    setSelectedAddress(0)
     setIsModalOpen(!isModalOpen)
   }
 
@@ -393,9 +393,10 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
   };
 
   const [selectedAddress, setSelectedAddress] = useState(
-    addresses.find(x => x.is_default && x.price !== null)?.id
-    ?? addresses.filter(x => x.price !== null).sort((a, b) => a.updated_at > b.updated_at ? -1 : 1)?.[0]?.id
-    ?? 0
+    addresses.find(x => x.is_default && x.price !== null)?.id ??
+    // ?? addresses.filter(x => x.price !== null).sort((a, b) => a.updated_at > b.updated_at ? -1 : 1)?.[0]?.id
+    // ?? 0
+    0
   );
 
   useEffect(() => {
@@ -521,26 +522,28 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
                   2. Dirección de envío
                 </h2>
 
-                <AddressDropdown addresses={addresses} selected={selectedAddress} onSelectAddress={setSelectedAddress} setIsModalOpen={setIsModalOpen} />
+                {
+                  addresses.length > 0 &&
+                  <>
 
-                {/* {selectedAddress == 0 && <> */}
-                <div type='button' className='text-white bg-green-800 w-full mt-1 p-2 rounded-lg text-center cursor-pointer ' label="Seleccionar dirección" onClick={handlemodalMaps} >{
-                  selectedAddress == 0 ?
+                    <AddressDropdown addresses={addresses} selected={selectedAddress} onSelectAddress={setSelectedAddress} setIsModalOpen={setIsModalOpen} />
+                  </>
+                }
 
-                    <>Seleccionar nueva direccion de envio</>
-                    : selectedAddress == null ?
-                      <>Selecciona una dirección de envío</>
-                      : <>Modificar dirección de envío</>
-                } </div>
+                {/* {selectedAddress <= 0 && <> */}
+                <div type='button' className='text-white bg-green-800 w-full mt-1 p-2 rounded-lg text-center cursor-pointer ' label="Seleccionar dirección" onClick={handlemodalMaps} >Seleccionar direccion de envio </div>
+                {/* </>
+                } */}
                 <ModalGoogle handlemodalMaps={handlemodalMaps} isModalOpen={isModalOpen} tittle={'Dirección de envío'} >
                   <AddressForm onSelectAddress={onSelectAddress} scriptLoaded={scriptLoaded} handlemodalMaps={handlemodalMaps} setCostoEnvio={setCostoEnvio} datosFinales={datosFinales} />
 
                 </ModalGoogle>
-
-                <p className='my-2 text-base font-light'>Direccion: {datosFinales.address?.fulladdress ?? 'Sin direccion'}</p>
-                <p className='my-2 text-base font-light'>Costo de envio: {costoEnvio > 0 ? <>S/ {Number(costoEnvio).toFixed(0)} </> : 'Evaluando'}</p>
-                {/* </>
-                } */}
+                {selectedAddress <= 0 && <>
+                  <p className='mt-2 mb-1 text-base font-light'>Destinatario: {datosFinales?.address?.fullname ?? ''}</p>
+                  <p className='mb-1 text-base font-light'>Direccion: {datosFinales.address?.fulladdress ?? 'Sin direccion'}</p>
+                  <p className='mb-2 text-base font-light'>Costo de envio: {costoEnvio > 0 ? <>S/ {Number(costoEnvio).toFixed(0)} </> : 'Evaluando'}</p>
+                </>
+                }
 
 
               </section>
