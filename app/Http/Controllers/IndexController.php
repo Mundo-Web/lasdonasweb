@@ -540,7 +540,7 @@ class IndexController extends Controller
 
     $general = General::first();
 
-    $session = Auth::user();
+    $session = $user;
     if ($session) {
       $session = User::with(['person'])->where('id', $session->id)->first();
       // $session = User::with(['person'])->find(Auth::user()->id);
