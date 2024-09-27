@@ -540,7 +540,11 @@ class IndexController extends Controller
 
     $general = General::first();
 
-    $session = User::with(['person'])->find(Auth::user()->id);
+    $session = Auth::user();
+    if ($session) {
+      $session = User::with(['person'])->where('id', $session->id)->first();
+      // $session = User::with(['person'])->find(Auth::user()->id);
+    }
 
     $url_env = $_ENV['APP_URL'];
     return Inertia::render('Pago', [
