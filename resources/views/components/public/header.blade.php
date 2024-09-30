@@ -394,8 +394,8 @@
           <div id="open-cart" class="relative inline-block cursor-pointer pr-3">
             <span id="itemsCount"
               class="bg-[#EB5D2C] text-xs font-medium text-white text-center px-[7px] py-[2px]  rounded-full absolute bottom-0 right-0 ml-3">0</span>
-            <img src="{{ asset('img_donas/Group10.png') }}"
-              class="bg-white rounded-lg p-1 max-w-full h-auto cursor-pointer" style="z-index:3" />
+            <img src="{{ asset('img_donas/shopping-cart.svg') }}"
+              class="bg-white rounded-lg p-1 w-[45px] cursor-pointer" style="z-index:3" />
           </div>
         </div>
 
@@ -680,7 +680,7 @@
         <a href="/carrito"
           class="font-normal font-Inter_Medium text-lg bg-[#336234] py-3 px-5 rounded-2xl text-white cursor-pointer w-full 
           inline-block text-center">
-          Ver Carrito</a>
+          Ver</a>
         <button type="button" id="close-cart"
           class="font-normal font-Inter_Medium text-lg bg-[#336234] py-3 px-5 rounded-2xl text-white cursor-pointer w-full 
           inline-block text-center">
