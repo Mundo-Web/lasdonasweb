@@ -375,11 +375,21 @@
                       </div>
                       <div class="flex gap-3 items-start w-full text-neutral-900">
 
+                        <style>
+                          .testimonie-container {
+                            overflow: auto;
+                            max-height: 108px;
+                            /* barra sel scroll mas delgada */
+                            scrollbar-width: thin;
+                            scrollbar-color: #336234 #F3F4F6;
+                            /* Ajusta este valor según tus necesidades */
+                          }
+                        </style>
                         <div class="flex flex-col flex-1 shrink justify-start basis-0 min-w-[280px] text-start">
                           <div class="text-2xl font-bold">{{ $item->name }}</div>
                           <div class="text-xs">Lima - Perú</div>
 
-                          <div class="mt-6 text-sm text-neutral-600">
+                          <div class="mt-6 text-sm text-neutral-600 testimonie-container">
                             {{ $item->testimonie }}
                           </div>
                         </div>
