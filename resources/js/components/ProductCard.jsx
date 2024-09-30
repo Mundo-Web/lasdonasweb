@@ -122,7 +122,7 @@ const ProductCard = (item) => {
           type="button"
           className="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-base hover:bg-[#2d5228] transition-colors duration-300"
         >
-          <span>Agregar a Carrito</span>
+          <span>Ver Producto</span>
 
         </a>
       </div>

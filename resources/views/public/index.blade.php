@@ -306,7 +306,7 @@
     </section>
 
     @if (count($testimonie) > 0)
-      <section class="pt-10 pb-12  lg:py-20 flex flex-col w-full gap-12 relative px-[5%] lg:px-[8%] z-0">
+      <section class="pt-10 pb-12  lg:py-20 flex flex-col w-full gap-12 relative px-[5%] lg:px-[8%] z-0 h-[615px]">
         <div class="w-full">
           <div class="flex flex-col gap-3 text-left font-b_slick_bold">
             <h3 class="text-xl text-[#FE4A11] ">NUESTROS CLIENTES</h3>
@@ -314,52 +314,100 @@
           </div>
         </div>
 
-        <div class="swiper testimonios flex flex-row w-full px-[5%]">
-          <div class="swiper-wrapper">
+        {{-- <div class="swiper testimonios flex flex-row w-full px-[5%] justify-center content-center text-center">
+          <div class="swiper-wrapper flex conten-center justify-center">
             @foreach ($testimonie as $item)
-              <div class="swiper-slide">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
+              <div class="swiper-slide flex justify-center">
+                <div class="grid grid-cols-1 ">
 
-                  <div class="flex flex-col lg:col-span-5 justify-center items-center">
-                    <div
-                      class="w-full h-[500px] 2xl:h-[700px] overflow-hidden relative bg-cover bg-center flex justify-center items-center"
-                      {{-- style="background-image: url('{{ asset('img_donas/testimonios.png') }}');" --}}>
-
-                      <img src="{{ asset($item->img) }}"
-                        class="rounded-none bg-cover w-full h-full object-cover md:object-contain"
-                        onerror="this.onerror=null; this.src='{{ asset('img_donas/testimonios.png') }}';" />
+                  <div class="flex flex-col  justify-center items-center">
+                    <div class="flex flex-row items-center gap-3">
+                      <img class="rounded-full w-12 h-12 object-cover"
+                        src="https://ui-avatars.com/api/?name={{ $item->name }}&color=FFF&background=FE4A11" />
+                      <div>
+                        <h3 class="text-lg font-outfitSemiBold">{{ $item->name }}</h3>
+                        <p class="text-base font-outfitLight">{{ $item->ocupation }}</p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="flex flex-col lg:col-span-7 gap-10 justify-center items-start w-full font-b_slick_bold">
-                    <h2 class="text-3xl lg:text-4xl 2xl:text-5xl leading-none  text-black  text-left line-clamp-6">
+                    <h2 class="text-3xl lg:text-base 2xl:text-base leading-none  text-black  text-left line-clamp-6">
                       {{ $item->testimonie }}
                     </h2>
                     <div class="flex flex-col justify-start items-center">
-                      <div class="flex flex-row items-center gap-3">
-                        <img class="rounded-full w-20 h-20 object-cover"
-                          src="https://ui-avatars.com/api/?name={{ $item->name }}&color=FFF&background=FE4A11" />
-                        <div>
-                          <h3 class="text-lg font-outfitSemiBold">{{ $item->name }}</h3>
-                          <p class="text-base font-outfitLight">{{ $item->ocupation }}</p>
-                        </div>
-                      </div>
+
                     </div>
+                  </div>
+
+
+                  <div
+                    class="w-full h-[200px] 2xl:h-[250px] overflow-hidden relative bg-cover bg-center flex justify-center items-center"
+                    >
+
+                    <img src="{{ asset($item->img) }}"
+                      class="rounded-none bg-cover w-full h-full object-cover md:object-contain"
+                      onerror="this.onerror=null; this.src='{{ asset('img_donas/testimonios.png') }}';" />
+                  </div>
+                  <div class="flex flex-col lg:col-span-7 gap-10 justify-center items-start w-full font-b_slick_bold">
+
                   </div>
 
                 </div>
               </div>
             @endforeach
           </div>
+        </div> --}}
+        <div class="flex flex-row w-full gap-4 items-center mt-[10px]">
+          <div class="swiper testimonios-slider flex items-center justify-center content-center h-[260px] ">
+
+            <div class="swiper-wrapper flex items-center ">
+              @foreach ($testimonie as $item)
+                <div class="swiper-slide flex items-center justify-center content-center " data-aos="fade-up"
+                  data-aos-offset="150">
+
+                  <div class="flex items-center justify-center content-center w-full">
+
+                    <div
+                      class="flex flex-row gap-8 self-stretch px-10 py-9 my-auto bg-white rounded-xl min-w-[240px] shadow-[0px_1px_3px_rgba(16,24,40,0.1)] w-[457px] max-md:px-5 ">
+                      <div class=" w-52">
+                        <img loading="lazy" src="{{ asset($item->img) }}"
+                          class="object-contain shrink-0 w-full h-full aspect-square "
+                          onerror="this.onerror=null; this.src='{{ asset('img_donas/testimonios.png') }}';" />
+                      </div>
+                      <div class="flex gap-3 items-start w-full text-neutral-900">
+
+                        <div class="flex flex-col flex-1 shrink justify-start basis-0 min-w-[280px] text-start">
+                          <div class="text-2xl font-bold">{{ $item->name }}</div>
+                          <div class="text-xs">Lima - Perú</div>
+
+                          <div class="mt-6 text-sm text-neutral-600">
+                            {{ $item->testimonie }}
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+              @endforeach
+
+              <!-- Puedes agregar más slides aquí -->
+            </div>
+            <!-- Agregar controles de navegación si es necesario -->
+
+          </div>
+
         </div>
 
-        <div class="flex flex-row justify-start gap-3 ">
+        <div class="flex flex-row justify-end gap-3 ">
           <div
-            class="prevtestimonio h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+            class="prev-test h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
             <img src="{{ asset('images\prev.png') }}" alt="Prev">
           </div>
           <div
-            class="nexttestimonio h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
+            class="next-test h-10 w-10 rounded-full bg-[#336234] opacity-50 hover:opacity-100 transition-opacity flex content-center items-center justify-center">
             <img src="{{ asset('images\next.png') }}" alt="Next">
           </div>
         </div>
@@ -606,7 +654,7 @@
 
     var swiper = new Swiper(".testimonios", {
       slidesPerView: 1,
-      spaceBetween: 30,
+      spaceBetween: 2,
       loop: true,
       grabCursor: true,
       centeredSlides: false,
@@ -618,15 +666,15 @@
       breakpoints: {
         0: {
           slidesPerView: 1,
-          spaceBetween: 30,
+          spaceBetween: 10,
         },
         768: {
-          slidesPerView: 1,
-          spaceBetween: 30,
+          slidesPerView: 2,
+          spaceBetween: 10,
         },
         1024: {
-          slidesPerView: 1,
-          spaceBetween: 30,
+          slidesPerView: 2,
+          spaceBetween: 10,
         },
       },
 
@@ -654,6 +702,30 @@
         },
       },
 
+    });
+
+    new Swiper(".testimonios-slider", {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      centeredSlides: false,
+      loop: true,
+
+      pagination: {
+        el: ".swiper-pagination-slider-header",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".next-test",
+        prevEl: ".prev-test",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+      },
     });
   </script>
   <script>

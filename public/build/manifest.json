@@ -64,8 +64,8 @@
       "resources/js/components/useOutsideClick.jsx"
     ]
   },
-  "_ProductCard-wN7VOdpQ.js": {
-    "file": "assets/ProductCard-wN7VOdpQ.js",
+  "_ProductCard-wnKStNKu.js": {
+    "file": "assets/ProductCard-wnKStNKu.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx"
@@ -234,7 +234,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-v-pYTT81.css",
+    "file": "assets/app-agXF2ySf.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -376,7 +376,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Catalogo-f2MER7SQ.js",
+    "file": "assets/Catalogo-V2VevuBO.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -385,7 +385,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-wN7VOdpQ.js",
+      "_ProductCard-wnKStNKu.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -530,7 +530,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Oferta-YNK-836m.js",
+    "file": "assets/Oferta-188VUJ33.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -539,7 +539,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-wN7VOdpQ.js",
+      "_ProductCard-wnKStNKu.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -589,7 +589,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-l8HfH6b8.js",
+    "file": "assets/Product-orymBnX1.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -605,7 +605,7 @@
       "_Accordion2-wsHVDhnz.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-wXA00dMN.js",
-      "_ProductCard-wN7VOdpQ.js",
+      "_ProductCard-wnKStNKu.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_index-XJuWVQ-l.js",
@@ -650,7 +650,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/TipoFlor-hRAcZpy2.js",
+    "file": "assets/TipoFlor-NwsExX3M.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -659,7 +659,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-wN7VOdpQ.js",
+      "_ProductCard-wnKStNKu.js",
       "_main-Vi8adC25.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",

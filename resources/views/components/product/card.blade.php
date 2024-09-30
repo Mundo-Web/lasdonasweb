@@ -149,7 +149,7 @@
 <div class="w-full mt-4">
 <a id='btnespecial' href="{{ route('Product.jsx', $item->id) }}" type="button"
 class="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-base hover:bg-[#2d5228] transition-colors duration-300">
-<span>Agregar a Carrito </span>
+<span>Ver Producto </span>
 
 </a>
 </div>

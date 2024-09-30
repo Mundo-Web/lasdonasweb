@@ -680,7 +680,7 @@
         <a href="/carrito"
           class="font-normal font-Inter_Medium text-lg bg-[#336234] py-3 px-5 rounded-2xl text-white cursor-pointer w-full 
           inline-block text-center">
-          Ver</a>
+          Ver Carrito</a>
         <button type="button" id="close-cart"
           class="font-normal font-Inter_Medium text-lg bg-[#336234] py-3 px-5 rounded-2xl text-white cursor-pointer w-full 
           inline-block text-center">
