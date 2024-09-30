@@ -664,7 +664,7 @@
           </svg>
         </div>
       </div>
-      <div class="overflow-y-scroll h-[calc(90vh-200px)] scroll__carrito">
+      <div class="overflow-y-scroll h-[calc(90vh-250px)] scroll__carrito">
         <table class="w-full">
           <tbody id="itemsCarrito">
           </tbody>
@@ -676,10 +676,16 @@
         <p class="font-Inter_Medium font-semibold">Total</p>
         <p class="font-Inter_Medium font-semibold" id="itemsTotal">S/ 0.00</p>
       </div>
-      <div>
+      <div class="flex flex-col gap-2">
         <a href="/carrito"
-          class="font-normal font-Inter_Medium text-lg bg-[#336234] py-3 px-5 rounded-2xl text-white cursor-pointer w-full inline-block text-center">Ver
-          Carrito</a>
+          class="font-normal font-Inter_Medium text-lg bg-[#336234] py-3 px-5 rounded-2xl text-white cursor-pointer w-full 
+          inline-block text-center">
+          Ver Carrito</a>
+        <button type="button" id="close-cart"
+          class="font-normal font-Inter_Medium text-lg bg-[#336234] py-3 px-5 rounded-2xl text-white cursor-pointer w-full 
+          inline-block text-center">
+          Seguir comprando
+        </button>
       </div>
     </div>
   </div>
@@ -731,6 +737,46 @@
     // Tu lógica aquí
   }
 </script>
+
+<style>
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Animación para cerrar el modal hacia la derecha */
+  @keyframes slideOutToRight {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  /* Clases para aplicar las animaciones */
+  .modal-slide-in {
+    animation: slideInFromRight 0.5s forwards;
+  }
+
+  .modal-slide-out {
+    animation: slideOutToRight 0.5s forwards;
+  }
+
+  body.modal-open {
+    overflow: auto !important;
+  }
+</style>
 <script>
   let userPoints = {{ $points }};
   const appUrl = "{{ env('APP_URL') }}"
@@ -741,15 +787,24 @@
   })
 
   $('#open-cart').on('click', () => {
-    $('#cart-modal').modal({
+    $('body').addClass('modal-open');
+    $('#cart-modal').addClass('modal-slide-in').removeClass('modal-slide-out').modal({
       showClose: false,
-      fadeDuration: 100
+      fadeDuration: 200,
+      fadeDelay: 1
     })
+
     $('#cart-modal').css('z-index', 999999);
   })
 
-  $('#close-cart').on('click', () => {
-    $('.jquery-modal.blocker.current').trigger('click')
+  $(document).on('click', '#close-cart', () => {
+    // $('.jquery-modal.blocker.current').trigger('click')
+    $('#cart-modal').addClass('modal-slide-out').removeClass('modal-slide-in');
+    setTimeout(() => {
+      $('.jquery-modal.blocker.current').trigger('click')
+      $('body').removeClass('modal-open');
+    }, 500);
+
   })
 
   function mostrarTotalItems() {

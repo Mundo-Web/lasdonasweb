@@ -306,6 +306,7 @@ const Product = ({
           $(cartButton).addClass('shake');
           setTimeout(function () {
             $(cartButton).removeClass('shake');
+            $('#open-cart').click();
           }, 1000)
         }, 1000);
 
