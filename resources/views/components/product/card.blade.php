@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
   /* From Uiverse.io by ferlagher */
   #btnespecial {
     position: relative;
@@ -34,7 +34,7 @@
 
     transform: translate(0.1em, 0.1em);
   }
-</style>
+</style> --}}
 {{-- box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3); --}}
 @php
   $maxPrice = 0;
@@ -149,8 +149,8 @@
 <div class="w-full mt-4">
 <a id='btnespecial' href="{{ route('Product.jsx', $item->id) }}" type="button"
 class="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-base hover:bg-[#2d5228] transition-colors duration-300">
-<span>Ver producto</span>
-<i class="ml-2 fa-solid fa-arrow-right"></i>
+<span>Agregar a Carrito </span>
+
 </a>
 </div>
 </div>
