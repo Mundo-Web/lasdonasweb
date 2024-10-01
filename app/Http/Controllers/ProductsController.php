@@ -369,7 +369,8 @@ class ProductsController extends Controller
           'categoria_id' => $productoParent->categoria_id,
           'tipo_prodct' => $arrayConvertido['tipo_prodct'],
           'parent_id' => $productoParent->id,
-          'tipo_servicio' => 'complemento'
+          'tipo_servicio' => 'complemento',
+          'descripcion_dinamica' => $arrayConvertido['descripcion_dinamica'],
         ];
 
         if ($actualizacion && isset($value['id'])) {

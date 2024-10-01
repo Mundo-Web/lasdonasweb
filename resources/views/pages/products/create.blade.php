@@ -453,7 +453,7 @@
                   </div>
 
                   <div class="col-span-1 md:col-span-2 lg:col-span-3 mt-2">
-                    <label for="extract">Extracto</label>
+                    <label for="extract">Extracto (Este se vera en el card del producto)</label>
                     <div class="relative mb-2 mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <i class="fa fa-pencil"></i>
@@ -464,6 +464,18 @@
                       @error('extract')
                         <div class="text-red-500">{{ $message }}</div>
                       @enderror
+                    </div>
+                  </div>
+                  <div class="md:col-span-5 mt-2">
+                    <label for="extract">Extracto Dinamico (Este se vera en el detalle del producto)</label>
+                    <div class="relative mb-2 mt-2">
+                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fa fa-pencil text-gray-500 dark:text-gray-400"></i>
+                      </div>
+                      <input type="text" id="descripcion_dinamica" name="descripcion_dinamica"
+                        value="{{ $product->descripcion_dinamica }}"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Extracto dinamico">
                     </div>
                   </div>
 
@@ -989,7 +1001,19 @@
 
         </div>
 
-
+          <div class="md:col-span-5 mt-2">
+                  <label for="extract">Extracto Dinamico (Este se vera en el detalle del producto)</label>
+                  <div class="relative mb-2 mt-2">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <i class="fa fa-pencil text-gray-500 dark:text-gray-400"></i>
+                    </div>
+                    <input type="text" id="opcion-form-descripcion_dinamica-${idContenido}"
+                      data-name="descripcion_dinamica" name="opcion-form-descripcion_dinamica-${idContenido}"
+                      
+                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Extracto dinamico">
+                  </div>
+                </div>
 
         
 

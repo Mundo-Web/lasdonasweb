@@ -424,7 +424,7 @@
 
                   <!-- Extracto -->
                   <div class="md:col-span-5 mt-2">
-                    <label for="extract">Extracto</label>
+                    <label for="extract">Extracto (Este se vera en el card del producto)</label>
                     <div class="relative mb-2 mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <i class="fa fa-pencil text-gray-500 dark:text-gray-400"></i>
@@ -432,6 +432,18 @@
                       <input type="text" id="extract" name="extract" value="{{ $product->extract }}"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Extracto">
+                    </div>
+                  </div>
+                  <div class="md:col-span-5 mt-2">
+                    <label for="extract">Extracto Dinamico (Este se vera en el detalle del producto)</label>
+                    <div class="relative mb-2 mt-2">
+                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fa fa-pencil text-gray-500 dark:text-gray-400"></i>
+                      </div>
+                      <input type="text" id="descripcion_dinamica" name="descripcion_dinamica"
+                        value="{{ $product->descripcion_dinamica }}"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Extracto dinamico">
                     </div>
                   </div>
 
@@ -844,7 +856,7 @@
           <div class="  rounded shadow-xl p-4 px-4 " id="OpcionesContainer">
             {{-- inicio foreach --}}
             @foreach ($subproductos as $subproducto)
-              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5"
+              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 mt-6"
                 id="div-form-opcion-{{ $subproducto->id }}">
 
                 <div class="md:col-span-5">
@@ -960,8 +972,21 @@
 
 
 
-
                 <div class="md:col-span-5 mt-2">
+                  <label for="extract">Extracto Dinamico (Este se vera en el detalle del producto)</label>
+                  <div class="relative mb-2 mt-2">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <i class="fa fa-pencil text-gray-500 dark:text-gray-400"></i>
+                    </div>
+                    <input type="text" id="opcion-form-descripcion_dinamica-{{ $subproducto->id }}"
+                      data-name="descripcion_dinamica" name="opcion-form-descripcion_dinamica-{{ $subproducto->id }}"
+                      value="{{ $subproducto->descripcion_dinamica }}"
+                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Extracto dinamico">
+                  </div>
+                </div>
+                <div class="md:col-span-5 mt-2">
+
                   <div>
 
                     <div id="quill-opcion-{{ $subproducto->id }}" name="quill-opcion-{{ $subproducto->id }}"
