@@ -525,14 +525,51 @@ const Product = ({
 
               </div>
 
+              <div className="text-left  space-y-4 col-span-3">
+
+                <div className="text-white font-semibold pb-6 md:space-x-6 space-y-3 text-[14px]">
+                  <button type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Descripción del producto</button>
+                  <button onClick={openPoliticaEnvio} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Políticas de envío</button>
+                  <button onClick={togleModalSustitucion} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Políticas de sustitución</button>
+                </div>
+
+                <div id="containerDetalles">
+                  {/* {!! $productos->description !!} */}
+
+                  <div dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
+
+
+                </div>
+
+
+
+                <div className='flex flex-col'>
+                  {currentProduct.especificaciones.map((item, index) => (
+                    <div
+                      key={index}
+                      className={`w-[488px] max-w-full min-h-12 px-4 py-2 grid grid-cols-3 content-between justify-between items-center ${index % 2 === 0 ? 'bg-[#DBDED6]' : 'bg-[#e8eddee5]'}`}
+                    >
+                      <span className='col-span-1 flex flex-row content-between justify-between px-4'><div className='font-bold'>{item.tittle} </div> </span> <div className='col-span-2 w-full'>{item.specifications}</div>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+
             </div>
 
 
             <div className=''>
 
+
               <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase hidden lg:flex">{currentProduct.producto}</h2>
-              <p className='pb-6 text-[16px] font-b_classic_regular'>{currentProduct.extract}</p>
-              <p className="text-2xl  font-bold text-black pb-6 mt-5 lg:mt-0">Paso 1: Selecciona un horario</p>
+              <p className='pb-6 text-[16px] font-b_slick_regular'>{currentProduct.descripcion_dinamica}</p>
+              <div className="text-2xl  font-b_slick_regular text-black pb-6 mt-5 lg:mt-0 flex flex-row gap-2 items-center">
+                <div className={`w-8 h-8 rounded-full pt-1 bg-[#FF7F50] text-white flex items-center justify-center text-lg font-bold`} >1 </div>
+                <div className='pt-2'>
+                  Elige un dia y rango de entrega
+                </div>
+              </div>
 
 
 
@@ -685,7 +722,15 @@ const Product = ({
 
 
 
-              <p className="text-2xl  font-bold text-black pb-6">Paso 2: Elige tu opcion favorita</p>
+              <div className="text-2xl  font-b_slick_regular text-black py-6 flex flex-row gap-2 items-center ">
+                <div className={`w-8 h-8 rounded-full pt-1 bg-[#FF7F50] text-white flex items-center justify-center text-lg font-bold`} >2
+
+                </div>
+                <div className='pt-2'>
+                  Escoge el tamaño perfecto para sorprender
+                </div>
+
+              </div>
 
               <div className="flex flex-row justify-between gap-3 md:gap-7 lg:gap-5 xl:gap-7 pb-8">
                 <ul className=" w-full gap-6 ">
@@ -852,8 +897,14 @@ const Product = ({
 
               */}
               <div className='relative z-1'>
-                <p className="text-2xl font-bold text-black pb-2">Paso 3: Incluye una imagen en tu dedicatoria (Opcional)</p>
-                <p className="text-lg font-normal text-black pb-4">Personaliza con una foto:</p>
+                <div className="text-2xl  font-b_slick_regular text-black pb-6 flex flex-row gap-2 items-center">
+                  <div className={`w-8 h-8 rounded-full pt-1 bg-[#FF7F50] text-white flex items-center justify-center text-lg font-bold`} > 3 </div>
+                  <div className='pt-2'>
+                    Agrega una fotografía a tu dedicatoria (opc)
+                  </div>
+
+                </div>
+
 
                 <div className="flex items-center justify-center w-full pb-8">
                   <div className="flex flex-col items-start justify-start w-full">
@@ -862,14 +913,13 @@ const Product = ({
                     ) : (
                       <label
                         htmlFor="dropzone-file"
-                        className="relative flex flex-col items-center justify-center w-full h-full py-3 border-2 border-[#73B473] border-dashed rounded-lg cursor-pointer bg-white"
+                        className="relative  flex flex-col items-center justify-center w-full h-full py-3 border-2 border-[#73B473] border-dashed rounded-lg cursor-pointer bg-white" style={{ alignItems: 'align-items: center' }}
                       >
                         <div className="flex flex-col pt-5 pb-6">
                           <div className="flex items-center justify-center">
-                            <img src="/img_donas/image-up.svg" alt="Upload" />
+                            <img src="/img_donas/image-up.svg" alt="Upload" className='w-20 h-20' />
                             <p className="mb-2 text-base text-center text-[#73B473]">
-                              <span>Agregar fotografía</span> <br /> o <br />
-                              Arrastre aquí su fotografía
+                              <span>Cargar Imagen</span>
                             </p>
                           </div>
                         </div>
@@ -898,7 +948,88 @@ const Product = ({
                 )}
               </div>
 
-              {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-[253px] h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
+
+
+              <div className="text-2xl  font-b_slick_regular text-black pb-6 flex flex-row gap-2 items-center">
+                <div className={`w-8 h-8 rounded-full pt-1 bg-[#FF7F50] text-white flex items-center justify-center text-lg font-bold`} > 4 </div>
+                <div className='pt-2'>
+                  Complementa tu pedido (opcional)
+                </div>
+
+
+              </div>
+              <div className="grid grid-cols-3 gap-4 justify-start items-start">
+                {/* Swiper: Ocupa toda la fila */}
+                <div className="w-full mt-4 col-span-2">
+                  <Swiper
+                    className="img-complementarias h-full"
+                    spaceBetween={25}
+                    loop={false}
+                    centeredSlides={false}
+                    initialSlide={0}
+                    allowTouchMove={true}
+                    pagination={{
+                      clickable: true,
+                    }}
+                    modules={[Pagination]}
+                    autoplay={{
+                      delay: 5500,
+                      disableOnInteraction: true,
+                      pauseOnMouseEnter: true,
+                    }}
+                    breakpoints={{
+                      0: {
+                        slidesPerView: 2,   // Pantallas muy pequeñas
+                        centeredSlides: false,
+                        loop: true,
+                      },
+                      640: {
+                        slidesPerView: 2,   // Pantallas pequeñas
+                      },
+                      768: {
+                        slidesPerView: 2,
+                        delay: 5500,
+                        disableOnInteraction: true,
+                        pauseOnMouseEnter: true, // Tablets
+                      },
+                      1024: {
+                        slidesPerView: 2,
+                        delay: 5500,
+                        disableOnInteraction: true,
+                        pauseOnMouseEnter: true,    // Laptops
+                      },
+                      1280: {
+                        slidesPerView: 2,
+                        delay: 5500,
+                        disableOnInteraction: true,
+                        pauseOnMouseEnter: true,
+                        // Desktops grandes (Swiper toma 5 columnas)
+                      },
+                    }}
+                    style={{ zIndex: 0 }}
+                  >
+                    {complementos.map((complemento, index) => (
+                      <SwiperSlide key={index} className='self-start'>
+                        <ComplementCard {...complemento} onChange={handleCheckboxChange} />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+
+                {/* Botón de "Ver más" alineado debajo */}
+                <div className="w-full flex justify-start mt-4 col-span-1 h-[191px]">
+                  <button
+                    type="button"
+                    className="flex items-center flex-col justify-center bg-white text-[#ff7344] px-4 py-2 rounded-lg border border-[#ff7344] hover:text-white hover:bg-[#ff7344]"
+                    onClick={() => openModalComplementos(complementosAcordion)}
+                  >
+                    <img src="/img_donas/regalo.svg" alt="Regalo" className="w-24 h-24 " />
+                    Ver más complementos
+                  </button>
+                </div>
+              </div>
+
+              {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-full h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                 onClick={agregarPedido}
               >
                 Agregar al carrito
@@ -911,105 +1042,13 @@ const Product = ({
         </section>
         <section>
           <div className="px-[5%] pt-16 pb-0 space-y-10">
-            <div className="text-left  space-y-4">
 
-              <div className="text-white font-semibold pb-6 md:space-x-6 space-y-3">
-                <button type="button" className="bg-[#336234] px-6 py-3 rounded-full h-[56px]">Descripción del producto</button>
-                <button onClick={openPoliticaEnvio} type="button" className="bg-[#336234] px-6 py-3 rounded-full h-[56px]">Políticas de envío</button>
-                <button onClick={togleModalSustitucion} type="button" className="bg-[#336234] px-6 py-3 rounded-full h-[56px]">Políticas de sustitución</button>
-              </div>
-
-              <div id="containerDetalles">
-                {/* {!! $productos->description !!} */}
-
-                <div dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
-
-
-              </div>
-
-
-
-              <div className='flex flex-col'>
-                {currentProduct.especificaciones.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`w-[488px] max-w-full h-12 px-4 flex flex-row content-between justify-between items-center ${index % 2 === 0 ? 'bg-[#DBDED6]' : 'bg-[#e8eddee5]'}`}
-                  >
-                    <span className='flex flex-row content-between justify-between px-4'><div className='font-bold'>{item.tittle} </div> </span> <div>{item.specifications}</div>
-                  </div>
-                ))}
-              </div>
-
-            </div>
           </div>
 
         </section>
 
 
-        <section className="px-[5%] pt-2">
-          <p className="text-2xl font-bold text-black pb-2">Complementar al pedido (opcional)</p>
-          <div className="grid grid-cols-1 gap-4 justify-start items-start">
-            {/* Swiper: Ocupa toda la fila */}
-            <div className="w-full mt-4">
-              <Swiper
-                className="img-complementarias h-full"
-                spaceBetween={25}
-                loop={false}
-                centeredSlides={false}
-                initialSlide={0}
-                allowTouchMove={true}
-                pagination={{
-                  clickable: true,
-                }}
-                modules={[Pagination]}
-                autoplay={{
-                  delay: 5500,
-                  disableOnInteraction: true,
-                  pauseOnMouseEnter: true,
-                }}
-                breakpoints={{
-                  0: {
-                    slidesPerView: 2,   // Pantallas muy pequeñas
-                    centeredSlides: false,
-                    loop: true,
-                  },
-                  640: {
-                    slidesPerView: 2,   // Pantallas pequeñas
-                  },
-                  768: {
-                    slidesPerView: 3,   // Tablets
-                  },
-                  1024: {
-                    slidesPerView: 4,   // Laptops
-                  },
-                  1280: {
-                    slidesPerView: 5,   // Desktops grandes (Swiper toma 5 columnas)
-                  },
-                }}
-                style={{ zIndex: 0 }}
-              >
-                {complementos.map((complemento, index) => (
-                  <SwiperSlide key={index} className='self-start'>
-                    <ComplementCard {...complemento} onChange={handleCheckboxChange} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
 
-            {/* Botón de "Ver más" alineado debajo */}
-            <div className="w-full flex justify-start mt-4">
-              <button
-                type="button"
-                className="flex items-center bg-white text-[#ff7344] px-4 py-2 rounded-lg border border-[#ff7344] hover:text-white hover:bg-[#ff7344]"
-                onClick={() => openModalComplementos(complementosAcordion)}
-              >
-                <img src="/img_donas/regalo.svg" alt="Regalo" className="w-5 h-5 mr-2" />
-                Ver más complementos
-              </button>
-            </div>
-          </div>
-
-        </section>
 
 
 
