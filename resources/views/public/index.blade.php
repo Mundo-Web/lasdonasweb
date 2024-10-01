@@ -357,7 +357,7 @@
           </div>
         </div> --}}
         <div class="flex flex-row w-full gap-4 items-center mt-[10px]">
-          <div class="swiper testimonios-slider flex items-center justify-center content-center h-[260px] ">
+          <div class="swiper testimonios-slider flex items-center justify-center content-center h-[270px] ">
 
             <div class="swiper-wrapper flex items-center ">
               @foreach ($testimonie as $item)
@@ -367,7 +367,7 @@
                   <div class="flex items-center justify-center content-center w-full">
 
                     <div
-                      class="flex flex-row gap-8 self-stretch px-10 py-9 my-auto bg-white rounded-xl min-w-[240px] shadow-[0px_1px_3px_rgba(16,24,40,0.1)] w-[457px] max-md:px-5 ">
+                      class="flex flex-row gap-8 self-stretch px-10 py-9 my-auto bg-white rounded-xl min-w-[250px] shadow-[0px_1px_3px_rgba(16,24,40,0.1)] w-[457px] max-md:px-5 ">
                       <div class=" w-52">
                         <img loading="lazy" src="{{ asset($item->img) }}"
                           class="object-contain shrink-0 w-full h-full aspect-square "
@@ -378,7 +378,7 @@
                         <style>
                           .testimonie-container {
                             overflow: auto;
-                            max-height: 108px;
+                            max-height: 130px;
                             /* barra sel scroll mas delgada */
                             scrollbar-width: thin;
                             scrollbar-color: #336234 #F3F4F6;
@@ -386,10 +386,10 @@
                           }
                         </style>
                         <div class="flex flex-col flex-1 shrink justify-start basis-0 min-w-[280px] text-start">
-                          <div class="text-2xl font-bold">{{ $item->name }}</div>
-                          <div class="text-xs">Lima - Perú</div>
+                          <div class="text-2xl font-b_slick_bold">{{ $item->name }}</div>
+                          <div class="text-xs font-b_slick_regular">Lima - Perú</div>
 
-                          <div class="mt-6 text-sm text-neutral-600 testimonie-container">
+                          <div class="mt-6 text-sm text-neutral-600 testimonie-container font-b_slick_bold">
                             {{ $item->testimonie }}
                           </div>
                         </div>

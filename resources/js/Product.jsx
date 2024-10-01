@@ -531,6 +531,7 @@ const Product = ({
             <div className=''>
 
               <h2 className="text-4xl md:text-5xl font-bold text-black pb-8 uppercase hidden lg:flex">{currentProduct.producto}</h2>
+              <p className='pb-6 text-[16px] font-b_classic_regular'>{currentProduct.extract}</p>
               <p className="text-2xl  font-bold text-black pb-6 mt-5 lg:mt-0">Paso 1: Selecciona un horario</p>
 
 

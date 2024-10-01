@@ -38,7 +38,8 @@ class Products extends Model
         'uppsell',
         'complementos',
         'tipo_flor_id', 
-        'subcategory_id'
+        'subcategory_id', 
+        'descripcion_dinamica'
     ];
 
     public function tipos()
