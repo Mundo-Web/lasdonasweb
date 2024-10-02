@@ -70,7 +70,7 @@ const Product = ({
   const [loadListHorariosHoy, setLoadListHorariosHoy] = useState(false);
   const [loadListHorariosManana, setLoadListHorariosManana] = useState(false);
   const [modalCalendario, setModalCalendario] = useState(false);
-  console.log(horariosHoy)
+
 
   const horariosHoyF = horariosHoy.filter((item) => {
 
@@ -81,7 +81,7 @@ const Product = ({
     const zonedNow = toZonedTime(now, timeZone);
     const horaActual = format(zonedNow, 'HH:mm:ss');
 
-    console.log(horaActual)
+
 
     const horaInicio = item.start_time.trim();
     const horaFin = item.end_time.trim();
@@ -97,7 +97,7 @@ const Product = ({
 
     const horaLimite = dateInicio.toTimeString().split(' ')[0];
 
-    console.log(horaLimite, horaActual, horaInicio)
+
 
     return (horaLimite > horaActual) || (horaActual < horaInicio);
   });
@@ -718,14 +718,50 @@ const Product = ({
               }
               <div className='md:hidden flex flex-col'>
 
-                {!selectedHorario && (<AccordionHorarios
-                  id="hoy"
-                  horarios={horariosHoyF}
-                  selectedHorario={selectedHorario}
-                  setSelectedHorario={setSelectedHorario}
-                  setDetallePedido={setDetallePedido}
-                  setSelectedDate={setSelectedDate}
-                  setLoadListHorarios={setLoadListHorariosHoy} />)}
+                {!selectedHorario && (
+
+                  <>
+                    <AccordionHorarios
+                      id="hoy"
+                      date={tomorrowDate}
+                      horarios={{ horariosHoyF, horarios }}
+                      selectedHorario={selectedHorario}
+                      setSelectedHorario={setSelectedHorario}
+                      setDetallePedido={setDetallePedido}
+                      setSelectedDate={setSelectedDate}
+                      setLoadListHorarios={setLoadListHorariosHoy}
+
+                      detallePedido={detallePedido}
+                    />
+
+                    <div
+
+                      onClick={openModalCalendario}
+                      className={`hover:text-[#73B473]  hover:border-[#73B473] flex cursor-pointer flex-col justify-center items-center  
+                          text-center w-full  border-2 px-3 py-4 
+                        ${detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && detallePedido.fecha !== '' ? 'text-[#73B473] border-[#73B473]  ' : 'text-gray-400 border-[#E8EDDE]'} `}>
+                      <p className="text-lg font-bold m-auto">Más fechas</p>
+                      <div className='mt-2'>
+
+                        {
+
+                          selectedHorario && detallePedido.fecha !== 'hoy' && detallePedido.fecha !== 'manana' && (
+                            <>
+                              {(() => {
+                                const selectedHorarioItem = horarios.find((item) => item.id === selectedHorario);
+                                if (selectedHorarioItem) {
+                                  return `${formatTime(selectedHorarioItem.start_time)} - ${formatTime(selectedHorarioItem.end_time)}`;
+                                }
+                                return null;
+                              })()}
+                            </>
+                          )
+                        }
+                      </div>
+                    </div>
+                  </>
+                )}
+
 
 
               </div>
