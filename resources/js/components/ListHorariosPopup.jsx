@@ -37,26 +37,30 @@ const ListHorariosPopup = ({ id, horarios, selectedHorario, setSelectedHorario, 
 
 
   return (
-    <div className={clase}>
+    <div className={`${clase} h-max`}>
       <Swiper
         spaceBetween={10}
         slidesPerView={3}
         pagination={{ clickable: true }}
         breakpoints={{
           0: {
-            slidesPerView: 2,
+            slidesPerView: 1,
+            direction: 'vertical',
+
           },
           768: {
             slidesPerView: 2,
+            direction: 'horizontal',
           },
           1024: {
             slidesPerView: 3,
+            direction: 'horizontal',
           },
         }}
       >
         {horarios.map((item, index) => (
-          <SwiperSlide key={item.id}>
-            <li className="list-none w-full">
+          <SwiperSlide key={item.id} className='overflow-hidden max-h-[50px] w-full'>
+            <li className="list-none w-full h-full">
               <input
                 type="radio"
                 id={`horario-option-${item.id}`}
