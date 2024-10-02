@@ -37,57 +37,92 @@ const ListHorariosPopup = ({ id, horarios, selectedHorario, setSelectedHorario, 
 
 
   return (
-    <div className={`${clase} h-max`}>
-      <Swiper
-        spaceBetween={10}
-        slidesPerView={3}
-        pagination={{ clickable: true }}
-        breakpoints={{
-          0: {
-            slidesPerView: 1,
-            direction: 'vertical',
 
-          },
-          768: {
-            slidesPerView: 2,
-            direction: 'horizontal',
-          },
-          1024: {
-            slidesPerView: 3,
-            direction: 'horizontal',
-          },
-        }}
-      >
-        {horarios.map((item, index) => (
-          <SwiperSlide key={item.id} className='overflow-hidden max-h-[50px] w-full'>
-            <li className="list-none w-full h-full">
-              <input
-                type="radio"
-                id={`horario-option-${item.id}`}
-                name="horario"
-                value={item.id}
-                className="hidden peer"
-                checked={selectedHorario === item.id}
-                onChange={() => handleRadioChange(item.id)}
-                required
-              />
-              <label
-                htmlFor={`horario-option-${item.id}`}
-                className={`justify-center radio-option-label inline-flex items-center w-full text-white pt-3 pb-2 border-2 border-[#73B473] rounded-lg cursor-pointer
+    <>
+      <div className={`${clase} h-max max-h-[50px] overflow-hidden `}>
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={3}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            0: {
+              slidesPerView: 3,
+              direction: 'vertical',
+
+            },
+            768: {
+              slidesPerView: 2,
+              direction: 'horizontal',
+            },
+            1024: {
+              slidesPerView: 3,
+              direction: 'horizontal',
+            },
+          }}
+        >
+          {horarios.map((item, index) => (
+            <SwiperSlide key={item.id} className='overflow-hidden max-h-[50px] w-full'>
+              <li className="list-none w-full h-max">
+                <input
+                  type="radio"
+                  id={`horario-option-${item.id}`}
+                  name="horario"
+                  value={item.id}
+                  className="hidden peer"
+                  checked={selectedHorario === item.id}
+                  onChange={() => handleRadioChange(item.id)}
+                  required
+                />
+                <label
+                  htmlFor={`horario-option-${item.id}`}
+                  className={`justify-center radio-option-label inline-flex items-center w-full text-white pt-3 pb-2 border-2 border-[#73B473] rounded-lg cursor-pointer
                   ${selectedHorario === item.id ? 'bg-[#73B473] text-white' : 'text-[#73B473] bg-white'}
                   hover:text-[#73B473] hover:bg-[#73B473] `}
-              >
-                <div className="flex flex-col justify-center items-center text-center">
-                  <p className={`flex content-center justify-center text-base  font-semibold text-center ${selectedHorario === item.id ? "text-white" : "text-gray-400 "}`}>
-                    {formatTime(item.start_time)}-{formatTime(item.end_time)}
-                  </p>
-                </div>
-              </label>
-            </li>
-          </SwiperSlide>
+                >
+                  <div className="flex flex-col justify-center items-center text-center">
+                    <p className={`flex content-center justify-center text-base  font-semibold text-center ${selectedHorario === item.id ? "text-white" : "text-gray-400 "}`}>
+                      {formatTime(item.start_time)}-{formatTime(item.end_time)}
+                    </p>
+                  </div>
+                </label>
+              </li>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className='md:hidden '>
+        {horarios.map((item, index) => (
+
+          <li className="list-none w-full h-max mt-2">
+            <input
+              type="radio"
+              id={`horario-option-${item.id}`}
+              name="horario"
+              value={item.id}
+              className="hidden peer"
+              checked={selectedHorario === item.id}
+              onChange={() => handleRadioChange(item.id)}
+              required
+            />
+            <label
+              htmlFor={`horario-option-${item.id}`}
+              className={`justify-center radio-option-label inline-flex items-center w-full text-white pt-3 pb-2 border-2 border-[#73B473] rounded-lg cursor-pointer
+                  ${selectedHorario === item.id ? 'bg-[#73B473] text-white' : 'text-[#73B473] bg-white'}
+                  hover:text-[#73B473] hover:bg-[#73B473] `}
+            >
+              <div className="flex flex-col justify-center items-center text-center">
+                <p className={`flex content-center justify-center text-base  font-semibold text-center ${selectedHorario === item.id ? "text-white" : "text-gray-400 "}`}>
+                  {formatTime(item.start_time)}-{formatTime(item.end_time)}
+                </p>
+              </div>
+            </label>
+          </li>
+
         ))}
-      </Swiper>
-    </div>
+
+      </div>
+    </>
+
   );
 };
 
