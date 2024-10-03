@@ -4,16 +4,17 @@ import React from "react"
 const ComplementCard = ({ onChange, ...complemento }) => {
   let carrito = Local.get('carrito') ?? [];
   const found = carrito.findIndex(x => x.id == complemento.id) != -1
+  const uuid = "option-" + complemento.id + "-" + crypto.randomUUID()
 
   return <div className="m-auto w-full max-w-48">
     <label
-      htmlFor={`react-option-${complemento.id}`}
+      htmlFor={uuid}
       className="flex items-center justify-between bg-white rounded-lg cursor-pointer shadow-md border w-full"
     >
       <div className="block w-full relative z-0">
         <input
           type="checkbox"
-          id={`react-option-${complemento.id}`}
+          id={uuid}
           name="complementos[]"
           className="peer absolute top-3 left-3 w-5 h-5 border-orange-400  accent-rosalasdonasborder-orange-400 checked:border-orange-400  outline-orange-400 checked:bg-orange-400 hover:checked:bg-orange-400 hover:border-orange-400 hover:bg-orange-400
                                focus:border-orange-400 rounded-md shadow-md focus:checked:bg-orange-400 focus:checked:border-orange-400  focus:bg-orange-400"

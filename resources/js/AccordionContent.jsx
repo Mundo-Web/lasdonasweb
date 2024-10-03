@@ -31,7 +31,23 @@ const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => {
   }
   const handleCheckboxChange = async (e, id, complemento) => {
 
-    const points = Number($('[data-id="txt-user-points"]').text()) || 0
+    const points = Number($('[data-id="txt-user-points"]').text()) ||
+
+      console.log('change')
+    $(`[id^="option-${id}"]`).prop('checked', e.target.checked);
+    /*  const elements = document.querySelectorAll(`[id="option-${id}"]`);
+ 
+ 
+     console.log(e.target.checked);
+ 
+     elements.forEach(element => {
+       element.checked = e.target.checked ? true : false;
+     }); */
+
+
+
+
+
 
     console.log(complemento)
 
@@ -100,15 +116,30 @@ const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => {
           }],
         };
         //agrega
-        let precio = Number(complemento.descuento > 0 ? complemento.descuento : complemento.precio)
-        console.log(Number(precio), vcomplementos.current)
-        vcomplementos.current = Number(precio) + vcomplementos.current
+        if (e.target.checked) {
+          console.log('agregado');
+
+          let precio = Number(complemento.descuento > 0 ? complemento.descuento : complemento.precio)
+          console.log(Number(precio), vcomplementos.current)
+          vcomplementos.current = Number(precio) + vcomplementos.current
+        } else {
+          console.log('eliminado')
+          let precio = Number(complemento.descuento > 0 ? complemento.descuento : complemento.precio)
+          console.log(Number(precio), vcomplementos.current)
+          vcomplementos.current = vcomplementos.current - Number(precio)
+        }
+
       } else {
 
+        if (!e.target.checked) {
+          console.log('eliminado')
+          let precio = Number(complemento.descuento > 0 ? complemento.descuento : complemento.precio)
+          console.log(Number(precio), vcomplementos.current)
+          vcomplementos.current = vcomplementos.current - Number(precio)
+        }
         //elimina
-        let precio = Number(complemento.descuento > 0 ? complemento.descuento : complemento.precio)
-        console.log(Number(precio), vcomplementos.current)
-        vcomplementos.current = vcomplementos.current - Number(precio)
+
+
         newDetalle = {
           ...prev,
           complementos: prev.complementos.filter((complemento) => complemento.id !== id),
