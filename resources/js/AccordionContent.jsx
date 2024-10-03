@@ -7,7 +7,7 @@ import { deleteOnCarBtnR, deleteItemR } from './Utils/carritoR';
 
 
 
-const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => { } }) => {
+const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => { }, detallePedido, vcomplementos }) => {
   const [complementos, setComplementos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,8 +33,12 @@ const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => {
 
     const points = Number($('[data-id="txt-user-points"]').text()) || 0
 
+    console.log(complemento)
+
     let carrito = Local.get('carrito') ?? [];
     if (carrito.length > 0) {
+      console.log('entro aca 1');
+
       if (e.target.checked) {
         let isConfirmed = false
         if (points >= complemento.puntos_complemento && complemento.puntos_complemento > 0) {
@@ -50,7 +54,6 @@ const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => {
           isConfirmed = swalRes.isConfirmed
         }
         let actcarrito = await agregarComplementoPedido(id, isConfirmed)
-
         setCarrito(actcarrito)
       } else {
         deleteOnCarBtnR(id)
@@ -70,8 +73,10 @@ const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => {
 
     } else {
 
+      console.log('entro aca 2')
+
       const prev = structuredClone(detallePedido)
-      const index = prev.complementos.findIndex((complemento) => complemento.id === id);
+      const index = prev.complementos?.findIndex((complemento) => complemento.id === id);
       let newDetalle = {}
       if (index === -1) {
         let isConfirmed = false
@@ -94,12 +99,23 @@ const AccordionContent = ({ id, setDetallePedido, onChange, setCarrito = () => {
             usePoints: isConfirmed
           }],
         };
+        //agrega
+        let precio = Number(complemento.descuento > 0 ? complemento.descuento : complemento.precio)
+        console.log(Number(precio), vcomplementos.current)
+        vcomplementos.current = Number(precio) + vcomplementos.current
       } else {
+
+        //elimina
+        let precio = Number(complemento.descuento > 0 ? complemento.descuento : complemento.precio)
+        console.log(Number(precio), vcomplementos.current)
+        vcomplementos.current = vcomplementos.current - Number(precio)
         newDetalle = {
           ...prev,
           complementos: prev.complementos.filter((complemento) => complemento.id !== id),
         }
       }
+
+
 
       setDetallePedido(newDetalle);
     }

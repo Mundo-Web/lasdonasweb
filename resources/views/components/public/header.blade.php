@@ -674,7 +674,7 @@
     <div class="flex flex-col gap-2 pt-2">
       <div class="text-[#336234]  text-xl flex justify-between items-center">
         <p class="font-Inter_Medium font-semibold">Total</p>
-        <p class="font-Inter_Medium font-semibold" id="itemsTotal">S/ 0.00</p>
+        <p class="font-Inter_Medium font-semibold itemsTotal" id="itemsTotal">S/ 0.00</p>
       </div>
       <div class="flex flex-col gap-2">
         <a href="/carrito"
@@ -986,7 +986,8 @@
     //   return total
     // }).reduce((total, elemento) => total + elemento, 0);
 
-    $('#itemsTotal').text(`S/. ${total} `)
+    // $('#itemsTotal').text(`S/. ${total} `)
+    $('.itemsTotal').text(`S/. ${total} `)
   }
 </script>
 

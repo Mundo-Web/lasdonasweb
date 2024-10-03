@@ -1,6 +1,6 @@
 {
-  "_Accordion2-wsHVDhnz.js": {
-    "file": "assets/Accordion2-wsHVDhnz.js",
+  "_Accordion2-MNj2_ngu.js": {
+    "file": "assets/Accordion2-MNj2_ngu.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
@@ -234,7 +234,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-xZVR2Nur.css",
+    "file": "assets/app-WqmNFSaX.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -368,7 +368,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-J4avIYGR.js",
+    "file": "assets/Carrito-_360340F.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -376,7 +376,7 @@
       "_CreateReactScript-VVPwJ0HX.js",
       "_HtmlContent-Aen3UoIq.js",
       "_storage-zp2nPsZU.js",
-      "_Accordion2-wsHVDhnz.js",
+      "_Accordion2-MNj2_ngu.js",
       "_calcularTotal-FPqXOtx1.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
@@ -609,7 +609,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-ckoDDzE7.js",
+    "file": "assets/Product-wjgiZKtj.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -622,13 +622,13 @@
       "_setPrototypeOf-ahVgEFUp.js",
       "_index-38suPYpT.js",
       "_ModalSimple-wbpAEmbf.js",
-      "_Accordion2-wsHVDhnz.js",
+      "_Accordion2-MNj2_ngu.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-wXA00dMN.js",
       "_ProductCard-wnKStNKu.js",
+      "_index-XJuWVQ-l.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
-      "_index-XJuWVQ-l.js",
       "_main-Vi8adC25.js",
       "_tippy.esm-vXDZ6XwW.js",
       "_floating-ui.dom-3uxmUvem.js",

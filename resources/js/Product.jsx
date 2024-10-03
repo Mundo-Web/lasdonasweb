@@ -39,6 +39,7 @@ import { deleteOnCarBtnR, deleteItemR } from './Utils/carritoR'
 import ComplementCard from './components/Complements/ComplementCard'
 
 import AccordionHorarios from './AccordionHorarios'
+import { set } from 'sode-extend-react/sources/cookies'
 
 const Product = ({
   complementos,
@@ -172,7 +173,14 @@ const Product = ({
             usePoints: isConfirmed
           }],
         };
+
+        let precio = Number(complemento.descuento > 0 ? complemento.descuento : complemento.precio)
+        console.log(Number(precio), vcomplementos.current)
+        vcomplementos.current += Number(precio)
       } else {
+        let precio = Number(complemento.descuento > 0 ? complemento.descuento : complemento.precio)
+        console.log(Number(precio), vcomplementos.current)
+        vcomplementos.current = vcomplementos.current - Number(precio)
         newDetalle = {
           ...prev,
           complementos: prev.complementos.filter((complemento) => complemento.id !== id),
@@ -197,7 +205,13 @@ const Product = ({
 
   const horarioSeleccionado = horarios.find(x => x.id == selectedHorario)
 
+  const [vari, setvari] = useState(0)
   const agregarPedido = async (e) => {
+
+
+    vcomplementos.current = 0
+    setvari(vari + 1)
+    console.log(vcomplementos.current)
 
     const button = e.target
     const cartButton = document.getElementById('open-cart')
@@ -373,6 +387,8 @@ const Product = ({
     setModalPoliticasSustitucion(!modalPoliticasSustitucion);
   }
 
+  const vcomplementos = useRef(0);
+
 
   const formattedDate = (date) => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -439,6 +455,10 @@ const Product = ({
   const handleImageClick2 = (image) => {
     setCaratula2(image);
   };
+  const reactOptionElements = document.querySelectorAll('input[name^="complementos"]');
+
+  // Filtrar los elementos que están seleccionados (checked)
+  const checkedReactOptionElements = Array.from(reactOptionElements).filter(element => element.checked);
 
 
   return (
@@ -1086,8 +1106,8 @@ const Product = ({
                   </button>
                 </div>
               </div>
-              h-max
-              {selectedHorario !== null && (<div className="flex flex-row justify-center items-center mt-5 w-full h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
+
+              {selectedHorario !== null && (<div className="hidden md:flex flex-row justify-center items-center mt-5 w-full h-[53px] rounded-full font-bold bg-[#336234] cursor-pointer hover:bg-[#60ca60] hover:shadow-2xl text-white transition-all duration-300 ease-in-out"
                 onClick={agregarPedido}
               >
                 Agregar al carrito
@@ -1165,6 +1185,17 @@ const Product = ({
           </section>}
 
       </main >
+
+
+      <div className="flex justify-end relative">
+        {console.log(vcomplementos)}
+        <div className="fixed cursor-pointer flex flex-row gap-4 justify-center items-center bottom-[1px] h-[50px] z-[10] right-[0px] p-2 text-[20px] text-white md:hidden font-b_slick_bold bg-[#ff8555] w-full text-center "
+          onClick={agregarPedido}
+        >
+          Agregar <span className=''> S/
+            {Number(currentProduct.descuento) > 0 ? Number(currentProduct.descuento) + vcomplementos.current : Number(currentProduct.precio) + vcomplementos.current}</span> <img src="/img_donas/shopping-cart.svg" className="text-white rounded-lg p-1 w-[45px] cursor-pointer"></img>
+        </div>
+      </div>
 
       <div id="modalCalendario" className={modalCalendario ? 'block modal-calendario' : 'hidden'}>
         <div className="fixed inset-0 z-30 bg-gray-500 bg-opacity-75 transition-opacity" onClick={CloseModalCalendario}></div>
@@ -1262,7 +1293,11 @@ const Product = ({
                     <hr />
                     <div className="mt-5 gap-4 " id="containerComplementos" data-accordion="collapse">
                       <Accordion datos={currentComplemento}
-                        setDetallePedido={setDetallePedido} />
+                        setDetallePedido={setDetallePedido}
+
+                        vcomplementos={vcomplementos}
+                        detallePedido={detallePedido}
+                      />
                     </div>
                   </div>
                 </div>
