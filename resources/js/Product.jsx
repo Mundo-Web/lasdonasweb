@@ -209,9 +209,6 @@ const Product = ({
   const agregarPedido = async (e) => {
 
 
-    vcomplementos.current = 0
-    setvari(vari + 1)
-    console.log(vcomplementos.current)
 
     const button = e.target
     const cartButton = document.getElementById('open-cart')
@@ -236,6 +233,10 @@ const Product = ({
       });
       return;
     }
+    vcomplementos.current = 0
+    setvari(vari + 1)
+    console.log(vcomplementos.current)
+
 
     try {
       const res = await axios.post('/api/products/AddOrder', {
