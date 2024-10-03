@@ -692,7 +692,9 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
                         }
                         setDocumentFound(false)
                         setDocument2Search(e.target.value)
-                      }} />
+                      }}
+
+                    />
 
 
                     <InputField

@@ -1189,12 +1189,12 @@ const Product = ({
 
 
       <div className="flex justify-end relative">
-        {console.log(vcomplementos)}
+
         <div className="fixed cursor-pointer flex flex-row gap-4 justify-center items-center bottom-[1px] h-[50px] z-[10] right-[0px] p-2 text-[20px] text-white md:hidden font-b_slick_bold bg-[#ff8555] w-full text-center "
           onClick={agregarPedido}
         >
           Agregar <span className=''> S/
-            {Number(currentProduct.descuento) > 0 ? Number(currentProduct.descuento) + vcomplementos.current : Number(currentProduct.precio) + vcomplementos.current}</span> <img src="/img_donas/shopping-cart.svg" className="text-white rounded-lg p-1 w-[45px] cursor-pointer"></img>
+            {Number(currentProduct.descuento) > 0 ? Number(currentProduct.descuento) + vcomplementos.current : Number(currentProduct.precio) + vcomplementos.current}</span> <img src="/img_donas/iconWhite2.png" className="text-white object-cover rounded-lg p-1 w-[45px] cursor-pointer"></img>
         </div>
       </div>
 

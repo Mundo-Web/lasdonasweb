@@ -10,6 +10,17 @@
 @import url("https://db.onlinewebfonts.com/c/b93a670faff71cce8d9932b21bd24c0e?family=Beausite+Slick+Trial+Light");
 
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Ocultar flechas en campos de entrada de tipo number en Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 
 @layer components {
     .active-color {
