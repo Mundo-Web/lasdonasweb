@@ -55,10 +55,10 @@ const AccordionHorarios = ({ horarios, date, selectedHorario, setSelectedHorario
                 className={`justify-center radio-option-label  inline-flex items-center w-full text-white pt-3 pb-2  border-2 border-[#496c7533] rounded-lg cursor-pointer  
                  
                 ${selectedHorario == item.id ? ' text-[#496c75]' : 'text-[#496c7533] bg-white'}
-                hover:text-white hover:bg-[#4b6e78] `}
+                hover:text-white hover:bg-[#496c7533]`}
               >
-                <div className="flex flex-col justify-center items-center text-center text-[#496c7533] hover:text-white">
-                  <p className={`flex content-center justify-center text-base  hover:text-white font-semibold text-center
+                <div className="flex flex-col justify-center items-center text-center  hover:text-white">
+                  <p className={`flex content-center justify-center text-base   font-semibold text-center
                      ${selectedHorario === item.id ? ' text-[#4b6e78]' : 'text-[#496c7533]'}
                     `}>
 
@@ -94,10 +94,10 @@ const AccordionHorarios = ({ horarios, date, selectedHorario, setSelectedHorario
                 className={`justify-center radio-option-label  inline-flex items-center w-full text-white pt-3 pb-2  border-2 border-[#496c7533] rounded-lg cursor-pointer  
                  
                 ${selectedHorario == item.id ? ' text-[#496c75]' : 'text-[#496c7533] bg-white'}
-                hover:text-white hover:bg-[#4b6e78] `}
+                hover:text-white hover:bg-[#496c7533] `}
               >
-                <div className="flex flex-col justify-center items-center text-center text-[#496c7533] hover:text-white">
-                  <p className={`flex content-center justify-center text-base  hover:text-white font-semibold text-center
+                <div className="flex flex-col justify-center items-center text-center text-[#496c7533] ">
+                  <p className={`flex content-center justify-center text-base   font-semibold text-center
                      ${selectedHorario === item.id ? ' text-[#4b6e78]' : 'text-[#496c7533]'}
                     `}>
 
