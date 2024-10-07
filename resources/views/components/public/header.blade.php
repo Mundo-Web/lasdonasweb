@@ -277,7 +277,7 @@
 
 <div id="header_top"
   class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
-  Producto | Categoría <span class="ml-1 font-b_classic_bold mt-1"> más vendida </span> <img class="w-6 ml-2"
+  Producto | Categoría <span class="ml-1 font-b_slick_bold mt-1"> más vendida </span> <img class="w-6 ml-2"
     src="{{ asset('img_donas/spa.svg') }}">
 </div>
 
@@ -463,7 +463,7 @@
               <div class="col-span-3 overflow-y-auto ">
                 <h2 class="px-3 py-1 text-xl tracking-wider font-b_slick_bold">Categorias</h2>
                 <hr class="mx-3 my-3">
-                <ul class="col-span-3 font-b_slick_regular tracking-normal">
+                <ul class="col-span-3 font-b_slick_bold tracking-normal">
                   @foreach ($submenucategorias as $category)
                     @if ($category->subcategories->isNotEmpty())
                       <li>
