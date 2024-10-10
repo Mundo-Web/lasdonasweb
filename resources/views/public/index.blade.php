@@ -90,7 +90,7 @@
     <section class="z-0">
       <div class="px-[5%] lg:px-[8%]  space-y-10">
         <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] gap-3 px-5">
-          <h3 class="text-lg font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTRAS</h3>
+          <h3 class="text-xl md:text-2xl font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTRAS</h3>
           <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212] xl:px-4"> Descubre nuestras
             creaciones más
             apreciadas. Son las flores que han conquistado corazones y que reflejan nuestra pasión.</h2>
@@ -302,7 +302,7 @@
       <div class="w-full px-[5%] lg:px-[8%] flex flex-col gap-10">
         <div class="flex flex-col gap-3 text-center">
           <h3 class="text-xl font-bold text-[#FE4A11] ">NUEVAS CREACIONES</h3>
-          <h2 class="text-4xl md:text-4xl font-bold text-black">Descubre nuestras últimas creaciones, donde fusionamos
+          <h2 class="text-4xl md:text-2xl font-bold text-black">Descubre nuestras últimas creaciones, donde fusionamos
             nuestra tradición con flores únicas, cultivadas con el alma de nuestras tierras para hacer sonreír a tu
             persona favorita.
           </h2>
@@ -484,7 +484,7 @@
       @if (strlen($general->instagram) > 1)
         <div class="px-[5%] lg:px-[8%] pt-8 pb-12 flex flex-col">
           <div class="text-center flex flex-col gap-6 items-center max-w-4xl mx-auto">
-            <h3 class="font-b_slick_bold text-xl text-[#FE4A11] tracking-wider">ÚNETE A NUESTRA COMUNIDAD</h3>
+
             <h2 class="text-4xl md:text-4xl font-b_slick_bold text-[#ff9900] uppercase tracking-wider">Únete a nuestra
               comunidad floral</h2>
             <p class="text-lg font-b_classic_regular text-[#112212CC]">Síguenos para estar al tanto de nuestras novedades
