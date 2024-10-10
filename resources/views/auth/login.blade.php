@@ -22,10 +22,11 @@
             </div>
           @endif
           <h1 class="text-4xl font-medium tracking-widest leading-10 uppercase text-zinc-800">
-            Bienvenido de nuevo
+            ¡Bienvenido a Las Doñas!
           </h1>
           <p class="mt-4 w-full text-sm  leading-5 text-neutral-900 text-opacity-80">
-            Esperamos que puedas encontrar lo que buscas en nuestro sitio web.
+            Estamos encantadas de tenerte aquí y esperamos que encuentres justo lo que necesitas para hacer de cada
+            momento algo especial.
           </p>
         </div>
 
@@ -72,7 +73,7 @@
               class="flex gap-10 justify-between items-center mt-6 w-full text-sm font-medium leading-tight text-center">
               <label class="flex gap-1 items-center  my-auto text-neutral-900 text-opacity-40 cursor-pointer">
                 <input type="checkbox" id="acepto_terminos" class="w-3 h-3 border:text-opacity-40" />
-                <span class="flex items-center">Recuerdame</span>
+                <span class="flex items-center">Recuérdame</span>
               </label>
               <a href="/forgot-password" class="flex gap-1 items-center  my-auto text-orange-400">
                 <span>¿Olvidaste tu contraseña?</span>
@@ -86,14 +87,22 @@
                 class="flex flex-row gap-2 justify-center items-center px-6 py-3.5 mt-4 w-full rounded-3xl border border-green-800 border-solid min-h-[51px]">
                 <img loading="lazy" src="/img_donas/Google1.png" alt=""
                   class="object-contain shrink-0  my-auto w-6 aspect-square" />
-                <span class=" my-auto">Ingresar con mi cuenta de Google</span>
+                <span class=" my-auto">Ingresar con Google
+                </span>
               </a>
             </div>
           </form>
         </div>
-        <div class="flex self-start mt-12 text-sm font-medium leading-tight text-center w-full gap-2 justify-center">
-          <span class="">Eres nuevo? </span>
-          <a href="/register-rev" class="text-orange-400 underline">Regístrate aquí</a>
+        <div
+          class="flex flex-row self-start mt-12 text-sm font-medium leading-tight text-center w-full gap-2 justify-center">
+          <span class=""> ¿Es tu primera vez? </span>
+          <span>
+            <a href="/register-rev" class="text-orange-400 underline">Regístrate aquí </a>
+            y únete a nuestra comunidad.
+
+          </span>
+
+
         </div>
       </div>
     </div>

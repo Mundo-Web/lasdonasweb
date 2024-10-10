@@ -57,6 +57,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CuponController;
 use App\Http\Controllers\LibroReclamacionesController;
 use App\Http\Controllers\PoliticaDatosController;
+use App\Http\Controllers\PoliticaSustitucionController;
 use App\Http\Controllers\SubcategoryController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -200,6 +201,10 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         Route::get('/politica-datos/{id?}', [PoliticaDatosController::class, 'edit'])->name('politicadatos.detalle');
         Route::post('/politica-datos/save', [PoliticaDatosController::class, 'save'])->name('politicadatos.save');
+
+        Route::resource('/politica-sustitucion', PoliticaSustitucionController::class);
+        Route::get('/politica-sustitucion/{id?}', [PoliticaSustitucionController::class, 'edit'])->name('politicasus.detalle');
+        Route::post('/politica-sustitucion/save', [PoliticaSustitucionController::class, 'save'])->name('politicasustitucion.save');
 
 
         Route::resource('/tipo-flor', TipoFlorController::class);

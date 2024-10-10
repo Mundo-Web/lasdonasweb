@@ -90,11 +90,10 @@
     <section class="z-0">
       <div class="px-[5%] lg:px-[8%]  space-y-10">
         <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] gap-3 px-5">
-          <h3 class="text-lg font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTROS</h3>
-          <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212]"> DESCUBRE NUESTROS
-            PRODUCTOS
-            MAS
-            VENDIDOS</h2>
+          <h3 class="text-lg font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTRAS</h3>
+          <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212] xl:px-4"> Descubre nuestras
+            creaciones más
+            apreciadas. Son las flores que han conquistado corazones y que reflejan nuestra pasión.</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6">
@@ -129,7 +128,8 @@
       {{-- Categorias destacadas --}}
       <div class="flex flex-col px-[5%] lg:px-[8%] gap-4">
         <p class="text-base text-[#FE4A11]">CATEGORIAS</p>
-        <p class="text-3xl sm:text-4xl">LO MEJOR DE NUESTRA TIENDA PARA TI</p>
+        <p class="text-3xl sm:text-4xl">Lo mejor de nuestras creaciones, diseñadas para cada ocasión especial. Encuentra
+          aquí el detalle ideal para hacer de cada momento algo inolvidable.</p>
       </div>
       <div class="hidden md:block">
         @php
@@ -301,8 +301,11 @@
     <section class="bg-[#E8EDDE] font-b_slick_bold pt-16 pb-20 lg:pt-20 lg:pb-28 z-0">
       <div class="w-full px-[5%] lg:px-[8%] flex flex-col gap-10">
         <div class="flex flex-col gap-3 text-center">
-          <h3 class="text-xl font-bold text-[#FE4A11] ">NOVEDADES</h3>
-          <h2 class="text-4xl md:text-4xl font-bold text-black">TODAS NUESTRAS NOVEDADES</h2>
+          <h3 class="text-xl font-bold text-[#FE4A11] ">NUEVAS CREACIONES</h3>
+          <h2 class="text-4xl md:text-4xl font-bold text-black">Descubre nuestras últimas creaciones, donde fusionamos
+            nuestra tradición con flores únicas, cultivadas con el alma de nuestras tierras para hacer sonreír a tu
+            persona favorita.
+          </h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6">
@@ -336,8 +339,10 @@
       <section class="pt-10 pb-12  lg:py-20 flex flex-col w-full gap-12 relative px-[5%] lg:px-[8%] z-0 h-[615px]">
         <div class="w-full">
           <div class="flex flex-col gap-3 text-left font-b_slick_bold">
-            <h3 class="text-xl text-[#FE4A11] ">NUESTROS CLIENTES</h3>
-            <h2 class="text-4xl md:text-4xl text-black">TESTIMONIO EN FLOR</h2>
+            <h3 class="text-xl text-[#FE4A11] ">LO QUE OPINAN DE NOSOTRAS</h3>
+            <h2 class="text-4xl md:text-4xl text-black">Testimonios en flor. Las emociones y experiencias de quienes han
+              dejado que Las Doñas llenen sus momentos especiales con nuestro arte.
+            </h2>
           </div>
         </div>
 
@@ -480,12 +485,13 @@
       @if (strlen($general->instagram) > 1)
         <div class="px-[5%] lg:px-[8%] pt-8 pb-12 flex flex-col">
           <div class="text-center flex flex-col gap-6 items-center max-w-4xl mx-auto">
-            <h3 class="font-b_slick_bold text-xl text-[#FE4A11] tracking-wider">REDES SOCIALES</h3>
-            <h2 class="text-4xl md:text-4xl font-b_slick_bold text-[#112212] uppercase tracking-wider">Únete a nuestra
+            <h3 class="font-b_slick_bold text-xl text-[#FE4A11] tracking-wider">ÚNETE A NUESTRA COMUNIDAD</h3>
+            <h2 class="text-4xl md:text-4xl font-b_slick_bold text-[#ff9900] uppercase tracking-wider">Únete a nuestra
               comunidad floral</h2>
-            <p class="text-xl font-b_classic_regular text-[#112212CC]">Descubre la frescura de cada pétalo siguiéndonos.
-              Síguenos para estar al tanto de nuestras últimas creaciones y ofertas exclusivas.
-              Te esperamos para compartir juntos la belleza floral.</p>
+            <p class="text-lg font-b_classic_regular text-[#112212CC]">Síguenos para estar al tanto de nuestras novedades
+              y lo que creamos día a día. Llena tu feed de color y emoción con un toque floral, y deja que un trocito de
+              arte ilumine tu día.
+            </p>
             <a href="{{ $general->instagram }}" target="_blank"
               class="px-6 py-3 rounded-3xl shadow-md font-b_slick_bold flex items-center justify-center bg-[#336234] text-white cursor-pointer mt-4">
               Regálanos

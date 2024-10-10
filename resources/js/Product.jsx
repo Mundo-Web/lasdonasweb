@@ -553,7 +553,7 @@ const Product = ({
                 <div className="text-white flex flex-col md:flex-row  font-semibold pb-6 md:space-x-6 space-y-3 text-[14px]">
                   <button type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Descripción del producto</button>
                   <button onClick={openPoliticaEnvio} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Políticas de envío</button>
-                  <button onClick={togleModalSustitucion} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Políticas de sustitución</button>
+                  <button onClick={togleModalSustitucion} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Política de FloriPuntos</button>
                 </div>
 
                 <div id="containerDetalles">
@@ -590,7 +590,7 @@ const Product = ({
               <div className="text-2xl  font-b_slick_regular text-black pb-6 mt-5 lg:mt-0 flex flex-row gap-2 items-center">
                 <div className={`w-8 h-8 rounded-full pt-1 px-4 bg-[#FF7F50] text-white flex items-center justify-center text-lg font-bold`} >1 </div>
                 <div className='pt-2 font-b_slick_bold'>
-                  Elige un dia y rango de entrega
+                  Elige un día y rango de entrega
                 </div>
               </div>
 
@@ -979,7 +979,7 @@ const Product = ({
                 <div className="text-2xl  font-b_slick_regular text-black pb-6 flex flex-row gap-2 items-center">
                   <div className={`w-8 h-8 rounded-full pt-1 px-4 bg-[#FF7F50] text-white flex items-center justify-center text-lg font-bold`} > 3 </div>
                   <div className='pt-2 font-b_slick_bold'>
-                    Agrega una fotografía a tu dedicatoria (opc)
+                    Agrega una fotografía a tu dedicatoria (Opcional)
                   </div>
 
                 </div>
@@ -1126,7 +1126,7 @@ const Product = ({
               <div className="text-white flex flex-col  font-semibold pb-6 md:space-x-6 space-y-3 text-[14px]">
                 <button type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Descripción del producto</button>
                 <button onClick={openPoliticaEnvio} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Políticas de envío</button>
-                <button onClick={togleModalSustitucion} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Políticas de sustitución</button>
+                <button onClick={togleModalSustitucion} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Política de FloriPuntos</button>
               </div>
 
               <div id="containerDetalles">
@@ -1264,7 +1264,7 @@ const Product = ({
 
       <ModalSimple id="politicaSustitucion" showModal={modalPoliticasSustitucion}
         setshowModal={setModalPoliticasSustitucion}
-        tittle={'Políticas de sustitución'}
+        tittle={'Política de FloriPuntos'}
       >
         <div dangerouslySetInnerHTML={{ __html: politicasSustitucion?.content ?? '' }} />
 

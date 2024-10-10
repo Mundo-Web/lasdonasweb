@@ -649,7 +649,7 @@
     <div class="flex flex-col">
       <div class="flex justify-between ">
         <h2 class="flex items-center gap-2 font-semibold font-Inter_Medium text-[28px] text-[#151515] pb-5">
-          Carrito
+          Carrito de Compras
           @if (Auth::check())
             <button class="bg-[#336234] text-white text-base font-bold px-2 pr-3 pt-[2px] rounded-full h-max">
               <i class="mdi mdi-dots-hexagon"></i>

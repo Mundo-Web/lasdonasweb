@@ -42,17 +42,29 @@ class PoliticaSustitucionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PoliticaSustitucion $politicaSustitucion)
+    public function edit(PoliticaSustitucion $PoliticaSustitucion)
     {
-        //
+        $terms = PoliticaSustitucion::first();
+        if (!$terms) {
+            $terms = PoliticaSustitucion::create(['content' => '']);
+        }
+        return view('pages.PoliticaSustitucion.edit', compact('terms'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PoliticaSustitucion $politicaSustitucion)
+    public function update(Request $request , $id)
     {
-        //
+        $request->validate([
+            'content' => 'required',
+        ]);
+    
+        $terms = PoliticaSustitucion::findOrfail($id); 
+        $terms->update($request->all());
+        $terms->save();
+
+        return back()->with('success', 'Registro actualizado correctamente');
     }
 
     /**

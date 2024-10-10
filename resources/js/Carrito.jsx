@@ -360,7 +360,11 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                         </p>
                       </>)
                   },
-                  { id: 2, name: 'Garantia Envio Flores', text: 'Garantizamos la entrega de tus flores en perfecto estado y en la fecha programada.' },
+                  {
+                    id: 2, name: 'Nuestra Promesa', text: `En Las Doñas, nos comprometemos a crear no solo un arreglo floral, sino un detalle que marque la diferencia. Cada una de nuestras creaciones está elaborada con flores naturales, frescas y de alta calidad, cuidadosamente seleccionadas para asegurarte la mejor experiencia.
+                    Cada detalle es único, porque las flores naturales tienen su propio carácter. Sus formas, colores y texturas pueden variar, lo que hace que cada arreglo sea una obra irrepetible. Aunque las imágenes de nuestros productos buscan reflejar con precisión lo que recibirás, las particularidades de cada flor hacen que tu arreglo sea siempre especial y exclusivo.
+                    Es nuestro compromiso hacer de cada entrega un gesto inolvidable, lleno de belleza y emoción.
+                    ` },
                 ]}
               ></AccordionSimple>
 
@@ -369,7 +373,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
             </div>
             <div className="basis-4/12 flex flex-col justify-start gap-5">
               <h2 className="font-bold text-[16px] text-[#151515]">
-                Codigo de promocion
+                Código de promoción
               </h2>
               <div className="flex gap-5 relative">
                 <input

@@ -97,11 +97,11 @@ function Privacy() {
 
         <div className="mb-8 flex flex-col gap-10 border-b border-solid border-b-zinc-100 font-b_slick_bold text-center px-10">
           <div className=" w-full">
-            <h2 className="font-bold text-[20px] text-[#112212]"> Estas a punto de cerrar tu cuenta. ¿Confirmas esta decision?
+            <h2 className="font-bold text-[20px] text-[#112212]">Lamentamos que hayas decidido irte. Tu presencia ha sido muy valiosa para nosotras y siempre tendrás un lugar en nuestra comunidad. Si hay algo que podamos hacer para que reconsideres tu decisión, no dudes en contactarnos a través de nuestros canales de atención.
             </h2>
           </div>
           <div className=" w-full">
-            <h3 className="text-[16px] text-[#112212CC] opacity-80"> Recuerda, una vez eliminada, no podrás recuperarla.</h3>
+            <h3 className="text-[16px] text-[#112212CC] opacity-80">Recuerda, ¡siempre serás bienvenido(a) de vuelta cuando quieras!</h3>
           </div>
         </div>
         <button

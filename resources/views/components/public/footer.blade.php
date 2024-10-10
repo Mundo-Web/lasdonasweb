@@ -8,10 +8,12 @@
       <div
         class="flex flex-col justify-center items-center  sm:col-span-12 md:col-span-12 lg:col-span-5 lg:justify-start lg:items-start">
         <img class="md:w-64 lg:max-w-64" src="{{ asset('img_donas/logoblancodonas.png') }}">
-        <span class="text-white  mt-4">
-          Florería Online “Las Doñas”. Empresa peruana que busca rescatar
-          las prácticas de las antiguas mujeres
-          artistas caracterizadas por plasmar su creatividad, talento y habilidad en todo lo que hacían.</span>
+        <span class="text-white  mt-4 px-2 font-b_slick_bold">
+          En Las Doñas, somos artesanas floristas apasionadas por transformar emociones en arte floral. Cada creación es
+          una obra única que refleja nuestra dedicación y amor por lo que hacemos. Conectamos corazones a través de
+          flores y detalles que hablan un lenguaje propio, haciendo que esa ocasión especial sea inolvidable. Nos
+          inspiran la belleza, la creatividad y la pasión por compartir lo mejor con quienes nos eligen.
+        </span>
       </div>
 
       {{-- <div class="text-white sm:col-span-3 lg:col-span-2">
@@ -27,7 +29,8 @@
           <ul class="text-base space-y-1 mt-2">
             @foreach ($categories as $item)
               <li>
-                <a href="/catalogo/{{ $item->id }}">{{ Text::toTitleCase($item->name) }}</a>
+                <a class="font-b_slick_bold"
+                  href="/catalogo/{{ $item->id }}">{{ Text::toTitleCase($item->name) }}</a>
               </li>
             @endforeach
           </ul>
@@ -51,10 +54,10 @@
       <div class="text-white sm:col-span-3 lg:col-span-4">
         <nav>
           <h2 class="text-lg font-b_slick_bold">Políticas</h2>
-          <ul class="text-base  space-y-1 mt-2 flex flex-col">
-            <a id="linkTerminos">Terminos y Condiciones</a>
-            <a id="linkPoliticas">Politicas de Envio y Devoluciones</a>
-            <a id="bioseguridad">Protocolos de Bio Seguridad</a>
+          <ul class="  space-y-1 mt-2 flex flex-col font-b_slick_bold">
+            <a id="linkTerminos">Términos y Condiciones</a>
+            <a id="linkPoliticas">Políticas de Envío y Devoluciones</a>
+            <a id="bioseguridad">Políticas de Fidelización FloriPuntos</a>
             <a href="{{ route('librodereclamaciones') }}"><img class="w-24"
                 src="{{ asset('images/img/reclamaciones.png') }}" /></a>
           </ul>
@@ -69,9 +72,10 @@
     <div class="py-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 ">
         <div class="lg:col-span-7">
-          <p class="text-sm  text-white">© 2024 Las Doñas. Todos los derechos reservados. Las imágenes,
+          <p class="text-sm font-b_slick_bold  text-white ">© 2024 Las Doñas. Todos los derechos reservados. Las
+            imágenes,
             textos y diseños
-            florales son propiedad exclusiva deLas Doñas.
+            florales son propiedad exclusiva de Las Doñas.
             Prohibida su reproducción total o parcial sin autorización previa por escrito.</p>
         </div>
         <div class="flex flex-row items-center justify-center lg:justify-end lg:col-span-5">
@@ -98,7 +102,7 @@
     <!-- Modal body -->
     <div class="p-4 ">
       <h1 class="font-Inter_SemiBold">Politicas de Envio y Devoluciones</h1>
-      <i id="close-modal" class="bg-gray-200 cursor-pointer"> close Modal</i>
+      {{-- <i id="close-modal" class="bg-gray-200 cursor-pointer"> close Modal</i> --}}
 
 
       <p class="font-Inter_Regular  prose grid grid-cols-1 ">{!! $politicas->content ?? '' !!}</p>
@@ -109,7 +113,8 @@
   <div id="modaBioseguridad" class="modal" style="max-width: 900px !important; width: 100% !important;  ">
     <!-- Modal body -->
     <div class="p-4 ">
-      <h1 class="font-Inter_SemiBold">Protocolos de Bioseguridad </h1>
+      <h1 class="font-Inter_SemiBold">Políticas de Fidelización FloriPuntos
+      </h1>
 
       <p class="font-Inter_Regular  prose grid grid-cols-1">{!! $bioseguridad->content ?? '' !!}</p>
 
