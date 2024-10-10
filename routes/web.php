@@ -203,7 +203,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/politica-datos/save', [PoliticaDatosController::class, 'save'])->name('politicadatos.save');
 
         Route::resource('/politica-sustitucion', PoliticaSustitucionController::class);
-        Route::get('/politica-sustitucion/{id?}', [PoliticaSustitucionController::class, 'edit'])->name('politicasus.detalle');
+        // Route::get('/politica-sustitucion/{id?}', [PoliticaSustitucionController::class, 'edit'])->name('politicasus.detalle');
         Route::post('/politica-sustitucion/save', [PoliticaSustitucionController::class, 'save'])->name('politicasustitucion.save');
 
 

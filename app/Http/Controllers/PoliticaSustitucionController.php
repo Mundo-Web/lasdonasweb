@@ -48,6 +48,7 @@ class PoliticaSustitucionController extends Controller
         if (!$terms) {
             $terms = PoliticaSustitucion::create(['content' => '']);
         }
+        dump('si entra aca');
         return view('pages.PoliticaSustitucion.edit', compact('terms'));
     }
 
