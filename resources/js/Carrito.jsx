@@ -328,7 +328,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                     id: 1, name: 'Programa de Puntos', text: renderToString(
                       <>
                         <h1 className="text-2xl text-black mb-4">
-                          Bienvenido a nuestro programa de recompensas FLORIPUNTOS LAS DONAS 🌸🍩
+                          Bienvenido a nuestro programa de recompensas FLORIPUNTOS LAS DOÑAS 🌸🍩
                         </h1>
 
                         <p className="mb-4 text-black/75">
@@ -361,9 +361,12 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                       </>)
                   },
                   {
-                    id: 2, name: 'Nuestra Promesa', text: `En Las Doñas, nos comprometemos a crear no solo un arreglo floral, sino un detalle que marque la diferencia. Cada una de nuestras creaciones está elaborada con flores naturales, frescas y de alta calidad, cuidadosamente seleccionadas para asegurarte la mejor experiencia.
-                    Cada detalle es único, porque las flores naturales tienen su propio carácter. Sus formas, colores y texturas pueden variar, lo que hace que cada arreglo sea una obra irrepetible. Aunque las imágenes de nuestros productos buscan reflejar con precisión lo que recibirás, las particularidades de cada flor hacen que tu arreglo sea siempre especial y exclusivo.
-                    Es nuestro compromiso hacer de cada entrega un gesto inolvidable, lleno de belleza y emoción.
+                    id: 2, name: 'Nuestra Promesa', text: `<p>En Las Doñas, nos comprometemos a crear no solo un arreglo floral, sino un detalle que marque la diferencia. Cada una de nuestras creaciones está elaborada con flores naturales, frescas y de alta calidad, cuidadosamente seleccionadas para asegurarte la mejor experiencia. </p> 
+                    <br>
+                    <p>  Cada detalle es único, porque las flores naturales tienen su propio carácter. Sus formas, colores y texturas pueden variar, lo que hace que cada arreglo sea una obra irrepetible. Aunque las imágenes de nuestros productos buscan reflejar con precisión lo que recibirás, las particularidades de cada flor hacen que tu arreglo sea siempre especial y exclusivo.</p>
+                   <br>
+                    <p> Es nuestro compromiso hacer de cada entrega un gesto inolvidable, lleno de belleza y emoción. </p>
+                   
                     ` },
                 ]}
               ></AccordionSimple>

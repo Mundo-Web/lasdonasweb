@@ -452,7 +452,7 @@
           <div x-data="{ openCatalogo: false }" x-init="$el.style.display = 'flex'" style="display: none;"
             @mouseenter="openCatalogo = true" @mouseleave="openCatalogo = false; handleOutsideClick()">
             <ul class="menu flex flex-row justify-center items-center text-center py-3 px-6 ">
-              <li><a href="/catalogo" class="font-b_slick_bold">Catálogo</a></li>
+              <li><a href="/catalogo" class="font-b_slick_bold">Categorías</a></li>
             </ul>
 
             <div x-show="openCatalogo" x-init="$watch('openCatalogo', value => { if (value) runMyFunction(); })"

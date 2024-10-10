@@ -82,7 +82,10 @@ function Privacy() {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             zIndex: '9999',
-            overflow: 'hidden',
+            overflowY: 'auto',
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#166534 #e0e0e0'
+
           }
         }}
       >

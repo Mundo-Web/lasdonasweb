@@ -465,14 +465,13 @@
         @endphp
 
         <div
-          class="contenedorvideo w-full h-[500px] lg:h-[600px] border border-gray-200 rounded-none overflow-hidden relative bg-cover bg-center"
-          style="background-image: url('{{ asset('img_donas/Video.png') }}');">
+          class="contenedorvideo w-full h-[500px] lg:h-[600px] border border-gray-200 rounded-none overflow-hidden relative bg-cover bg-center">
           <div class="absolute inset-0 flex items-center justify-center disparo bg-opacity-50 cursor-pointer"
             onclick="showVideo(this)">
             <button class="text-white text-2xl"><img class="w-20 hover:scale-125 transition-transform duration-300"
                 src="{{ asset('img_donas/botonplay.png') }}" /></button>
           </div>
-          <iframe id="videoIframe" class="videoIframe w-full h-full hidden"
+          <iframe id="videoIframe" class="videoIframe w-full h-full "
             src="https://www.youtube.com/embed/{{ $videoId }}" referrerpolicy="strict-origin-when-cross-origin"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
