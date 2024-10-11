@@ -281,8 +281,7 @@
     src="{{ asset('img_donas/spa.svg') }}">
 </div>
 
-<header id="headerPrincipal" class="font-b_classic_regular @if (!request()->is('micuenta*')) sticky @endif top-0"
-  style="z-index:2">
+<header class="font-b_classic_regular @if (!request()->is('micuenta*')) sticky @endif top-0" style="z-index:2">
 
   <div id="header-mid" class="h-[80px] flex flex-row items-center bg-white !z-10">
     <div
@@ -456,11 +455,12 @@
             </ul>
 
             <div x-show="openCatalogo" x-init="$watch('openCatalogo', value => { if (value) runMyFunction(); })"
-              class="font-b_slick_bold text-white  origin-top-right absolute top-full left-0 w-[100vw] mt-0 bg-[#73B473] p-8 shadow-lg overflow-hidden grid gap-8 grid-cols-12"
+              class="font-b_slick_bold text-white  origin-top-right absolute top-full left-0 w-[100vw] mt-0 bg-[#73B473] p-8 shadow-lg overflow-hidden grid gap-8 grid-cols-12 
+               h-[80vh]"
               @click.outside="openCatalogo = false ; handleOutsideClick()"
               @keydown.escape.window="openCatalogo = false;  handleOutsideClick()">
 
-              <div class="col-span-3 overflow-y-auto ">
+              <div class="col-span-3 overflow-y-auto " style="scrollbar-width: thin">
                 <h2 class="px-3 py-1 text-xl tracking-wider font-b_slick_bold">Categorias</h2>
                 <hr class="mx-3 my-3">
                 <ul class="col-span-3 font-b_slick_bold tracking-normal">
