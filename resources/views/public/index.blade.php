@@ -127,8 +127,9 @@
     <section class="mt-12 font-b_slick_bold py-12 lg:py-20 z-0">
       {{-- Categorias destacadas --}}
       <div class="flex flex-col px-[5%] lg:px-[8%] gap-4">
-        <p class="text-base text-[#FE4A11]">CATEGORIAS</p>
-        <p class="text-3xl sm:text-4xl">Lo mejor de nuestras creaciones, diseñadas para cada ocasión especial. Encuentra
+        <p class="text-xl md:text-2xl text-[#FE4A11]">CATEGORIAS</p>
+        <p class="text-2xl lg:text-4xl sm:text-4xl">Lo mejor de nuestras creaciones, diseñadas para cada ocasión especial.
+          Encuentra
           aquí el detalle ideal para hacer de cada momento algo inolvidable.</p>
       </div>
       <div class="hidden md:block">
@@ -301,8 +302,8 @@
     <section class="bg-[#E8EDDE] font-b_slick_bold pt-16 pb-20 lg:pt-20 lg:pb-28 z-0">
       <div class="w-full px-[5%] lg:px-[8%] flex flex-col gap-10">
         <div class="flex flex-col gap-3 text-center">
-          <h3 class="text-xl font-bold text-[#FE4A11] ">NUEVAS CREACIONES</h3>
-          <h2 class="text-4xl md:text-2xl font-bold text-black">Descubre nuestras últimas creaciones, donde fusionamos
+          <h3 class="text-xl md:text-2xl font-bold text-[#FE4A11] ">NUEVAS CREACIONES</h3>
+          <h2 class="text-2xl lg:text-4xl font-bold text-black">Descubre nuestras últimas creaciones, donde fusionamos
             nuestra tradición con flores únicas, cultivadas con el alma de nuestras tierras para hacer sonreír a tu
             persona favorita.
           </h2>
@@ -339,8 +340,8 @@
       <section class="pt-10 pb-12  lg:py-20 flex flex-col w-full gap-12 relative px-[5%] lg:px-[8%] z-0 h-[615px]">
         <div class="w-full">
           <div class="flex flex-col gap-3 text-left font-b_slick_bold">
-            <h3 class="text-xl text-[#FE4A11] ">LO QUE OPINAN DE NOSOTRAS</h3>
-            <h2 class="text-4xl md:text-4xl text-black">Testimonios en flor. Las emociones y experiencias de quienes han
+            <h3 class="text-xl md:text-2xl text-[#FE4A11] ">LO QUE OPINAN DE NOSOTRAS</h3>
+            <h2 class="text-2xl lg:text-4xl text-black">Testimonios en flor. Las emociones y experiencias de quienes han
               dejado que Las Doñas llenen sus momentos especiales con nuestro arte.
             </h2>
           </div>
@@ -487,7 +488,7 @@
 
             <h2 class="text-4xl md:text-4xl font-b_slick_bold text-[#ff9900] uppercase tracking-wider">Únete a nuestra
               comunidad floral</h2>
-            <p class="text-lg font-b_classic_regular text-[#112212CC]">Síguenos para estar al tanto de nuestras novedades
+            <p class="text-lg font-b_slick_bold text-[#112212CC]">Síguenos para estar al tanto de nuestras novedades
               y lo que creamos día a día. Llena tu feed de color y emoción con un toque floral, y deja que un trocito de
               arte ilumine tu día.
             </p>
