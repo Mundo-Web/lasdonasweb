@@ -169,6 +169,7 @@ class BasicController extends Controller
     try {
       $body = $this->beforeSave($request);
       
+      $userJpa = User::find($jpa->usuario_id);
 
       foreach ($this->imageFields as $field) {
         if (!$request->hasFile($field)) continue;
@@ -190,7 +191,7 @@ class BasicController extends Controller
          $points2give = Math::floor(($jpa->monto + $jpa->precio_envio ) / $generals->point_equivalence);
          $jpa->points = $points2give;
 
-         $userJpa = User::find($jpa->usuario_id);
+         
          $userJpa->points = $userJpa->points + ($points2give);
          $userJpa->save();
 
@@ -207,6 +208,10 @@ class BasicController extends Controller
       $data = $this->afterSave($request, $jpa);
       if ($data) {
         $response->data = $data;
+      }
+
+      if(isset($body['status_id'])){
+        MailingController::ventaProces($userJpa,);
       }
 
       $response->status = 200;

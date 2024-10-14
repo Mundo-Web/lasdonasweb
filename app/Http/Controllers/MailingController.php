@@ -33,4 +33,46 @@ class MailingController extends Controller
             
         }
     }
+    static function notifyTransfer(User $userJpa, Ordenes $ordenJpa)
+    {
+        try {
+            $content = File::get('../storage/app/utils/mailing/points.html');
+            $data =  [
+                'client' => $userJpa->toArray(),
+                'sale' => $ordenJpa->toArray(),
+                'domain' => env('APP_DOMAIN')
+            ];
+            $mail = EmailConfig::config();
+            $mail->Subject = 'Su compra ha sido procesada, en breve validaremos su transferencia  ';
+            $mail->isHTML(true);
+            $mail->Body = Text::replaceData($content, JSON::flatten($data), [
+                'client.name' => fn($x) => explode(' ', $x)[0]
+            ]);
+            $mail->addAddress($userJpa->email, $userJpa->name);
+            $mail->send();
+        } catch (\Throwable $th) {
+            
+        }
+    }
+    static function ventaProces(User $userJpa)
+    {
+        try {
+            $content = File::get('../storage/app/utils/mailing/points.html');
+            $data =  [
+                'client' => $userJpa->toArray(),
+               
+                'domain' => env('APP_DOMAIN')
+            ];
+            $mail = EmailConfig::config();
+            $mail->Subject = 'Su pago ha sido verificado, su compra se procesara en unos minutos';
+            $mail->isHTML(true);
+            $mail->Body = Text::replaceData($content, JSON::flatten($data), [
+                'client.name' => fn($x) => explode(' ', $x)[0]
+            ]);
+            $mail->addAddress($userJpa->email, $userJpa->name);
+            $mail->send();
+        } catch (\Throwable $th) {
+            
+        }
+    }
 }

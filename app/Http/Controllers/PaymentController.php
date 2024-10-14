@@ -450,9 +450,9 @@ class PaymentController extends Controller
       $userJpa->points = Auth::user()->points + ($points2give - $points2discount);
       $userJpa->save();
 
-      if ($sale->points > 0) {
-        // MailingController::notifyPoints($userJpa, $sale);
-      }
+      
+        MailingController::notifyTransfer($userJpa, $sale);
+      
 
       // $sale->status_id = 3;
       $sale->codigo_orden = $codigoOrden ?? null;
