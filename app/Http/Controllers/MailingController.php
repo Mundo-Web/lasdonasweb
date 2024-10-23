@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\EmailConfig;
+use App\Models\Horarios;
 use App\Models\Ordenes;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,17 +13,19 @@ use SoDe\Extend\Text;
 
 class MailingController extends Controller
 {
-    static function notifyPoints(User $userJpa, Ordenes $ordenJpa)
+    static function notifyPoints(User $userJpa, Ordenes $ordenJpa, Horarios $horarioJpa, $generals)
     {
         try {
-            $content = File::get('../storage/app/utils/mailing/points.html');
+            $content = File::get('../storage/app/utils/mailing/pagoTc.html');
             $data =  [
                 'client' => $userJpa->toArray(),
                 'sale' => $ordenJpa->toArray(),
-                'domain' => env('APP_DOMAIN')
+                'domain' => env('APP_DOMAIN'),
+                'horario' => $horarioJpa->toArray(),
+                'generals' => $generals->toArray()
             ];
             $mail = EmailConfig::config();
-            $mail->Subject = 'Has acumulado ' . $ordenJpa->points . ' puntos';
+            $mail->Subject = 'Compra Procesada ' ;
             $mail->isHTML(true);
             $mail->Body = Text::replaceData($content, JSON::flatten($data), [
                 'client.name' => fn($x) => explode(' ', $x)[0]
@@ -33,14 +36,16 @@ class MailingController extends Controller
             
         }
     }
-    static function notifyTransfer(User $userJpa, Ordenes $ordenJpa)
+    static function notifyTransfer(User $userJpa, Ordenes $ordenJpa, Horarios $horarioJpa, $generals)
     {
         try {
-            $content = File::get('../storage/app/utils/mailing/points.html');
+            $content = File::get('../storage/app/utils/mailing/transfer.html');
             $data =  [
                 'client' => $userJpa->toArray(),
                 'sale' => $ordenJpa->toArray(),
-                'domain' => env('APP_DOMAIN')
+                'domain' => env('APP_DOMAIN'),
+                'horario' => $horarioJpa->toArray(),
+                'generals' => $generals->toArray()
             ];
             $mail = EmailConfig::config();
             $mail->Subject = 'Su compra ha sido procesada, en breve validaremos su transferencia  ';
@@ -54,13 +59,13 @@ class MailingController extends Controller
             
         }
     }
-    static function ventaProces(User $userJpa)
+    static function ventaProces(User $userJpa, Ordenes $ordenJpa)
     {
         try {
             $content = File::get('../storage/app/utils/mailing/points.html');
             $data =  [
                 'client' => $userJpa->toArray(),
-               
+               'sale' => $ordenJpa->toArray(),
                 'domain' => env('APP_DOMAIN')
             ];
             $mail = EmailConfig::config();

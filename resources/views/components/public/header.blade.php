@@ -275,11 +275,15 @@
 </div>
 
 
-<div id="header_top"
-  class="bg-[#FF8555] h-[50px] text-white flex justify-center w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
-  Producto | Categoría <span class="ml-1 font-b_slick_bold mt-1"> más vendida </span> <img class="w-6 ml-2"
-    src="{{ asset('img_donas/spa.svg') }}">
-</div>
+<a id="header_top" href="{{ $general1->url_cintillo }}"
+  class="bg-[#FF8555] h-[50px] text-white flex justify-center  w-full px-[5%] xl:px-[8%] py-3 text-base items-center">
+
+  {{ $general1->primer_text }} <span class="ml-2 font-b_slick_bold mt-1"> {{ $general1->second_text }} </span> <img
+    class="w-6 ml-2" src="{{ asset('img_donas/spa.svg') }}">
+
+
+
+</a>
 
 <header class="font-b_classic_regular @if (!request()->is('micuenta*')) sticky @endif top-0" style="z-index:2">
 

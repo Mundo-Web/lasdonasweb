@@ -90,8 +90,9 @@
     <section class="z-0">
       <div class="px-[5%] lg:px-[8%]  space-y-10">
         <div class="flex flex-col text-center  pt-[3.25rem] mt-[-8rem] lg:mt-[-10rem] bg-[#FFFFFF] gap-3 px-5">
-          <h3 class="text-xl md:text-2xl font-b_slick_bold text-[#FE4A11] ">LO MEJOR DE NOSOTRAS</h3>
-          <h2 class="text-2xl lg:text-4xl md:text-4xl font-b_slick_bold text-[#112212] xl:px-4"> Descubre nuestras
+          <h3 class="text-4xl md:text-4xl font-b_slick_bold text-[#ff9900] uppercase tracking-wider">LO MEJOR DE NOSOTRAS
+          </h3>
+          <h2 class="text-lg font-b_slick_bold text-[#112212CC] px-[8%]"> Descubre nuestras
             creaciones más
             apreciadas. Son las flores que han conquistado corazones y que reflejan nuestra pasión.</h2>
         </div>
@@ -127,8 +128,9 @@
     <section class="mt-12 font-b_slick_bold py-12 lg:py-20 z-0">
       {{-- Categorias destacadas --}}
       <div class="flex flex-col px-[5%] lg:px-[8%] gap-4">
-        <p class="text-xl md:text-2xl text-[#FE4A11]">CATEGORIAS</p>
-        <p class="text-2xl lg:text-4xl sm:text-4xl">Lo mejor de nuestras creaciones, diseñadas para cada ocasión especial.
+        <p class="text-4xl md:text-4xl font-b_slick_bold text-[#ff9900] uppercase tracking-wider">CATEGORIAS</p>
+        <p class="text-lg font-b_slick_bold text-[#112212CC]">Lo mejor de nuestras creaciones, diseñadas para cada ocasión
+          especial.
           Encuentra
           aquí el detalle ideal para hacer de cada momento algo inolvidable.</p>
       </div>
@@ -163,7 +165,7 @@
                     <a href="{{ route('Catalogo.jsx', $category->id) }}">
                       <div class="h-full w-full">
                         <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                          class="hidden h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full md:flex md:flex-col justify-end items-start object-cover"
+                          class="hidden h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full md:flex md:flex-col justify-end items-start object-cover object-top"
                           onerror="this.src='/images/img/noimagen.jpg';">
                         <img src="{{ asset($category->img_miniatura) }}" alt=""
                           class="h-[24rem]  flex md:hidden  object-cover w-full"
@@ -178,7 +180,7 @@
                     <a href="{{ route('Catalogo.jsx', $category->id) }}">
                       <div class="h-full">
                         <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                          class="hidden h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full md:flex md:flex-col justify-end items-start object-cover"
+                          class="hidden h-52 sm:h-52 md:h-64 lg:h-72 xl:h-[20rem]  w-full md:flex md:flex-col justify-end items-start object-cover object-left-top"
                           onerror="this.src='/images/img/noimagen.jpg';">
                         <img src="{{ asset($category->img_miniatura) }}" alt=""
                           class="h-[24rem]  flex md:hidden  object-cover w-full"
@@ -218,7 +220,7 @@
                   <a href="{{ route('Catalogo.jsx', $category->id) }}">
                     <div class="h-full">
                       <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                        class="hidden h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 w-full md:flex md:flex-col justify-end items-start object-cover"
+                        class="hidden h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 w-full md:flex md:flex-col justify-end items-start object-scale-down"
                         onerror="this.src='/images/img/noimagen.jpg';">
                       <img src="{{ asset($category->img_miniatura) }}" alt=""
                         class="h-[24rem]  flex md:hidden  object-cover w-full"
@@ -237,7 +239,7 @@
                   <a href="{{ route('Catalogo.jsx', $category->id) }}">
                     <div class="h-full">
                       <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                        class="hidden h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80 w-full md:flex md:flex-col justify-end items-start object-cover"
+                        class="hidden h-52 sm:h-52 md:h-64 lg:h-72 xl:h-52 w-full md:flex md:flex-col justify-end items-start object-cover"
                         onerror="this.src='/images/img/noimagen.jpg';">
                       <img src="{{ asset($category->img_miniatura) }}" alt=""
                         class="h-[24rem]  flex md:hidden  object-cover w-full"
@@ -256,7 +258,7 @@
                   <a href="{{ route('Catalogo.jsx', $category->id) }}">
                     <div class="h-full">
                       <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
-                        class="{{ $loop->first ? 'h-96 sm:h-[760px]' : 'h-52 sm:h-52 md:h-64 lg:h-72 xl:h-80' }} hidden w-full md:flex md:flex-col justify-end items-start object-cover"
+                        class="{{ $loop->first ? 'h-96 sm:h-[760px]' : 'h-52 sm:h-52 md:h-64 lg:h-72 xl:h-52' }} hidden w-full md:flex md:flex-col justify-end items-start object-cover"
                         onerror="this.src='/images/img/noimagen.jpg';">
                       <img src="{{ asset($category->img_miniatura) }}" alt=""
                         class="h-[24rem]  flex md:hidden  object-cover w-full"
@@ -302,8 +304,10 @@
     <section class="bg-[#E8EDDE] font-b_slick_bold pt-16 pb-20 lg:pt-20 lg:pb-28 z-0">
       <div class="w-full px-[5%] lg:px-[8%] flex flex-col gap-10">
         <div class="flex flex-col gap-3 text-center">
-          <h3 class="text-xl md:text-2xl font-bold text-[#FE4A11] ">NUEVAS CREACIONES</h3>
-          <h2 class="text-2xl lg:text-4xl font-bold text-black">Descubre nuestras últimas creaciones, donde fusionamos
+          <h3 class="text-4xl md:text-4xl font-b_slick_bold text-[#ff9900] uppercase tracking-wider">NUEVAS CREACIONES
+          </h3>
+          <h2 class="text-lg font-b_slick_bold text-[#112212CC] px-[8%]">Descubre nuestras últimas creaciones, donde
+            fusionamos
             nuestra tradición con flores únicas, cultivadas con el alma de nuestras tierras para hacer sonreír a tu
             persona favorita.
           </h2>
@@ -340,8 +344,10 @@
       <section class="pt-10 pb-12  lg:py-20 flex flex-col w-full gap-12 relative px-[5%] lg:px-[8%] z-0 h-[615px]">
         <div class="w-full">
           <div class="flex flex-col gap-3 text-left font-b_slick_bold">
-            <h3 class="text-xl md:text-2xl text-[#FE4A11] ">LO QUE OPINAN DE NOSOTRAS</h3>
-            <h2 class="text-2xl lg:text-4xl text-black">Testimonios en flor. Las emociones y experiencias de quienes han
+            <h3 class="text-4xl md:text-4xl font-b_slick_bold text-[#ff9900] uppercase tracking-wider">LO QUE OPINAN DE
+              NOSOTRAS</h3>
+            <h2 class="text-lg font-b_slick_bold text-[#112212CC]">Testimonios en flor. Las emociones y experiencias de
+              quienes han
               dejado que Las Doñas llenen sus momentos especiales con nuestro arte.
             </h2>
           </div>

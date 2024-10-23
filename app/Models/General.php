@@ -34,6 +34,9 @@ class General extends Model
         'titulo_video',
         'acept_incoming_orders_today',
         'sub_titulo_video',
-        'point_equivalence'
+        'point_equivalence',
+        'primer_text',
+        'second_text',
+        'url_cintillo'
     ];
 }

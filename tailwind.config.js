@@ -14,6 +14,19 @@ export default {
     ],
     darkMode: 'class',
     theme: {
+        screens: {
+            'xs': '320px',
+            "2xs": "370px",
+            'sm': "640px",
+            'md': "768px",
+            "2md": "900px",
+            'lg': "1024px",
+            "2lg": "1100px",
+           'xl': "1280px",
+           mxl:"1350px",
+            '2xl': "1350px",
+            '3xl': "1530px"
+        },
         extend: {
             keyframes: {
                 jump: {
@@ -147,18 +160,7 @@ export default {
                 "open-menu": "url(../images/prueba/icon-hamburger.svg)",
               },
 
-            screens: {
-                xs: '320px',
-                "2xs": "370px",
-                sm: "640px",
-                md: "768px",
-                "2md": "900px",
-                lg: "1024px",
-                "2lg": "1100px",
-                xl: "1280px",
-                "2xl": "1350px",
-                "3xl": "1530px"
-            },
+            
             borderWidth: {
                 3: '3px',
             },

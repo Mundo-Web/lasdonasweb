@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\DetalleOrden;
 use App\Models\General;
 use App\Models\HistoricoCupon;
+use App\Models\Horarios;
 use App\Models\Offer;
 use App\Models\Ordenes;
 use App\Models\Person;
@@ -212,12 +213,16 @@ class PaymentController extends Controller
       $userJpa->points = Auth::user()->points + ($points2give - $points2discount);
       $userJpa->save();
 
-      if ($sale->points > 0) {
-        MailingController::notifyPoints($userJpa, $sale);
-      }
+      
 
       $sale->status_id = 3;
       $sale->codigo_orden = $charge?->reference_code ?? null;
+
+      $horarioEnvio = Horarios::find($sale->horario_envio);
+      $generals = General::first();
+      // if ($sale->points > 0) {
+        MailingController::notifyPoints($userJpa, $sale, $horarioEnvio, $generals);
+      // }
 
       // $indexController = new IndexController(new InstagramService());
       // $datacorreo = [
@@ -450,8 +455,10 @@ class PaymentController extends Controller
       $userJpa->points = Auth::user()->points + ($points2give - $points2discount);
       $userJpa->save();
 
+      $horarioEnvio = Horarios::find($sale->horario_envio);
+      $generals = General::first();
       
-        MailingController::notifyTransfer($userJpa, $sale);
+        MailingController::notifyTransfer($userJpa, $sale, $horarioEnvio, $generals);
       
 
       // $sale->status_id = 3;
