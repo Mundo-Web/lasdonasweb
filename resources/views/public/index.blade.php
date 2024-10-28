@@ -128,7 +128,7 @@
     <section class="mt-12 font-b_slick_bold py-12 lg:py-20 z-0">
       {{-- Categorias destacadas --}}
       <div class="flex flex-col px-[5%] lg:px-[8%] gap-4">
-        <p class="text-4xl md:text-4xl font-b_slick_bold text-[#ff9900] uppercase tracking-wider">CATEGORIAS</p>
+        <p class="text-4xl md:text-4xl font-b_slick_bold text-[#ff9900] uppercase tracking-wider">CATEGORÍAS</p>
         <p class="text-lg font-b_slick_bold text-[#112212CC]">Lo mejor de nuestras creaciones, diseñadas para cada ocasión
           especial.
           Encuentra
