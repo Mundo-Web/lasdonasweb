@@ -41,7 +41,6 @@ class MailingController extends Controller
             $mail->addAddress($userJpa->email, $userJpa->name);
             $mail->send();
         } catch (\Throwable $th) {
-            dump($th);
         }
     }
     static function notifyTransfer(User $userJpa, Ordenes $ordenJpa, Horarios $horarioJpa, $generals)
@@ -69,7 +68,6 @@ class MailingController extends Controller
             $mail->addAddress($userJpa->email, $userJpa->name);
             $mail->send();
         } catch (\Throwable $th) {
-            dump($th);
         }
     }
     static function ventaProces(User $userJpa, Ordenes $ordenJpa)
