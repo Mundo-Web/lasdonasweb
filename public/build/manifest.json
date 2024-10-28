@@ -234,7 +234,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CNZOrkh2.css",
+    "file": "assets/app-u2mjeyG5.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -574,7 +574,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago-m5L4GDbK.js",
+    "file": "assets/Pago--ngSTMaw.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",

@@ -169,14 +169,14 @@ export default function OrdenConfirmation({ telefono, texto, datosFinales, histo
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#138496'
         })
-        // Local.delete('carrito')
-        // Local.delete('payment-data')
+        Local.delete('carrito')
+        Local.delete('payment-data')
 
-        // setTimeout(() => {
-        //   let url = esWhataspp ? `/agradecimiento?code=${data.reference_code}&whatsapp=true ` : `/agradecimiento?code=${data.reference_code}`
+        setTimeout(() => {
+          let url = esWhataspp ? `/agradecimiento?code=${data.reference_code}&whatsapp=true ` : `/agradecimiento?code=${data.reference_code}`
 
-        //   location.href = url
-        // }, 1500);
+          location.href = url
+        }, 1500);
       }
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);

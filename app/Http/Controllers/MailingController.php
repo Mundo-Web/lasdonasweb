@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\EmailConfig;
+use App\Models\General;
 use App\Models\Horarios;
 use App\Models\Ordenes;
 use App\Models\User;
@@ -73,7 +74,12 @@ class MailingController extends Controller
     static function ventaProces(User $userJpa, Ordenes $ordenJpa)
     {
         try {
-            $content = File::get('../storage/app/utils/mailing/points.html');
+            $horarioEnvio = Horarios::find($ordenJpa->horario_envio);
+            $generals = General::first();
+
+            MailingController::notifyPoints($userJpa, $ordenJpa, $horarioEnvio, $generals);
+
+            /* $content = File::get('../storage/app/utils/mailing/points.html');
             $data =  [
                 'client' => $userJpa->toArray(),
                 'sale' => $ordenJpa->toArray(),
@@ -86,7 +92,7 @@ class MailingController extends Controller
                 'client.name' => fn($x) => explode(' ', $x)[0]
             ]);
             $mail->addAddress($userJpa->email, $userJpa->name);
-            $mail->send();
+            $mail->send(); */
         } catch (\Throwable $th) {
         }
     }

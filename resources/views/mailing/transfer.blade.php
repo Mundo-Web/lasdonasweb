@@ -22,7 +22,7 @@
   style="
             font-family: 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1b1b1b;
             max-width: 600px;
             margin: 0 auto;
             padding: 40px 20px;
@@ -55,7 +55,7 @@
         ¡Gracias , {{ $client->name }}!
       </h1>
 
-      <p style="font-size: 16px; margin-bottom: 20px">
+      <p style="font-size: 18px; margin-bottom: 20px">
         Estamos emocionadas de contarte que tu
         <span style="font-weight: 600">
           pedido #{{ $sale->codigo_orden }}</span>
@@ -64,7 +64,7 @@
         ansias tu confirmación para crear algo especial para ti! 💐
       </p>
 
-      <p style="font-size: 16px; margin-bottom: 20px">
+      <p style="font-size: 18px; margin-bottom: 20px">
         Además, al concretar tu compra, estarás acumulando
         {{ $sale->points }} Floripuntos que podrás canjear en futuros
         pedidos por complementos como globos, chocolates o peluches.
@@ -88,17 +88,17 @@
                         ">
           Datos de pago
         </h2>
-        <p style="font-size: 14px; margin-bottom: 10px">
+        <p style="font-size: 16px; margin-bottom: 10px">
           Para hacer tu pedido efectivo, por favor realiza la
           transferencia bancaria o el pago por YAPE/PLIN y
           envíanos el comprobante a :
         </p>
-        <p style="font-size: 14px; margin-bottom: 5px">
+        <p style="font-size: 16px; margin-bottom: 5px">
           <a href="mailto:pedidos@florerialasdonas.com"
             style="color: #007bff; text-decoration: none">pedidos@florerialasdonas.com</a>
         </p>
-        <p style="font-size: 14px; margin-bottom: 10px">Ó</p>
-        <p style="font-size: 14px">
+        <p style="font-size: 16px; margin-bottom: 10px">Ó</p>
+        <p style="font-size: 16px">
           <a href="https://api.whatsapp.com/send?phone= {{ $generals->whatsapp }}&text={{ $generals->mensaje_whatsapp }} N Orden: {{ $sale->codigo_orden }} "
             style="color: #007bff; text-decoration: none">WhatsApp: 987829046</a>
         </p>
@@ -118,22 +118,22 @@
                         ">
           Cuentas bancarias
         </h2>
-        <p style="font-size: 14px; margin-bottom: 5px">
+        <p style="font-size: 16px; margin-bottom: 5px">
           Titular: Fabrizio Renato Valderrama Gonzaga
         </p>
-        <p style="font-size: 14px; margin-bottom: 5px">
+        <p style="font-size: 16px; margin-bottom: 5px">
           YAPE/PLIN: 987829046
         </p>
-        <p style="font-size: 14px; margin-bottom: 5px">
+        <p style="font-size: 16px; margin-bottom: 5px">
           BCP: 191-27695867-0-21
         </p>
-        <p style="font-size: 14px; margin-bottom: 5px">
+        <p style="font-size: 16px; margin-bottom: 5px">
           INTERBANK: 200-3026726544
         </p>
-        <p style="font-size: 14px; margin-bottom: 5px">
+        <p style="font-size: 16px; margin-bottom: 5px">
           BBVA: 0011-0175-0200359715
         </p>
-        <p style="font-size: 14px">SCOTIABANK: 151-0020074</p>
+        <p style="font-size: 16px">SCOTIABANK: 151-0020074</p>
       </div>
       <div>
         <h2
@@ -154,7 +154,7 @@
                 <th style=" padding: 8px;"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody style="font-size: 14px">
               @foreach ($productos as $item)
                 <tr>
                   <td style=" padding: 8px; text-align: center;">
@@ -207,37 +207,37 @@
                         ">
           Detalles de entrega
         </h2>
-        <p style="font-size: 14px; margin-bottom: 5px">
+        <p style="font-size: 16px; margin-bottom: 5px">
           <strong>Fecha:</strong> {{ $sale->fechaenvio }} de
           {{ $horario->start_time }} - {{ $horario->end_time }}
         </p>
-        <p style="font-size: 14px; margin-bottom: 5px">
+        <p style="font-size: 16px; margin-bottom: 5px">
           <strong>Nombre:</strong> {{ $sale->address_owner }}
         </p>
-        <p style="font-size: 14px; margin-bottom: 5px">
+        <p style="font-size: 16px; margin-bottom: 5px">
           <strong>Teléfono:</strong> {{ $sale->consumer_phone }}
         </p>
-        <p style="font-size: 14px">
+        <p style="font-size: 16px">
           <strong>Dirección:</strong> {{ $sale->address_full }}
         </p>
       </div>
 
-      <p style="font-size: 16px; margin-bottom: 20px">
+      <p style="font-size: 18px; margin-bottom: 20px">
         Si tienes alguna duda, comentario o inquietud, no dudes en
         contactarnos a través de nuestro WhatsApp , ¡Estamos aquí
         para ayudarte con lo que necesites! 🌷
       </p>
-      <p style="font-size: 14px; margin-bottom: 5px">
+      <p style="font-size: 16px; margin-bottom: 5px">
         <a href="https://api.whatsapp.com/send?phone={{ $generals->whatsapp }}&text={{ $generals->mensaje_whatsapp }} N Orden: {{ $sale->codigo_orden }} "
           style="color: #007bff; text-decoration: none">WhatsApp: 987829046</a>
       </p>
-      <p style="font-size: 14px">
+      <p style="font-size: 16px">
         <a href="#" style="color: #007bff; text-decoration: none">Teléfono: (01) 597-8881</a>
       </p>
 
       <p
         style="
-                        font-size: 16px;
+                        font-size: 18px;
                         text-align: center;
                         margin-top: 30px;
                     ">
@@ -246,7 +246,7 @@
       </p>
       <p
         style="
-                        font-size: 16px;
+                        font-size: 18px;
                         text-align: center;
                         margin-top: 30px;
                     ">
@@ -261,7 +261,7 @@
       style="
                     margin-top: 40px;
                     text-align: center;
-                    font-size: 12px;
+                    font-size: 14px;
                     color: #888;
                 ">
       <p>© 2024 Florería Las Doñas. Todos los derechos reservados.</p>

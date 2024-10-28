@@ -286,7 +286,7 @@
                     class="hidden h-52 sm:h-52 md:h-64 lg:h-[660px] xl:h-[760px] md:flex md:flex-col justify-end items-start object-cover w-full"
                     onerror="this.src='/images/img/noimagen.jpg';">
                   <img src="{{ asset($item->img_miniatura) }}" alt=""
-                    class="h-[7rem]  flex md:hidden  object-cover w-full"
+                    class=" flex md:hidden  object-cover w-full aspect-square"
                     onerror="this.src='/images/img/noimagen.jpg';">
                   <h3 class="text-base font-medium text-[#FE4A11] mt-3 mb-[5%]"></h3>
                   <h2 class="text-lg font-b_slick_regular ">{{ $item->name }}</h2>
