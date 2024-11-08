@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             //ServiceSeeder::class,
             TiposFlorSeeder::class,
             TagSeeder::class,
+            ItemSeeder::class,
         ]);
     }
 }
