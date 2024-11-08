@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Galerie;
+use App\Models\ImagenProducto;
 use App\Models\Products;
 use App\Models\Subcategory;
 use App\Models\TipoFlor;
@@ -100,7 +101,7 @@ class ItemSeeder extends Seeder
                     ]);
 
                     $i = 0;
-                    Galerie::where('product_id', $productJpa->id)->delete();
+                    ImagenProducto::where('product_id', $productJpa->id)->delete();
 
                     if (\count($productImages) == 0) {
                         $productJpa->visible = 0;
@@ -113,12 +114,17 @@ class ItemSeeder extends Seeder
                             if ($i == 0) {
                                 $productJpa->imagen = $productImage;
                                 $productJpa->save();
-                            } else {
-                                Galerie::updateOrCreate([
-                                    'product_id' => $productJpa->id,
-                                    'imagen' => $productImage
-                                ]);
                             }
+                            ImagenProducto::updateOrCreate([
+                                'product_id' => $productJpa->id,
+                                'name_imagen' => $productImage
+                            ]);
+                            // else {
+                            //     Galerie::updateOrCreate([
+                            //         'product_id' => $productJpa->id,
+                            //         'imagen' => $productImage
+                            //     ]);
+                            // }
                         } catch (\Throwable $th) {
                             dump($th->getMessage());
                         }
