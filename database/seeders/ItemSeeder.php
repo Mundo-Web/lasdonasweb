@@ -109,7 +109,7 @@ class ItemSeeder extends Seeder
 
                     foreach ($productImages as $image) {
                         try {
-                            $productImage = 'seed/' . $image;
+                            $productImage = 'storage/seed/' . $image;
                             if ($i == 0) {
                                 $productJpa->imagen = $productImage;
                                 $productJpa->save();
