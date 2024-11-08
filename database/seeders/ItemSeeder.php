@@ -97,7 +97,8 @@ class ItemSeeder extends Seeder
                         'puntos_complemento' => $item[12],
                         'tipo_flor_id' => $tipoFlorJpa?->id,
                         'subcategory_id' => $subcategoryJpa?->id,
-                        'descripcion_dinamica' => $item[6]
+                        'descripcion_dinamica' => $item[6],
+                        'visible' => count($productImages) > 0,
                     ]);
 
                     $i = 0;
@@ -118,6 +119,8 @@ class ItemSeeder extends Seeder
                             ImagenProducto::updateOrCreate([
                                 'product_id' => $productJpa->id,
                                 'name_imagen' => $productImage
+                            ], [
+                                'caratula' => $i == 0
                             ]);
                             // else {
                             //     Galerie::updateOrCreate([
