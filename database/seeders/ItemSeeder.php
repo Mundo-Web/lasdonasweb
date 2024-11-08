@@ -33,8 +33,6 @@ class ItemSeeder extends Seeder
             dump($th->getMessage());
         }
 
-        dump($images);
-
         Excel::import(new class($images) implements ToModel
         {
             private array $images;
