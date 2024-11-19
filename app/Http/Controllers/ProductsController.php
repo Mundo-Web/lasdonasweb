@@ -131,6 +131,7 @@ class ProductsController extends Controller
       $data['imagen'] = $this->handleImageUpload($request);
       list($cleanedData, $atributos, $especificaciones) = $this->processAndCleanProductData($data);
 
+      $cleanedData['slug'] = Str::slug($cleanedData['producto']);
 
       $product = Products::find($request->id);
       if (!$product) {

@@ -148,7 +148,7 @@ Route::get('/pago', [IndexController::class, 'pago'])->name('Pago.jsx');
 Route::post('/procesar/pago', [IndexController::class, 'procesarPago'])->name('procesar.pago');
 Route::get('/agradecimiento', [IndexController::class, 'agradecimiento'])->name('Agradecimiento.jsx');
 /* Catálogo y producto */
-Route::get('/producto/{id}', [IndexController::class, 'producto'])->name('Product.jsx');
+Route::get('/producto/{slug}', [IndexController::class, 'producto'])->name('Product.jsx');
 Route::get('/catalogo', [IndexController::class, 'catalogo'])->name('Catalogo.jsx');
 Route::get('/catalogo/{filtro?}', [IndexController::class, 'catalogo'])->name('Catalogo.jsx');
 Route::post('carrito/buscarProducto', [CarritoController::class, 'buscarProducto'])->name('carrito.buscarProducto');

@@ -242,12 +242,12 @@ class IndexController extends Controller
         $filtro = null;
       } else {
         //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
-        $productos = Products::obtenerProductos($filtro);
-
-        $categoria = Category::findOrFail($filtro);
+        $categoria = Category::where('slug', $filtro)->first();
         if (isset($subcategoria)) {
-          $categoriaSelected = Subcategory::where('id', $subcategoria)->first();
+          $categoriaSelected = Subcategory::where('slug', $subcategoria)->first();
         }
+        $productos = Products::obtenerProductos($categoria?->id ?? '');
+        $filtro = $categoria?->id ?? '';
       }
 
       $page = 0;
@@ -282,6 +282,7 @@ class IndexController extends Controller
         'categoriaSelected' => $categoriaSelected
       ])->rootView('app');
     } catch (\Throwable $th) {
+      // dump($th->getMessage());
     }
   }
 
@@ -958,18 +959,18 @@ class IndexController extends Controller
     );
   }
 
-  public function producto(string $id)
+  public function producto(string $slug)
   {
-    $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->first();
+    $product = Products::where('slug', '=', $slug)->with('attributes')->with('tags')->first();
     // $product = Products::findOrFail($id);
     // $colors = Products::findOrFail($id)
     //           ->with('images')
     //           ->get();
 
-    $colors = DB::table('imagen_productos')->where('product_id', $id)->groupBy('color_id')->join('attributes_values', 'color_id', 'attributes_values.id')->get();
+    $colors = DB::table('imagen_productos')->where('product_id', $product->id)->groupBy('color_id')->join('attributes_values', 'color_id', 'attributes_values.id')->get();
 
-    $productos = Products::where('id', '=', $id)->with(['attributes', 'images', 'especificaciones'])->with('tags')->first();
-    $subproductos = Products::where('parent_id', '=', $id)->with(['images', 'tipos', 'especificaciones'])->get();
+    $productos = Products::where('id', '=', $product->id)->with(['attributes', 'images', 'especificaciones'])->with('tags')->first();
+    $subproductos = Products::where('parent_id', '=', $product->id)->with(['images', 'tipos', 'especificaciones'])->get();
 
     $tipoDefault = Tipo::where('is_default', '=', 1)->first();
 
@@ -994,7 +995,7 @@ class IndexController extends Controller
       ->get();
 
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
-    $especificaciones = Specifications::where('product_id', '=', $id)
+    $especificaciones = Specifications::where('product_id', '=', $product->id)
       ->where(function ($query) {
         $query->whereNotNull('tittle')->orWhereNotNull('specifications');
       })
@@ -1006,7 +1007,7 @@ class IndexController extends Controller
             INNER JOIN galeries ON products.id = galeries.product_id
             WHERE products.id = :productId limit 5
         ",
-      ['productId' => $id],
+      ['productId' => $product->id],
     );
 
     $IdProductosComplementarios = $productos->toArray();

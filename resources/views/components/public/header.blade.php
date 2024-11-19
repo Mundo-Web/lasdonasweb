@@ -194,7 +194,7 @@
                 <ul x-show="openSubMenu === {{ $category->id }}" x-transition
                   class="ml-3 mt-1 space-y-1 border-l border-gray-300">
                   <li>
-                    <a href="/catalogo/{{ $category->id }}"
+                    <a href="/catalogo/{{ $category->slug }}"
                       class="text-[#272727] flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300">
                       <span class="underline-this  text-base ">
                         Ver todo {{ $category->name }}
@@ -203,7 +203,7 @@
                   </li>
                   @foreach ($category->subcategories as $subcategory)
                     <li>
-                      <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
+                      <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->id }}"
                         class="text-[#272727] text-base flex items-center py-2 px-3 hover:opacity-75 transition-opacity duration-300">
                         <span class="underline-this">{{ $subcategory->name }}</span>
                       </a>
@@ -213,7 +213,7 @@
               </li>
             @else
               <li>
-                <a href="/catalogo/{{ $category->id }}"
+                <a href="/catalogo/{{ $category->slug }}"
                   class="text-[#272727] flex items-center text-base py-2 px-3 hover:opacity-75 transition-opacity duration-300">
                   <span class="underline-this">
                     {{ $category->name }}
@@ -485,7 +485,7 @@
                         <ul id="submenu-{{ $category->id }}" {{-- x-show="openSubMenu === {{ $category->id }}" x-transition --}}
                           class="ml-3 mt-1 space-y-1 border-l border-white font-b_slick_bold  hidden">
                           <li>
-                            <a href="/catalogo/{{ $category->id }}"
+                            <a href="/catalogo/{{ $category->slug }}"
                               class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                               <span class="underline-this font-b_slick_bold">
                                 Ver todo {{ $category->name }}
@@ -494,7 +494,7 @@
                           </li>
                           @foreach ($category->subcategories as $subcategory)
                             <li>
-                              <a href="/catalogo/{{ $category->id }}?subcat={{ $subcategory->id }}"
+                              <a href="/catalogo/{{ $category->slug }}?subcat={{ $subcategory->id }}"
                                 class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                                 <span class="underline-this font-b_slick_bold">{{ $subcategory->name }}</span>
                               </a>
@@ -504,7 +504,7 @@
                       </li>
                     @else
                       <li>
-                        <a href="{{ route('Catalogo.jsx', $category->id) }}"
+                        <a href="{{ route('Catalogo.jsx', $category->slug) }}"
                           class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                           <span class="underline-this font-b_slick_bold">
                             {{ $category->name }}
@@ -581,7 +581,7 @@
                           </li>
                           @foreach ($category->subcategories as $subcategory)
                             <li>
-                              <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->slug }}"
+                              <a href="/catalogo/{{ $category->slug }}/{{ $subcategory->id }}"
                                 class="flex items-center py-1 px-3 hover:opacity-75 transition-opacity duration-300 normal-case">
                                 <span class="underline-this">{{ $subcategory->name }}</span>
                               </a>
@@ -996,41 +996,41 @@
 </script>
 
 <script>
-  // var menu = new Swiper(".menu", {
-  //   slidesPerView: 5,
-  //   spaceBetween: 10,
-  //   loop: true,
-  //   centeredSlides: false,
-  //   initialSlide: 0,
-  //   allowTouchMove: true,
-  //   autoplay: {
-  //     delay: 5500,
-  //     disableOnInteraction: true,
-  //     pauseOnMouseEnter: true
-  //   },
-  //   breakpoints: {
-  //     0: {
-  //       slidesPerView: 2,
-  //       centeredSlides: false,
-  //       loop: true,
-  //     },
-  //     640: {
-  //       slidesPerView: 3,
-  //       centeredSlides: false,
+  var menu = new Swiper(".menu", {
+    slidesPerView: 5,
+    spaceBetween: 10,
+    loop: true,
+    centeredSlides: false,
+    initialSlide: 0,
+    allowTouchMove: true,
+    autoplay: {
+      delay: 5500,
+      disableOnInteraction: true,
+      pauseOnMouseEnter: true
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 2,
+        centeredSlides: false,
+        loop: true,
+      },
+      640: {
+        slidesPerView: 3,
+        centeredSlides: false,
 
-  //     },
-  //     1024: {
-  //       slidesPerView: 5,
-  //       centeredSlides: false,
+      },
+      1024: {
+        slidesPerView: 5,
+        centeredSlides: false,
 
-  //     },
-  //     1280: {
-  //       slidesPerView: 6,
-  //       centeredSlides: false,
+      },
+      1280: {
+        slidesPerView: 6,
+        centeredSlides: false,
 
-  //     },
-  //   },
-  // });
+      },
+    },
+  });
 </script>
 
 <script>

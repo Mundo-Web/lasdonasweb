@@ -63,8 +63,8 @@
       "resources/js/components/useOutsideClick.jsx"
     ]
   },
-  "_ProductCard-nAEp5U1C.js": {
-    "file": "assets/ProductCard-nAEp5U1C.js",
+  "_ProductCard-W8FLIn_Y.js": {
+    "file": "assets/ProductCard-W8FLIn_Y.js",
     "imports": [
       "resources/js/Example.jsx",
       "_tippy-react.esm-xuEmYGnY.js",
@@ -405,7 +405,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Catalogo-7BwkvKUB.js",
+    "file": "assets/Catalogo-aKyKjMy-.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -414,7 +414,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-nAEp5U1C.js",
+      "_ProductCard-W8FLIn_Y.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -561,7 +561,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Oferta-PRakhJuY.js",
+    "file": "assets/Oferta-OrExazzl.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -570,7 +570,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-nAEp5U1C.js",
+      "_ProductCard-W8FLIn_Y.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
@@ -622,7 +622,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-cLck-BFJ.js",
+    "file": "assets/Product-Lws7X_nO.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -638,7 +638,7 @@
       "_Accordion2-GB4Nd3JA.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-wXA00dMN.js",
-      "_ProductCard-nAEp5U1C.js",
+      "_ProductCard-W8FLIn_Y.js",
       "_tippy-react.esm-xuEmYGnY.js",
       "_index-XJuWVQ-l.js",
       "__commonjsHelpers-4gQjN7DL.js",
@@ -684,7 +684,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/TipoFlor-7qx2_zhO.js",
+    "file": "assets/TipoFlor-ZNU1nVRs.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -693,7 +693,7 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-nAEp5U1C.js",
+      "_ProductCard-W8FLIn_Y.js",
       "_main-Vi8adC25.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",

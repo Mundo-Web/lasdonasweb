@@ -53,10 +53,16 @@ class ItemSeeder extends Seeder
 
                     $categoryJpa = new Category();
                     if ($item[11]) {
+                        $slug = Str::slug($item[11]);
                         $categoryJpa = Category::updateOrCreate([
                             'name' => $item[11]
                         ], [
-                            'slug' => Str::slug($item[5]),
+                            'description' => 'Descripcion de ' . Text::toTitleCase($item[11]),
+                            'slug' => $slug,
+                            'destacar' => in_array($item[11], ['AMOR', 'CONDOLENCIAS', 'CUMPLEAÑOS', 'NACIMIENTOS', 'PARA ÉL']),
+                            'url_image' => 'images/seed/',
+                            'name_image' => 'cat-' . $slug . '.jpg',
+                            'img_miniatura' => 'images/seed/catmini-' . $slug . '.jpg',
                             'visible' => 1
                         ]);
                     }
@@ -82,10 +88,14 @@ class ItemSeeder extends Seeder
                         ]);
                     }
 
+                    $slug = Str::slug($item[3]);
+                    $existsSlug = Products::where('slug', $slug)->exists();
+
                     $productJpa = Products::updateOrCreate([
                         'sku' => $item[2],
                     ], [
                         'producto' => $item[3],
+                        'slug' => $existsSlug ? $slug . '-' . $item[0] : $slug,
                         'extract' => $item[4],
                         'description' => $item[5],
                         'precio' => $item[8],
@@ -98,6 +108,8 @@ class ItemSeeder extends Seeder
                         'tipo_flor_id' => $tipoFlorJpa?->id,
                         'subcategory_id' => $subcategoryJpa?->id,
                         'descripcion_dinamica' => $item[6],
+                        'destacar' => rand(0, 1),
+                        'recomendar' => rand(0, 1),
                         'visible' => count($productImages) > 0,
                     ]);
 

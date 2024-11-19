@@ -34,7 +34,7 @@ const ProductCard = (item) => {
     <div className="flex flex-col gap-7 col-span-1 font-b_slick_bold">
       <a
         className="rounded-xl bg-white shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-        href={`/producto/${item.id}`}
+        href={`/producto/${item.slug}`}
       >
         <div className="bg-[#FFF4ED] rounded-t-xl overflow-hidden relative">
           {bagOff && (
@@ -121,7 +121,7 @@ const ProductCard = (item) => {
       </a >
       <div className="w-full mt-4">
         <a
-          href={`/producto/${item.id}`}
+          href={`/producto/${item.slug}`}
           type="button"
           className="w-full py-3 rounded-full shadow-md font-medium flex items-center justify-center bg-[#336234] text-white text-base hover:bg-[#2d5228] transition-colors duration-300"
         >
