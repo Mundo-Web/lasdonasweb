@@ -118,6 +118,8 @@ class ItemSeeder extends Seeder
 
                     if (\count($productImages) == 0) {
                         $productJpa->visible = 0;
+                        $productJpa->destacar = 0;
+                        $productJpa->recomendar = 0;
                         $productJpa->save();
                     }
 
