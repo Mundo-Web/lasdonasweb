@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             MarketerSeeder::class,
             CampaignMarketerSeeder::class,
             */
+            AboutusSeeder::class,
             ConstantSeeder::class,
             RoleSeeder::class,
             UsersSeeder::class,

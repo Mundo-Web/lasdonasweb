@@ -36,7 +36,11 @@
                 <tr>
                   <td>{{ $item->titulo }}</td>
 
-                  <td>{{ Str::limit($item->descripcion, 90) }} </td>
+                  <td>
+                    <div class="w-96 truncate">
+                      {{ strip_tags($item->descripcion) }}
+                    </div>
+                  </td>
 
 
                   <td class="px-3 py-2"><img class="w-20" src="{{ asset($item->imagen) }}" alt=""></td>

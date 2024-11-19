@@ -459,7 +459,7 @@
               </div>
             </a>
           </li>
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['politica-datos'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['politica-datos'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('politicadatos.detalle', 1) }}">
@@ -477,7 +477,7 @@
                   BioSeguridad</span>
               </div>
             </a>
-          </li>
+          </li> --}}
           <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['politica-sustitucion'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['politica-sustitucion'])) {{ 'hover:text-slate-200' }} @endif"
