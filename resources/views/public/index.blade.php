@@ -48,7 +48,7 @@
   <main class="flex flex-col gap-12">
 
     <section class="z-0">
-      <div class="swiper slider-portada">
+      <div id="slider-portada" class="swiper slider-portada">
         <div class="swiper-wrapper">
           @foreach ($slider as $slide)
             <div class="swiper-slide {{ $slide->link1 ? 'cursor-pointer' : '' }}"
@@ -677,7 +677,7 @@
       },
     });
 
-    var swiper = new Swiper(".testimonios", {
+    var swiperTestimonios = new Swiper(".testimonios", {
       slidesPerView: 1,
       spaceBetween: 2,
       loop: true,
@@ -705,7 +705,7 @@
 
     });
 
-    var swiper = new Swiper(".slider-portada", {
+    var swiperPortada = new Swiper("#slider-portada", {
       slidesPerView: 1,
       spaceBetween: 30,
       loop: true,
@@ -728,6 +728,8 @@
       },
 
     });
+
+    console.log('slider portada', swiperPortada);
 
     new Swiper(".testimonios-slider", {
       slidesPerView: 2,
