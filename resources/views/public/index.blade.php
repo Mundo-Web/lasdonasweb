@@ -48,45 +48,43 @@
   <main class="flex flex-col gap-12">
 
     <section class="z-0">
-      <div id="slider-portada" class="swiper slider-portada">
-        <div class="swiper-wrapper">
+      <div id="slider-portada" class="swiper">
+        <div class="swiper-wrapper" id="slider-portada-wrapper">
           @foreach ($slider as $slide)
             <div class="swiper-slide {{ $slide->link1 ? 'cursor-pointer' : '' }}"
               @if ($slide->link1) onclick="window.location.href='{{ $slide->link1 }}'" @endif>
               <div
                 class="hidden bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center md:flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
-                style="background-image:  @if ($slide->name_image) url('{{ asset($slide->url_image . $slide->name_image) }}')
-                            @else url('{{ asset('images/img/noimagenslider.jpg') }}') @endif">
+                style="background-image: url('{{ $slide->name_image ? asset($slide->url_image . $slide->name_image) : asset('images/img/noimagenslider.jpg') }}')">
                 <h4 class="text-xl text-[#336234] tracking-wider">{{ $slide->subtitle }}</h4>
                 <h2
-                  class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
+                  class="text-3xl sm:text-4xl md:text-[50px] font-bold text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
                   {{ $slide->title2 }}
                 </h2>
                 <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">
-                  {{ $slide->description }}</p>
-                {{-- <a href="{{ $slide->link1 }}" type="button"
-                  class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a> --}}
+                  {{ $slide->description }}
+                </p>
               </div>
-
               <div
                 class="flex bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center md:hidden flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
-                style="background-image:  @if ($slide->name_image) url('{{ asset($slide->img_mobile) }}')
-                            @else url('{{ asset('images/img/noimagenslider.jpg') }}') @endif">
+                style="background-image: url('{{ $slide->name_image ? asset($slide->img_mobile) : asset('images/img/noimagenslider.jpg') }}')">
                 <h4 class="text-xl text-[#336234] tracking-wider">{{ $slide->subtitle }}</h4>
                 <h2
-                  class="text-3xl sm:text-4xl md:text-[50px] font-bold  text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
+                  class="text-3xl sm:text-4xl md:text-[50px] font-bold text-[#112212] leading-tight md:!leading-snug tracking-wide uppercase">
                   {{ $slide->title2 }}
                 </h2>
                 <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">
-                  {{ $slide->description }}</p>
+                  {{ $slide->description }}
+                </p>
                 <a href="{{ $slide->link1 }}" type="button"
-                  class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a>
+                  class="bg-[#336234] px-6 py-3 rounded-full mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a>
               </div>
-              </d>
+            </div>
           @endforeach
         </div>
       </div>
     </section>
+
 
     <section class="z-0">
       <div class="px-[5%] lg:px-[8%]  space-y-10">
@@ -710,26 +708,13 @@
       spaceBetween: 30,
       loop: true,
       grabCursor: true,
-      centeredSlides: false,
+      centeredSlides: true,
       initialSlide: 0,
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-          spaceBetween: 30,
-        },
-        768: {
-          slidesPerView: 1,
-          spaceBetween: 30,
-        },
-        1024: {
-          slidesPerView: 1,
-          spaceBetween: 30,
-        },
+      autoplay: {
+        delay: 5000, // 5 segundos entre cada slide
+        disableOnInteraction: false, // El autoplay continúa aunque el usuario interactúe con el slider
       },
-
     });
-
-    console.log('slider portada', swiperPortada);
 
     new Swiper(".testimonios-slider", {
       slidesPerView: 2,
