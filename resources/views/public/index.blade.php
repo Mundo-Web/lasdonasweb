@@ -76,8 +76,10 @@
                 <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">
                   {{ $slide->description }}
                 </p>
-                <a href="{{ $slide->link1 }}" type="button"
-                  class="bg-[#336234] px-6 py-3 rounded-full mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a>
+                @if ($slide->link1)
+                  <a href="{{ $slide->link1 }}" type="button"
+                    class="bg-[#336234] px-6 py-3 rounded-full mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a>
+                @endif
               </div>
             </div>
           @endforeach
