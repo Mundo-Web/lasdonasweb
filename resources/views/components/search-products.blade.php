@@ -60,7 +60,7 @@
                 .map(img => img.name_imagen);
               console.log(imagenUrl)
 
-              resultsHtml += `<a href="/producto/${result.id}">
+              resultsHtml += `<a href="/producto/${result.slug}">
                 <div class="w-full flex gap-2 flex-row py-3 px-5 hover:bg-slate-200">
                   <div class="w-[10%]">
                     <img class="w-14 rounded-md" src="/${imagenUrl}" onerror="imagenError(this)" />
