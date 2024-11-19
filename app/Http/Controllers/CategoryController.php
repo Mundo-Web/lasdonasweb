@@ -182,11 +182,13 @@ class CategoryController extends Controller
     {
         $id = $request->id;
 
-        $category = Category::findOrfail($id);
+        // $category = Category::findOrfail($id);
 
-        $category->status = false;
+        // $category->status = false;
 
-        $category->save();
+        // $category->save();
+
+        Category::where('id', $id)->delete();
 
         return response()->json(['message' => 'Categoría eliminada']);
     }

@@ -36,7 +36,7 @@
               @foreach ($category as $item)
                 <tr>
                   <td>{{ $item->name }}</td>
-                  <td>{{ $item->description }}</td>
+                  <td><div class="w-96 truncate">{{ $item->description }}</div></td>
                   <td>
                     <form method="POST" action="">
                       @csrf

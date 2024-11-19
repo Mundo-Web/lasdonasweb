@@ -1,14 +1,13 @@
 {
-  "_Accordion2-Gpptojt8.js": {
-    "file": "assets/Accordion2-Gpptojt8.js",
+  "_Accordion2-GB4Nd3JA.js": {
+    "file": "assets/Accordion2-GB4Nd3JA.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/components/useOutsideClick.jsx",
       "_axios-_sX4vCAy.js",
       "_storage-zp2nPsZU.js",
       "resources/js/components/Dashboard/Profile.jsx",
-      "_tippy.esm-vXDZ6XwW.js",
-      "_index-38suPYpT.js"
+      "_tippy-react.esm-xuEmYGnY.js"
     ]
   },
   "_Card-eNbsL1sp.js": {
@@ -64,10 +63,11 @@
       "resources/js/components/useOutsideClick.jsx"
     ]
   },
-  "_ProductCard-wnKStNKu.js": {
-    "file": "assets/ProductCard-wnKStNKu.js",
+  "_ProductCard-nAEp5U1C.js": {
+    "file": "assets/ProductCard-nAEp5U1C.js",
     "imports": [
       "resources/js/Example.jsx",
+      "_tippy-react.esm-xuEmYGnY.js",
       "resources/js/components/useOutsideClick.jsx"
     ]
   },
@@ -80,9 +80,9 @@
   "_calcularTotal-FPqXOtx1.js": {
     "file": "assets/calcularTotal-FPqXOtx1.js"
   },
-  "_es-!~{01T}~.js": {
+  "_es-!~{01V}~.js": {
     "file": "assets/es-D87rtk4j.css",
-    "src": "_es-!~{01T}~.js"
+    "src": "_es-!~{01V}~.js"
   },
   "_es-wXA00dMN.js": {
     "css": [
@@ -182,6 +182,14 @@
     "file": "assets/tippy-C64i7G0l.css",
     "src": "_tippy-!~{01w}~.js"
   },
+  "_tippy-react.esm-xuEmYGnY.js": {
+    "file": "assets/tippy-react.esm-xuEmYGnY.js",
+    "imports": [
+      "_tippy.esm-vXDZ6XwW.js",
+      "resources/js/components/useOutsideClick.jsx",
+      "_index-38suPYpT.js"
+    ]
+  },
   "_tippy.esm-vXDZ6XwW.js": {
     "file": "assets/tippy.esm-vXDZ6XwW.js"
   },
@@ -234,7 +242,7 @@
     "src": "public/img_donas/fondolasdonas.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-u2mjeyG5.css",
+    "file": "assets/app-8hm-riW6.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -368,7 +376,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Carrito-JU_YCJcH.js",
+    "file": "assets/Carrito-VUnwZENr.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -376,7 +384,7 @@
       "_CreateReactScript-VVPwJ0HX.js",
       "_HtmlContent-Aen3UoIq.js",
       "_storage-zp2nPsZU.js",
-      "_Accordion2-Gpptojt8.js",
+      "_Accordion2-GB4Nd3JA.js",
       "_calcularTotal-FPqXOtx1.js",
       "_axios-_sX4vCAy.js",
       "resources/js/components/Dashboard/Profile.jsx",
@@ -386,6 +394,7 @@
       "resources/js/Utils/CreateReactScript.jsx",
       "_index-XJuWVQ-l.js",
       "_main-Vi8adC25.js",
+      "_tippy-react.esm-xuEmYGnY.js",
       "_tippy.esm-vXDZ6XwW.js"
     ],
     "isEntry": true,
@@ -396,7 +405,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Catalogo-V2VevuBO.js",
+    "file": "assets/Catalogo-7BwkvKUB.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -405,12 +414,14 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-wnKStNKu.js",
+      "_ProductCard-nAEp5U1C.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_main-Vi8adC25.js",
-      "_storage-zp2nPsZU.js"
+      "_storage-zp2nPsZU.js",
+      "_tippy-react.esm-xuEmYGnY.js",
+      "_tippy.esm-vXDZ6XwW.js"
     ],
     "isEntry": true,
     "src": "resources/js/Catalogo.jsx"
@@ -550,7 +561,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Oferta-188VUJ33.js",
+    "file": "assets/Oferta-PRakhJuY.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -559,12 +570,14 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-wnKStNKu.js",
+      "_ProductCard-nAEp5U1C.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_main-Vi8adC25.js",
-      "_storage-zp2nPsZU.js"
+      "_storage-zp2nPsZU.js",
+      "_tippy-react.esm-xuEmYGnY.js",
+      "_tippy.esm-vXDZ6XwW.js"
     ],
     "isEntry": true,
     "src": "resources/js/Oferta.jsx"
@@ -574,7 +587,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Pago--ngSTMaw.js",
+    "file": "assets/Pago-Ne1BXFAd.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -609,7 +622,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/Product-iRZAgD-n.js",
+    "file": "assets/Product-cLck-BFJ.js",
     "imports": [
       "resources/js/Example.jsx",
       "_axios-_sX4vCAy.js",
@@ -622,17 +635,18 @@
       "_setPrototypeOf-ahVgEFUp.js",
       "_index-38suPYpT.js",
       "_ModalSimple-wbpAEmbf.js",
-      "_Accordion2-Gpptojt8.js",
+      "_Accordion2-GB4Nd3JA.js",
       "resources/js/components/Dashboard/Profile.jsx",
       "_es-wXA00dMN.js",
-      "_ProductCard-wnKStNKu.js",
+      "_ProductCard-nAEp5U1C.js",
+      "_tippy-react.esm-xuEmYGnY.js",
       "_index-XJuWVQ-l.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
       "_main-Vi8adC25.js",
-      "_tippy.esm-vXDZ6XwW.js",
       "_floating-ui.dom-3uxmUvem.js",
-      "_floating-ui.react-dom-R4KlLOlI.js"
+      "_floating-ui.react-dom-R4KlLOlI.js",
+      "_tippy.esm-vXDZ6XwW.js"
     ],
     "isEntry": true,
     "src": "resources/js/Product.jsx"
@@ -670,7 +684,7 @@
       "assets/fade-WxPIMcx6.css",
       "assets/tippy-C64i7G0l.css"
     ],
-    "file": "assets/TipoFlor-NwsExX3M.js",
+    "file": "assets/TipoFlor-7qx2_zhO.js",
     "imports": [
       "resources/js/Example.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -679,11 +693,13 @@
       "_Card-eNbsL1sp.js",
       "_axios-_sX4vCAy.js",
       "_index-XJuWVQ-l.js",
-      "_ProductCard-wnKStNKu.js",
+      "_ProductCard-nAEp5U1C.js",
       "_main-Vi8adC25.js",
       "_index-38suPYpT.js",
       "__commonjsHelpers-4gQjN7DL.js",
       "resources/js/Utils/CreateReactScript.jsx",
+      "_tippy-react.esm-xuEmYGnY.js",
+      "_tippy.esm-vXDZ6XwW.js",
       "_storage-zp2nPsZU.js"
     ],
     "isEntry": true,
@@ -1443,7 +1459,7 @@
     "src": "resources/js/components/svg/SvgFlorDeluxe.jsx"
   },
   "resources/js/components/svg/SvgPuntos.svg": {
-    "file": "assets/SvgPuntos-hzKALqiY.svg",
+    "file": "assets/SvgPuntos--FnXd_aC.svg",
     "src": "resources/js/components/svg/SvgPuntos.svg"
   },
   "resources/js/components/svg/svgFlorPremium.jsx": {

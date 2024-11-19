@@ -6,7 +6,7 @@ use App\Http\Requests\StoreGeneralRequest;
 use App\Http\Requests\UpdateGeneralRequest;
 use App\Models\General;
 use Illuminate\Http\Request;
-
+use SoDe\Extend\Text;
 
 class GeneralController extends Controller
 {
@@ -16,8 +16,8 @@ class GeneralController extends Controller
     public function index()
     {
         //llames a los registros para mostrarlos en tabla
-        
-        
+
+
     }
 
     /**
@@ -51,16 +51,15 @@ class GeneralController extends Controller
     {
         //El que muestra el form para editar
         //return "mostrar el unico registro";
-    
+
         $general = General::find(1);
 
         // if (!$general) {
         //     return redirect()->back()->with('error', 'El registro no existe');
         // }
 
-        
+
         return view('pages.general.edit', compact('general'));
-        
     }
 
     /**
@@ -70,21 +69,23 @@ class GeneralController extends Controller
     {
 
         $data = $request->all();
-       if($request->acept_incoming_orders_today !== null){
-        $data['acept_incoming_orders_today'] = 1;
-       }else{
-        $data['acept_incoming_orders_today'] = 0;
-       }
-            $general = General::findOrfail($id); 
+        if ($request->acept_incoming_orders_today !== null) {
+            $data['acept_incoming_orders_today'] = 1;
+        } else {
+            $data['acept_incoming_orders_today'] = 0;
+        }
 
-            // Actualizar los campos del registro con los datos del formulario
-            $general->update($data);
+        $data['url_video'] = $request->url_video ? Text::getYTVideoId($request->url_video) : null;
 
-            // Guardar 
-            $general->save();  
+        $general = General::findOrfail($id);
 
-            return back()->with('success', 'Registro actualizado correctamente');
+        // Actualizar los campos del registro con los datos del formulario
+        $general->update($data);
 
+        // Guardar 
+        $general->save();
+
+        return back()->with('success', 'Registro actualizado correctamente');
     }
 
     /**

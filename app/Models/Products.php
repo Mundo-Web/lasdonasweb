@@ -52,6 +52,11 @@ class Products extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class);
+    }
+
     public function collection()
     {
         return $this->belongsTo(Collection::class);

@@ -996,41 +996,41 @@
 </script>
 
 <script>
-  var menu = new Swiper(".menu", {
-    slidesPerView: 5,
-    spaceBetween: 10,
-    loop: true,
-    centeredSlides: false,
-    initialSlide: 0,
-    allowTouchMove: true,
-    autoplay: {
-      delay: 5500,
-      disableOnInteraction: true,
-      pauseOnMouseEnter: true
-    },
-    breakpoints: {
-      0: {
-        slidesPerView: 2,
-        centeredSlides: false,
-        loop: true,
-      },
-      640: {
-        slidesPerView: 3,
-        centeredSlides: false,
+  // var menu = new Swiper(".menu", {
+  //   slidesPerView: 5,
+  //   spaceBetween: 10,
+  //   loop: true,
+  //   centeredSlides: false,
+  //   initialSlide: 0,
+  //   allowTouchMove: true,
+  //   autoplay: {
+  //     delay: 5500,
+  //     disableOnInteraction: true,
+  //     pauseOnMouseEnter: true
+  //   },
+  //   breakpoints: {
+  //     0: {
+  //       slidesPerView: 2,
+  //       centeredSlides: false,
+  //       loop: true,
+  //     },
+  //     640: {
+  //       slidesPerView: 3,
+  //       centeredSlides: false,
 
-      },
-      1024: {
-        slidesPerView: 5,
-        centeredSlides: false,
+  //     },
+  //     1024: {
+  //       slidesPerView: 5,
+  //       centeredSlides: false,
 
-      },
-      1280: {
-        slidesPerView: 6,
-        centeredSlides: false,
+  //     },
+  //     1280: {
+  //       slidesPerView: 6,
+  //       centeredSlides: false,
 
-      },
-    },
-  });
+  //     },
+  //   },
+  // });
 </script>
 
 <script>

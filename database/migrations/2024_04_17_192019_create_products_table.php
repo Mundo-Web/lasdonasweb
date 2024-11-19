@@ -35,7 +35,7 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->timestamps();
 
-            $table->foreign('categoria_id')->references('id')->on('categories');
+            $table->foreign('categoria_id')->references('id')->on('categories')->nullOnDelete();
             $table->foreign('collection_id')->references('id')->on('collections');
             
             

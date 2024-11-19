@@ -51,7 +51,8 @@
       <div class="swiper slider-portada">
         <div class="swiper-wrapper">
           @foreach ($slider as $slide)
-            <div class="swiper-slide">
+            <div class="swiper-slide {{ $slide->link1 ? 'cursor-pointer' : '' }}"
+              @if ($slide->link1) onclick="window.location.href='{{ $slide->link1 }}'" @endif>
               <div
                 class="hidden bg-cover bg-center object-cover h-[500px] lg:h-[674px] text-white text-center md:flex flex-col justify-center items-center pb-20 p-2 lg:px-[15%] gap-4 font-b_slick_bold"
                 style="background-image:  @if ($slide->name_image) url('{{ asset($slide->url_image . $slide->name_image) }}')
@@ -63,8 +64,8 @@
                 </h2>
                 <p class="!text-xl text-[#336234] font-b_classic_regular md:line-clamp-none line-clamp-3">
                   {{ $slide->description }}</p>
-                <a href="{{ $slide->link1 }}" type="button"
-                  class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a>
+                {{-- <a href="{{ $slide->link1 }}" type="button"
+                  class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a> --}}
               </div>
 
               <div
@@ -81,7 +82,7 @@
                 <a href="{{ $slide->link1 }}" type="button"
                   class="bg-[#336234] px-6 py-3 rounded-full  mt-0 lg:mt-5 tracking-wider">{{ $slide->botontext1 }}</a>
               </div>
-            </div>
+              </d>
           @endforeach
         </div>
       </div>
@@ -170,7 +171,7 @@
                         <img src="{{ asset($category->img_miniatura) }}" alt=""
                           class="h-[24rem]  flex md:hidden  object-cover w-full"
                           onerror="this.src='/images/img/noimagen.jpg';">
-                        <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                        {{-- <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3> --}}
                         <h2 class="text-[32px] font-bold ">{{ $category->name }}</h2>
                       </div>
                     </a>
@@ -185,7 +186,7 @@
                         <img src="{{ asset($category->img_miniatura) }}" alt=""
                           class="h-[24rem]  flex md:hidden  object-cover w-full"
                           onerror="this.src='/images/img/noimagen.jpg';">
-                        <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                        {{-- <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3> --}}
                         <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
                       </div>
                     </a>
@@ -225,7 +226,7 @@
                       <img src="{{ asset($category->img_miniatura) }}" alt=""
                         class="h-[24rem]  flex md:hidden  object-cover w-full"
                         onerror="this.src='/images/img/noimagen.jpg';">
-                      <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                      {{-- <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3> --}}
                       <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
                     </div>
                   </a>
@@ -244,7 +245,7 @@
                       <img src="{{ asset($category->img_miniatura) }}" alt=""
                         class="h-[24rem]  flex md:hidden  object-cover w-full"
                         onerror="this.src='/images/img/noimagen.jpg';">
-                      <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                      {{-- <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3> --}}
                       <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
                     </div>
                   </a>
@@ -263,7 +264,7 @@
                       <img src="{{ asset($category->img_miniatura) }}" alt=""
                         class="h-[24rem]  flex md:hidden  object-cover w-full"
                         onerror="this.src='/images/img/noimagen.jpg';">
-                      <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3>
+                      {{-- <h3 class="text-base font-medium text-[#FE4A11] pt-4 mb-[5%]"></h3> --}}
                       <h2 class="text-3xl font-bold ">{{ $category->name }}</h2>
                     </div>
                   </a>
@@ -396,11 +397,11 @@
           </div>
         </div> --}}
         <div class="flex flex-row w-full gap-4 items-center mt-[10px]">
-          <div class="swiper testimonios-slider flex items-center justify-center content-center h-[270px] ">
+          <div class="swiper testimonios-slider flex items-center justify-center h-[270px] w-full">
 
             <div class="swiper-wrapper flex items-center ">
               @foreach ($testimonie as $item)
-                <div class="swiper-slide flex items-center justify-center content-center " data-aos="fade-up"
+                <div class="swiper-slide flex items-center justify-center content-center w-full" data-aos="fade-up"
                   data-aos-offset="150">
 
                   <div class="flex items-center justify-center content-center w-full">
@@ -463,29 +464,25 @@
       </section>
     @endif
 
-    <section class="z-0">
-      <div class="grid grid-cols-1 ">
-        @php
-          $videoUrl = $general->url_video;
-          parse_str(parse_url($videoUrl, PHP_URL_QUERY), $queryParams);
-          $videoId = $queryParams['v'] ?? null;
-        @endphp
-
-        <div
-          class="contenedorvideo w-full h-[500px] lg:h-[600px] border border-gray-200 rounded-none overflow-hidden relative bg-cover bg-center">
-          <div class="absolute inset-0 flex items-center justify-center disparo bg-opacity-50 cursor-pointer"
-            onclick="showVideo(this)">
-            <button class="text-white text-2xl"><img class="w-20 hover:scale-125 transition-transform duration-300"
-                src="{{ asset('img_donas/botonplay.png') }}" /></button>
+    @if ($general->url_video)
+      <section class="z-0">
+        <div class="grid grid-cols-1 ">
+          <div id="blockVideo"
+            class="contenedorvideo w-full h-[500px] lg:h-[600px] border border-gray-200 rounded-none overflow-hidden relative bg-cover bg-center">
+            <div class="absolute inset-0 flex items-center justify-center disparo bg-opacity-50 cursor-pointer"
+              onclick="showVideo(this)">
+              <button class="text-white text-2xl"><img class="w-20 hover:scale-125 transition-transform duration-300"
+                  src="{{ asset('img_donas/botonplay.png') }}" /></button>
+            </div>
+            <iframe id="videoIframe" class="videoIframe w-full h-full "
+              src="https://www.youtube.com/embed/{{ $general->url_video }}"
+              referrerpolicy="strict-origin-when-cross-origin" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
           </div>
-          <iframe id="videoIframe" class="videoIframe w-full h-full "
-            src="https://www.youtube.com/embed/{{ $videoId }}" referrerpolicy="strict-origin-when-cross-origin"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
         </div>
-      </div>
-    </section>
+      </section>
+    @endif
 
     <section class="z-0">
       @if (strlen($general->instagram) > 1)
@@ -573,19 +570,16 @@
   </script>
 
   <script>
-    var appUrl = '{{ env('APP_URL') }}';
+    // let appUrl = '{{ env('APP_URL') }}';
   </script>
 
   <script src="{{ asset('js/carrito.js') }}"></script>
 
   <script>
     $(document).ready(function() {
-      let videourl = '{{ $general->url_video }}'
-      let videoId = getYTVideoId(`${videourl}`)
+      let videoId = '{{ $general->url_video }}'
 
-      console.log(videoId)
       let urlfinal = `https://i.ytimg.com/vi/${videoId}/hq720.jpg`
-
 
       $("#blockVideo").css({
         "background-image": `url(${urlfinal})`,
@@ -593,24 +587,6 @@
         "background-position": "center"
       });
     })
-
-    function getYTVideoId(url) {
-      const patterns = [
-        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/, // URL estándar
-        /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/, // URL corta
-        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]+)/, // URL embebida
-        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)&.+/ // URL con parámetros adicionales
-      ];
-
-      for (let pattern of patterns) {
-        const matches = url.match(pattern);
-        if (matches) {
-          return matches[1];
-        }
-      }
-
-      return null;
-    }
   </script>
 
   <script>

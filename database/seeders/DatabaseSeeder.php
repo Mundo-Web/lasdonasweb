@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             MarketerSeeder::class,
             CampaignMarketerSeeder::class,
             */
+            ConstantSeeder::class,
             RoleSeeder::class,
             UsersSeeder::class,
             MessageSeeder::class,
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SubcategorySeeder::class,
             StatusOrdensSeeder::class,
+            StatusSeeder::class,
             AtributosSeeder::class,
             TiposSeeder::class,
             ComplementosSeeder::class,
@@ -45,6 +47,7 @@ class DatabaseSeeder extends Seeder
             TiposFlorSeeder::class,
             TagSeeder::class,
             ItemSeeder::class,
+            PriceSeeder::class,
         ]);
     }
 }

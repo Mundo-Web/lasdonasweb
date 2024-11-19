@@ -53,7 +53,16 @@
                 @foreach ($products as $item)
                   @if ($item->tipo_servicio == 'producto')
                     <tr>
-                      <td>{{ $item->producto }}</td>
+                      <td>
+                        <div>
+                          <b>{{ $item->categoria?->name ?? 'Sin categoría' }}
+                            @if ($item->subcategory_id)
+                              - {{ $item->subcategory?->name ?? 'Sin subcategoría' }}
+                            @endif
+                          </b>
+                          <div class="w-96 truncate">{{ $item->producto }}</div>
+                        </div>
+                      </td>
                       <td>{{ $item->precio }}</td>
                       <td>{{ $item->descuento }}</td>
                       <td>{{ $item->stock }}</td>

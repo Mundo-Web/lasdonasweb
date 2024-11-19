@@ -91,7 +91,7 @@
 
   </div>
 
-  <div id="modalTerminosCondiciones" class="modal" style="max-width: 900px !important;width: 100% !important;  ">
+  <div id="modalTerminosCondiciones" class="modal" style="max-width: 900px !important;width: 100% !important;">
     <!-- Modal body -->
     <div class="p-4 ">
       <h1 class="font-Inter_SemiBold">Terminos y condiciones</h1>
@@ -133,7 +133,6 @@
       $('#modalTerminosCondiciones').modal({
         show: true,
         fadeDuration: 200,
-
       })
     })
     $(document).on('click', '#linkPoliticas', function() {
@@ -162,4 +161,4 @@
     })
   })
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js" defer></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js" defer></script> --}}

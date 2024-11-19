@@ -1,3 +1,4 @@
+import Tippy from "@tippyjs/react";
 import React, { useEffect, useState } from "react";
 
 const ProductCard = (item) => {
@@ -89,7 +90,9 @@ const ProductCard = (item) => {
           )}
         </div>
         <div className="p-4">
+          <Tippy content={item.producto}>
           <h2 className="block text-xl text-[#112212] mb-1 font-bold truncate content-between">{item.producto}</h2>
+          </Tippy>
           <p className="text-base font-normal text-[rgba(17,34,18,0.8)] line-clamp-2 text-ellipsis h-[48px] mb-1 font-b_classic_regular tracking-wide">
             {item.extract}
 

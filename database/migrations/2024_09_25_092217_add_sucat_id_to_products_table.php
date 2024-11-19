@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             //
             $table->unsignedBigInteger('subcategory_id')->nullable();
+
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->nullOnDelete();
         });
     }
 

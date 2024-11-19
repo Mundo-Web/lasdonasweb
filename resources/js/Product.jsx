@@ -550,7 +550,7 @@ const Product = ({
 
               <div className="text-left  space-y-4 col-span-3 hidden md:block">
 
-                <div className="text-white flex flex-col md:flex-row  font-semibold pb-6 md:space-x-6 space-y-3 text-[14px]">
+                <div className="text-white flex flex-col items-center md:items-start md:flex-row  font-semibold pb-6 gap-2 md:gap-4 lg:gap-6 text-[14px] justify-center">
                   <button type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Descripción del producto</button>
                   <button onClick={openPoliticaEnvio} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Políticas de envío</button>
                   <button onClick={togleModalSustitucion} type="button" className="bg-[#336234] px-4 py-3 rounded-full ">Política de FloriPuntos</button>

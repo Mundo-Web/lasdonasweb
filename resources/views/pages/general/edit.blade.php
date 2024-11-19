@@ -530,7 +530,8 @@
                               </path>
                             </svg>
                           </div>
-                          <input type="text" id="url_video" name="url_video" value="{{ $general->url_video }}"
+                          <input type="text" id="url_video" name="url_video"
+                            value="{{ $general->url_video ? 'https://youtu.be/' . $general->url_video : '' }}"
                             class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Token Instagram">
                         </div>
