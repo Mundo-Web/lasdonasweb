@@ -55,6 +55,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Carbon\Carbon;
+use SoDe\Extend\JSON;
 
 class IndexController extends Controller
 {
@@ -974,15 +975,20 @@ class IndexController extends Controller
 
     $tipoDefault = Tipo::where('is_default', '=', 1)->first();
 
+    $complementoIDs = JSON::parseable($product->complementos) ? JSON::parseable($product->complementos) : [];
+    
     $complementos = Products::select('products.*')
       // ->join('categories', 'categories.id', 'products.categoria_id')
       ->with('images')
+      ->whereIn('products.id', $complementoIDs)
       ->where('products.status', 1)
       ->where('products.tipo_servicio', 'complemento')
       ->where('products.parent_id', null)
       // ->where('categoria_id', $product->categoria_id)
       ->groupBy('products.id')
       ->get();
+
+
     foreach ($complementos as $key => $complemento) {
 
       $complementos[$key]['min_price'] = $complemento->min_price;
