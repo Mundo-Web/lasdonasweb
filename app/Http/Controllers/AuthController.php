@@ -64,7 +64,7 @@ class AuthController extends Controller
                         'password' => $preUserJpa->password,
                         'person_id' => $preUserJpa->person_id,
                         // 'birthdate' => $preUserJpa->birthdate,
-                        'relative_id' => Crypto::randomUUID()
+                        // 'relative_id' => Crypto::randomUUID()
                     ])->assignRole('Customer');
                     $message = 'La confirmacion se ha realizado con exito';
                 }
