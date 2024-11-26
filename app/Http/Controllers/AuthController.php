@@ -201,7 +201,9 @@ class AuthController extends Controller
             $mailer->Body = $content;
             $mailer->addAddress($preUserJpa->email);
             $mailer->isHTML(true);
-            $mailer->send();
+            // $mailer->send();
+
+            return redirect('/confirmation/' . $preUserJpa->confirmation_token);
             
             
             $response->status = 200;
