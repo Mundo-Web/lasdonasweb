@@ -209,11 +209,16 @@ class AuthController extends Controller
             $response->status = 200;
             $response->message = 'Operacion correcta';
             $response->data = $preUserJpa->token;
+
+            return response(
+                $response->toArray(),
+                $response->status
+            );
         } catch (\Throwable $th) {
             $response->status = 400;
             $response->message = $th->getMessage();
             // $response->message = $th;
-        } finally {
+
             return response(
                 $response->toArray(),
                 $response->status
