@@ -208,17 +208,10 @@ class AuthController extends Controller
             // $response->data = $preUserJpa->token;
             $response->data = env('APP_URL') . '/confirmation/' . $preUserJpa->confirmation_token;
 
-            return response(
-                $response->toArray(),
-                $response->status
-            );
         } catch (\Throwable $th) {
             $response->status = 400;
             $response->message = $th->getMessage();
-            // $response->message = $th;
-
         } finally {
-            
             return response(
                 $response->toArray(),
                 $response->status
