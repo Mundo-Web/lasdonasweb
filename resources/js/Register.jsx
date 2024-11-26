@@ -118,7 +118,7 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY, token, terms = 'Terminos
     const result = await AuthRest.signup(request)
     if (!result) return setLoading(false)
 
-      if (result) location.href = result;
+    // if (result) location.href = result;
     // if (result) location.href = `./confirm-email/${result}`;
     setLoading(false)
   }

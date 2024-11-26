@@ -217,6 +217,8 @@ class AuthController extends Controller
             $response->message = $th->getMessage();
             // $response->message = $th;
 
+        } finally {
+            
             return response(
                 $response->toArray(),
                 $response->status
