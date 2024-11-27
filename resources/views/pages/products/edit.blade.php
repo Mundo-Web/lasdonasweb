@@ -388,8 +388,8 @@
 
 
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data"
-      id="formularioedit">
+    <form id="formPrincipal" action="{{ route('products.update', $product->id) }}" method="POST"
+      enctype="multipart/form-data" id="formularioedit">
       @csrf
       @method('PUT')
       <div
@@ -1980,6 +1980,73 @@
 
 
     })
+
+    $('#formPrincipal').on('submit', async function(e) {
+      e.preventDefault(); // Prevenir el comportamiento por defecto
+
+      var valoresFormularios = []; // Inicializar como arreglo
+
+      const formularios = [...$('form[id^="div-form-opcion-"]')]
+      for (const formulario of formularios) {
+        let formularioObj = {}; // Objeto para almacenar los valores del formulario actual
+        let valoresFormularioActual = {};
+
+        const fields = [...formulario.querySelectorAll('input, select')];
+
+        for (const field of fields) {
+          // Verificar si el input actual es de tipo file
+          if (field.getAttribute('type') === 'file') {
+            // Obtener el archivo seleccionado (o archivos si es múltiple)
+            var archivos = field.files[0];
+            if (!archivos) {
+              continue
+            }
+
+            // Asumiendo que quieres usar 'data-name' como clave, como en el resto de inputs
+            valoresFormularioActual[field.getAttribute('data-name')] = await File.toBase64(archivos);
+          } else {
+            // Para otros tipos de inputs, manejar como antes
+            if (field.getAttribute('name')?.includes('[]')) {
+              if (!valoresFormularioActual[field.getAttribute('data-name')]) {
+                valoresFormularioActual[field.getAttribute('data-name')] = [];
+              }
+              valoresFormularioActual[field.getAttribute('data-name')].push(field.value);
+            } else {
+              valoresFormularioActual[field.getAttribute('data-name')] = field.value;
+            }
+          }
+        }
+
+        let spectitle = [...formulario.querySelectorAll('[data-name^="tittle-"]')]; //
+        let specVal = [...formulario.querySelectorAll('[data-name^="specifications-"]')]; //
+
+        let spec = []
+        for (let i = 0; i < spectitle.length; i++) {
+          spec.push({
+            tittle: spectitle[i].value,
+            specifications: specVal[i].value
+          })
+        }
+        valoresFormularioActual.specifiaciones = spec
+
+        valoresFormularios.push(
+          valoresFormularioActual); // Agregar el objeto del formulario actual al arreglo
+
+
+      } // end for (const formulario of formularios) {
+
+
+      console.log(valoresFormularios)
+
+
+      var jsonValoresFormularios = JSON.stringify(valoresFormularios);
+      $('#valoresFormulario').val(jsonValoresFormularios);
+
+      // return
+
+      $(this).unbind('submit').submit(); // Continuar con el envío del formulario
+    });
+
     $(document).on('click', '.eliminarOpcion', function() {
       const form = $(this).closest('[id^="div-form-opcion-"]');
       const formId = form.attr('id');
