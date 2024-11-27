@@ -150,7 +150,7 @@
               </div>
               <div class="rounded-lg shadow-md">
                 <iframe class="w-full aspect-video rounded-md"
-                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAJjOf6DOPletjLYdzC8IxZpM-PauWyU4Q&q={{ $orders->address_latitude }},{{ $orders->address_longitude }}&zoom=16&maptype=satellite"
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC-U0GMdMa5ANO0unP7vVPaLGfnfZz-0so&q={{ $orders->address_latitude }},{{ $orders->address_longitude }}&zoom=16&maptype=satellite"
                   style="border:0;" allowfullscreen="" loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
