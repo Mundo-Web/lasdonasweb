@@ -31,7 +31,7 @@ class AuthController extends Controller
 
     public function confirmEmailView(Request $request, string $token)
   {
-    if (Auth::check()) return redirect('/home');
+    if (Auth::check()) return redirect('/');
 
     $preUserJpa = PreUser::where('token', $token)->first();
     if (!$preUserJpa) return redirect('/login');
