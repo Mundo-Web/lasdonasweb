@@ -16,9 +16,9 @@ const ConfirmEmail = ({ email }) => {
           <div className="row justify-content-center">
             <div className="col-md-8 col-lg-6 col-xl-4">
               <div className="text-center">
-                <Link href="/">
+                <a href="/">
                   <img src="/images/svg/LOGO2.png" alt="" height="40px" className="mx-auto" />
-                </Link>
+                </a>
                 <p className="text-muted mt-2 mb-4">Las Doñas by Mundo Web</p>
               </div>
               <div className="card text-center">
@@ -26,9 +26,9 @@ const ConfirmEmail = ({ email }) => {
                   <div className="mb-4">
                     <h4 className="text-uppercase mt-0">Confirmar correo electrónico</h4>
                   </div>
-                  <img src="\images\svg\mail_confirm.png" alt="img" width="86" className="mx-auto d-block" />
+                  <img src="/images/svg/mail_confirm.png" alt="img" width="86" className="mx-auto d-block" />
                   <p className="text-muted font-14 mt-2">Se ha enviado un correo electrónico a <b>{email}</b>. Por favor, verifica si has recibido un mensaje de la empresa y haz clic en el enlace incluido para continuar con el registro.</p>
-                  <Link href="/login" className="btn d-block btn-pink waves-effect waves-light mt-3 bg-green-800 text-white">Iniciar sesion</Link>
+                  <a href="/login" className="btn d-block btn-pink waves-effect waves-light mt-3 bg-green-800 text-white">Iniciar sesion</a>
                 </div>
               </div>
             </div>
