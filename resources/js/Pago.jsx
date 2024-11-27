@@ -101,6 +101,7 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
     // Aquí puedes manejar cualquier lógica adicional que necesites
   };
 
+  
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDlQ6Bt-B5Y-rS-zVInsX_uQ0Brt8Sk6jQ&libraries=places`;
