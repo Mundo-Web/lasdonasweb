@@ -2364,7 +2364,7 @@
 
       var valoresFormularios = []; // Inicializar como arreglo
 
-      const formularios = [...$('div[id^="div-form-opcion-"]')]
+      const formularios = [...$('form[id^="div-form-opcion-"]')]
       for (const formulario of formularios) {
         let formularioObj = {}; // Objeto para almacenar los valores del formulario actual
         let valoresFormularioActual = {};
