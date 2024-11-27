@@ -1179,7 +1179,7 @@
     function devolverContenido(idContenido) {
       let html = `
 
-      <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5" id="div-form-opcion-${idContenido}">  
+      <form class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5" id="div-form-opcion-${idContenido}">  
         <div class="md:col-span-5">
           <button type="button" class=" ml-2 bg-red-500 justify-self-center text-white px-4 h-10 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full  eliminarOpcion" style="  position: absolute;  right: 6%;">
             <i class="fa fa-trash"></i>
@@ -1338,7 +1338,7 @@
             </div>
           </div>
         </div>
-      </div>`
+      </form>`
       return html
     }
 
