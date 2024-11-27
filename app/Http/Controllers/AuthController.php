@@ -86,7 +86,7 @@ class AuthController extends Controller
 
     public function registerView()
     {
-        if (Auth::check()) return redirect('/home');
+        if (Auth::check()) return redirect('/');
 
         // return view('admin')
         // ->with('PUBLIC_RSA_KEY', Controller::$PUBLIC_RSA_KEY)
