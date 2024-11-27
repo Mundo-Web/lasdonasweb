@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
 import Swal from 'sweetalert2';
 import ModalGoogle from './ModalGoogle';
 import NewAdressForm from './NewAdressForm';
@@ -25,7 +25,7 @@ const AddressList = ({ }) => {
   useEffect(() => {
     addreses();
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBDikLz7ELBdUFW0TnvkWkcXPK48Wc003U&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjOf6DOPletjLYdzC8IxZpM-PauWyU4Q&libraries=places`;
     script.async = true;
     script.defer = true;
     script.onload = () => {

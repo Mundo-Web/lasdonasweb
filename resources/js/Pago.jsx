@@ -1,29 +1,26 @@
-import { createRoot } from 'react-dom/client'
-import React, { useEffect, useState, useRef } from 'react'
-import CreateReactScript from './Utils/CreateReactScript'
+import React, { useEffect, useRef, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import CreateReactScript from './Utils/CreateReactScript';
 
-import './fade.css';
-import { Local } from 'sode-extend-react/sources/storage'
+import { Local } from 'sode-extend-react/sources/storage';
 import OrderSummary from './components/OrderSummary';
-import ProgressBar from './components/ProgressBar';
+import './fade.css';
 
+import Button from "./components/Button";
 import DateTimeDisplay from "./components/DateTimeDisplay";
 import InputField from "./components/InputField";
 import ReceiptTypeSelector from "./components/ReceiptTypeSelector";
-import Button from "./components/Button";
 
-import ModalGoogle from './components/ModalGoogle';
+import { Fetch, Notify } from 'sode-extend-react';
+import Swal from 'sweetalert2';
 import AddressForm from './components/AddressForm';
 import Checkbox from './components/Checkbox';
-import SelectSecond from './components/SelectSecond';
-import Swal from 'sweetalert2';
-import calculartotal from './Utils/calcularTotal';
-import { Modal } from 'flowbite-react';
-import { Fetch, Notify } from 'sode-extend-react';
-import { data } from 'jquery';
+import AddressDropdown from './components/Home/AddressDropdown';
+import ModalGoogle from './components/ModalGoogle';
 import ModalSimple from './components/ModalSimple';
 import OrdenConfirmation from './components/OrdenConfirmation';
-import AddressDropdown from './components/Home/AddressDropdown';
+import SelectSecond from './components/SelectSecond';
+import calculartotal from './Utils/calcularTotal';
 
 const Pago = ({ session, culqi_public_key, app_name, greetings, points, historicoCupones, general, addresses, defaultAddress }) => {
 
@@ -106,7 +103,7 @@ const Pago = ({ session, culqi_public_key, app_name, greetings, points, historic
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBDikLz7ELBdUFW0TnvkWkcXPK48Wc003U&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjOf6DOPletjLYdzC8IxZpM-PauWyU4Q&libraries=places`;
     script.async = true;
     script.defer = true;
     script.onload = () => {
