@@ -245,7 +245,7 @@ class IndexController extends Controller
         //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
         $categoria = Category::where('slug', $filtro)->first();
         if (isset($subcategoria)) {
-          $categoriaSelected = Subcategory::where('slug', $subcategoria)->first();
+          $categoriaSelected = Subcategory::where('id', $subcategoria)->first();
         }
         $productos = Products::obtenerProductos($categoria?->id ?? '');
         $filtro = $categoria?->id ?? '';
