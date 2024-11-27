@@ -329,7 +329,7 @@ const Sales = ({ statuses }) => {
           {saleLoaded?.tipo_tarjeta == 'transferencia' && (<a className='underline pb-6' href={`/${saleLoaded?.img_transferencia}`} download={'transferencia.jpg'} target='_blank' > Img Transferencia</a>)}
 
           <iframe className="w-full aspect-video rounded-md"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAJjOf6DOPletjLYdzC8IxZpM-PauWyU4Q&q=${saleLoaded?.address_latitude},${saleLoaded?.address_longitude}&zoom=16&maptype=satellite`}
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDlQ6Bt-B5Y-rS-zVInsX_uQ0Brt8Sk6jQ&q=${saleLoaded?.address_latitude},${saleLoaded?.address_longitude}&zoom=16&maptype=satellite`}
             style={{ border: 0 }} allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>

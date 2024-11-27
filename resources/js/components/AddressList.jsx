@@ -25,7 +25,7 @@ const AddressList = ({ }) => {
   useEffect(() => {
     addreses();
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjOf6DOPletjLYdzC8IxZpM-PauWyU4Q&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDlQ6Bt-B5Y-rS-zVInsX_uQ0Brt8Sk6jQ&libraries=places`;
     script.async = true;
     script.defer = true;
     script.onload = () => {
