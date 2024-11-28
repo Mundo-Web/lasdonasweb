@@ -26,6 +26,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use SoDe\Extend\File as ExtendFile;
 use Illuminate\Validation\ValidationException;
+use SoDe\Extend\Crypto;
 
 class ProductsController extends Controller
 {
@@ -270,11 +271,15 @@ class ProductsController extends Controller
       // $cleanedData = $this->processAndCleanProductData($data, $request);
 
 
+      $posibleSlug = Str::slug($cleanedData['producto']);
 
       $producto = Products::create($cleanedData);
 
+      if (Products::where('slug', $posibleSlug)->exists()) {
+        $posibleSlug = $posibleSlug . '-' . $producto->id;
+      }
 
-
+      $producto->update(['slug' => $posibleSlug]);
 
       if ($producto['descuento'] == 0 || is_null($producto['descuento'])) {
         $precioFiltro = $producto['precio'];
@@ -311,8 +316,10 @@ class ProductsController extends Controller
       /* return redirect()->back()
         ->withErrors($e->validator)
         ->withInput(); */
+      dump($e->getMessage());
     } catch (\Throwable $th) {
       //throw $th;
+      dump($th->getMessage());
       
 
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
@@ -696,9 +703,17 @@ class ProductsController extends Controller
       $data['imagen'] = $this->handleImageUpload($request);
       list($cleanedData, $atributos, $especificaciones) = $this->processAndCleanProductData($data);
 
+      $posibleSlug = Str::slug($cleanedData['producto']);
 
       $product = Products::find($id);
       $product->update($cleanedData);
+
+      if ($product['slug'] != $posibleSlug) {
+        if (Products::where('slug', $posibleSlug)->exists()) {
+          $posibleSlug = $posibleSlug . '-' . $product->id;
+        }
+        $product->update(['slug' => $posibleSlug]);
+      }
 
       if ($product['descuento'] == 0 || is_null($product['descuento'])) {
         $precioFiltro = $product['precio'];
@@ -725,10 +740,10 @@ class ProductsController extends Controller
       $this->procesarOpciones($product, $valoresFormulario, $tagsSeleccionados, $request, $actualizacion);
     } catch (\Throwable $th) {
       //throw $th;
-
+      dump($th->getMessage());
     }
 
-
+    dump($request->all());
     // return;
 
     return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
