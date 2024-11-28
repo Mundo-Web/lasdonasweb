@@ -316,10 +316,10 @@ class ProductsController extends Controller
       /* return redirect()->back()
         ->withErrors($e->validator)
         ->withInput(); */
-      dump($e->getMessage());
+      // dump($e->getMessage());
     } catch (\Throwable $th) {
       //throw $th;
-      dump($th->getMessage());
+      // dump($th->getMessage());
       
 
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
@@ -740,10 +740,10 @@ class ProductsController extends Controller
       $this->procesarOpciones($product, $valoresFormulario, $tagsSeleccionados, $request, $actualizacion);
     } catch (\Throwable $th) {
       //throw $th;
-      dump($th->getMessage());
+      // dump($th->getMessage());
     }
 
-    dump($request->all());
+    // dump($request->all());
     // return;
 
     return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
