@@ -319,7 +319,6 @@ class ProductsController extends Controller
       // dump($e->getMessage());
     } catch (\Throwable $th) {
       //throw $th;
-      // dump($th->getMessage());
       
 
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
