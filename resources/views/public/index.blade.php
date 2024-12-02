@@ -146,7 +146,7 @@
               @foreach ($chunk as $category)
                 @if ($loop->first)
                   <div class="w-full lg:row-span-2 lg:col-span-2">
-                    <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                    <a href="{{ route('Catalogo.jsx', $category->slug) }}">
                       <div class="h-full">
                         <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
                           class="hidden h-52 sm:h-52 md:h-64 lg:h-[660px] xl:h-[760px] md:flex md:flex-col justify-end items-start object-cover w-full"
@@ -161,7 +161,7 @@
                   </div>
                 @elseif ($loop->iteration == 2)
                   <div class="w-full lg:col-span-2">
-                    <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                    <a href="{{ route('Catalogo.jsx', $category->slug) }}">
                       <div class="h-full w-full">
                         <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
                           class="hidden h-52 sm:h-52 md:h-64 lg:h-60 xl:h-80 w-full md:flex md:flex-col justify-end items-start object-cover object-top"
@@ -176,7 +176,7 @@
                   </div>
                 @else
                   <div class="w-full">
-                    <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                    <a href="{{ route('Catalogo.jsx', $category->slug) }}">
                       <div class="h-full">
                         <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
                           class="hidden h-52 sm:h-52 md:h-64 lg:h-72 xl:h-[20rem]  w-full md:flex md:flex-col justify-end items-start object-cover object-left-top"
@@ -216,7 +216,7 @@
             @foreach ($remainderCategories as $category)
               <div class="grid grid-cols-1 px-[5%] lg:px-[8%] pb-10 mt-10">
                 <div class="w-full">
-                  <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                  <a href="{{ route('Catalogo.jsx', $category->slug) }}">
                     <div class="h-full">
                       <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
                         class="hidden h-52 sm:h-52 md:h-64 lg:h-72 xl:h-96 w-full md:flex md:flex-col justify-end items-start object-scale-down"
@@ -235,7 +235,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
               @foreach ($remainderCategories as $category)
                 <div class="w-full">
-                  <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                  <a href="{{ route('Catalogo.jsx', $category->slug) }}">
                     <div class="h-full">
                       <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
                         class="hidden h-52 sm:h-52 md:h-64 lg:h-72 xl:h-52 w-full md:flex md:flex-col justify-end items-start object-cover"
@@ -254,7 +254,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 px-[5%] lg:px-[8%] gap-8 pt-10">
               @foreach ($remainderCategories as $category)
                 <div class="w-full {{ $loop->first ? 'sm:row-span-2' : '' }}">
-                  <a href="{{ route('Catalogo.jsx', $category->id) }}">
+                  <a href="{{ route('Catalogo.jsx', $category->slug) }}">
                     <div class="h-full">
                       <img src="{{ asset($category->url_image . $category->name_image) }}" alt=""
                         class="{{ $loop->first ? 'h-96 sm:h-[760px]' : 'h-52 sm:h-52 md:h-64 lg:h-72 xl:h-52' }} hidden w-full md:flex md:flex-col justify-end items-start object-cover"
@@ -279,7 +279,7 @@
         @foreach ($categoriasindex as $item)
           <div class="mb-3 flex flex-col">
             <div class="w-full lg:row-span-2 lg:col-span-2">
-              <a href="{{ route('Catalogo.jsx', $item->id) }}">
+              <a href="{{ route('Catalogo.jsx', $item->slug) }}">
                 <div class="h-full">
                   <img src="{{ asset($item->url_image . $item->name_image) }}" alt=""
                     class="hidden h-52 sm:h-52 md:h-64 lg:h-[660px] xl:h-[760px] md:flex md:flex-col justify-end items-start object-cover w-full"
