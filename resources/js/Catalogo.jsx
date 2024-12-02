@@ -119,10 +119,11 @@ const Catalogo = ({ categorias, selected_category, categoria, url_env, beneficio
     const inputId = event.target.id;
     const spanContent = labelCat.current[inputId].querySelector('span').textContent;
 
+    const curCat = categorias.find(cat => cat.id == inputId)
 
-    setCurrentCat(categorias.find(cat => cat.id == inputId))
+    setCurrentCat(curCat)
 
-    updateUrlWithInputId(inputId);
+    updateUrlWithInputId(curCat.slug ?? null);
 
     function isEmptyObject(obj) {
       return Object.keys(obj).length === 0 && obj.constructor === Object;
