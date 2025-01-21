@@ -122,11 +122,10 @@ class CuponController extends Controller
         $cupon = HistoricoCupon::create([
           'cupones_id' => $request->id,
           'user_id' => $usuario,
-
           'usado' => false,
-
         ]);
       }
+      
       $cupon = HistoricoCupon::with('cupon')->where('user_id', $usuario)->where('usado', false)->first();
       return response()->json(['message' => 'Cupon asignado.', 'cupon' => $cupon], 200);
     } catch (\Throwable $th) {
@@ -160,6 +159,7 @@ class CuponController extends Controller
       $valido = false;
       return response()->json(['message' => 'El cupón ingresado no es válido.', 'valido' => $valido], 400);
     }
+
   }
 
   public function updateVisible(Request $request)

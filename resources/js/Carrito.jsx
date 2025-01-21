@@ -69,6 +69,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
       console.error('Error al eliminar cupon:', error)
     }
   }
+
   const deleteItemR = (id) => {
 
     let articulosCarrito = Local.get('carrito') || [];
@@ -137,7 +138,6 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
   }, [detallePedido])
 
 
-
   const deleteOnCarBtnR = (id) => {
     let articulosCarrito = Local.get('carrito') || [];
     let prodRepetido = articulosCarrito.map(item => {
@@ -168,7 +168,6 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
   const handlemodalComplementos = () => {
     setActiveModal(!activeModal)
   }
-
 
   useEffect(() => {
     setMontoTotal(calculartotal(points))
@@ -229,7 +228,6 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
         icon: 'error'
       })
     }
-
 
   }
 
@@ -397,7 +395,7 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
               <hr />
 
 
-              <div className='mt-7 '>
+              <div className='mt-7'>
                 <h2 className="font-bold text-[16px] text-[#a78f8f]">
                   Resumen del pedido </h2>
                 <div className='flex flex-row gap-4 mt-4'>
@@ -415,29 +413,24 @@ const Carrito = ({ complementos, points = 0, historicoCupones }) => {
                     {/* <span className='opacity-80'>Envío (Chaclacayo - Lima)</span> */}
                     <span className='font-bold'>Sub Total</span>
                   </div>
+
                   <div className='w-4/12 flex flex-col justify-end items-end px-4 font-bold'>
                     <span className='opacity-80'>S/ {Number(montoTotal)}</span>
                     {cuponActivo.length > 0 && (
                       <>
                         <span className='opacity-80'>
                           {cuponActivo[0]?.cupon?.porcentaje == 1 ? `${Number(cuponActivo[0].cupon.monto).toFixed(0)} %` : `S/ ${cuponActivo[0].cupon.monto}`}
-
                         </span>
                         <span className='text-[#112212] font-bold text-nowrap' id='itemsTotal'>
                           {cuponActivo[0]?.cupon?.porcentaje == 1 ? `S/  ${Number(montoTotal) - ((Number(montoTotal) * Number(cuponActivo[0].cupon.monto).toFixed(0) / 100))} ` : `S/ ${Number(montoTotal) - Number(cuponActivo[0].cupon.monto)}`}
-
-
                         </span>
                       </>
-
                     )}
-
-
-
                   </div>
-                </div>
 
+                </div>
               </div>
+
               <hr />
               <div>
                 <div className="flex flex-col gap-5">

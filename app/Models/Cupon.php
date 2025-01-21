@@ -9,7 +9,6 @@ class Cupon extends Model
 {
     use HasFactory;
     protected $fillable = [
-
         'codigo',
         'fecha_caducidad',
         'monto',
