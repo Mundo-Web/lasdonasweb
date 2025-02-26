@@ -95,8 +95,6 @@ class AuthController extends Controller
         $termsAndCondicitions = TermsAndCondition::first();
         $politicas = PolyticsCondition::first() ?? new PolyticsCondition();
         
-
-
         return Inertia::render('Register', [
             'APP_PROTOCOL' => env('APP_PROTOCOL', 'https'),
             'PUBLIC_RSA_KEY' => Controller::$PUBLIC_RSA_KEY,
